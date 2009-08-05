@@ -6,6 +6,7 @@ using EasyDev.PL;
 using EasyDev.Resources;
 using System.Data;
 using System.Web.Caching;
+using System.Web;
 
 namespace EasyDev.BL.Services
 {
@@ -138,6 +139,7 @@ namespace EasyDev.BL.Services
 
         public GenericService()
         {
+            SessionPool = HttpRuntime.Cache;
             Initialize();
         }
 
@@ -146,7 +148,7 @@ namespace EasyDev.BL.Services
         /// </summary>
         protected virtual void Initialize()
         {
-            string sessionName = SessionName.Equals(string.Empty) ? "DEFAULT_SESSION" : SessionName;
+            string sessionName = (SessionName == null || SessionName.Equals(string.Empty)) ? "DEFAULT_SESSION" : SessionName;
             this.resMgrFactory = ResourceManagerFactory.GetInstance();      //国际化资源对象
             this.serviceManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
 
