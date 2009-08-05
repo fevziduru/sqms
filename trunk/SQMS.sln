@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDev", "..\..\..\..\..\DevSpace\CodeComplete\MS.NET\Application Framework\EasyDev\EasyDev Framework\EasyDev\EasyDev.csproj", "{A18AA3B5-C973-4193-8421-82D191C8966D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Application", "SQMS.Application\SQMS.Application.csproj", "{8839A165-AEA5-41B3-920E-0608A2C60985}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Services", "SQMS.Services\SQMS.Services.csproj", "{B714CFE0-2934-4AED-8994-B371A6D44405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDev", "EasyDev\EasyDev.csproj", "{A18AA3B5-C973-4193-8421-82D191C8966D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A18AA3B5-C973-4193-8421-82D191C8966D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A18AA3B5-C973-4193-8421-82D191C8966D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A18AA3B5-C973-4193-8421-82D191C8966D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A18AA3B5-C973-4193-8421-82D191C8966D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8839A165-AEA5-41B3-920E-0608A2C60985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8839A165-AEA5-41B3-920E-0608A2C60985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8839A165-AEA5-41B3-920E-0608A2C60985}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,6 +21,10 @@ Global
 		{B714CFE0-2934-4AED-8994-B371A6D44405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B714CFE0-2934-4AED-8994-B371A6D44405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B714CFE0-2934-4AED-8994-B371A6D44405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18AA3B5-C973-4193-8421-82D191C8966D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18AA3B5-C973-4193-8421-82D191C8966D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18AA3B5-C973-4193-8421-82D191C8966D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18AA3B5-C973-4193-8421-82D191C8966D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
