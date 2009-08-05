@@ -32,11 +32,6 @@ namespace EasyDev.BL.Services
         private NativeServiceManager serviceManager = null;
 
         /// <summary>
-        /// 数据访问对象
-        /// </summary>
-        //private GenericDBSession session = null;
-
-        /// <summary>
         /// 数据源对象
         /// </summary>
         private DataSourceObject datasource = null;
