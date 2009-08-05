@@ -1,0 +1,180 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8839A165-AEA5-41B3-920E-0608A2C60985}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQMS.Application</RootNamespace>
+    <AssemblyName>SQMS.Application</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Schema\EMPLOYEE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foundations\SQMSPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EmployeeEdit.aspx.cs">
+      <DependentUpon>EmployeeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EmployeeEdit.aspx.designer.cs">
+      <DependentUpon>EmployeeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\EasyDev.Persistence.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\EasyDev.Resources.Config" />
+    <Content Include="Views\Basedata\EmployeeEdit.aspx" />
+    <Content Include="Resources\CSS\Controls\JSONTree\DragDropStyle.css" />
+    <Content Include="Resources\CSS\Controls\JSONTree\JSONTreeStyle.css" />
+    <Content Include="Resources\Images\Controls\JSONTree\branch_line.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\folderclose.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\folderopen.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\leaf.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\mydoc.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\root.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\branch.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\turning.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\vertical.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\last_node.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\branch.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\turning.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\vertical.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\line.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\lineang.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\lineints.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\minus_node.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\plus_node.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\vertical_line.jpg" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\DragDrop.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\EventHandlers.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\JSONTree.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\Util.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\DevSpace\CodeComplete\MS.NET\Application Framework\EasyDev\EasyDev Framework\EasyDev\EasyDev.csproj">
+      <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
+      <Name>EasyDev</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQMS.Services\SQMS.Services.csproj">
+      <Project>{B714CFE0-2934-4AED-8994-B371A6D44405}</Project>
+      <Name>SQMS.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\Schema\EMPLOYEE.xsc">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EMPLOYEE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="App_GlobalResources\" />
+    <Folder Include="App_LocalResources\" />
+    <Folder Include="Foundations\HttpHandlers\" />
+    <Folder Include="Foundations\HttpModules\" />
+    <Folder Include="Masters\" />
+    <Folder Include="Resources\Scripts\Common\" />
+    <Folder Include="Services\" />
+    <Folder Include="Templates\" />
+    <Folder Include="Views\Common\" />
+    <Folder Include="Views\Demo\" />
+    <Folder Include="Views\Mobile\" />
+    <Folder Include="Views\Quality\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4104</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
