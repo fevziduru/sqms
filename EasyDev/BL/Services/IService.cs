@@ -12,6 +12,7 @@ namespace EasyDev.BL.Services
         string SessionName { get; set; }
         DataSet LoadByCondition(string cond);
         void DeleteByKeys(IDictionary<string, object> keys);
+        void DeleteByKey(object key);
         DataSet LoadViewByName(string name);
         DataSet LoadAll();
         void Save(DataSet dsSave);

@@ -95,6 +95,13 @@
       <DependentUpon>EmployeeEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Basedata\EmployeeView.aspx.cs">
+      <DependentUpon>EmployeeView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EmployeeView.aspx.designer.cs">
+      <DependentUpon>EmployeeView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +162,7 @@
       <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Masters\Main.Master" />
+    <Content Include="Views\Basedata\EmployeeView.aspx" />
     <Content Include="Views\Security\Login.aspx" />
   </ItemGroup>
   <ItemGroup>
