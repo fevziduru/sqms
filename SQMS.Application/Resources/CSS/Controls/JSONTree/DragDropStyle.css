@@ -1,0 +1,20 @@
+.dragdrop
+{
+    position:absolute;/*живЊ*/
+    width:100px;
+    height:100px;
+    border:1px solid #666666;
+    background-color:#CCCCCC;
+    cursor:move;
+	filter:alpha(opacity=50);
+}
+
+.docked
+{
+    filter:alpha(opacity=100);
+}
+
+.actived
+{
+    filter:alpha(opacity=20);
+}
