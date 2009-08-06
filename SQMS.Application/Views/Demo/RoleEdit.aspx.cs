@@ -11,11 +11,12 @@ using SQMS.Application.Foundations;
 using System.Data;
 using EasyDev.Util;
 
-namespace SQMS.Application.Modules.Basedata
+namespace SQMS.Application.Views.Demo
 {
-    public partial class EmployeeEdit : SQMSPage<EmployeeService>
+
+    public partial class RoleEdit : SQMSPage<RoleService>
     {
-        private EmployeeService srv = null;
+        private RoleService srv = null;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,19 +24,21 @@ namespace SQMS.Application.Modules.Basedata
 
         protected override void GetViewData()
         {
-            DataRow drEmployee = DataSetUtil.GetFirstRowFromDataSet(ViewData, "EMPLOYEE");
+            DataRow drEmployee = DataSetUtil.GetFirstRowFromDataSet(ViewData, "ROLE");
+
+            if (this.ID.Length == 0)
+            {
+                this.ID = Service.GetNextSequenceID();
+            }
+
             if (drEmployee != null)
             {
-                drEmployee["EMPID"] = Service.GetNextSequenceID();
-                this.ID = ConvertUtil.EmptyOrString(drEmployee["EMPID"]);
+                drEmployee["ROLEID"] = this.ID;
 
-                drEmployee["EMPNAME"] = this.txtEmpName.Text;
-                drEmployee["EMPCODE"] = this.txtEmpCode.Text;
-                drEmployee["EMPSTATUS"] = this.txtEmpStatus.Text;
-                drEmployee["MOBILE"] = this.txtMobile.Text;
-                drEmployee["JOBTITLE"] = this.txtJobTitile.Text;
-                drEmployee["CONTACTTEL"] = this.txtContactTel.Text;
-                drEmployee["DEGREE"] = this.txtDegree.Text;
+                drEmployee["ROLECODE"] = this.txtRoleCode.Text;
+                drEmployee["ROLENAME"] = this.txtRoleName.Text;
+                drEmployee["ISVOID"] = this.CheckBoxIsVoid.Checked ? "Y" : "N" ;
+                drEmployee["MEMO"] = this.txtMemo.Text;
             }
         }
 
@@ -63,6 +66,14 @@ namespace SQMS.Application.Modules.Basedata
             else
             {
                 //编辑
+                DataRow drRole = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "ROLE");
+                if (drRole != null)
+                {
+                    this.txtRoleCode.Text = ConvertUtil.EmptyOrString(drRole["ROLECODE"]);
+                    this.txtRoleName.Text = ConvertUtil.EmptyOrString(drRole["ROLENAME"]);
+                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drRole["MEMO"]);
+                    this.CheckBoxIsVoid.Checked = ConvertUtil.EmptyOrString(drRole["ISVOID"]).Equals("Y") ? true : false;
+                }
             }
         }
 
@@ -73,7 +84,7 @@ namespace SQMS.Application.Modules.Basedata
         /// <param name="e"></param>
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
         {
-            srv = (EmployeeService)Service;
+            srv = Service as RoleService;
         }
 
 
@@ -82,7 +93,8 @@ namespace SQMS.Application.Modules.Basedata
             this.GetViewData();
             this.srv.Save(this.ViewData);
 
-            Response.Redirect("EmployeeView.aspx?id=" + this.ID);
+            Response.Redirect("RoleView.aspx?id=" + this.ID);
         }
     }
+
 }

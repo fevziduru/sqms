@@ -92,6 +92,11 @@ namespace EasyDev.BL.Services
         {
             get
             {
+                if (this.serviceManager == null)
+                {
+                    this.serviceManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
+                }
+
                 return this.serviceManager;
             }
         }

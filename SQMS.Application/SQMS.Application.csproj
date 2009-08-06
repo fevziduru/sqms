@@ -67,6 +67,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EMPLOYEE.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\PASSPORT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\ROLE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ROLE.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -101,6 +111,20 @@
     </Compile>
     <Compile Include="Views\Basedata\EmployeeView.aspx.designer.cs">
       <DependentUpon>EmployeeView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\RoleEdit.aspx.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\RoleEdit.aspx.designer.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\RoleView.aspx.cs">
+      <DependentUpon>RoleView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\RoleView.aspx.designer.cs">
+      <DependentUpon>RoleView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -161,8 +185,32 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Config\Schema\PASSPORT.xsc">
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\PASSPORT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PASSPORT.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\PASSPORT.xss">
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ROLE.xsc">
+      <DependentUpon>ROLE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ROLE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ROLE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\ROLE.xss">
+      <DependentUpon>ROLE.xsd</DependentUpon>
+    </None>
     <Content Include="Masters\Main.Master" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />
+    <Content Include="Views\Demo\RoleEdit.aspx" />
+    <Content Include="Views\Demo\RoleView.aspx" />
     <Content Include="Views\Security\Login.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +220,6 @@
     <Folder Include="Resources\Scripts\Common\" />
     <Folder Include="Templates\" />
     <Folder Include="Views\Common\" />
-    <Folder Include="Views\Demo\" />
     <Folder Include="Views\Mobile\" />
     <Folder Include="Views\Quality\" />
   </ItemGroup>
