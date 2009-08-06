@@ -84,11 +84,15 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Foundations\HttpHandlers\FrontHandler.cs" />
+    <Compile Include="Foundations\HttpHandlers\FrontHandler.cs">
+    </Compile>
     <Compile Include="Foundations\HttpHandlers\FrontHandlerFactory.cs" />
     <Compile Include="Foundations\HttpModules\PermissionModule.cs" />
     <Compile Include="Foundations\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Masters\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
@@ -207,6 +211,7 @@
     <None Include="Config\Schema\ROLE.xss">
       <DependentUpon>ROLE.xsd</DependentUpon>
     </None>
+    <Content Include="Global.asax" />
     <Content Include="Masters\Main.Master" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />
     <Content Include="Views\Demo\RoleEdit.aspx" />
@@ -238,7 +243,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4104</DevelopmentServerPort>
+          <DevelopmentServerPort>6033</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

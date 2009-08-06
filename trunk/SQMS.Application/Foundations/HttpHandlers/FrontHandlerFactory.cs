@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace SQMS.Application.Foundations.HttpHandlers
 {
@@ -11,12 +12,12 @@ namespace SQMS.Application.Foundations.HttpHandlers
 
         public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
         {
-            throw new NotImplementedException();
+            return PageParser.GetCompiledPageInstance(url, context.Request.PhysicalPath, context);
         }
 
         public void ReleaseHandler(IHttpHandler handler)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
