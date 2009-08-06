@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="PassportService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyDev\EasyDev.csproj">

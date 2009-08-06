@@ -20,11 +20,11 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
-            base.OnPreInitializeViewEventHandler(sender, e);
+            
         }
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
-        {            
+        {
             DataRow drEmployee = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "EMPLOYEE");
             if (drEmployee != null)
             {

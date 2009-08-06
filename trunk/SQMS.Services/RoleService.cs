@@ -6,15 +6,12 @@ using EasyDev.BL.Services;
 
 namespace SQMS.Services
 {
-    public class EmployeeService : GenericService
+    public class RoleService : GenericService
     {
-        private PassportService srv = null;
-
         protected override void Initialize()
         {
-            this.BOName = "EMPLOYEE";
-            srv = ServiceManager.CreateService<PassportService>();
-            
+            this.BOName = "ROLE";
+
             base.Initialize();
         }
     }

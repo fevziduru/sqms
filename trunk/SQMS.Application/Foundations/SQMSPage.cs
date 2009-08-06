@@ -309,7 +309,7 @@ namespace SQMS.Application.Foundations
         /// <summary>
         /// 从界面元素获取数据
         /// </summary>
-        protected virtual void GetDataFromUI() { }
+        protected virtual void GetViewData() { }
 
         /// <summary>
         /// 页面加载事件,页面生存周期
@@ -328,24 +328,24 @@ namespace SQMS.Application.Foundations
 
             base.OnLoad(e);
 
-            if (Events[_initPage] != null)
+            if (Events[_initPage] != null)  //OnPreInitializeView
             {
                 (Events[_initPage] as EventHandler<EventArgs>)(this, new EventArgs());
             }
 
-            if (Events[_recoveryUI] != null)
+            if (Events[_recoveryUI] != null)    //OnRecoveryUI
             {
                 (Events[_recoveryUI] as EventHandler<EventArgs>)(this, e);
             }
 
             if (!Page.IsPostBack)
             {
-                if (Events[_loadData] != null)
+                if (Events[_loadData] != null)  //OnLoadData
                 {
                     (Events[_loadData] as EventHandler<EventArgs>)(this, e);
                 }
 
-                if (Events[_initUI] != null)
+                if (Events[_initUI] != null)    //OnInitializeView
                 {
                     (Events[_initUI] as EventHandler<EventArgs>)(this, e);
                 }
