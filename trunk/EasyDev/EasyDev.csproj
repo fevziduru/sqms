@@ -209,6 +209,15 @@
     <Compile Include="Security\UserInfo.cs" />
     <Compile Include="Security\UserSecurityException.cs" />
     <Compile Include="Security\UserSecurityManager.cs" />
+    <Compile Include="SQMS\HttpHandlers\FrontHandler.cs" />
+    <Compile Include="SQMS\HttpHandlers\FrontHandlerFactory.cs" />
+    <Compile Include="SQMS\HttpModules\PermissionModule.cs" />
+    <Compile Include="SQMS\PassportPrincipal.cs" />
+    <Compile Include="SQMS\SQMSPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQMS\UserIdentity.cs" />
+    <Compile Include="SQMS\UserInfo.cs" />
     <Compile Include="Util\CompressException.cs" />
     <Compile Include="Util\CompressUtil.cs" />
     <Compile Include="Util\ConvertException.cs" />
