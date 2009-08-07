@@ -27,8 +27,7 @@ namespace EasyDev.SQMS.HttpModules
 
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
-            HttpContext context = ((HttpApplication)sender).Context;
-            CheckPermission(context);
+            CheckPermission(((HttpApplication)sender).Context);
         }
                 
         void context_AuthenticateRequest(object sender, EventArgs e)
