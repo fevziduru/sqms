@@ -15,6 +15,7 @@ namespace SQMS.Application.Views.Basedata
 {
     public partial class RoleEdit : SQMSPage<RoleService>
     {
+
         private RoleService srv = null;
         protected void Page_Load(object sender, EventArgs e)
         {
