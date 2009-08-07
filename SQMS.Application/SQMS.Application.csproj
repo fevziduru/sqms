@@ -232,7 +232,6 @@
     <Content Include="Global.asax" />
     <Content Include="Masters\Main.Master" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />
-    <Content Include="Views\Basedata\EmployeeView.aspx" />
     <Content Include="Views\Components\Map.ascx" />
     <Content Include="Views\Demo\RoleEdit.aspx" />
     <Content Include="Views\Demo\RoleView.aspx" />
