@@ -4,18 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EasyDev.Presentation;
 using SQMS.Services;
-using EasyDev.BL.Services;
-using SQMS.Application.Foundations;
-using System.Data;
 using EasyDev.Util;
+using System.Data;
+using System.Web.Security;
+using EasyDev.SQMS;
 
-namespace SQMS.Application.Modules.Basedata
+namespace SQMS.Application.Views.Basedata
 {
     public partial class EmployeeEdit : SQMSPage<EmployeeService>
     {
         private EmployeeService srv = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -83,6 +83,11 @@ namespace SQMS.Application.Modules.Basedata
             this.srv.Save(this.ViewData);
 
             Response.Redirect("EmployeeView.aspx?id=" + this.ID);
+        }
+
+        public void btnSignout_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
         }
     }
 }
