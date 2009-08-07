@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using EasyDev.Presentation;
 using SQMS.Services;
 using EasyDev.BL.Services;
-using SQMS.Application.Foundations;
+using EasyDev.SQMS;
 using System.Data;
 using EasyDev.Util;
 
