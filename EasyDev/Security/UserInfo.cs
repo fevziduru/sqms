@@ -52,7 +52,7 @@ namespace EasyDev.Security
         {
             get;
             set;
-        } 
+        }
         #endregion
 
         public override bool Equals(object obj)
@@ -72,11 +72,6 @@ namespace EasyDev.Security
             {
                 return false;
             }
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
         }
     }
 }
