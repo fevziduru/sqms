@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\重庆石油专用管材检测公司企业门户系统\source root\CNPC-SPD\lib\ThirdPart\log4net.dll</HintPath>
+      <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\重庆石油专用管材检测公司企业门户系统\source root\CNPC-SPD\lib\ThirdPart\log4net.dll</HintPath>
+      <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -43,6 +43,15 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -116,6 +125,13 @@
     <Compile Include="Views\Basedata\EmployeeView.aspx.designer.cs">
       <DependentUpon>EmployeeView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\Map.ascx.cs">
+      <DependentUpon>Map.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\Map.ascx.designer.cs">
+      <DependentUpon>Map.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Demo\RoleEdit.aspx.cs">
       <DependentUpon>RoleEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +145,20 @@
     </Compile>
     <Compile Include="Views\Demo\RoleView.aspx.designer.cs">
       <DependentUpon>RoleView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\CompanyQualityMonitor.aspx.cs">
+      <DependentUpon>CompanyQualityMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\CompanyQualityMonitor.aspx.designer.cs">
+      <DependentUpon>CompanyQualityMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\QualityMonitorPointMap.aspx.cs">
+      <DependentUpon>QualityMonitorPointMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\QualityMonitorPointMap.aspx.designer.cs">
+      <DependentUpon>QualityMonitorPointMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -213,12 +243,17 @@
     </None>
     <Content Include="Global.asax" />
     <Content Include="Masters\Main.Master" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />
+    <Content Include="Views\Components\Map.ascx" />
     <Content Include="Views\Demo\RoleEdit.aspx" />
     <Content Include="Views\Demo\RoleView.aspx" />
+    <Content Include="Views\Quality\CompanyQualityMonitor.aspx" />
+    <Content Include="Views\Quality\QualityMonitorPointMap.aspx" />
     <Content Include="Views\Security\Login.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AjaxServices\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
     <Folder Include="App_LocalResources\" />
@@ -226,7 +261,6 @@
     <Folder Include="Templates\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Mobile\" />
-    <Folder Include="Views\Quality\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
