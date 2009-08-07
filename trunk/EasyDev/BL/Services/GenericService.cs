@@ -143,6 +143,26 @@ namespace EasyDev.BL.Services
             Initialize();
         }
 
+        public GenericDBSession DefaultSession
+        {
+            get
+            {
+                GenericDBSession session = SessionPool.Get("DEFAULT_SESSION") as GenericDBSession;
+                if (session == null)
+                {
+                    lock (SessionPool)
+                    {
+                        session = DBSessionManager.CreateDBSession(
+                        DataSourceManager.CreateDefaultDataSource()); //数据访问对象
+
+                        SessionPool.Insert("DEFAULT_SESSION", session);
+                    }
+                }
+
+                return session;
+            }
+        }
+
         /// <summary>
         /// 服务初始化
         /// </summary>

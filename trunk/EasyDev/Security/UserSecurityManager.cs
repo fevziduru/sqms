@@ -41,7 +41,7 @@ namespace EasyDev.Security
         /// <summary>
         /// 用户信息
         /// </summary>
-        public static UserInfo UserContext
+        public static UserInfo UserInfo
         {
             get
             {
