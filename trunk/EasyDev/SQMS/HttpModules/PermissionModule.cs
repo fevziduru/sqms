@@ -73,6 +73,8 @@ namespace EasyDev.SQMS.HttpModules
                     }
                     bool isAuthorized = false;
 
+                    //var v = ui.Permissions.Rows.Cast<DataRow>().Select(p => p["resid"].ToString().Equals(resname));
+
                     foreach (DataRow item in ui.Permissions.Rows)
                     {
                         //大小写敏感的比较
