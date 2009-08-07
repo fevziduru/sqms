@@ -1,8 +1,25 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10gR2                         */
-/* Created on:     2009-8-7 3:35:13                             */
+/* Created on:     2009-8-7 12:04:12                            */
 /*==============================================================*/
 
+drop sequence SEQ_DEPARTMENT;
+drop sequence SEQ_EMPLOYEE;
+drop sequence SEQ_EQUIPMENT;
+drop sequence SEQ_GEO;
+drop sequence SEQ_LOG;
+drop sequence SEQ_ORGANIZATION;
+drop sequence SEQ_PASSPORT;
+drop sequence SEQ_PERMISSION;
+drop sequence SEQ_QUALITY;
+drop sequence SEQ_RESOURCE;
+drop sequence SEQ_RESPERMISSION;
+drop sequence SEQ_ROLE;
+drop sequence SEQ_ROLEPERMISSION;
+drop sequence SEQ_USERROLE;
+drop sequence SEQ_DATABASE;
+drop sequence SEQ_SUITE;
+drop sequence SEQ_OPERATION;
 
 ALTER TABLE DEPARTMENT
    DROP CONSTRAINT FK_DEPARTME_ORGDEPT_ORAGANIZ;
@@ -82,11 +99,16 @@ ALTER TABLE ROLEPERMISSION
 ALTER TABLE ROLEPERMISSION
    DROP CONSTRAINT FK_ROLEPERM_ROLEPERMI_PERMISSI;
 
+ALTER TABLE SUITE
+   DROP CONSTRAINT FK_SUITE_FK_SUITE__DATABASE;
+
 ALTER TABLE USERROLE
    DROP CONSTRAINT FK_USERROLE_USERROLE_ROLE;
 
 ALTER TABLE USERROLE
    DROP CONSTRAINT FK_USERROLE_USERROLE2_PASSPORT;
+
+DROP TABLE DATABASE CASCADE CONSTRAINTS;
 
 DROP INDEX ORGDEPT_FK;
 
@@ -160,11 +182,53 @@ DROP INDEX ROLEPERMISSION_FK;
 
 DROP TABLE ROLEPERMISSION CASCADE CONSTRAINTS;
 
+DROP INDEX I_SUITE_DATABASE_FK;
+
+DROP TABLE SUITE CASCADE CONSTRAINTS;
+
 DROP INDEX USERROLE2_FK;
 
 DROP INDEX USERROLE_FK;
 
 DROP TABLE USERROLE CASCADE CONSTRAINTS;
+
+/*==============================================================*/
+/* Table: DATABASE                                              */
+/*==============================================================*/
+CREATE TABLE DATABASE  (
+   DATABASEID           VARCHAR2(40)                    NOT NULL,
+   CONNECTIONSTRING     VARCHAR2(255),
+   ISVOID               CHAR(1)                        DEFAULT 'N',
+   CREATED              DATE,
+   CREATEDBY            VARCHAR2(40),
+   MODIFIED             DATE,
+   MODIFIEDBY           VARCHAR2(40),
+   CONSTRAINT PK_DATABASE PRIMARY KEY (DATABASEID)
+);
+
+COMMENT ON TABLE DATABASE IS
+'Database';
+
+COMMENT ON COLUMN DATABASE.DATABASEID IS
+'数据库ID';
+
+COMMENT ON COLUMN DATABASE.CONNECTIONSTRING IS
+'连接字符串';
+
+COMMENT ON COLUMN DATABASE.ISVOID IS
+'是否停用';
+
+COMMENT ON COLUMN DATABASE.CREATED IS
+'Created';
+
+COMMENT ON COLUMN DATABASE.CREATEDBY IS
+'CreatedBy';
+
+COMMENT ON COLUMN DATABASE.MODIFIED IS
+'Modified';
+
+COMMENT ON COLUMN DATABASE.MODIFIEDBY IS
+'ModifiedBy';
 
 /*==============================================================*/
 /* Table: DEPARTMENT                                            */
@@ -1042,6 +1106,59 @@ CREATE INDEX ROLEPERMISSION2_FK ON ROLEPERMISSION (
 );
 
 /*==============================================================*/
+/* Table: SUITE                                                 */
+/*==============================================================*/
+CREATE TABLE SUITE  (
+   SUITEID              VARCHAR2(40)                    NOT NULL,
+   DATABASEID           VARCHAR2(40),
+   ISUSING              CHAR(1)                        DEFAULT 'N',
+   VERSION              VARCHAR2(40),
+   ISVOID               CHAR(1)                        DEFAULT 'N',
+   CREATED              DATE,
+   CREATEDBY            VARCHAR2(40),
+   MODIFIED             DATE,
+   MODIFIEDBY           VARCHAR2(40),
+   CONSTRAINT PK_SUITE PRIMARY KEY (SUITEID)
+);
+
+COMMENT ON TABLE SUITE IS
+'Suite';
+
+COMMENT ON COLUMN SUITE.SUITEID IS
+'帐套ID';
+
+COMMENT ON COLUMN SUITE.DATABASEID IS
+'数据库ID';
+
+COMMENT ON COLUMN SUITE.ISUSING IS
+'帐套是否正在使用';
+
+COMMENT ON COLUMN SUITE.VERSION IS
+'帐套版本';
+
+COMMENT ON COLUMN SUITE.ISVOID IS
+'是否停用';
+
+COMMENT ON COLUMN SUITE.CREATED IS
+'Created';
+
+COMMENT ON COLUMN SUITE.CREATEDBY IS
+'CreatedBy';
+
+COMMENT ON COLUMN SUITE.MODIFIED IS
+'Modified';
+
+COMMENT ON COLUMN SUITE.MODIFIEDBY IS
+'ModifiedBy';
+
+/*==============================================================*/
+/* Index: I_SUITE_DATABASE_FK                                   */
+/*==============================================================*/
+CREATE INDEX I_SUITE_DATABASE_FK ON SUITE (
+   DATABASEID ASC
+);
+
+/*==============================================================*/
 /* Table: USERROLE                                              */
 /*==============================================================*/
 CREATE TABLE USERROLE  (
@@ -1157,6 +1274,10 @@ ALTER TABLE ROLEPERMISSION
    ADD CONSTRAINT FK_ROLEPERM_ROLEPERMI_PERMISSI FOREIGN KEY (PERMISSIONID)
       REFERENCES PERMISSION (PERMISSIONID);
 
+ALTER TABLE SUITE
+   ADD CONSTRAINT FK_SUITE_FK_SUITE__DATABASE FOREIGN KEY (DATABASEID)
+      REFERENCES DATABASE (DATABASEID);
+
 ALTER TABLE USERROLE
    ADD CONSTRAINT FK_USERROLE_USERROLE_ROLE FOREIGN KEY (ROLEID)
       REFERENCES ROLE (ROLEID);
@@ -1165,3 +1286,139 @@ ALTER TABLE USERROLE
    ADD CONSTRAINT FK_USERROLE_USERROLE2_PASSPORT FOREIGN KEY (PASSPORTID)
       REFERENCES PASSPORT (PASSPORTID);
 
+
+-- Create sequence 
+create sequence SEQ_DEPARTMENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_EMPLOYEE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_EQUIPMENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_GEO
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_LOG
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ORGANIZATION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_PASSPORT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_PERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_QUALITY
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_RESOURCE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_RESPERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ROLE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ROLEPERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_USERROLE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_DATABASE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_SUITE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_OPERATION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
