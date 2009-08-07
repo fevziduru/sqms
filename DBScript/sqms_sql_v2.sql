@@ -1,25 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10gR2                         */
-/* Created on:     2009-8-7 12:04:12                            */
+/* Created on:     2009-8-7 21:38:57                            */
 /*==============================================================*/
 
-drop sequence SEQ_DEPARTMENT;
-drop sequence SEQ_EMPLOYEE;
-drop sequence SEQ_EQUIPMENT;
-drop sequence SEQ_GEO;
-drop sequence SEQ_LOG;
-drop sequence SEQ_ORGANIZATION;
-drop sequence SEQ_PASSPORT;
-drop sequence SEQ_PERMISSION;
-drop sequence SEQ_QUALITY;
-drop sequence SEQ_RESOURCE;
-drop sequence SEQ_RESPERMISSION;
-drop sequence SEQ_ROLE;
-drop sequence SEQ_ROLEPERMISSION;
-drop sequence SEQ_USERROLE;
-drop sequence SEQ_DATABASE;
-drop sequence SEQ_SUITE;
-drop sequence SEQ_OPERATION;
 
 ALTER TABLE DEPARTMENT
    DROP CONSTRAINT FK_DEPARTME_ORGDEPT_ORAGANIZ;
@@ -85,13 +68,13 @@ ALTER TABLE QUALITY
    DROP CONSTRAINT FK_QUALITY_RELWORKUN_ORAGANIZ;
 
 ALTER TABLE RESPERMISSION
-   DROP CONSTRAINT FK_RESPERMI_PERMRESOU_PERMISSI;
-
-ALTER TABLE RESPERMISSION
    DROP CONSTRAINT FK_RESPERMI_PERMRESOU_RESOURCE;
 
 ALTER TABLE RESPERMISSION
    DROP CONSTRAINT FK_RESPERMI_PERMRESOU_OPERATIO;
+
+ALTER TABLE RESPERMISSION
+   DROP CONSTRAINT FK_RESPERMI_REFERENCE_ROLE;
 
 ALTER TABLE ROLEPERMISSION
    DROP CONSTRAINT FK_ROLEPERM_ROLEPERMI_ROLE;
@@ -160,15 +143,11 @@ DROP INDEX EMPPASSPORT_FK;
 
 DROP TABLE PASSPORT CASCADE CONSTRAINTS;
 
-DROP TABLE PERMISSION CASCADE CONSTRAINTS;
-
 DROP TABLE "RESOURCE" CASCADE CONSTRAINTS;
 
 DROP INDEX PERMRESOURCE3_FK;
 
 DROP INDEX PERMRESOURCE2_FK;
-
-DROP INDEX PERMRESOURCE_FK;
 
 DROP INDEX PERMRESOURCE_PK;
 
@@ -355,7 +334,6 @@ CREATE TABLE EMPLOYEE  (
    MEMO                 VARCHAR2(2000),
    CREATED              DATE,
    CREATEDBY            VARCHAR2(40),
-   MODIFIED             DATE,
    MODIFIEDBY           VARCHAR2(40),
    CONSTRAINT PK_EMPLOYEE PRIMARY KEY (EMPID)
 );
@@ -882,49 +860,7 @@ CREATE INDEX EMPPASSPORT_FK ON PASSPORT (
 );
 
 /*==============================================================*/
-/* Table: PERMISSION                                            */
-/*==============================================================*/
-CREATE TABLE PERMISSION  (
-   PERMISSIONID         VARCHAR2(40)                    NOT NULL,
-   PERMISSIONCODE       VARCHAR2(40)                    NOT NULL,
-   PERMISSIONNAME       VARCHAR2(60)                    NOT NULL,
-   ISVOID               CHAR(1),
-   CREATED              DATE,
-   CREATEDBY            VARCHAR2(40),
-   MODIFIED             DATE,
-   MODIFIEDBY           VARCHAR2(40),
-   CONSTRAINT PK_PERMISSION PRIMARY KEY (PERMISSIONID)
-);
-
-COMMENT ON TABLE PERMISSION IS
-'权限';
-
-COMMENT ON COLUMN PERMISSION.PERMISSIONID IS
-'权限ID';
-
-COMMENT ON COLUMN PERMISSION.PERMISSIONCODE IS
-'权限编码';
-
-COMMENT ON COLUMN PERMISSION.PERMISSIONNAME IS
-'权限名称';
-
-COMMENT ON COLUMN PERMISSION.ISVOID IS
-'禁用';
-
-COMMENT ON COLUMN PERMISSION.CREATED IS
-'创建时间';
-
-COMMENT ON COLUMN PERMISSION.CREATEDBY IS
-'创建人';
-
-COMMENT ON COLUMN PERMISSION.MODIFIED IS
-'修改时间';
-
-COMMENT ON COLUMN PERMISSION.MODIFIEDBY IS
-'修改人';
-
-/*==============================================================*/
-/* Table: "RESOURCEITEMS"                                            */
+/* Table: "RESOURCE"                                            */
 /*==============================================================*/
 CREATE TABLE "RESOURCEITEM"  (
    RESID                VARCHAR2(40)                    NOT NULL,
@@ -938,7 +874,7 @@ CREATE TABLE "RESOURCEITEM"  (
    CREATEDBY            VARCHAR2(40),
    MODIFIED             DATE,
    MODIFIEDBY           VARCHAR2(40),
-   CONSTRAINT PK_RESOURCEITEMS PRIMARY KEY (RESID)
+   CONSTRAINT PK_RESOURCEITEM PRIMARY KEY (RESID)
 );
 
 COMMENT ON TABLE "RESOURCEITEM" IS
@@ -981,17 +917,14 @@ COMMENT ON COLUMN "RESOURCEITEM".MODIFIEDBY IS
 /* Table: RESPERMISSION                                         */
 /*==============================================================*/
 CREATE TABLE RESPERMISSION  (
-   PERMISSIONID         VARCHAR2(40)                    NOT NULL,
    RESID                VARCHAR2(40)                    NOT NULL,
    OPID                 VARCHAR2(40)                    NOT NULL,
-   CONSTRAINT PK_RESPERMISSION PRIMARY KEY (PERMISSIONID, RESID, OPID)
+   ROLEID               VARCHAR2(40)                    NOT NULL,
+   CONSTRAINT PK_RESPERMISSION PRIMARY KEY (RESID, OPID, ROLEID)
 );
 
 COMMENT ON TABLE RESPERMISSION IS
 '资源权限';
-
-COMMENT ON COLUMN RESPERMISSION.PERMISSIONID IS
-'权限ID';
 
 COMMENT ON COLUMN RESPERMISSION.RESID IS
 '资源ID';
@@ -999,19 +932,14 @@ COMMENT ON COLUMN RESPERMISSION.RESID IS
 COMMENT ON COLUMN RESPERMISSION.OPID IS
 '操作ID';
 
+COMMENT ON COLUMN RESPERMISSION.ROLEID IS
+'角色ID';
+
 /*==============================================================*/
 /* Index: PERMRESOURCE_PK                                       */
 /*==============================================================*/
 CREATE UNIQUE INDEX PERMRESOURCE_PK ON RESPERMISSION (
-   PERMISSIONID ASC,
-   RESID ASC
-);
-
-/*==============================================================*/
-/* Index: PERMRESOURCE_FK                                       */
-/*==============================================================*/
-CREATE INDEX PERMRESOURCE_FK ON RESPERMISSION (
-   PERMISSIONID ASC
+   ROLEID ASC
 );
 
 /*==============================================================*/
@@ -1256,10 +1184,6 @@ ALTER TABLE PASSPORT
       REFERENCES EMPLOYEE (EMPID);
 
 ALTER TABLE RESPERMISSION
-   ADD CONSTRAINT FK_RESPERMI_PERMRESOU_PERMISSI FOREIGN KEY (PERMISSIONID)
-      REFERENCES PERMISSION (PERMISSIONID);
-
-ALTER TABLE RESPERMISSION
    ADD CONSTRAINT FK_RESPERMI_PERMRESOU_RESOURCE FOREIGN KEY (RESID)
       REFERENCES "RESOURCEITEM" (RESID);
 
@@ -1267,13 +1191,13 @@ ALTER TABLE RESPERMISSION
    ADD CONSTRAINT FK_RESPERMI_PERMRESOU_OPERATIO FOREIGN KEY (OPID)
       REFERENCES OPERATION (OPID);
 
-ALTER TABLE ROLEPERMISSION
-   ADD CONSTRAINT FK_ROLEPERM_ROLEPERMI_ROLE FOREIGN KEY (ROLEID)
+ALTER TABLE RESPERMISSION
+   ADD CONSTRAINT FK_RESPERMI_REFERENCE_ROLE FOREIGN KEY (ROLEID)
       REFERENCES ROLE (ROLEID);
 
 ALTER TABLE ROLEPERMISSION
-   ADD CONSTRAINT FK_ROLEPERM_ROLEPERMI_PERMISSI FOREIGN KEY (PERMISSIONID)
-      REFERENCES PERMISSION (PERMISSIONID);
+   ADD CONSTRAINT FK_ROLEPERM_ROLEPERMI_ROLE FOREIGN KEY (ROLEID)
+      REFERENCES ROLE (ROLEID);
 
 ALTER TABLE SUITE
    ADD CONSTRAINT FK_SUITE_FK_SUITE__DATABASE FOREIGN KEY (DATABASEID)
@@ -1287,139 +1211,3 @@ ALTER TABLE USERROLE
    ADD CONSTRAINT FK_USERROLE_USERROLE2_PASSPORT FOREIGN KEY (PASSPORTID)
       REFERENCES PASSPORT (PASSPORTID);
 
-
--- Create sequence 
-create sequence SEQ_DEPARTMENT
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_EMPLOYEE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_EQUIPMENT
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_GEO
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_LOG
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_ORGANIZATION
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_PASSPORT
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_PERMISSION
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_QUALITY
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_RESOURCE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_RESPERMISSION
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_ROLE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_ROLEPERMISSION
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_USERROLE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_DATABASE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_SUITE
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
-
--- Create sequence 
-create sequence SEQ_OPERATION
-minvalue 0
-maxvalue 999999999999999999999999999
-start with 0
-increment by 1
-cache 20;
