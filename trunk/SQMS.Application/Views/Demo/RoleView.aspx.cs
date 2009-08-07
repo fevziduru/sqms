@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SQMS.Services;
-using SQMS.Application.Foundations;
 using System.Data;
 using EasyDev.Util;
+using EasyDev.SQMS;
 
 namespace SQMS.Application.Views.Demo
 {

@@ -5,22 +5,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SQMS.Services;
-using SQMS.Application.Foundations;
-using System.Data;
 using EasyDev.Util;
+using System.Data;
+using EasyDev.SQMS;
 
 namespace SQMS.Application.Views.Basedata
 {
-    public partial class EmployeeView : SQMSPage<EmployeeService>
+    public partial class EmployeeView1 : SQMSPage<EmployeeService>
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
-            
+
         }
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
