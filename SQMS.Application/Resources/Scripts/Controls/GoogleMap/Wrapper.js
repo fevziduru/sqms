@@ -4,7 +4,10 @@
 function WGMarker() {
     this.gMap = null;
     this.gMarker = null;
-    this.qp = null;
+    this.mpId = "";
+    this.mpName = "";
+    this.lat = "";
+    this.lng = "";
 }
 
 WGMarker.prototype.onClick = function() {
@@ -13,15 +16,18 @@ WGMarker.prototype.onClick = function() {
 }
 
 WGMarker.prototype.getInfoHtml = function() {
-    var html = "<iframe src='QualityMonitorPointMap.aspx?qpid=" + this.qp.id + "' width='300' height='500' frameborder='0' border='0' frameborder='no' />";
+    var html = "<iframe src='QualityMonitorPointMap.aspx?mpid=" + this.mpId + "' width='300' height='500' frameborder='0' border='0' frameborder='no' />";
     return html;
 }
 var WGMarkerFactory = {
-    createWGMarker: function(qp, gmap) {
+    createWGMarker: function(mpId, mpName, lat, lng, gmap) {
         var m = new WGMarker();
-        m.qp = qp;
+        m.mpId = mpId;
+        m.mpName = mpName;
+        m.lat = lat;
+        m.lng = lng;
         m.gMap = gmap;
-        m.gMarker = new GMarker(new GLatLng(qp.lat, qp.lng));
+        m.gMarker = new GMarker(new GLatLng(lat, lng), { title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
         gmap.addOverlay(m.gMarker);
         return m;

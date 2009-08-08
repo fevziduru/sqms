@@ -108,6 +108,13 @@
     </Compile>
     <Compile Include="HtmlHelper\ControlBindingHelper.cs" />
     <Compile Include="HtmlHelper\HtmlExtension.cs" />
+    <Compile Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx.cs">
+      <DependentUpon>MonitorPoint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx.designer.cs">
+      <DependentUpon>MonitorPoint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Basedata\EmployeeList.aspx.cs">
       <DependentUpon>EmployeeList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -355,6 +362,7 @@
     <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
     <Content Include="Resources\Scripts\Controls\Calendar.js" />
+    <Content Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx" />
     <Content Include="Views\Basedata\EmployeeEdit.aspx" />
     <Content Include="Views\Basedata\EmployeeList.aspx" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />

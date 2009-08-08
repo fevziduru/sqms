@@ -173,7 +173,7 @@ namespace EasyDev.Util
         /// <param name="rowNum">行号</param>
         /// <returns></returns>
         [Obsolete("请使用DataSetUtil中的对应方法")]
-        public static DataRow GetSingleRowFromDataSet(DataSet dsFrom, string tableName,int rowNum)
+        public static DataRow GetSingleRowFromDataSet(DataSet dsFrom, string tableName, int rowNum)
         {
             try
             {
@@ -216,6 +216,88 @@ namespace EasyDev.Util
             {
                 throw e;
             }
+        }
+
+        /// <summary>
+        /// 将对象转换成DateTime，如果无法转换则返回值为1900-1-1 00:00:00的DateTime
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(object obj)
+        {
+            try
+            {
+                DateTime d = DateTime.Parse(ConvertUtil.ToStringOrDefault(obj));
+                return d;
+            }
+            catch
+            {
+                return new DateTime(1900, 1, 1);
+            }
+        }
+        /// <summary>
+        /// 将对象转换成decimal，如果无法转换则返回0
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static decimal ToDecimal(object obj)
+        {
+            try
+            {
+                return Convert.ToDecimal(obj);
+            }
+            catch
+            { 
+                return 0; 
+            }
+        }
+        /// <summary>
+        /// 转换成纬度，正数为北纬，负数为南纬，默认值为0度
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static decimal ToLat(object obj)
+        {
+            decimal value = 0;
+            try
+            {
+                value = Convert.ToDecimal(obj);
+                if (value > 90)
+                {
+                    value = 90;
+                }
+                else if (value < -90)
+                {
+                    value = -90;
+                }
+            }
+            catch
+            {}
+            return value;
+        }
+        /// <summary>
+        /// 转换成经度，正数为东经，负数为西经，默认值为0度
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static decimal ToLng(object obj)
+        {
+            decimal value = 0;
+            try
+            {
+                value = Convert.ToDecimal(obj);
+                if (value > 180)
+                {
+                    value = 180;
+                }
+                else if (value < -180)
+                {
+                    value = -180;
+                }
+            }
+            catch
+            { }
+            return value;
         }
     }
 }

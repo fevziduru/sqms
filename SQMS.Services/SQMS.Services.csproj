@@ -50,12 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepartmentService.cs" />
+    <Compile Include="Domain\QualityControl\LatLng.cs" />
+    <Compile Include="Domain\QualityControl\LatLngBounds.cs" />
+    <Compile Include="Domain\QualityControl\MonitorPoint.cs" />
+    <Compile Include="Domain\QualityControl\QualityControlInfo.cs" />
+    <Compile Include="Domain\QualityControl\QualityControlType.cs" />
+    <Compile Include="Domain\QualityControl\Region.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="EnumerationService.cs" />
     <Compile Include="EquipmentService.cs" />
     <Compile Include="OperationService.cs" />
     <Compile Include="PassportService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualityControl\ProjectService.cs" />
+    <Compile Include="QualityControl\QualityControlService.cs" />
+    <Compile Include="QualityControl\RegionService.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="UserRoleService.cs" />
   </ItemGroup>
