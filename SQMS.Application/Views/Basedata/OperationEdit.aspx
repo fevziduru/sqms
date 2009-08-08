@@ -29,7 +29,7 @@
                     SetFocusOnError="true"
                     ErrorMessage="操作编码必填"
                     Display="Dynamic" ></asp:RequiredFieldValidator>
-            </td>            
+            </td>
         </tr>
         <tr>
             <td>备注：</td>
