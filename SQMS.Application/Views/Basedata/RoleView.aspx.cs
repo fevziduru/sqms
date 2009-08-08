@@ -30,8 +30,6 @@ namespace SQMS.Application.Views.Basedata
             DataRow drRole = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "ROLE");
             if (drRole != null)
             {
-
-
                 this.lblRoleCode.Text = ConvertUtil.EmptyOrString(drRole["ROLECODE"]);
                 this.lblRoleName.Text = ConvertUtil.EmptyOrString(drRole["ROLENAME"]);
                 this.cbIsVoid.Checked = ConvertUtil.EmptyOrString(drRole["ISVOID"]) == "Y" ? true : false;
