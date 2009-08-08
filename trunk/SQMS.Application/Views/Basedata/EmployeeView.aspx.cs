@@ -58,6 +58,11 @@ namespace SQMS.Application.Views.Basedata
             {
                 this.lblPassport.Text = ConvertUtil.ToStringOrDefault(drPassport["PASSPORT"]);
             }
+            else
+            {
+                this.tblPassport.Visible = false;
+                this.tblRole.Visible = false;
+            }
         }
 
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)

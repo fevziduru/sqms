@@ -22,6 +22,11 @@ namespace SQMS.Application.Masters
             UserAuthentication.CheckOut();
             Session.Clear();
 
+            HttpCookie cookie = HttpContext.Current.Response.Cookies[FormsAuthentication.FormsCookieName];            
+            cookie.Value = null;
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(cookie);
+
             Response.Redirect(FormsAuthentication.LoginUrl + "?status=q", true);
         }
     }
