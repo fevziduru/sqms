@@ -31,9 +31,9 @@ namespace SQMS.Application.Views.Basedata
             DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
             if (drOP != null)
             {
-                this.lblOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
-                this.lblOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
-                this.lblOpMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
+                this.lblOpCode.Text = ConvertUtil.ToStringOrDefault(drOP["OPCODE"]);
+                this.lblOpName.Text = ConvertUtil.ToStringOrDefault(drOP["OPNAME"]);
+                this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drOP["MEMO"]);
             }
         }
 
@@ -47,6 +47,11 @@ namespace SQMS.Application.Views.Basedata
             Service.DeleteByKey(this.ID);
 
             Response.Redirect("OperationEdit.aspx");
+        }
+
+        public void btnEdit_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("OperationEdit.aspx?id=" + this.ID);
         }
     }
 }

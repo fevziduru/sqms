@@ -29,16 +29,18 @@ namespace SQMS.Application.Views.Basedata
 
             if (this.ID.Length == 0)
             {
-                this.ID = Service.GetNextSequenceID();
+                this.ID = Service.GetNextSequenceID();             
             }
 
             if (drOP != null)
             {
                 drOP["OPID"] = this.ID;
+                drOP["OPCODE"] = this.txtOpCode.Text;
+                drOP["OPNAME"] = this.txtOpName.Text;
+                drOP["MEMO"] = this.txtMemo.Text;
 
-                drOP["OPCODE"] = this.lblOpCode.Text;
-                drOP["OPNAME"] = this.lblOpName.Text;
-                drOP["MEMO"] = this.lblOpMemo.Text;
+                drOP["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                drOP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
 
@@ -62,6 +64,7 @@ namespace SQMS.Application.Views.Basedata
             if (this.ID.Length == 0)
             {
                 //新增
+                this.txtOpCode.Text = srv.GenerateCode();
             }
             else
             {
@@ -69,9 +72,9 @@ namespace SQMS.Application.Views.Basedata
                 DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
                 if (drOP != null)
                 {
-                    this.lblOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
-                    this.lblOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
-                    this.lblOpMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
+                    this.txtOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
+                    this.txtOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
+                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
                 }
             }
         }
@@ -89,10 +92,32 @@ namespace SQMS.Application.Views.Basedata
 
         public void btnSave_Click(object sender, EventArgs e)
         {
-            this.GetViewData();
-            this.srv.Save(this.ViewData);
+            try
+            {
+                this.GetViewData();
+                this.srv.Save(this.ViewData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             Response.Redirect(String.Format("OperationView.aspx?id={0}", this.ID));
+        }
+
+        public void btnSaveAndNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.GetViewData();
+                this.srv.Save(this.ViewData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            Response.Redirect("OperationEdit.aspx");
         }
     }
 
