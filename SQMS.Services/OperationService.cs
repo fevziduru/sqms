@@ -10,7 +10,7 @@ namespace SQMS.Services
     {
         protected override void Initialize()
         {
-            this.BOName = "Operation";
+            this.BOName = "OPERATION";
 
             base.Initialize();
         }
