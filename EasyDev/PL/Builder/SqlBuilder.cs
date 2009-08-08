@@ -17,17 +17,19 @@ namespace EasyDev.PL.SqlBuilder
 
             foreach (DataColumn column in dt.Columns)
             {
-                if (column.DataType == typeof(string)
-                    || column.DataType == typeof(DateTime)
-                    || column.DataType == typeof(Guid))
+                if (column.DataType == typeof(string) || column.DataType == typeof(Guid))
                 {
                     sb.AppendFormat("'{0}',", dr[column.ColumnName]);
                 }
+                else if (column.DataType == typeof(DateTime))
+                {
+                    sb.AppendFormat("to_date('{0}','yyyy-mm-dd hh24:mi:ss'),",Convert.ToString(dr[column.ColumnName]));
+                }
                 else if ((column.DataType == typeof(decimal))
-                         || (column.DataType == typeof(int))
-                         || (column.DataType == typeof(double))
-                         || (column.DataType == typeof(float))
-                    )
+                     || (column.DataType == typeof(int))
+                     || (column.DataType == typeof(double))
+                     || (column.DataType == typeof(float))
+                )
                 {
                     sb.AppendFormat("{0},", dr[column.ColumnName]);
                 }
@@ -69,10 +71,13 @@ namespace EasyDev.PL.SqlBuilder
         {
             string cond = "";
             if (column.DataType == typeof(string)
-                || column.DataType == typeof(Guid)
-                || column.DataType == typeof(DateTime))
+                || column.DataType == typeof(Guid))
             {
                 cond = string.Format("{0}='{1}' {2} ", column.ColumnName, dr[column.ColumnName], splitStr);
+            }
+            else if (column.DataType == typeof(DateTime))
+            {
+                cond = string.Format("{0}=to_date('{1}','yyyy-mm-dd hh24:mi:ss') {2}", column.ColumnName, dr[column.ColumnName], splitStr);
             }
             else if ((column.DataType == typeof(decimal))
                      || (column.DataType == typeof(int))
@@ -80,7 +85,7 @@ namespace EasyDev.PL.SqlBuilder
                      || (column.DataType == typeof(float))
                 )
             {
-                cond = string.Format("{0}={1} {2} ", column.ColumnName, dr[column.ColumnName],splitStr);
+                cond = string.Format("{0}={1} {2} ", column.ColumnName, dr[column.ColumnName], splitStr);
             }
             
             //if (cond.Length > 0)

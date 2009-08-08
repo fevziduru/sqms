@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Security.Principal;
 using System.Data;
 using EasyDev.Util;
+using System.Threading;
 
 namespace EasyDev.SQMS.HttpModules
 {
@@ -34,13 +35,23 @@ namespace EasyDev.SQMS.HttpModules
         {
             HttpContext context = ((HttpApplication)sender).Context;
             HttpCookie authCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
-
+                                    
             if (authCookie == null)
             {
                 if (context.Request.RawUrl.Contains(FormsAuthentication.LoginUrl) == false)
                 {
                     FormsAuthentication.RedirectToLoginPage("status=q");
                 }
+            }
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                UserIdentity uid = new UserIdentity(context.User.Identity.Name);
+                if (context.Session != null)
+                {
+                    uid.UserInfo = context.Session["USER_INFO"] as UserInfo;
+                }
+                Thread.CurrentPrincipal = new PassportPrincipal(uid);
             }
         }
 
@@ -72,8 +83,6 @@ namespace EasyDev.SQMS.HttpModules
                         resname = resname.Remove(resname.IndexOf('?'));
                     }
                     bool isAuthorized = false;
-
-                    //var v = ui.Permissions.Rows.Cast<DataRow>().Select(p => p["resid"].ToString().Equals(resname));
 
                     foreach (DataRow item in ui.Permissions.Rows)
                     {

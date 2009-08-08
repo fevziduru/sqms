@@ -467,12 +467,13 @@ namespace EasyDev.PL
                 {
                     this.Connection.Open();                                                     //开启数据库连接
                     this.OpenSession(true);
+                    
                     result = this.Command.ExecuteNonQuery();
 
-                    if (this._transaction != null)
-                    {
-                        this._transaction.Commit();
-                    }
+                    //if (this._transaction != null)
+                    //{
+                    //    this._transaction.Commit();
+                    //}
                 }
                 else
                 {
