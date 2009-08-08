@@ -3,6 +3,26 @@
 /* Created on:     2009-8-8 0:55:03                             */
 /*==============================================================*/
 
+drop sequence SEQ_DEPARTMENT;
+drop sequence SEQ_EMPLOYEE;
+drop sequence SEQ_EQUIPMENT;
+drop sequence SEQ_GEO;
+drop sequence SEQ_LOG;
+drop sequence SEQ_ORGANIZATION;
+drop sequence SEQ_PASSPORT;
+drop sequence SEQ_PERMISSION;
+drop sequence SEQ_QUALITY;
+drop sequence SEQ_RESOURCE;
+drop sequence SEQ_RESPERMISSION;
+drop sequence SEQ_ROLE;
+drop sequence SEQ_ROLEPERMISSION;
+drop sequence SEQ_USERROLE;
+drop sequence SEQ_MPASSIGNMENT;
+drop sequence SEQ_PROJECT;
+drop sequence SEQ_ROAD;
+drop sequence SEQ_SUITE;
+drop sequence SEQ_ENUMERATION;
+drop sequence SEQ_DATABASE;
 
 ALTER TABLE DEPARTMENT
    DROP CONSTRAINT FK_DEPARTME_ORGDEPT_ORAGANIZ;
@@ -1599,3 +1619,164 @@ ALTER TABLE USERROLE
 ALTER TABLE USERROLE
    ADD CONSTRAINT FK_USERROLE_USERROLE2_PASSPORT FOREIGN KEY (PASSPORTID)
       REFERENCES PASSPORT (PASSPORTID);
+      
+
+-- Create sequence 
+create sequence SEQ_DEPARTMENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_EMPLOYEE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_EQUIPMENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_GEO
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_LOG
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ORGANIZATION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_PASSPORT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_PERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_QUALITY
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_RESOURCE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_RESPERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ROLE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ROLEPERMISSION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_USERROLE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_MPASSIGNMENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_PROJECT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ROAD
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_SUITE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_ENUMERATION
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_DATABASE
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
