@@ -71,10 +71,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Schema\DEPARTMENT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\EMPLOYEE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\ENUMERATION.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\EQUIPMENT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
     </Compile>
     <Compile Include="Config\Schema\PASSPORT.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -85,6 +100,62 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ROLE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\USERROLE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelper\ControlBindingHelper.cs" />
+    <Compile Include="HtmlHelper\HtmlExtension.cs" />
+    <Compile Include="Views\Basedata\EmployeeList.aspx.cs">
+      <DependentUpon>EmployeeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EmployeeList.aspx.designer.cs">
+      <DependentUpon>EmployeeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationEdit.aspx.cs">
+      <DependentUpon>OperationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationEdit.aspx.designer.cs">
+      <DependentUpon>OperationEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationList.aspx.cs">
+      <DependentUpon>OperationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationList.aspx.designer.cs">
+      <DependentUpon>OperationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationView.aspx.cs">
+      <DependentUpon>OperationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OperationView.aspx.designer.cs">
+      <DependentUpon>OperationView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleEdit.aspx.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleEdit.aspx.designer.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleList.aspx.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleList.aspx.designer.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleView.aspx.cs">
+      <DependentUpon>RoleView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\RoleView.aspx.designer.cs">
+      <DependentUpon>RoleView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -196,6 +267,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\Schema\DEPARTMENT.xsc">
+      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\DEPARTMENT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DEPARTMENT.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\DEPARTMENT.xss">
+      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\EMPLOYEE.xsc">
       <DependentUpon>EMPLOYEE.xsd</DependentUpon>
     </None>
@@ -203,6 +285,37 @@
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\ENUMERATION.xsc">
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ENUMERATION.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ENUMERATION.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\ENUMERATION.xss">
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EQUIPMENT.xsc">
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EQUIPMENT.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EQUIPMENT.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\EQUIPMENT.xss">
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\OPERATION.xsc">
+      <DependentUpon>OPERATION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\OPERATION.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\OPERATION.xss">
+      <DependentUpon>OPERATION.xsd</DependentUpon>
     </None>
     <None Include="Config\Schema\PASSPORT.xsc">
       <DependentUpon>PASSPORT.xsd</DependentUpon>
@@ -226,12 +339,34 @@
     <None Include="Config\Schema\ROLE.xss">
       <DependentUpon>ROLE.xsd</DependentUpon>
     </None>
+    <None Include="Config\Schema\USERROLE.xsc">
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\USERROLE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>USERROLE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\USERROLE.xss">
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+    </None>
     <Content Include="error.htm" />
+    <Content Include="Resources\CSS\Controls\Calendar\Calendar.css" />
+    <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
+    <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
+    <Content Include="Resources\Scripts\Controls\Calendar.js" />
     <Content Include="Views\Basedata\EmployeeEdit.aspx" />
+    <Content Include="Views\Basedata\EmployeeList.aspx" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Masters\Main.Master" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />
+    <Content Include="Views\Basedata\OperationEdit.aspx" />
+    <Content Include="Views\Basedata\OperationList.aspx" />
+    <Content Include="Views\Basedata\OperationView.aspx" />
+    <Content Include="Views\Basedata\RoleEdit.aspx" />
+    <Content Include="Views\Basedata\RoleList.aspx" />
+    <Content Include="Views\Basedata\RoleView.aspx" />
     <Content Include="Views\Components\Map.ascx" />
     <Content Include="Views\Demo\RoleEdit.aspx" />
     <Content Include="Views\Demo\RoleView.aspx" />

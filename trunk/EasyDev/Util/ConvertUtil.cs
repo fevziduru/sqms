@@ -7,6 +7,7 @@ namespace EasyDev.Util
 {
     public sealed class ConvertUtil
     {
+        [Obsolete("此方法已经过时，请使用ToStringOrDefault")]
         public static string EmptyOrString(object obj)
         {
             try

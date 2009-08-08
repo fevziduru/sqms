@@ -27,5 +27,13 @@ namespace EasyDev.BL.Services
 
             return srv;
         }
+
+        public T CreateService<T>(T outsrv) where T : GenericService, new()
+        {
+            T srv = new T();
+            srv.UserInfo = outsrv.UserInfo;
+
+            return srv;
+        }
     }
 }

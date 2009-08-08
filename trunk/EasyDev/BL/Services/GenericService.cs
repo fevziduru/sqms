@@ -7,6 +7,8 @@ using EasyDev.Resources;
 using System.Data;
 using System.Web.Caching;
 using System.Web;
+using EasyDev.SQMS;
+using System.Threading;
 
 namespace EasyDev.BL.Services
 {
@@ -74,6 +76,27 @@ namespace EasyDev.BL.Services
         #endregion
 
         #region 公共属性
+
+        public UserInfo UserInfo
+        {
+            get
+            {
+                UserIdentity ui = Thread.CurrentPrincipal.Identity as UserIdentity;
+                if (ui != null)
+                {
+                    return ui.UserInfo;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                this.UserInfo = value;
+            }
+        }
+
         /// <summary>
         /// 本地化/国际化对象
         /// </summary>
@@ -360,6 +383,62 @@ namespace EasyDev.BL.Services
         public string GetNextSequenceID()
         {
             return this.bizObject.GetNextSequenceID(this.BOName);
+        }
+
+        /// <summary>
+        /// 取得引用表字段数据
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="refTextField"></param>
+        /// <param name="refTable"></param>
+        /// <param name="refKey"></param>
+        /// <param name="refValue"></param>
+        /// <returns></returns>
+        public virtual object GetReferenceValue(
+            GenericDBSession session, 
+            string refTextField,
+            string refTable,    
+            string refKey,      
+            string refValue)
+        {
+            try
+            {
+                return session.GetScalarObjectFromCommand(
+                    string.Format(@"select {0} from {1} where {2}=:value", refTextField, refTable, refKey), refValue);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 取得引用表字段数据
+        /// </summary>
+        /// <param name="refTextField"></param>
+        /// <param name="refTable"></param>
+        /// <param name="refKey"></param>
+        /// <param name="refValue"></param>
+        /// <returns></returns>
+        public virtual object GetReferenceValue(string refTextField,
+            string refTable,
+            string refKey,
+            string refValue)
+        {
+            try
+            {
+                return this.DefaultSession.GetScalarObjectFromCommand(
+                    string.Format(@"select {0} from {1} where {2}=:value", refTextField, refTable, refKey), refValue);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public virtual string GenerateCode()
+        {
+            return this.BOName.Substring(0, 2) + "-" + DateTime.Now.Ticks.ToString();
         }
     }
 }

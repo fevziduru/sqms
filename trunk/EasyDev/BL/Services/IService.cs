@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using EasyDev.PL;
+using EasyDev.SQMS;
 
 namespace EasyDev.BL.Services
 {

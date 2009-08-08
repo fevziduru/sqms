@@ -125,26 +125,23 @@ namespace EasyDev.BL
             {
                 if (this._data.Tables.Count > 0)
                 {
-                    //对数据集中的每一个表进行处理
-                    foreach (DataTable dt in this._data.Tables)
+                    DataTable dt = this._data.Tables[0];
+                    foreach (DataRow row in dt.Rows)
                     {
-                        //DataTable dt = this._data.Tables[0];
-                        foreach (DataRow row in dt.Rows)
+                        if (row.RowState == DataRowState.Added)
                         {
-                            if (row.RowState == DataRowState.Added)
-                            {
-                                _session.ExecuteCommand(SqlBuilder.BuildInsertCommand(this.FullName, row.Table, row));
-                            }
-                            else if (row.RowState == DataRowState.Modified)
-                            {
-                                _session.ExecuteCommand(SqlBuilder.BuildUpdateCommand(this.FullName, row.Table, row));
-                            }
-                            else if (row.RowState == DataRowState.Deleted)
-                            {
-                                _session.ExecuteCommand(SqlBuilder.BuildDeleteCommand(this.FullName, row.Table, row));
-                            }
+                            _session.ExecuteCommand(SqlBuilder.BuildInsertCommand(this.FullName, row.Table, row));
+                        }
+                        else if (row.RowState == DataRowState.Modified)
+                        {
+                            _session.ExecuteCommand(SqlBuilder.BuildUpdateCommand(this.FullName, row.Table, row));
+                        }
+                        else if (row.RowState == DataRowState.Deleted)
+                        {
+                            _session.ExecuteCommand(SqlBuilder.BuildDeleteCommand(this.FullName, row.Table, row));
                         }
                     }
+
                     this._data.AcceptChanges();
                 }
             }
@@ -208,7 +205,7 @@ namespace EasyDev.BL
             {
                 //TODO: 测试
                 DataColumn[] cols = this._data.Tables[this._entityName].PrimaryKey;
-                if (cols.Length > 0)
+                if (cols.Length > 0 && keyValues != null)
                 {
                     IEnumerator itr_keyvalues = keyValues.GetEnumerator();
                     while (itr_keyvalues.MoveNext())
@@ -252,6 +249,8 @@ namespace EasyDev.BL
                                 , this.FullName, whereCond);
 
                 #region 重新加载域模型数据
+                //this._data.EnforceConstraints = false;
+                this._data.Relations.Clear();
                 //清除数据集中的数据表
                 this._data.Tables.Clear();
                 

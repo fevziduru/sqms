@@ -110,5 +110,45 @@ namespace SQMS.Services
                 throw e;
             }
         }
+
+        public string GetPassport(string empid)
+        {
+            try
+            {
+                return ConvertUtil.ToStringOrDefault(DefaultSession.GetScalarObjectFromCommand(
+                    @"select passport from passport where empid=:empid and isvoid='N'", empid));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public DataSet GetPassportByEmployeeID(string empid)
+        {
+            try
+            {
+                DataSet ds = DefaultSession.GetDataSetFromCommand("select * from passport where passport.empid=:empid", empid);
+                ds.Tables[0].TableName = "PASSPORT";
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool IsPassportExist(string passport)
+        {
+            try
+            {
+                DataSet ds = LoadByCondition("passport='" + passport+"'");
+                return (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
