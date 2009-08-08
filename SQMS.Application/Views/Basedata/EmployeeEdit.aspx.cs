@@ -34,15 +34,15 @@ namespace SQMS.Application.Views.Basedata
                 }
                 drEmployee["EMPNAME"] = this.txtEmpName.Text;
                 drEmployee["EMPCODE"] = this.txtEmpCode.Text;
-                drEmployee["EMPSTATUS"] = this.txtEmpStatus.Text;
+                drEmployee["EMPSTATUS"] = this.ddlStatus.SelectedValue;
                 drEmployee["MOBILE"] = this.txtMobile.Text;
                 drEmployee["DEPTID"] = this.ddlDepartment.SelectedValue;
                 drEmployee["SEX"] = this.ddlSex.SelectedValue;
                 drEmployee["EQUID"] = this.ddlEquipment.SelectedValue;
-                drEmployee["JOBTITLE"] = this.txtJobTitile.Text;
+                //drEmployee["JOBTITLE"] = this.txtJobTitile.Text;
                 drEmployee["ISVOID"] = "N";
                 drEmployee["CONTACTTEL"] = this.txtContactTel.Text;
-                drEmployee["DEGREE"] = this.txtDegree.Text;
+                drEmployee["DEGREE"] = this.ddlDegree.SelectedValue;
                 drEmployee["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drEmployee["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -70,22 +70,32 @@ namespace SQMS.Application.Views.Basedata
                 }
             }
 
-            //从界面取得角色数据
-            DataTable dtRoles = this.ViewData.Tables["USERROLE"];
-            if (dtRoles != null)
+            if (ConvertUtil.ToStringOrDefault(drPassport["PASSPORT"]).Length > 0)
             {
-                dtRoles.Rows.Clear();
-            }
-            foreach (ListItem item in this.cblRoles.Items)
-            {
-                if (item.Selected)
+                //从界面取得角色数据
+                DataTable dtRoles = this.ViewData.Tables["USERROLE"];
+                if (dtRoles != null)
                 {
-                    DataRow drRole = dtRoles.NewRow();
-                    drRole["passportid"] = drPassport["passportid"];
-                    drRole["roleid"] = item.Value;
-                    dtRoles.Rows.Add(drRole);
+                    dtRoles.Rows.Clear();
+                }
+                foreach (ListItem item in this.cblRoles.Items)
+                {
+                    if (item.Selected)
+                    {
+                        DataRow drRole = dtRoles.NewRow();
+                        drRole["passportid"] = drPassport["passportid"];
+                        drRole["roleid"] = item.Value;
+                        dtRoles.Rows.Add(drRole);
+                    }
                 }
             }
+            else
+            {
+                this.ViewData.Tables.Remove("PASSPORT");
+                this.ViewData.Tables.Remove("USERROLE");
+            }
+
+            
         }
 
         /// <summary>
@@ -120,6 +130,8 @@ namespace SQMS.Application.Views.Basedata
             ControlBindingHelper.BindDropDownList(this.cblRoles, srv.GetRoles(), "rolename", "roleid");
             ControlBindingHelper.BindDropDownList(this.ddlEquipment, srv.GetEquipments(), "equname", "equid");
             ControlBindingHelper.BindDropDownList(this.ddlSex, srv.GetSex(), "enumname", "enumid");
+            ControlBindingHelper.BindDropDownList(this.ddlDegree, srv.EnumService.GetDegree(), "enumname", "enumid");
+            ControlBindingHelper.BindDropDownList(this.ddlStatus, srv.EnumService.GetEnumByType("_empstatus"), "enumname", "enumid");
 
             if (this.ID.Length == 0)
             {
@@ -143,7 +155,8 @@ namespace SQMS.Application.Views.Basedata
                 //编辑
                 this.txtEmpName.Text = ConvertUtil.ToStringOrDefault(drEmployee["EMPNAME"]);
                 this.txtEmpCode.Text = ConvertUtil.ToStringOrDefault(drEmployee["EMPCODE"]);
-                this.txtEmpStatus.Text = ConvertUtil.ToStringOrDefault(drEmployee["EMPSTATUS"]);
+                this.ddlStatus.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
+                    ConvertUtil.ToStringOrDefault(drEmployee["EMPSTATUS"])));
                 this.txtMobile.Text = ConvertUtil.ToStringOrDefault(drEmployee["MOBILE"]);
                 this.ddlDepartment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("deptname", "DEPARTMENT", "DEPTID",
                     ConvertUtil.ToStringOrDefault(drEmployee["DEPTID"])));
@@ -151,9 +164,10 @@ namespace SQMS.Application.Views.Basedata
                     ConvertUtil.ToStringOrDefault(drEmployee["sex"])));
                 this.ddlEquipment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "EQUID",
                     ConvertUtil.ToStringOrDefault(drEmployee["EQUID"])));
-                this.txtJobTitile.Text = ConvertUtil.ToStringOrDefault(drEmployee["JOBTITLE"]);
+                //this.txtJobTitile.Text = ConvertUtil.ToStringOrDefault(drEmployee["JOBTITLE"]);
                 this.txtContactTel.Text = ConvertUtil.ToStringOrDefault(drEmployee["CONTACTTEL"]);
-                this.txtDegree.Text = ConvertUtil.ToStringOrDefault(drEmployee["DEGREE"]);
+                this.ddlDegree.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
+                    ConvertUtil.ToStringOrDefault(drEmployee["DEGREE"])));
                 currdate = ConvertUtil.ToStringOrDefault(drEmployee["BIRTHDAY"]);
 
                 /////////////////////////

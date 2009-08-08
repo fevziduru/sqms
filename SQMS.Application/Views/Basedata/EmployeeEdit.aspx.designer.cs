@@ -68,22 +68,22 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmpCode;
         
         /// <summary>
-        /// txtEmpStatus 控件。
+        /// ddlStatus 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmpStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
-        /// txtMobile 控件。
+        /// ddlDegree 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobile;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDegree;
         
         /// <summary>
         /// ddlDepartment 控件。
@@ -104,24 +104,6 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.DropDownList ddlSex;
         
         /// <summary>
-        /// ddlEquipment 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEquipment;
-        
-        /// <summary>
-        /// txtJobTitile 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtJobTitile;
-        
-        /// <summary>
         /// txtContactTel 控件。
         /// </summary>
         /// <remarks>
@@ -131,13 +113,22 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.TextBox txtContactTel;
         
         /// <summary>
-        /// txtDegree 控件。
+        /// txtMobile 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDegree;
+        protected global::System.Web.UI.WebControls.TextBox txtMobile;
+        
+        /// <summary>
+        /// ddlEquipment 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEquipment;
         
         /// <summary>
         /// txtPassport 控件。

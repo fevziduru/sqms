@@ -13,7 +13,7 @@
         <tr>
             <td style="width:110px">职员名称：</td>
             <td style="width:330px">
-                <asp:TextBox ID="txtEmpName" runat="server" ></asp:TextBox><span style="color:Red">*</span>
+                <asp:TextBox Width="210" ID="txtEmpName" runat="server" ></asp:TextBox><span style="color:Red">*</span>
                 <asp:RequiredFieldValidator ID="rfvEmpName" runat="server" 
                     ControlToValidate="txtEmpName" 
                     SetFocusOnError="true"
@@ -22,7 +22,7 @@
             </td>
             <td style="width:110px">职员编码：</td>
             <td style="width:330px">
-                <asp:TextBox ID="txtEmpCode" runat="server" ></asp:TextBox><span style="color:Red">*</span>
+                <asp:TextBox ID="txtEmpCode"  Width="210" runat="server" ></asp:TextBox><span style="color:Red">*</span>
                 <asp:RequiredFieldValidator ID="rfvEmpCode" runat="server" 
                     ControlToValidate="txtEmpName" 
                     SetFocusOnError="true"
@@ -32,32 +32,32 @@
         </tr>
         <tr>
             <td>职员状态：</td>
-            <td><asp:TextBox ID="txtEmpStatus" runat="server" ></asp:TextBox></td>
-            <td>移动电话：</td>
-            <td><asp:TextBox ID="txtMobile" runat="server" ></asp:TextBox></td>
+            <td><asp:DropDownList Width="210px" ID="ddlStatus" runat="server"></asp:DropDownList></td>
+             <td>学历：</td>
+            <td>
+                <asp:DropDownList Width="210px" ID="ddlDegree" runat="server"></asp:DropDownList>
+            </td>
         </tr>
         <tr>
             <td>所属部门：</td>
-            <td><asp:DropDownList ID="ddlDepartment" runat="server"></asp:DropDownList></td>            
+            <td><asp:DropDownList Width="210px"  ID="ddlDepartment" runat="server"></asp:DropDownList></td>            
             <td>性别：</td>
-            <td><asp:DropDownList ID="ddlSex" runat="server"></asp:DropDownList></td>            
-        </tr>
-        <tr>
-            <td>设备：</td>
-            <td><asp:DropDownList ID="ddlEquipment" runat="server"></asp:DropDownList></td>            
-            <td>职位：</td>
-            <td><asp:TextBox ID="txtJobTitile" runat="server" ></asp:TextBox></td>            
+            <td><asp:DropDownList Width="210px" ID="ddlSex" runat="server"></asp:DropDownList></td>            
         </tr>
         <tr>
             <td>联系电话：</td>
-            <td><asp:TextBox ID="txtContactTel" runat="server" ></asp:TextBox></td>            
-            <td>学历：</td>
-            <td><asp:TextBox ID="txtDegree" runat="server" ></asp:TextBox></td>            
+            <td><asp:TextBox ID="txtContactTel"  Width="210" runat="server" ></asp:TextBox></td>  
+            <td>移动电话：</td>
+            <td><asp:TextBox ID="txtMobile" Width="210" runat="server" ></asp:TextBox></td>
+            <%--<td>职位：</td>
+            <td><asp:TextBox Visible="false" ID="txtJobTitile" runat="server" ></asp:TextBox></td>            --%>
         </tr>
         <tr>
+            <td>设备：</td>
+            <td><asp:DropDownList Width="210px"  ID="ddlEquipment" runat="server"></asp:DropDownList></td>
             <td>出生日期：</td>
             <td><%=SQMS.Application.HtmlHelper.HtmlExtension.Calendar("calBirthday", currdate) %></td>
-        </tr> 
+        </tr>
     </table>    
     <hr />
     <table>
@@ -66,7 +66,7 @@
             <td>
             <table>
                 <tr>
-                    <td><asp:TextBox ID="txtPassport" runat="server"></asp:TextBox> </td>
+                    <td><asp:TextBox  Width="210" ID="txtPassport" runat="server"></asp:TextBox> </td>
                     <td>
                     <asp:UpdatePanel ID="upCkPassport" runat="server">
                     <ContentTemplate>
@@ -83,20 +83,26 @@
         <tr>
             <td>密码：</td>
             <td>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword"  Width="210" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:Label ID="lblPassword" runat="server" Text="******"></asp:Label>
             </td>
         </tr>
         <tr runat="server" id="trConfirm">
             <td>再次输入密码：</td>
-            <td><asp:TextBox ID="txtConfirmPass" runat="server" TextMode="Password"></asp:TextBox></td>
+            <td><asp:TextBox  Width="210" ID="txtConfirmPass" runat="server" TextMode="Password"></asp:TextBox></td>
         </tr>
+        <hr />
     </table>
-    <hr />
+    
     <table>
         <tr>
             <td>职员角色：</td>
-            <td><asp:CheckBoxList ID="cblRoles" runat="server" RepeatColumns="3" RepeatDirection="Vertical" RepeatLayout="Table"></asp:CheckBoxList></td>
+            <td><asp:CheckBoxList ID="cblRoles" runat="server" RepeatColumns="1" 
+            RepeatDirection="Vertical" RepeatLayout="Table"></asp:CheckBoxList></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><a href="RoleEdit.aspx">角色管理</a></td>
         </tr>
     </table>
     <table>

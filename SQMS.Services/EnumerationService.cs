@@ -26,5 +26,30 @@ namespace SQMS.Services
                 throw e;
             }
         }
+
+        public DataTable GetDegree()
+        {
+            try
+            {
+                return DefaultSession.GetDataTableFromCommand(@"select enumid, enumname from enumeration where enumtype='_degree'");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public DataTable GetEnumByType(string type)
+        {
+            try
+            {
+                return DefaultSession.GetDataTableFromCommand
+                    (@"select enumid, enumname from enumeration where enumtype=:type", type);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

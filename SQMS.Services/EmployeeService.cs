@@ -32,7 +32,16 @@ namespace SQMS.Services
 
         public DataSet GetRoles()
         {
-            return RoleService.LoadAll();
+            DataSet ds = RoleService.LoadAll();
+            foreach (DataRow item in ds.Tables["ROLE"].Rows)
+            {
+                if (ConvertUtil.ToStringOrDefault(item["memo"]).Length > 0)
+                {
+                    item["rolename"] = ConvertUtil.ToStringOrDefault(item["rolename"]) + "：" + ConvertUtil.ToStringOrDefault(item["memo"]);
+                }
+            }
+
+            return ds;
         }
 
         public DataTable GetSex()
@@ -69,16 +78,23 @@ namespace SQMS.Services
         {
             base.Save(dsSave); //调用本当前服务的基类保存，用于保存职员
             dsSave.Tables.Remove(this.BOName);
+            string passportid = "";
 
-            PassportService.Save(dsSave);
-            string passportid = ConvertUtil.ToStringOrDefault(dsSave.Tables[PassportService.BOName].Rows[0]["passportid"]);
-            dsSave.Tables.Remove(PassportService.BOName);
+            if (dsSave.Tables.Contains(PassportService.BOName))
+            {
+                PassportService.Save(dsSave);
+                passportid = ConvertUtil.ToStringOrDefault(dsSave.Tables[PassportService.BOName].Rows[0]["passportid"]);
+                dsSave.Tables.Remove(PassportService.BOName);
+            }
 
-            //删除角色分配
-            int effectRows = DefaultSession.ExecuteCommand(@"delete from userrole ur where ur.passportid=:passportid", passportid);
+            if (dsSave.Tables.Contains(UserRoleService.BOName))
+            {
+                //删除角色分配
+                int effectRows = DefaultSession.ExecuteCommand(@"delete from userrole ur where ur.passportid=:passportid", passportid);
 
-            UserRoleService.Save(dsSave);
-            dsSave.Tables.Remove(UserRoleService.BOName);
+                UserRoleService.Save(dsSave);
+                dsSave.Tables.Remove(UserRoleService.BOName);
+            }
         }
 
         public void Delete(DataSet ds)

@@ -131,6 +131,15 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Label lblBirthday;
         
         /// <summary>
+        /// tblPassport 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblPassport;
+        
+        /// <summary>
         /// lblPassport 控件。
         /// </summary>
         /// <remarks>
@@ -147,6 +156,15 @@ namespace SQMS.Application.Views.Basedata {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPassword;
+        
+        /// <summary>
+        /// tblRole 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblRole;
         
         /// <summary>
         /// btnDelete 控件。
