@@ -192,6 +192,13 @@
     <Compile Include="Views\Components\PopupReference\SelectTemplateField.ascx.designer.cs">
       <DependentUpon>SelectTemplateField.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
+      <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointDetail.aspx.designer.cs">
+      <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -411,6 +418,7 @@
     <Content Include="Views\Demo\RoleEdit.aspx" />
     <Content Include="Views\Demo\RoleView.aspx" />
     <Content Include="Views\Quality\CompanyQualityMonitor.aspx" />
+    <Content Include="Views\Quality\MonitorPointDetail.aspx" />
     <Content Include="Views\Quality\QualityMonitorPointMap.aspx" />
   </ItemGroup>
   <ItemGroup>
