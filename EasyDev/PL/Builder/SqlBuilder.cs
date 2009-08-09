@@ -115,10 +115,10 @@ namespace EasyDev.PL.SqlBuilder
                 cond = string.Format(" {0}='{1}' {2}", key, value, splitStr);
             }
 
-            if (cond.Length > 0)
-            {
-                cond = cond.Substring(0, cond.Length - splitStr.Length - 1);
-            }
+            //if (cond.Length > 0)
+            //{
+            //    cond = cond.Substring(0, cond.Length - splitStr.Length - 1);
+            //}
             return cond;
         }
 
