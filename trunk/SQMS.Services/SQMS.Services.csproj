@@ -68,6 +68,8 @@
     <Compile Include="QualityControl\RegionService.cs" />
     <Compile Include="ReferenceServices\EquipmentRefService.cs" />
     <Compile Include="ReferenceServices\IReferenceService.cs" />
+    <Compile Include="ResourceService.cs" />
+    <Compile Include="ResPermissionService.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="UserRoleService.cs" />
   </ItemGroup>

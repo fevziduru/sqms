@@ -65,6 +65,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="YYControls, Version=4.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\YYControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Security\Login.aspx" />
@@ -91,10 +95,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EQUIPMENT.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\MPASSIGNMENT1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\PASSPORT.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PASSPORT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\PROJECT1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\QUALITY1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\RESOURCEITEM1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\RESPERMISSION1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\ROAD1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ROAD.xsd</DependentUpon>
     </Compile>
     <Compile Include="Config\Schema\ROLE.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -164,6 +198,7 @@
     <Compile Include="Views\Basedata\RoleView.aspx.designer.cs">
       <DependentUpon>RoleView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Common\sGridItemTemplate.cs" />
     <Compile Include="Views\Components\PopupReferenceList.aspx.cs">
       <DependentUpon>PopupReferenceList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +385,17 @@
     <None Include="Config\Schema\EQUIPMENT.xss">
       <DependentUpon>EQUIPMENT.xsd</DependentUpon>
     </None>
+    <None Include="Config\Schema\MPASSIGNMENT.xsc">
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MPASSIGNMENT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MPASSIGNMENT1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\MPASSIGNMENT.xss">
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\OPERATION.xsc">
       <DependentUpon>OPERATION.xsd</DependentUpon>
     </None>
@@ -369,6 +415,61 @@
     </None>
     <None Include="Config\Schema\PASSPORT.xss">
       <DependentUpon>PASSPORT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\PROJECT.xsc">
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\PROJECT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PROJECT1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\PROJECT.xss">
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\QUALITY.xsc">
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\QUALITY.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QUALITY1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\QUALITY.xss">
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\RESOURCEITEM.xsc">
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\RESOURCEITEM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RESOURCEITEM1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\RESOURCEITEM.xss">
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\RESPERMISSION.xsc">
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\RESPERMISSION.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RESPERMISSION1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\RESPERMISSION.xss">
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ROAD.xsc">
+      <DependentUpon>ROAD.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ROAD.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ROAD1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\ROAD.xss">
+      <DependentUpon>ROAD.xsd</DependentUpon>
     </None>
     <None Include="Config\Schema\ROLE.xsc">
       <DependentUpon>ROLE.xsd</DependentUpon>
@@ -428,7 +529,6 @@
     <Folder Include="App_LocalResources\" />
     <Folder Include="Resources\Scripts\Common\" />
     <Folder Include="Templates\" />
-    <Folder Include="Views\Common\" />
     <Folder Include="Views\Mobile\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
