@@ -100,7 +100,7 @@ namespace EasyDev.PL.SqlBuilder
             string cond = "";
             if (value.GetType() == typeof(string))
             {
-                cond = string.Format("{0}='{1}' {2} ", key, value, splitStr);
+                cond = string.Format(" {0}='{1}' {2}", key, value, splitStr);
             }
             else if ((value.GetType() == typeof(decimal))
                      || (value.GetType() == typeof(int))
@@ -108,16 +108,16 @@ namespace EasyDev.PL.SqlBuilder
                      || (value.GetType() == typeof(float))
                 )
             {
-                cond = string.Format("{0}={1} {2} ", key, value, splitStr);
+                cond = string.Format(" {0}={1} {2}", key, value, splitStr);
             }
             else if (value.GetType() == typeof(DateTime))
             {
-                cond = string.Format("{0}='{1}' {2} ", key, value, splitStr);
+                cond = string.Format(" {0}='{1}' {2}", key, value, splitStr);
             }
 
             if (cond.Length > 0)
             {
-                cond = cond.Substring(0, cond.Length - 1);
+                cond = cond.Substring(0, cond.Length - splitStr.Length - 1);
             }
             return cond;
         }
