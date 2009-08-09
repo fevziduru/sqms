@@ -11,6 +11,6 @@ namespace SQMS.Services.ReferenceServices
     /// </summary>
     public interface IReferenceService
     {
-        DataTable FetchData();
+        DataTable FetchReferenceData();
     }
 }

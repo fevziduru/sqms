@@ -16,7 +16,7 @@ namespace SQMS.Services
             base.Initialize();
         }
 
-        public DataTable FetchData()
+        public DataTable FetchReferenceData()
         {
             try
             {

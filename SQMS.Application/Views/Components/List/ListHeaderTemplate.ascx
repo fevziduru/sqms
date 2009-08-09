@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListHeaderTemplate.ascx.cs" Inherits="SQMS.Application.ListHeaderTemplate" %>
+<input name="header" type="checkbox" onclick="SelectAll()" />

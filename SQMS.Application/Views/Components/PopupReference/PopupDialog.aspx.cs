@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using SQMS.Services;
+using SQMS.Services.ReferenceServices;
 
 namespace SQMS.Application
 {
@@ -22,13 +23,13 @@ namespace SQMS.Application
             this.gvRefList.RowDataBound += new GridViewRowEventHandler(gvRefList_RowDataBound);
             this.gvRefList.PreRender += new EventHandler(gvRefList_PreRender);
 
-            EquipmentRefService srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as EquipmentRefService;
+            IReferenceService srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as IReferenceService;
 
             if (!Page.IsPostBack)
             {
                 if (srv != null)
                 {
-                    Data = srv.FetchData();
+                    Data = srv.FetchReferenceData();
                     ViewState.Add("Data", Data);
 
                     gvRefList.DataSource = Data;
