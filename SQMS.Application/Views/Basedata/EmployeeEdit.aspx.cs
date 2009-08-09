@@ -107,6 +107,7 @@ namespace SQMS.Application.Views.Basedata
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)  //2
         {
             this.ViewData = Service.LoadByKey(this.ID, true);
+
             if (this.ID.Length != 0)
             {
                 this.ViewData.Merge(srv.GetPassportByEmployeeID(this.ID));

@@ -9,11 +9,19 @@ namespace SQMS.Services
 {
     public class RoleService : GenericService
     {
+        public OperationService OperationService { get; private set; }
+        public ResourceService ResourceService { get; private set; }
+        public ResPermissionService ResPermissionService { get; private set; }
+
         protected override void Initialize()
         {
             this.BOName = "ROLE";
-
             base.Initialize();
+
+            this.OperationService = ServiceManager.CreateService<OperationService>();
+            this.ResourceService = ServiceManager.CreateService<ResourceService>();
+            this.ResPermissionService = ServiceManager.CreateService<ResPermissionService>();
+
         }
 
         public DataSet GetRoleByEmployeeID(string empid)
