@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Data;
 using EasyDev.Util;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace EasyDev.SQMS.HttpModules
 {
@@ -28,7 +29,11 @@ namespace EasyDev.SQMS.HttpModules
 
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
-            CheckPermission(((HttpApplication)sender).Context);
+            HttpContext context = ((HttpApplication)sender).Context;
+            if (Regex.IsMatch(context.Request.RawUrl, "/Views/Components\\.*") == false)
+            {
+                CheckPermission(context);
+            }
         }
                 
         void context_AuthenticateRequest(object sender, EventArgs e)

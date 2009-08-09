@@ -38,7 +38,8 @@ namespace SQMS.Application.Views.Basedata
                 drEmployee["MOBILE"] = this.txtMobile.Text;
                 drEmployee["DEPTID"] = this.ddlDepartment.SelectedValue;
                 drEmployee["SEX"] = this.ddlSex.SelectedValue;
-                drEmployee["EQUID"] = this.ddlEquipment.SelectedValue;
+                //drEmployee["EQUID"] = this.ddlEquipment.SelectedValue;
+                drEmployee["EQUID"] = this.refEquipment.SelectedValue;
                 //drEmployee["JOBTITLE"] = this.txtJobTitile.Text;
                 drEmployee["ISVOID"] = "N";
                 drEmployee["CONTACTTEL"] = this.txtContactTel.Text;
@@ -128,7 +129,7 @@ namespace SQMS.Application.Views.Basedata
         {
             ControlBindingHelper.BindDropDownList(this.ddlDepartment, srv.GetDepartments(), "deptname", "deptid");
             ControlBindingHelper.BindDropDownList(this.cblRoles, srv.GetRoles(), "rolename", "roleid");
-            ControlBindingHelper.BindDropDownList(this.ddlEquipment, srv.GetEquipments(), "equname", "equid");
+            //ControlBindingHelper.BindDropDownList(this.ddlEquipment, srv.GetEquipments(), "equname", "equid");
             ControlBindingHelper.BindDropDownList(this.ddlSex, srv.GetSex(), "enumname", "enumid");
             ControlBindingHelper.BindDropDownList(this.ddlDegree, srv.EnumService.GetDegree(), "enumname", "enumid");
             ControlBindingHelper.BindDropDownList(this.ddlStatus, srv.EnumService.GetEnumByType("_empstatus"), "enumname", "enumid");
@@ -162,7 +163,10 @@ namespace SQMS.Application.Views.Basedata
                     ConvertUtil.ToStringOrDefault(drEmployee["DEPTID"])));
                 this.ddlSex.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
                     ConvertUtil.ToStringOrDefault(drEmployee["sex"])));
-                this.ddlEquipment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "EQUID",
+                //this.ddlEquipment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "EQUID",
+                //    ConvertUtil.ToStringOrDefault(drEmployee["EQUID"])));
+                this.refEquipment.SelectedValue = ConvertUtil.ToStringOrDefault(drEmployee["EQUID"]);
+                this.refEquipment.SelectedText = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "EQUID",
                     ConvertUtil.ToStringOrDefault(drEmployee["EQUID"])));
                 //this.txtJobTitile.Text = ConvertUtil.ToStringOrDefault(drEmployee["JOBTITLE"]);
                 this.txtContactTel.Text = ConvertUtil.ToStringOrDefault(drEmployee["CONTACTTEL"]);

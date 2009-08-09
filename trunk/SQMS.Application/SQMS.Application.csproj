@@ -164,6 +164,34 @@
     <Compile Include="Views\Basedata\RoleView.aspx.designer.cs">
       <DependentUpon>RoleView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\PopupReferenceList.aspx.cs">
+      <DependentUpon>PopupReferenceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\PopupReferenceList.aspx.designer.cs">
+      <DependentUpon>PopupReferenceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\PopupDialog.aspx.cs">
+      <DependentUpon>PopupDialog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\PopupDialog.aspx.designer.cs">
+      <DependentUpon>PopupDialog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\PopupReference.ascx.cs">
+      <DependentUpon>PopupReference.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\PopupReference.ascx.designer.cs">
+      <DependentUpon>PopupReference.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\SelectTemplateField.ascx.cs">
+      <DependentUpon>SelectTemplateField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\PopupReference\SelectTemplateField.ascx.designer.cs">
+      <DependentUpon>SelectTemplateField.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -376,6 +404,10 @@
     <Content Include="Views\Basedata\RoleList.aspx" />
     <Content Include="Views\Basedata\RoleView.aspx" />
     <Content Include="Views\Components\Map.ascx" />
+    <Content Include="Views\Components\PopupReferenceList.aspx" />
+    <Content Include="Views\Components\PopupReference\PopupDialog.aspx" />
+    <Content Include="Views\Components\PopupReference\PopupReference.ascx" />
+    <Content Include="Views\Components\PopupReference\SelectTemplateField.ascx" />
     <Content Include="Views\Demo\RoleEdit.aspx" />
     <Content Include="Views\Demo\RoleView.aspx" />
     <Content Include="Views\Quality\CompanyQualityMonitor.aspx" />
