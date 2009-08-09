@@ -100,7 +100,7 @@ namespace EasyDev.PL.SqlBuilder
             string cond = "";
             if (value.GetType() == typeof(string))
             {
-                cond = string.Format("{0}='{1}' {2}", key, value, splitStr);
+                cond = string.Format("{0}='{1}' {2} ", key, value, splitStr);
             }
             else if ((value.GetType() == typeof(decimal))
                      || (value.GetType() == typeof(int))
@@ -108,11 +108,11 @@ namespace EasyDev.PL.SqlBuilder
                      || (value.GetType() == typeof(float))
                 )
             {
-                cond = string.Format("{0}={1} {2}", key, value, splitStr);
+                cond = string.Format("{0}={1} {2} ", key, value, splitStr);
             }
             else if (value.GetType() == typeof(DateTime))
             {
-                cond = string.Format("{0}='{1}' {2}", key, value, splitStr);
+                cond = string.Format("{0}='{1}' {2} ", key, value, splitStr);
             }
 
             if (cond.Length > 0)
@@ -131,7 +131,7 @@ namespace EasyDev.PL.SqlBuilder
             {
                 foreach (DataColumn column in dt.PrimaryKey)
                 {
-                    sb.Append(GetConditionByColumns(column, dr, " AND"));
+                    sb.Append(GetConditionByColumns(column, dr, " AND "));
                 }
             }
             catch (PersistenceException e)
