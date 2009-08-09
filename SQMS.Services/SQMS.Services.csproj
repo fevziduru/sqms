@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepartmentService.cs" />
+    <Compile Include="Domain\Common\PagingParameter.cs" />
     <Compile Include="Domain\QualityControl\LatLng.cs" />
     <Compile Include="Domain\QualityControl\LatLngBounds.cs" />
     <Compile Include="Domain\QualityControl\MonitorPoint.cs" />
