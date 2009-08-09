@@ -21,16 +21,16 @@ namespace SQMS.Application.Config.Schema {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("ROLE")]
+    [global::System.Xml.Serialization.XmlRootAttribute("RESOURCEITEM")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class ROLE : global::System.Data.DataSet {
+    public partial class RESOURCEITEM : global::System.Data.DataSet {
         
-        private ROLEDataTable tableROLE;
+        private RESOURCEITEMDataTable tableRESOURCEITEM;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public ROLE() {
+        public RESOURCEITEM() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -40,7 +40,7 @@ namespace SQMS.Application.Config.Schema {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected ROLE(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected RESOURCEITEM(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -53,8 +53,8 @@ namespace SQMS.Application.Config.Schema {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["ROLE"] != null)) {
-                    base.Tables.Add(new ROLEDataTable(ds.Tables["ROLE"]));
+                if ((ds.Tables["RESOURCEITEM"] != null)) {
+                    base.Tables.Add(new RESOURCEITEMDataTable(ds.Tables["RESOURCEITEM"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -77,9 +77,9 @@ namespace SQMS.Application.Config.Schema {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ROLEDataTable _ROLE {
+        public RESOURCEITEMDataTable _RESOURCEITEM {
             get {
-                return this.tableROLE;
+                return this.tableRESOURCEITEM;
             }
         }
         
@@ -120,7 +120,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public override global::System.Data.DataSet Clone() {
-            ROLE cln = ((ROLE)(base.Clone()));
+            RESOURCEITEM cln = ((RESOURCEITEM)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -142,8 +142,8 @@ namespace SQMS.Application.Config.Schema {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["ROLE"] != null)) {
-                    base.Tables.Add(new ROLEDataTable(ds.Tables["ROLE"]));
+                if ((ds.Tables["RESOURCEITEM"] != null)) {
+                    base.Tables.Add(new RESOURCEITEMDataTable(ds.Tables["RESOURCEITEM"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -175,27 +175,27 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableROLE = ((ROLEDataTable)(base.Tables["ROLE"]));
+            this.tableRESOURCEITEM = ((RESOURCEITEMDataTable)(base.Tables["RESOURCEITEM"]));
             if ((initTable == true)) {
-                if ((this.tableROLE != null)) {
-                    this.tableROLE.InitVars();
+                if ((this.tableRESOURCEITEM != null)) {
+                    this.tableRESOURCEITEM.InitVars();
                 }
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitClass() {
-            this.DataSetName = "ROLE";
+            this.DataSetName = "RESOURCEITEM";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/ROLE.xsd";
+            this.Namespace = "http://tempuri.org/RESOURCEITEM.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableROLE = new ROLEDataTable();
-            base.Tables.Add(this.tableROLE);
+            this.tableRESOURCEITEM = new RESOURCEITEMDataTable();
+            base.Tables.Add(this.tableRESOURCEITEM);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerialize_ROLE() {
+        private bool ShouldSerialize_RESOURCEITEM() {
             return false;
         }
         
@@ -208,7 +208,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            ROLE ds = new ROLE();
+            RESOURCEITEM ds = new RESOURCEITEM();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -252,7 +252,7 @@ namespace SQMS.Application.Config.Schema {
             return type;
         }
         
-        public delegate void ROLERowChangeEventHandler(object sender, ROLERowChangeEvent e);
+        public delegate void RESOURCEITEMRowChangeEventHandler(object sender, RESOURCEITEMRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -260,13 +260,17 @@ namespace SQMS.Application.Config.Schema {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ROLEDataTable : global::System.Data.TypedTableBase<ROLERow> {
+        public partial class RESOURCEITEMDataTable : global::System.Data.TypedTableBase<RESOURCEITEMRow> {
             
-            private global::System.Data.DataColumn columnROLEID;
+            private global::System.Data.DataColumn columnRESID;
             
-            private global::System.Data.DataColumn columnROLECODE;
+            private global::System.Data.DataColumn columnRESCODE;
             
-            private global::System.Data.DataColumn columnROLENAME;
+            private global::System.Data.DataColumn columnRESNAME;
+            
+            private global::System.Data.DataColumn columnRESTYPE;
+            
+            private global::System.Data.DataColumn columnLOCATION;
             
             private global::System.Data.DataColumn columnISVOID;
             
@@ -281,15 +285,15 @@ namespace SQMS.Application.Config.Schema {
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLEDataTable() {
-                this.TableName = "ROLE";
+            public RESOURCEITEMDataTable() {
+                this.TableName = "RESOURCEITEM";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ROLEDataTable(global::System.Data.DataTable table) {
+            internal RESOURCEITEMDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -305,29 +309,43 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ROLEDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected RESOURCEITEMDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ROLEIDColumn {
+            public global::System.Data.DataColumn RESIDColumn {
                 get {
-                    return this.columnROLEID;
+                    return this.columnRESID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ROLECODEColumn {
+            public global::System.Data.DataColumn RESCODEColumn {
                 get {
-                    return this.columnROLECODE;
+                    return this.columnRESCODE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ROLENAMEColumn {
+            public global::System.Data.DataColumn RESNAMEColumn {
                 get {
-                    return this.columnROLENAME;
+                    return this.columnRESNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn RESTYPEColumn {
+                get {
+                    return this.columnRESTYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn LOCATIONColumn {
+                get {
+                    return this.columnLOCATION;
                 }
             }
             
@@ -382,66 +400,70 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERow this[int index] {
+            public RESOURCEITEMRow this[int index] {
                 get {
-                    return ((ROLERow)(this.Rows[index]));
+                    return ((RESOURCEITEMRow)(this.Rows[index]));
                 }
             }
             
-            public event ROLERowChangeEventHandler ROLERowChanging;
+            public event RESOURCEITEMRowChangeEventHandler RESOURCEITEMRowChanging;
             
-            public event ROLERowChangeEventHandler ROLERowChanged;
+            public event RESOURCEITEMRowChangeEventHandler RESOURCEITEMRowChanged;
             
-            public event ROLERowChangeEventHandler ROLERowDeleting;
+            public event RESOURCEITEMRowChangeEventHandler RESOURCEITEMRowDeleting;
             
-            public event ROLERowChangeEventHandler ROLERowDeleted;
+            public event RESOURCEITEMRowChangeEventHandler RESOURCEITEMRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddROLERow(ROLERow row) {
+            public void AddRESOURCEITEMRow(RESOURCEITEMRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERow AddROLERow(string ROLEID, string ROLECODE, string ROLENAME, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY) {
-                ROLERow rowROLERow = ((ROLERow)(this.NewRow()));
+            public RESOURCEITEMRow AddRESOURCEITEMRow(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY) {
+                RESOURCEITEMRow rowRESOURCEITEMRow = ((RESOURCEITEMRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ROLEID,
-                        ROLECODE,
-                        ROLENAME,
+                        RESID,
+                        RESCODE,
+                        RESNAME,
+                        RESTYPE,
+                        LOCATION,
                         ISVOID,
                         MEMO,
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
                         MODIFIEDBY};
-                rowROLERow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowROLERow);
-                return rowROLERow;
+                rowRESOURCEITEMRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRESOURCEITEMRow);
+                return rowRESOURCEITEMRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERow FindByROLEID(string ROLEID) {
-                return ((ROLERow)(this.Rows.Find(new object[] {
-                            ROLEID})));
+            public RESOURCEITEMRow FindByRESID(string RESID) {
+                return ((RESOURCEITEMRow)(this.Rows.Find(new object[] {
+                            RESID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                ROLEDataTable cln = ((ROLEDataTable)(base.Clone()));
+                RESOURCEITEMDataTable cln = ((RESOURCEITEMDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ROLEDataTable();
+                return new RESOURCEITEMDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnROLEID = base.Columns["ROLEID"];
-                this.columnROLECODE = base.Columns["ROLECODE"];
-                this.columnROLENAME = base.Columns["ROLENAME"];
+                this.columnRESID = base.Columns["RESID"];
+                this.columnRESCODE = base.Columns["RESCODE"];
+                this.columnRESNAME = base.Columns["RESNAME"];
+                this.columnRESTYPE = base.Columns["RESTYPE"];
+                this.columnLOCATION = base.Columns["LOCATION"];
                 this.columnISVOID = base.Columns["ISVOID"];
                 this.columnMEMO = base.Columns["MEMO"];
                 this.columnCREATED = base.Columns["CREATED"];
@@ -452,12 +474,16 @@ namespace SQMS.Application.Config.Schema {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnROLEID = new global::System.Data.DataColumn("ROLEID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnROLEID);
-                this.columnROLECODE = new global::System.Data.DataColumn("ROLECODE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnROLECODE);
-                this.columnROLENAME = new global::System.Data.DataColumn("ROLENAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnROLENAME);
+                this.columnRESID = new global::System.Data.DataColumn("RESID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESID);
+                this.columnRESCODE = new global::System.Data.DataColumn("RESCODE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESCODE);
+                this.columnRESNAME = new global::System.Data.DataColumn("RESNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESNAME);
+                this.columnRESTYPE = new global::System.Data.DataColumn("RESTYPE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESTYPE);
+                this.columnLOCATION = new global::System.Data.DataColumn("LOCATION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLOCATION);
                 this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnISVOID);
                 this.columnMEMO = new global::System.Data.DataColumn("MEMO", typeof(string), null, global::System.Data.MappingType.Element);
@@ -471,71 +497,74 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnROLEID}, true));
-                this.columnROLEID.AllowDBNull = false;
-                this.columnROLEID.Unique = true;
-                this.columnROLEID.MaxLength = 40;
-                this.columnROLECODE.AllowDBNull = false;
-                this.columnROLECODE.MaxLength = 40;
-                this.columnROLENAME.AllowDBNull = false;
-                this.columnROLENAME.MaxLength = 60;
+                                this.columnRESID}, true));
+                this.columnRESID.AllowDBNull = false;
+                this.columnRESID.Unique = true;
+                this.columnRESID.MaxLength = 40;
+                this.columnRESCODE.AllowDBNull = false;
+                this.columnRESCODE.MaxLength = 40;
+                this.columnRESNAME.AllowDBNull = false;
+                this.columnRESNAME.MaxLength = 60;
+                this.columnRESTYPE.MaxLength = 60;
+                this.columnLOCATION.AllowDBNull = false;
+                this.columnLOCATION.MaxLength = 600;
                 this.columnISVOID.MaxLength = 1;
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
-                this.ExtendedProperties.Add("Generator_TablePropName", "_ROLE");
-                this.ExtendedProperties.Add("Generator_UserTableName", "ROLE");
+                this.ExtendedProperties.Add("Generator_TablePropName", "_RESOURCEITEM");
+                this.ExtendedProperties.Add("Generator_UserTableName", "RESOURCEITEM");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERow NewROLERow() {
-                return ((ROLERow)(this.NewRow()));
+            public RESOURCEITEMRow NewRESOURCEITEMRow() {
+                return ((RESOURCEITEMRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ROLERow(builder);
+                return new RESOURCEITEMRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(ROLERow);
+                return typeof(RESOURCEITEMRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ROLERowChanged != null)) {
-                    this.ROLERowChanged(this, new ROLERowChangeEvent(((ROLERow)(e.Row)), e.Action));
+                if ((this.RESOURCEITEMRowChanged != null)) {
+                    this.RESOURCEITEMRowChanged(this, new RESOURCEITEMRowChangeEvent(((RESOURCEITEMRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ROLERowChanging != null)) {
-                    this.ROLERowChanging(this, new ROLERowChangeEvent(((ROLERow)(e.Row)), e.Action));
+                if ((this.RESOURCEITEMRowChanging != null)) {
+                    this.RESOURCEITEMRowChanging(this, new RESOURCEITEMRowChangeEvent(((RESOURCEITEMRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ROLERowDeleted != null)) {
-                    this.ROLERowDeleted(this, new ROLERowChangeEvent(((ROLERow)(e.Row)), e.Action));
+                if ((this.RESOURCEITEMRowDeleted != null)) {
+                    this.RESOURCEITEMRowDeleted(this, new RESOURCEITEMRowChangeEvent(((RESOURCEITEMRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ROLERowDeleting != null)) {
-                    this.ROLERowDeleting(this, new ROLERowChangeEvent(((ROLERow)(e.Row)), e.Action));
+                if ((this.RESOURCEITEMRowDeleting != null)) {
+                    this.RESOURCEITEMRowDeleting(this, new RESOURCEITEMRowChangeEvent(((RESOURCEITEMRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveROLERow(ROLERow row) {
+            public void RemoveRESOURCEITEMRow(RESOURCEITEMRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -543,7 +572,7 @@ namespace SQMS.Application.Config.Schema {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ROLE ds = new ROLE();
+                RESOURCEITEM ds = new RESOURCEITEM();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -561,7 +590,7 @@ namespace SQMS.Application.Config.Schema {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ROLEDataTable";
+                attribute2.FixedValue = "RESOURCEITEMDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -606,43 +635,68 @@ namespace SQMS.Application.Config.Schema {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ROLERow : global::System.Data.DataRow {
+        public partial class RESOURCEITEMRow : global::System.Data.DataRow {
             
-            private ROLEDataTable tableROLE;
+            private RESOURCEITEMDataTable tableRESOURCEITEM;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ROLERow(global::System.Data.DataRowBuilder rb) : 
+            internal RESOURCEITEMRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableROLE = ((ROLEDataTable)(this.Table));
+                this.tableRESOURCEITEM = ((RESOURCEITEMDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ROLEID {
+            public string RESID {
                 get {
-                    return ((string)(this[this.tableROLE.ROLEIDColumn]));
+                    return ((string)(this[this.tableRESOURCEITEM.RESIDColumn]));
                 }
                 set {
-                    this[this.tableROLE.ROLEIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ROLECODE {
-                get {
-                    return ((string)(this[this.tableROLE.ROLECODEColumn]));
-                }
-                set {
-                    this[this.tableROLE.ROLECODEColumn] = value;
+                    this[this.tableRESOURCEITEM.RESIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ROLENAME {
+            public string RESCODE {
                 get {
-                    return ((string)(this[this.tableROLE.ROLENAMEColumn]));
+                    return ((string)(this[this.tableRESOURCEITEM.RESCODEColumn]));
                 }
                 set {
-                    this[this.tableROLE.ROLENAMEColumn] = value;
+                    this[this.tableRESOURCEITEM.RESCODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string RESNAME {
+                get {
+                    return ((string)(this[this.tableRESOURCEITEM.RESNAMEColumn]));
+                }
+                set {
+                    this[this.tableRESOURCEITEM.RESNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string RESTYPE {
+                get {
+                    try {
+                        return ((string)(this[this.tableRESOURCEITEM.RESTYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RESTYPE\' in table \'RESOURCEITEM\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRESOURCEITEM.RESTYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string LOCATION {
+                get {
+                    return ((string)(this[this.tableRESOURCEITEM.LOCATIONColumn]));
+                }
+                set {
+                    this[this.tableRESOURCEITEM.LOCATIONColumn] = value;
                 }
             }
             
@@ -650,14 +704,14 @@ namespace SQMS.Application.Config.Schema {
             public string ISVOID {
                 get {
                     try {
-                        return ((string)(this[this.tableROLE.ISVOIDColumn]));
+                        return ((string)(this[this.tableRESOURCEITEM.ISVOIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ISVOID\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ISVOID\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.ISVOIDColumn] = value;
+                    this[this.tableRESOURCEITEM.ISVOIDColumn] = value;
                 }
             }
             
@@ -665,14 +719,14 @@ namespace SQMS.Application.Config.Schema {
             public string MEMO {
                 get {
                     try {
-                        return ((string)(this[this.tableROLE.MEMOColumn]));
+                        return ((string)(this[this.tableRESOURCEITEM.MEMOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MEMO\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MEMO\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.MEMOColumn] = value;
+                    this[this.tableRESOURCEITEM.MEMOColumn] = value;
                 }
             }
             
@@ -680,14 +734,14 @@ namespace SQMS.Application.Config.Schema {
             public System.DateTime CREATED {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableROLE.CREATEDColumn]));
+                        return ((global::System.DateTime)(this[this.tableRESOURCEITEM.CREATEDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CREATED\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREATED\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.CREATEDColumn] = value;
+                    this[this.tableRESOURCEITEM.CREATEDColumn] = value;
                 }
             }
             
@@ -695,14 +749,14 @@ namespace SQMS.Application.Config.Schema {
             public string CREATEDBY {
                 get {
                     try {
-                        return ((string)(this[this.tableROLE.CREATEDBYColumn]));
+                        return ((string)(this[this.tableRESOURCEITEM.CREATEDBYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CREATEDBY\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREATEDBY\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.CREATEDBYColumn] = value;
+                    this[this.tableRESOURCEITEM.CREATEDBYColumn] = value;
                 }
             }
             
@@ -710,14 +764,14 @@ namespace SQMS.Application.Config.Schema {
             public System.DateTime MODIFIED {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableROLE.MODIFIEDColumn]));
+                        return ((global::System.DateTime)(this[this.tableRESOURCEITEM.MODIFIEDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIED\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIED\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.MODIFIEDColumn] = value;
+                    this[this.tableRESOURCEITEM.MODIFIEDColumn] = value;
                 }
             }
             
@@ -725,75 +779,85 @@ namespace SQMS.Application.Config.Schema {
             public string MODIFIEDBY {
                 get {
                     try {
-                        return ((string)(this[this.tableROLE.MODIFIEDBYColumn]));
+                        return ((string)(this[this.tableRESOURCEITEM.MODIFIEDBYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIEDBY\' in table \'ROLE\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIEDBY\' in table \'RESOURCEITEM\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableROLE.MODIFIEDBYColumn] = value;
+                    this[this.tableRESOURCEITEM.MODIFIEDBYColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsRESTYPENull() {
+                return this.IsNull(this.tableRESOURCEITEM.RESTYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetRESTYPENull() {
+                this[this.tableRESOURCEITEM.RESTYPEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsISVOIDNull() {
-                return this.IsNull(this.tableROLE.ISVOIDColumn);
+                return this.IsNull(this.tableRESOURCEITEM.ISVOIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetISVOIDNull() {
-                this[this.tableROLE.ISVOIDColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.ISVOIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMEMONull() {
-                return this.IsNull(this.tableROLE.MEMOColumn);
+                return this.IsNull(this.tableRESOURCEITEM.MEMOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMEMONull() {
-                this[this.tableROLE.MEMOColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.MEMOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsCREATEDNull() {
-                return this.IsNull(this.tableROLE.CREATEDColumn);
+                return this.IsNull(this.tableRESOURCEITEM.CREATEDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCREATEDNull() {
-                this[this.tableROLE.CREATEDColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.CREATEDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsCREATEDBYNull() {
-                return this.IsNull(this.tableROLE.CREATEDBYColumn);
+                return this.IsNull(this.tableRESOURCEITEM.CREATEDBYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCREATEDBYNull() {
-                this[this.tableROLE.CREATEDBYColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.CREATEDBYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMODIFIEDNull() {
-                return this.IsNull(this.tableROLE.MODIFIEDColumn);
+                return this.IsNull(this.tableRESOURCEITEM.MODIFIEDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMODIFIEDNull() {
-                this[this.tableROLE.MODIFIEDColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.MODIFIEDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMODIFIEDBYNull() {
-                return this.IsNull(this.tableROLE.MODIFIEDBYColumn);
+                return this.IsNull(this.tableRESOURCEITEM.MODIFIEDBYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMODIFIEDBYNull() {
-                this[this.tableROLE.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+                this[this.tableRESOURCEITEM.MODIFIEDBYColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -801,20 +865,20 @@ namespace SQMS.Application.Config.Schema {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ROLERowChangeEvent : global::System.EventArgs {
+        public class RESOURCEITEMRowChangeEvent : global::System.EventArgs {
             
-            private ROLERow eventRow;
+            private RESOURCEITEMRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERowChangeEvent(ROLERow row, global::System.Data.DataRowAction action) {
+            public RESOURCEITEMRowChangeEvent(RESOURCEITEMRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ROLERow Row {
+            public RESOURCEITEMRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -829,7 +893,7 @@ namespace SQMS.Application.Config.Schema {
         }
     }
 }
-namespace SQMS.Application.Config.Schema.ROLETableAdapters {
+namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
     
     
     /// <summary>
@@ -842,7 +906,7 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ROLETableAdapter : global::System.ComponentModel.Component {
+    public partial class RESOURCEITEMTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OracleClient.OracleDataAdapter _adapter;
         
@@ -853,7 +917,7 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         private bool _clearBeforeFill;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public ROLETableAdapter() {
+        public RESOURCEITEMTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -919,10 +983,12 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
             this._adapter = new global::System.Data.OracleClient.OracleDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "ROLE";
-            tableMapping.ColumnMappings.Add("ROLEID", "ROLEID");
-            tableMapping.ColumnMappings.Add("ROLECODE", "ROLECODE");
-            tableMapping.ColumnMappings.Add("ROLENAME", "ROLENAME");
+            tableMapping.DataSetTable = "RESOURCEITEM";
+            tableMapping.ColumnMappings.Add("RESID", "RESID");
+            tableMapping.ColumnMappings.Add("RESCODE", "RESCODE");
+            tableMapping.ColumnMappings.Add("RESNAME", "RESNAME");
+            tableMapping.ColumnMappings.Add("RESTYPE", "RESTYPE");
+            tableMapping.ColumnMappings.Add("LOCATION", "LOCATION");
             tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             tableMapping.ColumnMappings.Add("MEMO", "MEMO");
             tableMapping.ColumnMappings.Add("CREATED", "CREATED");
@@ -932,19 +998,18 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"ROLE\" WHERE ((\"ROLEID\" = :Original_ROLEID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER\".\"RESOURCEITEM\" WHERE ((\"RESID\" = :Original_RESID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_DEVUSER_0804\".\"ROLE\" (\"ROLEID\", \"ROLECODE\", \"ROLENAME\", \"ISVOID" +
-                "\", \"MEMO\", \"CREATED\", \"CREATEDBY\", \"MODIFIED\", \"MODIFIEDBY\") VALUES (:ROLEID, :R" +
-                "OLECODE, :ROLENAME, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY" +
-                ")";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_DEVUSER"".""RESOURCEITEM"" (""RESID"", ""RESCODE"", ""RESNAME"", ""RESTYPE"", ""LOCATION"", ""ISVOID"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"") VALUES (:RESID, :RESCODE, :RESNAME, :RESTYPE, :LOCATION, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLECODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLECODE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLENAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLENAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESTYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LOCATION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "LOCATION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
@@ -953,24 +1018,26 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""ROLE"" SET ""ROLEID"" = :ROLEID, ""ROLECODE"" = :ROLECODE, ""ROLENAME"" = :ROLENAME, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""ROLEID"" = :Original_ROLEID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER"".""RESOURCEITEM"" SET ""RESID"" = :RESID, ""RESCODE"" = :RESCODE, ""RESNAME"" = :RESNAME, ""RESTYPE"" = :RESTYPE, ""LOCATION"" = :LOCATION, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""RESID"" = :Original_RESID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLECODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLECODE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLENAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLENAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESTYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LOCATION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "LOCATION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -978,15 +1045,15 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ROLEID, ROLECODE, ROLENAME, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MO" +
-                "DIFIEDBY FROM SQMS_DEVUSER_0804.\"ROLE\"";
+            this._commandCollection[0].CommandText = "SELECT RESID, RESCODE, RESNAME, RESTYPE, LOCATION, ISVOID, MEMO, CREATED, CREATED" +
+                "BY, MODIFIED, MODIFIEDBY FROM SQMS_DEVUSER.RESOURCEITEM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ROLE.ROLEDataTable dataTable) {
+        public virtual int Fill(RESOURCEITEM.RESOURCEITEMDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -998,23 +1065,23 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ROLE.ROLEDataTable GetData() {
+        public virtual RESOURCEITEM.RESOURCEITEMDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ROLE.ROLEDataTable dataTable = new ROLE.ROLEDataTable();
+            RESOURCEITEM.RESOURCEITEMDataTable dataTable = new RESOURCEITEM.RESOURCEITEMDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ROLE.ROLEDataTable dataTable) {
+        public virtual int Update(RESOURCEITEM.RESOURCEITEMDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ROLE dataSet) {
-            return this.Adapter.Update(dataSet, "ROLE");
+        public virtual int Update(RESOURCEITEM dataSet) {
+            return this.Adapter.Update(dataSet, "RESOURCEITEM");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1033,12 +1100,12 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_ROLEID) {
-            if ((Original_ROLEID == null)) {
-                throw new global::System.ArgumentNullException("Original_ROLEID");
+        public virtual int Delete(string Original_RESID) {
+            if ((Original_RESID == null)) {
+                throw new global::System.ArgumentNullException("Original_RESID");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_ROLEID));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_RESID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1059,60 +1126,72 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string ROLEID, string ROLECODE, string ROLENAME, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY) {
-            if ((ROLEID == null)) {
-                throw new global::System.ArgumentNullException("ROLEID");
+        public virtual int Insert(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY) {
+            if ((RESID == null)) {
+                throw new global::System.ArgumentNullException("RESID");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ROLEID));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(RESID));
             }
-            if ((ROLECODE == null)) {
-                throw new global::System.ArgumentNullException("ROLECODE");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ROLECODE));
-            }
-            if ((ROLENAME == null)) {
-                throw new global::System.ArgumentNullException("ROLENAME");
+            if ((RESCODE == null)) {
+                throw new global::System.ArgumentNullException("RESCODE");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ROLENAME));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(RESCODE));
             }
-            if ((ISVOID == null)) {
+            if ((RESNAME == null)) {
+                throw new global::System.ArgumentNullException("RESNAME");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(RESNAME));
+            }
+            if ((RESTYPE == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ISVOID));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(RESTYPE));
             }
-            if ((MEMO == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(CREATED.Value));
+            if ((LOCATION == null)) {
+                throw new global::System.ArgumentNullException("LOCATION");
             }
             else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(LOCATION));
+            }
+            if ((ISVOID == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ISVOID));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(CREATEDBY));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(MEMO));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((MODIFIEDBY == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1133,66 +1212,78 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ROLEID, string ROLECODE, string ROLENAME, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_ROLEID) {
-            if ((ROLEID == null)) {
-                throw new global::System.ArgumentNullException("ROLEID");
+        public virtual int Update(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_RESID) {
+            if ((RESID == null)) {
+                throw new global::System.ArgumentNullException("RESID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ROLEID));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(RESID));
             }
-            if ((ROLECODE == null)) {
-                throw new global::System.ArgumentNullException("ROLECODE");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ROLECODE));
-            }
-            if ((ROLENAME == null)) {
-                throw new global::System.ArgumentNullException("ROLENAME");
+            if ((RESCODE == null)) {
+                throw new global::System.ArgumentNullException("RESCODE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ROLENAME));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(RESCODE));
             }
-            if ((ISVOID == null)) {
+            if ((RESNAME == null)) {
+                throw new global::System.ArgumentNullException("RESNAME");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(RESNAME));
+            }
+            if ((RESTYPE == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ISVOID));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(RESTYPE));
             }
-            if ((MEMO == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(CREATED.Value));
+            if ((LOCATION == null)) {
+                throw new global::System.ArgumentNullException("LOCATION");
             }
             else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(LOCATION));
+            }
+            if ((ISVOID == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ISVOID));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(CREATEDBY));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(MEMO));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(CREATEDBY));
             }
-            if ((Original_ROLEID == null)) {
-                throw new global::System.ArgumentNullException("Original_ROLEID");
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_ROLEID));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((MODIFIEDBY == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
+            }
+            if ((Original_RESID == null)) {
+                throw new global::System.ArgumentNullException("Original_RESID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_RESID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1213,8 +1304,8 @@ namespace SQMS.Application.Config.Schema.ROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ROLECODE, string ROLENAME, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_ROLEID) {
-            return this.Update(Original_ROLEID, ROLECODE, ROLENAME, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_ROLEID);
+        public virtual int Update(string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_RESID) {
+            return this.Update(Original_RESID, RESCODE, RESNAME, RESTYPE, LOCATION, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_RESID);
         }
     }
 }
