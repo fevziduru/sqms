@@ -211,7 +211,7 @@ namespace EasyDev.BL
                     while (itr_keyvalues.MoveNext())
                     {
                         KeyValuePair<string, object> item = (KeyValuePair<string, object>)itr_keyvalues.Current;
-                        cond += SqlBuilder.GetConditionByPrimaryKeys(item.Key, item.Value, " AND ");
+                        cond += SqlBuilder.GetConditionByPrimaryKeys(item.Key, item.Value, "AND");
                     }
 
                     if (cond.Trim().EndsWith("AND"))
