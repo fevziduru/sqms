@@ -119,7 +119,28 @@ namespace SQMS.Services
             PassportService.DeleteByKey(passportid);
 
             //删除职员
-            DeleteByKey(employeeId);
+            base.DeleteByKey(employeeId);
+        }
+
+        public override void DeleteByKey(object key)
+        {
+            //this.ViewData = Service.LoadByKey(this.ID, true);
+            //this.ViewData.Merge(srv.GetPassportByEmployeeID(this.ID));
+            //this.ViewData.Merge(srv.RoleService.GetRolesView(this.ID));
+
+            DataSet ds = LoadByKey(key.ToString());
+            DataSet tmp = PassportService.GetPassportByEmployeeID(key.ToString());
+            if (tmp != null && tmp.Tables.Count > 0)
+            {
+                ds.Merge(tmp);
+                tmp = RoleService.GetRolesView(key.ToString());
+                if (tmp != null && tmp.Tables.Count > 0)
+                {
+                    ds.Merge(tmp);                    
+                }
+            }
+
+            Delete(ds);
         }
     }
 }

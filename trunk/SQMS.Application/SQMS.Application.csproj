@@ -198,6 +198,20 @@
     <Compile Include="Views\Basedata\RoleView.aspx.designer.cs">
       <DependentUpon>RoleView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\List\CheckBoxTemplateField.ascx.cs">
+      <DependentUpon>CheckBoxTemplateField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\List\CheckBoxTemplateField.ascx.designer.cs">
+      <DependentUpon>CheckBoxTemplateField.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\List\ListHeaderTemplate.ascx.cs">
+      <DependentUpon>ListHeaderTemplate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\List\ListHeaderTemplate.ascx.designer.cs">
+      <DependentUpon>ListHeaderTemplate.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\sGridItemTemplate.cs" />
     <Compile Include="Views\Components\PopupReferenceList.aspx.cs">
       <DependentUpon>PopupReferenceList.aspx</DependentUpon>
@@ -497,6 +511,7 @@
     <Content Include="Resources\CSS\Controls\Calendar\Calendar.css" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
+    <Content Include="Resources\Scripts\Common\main.js" />
     <Content Include="Resources\Scripts\Controls\Calendar.js" />
     <Content Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx" />
     <Content Include="Views\Basedata\EmployeeEdit.aspx" />
@@ -511,6 +526,8 @@
     <Content Include="Views\Basedata\RoleEdit.aspx" />
     <Content Include="Views\Basedata\RoleList.aspx" />
     <Content Include="Views\Basedata\RoleView.aspx" />
+    <Content Include="Views\Components\List\CheckBoxTemplateField.ascx" />
+    <Content Include="Views\Components\List\ListHeaderTemplate.ascx" />
     <Content Include="Views\Components\Map.ascx" />
     <Content Include="Views\Components\PopupReferenceList.aspx" />
     <Content Include="Views\Components\PopupReference\PopupDialog.aspx" />
@@ -527,7 +544,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
     <Folder Include="App_LocalResources\" />
-    <Folder Include="Resources\Scripts\Common\" />
     <Folder Include="Templates\" />
     <Folder Include="Views\Mobile\" />
   </ItemGroup>

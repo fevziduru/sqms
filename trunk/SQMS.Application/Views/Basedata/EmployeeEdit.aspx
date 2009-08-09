@@ -4,10 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-    <table>
+    <table width="100%">
         <tr>
-            <td><asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click"/></td>
-            <td><asp:Button runat="server" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/></td>
+            <td align="right"><a href="EmployeeList.aspx">返回到列表</a></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+            </td>
         </tr>
     </table>
     <table style="width:70%">
@@ -110,10 +115,12 @@
             <td><a href="RoleEdit.aspx">角色管理</a></td>
         </tr>
     </table>
-    <table>
+    <table width="100%">
         <tr>
-            <td><asp:Button runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/></td>
-            <td><asp:Button runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/></td>
+            <td align="center">
+                <asp:Button runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+            </td>
         </tr>
     </table>
     
