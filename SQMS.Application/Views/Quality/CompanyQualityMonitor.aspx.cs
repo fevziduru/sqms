@@ -22,6 +22,7 @@ namespace SQMS.Application.Views.Quality
         private RegionService svcRegion = null;
 
         private DataTable dtProject = null;
+        private DataTable dtProjectManager = null;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -38,13 +39,14 @@ namespace SQMS.Application.Views.Quality
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
         {
             base.OnInitializeViewEventHandler(sender, e);
-            //DataTable dtProject = this.ViewData.Tables[ProjectService.PROJECT_TABLENAME];
-            foreach (DataRow drProject in this.dtProject.Rows)
-            {
-                string nodeValue = ConvertUtil.ToStringOrDefault(drProject["PROJECTID"]) + "&project";
-                TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
-                this.TreeViewProject.Nodes.Add(node);
-            }
+
+            this.bindProjectTreeView(this.dtProject);
+
+            this.DropDownListProjectManager.DataSource = this.dtProjectManager;
+            this.DropDownListProjectManager.DataTextField = "EMPNAME";
+            this.DropDownListProjectManager.DataValueField = "EMPID";
+            this.DropDownListProjectManager.DataBind();
+            this.DropDownListProjectManager.Items.Insert(0, new ListItem("全部", String.Empty));
 
         }
         protected override void GetViewData()
@@ -56,6 +58,7 @@ namespace SQMS.Application.Views.Quality
         {
             base.OnLoadDataEventHandler(sender, e);
             this.dtProject = this.svcProject.GetProjectList();
+            this.dtProjectManager = this.svcProject.GetProjectManagerList();
             //this.ViewData.Tables.Add(dtProject);
             //DataSet dsEmployee = this.svcEmployee.gete
 
@@ -78,18 +81,19 @@ namespace SQMS.Application.Views.Quality
             {
                 //读取监控点
                 DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
-                this.fillMonitorPointTable(dtPoint);
+                this.bindMonitorPointTable(dtPoint);
             }
+            this.TreeViewProject.SelectedNode.Expand();
         }
 
         protected void ButtonPointSearch_Click(object sender, EventArgs e)
         {
             string keyword = ConvertUtil.ToStringOrDefault(this.TextBoxPointSearch.Text);
             DataTable dt = this.svcQualityControl.SearchMonitorPoint(keyword);
-            this.fillMonitorPointTable(dt);
+            this.bindMonitorPointTable(dt);
         }
 
-        private void fillMonitorPointTable(DataTable dtPoint)
+        private void bindMonitorPointTable(DataTable dtPoint)
         {
             this.TableQualityPoint.Rows.Clear();
             TableHeaderCell headerCell1 = new TableHeaderCell();
@@ -108,10 +112,10 @@ namespace SQMS.Application.Views.Quality
                 string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
                 string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
                 cell1.Text =
-                    "<a href='javascript:setToMarker(&quot;" + mpId + "&quot;,&quot;" + mpName + "&quot;," + lat + "," + lng + ",true);'>" + mpName + "</a>";
+                    "<a href='javascript:setToMarker(&quot;" + mpId + "&quot;,&quot;" + mpName + "&quot;," + lat + "," + lng + ",true,true);'>" + mpName + "</a>";
 
                 TableCell cell2 = new TableCell();
-                cell2.Text = "-";
+                cell2.Text = ConvertUtil.ToStringOrDefault(drPoint["EMPNAME"]);
                 TableRow row = new TableRow();
                 row.Cells.Add(cell1);
                 row.Cells.Add(cell2);
@@ -119,6 +123,23 @@ namespace SQMS.Application.Views.Quality
             }
 
             this.UpdatePanelQualityPoint.Update();
+        }
+        private void bindProjectTreeView(DataTable dtProject)
+        {
+            this.TreeViewProject.Nodes.Clear();
+            foreach (DataRow drProject in dtProject.Rows)
+            {
+                string nodeValue = ConvertUtil.ToStringOrDefault(drProject["PROJECTID"]) + "&project";
+                TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
+                this.TreeViewProject.Nodes.Add(node);
+            }
+        }
+
+        protected void DropDownListProjectManager_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = this.svcProject.GetProjectList(this.DropDownListProjectManager.SelectedValue);
+            this.bindProjectTreeView(dt);
+            this.UpdatePanelProjectTree.Update();
         }
 
 

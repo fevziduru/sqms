@@ -219,7 +219,7 @@ namespace EasyDev.Util
         }
 
         /// <summary>
-        /// 将对象转换成DateTime，如果无法转换则返回值为1900-1-1 00:00:00的DateTime
+        /// 将对象转换成DateTime，如果无法转换则返回值为0001-1-1 00:00:00的DateTime（new DateTime();）
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace EasyDev.Util
             }
             catch
             {
-                return new DateTime(1900, 1, 1);
+                return new DateTime();
             }
         }
         /// <summary>
@@ -249,6 +249,22 @@ namespace EasyDev.Util
             catch
             { 
                 return 0; 
+            }
+        }
+        /// <summary>
+        /// 将对象转换成int，如果无法转换则返回0
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static int ToInt(object obj)
+        {
+            try
+            {
+                return Convert.ToInt32(obj);
+            }
+            catch
+            {
+                return 0;
             }
         }
         /// <summary>

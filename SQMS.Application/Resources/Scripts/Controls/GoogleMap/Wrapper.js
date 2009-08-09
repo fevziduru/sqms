@@ -12,11 +12,17 @@ function WGMarker() {
 
 WGMarker.prototype.onClick = function() {
     this.gMap.setCenter(this.gMarker.getLatLng(), this.gMap.getZoom());
-    this.gMap.openInfoWindowHtml(this.gMarker.getLatLng(), this.getInfoHtml());
+    this.openInfoWindowHtmlTab();
 }
 
-WGMarker.prototype.getInfoHtml = function() {
-    var html = "<iframe src='QualityMonitorPointMap.aspx?mpid=" + this.mpId + "' width='300' height='500' frameborder='0' border='0' frameborder='no' />";
+WGMarker.prototype.openInfoWindowHtmlTab = function() {
+    var tab1 = new GInfoWindowTab("常态数据",this.getInfoHtml("_qc_type_normal"));
+    var tab2 = new GInfoWindowTab("巡检数据",this.getInfoHtml("_qc_type_dynamic"));
+    this.gMap.openInfoWindowTabsHtml(this.gMarker.getLatLng(), [tab1,tab2]);
+}
+
+WGMarker.prototype.getInfoHtml = function(qcType) {
+    var html = "<iframe src='QualityMonitorPointMap.aspx?qcType="+qcType+"&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
     return html;
 }
 var WGMarkerFactory = {
