@@ -14,6 +14,24 @@ namespace SQMS.Application.Views.Quality {
     public partial class CompanyQualityMonitor {
         
         /// <summary>
+        /// UpdatePanelProjectManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelProjectManager;
+        
+        /// <summary>
+        /// DropDownListProjectManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListProjectManager;
+        
+        /// <summary>
         /// UpdatePanelProjectTree control.
         /// </summary>
         /// <remarks>
@@ -30,24 +48,6 @@ namespace SQMS.Application.Views.Quality {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TreeView TreeViewProject;
-        
-        /// <summary>
-        /// DropDownListEmployee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListEmployee;
-        
-        /// <summary>
-        /// DropDownListRegion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListRegion;
         
         /// <summary>
         /// UpdatePanelQualityPoint control.

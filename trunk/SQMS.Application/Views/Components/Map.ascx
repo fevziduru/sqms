@@ -5,16 +5,14 @@
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/Wrapper.js" type="text/javascript"></script>
 
-<div id="map_canvas" style="width: 1000px; height: 600px">
-</div>
 <div>
-    <span>经纬度:</span>
-    <span id="spanLatLng" style="width:300px;"></span>
-    <span>缩放级别:</span>
-    <span id="spanZoomLevel"></span>
-    <span>请求次数:</span>、
-    <span id="spanRequestNum"></span>
-    
+    <div id="map_canvas" style="height: 600px">
+    </div>
+    <div>
+        <span>经纬度:</span> <span id="spanLatLng" style="width: 300px;"></span><span>缩放级别:</span>
+        <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span>、 <span id="spanRequestNum">
+        </span>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -29,28 +27,28 @@
             GEvent.addListener(map, "zoomend", showZoomLevel);
             GEvent.addListener(map, "mouseover", showMouseLatLng);
             GEvent.addListener(map, "mousemove", showMouseLatLng);
-            
+
             map.addControl(new GLargeMapControl());
             map.addControl(new GMapTypeControl());
             map.enableDoubleClickZoom();
             map.enableScrollWheelZoom();
             map.setCenter(new GLatLng(39.9493, 116.3975), 14);
-            
+
             showZoomLevel(0, map.getZoom());
         }
     }
-    function setToMarker(mpId, mpName, lat, lng,openInfoWindow,setCenter) {
+    function setToMarker(mpId, mpName, lat, lng, openInfoWindow, setCenter) {
         if (!markers[mpId]) {
             createMarker(mpId, mpName, lat, lng);
         }
-        else {
-            if (setCenter == true) {
-                map.setCenter(markers[mpId].gMarker.getLatLng(), map.getZoom());
-            }
-            if (openInfoWindow) {
-                map.openInfoWindowHtml(markers[mpId].gMarker.getLatLng(), markers[mpId].getInfoHtml());
-            }
+
+        if (setCenter == true) {
+            map.setCenter(markers[mpId].gMarker.getLatLng(), map.getZoom());
         }
+        if (openInfoWindow) {
+            markers[mpId].openInfoWindowHtmlTab();
+        }
+
     }
     function createMarker(mpId, mpName, lat, lng) {
         if (markers[mpId]) {
@@ -81,13 +79,13 @@
             if (executor.get_statusCode() == "200") {
                 var body = executor.get_responseData();
                 var mps = [];
-                try{
+                try {
                     mps = Sys.Serialization.JavaScriptSerializer.deserialize(body);
                 }
-                catch(e){};
+                catch (e) { };
                 if (mps) {
                     for (var i = 0; i < mps.length; i++) {
-                        setToMarker(mps[i].MonitorPointId,mps[i].MonitorPointName,mps[i].Lat,mps[i].Lng,false,false);
+                        setToMarker(mps[i].MonitorPointId, mps[i].MonitorPointName, mps[i].Lat, mps[i].Lng, false, false);
                     }
                 }
             }

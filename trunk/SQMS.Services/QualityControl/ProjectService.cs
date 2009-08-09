@@ -18,9 +18,8 @@ namespace SQMS.Services.QualityControl
             this.BOName = "PROJECT";
             base.Initialize();
         }
-        
 
-        public DataTable GetProjectList()
+        public DataTable GetProjectList(string employeeId)
         {
             string sql = @"SELECT P.PROJECTID,
                                    P.PROJECTCODE,
@@ -35,13 +34,44 @@ namespace SQMS.Services.QualityControl
                                    P.CREATED,
                                    P.CREATEDBY,
                                    P.MODIFIED,
-                                   P.MODIFIEDBY
-                              FROM PROJECT P";
+                                   P.MODIFIEDBY,
+                                   P.EMPID,
+                                   E.EMPNAME 
+                              FROM PROJECT P
+                              LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID ";
+            if (!String.IsNullOrEmpty(employeeId))
+            {
+                sql += " WHERE P.EMPID = '" + employeeId + "'";
+            }
+
             DataTable dt = null;
             try
             {
                 dt = this.DefaultSession.GetDataTableFromCommand(sql);
                 dt.TableName = PROJECT_TABLENAME;
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
+
+        public DataTable GetProjectList()
+        {
+            return this.GetProjectList(String.Empty);
+        }
+
+        public DataTable GetProjectManagerList()
+        {
+            string sql = @"SELECT MAX(E.EMPNAME) AS EMPNAME, P.EMPID
+                              FROM PROJECT P
+                              LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID
+                             GROUP BY P.EMPID";
+            DataTable dt = null;
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
             }
             catch (Exception e)
             {
