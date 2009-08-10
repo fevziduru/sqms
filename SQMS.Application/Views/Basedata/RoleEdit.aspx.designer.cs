@@ -41,6 +41,24 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.CheckBox cbIsVoid;
         
         /// <summary>
+        /// lbPerSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbPerSelect;
+        
+        /// <summary>
+        /// sGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::YYControls.SmartGridView sGrid;
+        
+        /// <summary>
         /// txtMemo control.
         /// </summary>
         /// <remarks>
@@ -59,21 +77,21 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// DropDownListClass control.
+        /// btnSA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListClass;
+        protected global::System.Web.UI.WebControls.Button btnSA;
         
         /// <summary>
-        /// sGrid control.
+        /// btnBack2List control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::YYControls.SmartGridView sGrid;
+        protected global::System.Web.UI.WebControls.Button btnBack2List;
     }
 }

@@ -121,22 +121,19 @@ namespace SQMS.Application.Views.Basedata
         /// </summary>
         private void ShowGrid()
         {
-            //显示分类列表
-            DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
-            this.DropDownListClass.Visible = true;
-            this.DropDownListClass.Items.Clear();
+            ////显示分类列表
+            //DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
+            //this.DropDownListClass.Visible = true;
+            //this.DropDownListClass.Items.Clear();
 
-            foreach (DataRow dr in dtRESClass.Rows)
-            {
-                this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
-            }
+            //foreach (DataRow dr in dtRESClass.Rows)
+            //{
+            //    this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
+            //}
 
             this.sGrid.Columns.Clear();
 
-            //<asp:BoundField DataField="RESTYPE" HeaderText="分类" SortExpression="RESTYPE" />
-            //<asp:BoundField DataField="RESNAME" HeaderText="功能点" SortExpression="RESNAME" />
-
-            BoundField bf1 = new BoundField() { DataField="RESTYPE", HeaderText="分类", SortExpression="RESTYPE" };
+            BoundField bf1 = new BoundField() { DataField = "RESTYPE", HeaderText = "分类", SortExpression = "RESTYPE" };
             BoundField bf2 = new BoundField() { DataField = "RESID", HeaderText = "功能ID", SortExpression = "RESID" };
             BoundField bf3 = new BoundField() { DataField = "RESNAME", HeaderText = "功能点", SortExpression = "RESNAME" };
             this.sGrid.Columns.Add(bf1);
@@ -181,9 +178,14 @@ namespace SQMS.Application.Views.Basedata
 
         }
 
-        protected void DropDownListClass_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnSA_Click(object sender, EventArgs e)
         {
-            throw (new NotImplementedException());
+
+        }
+
+        protected void btnBack2List_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
