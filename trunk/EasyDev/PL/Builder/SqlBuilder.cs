@@ -131,7 +131,7 @@ namespace EasyDev.PL.SqlBuilder
             {
                 foreach (DataColumn column in dt.PrimaryKey)
                 {
-                    sb.Append(GetConditionByColumns(column, dr, " AND "));
+                    sb.Append(GetConditionByColumns(column, dr, " AND"));
                 }
             }
             catch (PersistenceException e)
@@ -142,7 +142,7 @@ namespace EasyDev.PL.SqlBuilder
             string result = sb.ToString();
             if (result.Length > 0)
             {
-                result = result.Trim().Remove(result.Length - "AND".Length - 1);
+                result = result.Trim().Remove(result.Length - " AND".Length - 1);
             }
 
             return result;

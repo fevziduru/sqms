@@ -54,9 +54,10 @@ namespace SQMS.Application.Views.Basedata
             this.ViewData = Service.LoadByKey(this.ID, true);
 
             this.ViewData.Merge(srv.ResourceService.GetResourceItemsView());
-            this.ViewData.Merge(srv.OperationService.LoadAll());
+            this.ViewData.Merge(srv.OperationService.LoadByCondition("ISVOID='N'"));
 
-            Dictionary<string, object> d = new Dictionary<string, object>(); d.Add("ROLEID", this.ID);
+            Dictionary<string, object> d = new Dictionary<string, object>(); 
+            d.Add("ROLEID", this.ID);
             this.ViewData.Merge(srv.ResPermissionService.LoadByKeys(d));
 
             this.ViewData.Merge(srv.ResourceService.GetResourceClass());
@@ -169,7 +170,11 @@ namespace SQMS.Application.Views.Basedata
                 {
                     if (gvr.Cells[1].Text == ConvertUtil.EmptyOrString(dr["RESID"]))
                     {
-                        (gvr.FindControl(ConvertUtil.EmptyOrString(dr["OPID"])) as CheckBox).Checked = true;
+                        CheckBox cb = gvr.FindControl(ConvertUtil.EmptyOrString(dr["OPID"])) as CheckBox;
+                        if (cb != null)
+                        {
+                            cb.Checked = true;
+                        }
                     }
                 }
             }

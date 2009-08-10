@@ -92,7 +92,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="PROJECT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PROJECT" msprop:Generator_UserDSName="PROJECT" msprop:EnableTableAdapterManager="true">
+  <xs:element name="PROJECT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="PROJECT" msprop:Generator_UserTableName="PROJECT" msprop:Generator_RowDeletedName="PROJECTRowDeleted" msprop:Generator_TableClassName="PROJECTDataTable" msprop:Generator_RowChangedName="PROJECTRowChanged" msprop:Generator_RowClassName="PROJECTRow" msprop:Generator_RowChangingName="PROJECTRowChanging" msprop:Generator_RowEvArgName="PROJECTRowChangeEvent" msprop:Generator_RowEvHandlerName="PROJECTRowChangeEventHandler" msprop:Generator_TablePropName="_PROJECT" msprop:Generator_TableVarName="tablePROJECT" msprop:Generator_RowDeletingName="PROJECTRowDeleting">
