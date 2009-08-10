@@ -21,7 +21,7 @@ namespace SQMS.Application.Views.Security
             status = ConvertUtil.EmptyOrString(Request.QueryString["status"]);
 
             if (status == "q")
-            { 
+            {
                 //TODO: 移除用户信息
             }
         }
@@ -38,17 +38,26 @@ namespace SQMS.Application.Views.Security
                 this.ddlRole.DataSource = srv.GetRoles();
                 this.ddlRole.DataTextField = "rolename";
                 this.ddlRole.DataValueField = "roleid";
-                this.ddlRole.DataBind();                
+                this.ddlRole.DataBind();
             }
         }
 
         public void btnLogin_OnClick(object sender, EventArgs e)
         {
+
             string passport = this.txtPassport.Text;
             string password = this.txtPassword.Text;
             string role = this.ddlRole.SelectedValue;
+            UserInfo ui = null;
 
-            UserInfo ui = srv.Login(passport, password, role);
+            try
+            {
+                ui = srv.Login(passport, password, role);
+            }
+            catch (Exception)
+            {
+                throw new Exception("_login_failed");
+            }
 
             if (ui != null)
             {
@@ -61,17 +70,25 @@ namespace SQMS.Application.Views.Security
                     Session["USER_INFO"] = ui;
                 }
 
-                FormsAuthenticationTicket ticket = 
+                FormsAuthenticationTicket ticket =
                     new FormsAuthenticationTicket(
                         1,
-                        passport, 
-                        DateTime.Now, 
+                        passport,
+                        DateTime.Now,
                         DateTime.Now.AddMinutes(60),
                         false, passport);
 
                 string encryptTicket = FormsAuthentication.Encrypt(ticket);
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptTicket));
-                Response.Redirect(FormsAuthentication.DefaultUrl, true);
+
+                if (Request.QueryString["ReturnUrl"] != null)
+                {
+                    FormsAuthentication.RedirectFromLoginPage(passport, false);
+                }
+                else
+                {
+                    Response.Redirect(FormsAuthentication.DefaultUrl, true);
+                }
             }
             else
             {

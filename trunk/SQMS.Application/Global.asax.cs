@@ -32,7 +32,9 @@ namespace SQMS.Application
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            //Exception ex = Server.GetLastError();
 
+            
         }
 
         protected void Session_End(object sender, EventArgs e)
