@@ -8,6 +8,7 @@ using EasyDev.Presentation.Actions;
 using System.ComponentModel;
 using System.Data;
 using EasyDev.Util;
+using System.Threading;
 
 namespace EasyDev.SQMS
 {
@@ -35,6 +36,39 @@ namespace EasyDev.SQMS
         {
             this.Service = ServiceManagerFactory.
                 CreateServiceManager<NativeServiceManager>().CreateService<T>();
+        }
+
+        public UserInfo CurrentUser
+        {
+            get
+            {
+                UserInfo userinfo = null;
+                if (Session["USER_INFO"] != null)
+                {
+                    userinfo = Session["USER_INFO"] as UserInfo;
+                }
+                else if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+                {
+                    UserIdentity identity = Thread.CurrentPrincipal.Identity as UserIdentity;
+                    if (identity != null)
+                    {
+                        if (identity.UserInfo != null)
+                        {
+                            userinfo = identity.UserInfo;
+                        }
+                        else
+                        {
+                            //TODO: UserInfo为空的处理
+                        }
+                    }
+                }
+                else
+                {
+                    //TODO: UserInfo为空的处理
+                }
+
+                return userinfo;
+            }
         }
 
 

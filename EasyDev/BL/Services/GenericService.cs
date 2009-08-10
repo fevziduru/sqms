@@ -77,7 +77,9 @@ namespace EasyDev.BL.Services
 
         #region 公共属性
 
-        public UserInfo UserInfo
+        private UserInfo currentUser = null;
+
+        public UserInfo CurrentUser
         {
             get
             {
@@ -88,12 +90,13 @@ namespace EasyDev.BL.Services
                 }
                 else
                 {
+                    //TODO:UserInfo为空的处理
                     return null;
                 }
             }
             set
             {
-                this.UserInfo = value;
+                this.currentUser = value;
             }
         }
 
