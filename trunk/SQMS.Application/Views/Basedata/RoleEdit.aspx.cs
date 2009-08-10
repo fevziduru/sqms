@@ -180,12 +180,26 @@ namespace SQMS.Application.Views.Basedata
 
         protected void btnSA_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                this.GetViewData();
+                this.srv.Save(this.ViewData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            Response.Redirect("RoleEdit.aspx");
         }
 
         protected void btnBack2List_Click(object sender, EventArgs e)
         {
+            Response.Redirect("RoleList.aspx");
+        }
 
+        protected void lbPerSelect_Click(object sender, EventArgs e)
+        {
+            //todo:
         }
 
     }

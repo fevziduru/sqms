@@ -64,12 +64,12 @@ namespace SQMS.Application.Views.Basedata
 
         protected void ButtonEdit_Click(object sender, EventArgs e)//编辑
         {
-
+            Response.Redirect(String.Format("RoleEdit.aspx?id={0}", this.ID));
         }
 
         protected void ButtonBack2List_Click(object sender, EventArgs e)//列表
         {
-
+            Response.Redirect("RoleList.aspx");
         }
     }
 }

@@ -17,7 +17,8 @@
         <asp:CheckBox ID="cbIsVoid" runat="server" Text="是否禁用" />
         <br />
         <br />
-        角色权限：<asp:LinkButton ID="lbPerSelect" runat="server">选择角色权限</asp:LinkButton>
+        角色权限：<asp:LinkButton ID="lbPerSelect" runat="server" 
+            onclick="lbPerSelect_Click">选择角色权限</asp:LinkButton>
         <br />
         <br />
     
