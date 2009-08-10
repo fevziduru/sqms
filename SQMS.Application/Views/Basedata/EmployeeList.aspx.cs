@@ -113,5 +113,10 @@ namespace SQMS.Application.Views.Basedata
             this.gvEmployeeList.DataSource = this.ViewData;
             this.gvEmployeeList.DataBind();
         }
+
+        protected void btnNew_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EmployeeEdit.aspx");
+        }
     }
 }

@@ -35,5 +35,9 @@
             </asp:CommandField>
         </Columns>
     </asp:GridView>
+    
     <asp:Button ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_OnClick" />
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnNew" runat="server" Text="新增" onclick="btnNew_Click" />
 </asp:Content>
