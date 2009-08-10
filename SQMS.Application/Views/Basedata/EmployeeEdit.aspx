@@ -101,9 +101,9 @@
             <td>再次输入密码：</td>
             <td><asp:TextBox  Width="210" ID="txtConfirmPass" runat="server" TextMode="Password"></asp:TextBox></td>
         </tr>
-        <hr />
+       
     </table>
-    
+    <hr />
     <table>
         <tr>
             <td>职员角色：</td>

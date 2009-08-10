@@ -83,7 +83,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="MPASSIGNMENT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="MPASSIGNMENT" msprop:Generator_UserDSName="MPASSIGNMENT" msprop:EnableTableAdapterManager="true">
+  <xs:element name="MPASSIGNMENT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="MPASSIGNMENT" msprop:Generator_UserTableName="MPASSIGNMENT" msprop:Generator_RowDeletedName="MPASSIGNMENTRowDeleted" msprop:Generator_TableClassName="MPASSIGNMENTDataTable" msprop:Generator_RowChangedName="MPASSIGNMENTRowChanged" msprop:Generator_RowClassName="MPASSIGNMENTRow" msprop:Generator_RowChangingName="MPASSIGNMENTRowChanging" msprop:Generator_RowEvArgName="MPASSIGNMENTRowChangeEvent" msprop:Generator_RowEvHandlerName="MPASSIGNMENTRowChangeEventHandler" msprop:Generator_TablePropName="_MPASSIGNMENT" msprop:Generator_TableVarName="tableMPASSIGNMENT" msprop:Generator_RowDeletingName="MPASSIGNMENTRowDeleting">
