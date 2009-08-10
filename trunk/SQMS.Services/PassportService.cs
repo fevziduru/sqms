@@ -108,7 +108,7 @@ namespace SQMS.Services
             try
             {
                 DataTable dt = DefaultSession.GetDataTableFromCommand(
-                        @"select ri.resname, ri.resid, o.opid, o.opname, ri.location
+                        @"select ri.resname, ri.viewname, ri.resid, o.opid, o.opname, ri.location
                         from passport p
                         left join userrole ur on p.passportid = ur.passportid
                         left join role r on r.roleid = ur.roleid

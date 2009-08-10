@@ -93,8 +93,9 @@ namespace EasyDev.SQMS.HttpModules
 
                         foreach (DataRow item in ui.Permissions.Rows)
                         {
-                            //大小写敏感的比较
-                            if (ConvertUtil.ToStringOrDefault(item["resid"]).Equals(resname))
+                            //将当前请求中的页面名称与用户权限信息中的VIEWNAME字段比较
+                            if (ConvertUtil.ToStringOrDefault(
+                                item["viewname"]).Equals(resname, StringComparison.CurrentCultureIgnoreCase))
                             {
                                 isAuthorized = true;
                                 break;
