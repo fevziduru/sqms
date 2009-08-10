@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using EasyDev.Util;
 using System.Threading;
+using System.Configuration;
 
 namespace EasyDev.SQMS
 {
@@ -351,6 +352,7 @@ namespace EasyDev.SQMS
         /// <param name="e"></param>
         protected override void OnLoad(EventArgs e)
         {
+            this.Error += new EventHandler(SQMSPage_Error);
             this.ID = ConvertUtil.EmptyOrString(Request.Params["id"]);
 
             //初始化页面成员数据
@@ -388,6 +390,19 @@ namespace EasyDev.SQMS
             {
 
             }
+        }
+
+        /// <summary>
+        /// 统一异常处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void SQMSPage_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+            string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;
+            this.ErrorPage = ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + errorId;
+            Response.Redirect(this.ErrorPage);
         }
 
         /// <summary>

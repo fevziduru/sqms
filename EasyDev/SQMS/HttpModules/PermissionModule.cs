@@ -8,6 +8,7 @@ using System.Data;
 using EasyDev.Util;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace EasyDev.SQMS.HttpModules
 {
@@ -22,23 +23,33 @@ namespace EasyDev.SQMS.HttpModules
 
         public void Init(HttpApplication context)
         {
-            context.Error += new EventHandler(context_Error);
-            context.AuthenticateRequest += new EventHandler(context_AuthenticateRequest);
             context.PostAcquireRequestState += new EventHandler(context_PostAcquireRequestState);
+            context.Error += new EventHandler(context_Error);
+        }
+
+        /// <summary>
+        /// 出错处理机制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void context_Error(object sender, EventArgs e)
+        {
+            HttpContext context = ((HttpApplication)sender).Context;
+            context.Response.Redirect("~/" + 
+                ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
         }
 
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
             HttpContext context = ((HttpApplication)sender).Context;
-
             HttpCookie authCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (authCookie == null)
             {
-                if (context.Request.RawUrl.Contains(FormsAuthentication.LoginUrl) == false)
-                {
-                    FormsAuthentication.RedirectToLoginPage("status=q");
-                }
+                //if (context.Request.RawUrl.Contains(FormsAuthentication.LoginUrl) == false)
+                //{
+                //    FormsAuthentication.RedirectToLoginPage();
+                //}
             }
             else
             {
@@ -49,72 +60,65 @@ namespace EasyDev.SQMS.HttpModules
                     uid.UserInfo = context.Session["USER_INFO"] as UserInfo;
                 }
                 Thread.CurrentPrincipal = new PassportPrincipal(uid);
-            }
 
-            if (Regex.IsMatch(context.Request.RawUrl, "/Views/Components\\.*") == false)
-            {
-                CheckPermission(context);
+                //判断有没有权限访问当前页
+                if (Regex.IsMatch(context.Request.RawUrl, 
+                    "/Views/Security\\.*|/Views/Components\\.*|/Views/External\\.*") == false)
+                {
+                    CheckPermission(context);
+                }
             }
-        }
-                
-        void context_AuthenticateRequest(object sender, EventArgs e)
-        {
-            //HttpContext context = ((HttpApplication)sender).Context;
-            
-        }
-
-        /// <summary>
-        /// 引发未处理的异常时发生
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void context_Error(object sender, EventArgs e)
-        {
-            
         }
         #endregion
 
         public void CheckPermission(HttpContext context)
         {
             UserInfo ui = null;
-            if (context.Session != null)
+            try
             {
-                ui = context.Session["USER_INFO"] as UserInfo;
-
-                if (ui != null)
+                if (context.Session != null)
                 {
-                    //查看UserInfo.UserPermission中有没有对当前资源的访问权限
-                    string urlname = context.Request.RawUrl.Replace(".aspx", "");
-                    string resname = urlname.Substring(urlname.LastIndexOf('/') + 1);
-                    if (resname.Contains("?"))
-                    {
-                        resname = resname.Remove(resname.IndexOf('?'));
-                    }
-                    bool isAuthorized = false;
+                    ui = context.Session["USER_INFO"] as UserInfo;
 
-                    foreach (DataRow item in ui.Permissions.Rows)
+                    if (ui != null)
                     {
-                        //大小写敏感的比较
-                        if (ConvertUtil.EmptyOrString(item["resid"]).Equals(resname))
+                        //查看UserInfo.UserPermission中有没有对当前资源的访问权限
+                        string urlname = context.Request.RawUrl.Replace(".aspx", "");
+                        string resname = urlname.Substring(urlname.LastIndexOf('/') + 1);
+                        if (resname.Contains("?"))
                         {
-                            isAuthorized = true;
-                            break;
+                            resname = resname.Remove(resname.IndexOf('?'));
+                        }
+                        bool isAuthorized = false;
+
+                        foreach (DataRow item in ui.Permissions.Rows)
+                        {
+                            //大小写敏感的比较
+                            if (ConvertUtil.ToStringOrDefault(item["resid"]).Equals(resname))
+                            {
+                                isAuthorized = true;
+                                break;
+                            }
+                        }
+
+                        if (isAuthorized == false)
+                        {
+                            throw new Exception("_no_permission");
                         }
                     }
-
-                    if (isAuthorized == false)
+                    else
                     {
-                        throw new Exception("用户没有权限访问此资源");
+                        //UserInfo失效，强制退出
                     }
                 }
                 else
                 {
-                    //UserInfo失效，强制退出
+
                 }
             }
-            else
+            catch (Exception e)
             {
-
+                throw e;
             }
         }
     }
