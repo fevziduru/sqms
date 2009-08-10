@@ -107,14 +107,17 @@ namespace SQMS.Application.Views.Basedata
                 string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
                 for (int i = 0; i < ids.Length; i++)
                 {
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+                    dic.Add("ROLEID", ids[i]);
+                    (Service as RoleService).ResPermissionService.DeleteByKeys(dic);
+
                     Service.DeleteByKey(ids[i]);
                 }
             }
             catch (System.Exception)
             {
-            	//todo:
+            	
             }
-
 
             //删除数据后重新加载数据
             this.ViewData = Service.LoadByCondition("ISVOID='N'");
