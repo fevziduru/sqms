@@ -11,7 +11,7 @@ namespace SQMS.Services
 {
     public class PassportService : GenericService
     {
-        private RoleService roleService = null;
+        private RoleService roleService = null;        
 
         protected override void Initialize()
         {
@@ -45,10 +45,25 @@ namespace SQMS.Services
                     LoadByCondition(
                         string.Format("PASSPORT='{0}' AND PASSWORD='{1}'", name, password)), this.BOName) != null)
                 {
+                    //取账号信息
+                    DataRow drPassport =
+                        DataSetUtil.GetFirstRowFromDataSet(
+                        LoadByCondition("ISVOID='N' AND PASSPORT='" + name + "'"), BOName);
+
+                    //取职员信息
+                    DataRow drEmployee = DataSetUtil.GetFirstRowFromDataTable(
+                        DefaultSession.GetDataTableFromCommand(
+                            @"select * from employee e where e.isvoid='N' and e.employeeid=:employeeid",
+                        ConvertUtil.ToStringOrDefault(drPassport["EMPID"])));
+
                     ui = new UserInfo();
                     ui.Passport = name;
-                    ui.Roles = GetUserRole(name);
-                    ui.Permissions = GetUserPermission(name, role);
+                    ui.PassportID = ConvertUtil.ToStringOrDefault(drPassport["PASSPORTID"]);
+                    ui.EmployeeID = ConvertUtil.ToStringOrDefault(drPassport["EMPID"]);
+                    ui.EmployeeName = ConvertUtil.ToStringOrDefault(drEmployee["EMPNAME"]);
+                    
+                    ui.Roles = GetUserRole(name);   //取得用户角色
+                    ui.Permissions = GetUserPermission(name, role); //取得用户权限以相关的操作
                 }
 
                 return ui;

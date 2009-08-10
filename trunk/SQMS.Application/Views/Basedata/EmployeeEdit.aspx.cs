@@ -47,8 +47,8 @@ namespace SQMS.Application.Views.Basedata
                 drEmployee["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drEmployee["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
 
-                //drEmployee["CREATEDBY"] = srv.UserInfo.Passport;
-                //drEmployee["MODIFIEDBY"] = srv.UserInfo.Passport;
+                drEmployee["CREATEDBY"] = CurrentUser.Passport;
+                drEmployee["MODIFIEDBY"] = CurrentUser.Passport;
             }
 
             DataRow drPassport = DataSetUtil.GetFirstRowFromDataSet(ViewData, "PASSPORT");
@@ -64,8 +64,8 @@ namespace SQMS.Application.Views.Basedata
                     drPassport["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                     drPassport["PASSPORTID"] = srv.PassportService.GetNextSequenceID();
                     drPassport["PASSPORTCODE"] = srv.PassportService.GenerateCode();
-                    //drPassport["CREATEDBY"] = srv.UserInfo.Passport;
-                    //drPassport["MODIFIEDBY"] = srv.UserInfo.Passport;
+                    drPassport["CREATEDBY"] = srv.CurrentUser.Passport;
+                    drPassport["MODIFIEDBY"] = srv.CurrentUser.Passport;
 
                     this.ID = ConvertUtil.ToStringOrDefault(drEmployee["EMPID"]);
                 }

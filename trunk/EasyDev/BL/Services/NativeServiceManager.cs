@@ -31,7 +31,7 @@ namespace EasyDev.BL.Services
         public T CreateService<T>(T outsrv) where T : GenericService, new()
         {
             T srv = new T();
-            srv.UserInfo = outsrv.UserInfo;
+            srv.CurrentUser = outsrv.CurrentUser;
 
             return srv;
         }

@@ -30,17 +30,9 @@ namespace EasyDev.SQMS.HttpModules
         void context_PostAcquireRequestState(object sender, EventArgs e)
         {
             HttpContext context = ((HttpApplication)sender).Context;
-            if (Regex.IsMatch(context.Request.RawUrl, "/Views/Components\\.*") == false)
-            {
-                CheckPermission(context);
-            }
-        }
-                
-        void context_AuthenticateRequest(object sender, EventArgs e)
-        {
-            HttpContext context = ((HttpApplication)sender).Context;
+
             HttpCookie authCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
-                                    
+
             if (authCookie == null)
             {
                 if (context.Request.RawUrl.Contains(FormsAuthentication.LoginUrl) == false)
@@ -58,6 +50,17 @@ namespace EasyDev.SQMS.HttpModules
                 }
                 Thread.CurrentPrincipal = new PassportPrincipal(uid);
             }
+
+            if (Regex.IsMatch(context.Request.RawUrl, "/Views/Components\\.*") == false)
+            {
+                CheckPermission(context);
+            }
+        }
+                
+        void context_AuthenticateRequest(object sender, EventArgs e)
+        {
+            //HttpContext context = ((HttpApplication)sender).Context;
+            
         }
 
         /// <summary>
