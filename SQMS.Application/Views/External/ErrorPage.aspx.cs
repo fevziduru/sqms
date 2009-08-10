@@ -16,7 +16,7 @@ namespace SQMS.Application.External
         {
             id = Request.QueryString["id"].ToString();
             string errorInfo = GlobalErrorMessages.ResourceManager.GetString(id);
-            if (errorInfo.Length == 0)
+            if (errorInfo == null || errorInfo.Length == 0)
             {
                 this.lblError.Text = GlobalErrorMessages.ResourceManager.GetString("_default_exception");
             }
