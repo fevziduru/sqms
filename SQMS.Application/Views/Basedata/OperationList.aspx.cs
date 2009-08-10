@@ -102,10 +102,17 @@ namespace SQMS.Application.Views.Basedata
 
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
-            string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
-            for (int i = 0; i < ids.Length; i++)
+            try
             {
-                Service.DeleteByKey(ids[i]);
+                string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    Service.DeleteByKey(ids[i]);
+                }
+            }
+            catch (System.Exception)
+            {
+                //todo:
             }
 
             //删除数据后重新加载数据
