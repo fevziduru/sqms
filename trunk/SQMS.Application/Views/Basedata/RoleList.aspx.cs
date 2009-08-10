@@ -113,5 +113,10 @@ namespace SQMS.Application.Views.Basedata
             this.gvList.DataSource = this.ViewData;
             this.gvList.DataBind();
         }
+
+        protected void btnNew_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RoleEdit.aspx");
+        }
     }
 }
