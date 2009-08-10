@@ -41,13 +41,22 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.CheckBox cbIsVoid;
         
         /// <summary>
-        /// lblMemo control.
+        /// tbPermission control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemo;
+        protected global::System.Web.UI.WebControls.TextBox tbPermission;
+        
+        /// <summary>
+        /// tbMemo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMemo;
         
         /// <summary>
         /// btnDelete control.
@@ -57,5 +66,23 @@ namespace SQMS.Application.Views.Basedata {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+        
+        /// <summary>
+        /// ButtonEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonEdit;
+        
+        /// <summary>
+        /// ButtonBack2List control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonBack2List;
     }
 }
