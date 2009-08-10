@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Map.ascx.cs" Inherits="SQMS.Application.Views.Components.Map" %>
-
+<script type="text/javascript" src="../../Resources/Scripts/Common/cookie.js"></script>
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"
     type="text/javascript"></script>
 
@@ -32,7 +32,18 @@
             map.addControl(new GMapTypeControl());
             map.enableDoubleClickZoom();
             map.enableScrollWheelZoom();
-            map.setCenter(new GLatLng(39.9493, 116.3975), 14);
+
+            var lastLatLngCookie = new Cookie("lastlatlng");
+            var lastLat = 29.5548;
+            var lastLng = 106.5483;
+            if (lastLatLngCookie.lat) {
+                lastLat = lastLatLngCookie.lat;
+            }
+            if (lastLatLngCookie.lng) {
+                lastLng = lastLatLngCookie.lng;
+            }
+
+            map.setCenter(new GLatLng(lastLat, lastLng), 14);
 
             showZoomLevel(0, map.getZoom());
         }
@@ -48,7 +59,10 @@
         if (openInfoWindow) {
             markers[mpId].openInfoWindowHtmlTab();
         }
-
+        var lastLatLngCookie = new Cookie("lastlatlng");
+        lastLatLngCookie.lat = lat;
+        lastLatLngCookie.lng = lng;
+        lastLatLngCookie.store(999);
     }
     function createMarker(mpId, mpName, lat, lng) {
         if (markers[mpId]) {
@@ -89,7 +103,6 @@
                     }
                 }
             }
-
         }
     }
 
