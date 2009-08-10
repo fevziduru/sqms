@@ -518,6 +518,7 @@
     <Content Include="Resources\CSS\Controls\Calendar\Calendar.css" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
+    <Content Include="Resources\Scripts\Common\cookie.js" />
     <Content Include="Resources\Scripts\Common\main.js" />
     <Content Include="Resources\Scripts\Controls\Calendar.js" />
     <Content Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx" />
