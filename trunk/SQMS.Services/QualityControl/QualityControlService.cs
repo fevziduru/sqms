@@ -7,12 +7,16 @@ using System.Data;
 using log4net;
 using SQMS.Services.Domain.QualityControl;
 using SQMS.Services.Domain.Common;
+using EasyDev.Util;
 
 namespace SQMS.Services.QualityControl
 {
     public class QualityControlService : GenericService
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(QualityControlService));
+
+        public static readonly string QC_TYPE_NORMAL = "_qc_type_normal";
+        public static readonly string QC_TYPE_DYNAMIC = "_qc_type_dynamic";
 
         protected override void Initialize()
         {
@@ -51,6 +55,82 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
+        public DataTable GetMonitorPoint(string mpId)
+        {
+            string sql = @"SELECT M.MPID,
+       M.ROADID,
+       R.ROADNAME,
+       P.PROJECTNAME,
+       M.MPCODE,
+       M.MPNAME,
+       M.LONGITUDE,
+       M.LATITUDE,
+       M.MEMO,
+       M.CREATED,
+       M.CREATEDBY,
+       E1.EMPNAME AS CREATEDBYNAME,
+       M.MODIFIED,
+       M.MODIFIEDBY,
+       E2.EMPNAME AS MODIFIEDBYNAME,
+       E.EMPNAME AS PROJECTMANAGER
+  FROM MPASSIGNMENT M
+  LEFT JOIN EMPLOYEE E1 ON E1.EMPID = M.CREATEDBY
+  LEFT JOIN EMPLOYEE E2 ON E2.EMPID = M.MODIFIEDBY
+  LEFT JOIN ROAD R ON R.ROADID = M.ROADID
+  LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
+  LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID
+                             WHERE M.MPID = '" + mpId + "'";
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
+        public int GetQualityControlInfoListCount(string qmId, string qcType, DateTime beginDate, DateTime endDate)
+        {
+            if (String.IsNullOrEmpty(qmId))
+            {
+                throw new Exception("必须指定监控点ID");
+            }
+            string sql = @"SELECT COUNT(Q.QMID)
+  FROM QUALITY Q
+ WHERE 1=1 " + ((!String.IsNullOrEmpty(qcType)) ? "AND Q.TYPE='" + qcType + "' " : "");
+            if (!beginDate.Equals(new DateTime(1, 1, 1)))
+            {
+                sql += " AND Q.CREATED >= TO_DATE('" + beginDate.ToString("yyyy-MM-dd HH:mm:ss") + @"', 'yyyy-MM-DD HH24:MI:SS') ";
+            }
+            if (!endDate.Equals(new DateTime(1, 1, 1)))
+            {
+                sql += " AND Q.CREATED < TO_DATE('" + endDate.ToString("yyyy-MM-dd HH:mm:ss") + @"', 'yyyy-MM-DD HH24:MI:SS') ";
+            }
+            if (!String.IsNullOrEmpty(qmId))
+            {
+                sql += " AND Q.MPID = '" + qmId + "'";
+            }
+            int count = 0;
+            try
+            {
+                count = ConvertUtil.ToInt(this.DefaultSession.GetScalarObjectFromCommand(sql));
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return count;
+        }
+        public int GetQualityControlInfoListCount(string qmId, string qcType, DateTime beginDate)
+        {
+            return this.GetQualityControlInfoListCount(qmId, qcType, beginDate, new DateTime());
+        }
+        public int GetQualityControlInfoListCount(string qmId, string qcType)
+        {
+            return this.GetQualityControlInfoListCount(qmId, qcType,new DateTime(),new DateTime());
+        }
         public DataTable GetQualityControlInfoList(string qmId,string qcType, DateTime beginDate, DateTime endDate, PagingParameter pagingParam)
         {
             if (String.IsNullOrEmpty(qmId))
@@ -60,6 +140,7 @@ namespace SQMS.Services.QualityControl
             string sql = @"SELECT Q.MEMO,
        Q.CREATED,
        Q.CREATEDBY,
+       E4.EMPNAME AS CREATEDBYNAME,
        Q.MODIFIED,
        Q.MODIFIEDBY,
        Q.QMID,
@@ -87,11 +168,12 @@ namespace SQMS.Services.QualityControl
   LEFT JOIN EMPLOYEE E1 ON E1.EMPID = Q.CHARGEPERSON
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON
   LEFT JOIN EMPLOYEE E3 ON E3.EMPID = Q.CHECKPERSON
+  LEFt JOIN EMPLOYEE E4 ON E4.EMPID = Q.CREATEDBY
   LEFT JOIN ORAGANIZATION O ON O.ORGID = Q.WORKUNIT
   LEFT JOIN MPASSIGNMENT M ON M.MPID = Q.MPID
   LEFT JOIN ENUMERATION ENUM1 ON ENUM1.ENUMID = Q.STATUS
   LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE
- WHERE 1=1 "+ ((!String.IsNullOrEmpty(qcType)) ? "AND Q.TYPE='" + qcType + "' " : "");
+ WHERE 1=1 " + ((!String.IsNullOrEmpty(qcType)) ? "AND Q.TYPE='" + qcType + "' " : "");
             if(!beginDate.Equals(new DateTime(1,1,1)))
             {
                 sql += " AND Q.CREATED >= TO_DATE('"+beginDate.ToString("yyyy-MM-dd HH:mm:ss")+@"', 'yyyy-MM-DD HH24:MI:SS') "; 
@@ -102,13 +184,17 @@ namespace SQMS.Services.QualityControl
             }
             if(!String.IsNullOrEmpty(qmId))
             {
-                sql += " AND Q.QMID = '"+qmId+"'";
+                sql += " AND Q.MPID = '" + qmId + "'";
             }
             sql += "  ORDER BY Q.CREATED DESC";
-            string pagingSql = "SELECT * FROM (" + sql + ") WHERE ROWNUM >= "
-                + (pagingParam.PageNo * pagingParam.PageSize - pagingParam.PageSize)
-                + " AND ROWNUM < "
-                + (pagingParam.PageNo * pagingParam.PageSize);
+            string pagingSql = sql;
+            if (null != pagingParam)
+            {
+                pagingSql = "SELECT * FROM (" + sql + ") WHERE ROWNUM >= "
+                    + (pagingParam.PageNo * pagingParam.PageSize - pagingParam.PageSize + 1)
+                    + " AND ROWNUM < "
+                    + (pagingParam.PageNo * pagingParam.PageSize + 1);
+            }
             DataTable dt = new DataTable();
             try
             {
@@ -273,7 +359,7 @@ namespace SQMS.Services.QualityControl
 
         public DataTable GetMonitorPointInLatLngBounds(LatLngBounds bound)
         {
-            string sql = @"SELECT SELECT M.MPID,
+            string sql = @"SELECT M.MPID,
                                        M.ROADID,
                                        M.MPCODE,
                                        M.MPNAME,

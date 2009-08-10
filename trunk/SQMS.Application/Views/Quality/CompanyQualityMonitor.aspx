@@ -14,12 +14,17 @@
         }
         .left
         {
-            width: 200px;
+            position:relative;
+            width: 19%;
             height: 650px;
             float: left;
         }
         .right
         {
+            float:right;
+            position: relative; 
+            display:inline;
+            width:80%;
         }
     </style>
 </asp:Content>

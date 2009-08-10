@@ -9,6 +9,7 @@
         body
         {
             margin: 0 0 0 0;
+            font-size: 12px;
         }
         div table tr td
         {
