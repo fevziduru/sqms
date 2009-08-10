@@ -61,7 +61,11 @@ namespace SQMS.Application.Views.Common
             string opid = cb.ID;
             string resid = gvr.Cells[1].Text;
             
-            roleservice.ResPermissionService.SetPermission(resid,opid,roleid,cb.Checked);
+            if (roleid != "")
+            {
+                roleservice.ResPermissionService.SetPermission(resid, opid, roleid, cb.Checked);
+            }
+           
         }
 
     }
