@@ -53,7 +53,7 @@ namespace SQMS.Services
                     //取职员信息
                     DataRow drEmployee = DataSetUtil.GetFirstRowFromDataTable(
                         DefaultSession.GetDataTableFromCommand(
-                            @"select * from employee e where e.isvoid='N' and e.employeeid=:employeeid",
+                            @"select * from employee e where e.isvoid='N' and e.empid=:employeeid",
                         ConvertUtil.ToStringOrDefault(drPassport["EMPID"])));
 
                     ui = new UserInfo();
