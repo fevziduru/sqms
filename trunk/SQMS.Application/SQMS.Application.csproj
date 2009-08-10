@@ -213,6 +213,13 @@
       <DependentUpon>ListHeaderTemplate.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\sGridItemTemplate.cs" />
+    <Compile Include="Views\Components\List\PagingBar.ascx.cs">
+      <DependentUpon>PagingBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\List\PagingBar.ascx.designer.cs">
+      <DependentUpon>PagingBar.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\PopupReferenceList.aspx.cs">
       <DependentUpon>PopupReferenceList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -528,6 +535,7 @@
     <Content Include="Views\Basedata\RoleView.aspx" />
     <Content Include="Views\Components\List\CheckBoxTemplateField.ascx" />
     <Content Include="Views\Components\List\ListHeaderTemplate.ascx" />
+    <Content Include="Views\Components\List\PagingBar.ascx" />
     <Content Include="Views\Components\Map.ascx" />
     <Content Include="Views\Components\PopupReferenceList.aspx" />
     <Content Include="Views\Components\PopupReference\PopupDialog.aspx" />
