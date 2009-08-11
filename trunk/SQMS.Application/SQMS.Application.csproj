@@ -274,6 +274,20 @@
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.designer.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\MunicipalAdminMonitor.aspx.cs">
+      <DependentUpon>MunicipalAdminMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\MunicipalAdminMonitor.aspx.designer.cs">
+      <DependentUpon>MunicipalAdminMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.cs">
+      <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
+      <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -575,6 +589,8 @@
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
     <Content Include="Views\External\ErrorTest.aspx" />
+    <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
+    <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AjaxServices\" />
