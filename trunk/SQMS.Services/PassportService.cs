@@ -38,12 +38,24 @@ namespace SQMS.Services
         /// <returns></returns>
         public UserInfo Login(string name, string password, string role)
         {
+            try
+            {
+                return GetUserInfo(name, password, role);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public UserInfo GetUserInfo(string name, string password, string role)
+        {
             UserInfo ui = null;
             try
             {
                 if (DataSetUtil.GetFirstRowFromDataSet(
-                    LoadByCondition(
-                        string.Format("PASSPORT='{0}' AND PASSWORD='{1}'", name, password)), this.BOName) != null)
+                        LoadByCondition(
+                            string.Format("PASSPORT='{0}' AND PASSWORD='{1}'", name, password)), this.BOName) != null)
                 {
                     //取账号信息
                     DataRow drPassport =
@@ -61,17 +73,17 @@ namespace SQMS.Services
                     ui.PassportID = ConvertUtil.ToStringOrDefault(drPassport["PASSPORTID"]);
                     ui.EmployeeID = ConvertUtil.ToStringOrDefault(drPassport["EMPID"]);
                     ui.EmployeeName = ConvertUtil.ToStringOrDefault(drEmployee["EMPNAME"]);
-                    
+
                     ui.Roles = GetUserRole(name);   //取得用户角色
                     ui.Permissions = GetUserPermission(name, role); //取得用户权限以相关的操作
                 }
-
-                return ui;
             }
             catch (Exception e)
             {
                 throw e;
             }
+
+            return ui;
         }
 
         /// <summary>
