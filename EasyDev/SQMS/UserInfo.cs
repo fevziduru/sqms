@@ -17,5 +17,7 @@ namespace EasyDev.SQMS
         public string EmployeeID { get; set; }
         public string OrganizationID { get; set; }
         public string OrganizationName { get; set; }
+        public string DepartmentID { get; set; }
+        public string DepartmentName { get; set; }
     }
 }
