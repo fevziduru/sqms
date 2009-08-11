@@ -11,6 +11,7 @@ using EasyDev.SQMS;
 using System.Data;
 using EasyDev.Util;
 using YYControls;
+using System.Text;
 
 namespace SQMS.Application.Views.Basedata
 {
@@ -54,7 +55,7 @@ namespace SQMS.Application.Views.Basedata
         {
             this.ViewData = Service.LoadByKey(this.ID, true);
 
-            this.ViewData.Merge(srv.ResourceService.GetResourceItemsView());
+            this.ViewData.Merge(srv.ResourceService.GetResourceItemsView(this.ID));
             this.ViewData.Merge(srv.OperationService.LoadByCondition("ISVOID='N'"));
 
             Dictionary<string, object> d = new Dictionary<string, object>(); 
@@ -142,9 +143,11 @@ namespace SQMS.Application.Views.Basedata
             this.sGrid.Columns.Add(bf2);
             this.sGrid.Columns.Add(bf3);
 
+            YYControls.Helper.SmartGridView.MergeCells(this.sGrid, new int[] { 1, 2 });
+
             //添加权限列
             DataTable dtOperation = DataSetUtil.GetDataTableFromDataSet(ViewData, "OPERATION");
-            int count_op = dtOperation.Rows.Count;
+            //int count_op = dtOperation.Rows.Count;
             foreach (DataRow dr in dtOperation.Rows)
             {
                 TemplateField bf = new TemplateField() { HeaderText = ConvertUtil.EmptyOrString(dr["OPNAME"]), SortExpression = "" };
@@ -155,7 +158,7 @@ namespace SQMS.Application.Views.Basedata
 
             //显示GRID
             DataTable dtRESOURCE = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCEVIEW");
-            int count_res = dtRESOURCE.Rows.Count;
+            //int count_res = dtRESOURCE.Rows.Count;
 
             this.sGrid.DataSource = dtRESOURCE;
             this.sGrid.DataBind();
@@ -224,6 +227,28 @@ namespace SQMS.Application.Views.Basedata
         protected void lbPerSelect_Click(object sender, EventArgs e)
         {
             //todo:
+        }
+
+        protected void btnDelPermission_Click(object sender, EventArgs e)
+        {
+
+            // Select the checkboxes from the GridView control
+            for (int i = 0; i < this.sGrid.Rows.Count; i++)
+            {
+                GridViewRow row = this.sGrid.Rows[i];
+                bool isChecked = ((CheckBox)row.FindControl("item")).Checked;
+
+                if (isChecked)
+                {
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+
+                    dic.Add("RESID", this.sGrid.Rows[i].Cells[2].Text);//RESID
+                    dic.Add("ROLEID", this.ID);//ROLEID
+                    srv.ResPermissionService.DeleteByKeys(dic);
+
+                }
+            }
+
         }
 
     }

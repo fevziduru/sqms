@@ -34,6 +34,10 @@
     
     </yyc:SmartGridView>
 
+        <br />
+        <asp:Button ID="btnDelPermission" runat="server" Text="É¾³ý" 
+            onclick="btnDelPermission_Click" Visible="False" />
+
     </div>
 
         <br />
