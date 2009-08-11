@@ -29,5 +29,10 @@ namespace SQMS.Application.Masters
 
             Response.Redirect(FormsAuthentication.LoginUrl + "?status=q", true);
         }
+
+        protected void appNav_TreeNodeDataBound(object sender, TreeNodeEventArgs e)
+        {
+            string s = e.Node.DataItem.ToString();
+        }
     }
 }

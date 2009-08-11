@@ -23,7 +23,7 @@ namespace EasyDev.SQMS.HttpModules
 
         public void Init(HttpApplication context)
         {
-            context.PostAcquireRequestState += new EventHandler(context_PostAcquireRequestState);
+            context.AcquireRequestState += new EventHandler(context_AcquireRequestState);
             context.Error += new EventHandler(context_Error);
         }
 
@@ -39,19 +39,12 @@ namespace EasyDev.SQMS.HttpModules
                 ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
         }
 
-        void context_PostAcquireRequestState(object sender, EventArgs e)
+        void context_AcquireRequestState(object sender, EventArgs e)
         {
             HttpContext context = ((HttpApplication)sender).Context;
             HttpCookie authCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            if (authCookie == null)
-            {
-                //if (context.Request.RawUrl.Contains(FormsAuthentication.LoginUrl) == false)
-                //{
-                //    FormsAuthentication.RedirectToLoginPage();
-                //}
-            }
-            else
+            if (authCookie != null)
             {
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 UserIdentity uid = new UserIdentity(context.User.Identity.Name);
@@ -68,6 +61,10 @@ namespace EasyDev.SQMS.HttpModules
                     CheckPermission(context);
                 }
             }
+            else
+            {
+                //TODO:authCookie为空则说明未登录或已经注销
+            }
         }
         #endregion
 
@@ -82,39 +79,69 @@ namespace EasyDev.SQMS.HttpModules
 
                     if (ui != null)
                     {
-                        //查看UserInfo.UserPermission中有没有对当前资源的访问权限
-                        string urlname = context.Request.RawUrl.Replace(".aspx", "");
-                        string resname = urlname.Substring(urlname.LastIndexOf('/') + 1);
-                        if (resname.Contains("?"))
-                        {
-                            resname = resname.Remove(resname.IndexOf('?'));
-                        }
-                        bool isAuthorized = false;
+                        string permission = "__pub__";
+                        string querystring = "";
 
-                        foreach (DataRow item in ui.Permissions.Rows)
+                        //从参数中取得权限信息，如果没有参数，则将请求中的页面名称作为权限信息
+                        if (context.Request.QueryString.Count > 0)
                         {
-                            //将当前请求中的页面名称与用户权限信息中的VIEWNAME字段比较
-                            if (ConvertUtil.ToStringOrDefault(
-                                item["viewname"]).Equals(resname, StringComparison.CurrentCultureIgnoreCase))
+                            if (context.Request.QueryString["p"] != null)
                             {
-                                isAuthorized = true;
-                                break;
+                                permission = context.Request.QueryString["p"].ToString();        //URL中的权限信息
                             }
+                            querystring = context.Request.Url.Query.Substring(1);//context.Request.RawUrl.Substring(context.Request.RawUrl.IndexOf('?'));
                         }
-
-                        if (isAuthorized == false)
+                        else
                         {
-                            throw new Exception("_no_permission");
+                            permission = context.Request.Url.Segments[context.Request.Url.Segments.Length - 1].Replace(".aspx", "");
+                        }                        
+
+                        //bool isAuthorized = false;
+
+                        if (permission.Equals("__pub__") == false)
+                        {
+                            DataRow[] rows = ui.Permissions.Select("RESIDENTITY='" + permission + "'");
+                            if (rows.Length > 0)
+                            {
+                                DataRow dr = rows[0];
+                                context.RewritePath(
+                                    ConvertUtil.ToStringOrDefault(dr["VIEWNAME"]), "", querystring);
+                            }
+                            else
+                            {
+                                throw new Exception("_no_permission");
+                            }
+
+                            #region 权限判断方法二
+                            //foreach (DataRow item in ui.Permissions.Rows)
+                            //{
+                            //    string virtualPath = ConvertUtil.ToStringOrDefault(item["VIEWNAME"]);
+
+                            //    //将当前请求中的页面名称与用户权限信息中的VIEWNAME字段比较
+                            //    if (ConvertUtil.ToStringOrDefault(
+                            //        item["resid"]).Equals(permission, StringComparison.CurrentCultureIgnoreCase))
+                            //    {
+                            //        isAuthorized = true;
+                            //        context.RewritePath(virtualPath, "", querystring);
+                            //        break;
+                            //    }
+                            //}
+
+                            //if (isAuthorized == false)
+                            //{
+                            //    throw new Exception("_no_permission");
+                            //} 
+                            #endregion
                         }
                     }
                     else
                     {
-                        //UserInfo失效，强制退出
+                        //DO NOTHING
                     }
                 }
                 else
                 {
-
+                    //DO NOTHING
                 }
             }
             catch (Exception e)

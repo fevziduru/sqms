@@ -20,7 +20,7 @@
             <asp:BoundField DataField="EMPID" HeaderText="EMPID" ReadOnly="True" 
                 SortExpression="EMPID" Visible="False" />
             <asp:HyperLinkField DataNavigateUrlFields="EMPID" 
-                DataNavigateUrlFormatString="/Views/Basedata/EmployeeView.aspx?id={0}" 
+                DataNavigateUrlFormatString="/Views/Basedata/EmployeeView.aspx?p=employeeview&id={0}" 
                 DataTextField="EMPNAME" HeaderText="职员名称" SortExpression="EMPNAME" />
             <asp:BoundField DataField="EMPCODE" HeaderText="职员编码" 
                 SortExpression="EMPCODE" />

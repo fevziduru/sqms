@@ -533,6 +533,7 @@
     <None Include="Config\Schema\USERROLE.xss">
       <DependentUpon>USERROLE.xsd</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
     <Content Include="error.htm" />
     <Content Include="Views\External\ErrorPage.aspx" />
     <Content Include="Resources\CSS\Controls\Calendar\Calendar.css" />

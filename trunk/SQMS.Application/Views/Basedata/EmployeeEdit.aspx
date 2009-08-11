@@ -6,7 +6,7 @@
     <div>
     <table width="100%">
         <tr>
-            <td align="right"><a href="EmployeeList.aspx">返回到列表</a></td>
+            <td align="right"><a href="EmployeeList.aspx?p=employeelist">返回到列表</a></td>
         </tr>
         <tr>
             <td align="center">
@@ -112,7 +112,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><a href="RoleEdit.aspx">角色管理</a></td>
+            <td><a href="RoleEdit.aspx?p=roleedit">角色管理</a></td>
         </tr>
     </table>
     <table width="100%">

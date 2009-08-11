@@ -240,7 +240,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect("EmployeeView.aspx?id=" + this.ID);
+            Response.Redirect("EmployeeView.aspx?p=employeeview&id=" + this.ID);
         }
 
         public void btnSignout_Click(object sender, EventArgs e)
@@ -269,7 +269,7 @@ namespace SQMS.Application.Views.Basedata
             {
                 throw ex;
             }
-            Response.Redirect("EmployeeEdit.aspx");
+            Response.Redirect("EmployeeEdit.aspx?p=employeenew");
         }
 
         public void btnPassportCheck_Onclick(object sender, EventArgs e)

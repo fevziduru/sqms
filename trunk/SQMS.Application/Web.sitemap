@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  
+    <siteMapNode url="" title="应用程序根"  description="" resourceKey="">
+      
+      <!--质量监控-->
+      <siteMapNode url="" title="质量监控管理"  description=""  resourceKey=""></siteMapNode>
+      
+      <!--基础数据-->
+      <siteMapNode url="" title="基础数据管理"  description=""  resourceKey="">
+          <siteMapNode url="" title="组织机构管理" description="" resourceKey=""/>
+          <!--<siteMapNode url="" title="部门管理"  description="" resourceKey=""/>-->
+          <siteMapNode url="/Views/Basedata/EmployeeList.aspx?p=employeelist" title="职员管理"  description="" resourceKey="employeelist"/>
+          <siteMapNode url="" title="设备管理"  description="" resourceKey=""/>
+          <siteMapNode url="/Views/Basedata/RoleList.aspx?p=rolelist" title="角色管理"  description="" resourceKey="rolelist"/>
+          <siteMapNode url="" title="资源管理"  description="" resourceKey=""/>
+          <siteMapNode url="/Views/Basedata/OperationList.aspx?p=operationlist" title="操作管理"  description="" resourceKey="operationlist"/>
+      </siteMapNode>
+
+      <siteMapNode url="" title="系统工具" resourceKey="">
+                
+      </siteMapNode>
+      <siteMapNode url="/Views/Security/Login.aspx?status=q" title="退出" description="" resourceKey=""></siteMapNode>
+    </siteMapNode>
+</siteMap>

@@ -8,6 +8,7 @@ using SQMS.Services;
 using System.Web.Security;
 using EasyDev.Util;
 using EasyDev.SQMS;
+using SQMS.Application.HtmlHelper;
 
 namespace SQMS.Application.Views.Security
 {
@@ -22,7 +23,13 @@ namespace SQMS.Application.Views.Security
 
             if (status == "q")
             {
-                //TODO: 移除用户信息
+                FormsAuthentication.SignOut();
+                Session.Remove("USER_INFO");
+
+                HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, null);
+                cookie.Expires = DateTime.Now.AddMinutes(-1);
+                Response.Cookies.Add(cookie);
+
             }
         }
 
@@ -35,10 +42,7 @@ namespace SQMS.Application.Views.Security
         {
             if (!Page.IsPostBack)
             {
-                this.ddlRole.DataSource = srv.GetRoles();
-                this.ddlRole.DataTextField = "rolename";
-                this.ddlRole.DataValueField = "roleid";
-                this.ddlRole.DataBind();
+                ControlBindingHelper.BindDropDownList(ddlRole, srv.GetRoles(), "rolename", "roleid");
             }
         }
 

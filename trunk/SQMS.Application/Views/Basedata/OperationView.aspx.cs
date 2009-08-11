@@ -46,12 +46,12 @@ namespace SQMS.Application.Views.Basedata
         {
             Service.DeleteByKey(this.ID);
 
-            Response.Redirect("OperationEdit.aspx");
+            Response.Redirect("OperationList.aspx?p=operationlist");
         }
 
         public void btnEdit_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx?id=" + this.ID);
+            Response.Redirect("OperationEdit.aspx?p=operationedit&id=" + this.ID);
         }
     }
 }
