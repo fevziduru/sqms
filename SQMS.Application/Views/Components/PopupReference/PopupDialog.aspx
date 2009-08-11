@@ -15,23 +15,18 @@
         }
     </script>
     
- <%--   <input type="button" onclick="SelectItem()"  value="OK"/>
-    <a style="cursor:hand;text-decoration:underline" onclick="SelectItem()">Close</a>--%>
-    <asp:GridView ID="gvRefList" runat="server" AllowPaging="True" PageSize="5" 
+    <div>
+    <asp:GridView Width="100%" ID="gvRefList" runat="server" AllowPaging="True" PageSize="15" 
             AutoGenerateColumns="False">
-        <PagerSettings Position="TopAndBottom" Mode="NumericFirstLast"/>    
-        <Columns>
-            <%--<asp:TemplateField ShowHeader="False">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lbSelect" runat="server" CausesValidation="False" 
-                        CommandName="Select" Text="选择"></asp:LinkButton>
-                        <asp:HiddenField ID="hidValue" runat="server" Value='<%#bind("value")%>' />
-                        <asp:HiddenField ID="hidText" runat="server" Value='<%#bind("text")%>' />
-                </ItemTemplate>
-            </asp:TemplateField>--%>
-        </Columns>
+        <PagerSettings Position="TopAndBottom" 
+            NextPageText=">" 
+            PageButtonCount="5" 
+            LastPageText=">>" 
+            FirstPageText="<<" 
+            PreviousPageText="<" 
+            Mode="NextPreviousFirstLast"/>
     </asp:GridView>
-    
+    </div>
     </div>
     </form>
 </body>

@@ -5,7 +5,7 @@ function popup(textfieldid, valuefieldid) {
     var result = window.showModalDialog(
         "/Views/Components/PopupReference/PopupDialog.aspx?s=<%=Service %>&t=<%=AssemblyName %>&r=" + date.valueOf(),
         document.getElementById(textfieldid),
-        "dialogWidth=500px;dialogHeight=400px");
+        "dialogWidth=800px;dialogHeight=600px");
     if (result != null) {
         document.getElementById(valuefieldid).value = result.value;
         document.getElementById(textfieldid).value = result.text;

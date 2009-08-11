@@ -12,7 +12,7 @@ namespace SQMS.Application
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            log4net.Config.DOMConfigurator.Configure();
         }
 
         protected void Session_Start(object sender, EventArgs e)

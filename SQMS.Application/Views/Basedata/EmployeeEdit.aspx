@@ -4,18 +4,28 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
+    
     <table width="100%">
         <tr>
             <td align="right"><a href="EmployeeList.aspx?p=employeelist">返回到列表</a></td>
         </tr>
+        
         <tr>
             <td align="center">
-                <asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                <fieldset>
+                    <asp:Button Width="110px" runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+                    <asp:Button Width="110px" runat="server" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                </fieldset>
             </td>
         </tr>
+        
     </table>
-    <table style="width:70%">
+    
+    <br />
+    
+    <fieldset  style="font-weight:bold;font-size:11pt">
+    <legend>职员基本信息</legend>
+    <table style="width:100%">
         <tr>
             <td style="width:110px">职员名称：</td>
             <td style="width:330px">
@@ -68,8 +78,11 @@
             <td>出生日期：</td>
             <td><%=SQMS.Application.HtmlHelper.HtmlExtension.Calendar("calBirthday", currdate) %></td>
         </tr>
-    </table>    
-    <hr />
+    </table>
+    </fieldset>
+    <br />
+    <fieldset  style="font-weight:bold;font-size:11pt">
+    <legend>职员账号信息</legend>
     <table>
         <tr>
             <td>职员账号：</td>
@@ -103,7 +116,10 @@
         </tr>
        
     </table>
-    <hr />
+    </fieldset>
+    <br />
+    <fieldset  style="font-weight:bold;font-size:11pt">
+    <legend>职员角色信息</legend>
     <table>
         <tr>
             <td>职员角色：</td>
@@ -115,14 +131,19 @@
             <td><a href="RoleEdit.aspx?p=roleedit">角色管理</a></td>
         </tr>
     </table>
+    </fieldset>
+    <br />
+    
+    <fieldset>
     <table width="100%">
         <tr>
             <td align="center">
-                <asp:Button runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                <asp:Button Width="110px" runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+                <asp:Button Width="110px" runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
             </td>
         </tr>
     </table>
+    </fieldset>
     
     </div>
 </asp:Content>

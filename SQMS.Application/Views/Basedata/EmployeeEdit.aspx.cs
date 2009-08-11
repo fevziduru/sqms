@@ -10,11 +10,14 @@ using System.Data;
 using System.Web.Security;
 using EasyDev.SQMS;
 using SQMS.Application.HtmlHelper;
+using log4net;
 
 namespace SQMS.Application.Views.Basedata
 {
     public partial class EmployeeEdit : SQMSPage<EmployeeService>
     {
+        private ILog logger = LogManager.GetLogger(typeof(EmployeeEdit));
+
         private EmployeeService srv = null;
         public string currdate = DateTime.Now.ToString();
 
@@ -197,11 +200,11 @@ namespace SQMS.Application.Views.Basedata
                     }
                 }
 
-                this.txtPassport.Visible =
+                this.btnCheck.Visible =
+                    this.txtPassport.Visible =
                     this.txtPassword.Visible =
                     this.txtConfirmPass.Visible = false;
 
-                this.btnCheck.Visible =
                     this.lblCheckResult.Visible =
                     this.lblPassword.Visible = true;
             }
@@ -232,8 +235,12 @@ namespace SQMS.Application.Views.Basedata
                     throw new Exception("账号已经存在");
                 }
 
+                logger.Debug("Begin to Get Employee Data From View");
                 this.GetViewData();
+
+                logger.Debug("Begin to Save Employee Data");
                 this.srv.Save(this.ViewData);
+                logger.Debug("Ended Save Employee Data");
             }
             catch (Exception ex)
             {
