@@ -50,6 +50,15 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.LinkButton lbPerSelect;
         
         /// <summary>
+        /// DropDownListClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListClass;
+        
+        /// <summary>
         /// sGrid control.
         /// </summary>
         /// <remarks>
@@ -57,15 +66,6 @@ namespace SQMS.Application.Views.Basedata {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::YYControls.SmartGridView sGrid;
-        
-        /// <summary>
-        /// btnDelPermission control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelPermission;
         
         /// <summary>
         /// txtMemo control.

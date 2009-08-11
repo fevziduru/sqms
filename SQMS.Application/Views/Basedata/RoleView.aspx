@@ -17,21 +17,21 @@
             <br />
             角色权限： 
             <asp:TextBox ID="tbPermission" runat="server" Height="115px" TextMode="MultiLine" 
-                Width="382px"></asp:TextBox>
+                Width="471px"></asp:TextBox>
 &nbsp;&nbsp;
             <br />
             <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     备注：<asp:TextBox ID="tbMemo" runat="server" Height="132px" style="margin-left: 10px" 
-                TextMode="MultiLine" Width="381px" Enabled="False"></asp:TextBox>
+                TextMode="MultiLine" Width="464px" Enabled="False"></asp:TextBox>
             <br />
             <br />    
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
     <asp:Button runat="server" ID="btnDelete" Text="  删除  " OnClick="btnDelete_OnClick"/>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
             <asp:Button ID="ButtonEdit" runat="server" Text="  编辑    " 
                 onclick="ButtonEdit_Click" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
             <asp:Button ID="ButtonBack2List" runat="server" Text="返回到列表" 
                 onclick="ButtonBack2List_Click" />
             <br />

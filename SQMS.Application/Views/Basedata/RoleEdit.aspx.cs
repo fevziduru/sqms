@@ -53,16 +53,17 @@ namespace SQMS.Application.Views.Basedata
         /// <param name="e"></param>
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)  //2
         {
-            this.ViewData = Service.LoadByKey(this.ID, true);
+            this.ViewData = srv.LoadByKey(this.ID, true);
 
-            this.ViewData.Merge(srv.ResourceService.GetResourceItemsView(this.ID));
+            this.ViewData.Merge(srv.ResourceService.GetResourceItemsView(this.DropDownListClass.SelectedValue));
+
+            this.ViewData.Merge(srv.ResourceService.GetResourceClass());
+
             this.ViewData.Merge(srv.OperationService.LoadByCondition("ISVOID='N'"));
 
             Dictionary<string, object> d = new Dictionary<string, object>(); 
             d.Add("ROLEID", this.ID);
             this.ViewData.Merge(srv.ResPermissionService.LoadByKeys(d));
-
-            this.ViewData.Merge(srv.ResourceService.GetResourceClass());
 
         }
 
@@ -116,15 +117,17 @@ namespace SQMS.Application.Views.Basedata
         /// </summary>
         private void ShowGrid()
         {
-            ////显示分类列表
-            //DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
-            //this.DropDownListClass.Visible = true;
-            //this.DropDownListClass.Items.Clear();
+            //显示列表
+            DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
 
-            //foreach (DataRow dr in dtRESClass.Rows)
-            //{
-            //    this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
-            //}
+            if (this.DropDownListClass.Items.Count == 1)
+            {
+                foreach (DataRow dr in dtRESClass.Rows)
+                {
+                    this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
+                }
+            }
+
 
             //清空
             this.sGrid.Columns.Clear();
@@ -248,6 +251,11 @@ namespace SQMS.Application.Views.Basedata
 
                 }
             }
+
+        }
+
+        protected void DropDownListClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
