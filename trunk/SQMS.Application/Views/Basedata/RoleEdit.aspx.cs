@@ -17,6 +17,7 @@ namespace SQMS.Application.Views.Basedata
     public partial class RoleEdit : SQMSPage<RoleService>
     {
         private RoleService srv = null;
+        private Common.sGridItemList sGridItemlist;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -100,20 +101,13 @@ namespace SQMS.Application.Views.Basedata
         {
             srv = Service as RoleService;
 
+            sGridItemlist = new Common.sGridItemList(srv, this.ID);
+
             if (IsPostBack)
             {
                 OnLoadDataEventHandler(sender, e);
                 ShowGrid();
             }
-        }
-
-
-        public void btnSave_Click(object sender, EventArgs e)
-        {
-            this.GetViewData();
-            this.srv.Save(this.ViewData);
-
-            Response.Redirect(String.Format("RoleView.aspx?id={0}", this.ID));
         }
 
         /// <summary>
@@ -131,8 +125,16 @@ namespace SQMS.Application.Views.Basedata
             //    this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
             //}
 
+            //清空
             this.sGrid.Columns.Clear();
 
+            //添加选框列
+            TemplateField bfd = new TemplateField() ;
+            bfd.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator,"item","item");
+            bfd.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator, "all", "all");
+            this.sGrid.Columns.Add(bfd);
+
+            //添加资源列
             BoundField bf1 = new BoundField() { DataField = "RESTYPE", HeaderText = "分类", SortExpression = "RESTYPE" };
             BoundField bf2 = new BoundField() { DataField = "RESID", HeaderText = "功能ID", SortExpression = "RESID" };
             BoundField bf3 = new BoundField() { DataField = "RESNAME", HeaderText = "功能点", SortExpression = "RESNAME" };
@@ -140,15 +142,14 @@ namespace SQMS.Application.Views.Basedata
             this.sGrid.Columns.Add(bf2);
             this.sGrid.Columns.Add(bf3);
 
-            //附加权限列
+            //添加权限列
             DataTable dtOperation = DataSetUtil.GetDataTableFromDataSet(ViewData, "OPERATION");
             int count_op = dtOperation.Rows.Count;
-
             foreach (DataRow dr in dtOperation.Rows)
             {
                 TemplateField bf = new TemplateField() { HeaderText = ConvertUtil.EmptyOrString(dr["OPNAME"]), SortExpression = "" };
-                bf.ItemTemplate = new Common.sGridItemTemplate(DataControlRowType.DataRow, ConvertUtil.EmptyOrString(dr["OPNAME"]),ConvertUtil.EmptyOrString(dr["OPID"]),srv, this.ID);
-                bf.HeaderTemplate = new Common.sGridItemTemplate(DataControlRowType.Header, ConvertUtil.EmptyOrString(dr["OPNAME"]), ConvertUtil.EmptyOrString(dr["OPID"]), srv, this.ID);
+                bf.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.DataRow, ConvertUtil.EmptyOrString(dr["OPID"]), ConvertUtil.EmptyOrString(dr["OPNAME"]));
+                bf.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Header, ConvertUtil.EmptyOrString(dr["OPID"]), ConvertUtil.EmptyOrString(dr["OPNAME"]));
                 this.sGrid.Columns.Add(bf);
             }
 
@@ -165,7 +166,7 @@ namespace SQMS.Application.Views.Basedata
             {
                 foreach (GridViewRow gvr in this.sGrid.Rows)
                 {
-                    if (gvr.Cells[1].Text == ConvertUtil.EmptyOrString(dr["RESID"]))
+                    if (gvr.Cells[2].Text == ConvertUtil.EmptyOrString(dr["RESID"]))
                     {
                         CheckBox cb = gvr.FindControl(ConvertUtil.EmptyOrString(dr["OPID"])) as CheckBox;
                         if (cb != null)
@@ -178,18 +179,41 @@ namespace SQMS.Application.Views.Basedata
 
         }
 
-        protected void btnSA_Click(object sender, EventArgs e)
+        protected void btnSA_Click(object sender, EventArgs e)//Save&New
         {
             try
             {
                 this.GetViewData();
                 this.srv.Save(this.ViewData);
+                this.SaveRolePermission();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+
             Response.Redirect("RoleEdit.aspx");
+        }
+
+        public void btnSave_Click(object sender, EventArgs e)//Save
+        {
+            try
+            {
+                this.GetViewData();
+                this.srv.Save(this.ViewData);
+                this.SaveRolePermission();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            Response.Redirect(String.Format("RoleView.aspx?id={0}", this.ID));
+        }
+
+        private void SaveRolePermission()
+        {
+            this.sGridItemlist.SaveOthers(this.ID);
         }
 
         protected void btnBack2List_Click(object sender, EventArgs e)

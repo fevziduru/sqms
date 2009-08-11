@@ -57,7 +57,19 @@ namespace SQMS.Application.Views.Basedata
 
         public void btnDelete_OnClick(object sender, EventArgs e)//删除
         {
-            srv.DeleteByKey(this.ID);
+
+            try
+            {
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+                    dic.Add("ROLEID", this.ID);
+                    srv.ResPermissionService.DeleteByKeys(dic);
+
+                    srv.DeleteByKey(this.ID);
+            }
+            catch (System.Exception)
+            {
+
+            }
 
             Response.Redirect("RoleEdit.aspx");
         }
