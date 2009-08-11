@@ -20,7 +20,7 @@
             <asp:BoundField DataField="OPID" HeaderText="OPID" ReadOnly="True" 
                 SortExpression="OPID" Visible="False" />
             <asp:HyperLinkField DataNavigateUrlFields="OPID" 
-                DataNavigateUrlFormatString="/Views/Basedata/OperationView.aspx?id={0}" 
+                DataNavigateUrlFormatString="/Views/Basedata/OperationView.aspx?p=operationview&id={0}" 
                 DataTextField="OPNAME" HeaderText="操作名称" SortExpression="OPNAME" />
             <asp:BoundField DataField="OPCODE" HeaderText="操作编码" 
                 SortExpression="OPCODE" />       

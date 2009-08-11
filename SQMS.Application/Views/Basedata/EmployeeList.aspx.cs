@@ -53,7 +53,7 @@ namespace SQMS.Application.Views.Basedata
                     {
                         DataKey key = this.gvEmployeeList.DataKeys[Convert.ToInt32(e.CommandArgument)];
                         string id = ConvertUtil.ToStringOrDefault(key.Value);
-                        Response.Redirect("EmployeeEdit.aspx?id=" + id);
+                        Response.Redirect("EmployeeEdit.aspx?p=employeeedit&id=" + id);
                         break;
                     }
                 case "Sort":

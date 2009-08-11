@@ -102,7 +102,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect(String.Format("OperationView.aspx?id={0}", this.ID));
+            Response.Redirect(String.Format("OperationView.aspx?p=operationview&id={0}", this.ID));
         }
 
         public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect("OperationEdit.aspx");
+            Response.Redirect("OperationEdit.aspx?p=operationnew");
         }
     }
 

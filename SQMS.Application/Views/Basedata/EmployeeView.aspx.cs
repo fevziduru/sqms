@@ -75,12 +75,12 @@ namespace SQMS.Application.Views.Basedata
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
             srv.Delete(this.ViewData);
-            Response.Redirect("EmployeeEdit.aspx");
+            Response.Redirect("EmployeeList.aspx?p=employeelist");
         }
 
         public void btnEdit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EmployeeEdit.aspx?id=" + this.ID);
+            Response.Redirect("EmployeeEdit.aspx?p=employeeedit&id=" + this.ID);
         }
     }
 }
