@@ -4,7 +4,11 @@
     <siteMapNode url="" title="应用程序根"  description="" resourceKey="">
       
       <!--质量监控-->
-      <siteMapNode url="" title="质量监控管理"  description=""  resourceKey=""></siteMapNode>
+      <siteMapNode url="" title="质量监控管理"  description=""  resourceKey="">
+          <siteMapNode url="/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor" title="环卫公司质量监控"  description="" resourceKey="QualityCompanyQualityMonitor"/>
+          <siteMapNode url="/Views/Quality/MunicipalAdminMonitor.aspx?p=QualityMunicipalAdminMonitor" title="市政管理质量监控"  description="" resourceKey="QualityMunicipalAdminMonitor"/>
+          <siteMapNode url="/Views/Quality/SanitationOfficeMonitor.aspx?p=QualitySanitationOfficeMonitor" title="环卫监督质量监控"  description="" resourceKey="QualitySanitationOfficeMonitor"/>
+      </siteMapNode>
       
       <!--基础数据-->
       <siteMapNode url="" title="基础数据管理"  description=""  resourceKey="">
