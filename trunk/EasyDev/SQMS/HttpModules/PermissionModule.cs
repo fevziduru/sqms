@@ -9,11 +9,14 @@ using EasyDev.Util;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using log4net;
 
 namespace EasyDev.SQMS.HttpModules
 {
     public class PermissionModule : IHttpModule
     {
+        private ILog logger = LogManager.GetLogger(typeof(PermissionModule));
+
         #region IHttpModule 成员
 
         public void Dispose()
@@ -35,6 +38,8 @@ namespace EasyDev.SQMS.HttpModules
         void context_Error(object sender, EventArgs e)
         {
             HttpContext context = ((HttpApplication)sender).Context;
+            logger.Debug(context.Error.Message);
+
             context.Response.Redirect("~/" + 
                 ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
         }

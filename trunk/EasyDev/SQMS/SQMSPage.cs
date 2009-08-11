@@ -10,12 +10,15 @@ using System.Data;
 using EasyDev.Util;
 using System.Threading;
 using System.Configuration;
+using log4net;
 
 namespace EasyDev.SQMS
 {
     public class SQMSPage<T> : Page
         where T : IService, new()
     {
+        private ILog logger = LogManager.GetLogger(typeof(SQMSPage<T>));
+
         public string ID
         {
             get;
@@ -241,78 +244,7 @@ namespace EasyDev.SQMS
 
         #endregion
 
-        //protected delegate void OnSaveCallbackHandler(DataSet ds);
-        //protected delegate void OnDeleteCallbackHander(DataSet ds);
-        //protected delegate DataSet OnLoadByPrimaryCallbackHandler(object key);
-
-        /// <summary>
-        /// 保存处理方法，此方法会触发保存前处理事件和保存后处理事件
-        /// </summary>
-        /// <param name="ds">要保存的数据集</param>
-        /// <param name="callback">保存处理方法代理</param>
-        //protected virtual void OnSave(DataSet ds, OnSaveCallbackHandler save)
-        //{
-        //    OperationEventArgs args = new OperationEventArgs(ds);
-
-        //    if (Events[_saving] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_saving])(this, args);
-        //    }
-
-        //    save(ds);
-        //    args.Data = ds;
-
-        //    if (Events[_saved] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_saved])(this, args);
-        //    }
-        //}
-
-        /// <summary>
-        /// 删除处理方法，此方法会触发删除前处理事件和删除后处理事件
-        /// </summary>
-        /// <param name="ds">要删除的数据</param>
-        /// <param name="delete">删除处理方法代理</param>
-        //protected virtual void OnDelete(DataSet ds, OnDeleteCallbackHander delete)
-        //{
-        //    OperationEventArgs args = new OperationEventArgs(ds);
-        //    if (Events[_deleting] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_deleting])(this, args);
-        //    }
-
-        //    delete(ds);
-        //    args.Data = ds;
-
-        //    if (Events[_deleted] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_deleted])(this, args);
-        //    }
-        //}
-
-        /// <summary>
-        /// 加载数据处理方法
-        /// </summary>
-        /// <param name="ds"></param>
-        /// <param name="load"></param>
-        //protected virtual DataSet OnLoadByPrimary(object key, OnLoadByPrimaryCallbackHandler load)
-        //{
-        //    OperationEventArgs args = new OperationEventArgs(key);
-        //    if (Events[_loading] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_loading])(this, args);
-        //    }
-
-        //    args.Data = load(key);
-
-        //    if (Events[_loaded] != null)
-        //    {
-        //        ((EventHandler<OperationEventArgs>)Events[_loaded])(this, args);
-        //    }
-
-        //    return args.Data;
-        //}
-
+       
         #region Page Method
         /// <summary>
         /// 界面元素数据
@@ -400,8 +332,11 @@ namespace EasyDev.SQMS
         void SQMSPage_Error(object sender, EventArgs e)
         {
             Exception ex = Server.GetLastError();
-            string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;
+            string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;            
             this.ErrorPage = ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + errorId;
+
+            logger.Debug(ex.Message);
+
             Response.Redirect(this.ErrorPage);
         }
 
