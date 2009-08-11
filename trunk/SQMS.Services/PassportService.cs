@@ -65,13 +65,28 @@ namespace SQMS.Services
                     //取职员信息
                     DataRow drEmployee = DataSetUtil.GetFirstRowFromDataTable(
                         DefaultSession.GetDataTableFromCommand(
-                            @"select * from employee e where e.isvoid='N' and e.empid=:employeeid",
+                            @"select    t.empid, 
+                                        t.empname, 
+                                        d.parentdept, 
+                                        d.deptid, 
+                                        d.deptname, 
+                                        o.orgid, 
+                                        o.orgname, 
+                                        o.orgalias 
+                                from employee t
+                                left join department d on t.deptid = d.deptid
+                                left join ORAGANIZATION o on o.orgid = d.orgid
+                                where t.empid = :employeeid",
                         ConvertUtil.ToStringOrDefault(drPassport["EMPID"])));
 
                     ui = new UserInfo();
                     ui.Passport = name;
                     ui.PassportID = ConvertUtil.ToStringOrDefault(drPassport["PASSPORTID"]);
                     ui.EmployeeID = ConvertUtil.ToStringOrDefault(drPassport["EMPID"]);
+                    ui.OrganizationID = ConvertUtil.ToStringOrDefault(drEmployee["orgid"]);
+                    ui.OrganizationName = ConvertUtil.ToStringOrDefault(drEmployee["orgname"]);
+                    ui.DepartmentID = ConvertUtil.ToStringOrDefault(drEmployee["deptid"]);
+                    ui.DepartmentName = ConvertUtil.ToStringOrDefault(drEmployee["deptname"]);
                     ui.EmployeeName = ConvertUtil.ToStringOrDefault(drEmployee["EMPNAME"]);
 
                     ui.Roles = GetUserRole(name);   //取得用户角色
