@@ -146,8 +146,6 @@ namespace SQMS.Application.Views.Basedata
             this.sGrid.Columns.Add(bf2);
             this.sGrid.Columns.Add(bf3);
 
-            YYControls.Helper.SmartGridView.MergeCells(this.sGrid, new int[] { 1, 2 });
-
             //添加权限列
             DataTable dtOperation = DataSetUtil.GetDataTableFromDataSet(ViewData, "OPERATION");
             //int count_op = dtOperation.Rows.Count;
@@ -256,8 +254,15 @@ namespace SQMS.Application.Views.Basedata
 
         protected void DropDownListClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void sGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
 
         }
+
+        
 
     }
 

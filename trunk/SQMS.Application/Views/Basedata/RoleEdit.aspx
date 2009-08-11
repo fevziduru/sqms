@@ -29,7 +29,9 @@
     
     <div style=" margin-left:80px">
 
-    <yyc:SmartGridView ID="sGrid" AllowPaging="true" AllowSorting="true" MouseOverCssClass="OverRow" AutoGenerateColumns="false" EnableViewState="true"  runat='server'>
+    <yyc:SmartGridView ID="sGrid" AllowPaging="true" AllowSorting="true" 
+            MouseOverCssClass="OverRow" AutoGenerateColumns="false" EnableViewState="true" 
+            MergeCells="1,2" runat='server' onpageindexchanging="sGrid_PageIndexChanging">
  
         <CascadeCheckboxes>
             <yyc:CascadeCheckbox ChildCheckboxID="item" ParentCheckboxID="all" />
@@ -37,9 +39,8 @@
         
         <SmartSorting AllowMultiSorting="True" AllowSortTip="True" /> 
         
-        <CustomPagerSettings PagingMode="Webabcd" TextFormat="每页{0}条/共{1}条&nbsp;&nbsp;&nbsp;&nbsp;第{2}页/共{3}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-        <PagerSettings Position="Top" PageButtonCount="13" FirstPageText="首页" PreviousPageText="上一页"
-            NextPageText="下一页" LastPageText="末页" />        
+        <CustomPagerSettings PagingMode="webabcd" TextFormat="每页{0}条/共{1}条&nbsp;&nbsp;&nbsp;&nbsp;第{2}页/共{3}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+        <PagerSettings Position="Top" PageButtonCount="13" FirstPageText="首页" PreviousPageText="上一页" NextPageText="下一页" LastPageText="末页" />        
     
     </yyc:SmartGridView>
 
