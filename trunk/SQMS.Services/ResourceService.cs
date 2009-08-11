@@ -30,15 +30,38 @@ namespace SQMS.Services
             }
         }
 
-        public DataTable GetResourceItemsView()
+        public DataTable GetResourceItemsView(string roleid)
         {
             try
             {
+//                DataTable ds = DefaultSession.GetDataTableFromCommand(@"select distinct ri.RESTYPE, ri.RESNAME, ri.RESID 
+//                from RESOURCEITEM ri
+//                left join RESPERMISSION rp on ri.RESID = rp.RESID 
+//                where rp.ROLEID = :roleid
+//                ", roleid);
+//                ds.TableName = "RESOURCEVIEW";
+//                return ds;
+
                 DataTable ds = DefaultSession.GetDataTableFromCommand(@"select RESTYPE,RESNAME,RESID from RESOURCEITEM");
                 ds.TableName = "RESOURCEVIEW";
                 return ds;
             }
-            catch (Exception e)
+            catch (Exception e)//            
+                
+            {
+                throw e;
+            }
+        }
+
+        public DataTable GetResourceAllView()
+        {
+            try
+            {
+                DataTable ds = DefaultSession.GetDataTableFromCommand(@"select RESTYPE,RESNAME,RESID from RESOURCEITEM");
+                ds.TableName = "RESOURCEVIEWALL";
+                return ds;
+            }
+            catch (Exception e)//            left join RESOURCEITEM
             {
                 throw e;
             }
