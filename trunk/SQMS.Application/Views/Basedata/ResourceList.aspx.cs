@@ -19,7 +19,7 @@ namespace SQMS.Application.Views.Basedata
         {
             if (!Page.IsPostBack)
             {
-                this.gvList.Attributes.Add("SortExpression", "ERESID");
+                this.gvList.Attributes.Add("SortExpression", "RESID");
                 this.gvList.Attributes.Add("SortDirection", "ASC");
             }
         }
