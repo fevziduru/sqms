@@ -59,8 +59,8 @@ namespace SQMS.Application.Views.Quality
             DataRow dr = DataSetUtil.GetFirstRowFromDataTable(this.dtQC);
             if (null != dr)
             {
-                string url = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
-                this.LinkImageSource.ImageUrl = url;
+                string meterialUrl = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
+                this.LinkImageSource.ImageUrl = meterialUrl;
                 this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
                 this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
                 this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
@@ -71,7 +71,8 @@ namespace SQMS.Application.Views.Quality
                 this.LabelQCCrood.Text = ConvertUtil.ToStringOrDefault(dr["LONGITUDE"]) + "," + ConvertUtil.ToStringOrDefault(dr["LATITUDE"]);
                 this.LabelQCState.Text = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
                 this.LabelQCType.Text = ConvertUtil.ToStringOrDefault(dr["QCTYPE"]);
-                this.LinkMore.NavigateUrl = "/Views/Quality/MonitorPointDetail.aspx?qcType="+this.QualityControlType+"&mpid=" + ConvertUtil.ToStringOrDefault(dr["MPID"]);
+                string url = "/Views/Quality/MonitorPointDetail.aspx?qcType="+this.QualityControlType+"&mpid=" + ConvertUtil.ToStringOrDefault(dr["MPID"]);
+                this.LinkMore.NavigateUrl = "javascript:openMoreInfo('" + url + "');";
             }
         }
         protected override void GetViewData()
