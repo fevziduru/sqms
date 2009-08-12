@@ -158,6 +158,48 @@
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Views\Basedata\EquipmentEdit.aspx.cs">
+      <DependentUpon>EquipmentEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EquipmentEdit.aspx.designer.cs">
+      <DependentUpon>EquipmentEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\EquipmentList.aspx.cs">
+      <DependentUpon>EquipmentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EquipmentList.aspx.designer.cs">
+      <DependentUpon>EquipmentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\EquipmentView.aspx.cs">
+      <DependentUpon>EquipmentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\EquipmentView.aspx.designer.cs">
+      <DependentUpon>EquipmentView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceEdit.aspx.cs">
+      <DependentUpon>ResourceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceEdit.aspx.designer.cs">
+      <DependentUpon>ResourceEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceList.aspx.cs">
+      <DependentUpon>ResourceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceList.aspx.designer.cs">
+      <DependentUpon>ResourceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceView.aspx.cs">
+      <DependentUpon>ResourceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\ResourceView.aspx.designer.cs">
+      <DependentUpon>ResourceView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\sGridItemList.cs" />
     <Compile Include="Views\External\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -707,6 +749,12 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Basedata\EquipmentEdit.aspx" />
+    <Content Include="Views\Basedata\EquipmentList.aspx" />
+    <Content Include="Views\Basedata\EquipmentView.aspx" />
+    <Content Include="Views\Basedata\ResourceEdit.aspx" />
+    <Content Include="Views\Basedata\ResourceList.aspx" />
+    <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\External\ErrorTest.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />

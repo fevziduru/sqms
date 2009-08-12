@@ -2,11 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <asp:GridView ID="gvList" runat="server" AllowPaging="True" 
+<div>
+<table style="width:100%">
+        <tr>
+            <td align="center">
+                <fieldset>
+                    <asp:Button Width="110px" ID="Button1" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" ID="Button2" runat="server" Text="删除" OnClick="btnDelete_OnClick" /> 
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <asp:GridView ID="gvList" runat="server" AllowPaging="True" Width="100%" 
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OPID" OnSorting="gvList_Sorting"
         EmptyDataText="没有可显示的数据记录。" 
-        Width="829px" onrowcommand="gvList_RowCommand" 
+        onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
             <asp:TemplateField>
@@ -35,10 +46,16 @@
             </asp:CommandField>
         </Columns>
     </asp:GridView>
-    
-    <asp:Button ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_OnClick" />
-    
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnNew" runat="server" Text="新增" onclick="btnNew_Click" />
-    
+    <br />
+    <table style="width:100%">
+        <tr>
+            <td align="center">
+                <fieldset>
+                    <asp:Button Width="110px" ID="Button4" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" ID="Button3" runat="server" Text="删除" OnClick="btnDelete_OnClick" />                    
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+    </div>
 </asp:Content>

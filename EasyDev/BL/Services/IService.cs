@@ -10,6 +10,8 @@ namespace EasyDev.BL.Services
 {
     public interface IService
     {
+        string GenerateCode();
+        string BOName { get; }
         string SessionName { get; set; }
         DataSet LoadByCondition(string cond);
         void DeleteByKeys(IDictionary<string, object> keys);

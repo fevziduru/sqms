@@ -4,20 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EasyDev.Presentation;
-using SQMS.Services;
-using EasyDev.BL.Services;
 using EasyDev.SQMS;
+using SQMS.Services;
 using System.Data;
 using EasyDev.Util;
 
 namespace SQMS.Application.Views.Basedata
 {
-
-    public partial class OperationEdit : SQMSPage<OperationService>
+    public partial class EquipmentEdit : SQMSPage<EquipmentService>
     {
-        private OperationService srv = null;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,26 +20,25 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void GetViewData()
         {
-            DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(ViewData, "OPERATION");
-
+            DataRow drEqu = DataSetUtil.GetFirstRowFromDataSet(ViewData, Service.BOName);
             
-
-            if (drOP != null)
+            if (drEqu != null)
             {
                 if (this.ID.Length == 0)
                 {
                     this.ID = Service.GetNextSequenceID();
-                    drOP["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
-                    drOP["CREATEDBY"] = CurrentUser.PassportID;
+                    drEqu["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    drEqu["CREATEDBY"] = CurrentUser.PassportID;
                 }
 
-                drOP["OPID"] = this.ID;
-                drOP["OPCODE"] = this.txtOpCode.Text;
-                drOP["OPNAME"] = this.txtOpName.Text;
-                drOP["MEMO"] = this.txtMemo.Text;
-                                
-                drOP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
-                drOP["MODIFIEDBY"] = CurrentUser.PassportID;
+                drEqu["EQUID"] = this.ID;
+                drEqu["EQUCODE"] = this.txtEquCode.Text;
+                drEqu["EQUNAME"] = this.txtEquName.Text;
+                drEqu["MEMO"] = this.txtMemo.Text;
+                drEqu["IDENTIFY"] = this.txtEquIdentity.Text;
+                drEqu["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";                
+                drEqu["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                drEqu["MODIFIEDBY"] = CurrentUser.PassportID;
             }
         }
 
@@ -68,17 +62,19 @@ namespace SQMS.Application.Views.Basedata
             if (this.ID.Length == 0)
             {
                 //新增
-                this.txtOpCode.Text = srv.GenerateCode();
+                this.txtEquCode.Text = Service.GenerateCode();
             }
             else
             {
                 //编辑
-                DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
-                if (drOP != null)
+                DataRow drEqu = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
+                if (drEqu != null)
                 {
-                    this.txtOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
-                    this.txtOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
-                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
+                    this.txtEquCode.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUCODE"]);
+                    this.txtEquName.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUNAME"]);
+                    this.txtEquIdentity.Text = ConvertUtil.ToStringOrDefault(drEqu["IDENTIFY"]);
+                    this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drEqu["ISVOID"]).Equals("Y") ? true : false;
+                    this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drEqu["MEMO"]);
                 }
             }
         }
@@ -90,7 +86,7 @@ namespace SQMS.Application.Views.Basedata
         /// <param name="e"></param>
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
         {
-            srv = Service as OperationService;
+            //srv = Service as OperationService;
         }
 
 
@@ -99,14 +95,14 @@ namespace SQMS.Application.Views.Basedata
             try
             {
                 this.GetViewData();
-                this.srv.Save(this.ViewData);
+                this.Service.Save(this.ViewData);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            Response.Redirect(String.Format("OperationView.aspx?p=operationview&id={0}", this.ID));
+            Response.Redirect(String.Format("EquipmentView.aspx?p=equview&id={0}", this.ID));
         }
 
         public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -114,15 +110,14 @@ namespace SQMS.Application.Views.Basedata
             try
             {
                 this.GetViewData();
-                this.srv.Save(this.ViewData);
+                this.Service.Save(this.ViewData);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            Response.Redirect("OperationEdit.aspx?p=operationnew");
+            Response.Redirect("EquipmentEdit.aspx?p=equnew");
         }
     }
-
 }

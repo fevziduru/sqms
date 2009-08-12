@@ -76,5 +76,28 @@ namespace SQMS.Services
             }
         }
 
+        public override void DeleteByKey(object key)
+        {
+            try
+            {
+                DefaultSession.ExecuteCommand("update " + BOName + " set isvoid='Y' where resid=:resid", key.ToString());
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void ActiveByKey(object key)
+        {
+            try
+            {
+                DefaultSession.ExecuteCommand("update " + BOName + " set isvoid='N' where resid=:resid", key.ToString());
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

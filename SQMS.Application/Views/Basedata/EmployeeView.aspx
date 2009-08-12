@@ -11,13 +11,13 @@
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button Width="110" runat="server" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/>&nbsp;&nbsp;
-                    <asp:Button Width="110" runat="server" ID="Button3" Text="编辑" OnClick="btnEdit_Click"/>
+                    <asp:Button Width="110" runat="server" ID="Button4" Text="新增" OnClick="btnNew_Click"/>&nbsp;&nbsp;
+                    <asp:Button Width="110" runat="server" ID="Button3" Text="编辑" OnClick="btnEdit_Click"/>&nbsp;&nbsp;
+                    <asp:Button Width="110" runat="server" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/>
                 </fieldset>
             </td>
         </tr>
-    </table>
-    
+    </table>    
     <br />
     
      <fieldset style="font-weight:bold;font-size:11pt">
@@ -114,8 +114,9 @@
     <table width="100%">
         <tr>
             <td align="center">
-                <asp:Button Width="110" runat="server" ID="btnDelete" Text="删除" OnClick="btnDelete_OnClick"/>&nbsp;&nbsp;
-                <asp:Button Width="110" runat="server" ID="Button2" Text="编辑" OnClick="btnEdit_Click"/>
+                <asp:Button Width="110" runat="server" ID="Button2" Text="新增" OnClick="btnNew_Click"/>&nbsp;&nbsp;
+                    <asp:Button Width="110" runat="server" ID="Button5" Text="编辑" OnClick="btnEdit_Click"/>&nbsp;&nbsp;
+                    <asp:Button Width="110" runat="server" ID="Button6" Text="删除" OnClick="btnDelete_OnClick"/>
             </td>
         </tr>
     </table>

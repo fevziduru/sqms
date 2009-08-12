@@ -31,7 +31,8 @@
                         <td style="width:20%" valign="top" align="left">
                             <asp:TreeView ID="appNav" runat="server" Width="100%" ImageSet="Arrows" 
                                 DataSourceID="SiteMapDataSource1" 
-                                ontreenodedatabound="appNav_TreeNodeDataBound" ShowLines="True">
+                                ontreenodedatabound="appNav_TreeNodeDataBound" ShowLines="True" 
+                                ontreenodepopulate="appNav_TreeNodePopulate">
                                 <ParentNodeStyle Font-Bold="False" />
                                 <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
                                 <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 

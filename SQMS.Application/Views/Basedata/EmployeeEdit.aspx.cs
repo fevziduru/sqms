@@ -34,6 +34,8 @@ namespace SQMS.Application.Views.Basedata
                 if (this.ID.Length == 0)
                 {
                     drEmployee["EMPID"] = Service.GetNextSequenceID();
+                    drEmployee["CREATEDBY"] = CurrentUser.PassportID;
+                    drEmployee["CREATED"] = DateTime.Now;
                 }
                 drEmployee["EMPNAME"] = this.txtEmpName.Text;
                 drEmployee["EMPCODE"] = this.txtEmpCode.Text;
@@ -41,17 +43,15 @@ namespace SQMS.Application.Views.Basedata
                 drEmployee["MOBILE"] = this.txtMobile.Text;
                 drEmployee["DEPTID"] = this.ddlDepartment.SelectedValue;
                 drEmployee["SEX"] = this.ddlSex.SelectedValue;
-                //drEmployee["EQUID"] = this.ddlEquipment.SelectedValue;
                 drEmployee["EQUID"] = this.refEquipment.SelectedValue;
-                //drEmployee["JOBTITLE"] = this.txtJobTitile.Text;
                 drEmployee["ISVOID"] = "N";
                 drEmployee["CONTACTTEL"] = this.txtContactTel.Text;
                 drEmployee["DEGREE"] = this.ddlDegree.SelectedValue;
                 drEmployee["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drEmployee["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
-
-                drEmployee["CREATEDBY"] = CurrentUser.Passport;
-                drEmployee["MODIFIEDBY"] = CurrentUser.Passport;
+                                
+                drEmployee["MODIFIEDBY"] = CurrentUser.PassportID;
+                drEmployee["MODIFIED"] = DateTime.Now;
             }
 
             DataRow drPassport = DataSetUtil.GetFirstRowFromDataSet(ViewData, "PASSPORT");

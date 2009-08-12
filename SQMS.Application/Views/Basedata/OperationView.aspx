@@ -4,13 +4,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div>
-     <table>
+     <table style="width:100%">
         <tr>
-            <td><asp:Button runat="server" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/></td>
-            <td><asp:Button runat="server" ID="Button2" Text="编辑" OnClick="btnEdit_OnClick"/></td>
+            <td>
+                <fieldset>
+                <asp:Button runat="server" ID="Button4" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button2" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/>
+                </fieldset>
+            </td>
         </tr>
     </table>
-    <table>
+    <br />
+    
+    <fieldset>
+    <legend>操作基本信息</legend>
+    <table style="width:100%">
         <tr>
             <td style="width:110px">操作编码：</td>
             <td style="width:330px"><asp:Label ID="lblOpCode" runat="server" ></asp:Label></td>
@@ -23,10 +32,18 @@
                     Height="181px" Width="488px" ></asp:Label></td>
         </tr>
     </table>
-    <table>
+    </fieldset>    
+    <br />
+    
+     <table style="width:100%">
         <tr>
-            <td><asp:Button runat="server" ID="btnDelete" Text="删除" OnClick="btnDelete_OnClick"/></td>
-            <td><asp:Button runat="server" ID="Button3" Text="编辑" OnClick="btnEdit_OnClick"/></td>
+            <td>
+                <fieldset>
+                <asp:Button runat="server" ID="Button3" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button5" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button6" Text="删除" OnClick="btnDelete_OnClick"/>
+                </fieldset>
+            </td>
         </tr>
     </table>
     

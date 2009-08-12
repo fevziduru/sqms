@@ -82,5 +82,10 @@ namespace SQMS.Application.Views.Basedata
         {
             Response.Redirect("EmployeeEdit.aspx?p=employeeedit&id=" + this.ID);
         }
+
+        public void btnNew_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EmployeeEdit.aspx?p=employeenew");
+        }
     }
 }

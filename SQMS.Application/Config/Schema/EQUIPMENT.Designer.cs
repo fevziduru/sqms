@@ -280,6 +280,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
+            private global::System.Data.DataColumn columnISVOID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public EQUIPMENTDataTable() {
                 this.TableName = "EQUIPMENT";
@@ -374,6 +376,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISVOIDColumn {
+                get {
+                    return this.columnISVOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -402,7 +411,7 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EQUIPMENTRow AddEQUIPMENTRow(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY) {
+            public EQUIPMENTRow AddEQUIPMENTRow(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ISVOID) {
                 EQUIPMENTRow rowEQUIPMENTRow = ((EQUIPMENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EQUID,
@@ -413,7 +422,8 @@ namespace SQMS.Application.Config.Schema {
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
-                        MODIFIEDBY};
+                        MODIFIEDBY,
+                        ISVOID};
                 rowEQUIPMENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEQUIPMENTRow);
                 return rowEQUIPMENTRow;
@@ -448,6 +458,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
+                this.columnISVOID = base.Columns["ISVOID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -470,6 +481,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIED);
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
+                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVOID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnEQUID}, true));
                 this.columnEQUID.AllowDBNull = false;
@@ -484,6 +497,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
+                this.columnISVOID.MaxLength = 1;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_EQUIPMENT");
                 this.ExtendedProperties.Add("Generator_UserTableName", "EQUIPMENT");
             }
@@ -733,6 +747,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISVOID {
+                get {
+                    try {
+                        return ((string)(this[this.tableEQUIPMENT.ISVOIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“EQUIPMENT”中列“ISVOID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableEQUIPMENT.ISVOIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMEMONull() {
                 return this.IsNull(this.tableEQUIPMENT.MEMOColumn);
             }
@@ -780,6 +809,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMODIFIEDBYNull() {
                 this[this.tableEQUIPMENT.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISVOIDNull() {
+                return this.IsNull(this.tableEQUIPMENT.ISVOIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISVOIDNull() {
+                this[this.tableEQUIPMENT.ISVOIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -915,6 +954,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
+            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -923,10 +963,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_DEVUSER_0804\".\"EQUIPMENT\" (\"EQUID\", \"EQUCODE\", \"EQUNAME\", \"IDEN" +
-                "TIFY\", \"MEMO\", \"CREATED\", \"CREATEDBY\", \"MODIFIED\", \"MODIFIEDBY\") VALUES (:EQUID," +
-                " :EQUCODE, :EQUNAME, :IDENTIFY, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIE" +
-                "DBY)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_DEVUSER_0804"".""EQUIPMENT"" (""EQUID"", ""EQUCODE"", ""EQUNAME"", ""IDENTIFY"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ISVOID"") VALUES (:EQUID, :EQUCODE, :EQUNAME, :IDENTIFY, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ISVOID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUCODE", global::System.Data.DataRowVersion.Current, false, null));
@@ -937,9 +974,10 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""EQUIPMENT"" SET ""EQUID"" = :EQUID, ""EQUCODE"" = :EQUCODE, ""EQUNAME"" = :EQUNAME, ""IDENTIFY"" = :IDENTIFY, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""EQUID"" = :Original_EQUID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""EQUIPMENT"" SET ""EQUID"" = :EQUID, ""EQUCODE"" = :EQUCODE, ""EQUNAME"" = :EQUNAME, ""IDENTIFY"" = :IDENTIFY, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ISVOID"" = :ISVOID WHERE ((""EQUID"" = :Original_EQUID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUCODE", global::System.Data.DataRowVersion.Current, false, null));
@@ -950,6 +988,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -965,7 +1004,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT EQUID, EQUCODE, EQUNAME, IDENTIFY, MEMO, CREATED, CREATEDBY, MODIFIED, MOD" +
-                "IFIEDBY FROM SQMS_DEVUSER_0804.EQUIPMENT";
+                "IFIEDBY, ISVOID FROM SQMS_DEVUSER_0804.EQUIPMENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1045,7 +1084,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY) {
+        public virtual int Insert(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID) {
             if ((EQUID == null)) {
                 throw new global::System.ArgumentNullException("EQUID");
             }
@@ -1100,6 +1139,12 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
             }
+            if ((ISVOID == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ISVOID));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1119,7 +1164,7 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_EQUID) {
+        public virtual int Update(string EQUID, string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string Original_EQUID) {
             if ((EQUID == null)) {
                 throw new global::System.ArgumentNullException("EQUID");
             }
@@ -1174,11 +1219,17 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
             }
+            if ((ISVOID == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ISVOID));
+            }
             if ((Original_EQUID == null)) {
                 throw new global::System.ArgumentNullException("Original_EQUID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_EQUID));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_EQUID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1199,8 +1250,8 @@ namespace SQMS.Application.Config.Schema.EQUIPMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_EQUID) {
-            return this.Update(Original_EQUID, EQUCODE, EQUNAME, IDENTIFY, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_EQUID);
+        public virtual int Update(string EQUCODE, string EQUNAME, string IDENTIFY, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string Original_EQUID) {
+            return this.Update(Original_EQUID, EQUCODE, EQUNAME, IDENTIFY, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ISVOID, Original_EQUID);
         }
     }
 }
