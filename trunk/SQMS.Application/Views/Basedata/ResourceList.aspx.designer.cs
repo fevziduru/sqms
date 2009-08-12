@@ -11,7 +11,7 @@
 namespace SQMS.Application.Views.Basedata {
     
     
-    public partial class EmployeeList {
+    public partial class ResourceList {
         
         /// <summary>
         /// Button2 控件。
@@ -32,13 +32,22 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// gvEmployeeList 控件。
+        /// Button5 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmployeeList;
+        protected global::System.Web.UI.WebControls.Button Button5;
+        
+        /// <summary>
+        /// gvList 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvList;
         
         /// <summary>
         /// Button3 控件。
@@ -57,5 +66,14 @@ namespace SQMS.Application.Views.Basedata {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button4;
+        
+        /// <summary>
+        /// Button6 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button6;
     }
 }

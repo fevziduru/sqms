@@ -11,25 +11,7 @@
 namespace SQMS.Application.Views.Basedata {
     
     
-    public partial class OperationView {
-        
-        /// <summary>
-        /// Button4 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
-        
-        /// <summary>
-        /// Button2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+    public partial class ResourceEdit {
         
         /// <summary>
         /// Button1 控件。
@@ -41,31 +23,103 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// lblOpCode 控件。
+        /// Button2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOpCode;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// lblOpName 控件。
+        /// txtResName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOpName;
+        protected global::System.Web.UI.WebControls.TextBox txtResName;
         
         /// <summary>
-        /// lblMemo 控件。
+        /// rfvResName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMemo;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvResName;
+        
+        /// <summary>
+        /// txtResCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtResCode;
+        
+        /// <summary>
+        /// rfvResCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvResCode;
+        
+        /// <summary>
+        /// txtResIdentity 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtResIdentity;
+        
+        /// <summary>
+        /// rfvResIdentity 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvResIdentity;
+        
+        /// <summary>
+        /// txtViewName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtViewName;
+        
+        /// <summary>
+        /// rfvResViewName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvResViewName;
+        
+        /// <summary>
+        /// cbIsvoid 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsvoid;
+        
+        /// <summary>
+        /// txtMemo 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMemo;
         
         /// <summary>
         /// Button3 控件。
@@ -77,21 +131,12 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// Button5 控件。
+        /// Button4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
-        
-        /// <summary>
-        /// Button6 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button Button4;
     }
 }

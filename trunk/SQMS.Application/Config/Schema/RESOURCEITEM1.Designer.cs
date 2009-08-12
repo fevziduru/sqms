@@ -532,7 +532,6 @@ namespace SQMS.Application.Config.Schema {
                 this.columnRESNAME.AllowDBNull = false;
                 this.columnRESNAME.MaxLength = 60;
                 this.columnRESTYPE.MaxLength = 60;
-                this.columnLOCATION.AllowDBNull = false;
                 this.columnLOCATION.MaxLength = 600;
                 this.columnISVOID.MaxLength = 1;
                 this.columnMEMO.MaxLength = 2000;
@@ -721,7 +720,12 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string LOCATION {
                 get {
-                    return ((string)(this[this.tableRESOURCEITEM.LOCATIONColumn]));
+                    try {
+                        return ((string)(this[this.tableRESOURCEITEM.LOCATIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“LOCATION”的值为 DBNull。", e);
+                    }
                 }
                 set {
                     this[this.tableRESOURCEITEM.LOCATIONColumn] = value;
@@ -856,6 +860,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetRESTYPENull() {
                 this[this.tableRESOURCEITEM.RESTYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsLOCATIONNull() {
+                return this.IsNull(this.tableRESOURCEITEM.LOCATIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetLOCATIONNull() {
+                this[this.tableRESOURCEITEM.LOCATIONColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1238,7 +1252,7 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(RESTYPE));
             }
             if ((LOCATION == null)) {
-                throw new global::System.ArgumentNullException("LOCATION");
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(LOCATION));
@@ -1336,7 +1350,7 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(RESTYPE));
             }
             if ((LOCATION == null)) {
-                throw new global::System.ArgumentNullException("LOCATION");
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(LOCATION));

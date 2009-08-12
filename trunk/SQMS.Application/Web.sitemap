@@ -15,9 +15,9 @@
           <siteMapNode url="" title="组织机构管理" description="" resourceKey=""/>
           <!--<siteMapNode url="" title="部门管理"  description="" resourceKey=""/>-->
           <siteMapNode url="/Views/Basedata/EmployeeList.aspx?p=employeelist" title="职员管理"  description="" resourceKey="employeelist"/>
-          <siteMapNode url="" title="设备管理"  description="" resourceKey=""/>
+          <siteMapNode url="/Views/Basedata/EquipmentList.aspx?p=equlist" title="设备管理"  description="" resourceKey=""/>
           <siteMapNode url="/Views/Basedata/RoleList.aspx?p=rolelist" title="角色管理"  description="" resourceKey="rolelist"/>
-          <siteMapNode url="" title="资源管理"  description="" resourceKey=""/>
+          <siteMapNode url="/Views/Basedata/ResourceList.aspx?p=reslist" title="资源管理"  description="" resourceKey=""/>
           <siteMapNode url="/Views/Basedata/OperationList.aspx?p=operationlist" title="操作管理"  description="" resourceKey="operationlist"/>
       </siteMapNode>
 

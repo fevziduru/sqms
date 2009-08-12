@@ -11,13 +11,13 @@ using System.Data;
 
 namespace SQMS.Application.Views.Basedata
 {
-    public partial class OperationList : SQMSPage<OperationService>
+    public partial class EquipmentList : SQMSPage<EquipmentService>
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                this.gvList.Attributes.Add("SortExpression", "RESID");
+                this.gvList.Attributes.Add("SortExpression", "EQUID");
                 this.gvList.Attributes.Add("SortDirection", "ASC");
             }
         }
@@ -29,7 +29,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
         {
-            this.ViewData = Service.LoadByCondition("ISVOID='N'");
+            this.ViewData = Service.LoadAll();
         }
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace SQMS.Application.Views.Basedata
                     {
                         DataKey key = this.gvList.DataKeys[Convert.ToInt32(e.CommandArgument)];
                         string id = ConvertUtil.ToStringOrDefault(key.Value);
-                        Response.Redirect("OperationEdit.aspx?p=operationedit&id=" + id);
+                        Response.Redirect("EquipmentEdit.aspx?p=equedit&id=" + id);
                         break;
                     }
                 case "Sort":
@@ -110,20 +110,20 @@ namespace SQMS.Application.Views.Basedata
                     Service.DeleteByKey(ids[i]);
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                //todo:
+                throw ex;
             }
 
             //删除数据后重新加载数据
-            this.ViewData = Service.LoadByCondition("ISVOID='N'");
+            this.ViewData = Service.LoadAll();
             this.gvList.DataSource = this.ViewData;
             this.gvList.DataBind();
         }
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx");
+            Response.Redirect("EquipmentEdit.aspx?p=equnew");
         }
     }
 }

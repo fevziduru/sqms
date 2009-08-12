@@ -4,17 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EasyDev.Presentation;
-using SQMS.Services;
-using EasyDev.BL.Services;
 using EasyDev.SQMS;
-using System.Data;
+using SQMS.Services;
 using EasyDev.Util;
+using System.Data;
 
 namespace SQMS.Application.Views.Basedata
 {
-
-    public partial class OperationView : SQMSPage<OperationService>
+    public partial class EquipmentView : SQMSPage<EquipmentService>
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,12 +25,15 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
         {
-            DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
-            if (drOP != null)
+            DataRow drEqu = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
+
+            if (drEqu != null)
             {
-                this.lblOpCode.Text = ConvertUtil.ToStringOrDefault(drOP["OPCODE"]);
-                this.lblOpName.Text = ConvertUtil.ToStringOrDefault(drOP["OPNAME"]);
-                this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drOP["MEMO"]);
+                this.lblEquCode.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUCODE"]);
+                this.lblEquName.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUNAME"]);
+                this.lblEquIdentify.Text = ConvertUtil.ToStringOrDefault(drEqu["IDENTIFY"]);
+                this.lblIsvoid.Text = ConvertUtil.ToStringOrDefault(drEqu["ISVOID"]).Equals("Y") ? "禁用" : "启用";
+                this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drEqu["MEMO"]);
             }
         }
 
@@ -46,17 +46,17 @@ namespace SQMS.Application.Views.Basedata
         {
             Service.DeleteByKey(this.ID);
 
-            Response.Redirect("OperationList.aspx?p=operationlist");
+            Response.Redirect("EquipmentList.aspx?p=equlist");
         }
 
         public void btnEdit_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx?p=operationedit&id=" + this.ID);
+            Response.Redirect("EquipmentEdit.aspx?p=equedit&id=" + this.ID);
         }
 
         public void btnNew_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx?p=operationnew");
+            Response.Redirect("EquipmentEdit.aspx?p=equnew");
         }
     }
 }

@@ -11,16 +11,16 @@
 namespace SQMS.Application.Views.Basedata {
     
     
-    public partial class OperationView {
+    public partial class EquipmentView {
         
         /// <summary>
-        /// Button4 控件。
+        /// Button5 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
         /// Button2 控件。
@@ -41,22 +41,40 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// lblOpCode 控件。
+        /// lblEquCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOpCode;
+        protected global::System.Web.UI.WebControls.Label lblEquCode;
         
         /// <summary>
-        /// lblOpName 控件。
+        /// lblEquName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOpName;
+        protected global::System.Web.UI.WebControls.Label lblEquName;
+        
+        /// <summary>
+        /// lblEquIdentify 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEquIdentify;
+        
+        /// <summary>
+        /// lblIsvoid 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIsvoid;
         
         /// <summary>
         /// lblMemo 控件。
@@ -68,24 +86,6 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Label lblMemo;
         
         /// <summary>
-        /// Button3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
-        /// Button5 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
-        
-        /// <summary>
         /// Button6 控件。
         /// </summary>
         /// <remarks>
@@ -93,5 +93,23 @@ namespace SQMS.Application.Views.Basedata {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button6;
+        
+        /// <summary>
+        /// Button4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button4;
+        
+        /// <summary>
+        /// Button3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
     }
 }

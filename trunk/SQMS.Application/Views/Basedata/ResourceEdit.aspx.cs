@@ -4,19 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EasyDev.Presentation;
-using SQMS.Services;
-using EasyDev.BL.Services;
 using EasyDev.SQMS;
-using System.Data;
+using SQMS.Services;
 using EasyDev.Util;
+using System.Data;
 
 namespace SQMS.Application.Views.Basedata
 {
-
-    public partial class OperationEdit : SQMSPage<OperationService>
+    public partial class ResourceEdit : SQMSPage<ResourceService>
     {
-        private OperationService srv = null;
+        private ResourceService srv = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,26 +22,27 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void GetViewData()
         {
-            DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(ViewData, "OPERATION");
+            DataRow drRes = DataSetUtil.GetFirstRowFromDataSet(ViewData, Service.BOName);
+                        
 
-            
-
-            if (drOP != null)
+            if (drRes != null)
             {
-                if (this.ID.Length == 0)
+                if (this.ID.Length == 0)    //新增
                 {
                     this.ID = Service.GetNextSequenceID();
-                    drOP["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
-                    drOP["CREATEDBY"] = CurrentUser.PassportID;
+                    drRes["CREATED"] = DateTime.Now;
+                    drRes["CREATEDBY"] = CurrentUser.PassportID;
                 }
 
-                drOP["OPID"] = this.ID;
-                drOP["OPCODE"] = this.txtOpCode.Text;
-                drOP["OPNAME"] = this.txtOpName.Text;
-                drOP["MEMO"] = this.txtMemo.Text;
-                                
-                drOP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
-                drOP["MODIFIEDBY"] = CurrentUser.PassportID;
+                drRes["RESID"] = this.ID;
+                drRes["RESCODE"] = this.txtResCode.Text;
+                drRes["RESNAME"] = this.txtResName.Text;
+                drRes["VIEWNAME"] = this.txtViewName.Text;
+                drRes["MEMO"] = this.txtMemo.Text;
+                drRes["RESIDENTITY"] = this.txtResIdentity.Text;
+                drRes["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
+                drRes["MODIFIED"] = DateTime.Now;
+                drRes["MODIFIEDBY"] = CurrentUser.PassportID;
             }
         }
 
@@ -68,17 +66,20 @@ namespace SQMS.Application.Views.Basedata
             if (this.ID.Length == 0)
             {
                 //新增
-                this.txtOpCode.Text = srv.GenerateCode();
+                this.txtResCode.Text = Service.GenerateCode();
             }
             else
             {
                 //编辑
-                DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
-                if (drOP != null)
+                DataRow drRes = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
+                if (drRes != null)
                 {
-                    this.txtOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
-                    this.txtOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
-                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
+                    this.txtResCode.Text = ConvertUtil.ToStringOrDefault(drRes["RESCODE"]);
+                    this.txtResName.Text = ConvertUtil.ToStringOrDefault(drRes["RESNAME"]);
+                    this.txtResIdentity.Text = ConvertUtil.ToStringOrDefault(drRes["RESIDENTITY"]);
+                    this.txtViewName.Text = ConvertUtil.ToStringOrDefault(drRes["VIEWNAME"]);
+                    this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drRes["ISVOID"]).Equals("Y") ? true : false;
+                    this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drRes["MEMO"]);
                 }
             }
         }
@@ -90,7 +91,7 @@ namespace SQMS.Application.Views.Basedata
         /// <param name="e"></param>
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
         {
-            srv = Service as OperationService;
+            srv = Service as ResourceService;
         }
 
 
@@ -106,7 +107,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect(String.Format("OperationView.aspx?p=operationview&id={0}", this.ID));
+            Response.Redirect(String.Format("ResourceView.aspx?p=resview&id={0}", this.ID));
         }
 
         public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -121,8 +122,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect("OperationEdit.aspx?p=operationnew");
+            Response.Redirect("ResourceEdit.aspx?p=resnew");
         }
     }
-
 }

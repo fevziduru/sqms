@@ -9,6 +9,7 @@ using System.Web.Security;
 using EasyDev.Util;
 using EasyDev.SQMS;
 using SQMS.Application.HtmlHelper;
+using System.Threading;
 
 namespace SQMS.Application.Views.Security
 {
@@ -25,7 +26,7 @@ namespace SQMS.Application.Views.Security
             {
                 FormsAuthentication.SignOut();
                 Session.Remove("USER_INFO");
-
+                Thread.CurrentPrincipal = null;
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, null);
                 cookie.Expires = DateTime.Now.AddMinutes(-1);
                 Response.Cookies.Add(cookie);
