@@ -70,18 +70,18 @@ namespace SQMS.Application.Masters
 
         protected void appNav_TreeNodeDataBound(object sender, TreeNodeEventArgs e)
         {
-            SiteMapNode smn = e.Node.DataItem as SiteMapNode;
+            //SiteMapNode smn = e.Node.DataItem as SiteMapNode;
             
-            if (smn != null)
-            {
-                DataRow[] keys = CurrentUser.Permissions.Select("residentity='" + smn.ResourceKey + "'");
-                if (keys.Length == 0)
-                { 
-                    //TODO:没有被授权，不能访问
-                    e.Node.NavigateUrl = "javascript:void(0);";
+            //if (smn != null)
+            //{
+            //    DataRow[] keys = CurrentUser.Permissions.Select("residentity='" + smn.ResourceKey + "'");
+            //    if (keys.Length == 0)
+            //    { 
+            //        //TODO:没有被授权，不能访问
+            //        e.Node.NavigateUrl = "javascript:void(0);";
                     
-                }
-            }
+            //    }
+            //}
         }
 
         protected void appNav_TreeNodePopulate(object sender, TreeNodeEventArgs e)
