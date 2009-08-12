@@ -1,10 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Map.ascx.cs" Inherits="SQMS.Application.Views.Components.Map" %>
+
 <script type="text/javascript" src="../../Resources/Scripts/Common/cookie.js"></script>
+
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"
     type="text/javascript"></script>
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/Wrapper.js" type="text/javascript"></script>
-
 <div>
     <div id="map_canvas" style="height: 600px">
     </div>
@@ -117,6 +118,7 @@
     function showRequestNum(num) {
         document.getElementById("spanRequestNum").innerHTML = num;
     }
+    
     Sys.Application.add_load(initMap);
     Sys.Application.add_unload(GUnload);
 </script>

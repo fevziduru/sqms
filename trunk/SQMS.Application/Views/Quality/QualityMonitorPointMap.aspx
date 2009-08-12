@@ -24,7 +24,82 @@
         .right
         {
         }
+        .more_info
+        {
+            float: left;
+        }
     </style>
+
+    <script type="text/javascript">
+        function openMoreInfo(url) {
+            var topWindow = window.parent;
+            while (topWindow.parent && topWindow.parent != topWindow) {
+                try {
+                    if (topWindow.parent.document.domain != document.domain)
+                        break;
+                    if (topWindow.parent.document.getElementsByTagName('frameset').length > 0)
+                        break;
+                }
+                catch (e) {
+                    break;
+                }
+                topWindow = topWindow.parent;
+            }
+            var topDocument = topWindow.document;
+            var divMore = topDocument.getElementById("divMoreInfo");
+            var iframeMore = topDocument.getElementById("iframeMoreInfo");
+            if (!divMore) {
+                var closeMoreText = topDocument.createTextNode("关闭");
+                var lnkMoreClose = topDocument.createElement('a');
+                lnkMoreClose.href = "javascript:void(0);";
+                lnkMoreClose.appendChild(closeMoreText);
+                var divMoreClose = topDocument.createElement('div');
+                divMoreClose.style.cssText = "text-align:right;";
+                divMoreClose.appendChild(lnkMoreClose);
+                divMore = topDocument.createElement('div');
+                divMore.id = "divMoreInfo";
+                divMore.style.cssText = 'margin:0;' +
+		            'padding:0;' +
+		            'border:0;' +
+		            'background-color:#4D81BD;' +
+		            'background-image:none;' ;
+                divMore.style.position = "absolute";
+                divMore.style.top = "0px";
+                divMore.style.left = "0px";
+                divMore.style.width = "100%";
+                divMore.style.zIndex = 999;
+                divMore.appendChild(divMoreClose);
+                topDocument.body.appendChild(divMore);
+
+                $addHandler(lnkMoreClose, "click", function() {this.parentElement.parentElement.style.display = 'none'; });
+            }
+            if (!iframeMore) {
+                iframeMore = topDocument.createElement('iframe');
+                iframeMore.id = "iframeMoreInfo";
+                iframeMore.frameborder = 0;
+                iframeMore.style.width = "100%";
+                divMore.appendChild(iframeMore);
+            }
+            
+            if (divMore.style.display == 'none') {
+                divMore.style.display = '';
+            }
+            divMore.style.height = window.screen.availHeight;
+            iframeMore.style.height = window.screen.availHeight;
+            iframeMore.src = url;
+
+        }
+        function closeMoreInfo() {
+            var divMore = document.getElementById("divMoreInfo");
+            if (!divMore) {
+                return;
+            }
+            if (divMore.style.display != 'none') {
+                divMore.style.display = 'none';
+            }
+        }
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -54,7 +129,7 @@
                 <span><span>应急处理责任人：</span><span><asp:Label ID="LabelEmergencyMan" runat="server"></asp:Label></span></span></div>
         </div>
         <div>
-            <asp:HyperLink ID="LinkMore" runat="server" Text="更多信息" Target="_blank"></asp:HyperLink></div>
+            <asp:HyperLink ID="LinkMore" runat="server" Text="更多信息"></asp:HyperLink></div>
     </div>
     </form>
 </body>

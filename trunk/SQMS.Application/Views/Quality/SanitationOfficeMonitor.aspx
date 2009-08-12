@@ -60,7 +60,7 @@
                         <asp:Table ID="TableQualityPoint" runat="server">
                             <asp:TableHeaderRow>
                                 <asp:TableHeaderCell Text="监控点" />
-                                <asp:TableHeaderCell Text="环卫公司" />
+                                <asp:TableHeaderCell Text="负责人" />
                             </asp:TableHeaderRow>
                         </asp:Table>
                     </ContentTemplate>

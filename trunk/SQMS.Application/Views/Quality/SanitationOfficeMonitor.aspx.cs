@@ -139,6 +139,7 @@ namespace SQMS.Application.Views.Quality
                 TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
                 this.TreeViewProject.Nodes.Add(node);
             }
+            this.UpdatePanelProjectTree.Update();
         }
         //TODO：修改此处
         protected void DropDownListProjectManager_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,7 +154,7 @@ namespace SQMS.Application.Views.Quality
                 dt = this.svcProject.GetProjectListByOrg(this.DropDownListProjectManager.SelectedValue);
             }
             this.bindProjectTreeView(dt);
-            this.UpdatePanelProjectTree.Update();
+            this.bindMonitorPointTable(new DataTable());
         }
 
     }
