@@ -104,6 +104,11 @@
       <DependentUpon>EQUIPMENT.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Config\Schema\MENU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MENU.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\MPASSIGNMENT1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -555,6 +560,17 @@
     <None Include="Config\Schema\EQUIPMENT.xss">
       <DependentUpon>EQUIPMENT.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\MENU.xsc">
+      <DependentUpon>MENU.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MENU.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MENU.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\MENU.xss">
+      <DependentUpon>MENU.xsd</DependentUpon>
     </None>
     <None Include="Config\Schema\MPASSIGNMENT.xsc">
       <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
