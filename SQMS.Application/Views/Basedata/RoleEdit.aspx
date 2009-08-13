@@ -38,13 +38,21 @@
         </tr>    
     </table>
     </div>
-    </fieldset>    
     <br />
     
 <fieldset>
 <legend>角色基本信息</legend>
 <table style="width:100%">
     <tr>
+    <td Width="110">角色名称：</td>
+        <td style="width:330px">
+            <asp:TextBox Width="210" ID="txtRoleName" runat="server" ></asp:TextBox><span style="color:Red">*</span>
+            <asp:RequiredFieldValidator ID="rfvRoleName" runat="server" 
+                    ControlToValidate="txtRoleName" 
+                    SetFocusOnError="true"
+                    ErrorMessage="角色名称必填"
+                    Display="Dynamic" ></asp:RequiredFieldValidator>
+        </td>
         <td Width="110">角色编码：</td>
         <td style="width:330px">
             <asp:TextBox Width="210" ID="txtRoleCode" runat="server" ></asp:TextBox><span style="color:Red">*</span>
@@ -54,20 +62,14 @@
                     ErrorMessage="角色编码必填"
                     Display="Dynamic"></asp:RequiredFieldValidator>
         </td>
-        <td Width="110">角色名称：</td>
-        <td style="width:330px">
-            <asp:TextBox Width="210" ID="txtRoleName" runat="server" ></asp:TextBox><span style="color:Red">*</span>
-            <asp:RequiredFieldValidator ID="rfvRoleName" runat="server" 
-                    ControlToValidate="txtRoleName" 
-                    SetFocusOnError="true"
-                    ErrorMessage="角色名称必填"
-                    Display="Dynamic" ></asp:RequiredFieldValidator>
-        </td>
+        
     </tr>
     <tr>
-        <td>状态：</td>
-        <td colspan="3"><asp:CheckBox ID="cbIsVoid" runat="server" Text="是否禁用" /></td>
-    </tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:CheckBox ID="cbIsvoid" runat="server" Text="禁用" />
+            </td>
+        </tr>
     <tr>
         <td>备注：</td>
         <td colspan="3"><asp:TextBox ID="txtMemo" runat="server" Height="98px" TextMode="MultiLine" 

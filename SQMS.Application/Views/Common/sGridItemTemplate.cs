@@ -58,14 +58,20 @@ namespace SQMS.Application.Views.Common
                     container.Controls.Add(check2);
                     break;
                 case DataControlRowType.EmptyDataRow:
-                    Label lbl1 = new Label();
-                    lbl1.Text = "hresname";
-                    lbl1.Text = "";
-                    HiddenField hid = new HiddenField();
-                    hid.ID = "hresid";
-                    hid.Value = "";
-                    container.Controls.Add(lbl1);
-                    container.Controls.Add(hid);
+                    CheckBox check3 = new CheckBox();
+                    check3.ID = idName;
+                    check3.AutoPostBack = false;//false
+                    check3.Enabled = false;
+                    check3.CheckedChanged += new EventHandler(check_CheckedChanged);
+                    container.Controls.Add(check3);
+                    //Label lbl1 = new Label();
+                    //lbl1.Text = "hresname";
+                    //lbl1.Text = "";
+                    //HiddenField hid = new HiddenField();
+                    //hid.ID = "hresid";
+                    //hid.Value = "";
+                    //container.Controls.Add(lbl1);
+                    //container.Controls.Add(hid);
                     break;
                 default:
                     break;

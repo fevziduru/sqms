@@ -32,24 +32,6 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
-        /// txtRoleCode 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRoleCode;
-        
-        /// <summary>
-        /// rfvRoleCode 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRoleCode;
-        
-        /// <summary>
         /// txtRoleName 控件。
         /// </summary>
         /// <remarks>
@@ -68,13 +50,31 @@ namespace SQMS.Application.Views.Basedata {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRoleName;
         
         /// <summary>
-        /// cbIsVoid 控件。
+        /// txtRoleCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbIsVoid;
+        protected global::System.Web.UI.WebControls.TextBox txtRoleCode;
+        
+        /// <summary>
+        /// rfvRoleCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRoleCode;
+        
+        /// <summary>
+        /// cbIsvoid 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsvoid;
         
         /// <summary>
         /// txtMemo 控件。

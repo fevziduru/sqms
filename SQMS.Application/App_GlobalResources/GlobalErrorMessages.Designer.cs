@@ -47,8 +47,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   为所有资源查找重写当前线程的 CurrentUICulture 属性，
-        ///   方法是使用此强类型资源类。
+        ///   为使用此强类型资源类的所有资源查找重写当前线程的 CurrentUICulture 
+        /// 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -75,6 +75,15 @@ namespace Resources {
         internal static string _login_failed {
             get {
                 return ResourceManager.GetString("_login_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 缺少权限点参数 的本地化字符串。
+        /// </summary>
+        internal static string _missing_permission_argument {
+            get {
+                return ResourceManager.GetString("_missing_permission_argument", resourceCulture);
             }
         }
         

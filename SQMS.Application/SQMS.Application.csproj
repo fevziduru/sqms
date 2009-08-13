@@ -329,13 +329,6 @@
     <Compile Include="Views\Components\PopupReference\SelectTemplateField.ascx.designer.cs">
       <DependentUpon>SelectTemplateField.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\External\ErrorTest.aspx.cs">
-      <DependentUpon>ErrorTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\External\ErrorTest.aspx.designer.cs">
-      <DependentUpon>ErrorTest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Project\ProjectEdit.aspx.cs">
       <DependentUpon>ProjectEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -811,7 +804,6 @@
     <Content Include="Views\Basedata\ResourceList.aspx" />
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
-    <Content Include="Views\External\ErrorTest.aspx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />

@@ -107,7 +107,7 @@
             <td>√‹¬Î£∫</td>
             <td>
                 <asp:TextBox ID="txtPassword"  Width="210" runat="server" TextMode="Password"></asp:TextBox>
-                <asp:Label ID="lblPassword" runat="server" Text="******"></asp:Label>
+                <asp:Label ID="lblPassword" runat="server"></asp:Label>
             </td>
         </tr>
         <tr runat="server" id="trConfirm">

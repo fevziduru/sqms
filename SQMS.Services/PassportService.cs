@@ -81,6 +81,7 @@ namespace SQMS.Services
 
                     ui = new UserInfo();
                     ui.Passport = name;
+                    ui.RoleID = role;
                     ui.PassportID = ConvertUtil.ToStringOrDefault(drPassport["PASSPORTID"]);
                     ui.EmployeeID = ConvertUtil.ToStringOrDefault(drPassport["EMPID"]);
                     ui.OrganizationID = ConvertUtil.ToStringOrDefault(drEmployee["orgid"]);

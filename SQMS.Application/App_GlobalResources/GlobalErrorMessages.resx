@@ -123,6 +123,9 @@
   <data name="_login_failed" xml:space="preserve">
     <value>用户登录时出现了异常</value>
   </data>
+  <data name="_missing_permission_argument" xml:space="preserve">
+    <value>缺少权限点参数</value>
+  </data>
   <data name="_no_permission" xml:space="preserve">
     <value>当前角色的用户没有资源访问权限</value>
   </data>

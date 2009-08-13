@@ -18,6 +18,7 @@ namespace SQMS.Application.Views.Basedata
     public partial class RoleEdit : SQMSPage<RoleService>
     {
         private RoleService srv = null;
+        private PassportService passportService = null;
         private Common.sGridItemList sGridItemlist;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace SQMS.Application.Views.Basedata
 
                 drRole["ROLECODE"] = this.txtRoleCode.Text;
                 drRole["ROLENAME"] = this.txtRoleName.Text;
-                drRole["ISVOID"] = this.cbIsVoid.Checked ? "Y" : "N";
+                drRole["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
                 drRole["MEMO"] = this.txtMemo.Text;
             }
 
@@ -86,7 +87,7 @@ namespace SQMS.Application.Views.Basedata
                     this.txtRoleCode.Text = ConvertUtil.ToStringOrDefault(drRole["ROLECODE"]);
                     this.txtRoleName.Text = ConvertUtil.ToStringOrDefault(drRole["ROLENAME"]);
                     this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drRole["MEMO"]);
-                    this.cbIsVoid.Checked = ConvertUtil.ToStringOrDefault(drRole["ISVOID"]).Equals("Y") ? true : false;
+                    this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drRole["ISVOID"]).Equals("Y") ? true : false;
                 }
             }
 
@@ -101,6 +102,7 @@ namespace SQMS.Application.Views.Basedata
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
         {
             srv = Service as RoleService;
+            passportService = EasyDev.BL.Services.ServiceManagerFactory.CreateNativeServiceManager().CreateService<PassportService>();
 
             sGridItemlist = new Common.sGridItemList(srv, this.ID);
 
@@ -206,6 +208,12 @@ namespace SQMS.Application.Views.Basedata
                 this.GetViewData();
                 this.srv.Save(this.ViewData);
                 this.SaveRolePermission();
+
+                //如果当前登录用户的角色与修改的角色相同时要更新当前登录用户的授权信息
+                if (CurrentUser.RoleID.Equals(this.ID))
+                {
+                    CurrentUser.Permissions = passportService.GetUserPermission(CurrentUser.Passport, this.ID);
+                }
             }
             catch (Exception ex)
             {
@@ -222,6 +230,12 @@ namespace SQMS.Application.Views.Basedata
                 this.GetViewData();
                 this.srv.Save(this.ViewData);
                 this.SaveRolePermission();
+
+                //如果当前登录用户的角色与修改的角色相同时要更新当前登录用户的授权信息
+                if (CurrentUser.RoleID.Equals(this.ID))
+                {
+                    CurrentUser.Permissions = passportService.GetUserPermission(CurrentUser.Passport, this.ID);
+                }
             }
             catch (Exception ex)
             {
