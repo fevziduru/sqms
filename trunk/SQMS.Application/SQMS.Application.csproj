@@ -336,6 +336,20 @@
     <Compile Include="Views\External\ErrorTest.aspx.designer.cs">
       <DependentUpon>ErrorTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Project\ProjectEdit.aspx.cs">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Project\ProjectEdit.aspx.designer.cs">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Project\ProjectList.aspx.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Project\ProjectList.aspx.designer.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -356,6 +370,20 @@
     </Compile>
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Road\RaodEdit.aspx.cs">
+      <DependentUpon>RaodEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Road\RaodEdit.aspx.designer.cs">
+      <DependentUpon>RaodEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Road\RoadList.aspx.cs">
+      <DependentUpon>RoadList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Road\RoadList.aspx.designer.cs">
+      <DependentUpon>RoadList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -784,8 +812,12 @@
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
     <Content Include="Views\External\ErrorTest.aspx" />
+    <Content Include="Views\Project\ProjectEdit.aspx" />
+    <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
+    <Content Include="Views\Road\RaodEdit.aspx" />
+    <Content Include="Views\Road\RoadList.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AjaxServices\" />
