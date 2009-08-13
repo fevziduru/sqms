@@ -213,6 +213,13 @@
     <Compile Include="Views\Basedata\RoleAssignmentEdit.aspx.designer.cs">
       <DependentUpon>RoleAssignmentEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Common\Portal.aspx.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Common\Portal.aspx.designer.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\sGridItemList.cs" />
     <Compile Include="Views\External\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -804,6 +811,7 @@
     <Content Include="Views\Basedata\ResourceList.aspx" />
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
+    <Content Include="Views\Common\Portal.aspx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
