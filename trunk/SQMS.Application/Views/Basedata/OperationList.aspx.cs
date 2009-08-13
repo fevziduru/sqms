@@ -123,7 +123,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx");
+            Response.Redirect("OperationEdit.aspx?p=operationnew");
         }
     }
 }

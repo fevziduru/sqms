@@ -9,6 +9,9 @@ namespace EasyDev.SQMS
     [Serializable]
     public class UserInfo
     {
+        public string Password { get; set; }
+        public string RoleID { get; set; }
+        public string RoleName { get; set; }
         public string Passport { get; set; }
         public string EmployeeName { get; set; }
         public DataTable Roles { get; set; }

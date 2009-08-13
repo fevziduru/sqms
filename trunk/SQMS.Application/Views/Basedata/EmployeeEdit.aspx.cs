@@ -72,34 +72,32 @@ namespace SQMS.Application.Views.Basedata
 
                     this.ID = ConvertUtil.ToStringOrDefault(drEmployee["EMPID"]);
                 }
-            }
 
-            if (ConvertUtil.ToStringOrDefault(drPassport["PASSPORT"]).Length > 0)
-            {
-                //从界面取得角色数据
-                DataTable dtRoles = this.ViewData.Tables["USERROLE"];
-                if (dtRoles != null)
+                if (ConvertUtil.ToStringOrDefault(drPassport["PASSPORT"]).Length > 0)
                 {
-                    dtRoles.Rows.Clear();
-                }
-                foreach (ListItem item in this.cblRoles.Items)
-                {
-                    if (item.Selected)
+                    //从界面取得角色数据
+                    DataTable dtRoles = this.ViewData.Tables["USERROLE"];
+                    if (dtRoles != null)
                     {
-                        DataRow drRole = dtRoles.NewRow();
-                        drRole["passportid"] = drPassport["passportid"];
-                        drRole["roleid"] = item.Value;
-                        dtRoles.Rows.Add(drRole);
+                        dtRoles.Rows.Clear();
+                    }
+                    foreach (ListItem item in this.cblRoles.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            DataRow drRole = dtRoles.NewRow();
+                            drRole["passportid"] = drPassport["passportid"];
+                            drRole["roleid"] = item.Value;
+                            dtRoles.Rows.Add(drRole);
+                        }
                     }
                 }
+                else
+                {
+                    this.ViewData.Tables.Remove("PASSPORT");
+                    this.ViewData.Tables.Remove("USERROLE");
+                }
             }
-            else
-            {
-                this.ViewData.Tables.Remove("PASSPORT");
-                this.ViewData.Tables.Remove("USERROLE");
-            }
-
-            
         }
 
         /// <summary>
@@ -181,7 +179,15 @@ namespace SQMS.Application.Views.Basedata
                 /////////////////////////
                 this.lblPassport.Text = this.txtPassport.Text = srv.GetPassport(ConvertUtil.ToStringOrDefault(drEmployee["EMPID"]));
 
-                this.txtPassword.Attributes["value"] = "******";
+                if (this.lblPassport.Text.Length > 0)
+                {
+                    this.txtPassword.Attributes["value"] = "******";
+                }
+                else
+                {
+                    this.cblRoles.Enabled = false;
+                    this.txtPassword.Attributes["value"] = "";
+                }
                 this.trConfirm.Visible = false;
 
                 //////////////////////////

@@ -109,14 +109,21 @@ namespace SQMS.Application.Views.Basedata
                 {
                     Dictionary<string, object> dic = new Dictionary<string, object>();
                     dic.Add("ROLEID", ids[i]);
+
+                    //ResPermission
                     (Service as RoleService).ResPermissionService.DeleteByKeys(dic);
 
+                    //UserRole
+                    (Service as RoleService).UserRoleService.DeleteByKeys(dic);
+
+                    //Role
                     Service.DeleteByKey(ids[i]);
+
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-            	
+                throw ex;
             }
 
             //删除数据后重新加载数据

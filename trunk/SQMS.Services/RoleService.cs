@@ -12,6 +12,8 @@ namespace SQMS.Services
         public OperationService OperationService { get; private set; }
         public ResourceService ResourceService { get; private set; }
         public ResPermissionService ResPermissionService { get; private set; }
+        public UserRoleService UserRoleService { get; private set; }
+        //public PassportService PassportService { get; private set; }
 
         protected override void Initialize()
         {
@@ -21,7 +23,8 @@ namespace SQMS.Services
             this.OperationService = ServiceManager.CreateService<OperationService>();
             this.ResourceService = ServiceManager.CreateService<ResourceService>();
             this.ResPermissionService = ServiceManager.CreateService<ResPermissionService>();
-
+            //this.PassportService = ServiceManager.CreateService<PassportService>();
+            this.UserRoleService = ServiceManager.CreateService<UserRoleService>();
         }
 
         public DataSet GetRoleByEmployeeID(string empid)
