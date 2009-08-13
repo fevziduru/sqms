@@ -19,6 +19,14 @@ namespace EasyDev.SQMS
     {
         private ILog logger = LogManager.GetLogger(typeof(SQMSPage<T>));
 
+        public string ResourceName
+        {
+            get
+            {
+                return ConvertUtil.ToStringOrDefault(Request.QueryString["p"]);
+            }
+        }
+
         public string ID
         {
             get;
@@ -34,7 +42,7 @@ namespace EasyDev.SQMS
         public SQMSPage()
         {
             Initialize();
-        }
+        }        
 
         protected virtual void Initialize()
         {
@@ -74,8 +82,7 @@ namespace EasyDev.SQMS
                 return userinfo;
             }
         }
-
-
+        
         #region 事件
         private static object _saving = new object();
         private static object _saved = new object();
@@ -243,8 +250,7 @@ namespace EasyDev.SQMS
         }
 
         #endregion
-
-       
+               
         #region Page Method
         /// <summary>
         /// 界面元素数据
@@ -370,5 +376,33 @@ namespace EasyDev.SQMS
             //DO NOTHING HERE, IT WILL BE OVERRIDDEN BY SUB CLASS
         }
         #endregion
+
+        /// <summary>
+        /// 判断当前页面（资源）是否被授予指定的操作
+        /// </summary>
+        /// <param name="opname"></param>
+        /// <returns></returns>
+        public bool IsAuthorizedOperation(string opid)
+        {
+            try
+            {
+                if (CurrentUser != null)
+                {
+                    DataRow[] drSet = CurrentUser.Permissions.Select(
+                        string.Format("residentity='{0}' and opid='{1}'", ResourceName, opid));
+
+                    return drSet.Length > 0;
+                }
+                else
+                {
+                    //TODO: UserInfo为空的处理
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@
         onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
-            <asp:TemplateField HeaderStyle-Width="50px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderStyle-Width="30px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                 <HeaderTemplate>
                     <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("RESID") %>' />
                 </HeaderTemplate>

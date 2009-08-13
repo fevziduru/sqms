@@ -55,16 +55,15 @@ namespace SQMS.Application.Views.Basedata
         {
             this.ViewData = srv.LoadByKey(this.ID, true);
 
-            this.ViewData.Merge(srv.ResourceService.GetResourceItemsView(this.DropDownListClass.SelectedValue));
+            this.ViewData.Merge(srv.ResourceService.LoadByCondition("ISVOID='N'"));
 
-            this.ViewData.Merge(srv.ResourceService.GetResourceClass());
+            //this.ViewData.Merge(srv.ResourceService.GetResourceClass());
 
             this.ViewData.Merge(srv.OperationService.LoadByCondition("ISVOID='N'"));
 
-            Dictionary<string, object> d = new Dictionary<string, object>(); 
-            d.Add("ROLEID", this.ID);
-            this.ViewData.Merge(srv.ResPermissionService.LoadByKeys(d));
-
+            //Dictionary<string, object> d = new Dictionary<string, object>(); 
+            //d.Add("ROLEID", this.ID);
+            this.ViewData.Merge(srv.ResPermissionService.LoadByCondition("roleid='"+this.ID+"'"));
         }
 
         /// <summary>
@@ -84,14 +83,14 @@ namespace SQMS.Application.Views.Basedata
                 DataRow drRole = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "ROLE");
                 if (drRole != null)
                 {
-                    this.txtRoleCode.Text = ConvertUtil.EmptyOrString(drRole["ROLECODE"]);
-                    this.txtRoleName.Text = ConvertUtil.EmptyOrString(drRole["ROLENAME"]);
-                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drRole["MEMO"]);
-                    this.cbIsVoid.Checked = ConvertUtil.EmptyOrString(drRole["ISVOID"]).Equals("Y") ? true : false;
+                    this.txtRoleCode.Text = ConvertUtil.ToStringOrDefault(drRole["ROLECODE"]);
+                    this.txtRoleName.Text = ConvertUtil.ToStringOrDefault(drRole["ROLENAME"]);
+                    this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drRole["MEMO"]);
+                    this.cbIsVoid.Checked = ConvertUtil.ToStringOrDefault(drRole["ISVOID"]).Equals("Y") ? true : false;
                 }
-
-                this.ShowGrid();
             }
+
+            this.ShowGrid();
         }
 
         /// <summary>
@@ -118,32 +117,45 @@ namespace SQMS.Application.Views.Basedata
         private void ShowGrid()
         {
             //显示列表
-            DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
+            //DataTable dtRESClass = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCECLASS");
 
-            if (this.DropDownListClass.Items.Count == 1)
-            {
-                foreach (DataRow dr in dtRESClass.Rows)
-                {
-                    this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
-                }
-            }
+            //if (this.DropDownListClass.Items.Count == 1)
+            //{
+            //    foreach (DataRow dr in dtRESClass.Rows)
+            //    {
+            //        this.DropDownListClass.Items.Add(new ListItem(ConvertUtil.EmptyOrString(dr["RESTYPE"]), ConvertUtil.EmptyOrString(dr["RESTYPE"])));
+            //    }
+            //}
 
 
             //清空
             this.sGrid.Columns.Clear();
 
             //添加选框列
-            TemplateField bfd = new TemplateField() ;
-            bfd.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator,"item","item");
-            bfd.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator, "all", "all");
-            this.sGrid.Columns.Add(bfd);
+            //TemplateField bfd = new TemplateField() ;
+            //bfd.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator,"item","item");
+            //bfd.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Separator, "all", "all");
+            //this.sGrid.Columns.Add(bfd);
 
             //添加资源列
-            BoundField bf1 = new BoundField() { DataField = "RESTYPE", HeaderText = "分类", SortExpression = "RESTYPE" };
-            BoundField bf2 = new BoundField() { DataField = "RESID", HeaderText = "功能ID", SortExpression = "RESID" };
+            BoundField bf1 = new BoundField() { DataField = "RESTYPE", HeaderText = "分类", SortExpression = "RESTYPE", Visible = true };
+            bf1.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
+            bf1.ItemStyle.VerticalAlign = VerticalAlign.Middle;
+            //bf1.ItemStyle.BorderStyle = BorderStyle.None;
+
+            BoundField bf2 = new BoundField() { DataField = "resid", HeaderText = "功能标识", SortExpression = "resid", Visible = true};
+            bf2.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+            //TemplateField bf4 = new TemplateField() { HeaderText = "RESID", SortExpression = "RESID" };
+            //bf4.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.EmptyDataRow, "", "");
+            //bf4.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Header, "", "资源名称");
+            //bf4.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            //bf4.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
+            //this.sGrid.Columns.Add(bf4);
+
             BoundField bf3 = new BoundField() { DataField = "RESNAME", HeaderText = "功能点", SortExpression = "RESNAME" };
+            bf3.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
             this.sGrid.Columns.Add(bf1);
-            this.sGrid.Columns.Add(bf2);
+            this.sGrid.Columns.Add(bf2);                        
             this.sGrid.Columns.Add(bf3);
 
             //添加权限列
@@ -151,17 +163,21 @@ namespace SQMS.Application.Views.Basedata
             //int count_op = dtOperation.Rows.Count;
             foreach (DataRow dr in dtOperation.Rows)
             {
-                TemplateField bf = new TemplateField() { HeaderText = ConvertUtil.EmptyOrString(dr["OPNAME"]), SortExpression = "" };
-                bf.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.DataRow, ConvertUtil.EmptyOrString(dr["OPID"]), ConvertUtil.EmptyOrString(dr["OPNAME"]));
-                bf.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Header, ConvertUtil.EmptyOrString(dr["OPID"]), ConvertUtil.EmptyOrString(dr["OPNAME"]));
+                TemplateField bf = new TemplateField() { HeaderText = ConvertUtil.ToStringOrDefault(dr["OPNAME"]), SortExpression = "" };
+                bf.ItemTemplate = sGridItemlist.GetsGridItem(DataControlRowType.DataRow, ConvertUtil.ToStringOrDefault(dr["OPID"]), ConvertUtil.ToStringOrDefault(dr["OPNAME"]));
+                bf.HeaderTemplate = sGridItemlist.GetsGridItem(DataControlRowType.Header, ConvertUtil.ToStringOrDefault(dr["OPID"]), ConvertUtil.ToStringOrDefault(dr["OPNAME"]));
+                bf.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                bf.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
                 this.sGrid.Columns.Add(bf);
             }
 
             //显示GRID
-            DataTable dtRESOURCE = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCEVIEW");
+            DataTable dtRESOURCE = DataSetUtil.GetDataTableFromDataSet(ViewData, "RESOURCEITEM");
+            DataView dvRes = dtRESOURCE.DefaultView;
+            dvRes.Sort = "RESTYPE";
             //int count_res = dtRESOURCE.Rows.Count;
 
-            this.sGrid.DataSource = dtRESOURCE;
+            this.sGrid.DataSource = dvRes.Table;
             this.sGrid.DataBind();
 
             //显示权限设置
@@ -170,7 +186,7 @@ namespace SQMS.Application.Views.Basedata
             {
                 foreach (GridViewRow gvr in this.sGrid.Rows)
                 {
-                    if (gvr.Cells[2].Text == ConvertUtil.EmptyOrString(dr["RESID"]))
+                    if (gvr.Cells[1].Text == ConvertUtil.ToStringOrDefault(dr["RESID"]))
                     {
                         CheckBox cb = gvr.FindControl(ConvertUtil.EmptyOrString(dr["OPID"])) as CheckBox;
                         if (cb != null)
@@ -243,7 +259,7 @@ namespace SQMS.Application.Views.Basedata
                 {
                     Dictionary<string, object> dic = new Dictionary<string, object>();
 
-                    dic.Add("RESID", this.sGrid.Rows[i].Cells[2].Text);//RESID
+                    dic.Add("RESID", this.sGrid.Rows[i].Cells[1].Text);//RESID
                     dic.Add("ROLEID", this.ID);//ROLEID
                     srv.ResPermissionService.DeleteByKeys(dic);
 
@@ -256,14 +272,6 @@ namespace SQMS.Application.Views.Basedata
         {
             
         }
-
-        protected void sGrid_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
-        
-
     }
 
 }

@@ -20,7 +20,7 @@
         onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
-            <asp:TemplateField>
+            <asp:TemplateField HeaderStyle-Width="30" ItemStyle-HorizontalAlign="Center">
                 <HeaderTemplate>
                     <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("OPID") %>' />
                 </HeaderTemplate>
@@ -30,17 +30,17 @@
             </asp:TemplateField>
             <asp:BoundField DataField="OPID" HeaderText="OPID" ReadOnly="True" 
                 SortExpression="OPID" Visible="False" />
-            <asp:HyperLinkField DataNavigateUrlFields="OPID" 
+            <asp:HyperLinkField DataNavigateUrlFields="OPID" HeaderStyle-HorizontalAlign="Left"
                 DataNavigateUrlFormatString="/Views/Basedata/OperationView.aspx?p=operationview&id={0}" 
                 DataTextField="OPNAME" HeaderText="操作名称" SortExpression="OPNAME" />
-            <asp:BoundField DataField="OPCODE" HeaderText="操作编码" 
+            <asp:BoundField DataField="OPCODE" HeaderText="操作编码" HeaderStyle-HorizontalAlign="Left"
                 SortExpression="OPCODE" />       
-            <asp:TemplateField>
+            <asp:TemplateField HeaderText="状态" HeaderStyle-HorizontalAlign="Left" SortExpression="ISVOID">
                 <ItemTemplate>
                     <span><%#Eval("ISVOID").ToString().Equals("Y")?"禁用":"启用" %></span>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:CommandField ShowSelectButton="True" 
+            <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center"
                 SelectText="编辑">
             <ItemStyle Width="60px" />
             </asp:CommandField>

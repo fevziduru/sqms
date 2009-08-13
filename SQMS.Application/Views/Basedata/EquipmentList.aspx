@@ -7,8 +7,8 @@
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button Width="110px" ID="Button1" runat="server" Text="删除" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="Button2" runat="server" Text="新增" onclick="btnNew_Click" />
+                    <asp:Button Width="110px" ID="Button2" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" ID="Button1" runat="server" Text="删除" OnClick="btnDelete_OnClick" />
                 </fieldset>
             </td>
         </tr>
@@ -21,7 +21,7 @@
         onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
-            <asp:TemplateField HeaderStyle-Width="50px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+            <asp:TemplateField HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  HeaderStyle-Width="30px">
                 <HeaderTemplate>
                     <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("EQUID") %>' />
                 </HeaderTemplate>
@@ -54,8 +54,8 @@
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button Width="110px" ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="btnNew" runat="server" Text="新增" onclick="btnNew_Click" />
+                    <asp:Button Width="110px" ID="Button3" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" ID="Button4" runat="server" Text="删除" OnClick="btnDelete_OnClick" />
                 </fieldset>
             </td>
         </tr>
