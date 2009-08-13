@@ -53,7 +53,7 @@ namespace SQMS.Application.Views.Basedata
                     {
                         DataKey key = this.gvList.DataKeys[Convert.ToInt32(e.CommandArgument)];
                         string id = ConvertUtil.ToStringOrDefault(key.Value);
-                        Response.Redirect(String.Format("RoleEdit.aspx?id={0}", id));
+                        Response.Redirect(String.Format("RoleEdit.aspx?p=roleedit&id={0}", id));
                         break;
                     }
                 case "Sort":
@@ -127,7 +127,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RoleEdit.aspx");
+            Response.Redirect("RoleEdit.aspx?p=rolenew");
         }
     }
 }

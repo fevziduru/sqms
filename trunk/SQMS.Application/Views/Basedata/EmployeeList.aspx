@@ -20,7 +20,7 @@
          onrowcommand="GridView1_RowCommand" 
         onpageindexchanging="gvEmployeeList_PageIndexChanging">
         <Columns>
-            <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
                 <HeaderTemplate>
                     <input name="header" onclick='SelectAll("<%=this.gvEmployeeList.ClientID %>")' type="checkbox" value='<%#Eval("EMPID") %>' />
                 </HeaderTemplate>

@@ -36,7 +36,7 @@ namespace SQMS.Services
             {
                 try
                 {
-                    DataTable ds = DefaultSession.GetDataTableFromCommand(@"select RESTYPE,RESNAME,RESID from RESOURCEITEM");
+                    DataTable ds = DefaultSession.GetDataTableFromCommand(@"select RESTYPE,RESNAME,RESID from RESOURCEITEM ORDER BY RESTYPE");
                     ds.TableName = "RESOURCEVIEW";
                     return ds;
                 }

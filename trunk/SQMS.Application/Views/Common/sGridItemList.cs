@@ -46,6 +46,10 @@ namespace SQMS.Application.Views.Common
                     t = new sGridItemTemplate(DataControlRowType.Separator, opname, opid, this.rserv, this.rid, this.cblist);
                     break;
 
+                case DataControlRowType.EmptyDataRow:
+                    t = new sGridItemTemplate(DataControlRowType.EmptyDataRow, opname, opid, this.rserv, this.rid, this.cblist);
+                    break;
+
                 default:
                     t = null;
                     break;

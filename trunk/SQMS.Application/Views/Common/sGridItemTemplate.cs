@@ -57,6 +57,16 @@ namespace SQMS.Application.Views.Common
                     check2.AutoPostBack = false;//false
                     container.Controls.Add(check2);
                     break;
+                case DataControlRowType.EmptyDataRow:
+                    Label lbl1 = new Label();
+                    lbl1.Text = "hresname";
+                    lbl1.Text = "";
+                    HiddenField hid = new HiddenField();
+                    hid.ID = "hresid";
+                    hid.Value = "";
+                    container.Controls.Add(lbl1);
+                    container.Controls.Add(hid);
+                    break;
                 default:
                     break;
             }
@@ -68,7 +78,7 @@ namespace SQMS.Application.Views.Common
             CheckBox cb = sender as CheckBox;
             GridViewRow gvr = cb.Parent.Parent as GridViewRow;
             string opid = cb.ID;
-            string resid = gvr.Cells[2].Text;
+            string resid = gvr.Cells[1].Text;
 
             cblist.Add(new sGridItemCB() { resid = resid, opid = opid, chked = cb.Checked });
         }
