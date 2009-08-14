@@ -31,7 +31,7 @@ namespace SQMS.Services
         {
             try
             {
-                DataSet ds = DefaultSession.GetDataSetFromCommand(@"select p.passportid, r.roleid from role r 
+                DataSet ds = DefaultSession.GetDataSetFromCommand(@"select p.passportid, r.roleid, ur.organizationid from role r 
                     left join userrole ur on r.roleid = ur.roleid
                     left join passport p on p.passportid = ur.passportid
                     left join employee e on e.empid = p.empid

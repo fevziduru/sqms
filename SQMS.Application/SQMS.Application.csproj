@@ -80,12 +80,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Config\Schema\DEPARTMENT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Config\Schema\EMPLOYEE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +109,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Config\Schema\ORGANIZATION.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
     </Compile>
     <Compile Include="Config\Schema\PASSPORT.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -545,20 +544,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Schema\DEPARTMENT.xsc">
-      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="Config\Schema\DEPARTMENT.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DEPARTMENT.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Config\Schema\DEPARTMENT.xss">
-      <DependentUpon>DEPARTMENT.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Config\Schema\EMPLOYEE.xsc">
       <DependentUpon>EMPLOYEE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -569,6 +554,9 @@
       <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Config\Schema\EMPLOYEE.xss">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\ENUMERATION.xsc">
       <DependentUpon>ENUMERATION.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -636,6 +624,17 @@
     <None Include="Config\Schema\OPERATION.xss">
       <DependentUpon>OPERATION.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ORGANIZATION.xsc">
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ORGANIZATION.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ORGANIZATION.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\ORGANIZATION.xss">
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
     </None>
     <None Include="Config\Schema\PASSPORT.xsc">
       <DependentUpon>PASSPORT.xsd</DependentUpon>

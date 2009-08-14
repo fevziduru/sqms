@@ -266,6 +266,10 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnRESCODE;
             
+            private global::System.Data.DataColumn columnRESIDENTITY;
+            
+            private global::System.Data.DataColumn columnVIEWNAME;
+            
             private global::System.Data.DataColumn columnRESNAME;
             
             private global::System.Data.DataColumn columnRESTYPE;
@@ -284,9 +288,7 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
-            private global::System.Data.DataColumn columnVIEWNAME;
-            
-            private global::System.Data.DataColumn columnRESIDENTITY;
+            private global::System.Data.DataColumn columnORGANIZATIONID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public RESOURCEITEMDataTable() {
@@ -329,6 +331,20 @@ namespace SQMS.Application.Config.Schema {
             public global::System.Data.DataColumn RESCODEColumn {
                 get {
                     return this.columnRESCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn RESIDENTITYColumn {
+                get {
+                    return this.columnRESIDENTITY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn VIEWNAMEColumn {
+                get {
+                    return this.columnVIEWNAME;
                 }
             }
             
@@ -396,16 +412,9 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn VIEWNAMEColumn {
+            public global::System.Data.DataColumn ORGANIZATIONIDColumn {
                 get {
-                    return this.columnVIEWNAME;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RESIDENTITYColumn {
-                get {
-                    return this.columnRESIDENTITY;
+                    return this.columnORGANIZATIONID;
                 }
             }
             
@@ -438,11 +447,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RESOURCEITEMRow AddRESOURCEITEMRow(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string VIEWNAME, string RESIDENTITY) {
+            public RESOURCEITEMRow AddRESOURCEITEMRow(string RESID, string RESCODE, string RESIDENTITY, string VIEWNAME, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID) {
                 RESOURCEITEMRow rowRESOURCEITEMRow = ((RESOURCEITEMRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RESID,
                         RESCODE,
+                        RESIDENTITY,
+                        VIEWNAME,
                         RESNAME,
                         RESTYPE,
                         LOCATION,
@@ -452,8 +463,7 @@ namespace SQMS.Application.Config.Schema {
                         CREATEDBY,
                         MODIFIED,
                         MODIFIEDBY,
-                        VIEWNAME,
-                        RESIDENTITY};
+                        ORGANIZATIONID};
                 rowRESOURCEITEMRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRESOURCEITEMRow);
                 return rowRESOURCEITEMRow;
@@ -481,6 +491,8 @@ namespace SQMS.Application.Config.Schema {
             internal void InitVars() {
                 this.columnRESID = base.Columns["RESID"];
                 this.columnRESCODE = base.Columns["RESCODE"];
+                this.columnRESIDENTITY = base.Columns["RESIDENTITY"];
+                this.columnVIEWNAME = base.Columns["VIEWNAME"];
                 this.columnRESNAME = base.Columns["RESNAME"];
                 this.columnRESTYPE = base.Columns["RESTYPE"];
                 this.columnLOCATION = base.Columns["LOCATION"];
@@ -490,8 +502,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
-                this.columnVIEWNAME = base.Columns["VIEWNAME"];
-                this.columnRESIDENTITY = base.Columns["RESIDENTITY"];
+                this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -500,6 +511,10 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnRESID);
                 this.columnRESCODE = new global::System.Data.DataColumn("RESCODE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRESCODE);
+                this.columnRESIDENTITY = new global::System.Data.DataColumn("RESIDENTITY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRESIDENTITY);
+                this.columnVIEWNAME = new global::System.Data.DataColumn("VIEWNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVIEWNAME);
                 this.columnRESNAME = new global::System.Data.DataColumn("RESNAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRESNAME);
                 this.columnRESTYPE = new global::System.Data.DataColumn("RESTYPE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -518,10 +533,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIED);
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
-                this.columnVIEWNAME = new global::System.Data.DataColumn("VIEWNAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVIEWNAME);
-                this.columnRESIDENTITY = new global::System.Data.DataColumn("RESIDENTITY", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRESIDENTITY);
+                this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGANIZATIONID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRESID}, true));
                 this.columnRESID.AllowDBNull = false;
@@ -529,6 +542,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnRESID.MaxLength = 40;
                 this.columnRESCODE.AllowDBNull = false;
                 this.columnRESCODE.MaxLength = 40;
+                this.columnRESIDENTITY.MaxLength = 200;
+                this.columnVIEWNAME.MaxLength = 512;
                 this.columnRESNAME.AllowDBNull = false;
                 this.columnRESNAME.MaxLength = 60;
                 this.columnRESTYPE.MaxLength = 60;
@@ -537,8 +552,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
-                this.columnVIEWNAME.MaxLength = 512;
-                this.columnRESIDENTITY.MaxLength = 200;
+                this.columnORGANIZATIONID.MaxLength = 40;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_RESOURCEITEM");
                 this.ExtendedProperties.Add("Generator_UserTableName", "RESOURCEITEM");
             }
@@ -693,6 +707,36 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string RESIDENTITY {
+                get {
+                    try {
+                        return ((string)(this[this.tableRESOURCEITEM.RESIDENTITYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“RESIDENTITY”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableRESOURCEITEM.RESIDENTITYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string VIEWNAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableRESOURCEITEM.VIEWNAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“VIEWNAME”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableRESOURCEITEM.VIEWNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string RESNAME {
                 get {
                     return ((string)(this[this.tableRESOURCEITEM.RESNAMEColumn]));
@@ -823,33 +867,38 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string VIEWNAME {
+            public string ORGANIZATIONID {
                 get {
                     try {
-                        return ((string)(this[this.tableRESOURCEITEM.VIEWNAMEColumn]));
+                        return ((string)(this[this.tableRESOURCEITEM.ORGANIZATIONIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“VIEWNAME”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“ORGANIZATIONID”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableRESOURCEITEM.VIEWNAMEColumn] = value;
+                    this[this.tableRESOURCEITEM.ORGANIZATIONIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string RESIDENTITY {
-                get {
-                    try {
-                        return ((string)(this[this.tableRESOURCEITEM.RESIDENTITYColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“RESOURCEITEM”中列“RESIDENTITY”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableRESOURCEITEM.RESIDENTITYColumn] = value;
-                }
+            public bool IsRESIDENTITYNull() {
+                return this.IsNull(this.tableRESOURCEITEM.RESIDENTITYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetRESIDENTITYNull() {
+                this[this.tableRESOURCEITEM.RESIDENTITYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsVIEWNAMENull() {
+                return this.IsNull(this.tableRESOURCEITEM.VIEWNAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetVIEWNAMENull() {
+                this[this.tableRESOURCEITEM.VIEWNAMEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -933,23 +982,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsVIEWNAMENull() {
-                return this.IsNull(this.tableRESOURCEITEM.VIEWNAMEColumn);
+            public bool IsORGANIZATIONIDNull() {
+                return this.IsNull(this.tableRESOURCEITEM.ORGANIZATIONIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetVIEWNAMENull() {
-                this[this.tableRESOURCEITEM.VIEWNAMEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsRESIDENTITYNull() {
-                return this.IsNull(this.tableRESOURCEITEM.RESIDENTITYColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetRESIDENTITYNull() {
-                this[this.tableRESOURCEITEM.RESIDENTITYColumn] = global::System.Convert.DBNull;
+            public void SetORGANIZATIONIDNull() {
+                this[this.tableRESOURCEITEM.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1078,6 +1117,8 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             tableMapping.DataSetTable = "RESOURCEITEM";
             tableMapping.ColumnMappings.Add("RESID", "RESID");
             tableMapping.ColumnMappings.Add("RESCODE", "RESCODE");
+            tableMapping.ColumnMappings.Add("RESIDENTITY", "RESIDENTITY");
+            tableMapping.ColumnMappings.Add("VIEWNAME", "VIEWNAME");
             tableMapping.ColumnMappings.Add("RESNAME", "RESNAME");
             tableMapping.ColumnMappings.Add("RESTYPE", "RESTYPE");
             tableMapping.ColumnMappings.Add("LOCATION", "LOCATION");
@@ -1087,21 +1128,22 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
-            tableMapping.ColumnMappings.Add("VIEWNAME", "VIEWNAME");
-            tableMapping.ColumnMappings.Add("RESIDENTITY", "RESIDENTITY");
+            tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"RESOURCEITEM\" WHERE ((\"RESID\" = :Original_RESID)" +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"RESOURCEITEM\" WHERE ((\"RESID\" = :Original_RESID)" +
                 ")";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_DEVUSER_0804"".""RESOURCEITEM"" (""RESID"", ""RESCODE"", ""RESNAME"", ""RESTYPE"", ""LOCATION"", ""ISVOID"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""VIEWNAME"", ""RESIDENTITY"") VALUES (:RESID, :RESCODE, :RESNAME, :RESTYPE, :LOCATION, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :VIEWNAME, :RESIDENTITY)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""RESOURCEITEM"" (""RESID"", ""RESCODE"", ""RESIDENTITY"", ""VIEWNAME"", ""RESNAME"", ""RESTYPE"", ""LOCATION"", ""ISVOID"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"") VALUES (:RESID, :RESCODE, :RESIDENTITY, :VIEWNAME, :RESNAME, :RESTYPE, :LOCATION, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIEWNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIEWNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESTYPE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LOCATION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "LOCATION", global::System.Data.DataRowVersion.Current, false, null));
@@ -1111,14 +1153,15 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIEWNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIEWNAME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""RESOURCEITEM"" SET ""RESID"" = :RESID, ""RESCODE"" = :RESCODE, ""RESNAME"" = :RESNAME, ""RESTYPE"" = :RESTYPE, ""LOCATION"" = :LOCATION, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""VIEWNAME"" = :VIEWNAME, ""RESIDENTITY"" = :RESIDENTITY WHERE ((""RESID"" = :Original_RESID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""RESOURCEITEM"" SET ""RESID"" = :RESID, ""RESCODE"" = :RESCODE, ""RESIDENTITY"" = :RESIDENTITY, ""VIEWNAME"" = :VIEWNAME, ""RESNAME"" = :RESNAME, ""RESTYPE"" = :RESTYPE, ""LOCATION"" = :LOCATION, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID WHERE ((""RESID"" = :Original_RESID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIEWNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIEWNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESTYPE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LOCATION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "LOCATION", global::System.Data.DataRowVersion.Current, false, null));
@@ -1128,15 +1171,14 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIEWNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIEWNAME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RESID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1144,9 +1186,9 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RESID, RESCODE, RESNAME, RESTYPE, LOCATION, ISVOID, MEMO, CREATED, CREATED" +
-                "BY, MODIFIED, MODIFIEDBY, VIEWNAME, RESIDENTITY FROM SQMS_DEVUSER_0804.RESOURCEI" +
-                "TEM";
+            this._commandCollection[0].CommandText = "SELECT RESID, RESCODE, RESIDENTITY, VIEWNAME, RESNAME, RESTYPE, LOCATION, ISVOID," +
+                " MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID FROM SQMS_PRIVAT" +
+                "E_0814.RESOURCEITEM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1226,7 +1268,7 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string VIEWNAME, string RESIDENTITY) {
+        public virtual int Insert(string RESID, string RESCODE, string RESIDENTITY, string VIEWNAME, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID) {
             if ((RESID == null)) {
                 throw new global::System.ArgumentNullException("RESID");
             }
@@ -1239,71 +1281,77 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(RESCODE));
             }
+            if ((RESIDENTITY == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(RESIDENTITY));
+            }
+            if ((VIEWNAME == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(VIEWNAME));
+            }
             if ((RESNAME == null)) {
                 throw new global::System.ArgumentNullException("RESNAME");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(RESNAME));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(RESNAME));
             }
             if ((RESTYPE == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(RESTYPE));
-            }
-            if ((LOCATION == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(LOCATION));
-            }
-            if ((ISVOID == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ISVOID));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(RESTYPE));
             }
-            if ((MEMO == null)) {
+            if ((LOCATION == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(MEMO));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(LOCATION));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((ISVOID == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ISVOID));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(CREATEDBY));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MEMO));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(CREATEDBY));
             }
-            if ((VIEWNAME == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(VIEWNAME));
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((RESIDENTITY == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(RESIDENTITY));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(ORGANIZATIONID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1324,7 +1372,7 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string RESID, string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string VIEWNAME, string RESIDENTITY, string Original_RESID) {
+        public virtual int Update(string RESID, string RESCODE, string RESIDENTITY, string VIEWNAME, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string Original_RESID) {
             if ((RESID == null)) {
                 throw new global::System.ArgumentNullException("RESID");
             }
@@ -1337,77 +1385,83 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(RESCODE));
             }
+            if ((RESIDENTITY == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(RESIDENTITY));
+            }
+            if ((VIEWNAME == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(VIEWNAME));
+            }
             if ((RESNAME == null)) {
                 throw new global::System.ArgumentNullException("RESNAME");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(RESNAME));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(RESNAME));
             }
             if ((RESTYPE == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(RESTYPE));
-            }
-            if ((LOCATION == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(LOCATION));
-            }
-            if ((ISVOID == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ISVOID));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(RESTYPE));
             }
-            if ((MEMO == null)) {
+            if ((LOCATION == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(MEMO));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(LOCATION));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((ISVOID == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ISVOID));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(CREATEDBY));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MEMO));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(CREATEDBY));
             }
-            if ((VIEWNAME == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(VIEWNAME));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((RESIDENTITY == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(RESIDENTITY));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(ORGANIZATIONID));
             }
             if ((Original_RESID == null)) {
                 throw new global::System.ArgumentNullException("Original_RESID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_RESID));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_RESID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1428,8 +1482,8 @@ namespace SQMS.Application.Config.Schema.RESOURCEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string RESCODE, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string VIEWNAME, string RESIDENTITY, string Original_RESID) {
-            return this.Update(Original_RESID, RESCODE, RESNAME, RESTYPE, LOCATION, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, VIEWNAME, RESIDENTITY, Original_RESID);
+        public virtual int Update(string RESCODE, string RESIDENTITY, string VIEWNAME, string RESNAME, string RESTYPE, string LOCATION, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string Original_RESID) {
+            return this.Update(Original_RESID, RESCODE, RESIDENTITY, VIEWNAME, RESNAME, RESTYPE, LOCATION, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, Original_RESID);
         }
     }
 }

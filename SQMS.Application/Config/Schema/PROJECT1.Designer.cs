@@ -264,6 +264,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnPROJECTID;
             
+            private global::System.Data.DataColumn columnEMPID;
+            
             private global::System.Data.DataColumn columnPROJECTCODE;
             
             private global::System.Data.DataColumn columnPROJECTNAME;
@@ -289,6 +291,12 @@ namespace SQMS.Application.Config.Schema {
             private global::System.Data.DataColumn columnMODIFIED;
             
             private global::System.Data.DataColumn columnMODIFIEDBY;
+            
+            private global::System.Data.DataColumn columnORGANIZATIONID;
+            
+            private global::System.Data.DataColumn columnSUITEID;
+            
+            private global::System.Data.DataColumn columnISVOID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public PROJECTDataTable() {
@@ -324,6 +332,13 @@ namespace SQMS.Application.Config.Schema {
             public global::System.Data.DataColumn PROJECTIDColumn {
                 get {
                     return this.columnPROJECTID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EMPIDColumn {
+                get {
+                    return this.columnEMPID;
                 }
             }
             
@@ -419,6 +434,27 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ORGANIZATIONIDColumn {
+                get {
+                    return this.columnORGANIZATIONID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SUITEIDColumn {
+                get {
+                    return this.columnSUITEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISVOIDColumn {
+                get {
+                    return this.columnISVOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -447,10 +483,29 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PROJECTRow AddPROJECTRow(string PROJECTID, string PROJECTCODE, string PROJECTNAME, decimal TOTALWORKTIME, decimal TOTALSCALE, decimal ASSISTAMOUNT, decimal LEADERAMOUNT, decimal VISELEADERAMOUNT, decimal TOTALWORKERAMOUNT, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY) {
+            public PROJECTRow AddPROJECTRow(
+                        string PROJECTID, 
+                        string EMPID, 
+                        string PROJECTCODE, 
+                        string PROJECTNAME, 
+                        decimal TOTALWORKTIME, 
+                        decimal TOTALSCALE, 
+                        decimal ASSISTAMOUNT, 
+                        decimal LEADERAMOUNT, 
+                        decimal VISELEADERAMOUNT, 
+                        decimal TOTALWORKERAMOUNT, 
+                        string MEMO, 
+                        System.DateTime CREATED, 
+                        string CREATEDBY, 
+                        System.DateTime MODIFIED, 
+                        string MODIFIEDBY, 
+                        string ORGANIZATIONID, 
+                        string SUITEID, 
+                        string ISVOID) {
                 PROJECTRow rowPROJECTRow = ((PROJECTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PROJECTID,
+                        EMPID,
                         PROJECTCODE,
                         PROJECTNAME,
                         TOTALWORKTIME,
@@ -463,7 +518,10 @@ namespace SQMS.Application.Config.Schema {
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
-                        MODIFIEDBY};
+                        MODIFIEDBY,
+                        ORGANIZATIONID,
+                        SUITEID,
+                        ISVOID};
                 rowPROJECTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPROJECTRow);
                 return rowPROJECTRow;
@@ -490,6 +548,7 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
                 this.columnPROJECTID = base.Columns["PROJECTID"];
+                this.columnEMPID = base.Columns["EMPID"];
                 this.columnPROJECTCODE = base.Columns["PROJECTCODE"];
                 this.columnPROJECTNAME = base.Columns["PROJECTNAME"];
                 this.columnTOTALWORKTIME = base.Columns["TOTALWORKTIME"];
@@ -503,12 +562,17 @@ namespace SQMS.Application.Config.Schema {
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
+                this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
+                this.columnSUITEID = base.Columns["SUITEID"];
+                this.columnISVOID = base.Columns["ISVOID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
                 this.columnPROJECTID = new global::System.Data.DataColumn("PROJECTID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPROJECTID);
+                this.columnEMPID = new global::System.Data.DataColumn("EMPID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMPID);
                 this.columnPROJECTCODE = new global::System.Data.DataColumn("PROJECTCODE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPROJECTCODE);
                 this.columnPROJECTNAME = new global::System.Data.DataColumn("PROJECTNAME", typeof(string), null, global::System.Data.MappingType.Element);
@@ -535,16 +599,26 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIED);
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
+                this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGANIZATIONID);
+                this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUITEID);
+                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVOID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPROJECTID}, true));
                 this.columnPROJECTID.AllowDBNull = false;
                 this.columnPROJECTID.Unique = true;
                 this.columnPROJECTID.MaxLength = 40;
+                this.columnEMPID.MaxLength = 40;
                 this.columnPROJECTCODE.MaxLength = 40;
                 this.columnPROJECTNAME.MaxLength = 600;
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
+                this.columnORGANIZATIONID.MaxLength = 40;
+                this.columnSUITEID.MaxLength = 40;
+                this.columnISVOID.MaxLength = 1;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_PROJECT");
                 this.ExtendedProperties.Add("Generator_UserTableName", "PROJECT");
             }
@@ -685,6 +759,21 @@ namespace SQMS.Application.Config.Schema {
                 }
                 set {
                     this[this.tablePROJECT.PROJECTIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string EMPID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePROJECT.EMPIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PROJECT”中列“EMPID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePROJECT.EMPIDColumn] = value;
                 }
             }
             
@@ -884,6 +973,61 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGANIZATIONID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePROJECT.ORGANIZATIONIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PROJECT”中列“ORGANIZATIONID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePROJECT.ORGANIZATIONIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string SUITEID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePROJECT.SUITEIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PROJECT”中列“SUITEID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePROJECT.SUITEIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISVOID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePROJECT.ISVOIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PROJECT”中列“ISVOID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePROJECT.ISVOIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEMPIDNull() {
+                return this.IsNull(this.tablePROJECT.EMPIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEMPIDNull() {
+                this[this.tablePROJECT.EMPIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsPROJECTCODENull() {
                 return this.IsNull(this.tablePROJECT.PROJECTCODEColumn);
             }
@@ -1012,6 +1156,36 @@ namespace SQMS.Application.Config.Schema {
             public void SetMODIFIEDBYNull() {
                 this[this.tablePROJECT.MODIFIEDBYColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGANIZATIONIDNull() {
+                return this.IsNull(this.tablePROJECT.ORGANIZATIONIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGANIZATIONIDNull() {
+                this[this.tablePROJECT.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSUITEIDNull() {
+                return this.IsNull(this.tablePROJECT.SUITEIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSUITEIDNull() {
+                this[this.tablePROJECT.SUITEIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISVOIDNull() {
+                return this.IsNull(this.tablePROJECT.ISVOIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISVOIDNull() {
+                this[this.tablePROJECT.ISVOIDColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1138,6 +1312,7 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PROJECT";
             tableMapping.ColumnMappings.Add("PROJECTID", "PROJECTID");
+            tableMapping.ColumnMappings.Add("EMPID", "EMPID");
             tableMapping.ColumnMappings.Add("PROJECTCODE", "PROJECTCODE");
             tableMapping.ColumnMappings.Add("PROJECTNAME", "PROJECTNAME");
             tableMapping.ColumnMappings.Add("TOTALWORKTIME", "TOTALWORKTIME");
@@ -1151,18 +1326,22 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
+            tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
+            tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
+            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"PROJECT\" WHERE ((\"PROJECTID\" = :Original_PROJECT" +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"PROJECT\" WHERE ((\"PROJECTID\" = :Original_PROJECT" +
                 "ID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PROJECTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_DEVUSER_0804"".""PROJECT"" (""PROJECTID"", ""PROJECTCODE"", ""PROJECTNAME"", ""TOTALWORKTIME"", ""TOTALSCALE"", ""ASSISTAMOUNT"", ""LEADERAMOUNT"", ""VISELEADERAMOUNT"", ""TOTALWORKERAMOUNT"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"") VALUES (:PROJECTID, :PROJECTCODE, :PROJECTNAME, :TOTALWORKTIME, :TOTALSCALE, :ASSISTAMOUNT, :LEADERAMOUNT, :VISELEADERAMOUNT, :TOTALWORKERAMOUNT, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""PROJECT"" (""PROJECTID"", ""EMPID"", ""PROJECTCODE"", ""PROJECTNAME"", ""TOTALWORKTIME"", ""TOTALSCALE"", ""ASSISTAMOUNT"", ""LEADERAMOUNT"", ""VISELEADERAMOUNT"", ""TOTALWORKERAMOUNT"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"") VALUES (:PROJECTID, :EMPID, :PROJECTCODE, :PROJECTNAME, :TOTALWORKTIME, :TOTALSCALE, :ASSISTAMOUNT, :LEADERAMOUNT, :VISELEADERAMOUNT, :TOTALWORKERAMOUNT, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :ISVOID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTCODE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TOTALWORKTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "TOTALWORKTIME", global::System.Data.DataRowVersion.Current, false, null));
@@ -1176,11 +1355,15 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""PROJECT"" SET ""PROJECTID"" = :PROJECTID, ""PROJECTCODE"" = :PROJECTCODE, ""PROJECTNAME"" = :PROJECTNAME, ""TOTALWORKTIME"" = :TOTALWORKTIME, ""TOTALSCALE"" = :TOTALSCALE, ""ASSISTAMOUNT"" = :ASSISTAMOUNT, ""LEADERAMOUNT"" = :LEADERAMOUNT, ""VISELEADERAMOUNT"" = :VISELEADERAMOUNT, ""TOTALWORKERAMOUNT"" = :TOTALWORKERAMOUNT, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""PROJECTID"" = :Original_PROJECTID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""PROJECT"" SET ""PROJECTID"" = :PROJECTID, ""EMPID"" = :EMPID, ""PROJECTCODE"" = :PROJECTCODE, ""PROJECTNAME"" = :PROJECTNAME, ""TOTALWORKTIME"" = :TOTALWORKTIME, ""TOTALSCALE"" = :TOTALSCALE, ""ASSISTAMOUNT"" = :ASSISTAMOUNT, ""LEADERAMOUNT"" = :LEADERAMOUNT, ""VISELEADERAMOUNT"" = :VISELEADERAMOUNT, ""TOTALWORKERAMOUNT"" = :TOTALWORKERAMOUNT, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID WHERE ((""PROJECTID"" = :Original_PROJECTID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTCODE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROJECTNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TOTALWORKTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "TOTALWORKTIME", global::System.Data.DataRowVersion.Current, false, null));
@@ -1194,13 +1377,16 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PROJECTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROJECTID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1208,9 +1394,10 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT PROJECTID, PROJECTCODE, PROJECTNAME, TOTALWORKTIME, TOTALSCALE, ASSISTAMOU" +
-                "NT, LEADERAMOUNT, VISELEADERAMOUNT, TOTALWORKERAMOUNT, MEMO, CREATED, CREATEDBY," +
-                " MODIFIED, MODIFIEDBY FROM SQMS_DEVUSER_0804.PROJECT";
+            this._commandCollection[0].CommandText = "SELECT PROJECTID, EMPID, PROJECTCODE, PROJECTNAME, TOTALWORKTIME, TOTALSCALE, ASS" +
+                "ISTAMOUNT, LEADERAMOUNT, VISELEADERAMOUNT, TOTALWORKERAMOUNT, MEMO, CREATED, CRE" +
+                "ATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID FROM SQMS_PRIVATE_" +
+                "0814.PROJECT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1290,90 +1477,132 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string PROJECTID, string PROJECTCODE, string PROJECTNAME, global::System.Nullable<decimal> TOTALWORKTIME, global::System.Nullable<decimal> TOTALSCALE, global::System.Nullable<decimal> ASSISTAMOUNT, global::System.Nullable<decimal> LEADERAMOUNT, global::System.Nullable<decimal> VISELEADERAMOUNT, global::System.Nullable<decimal> TOTALWORKERAMOUNT, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY) {
+        public virtual int Insert(
+                    string PROJECTID, 
+                    string EMPID, 
+                    string PROJECTCODE, 
+                    string PROJECTNAME, 
+                    global::System.Nullable<decimal> TOTALWORKTIME, 
+                    global::System.Nullable<decimal> TOTALSCALE, 
+                    global::System.Nullable<decimal> ASSISTAMOUNT, 
+                    global::System.Nullable<decimal> LEADERAMOUNT, 
+                    global::System.Nullable<decimal> VISELEADERAMOUNT, 
+                    global::System.Nullable<decimal> TOTALWORKERAMOUNT, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID) {
             if ((PROJECTID == null)) {
                 throw new global::System.ArgumentNullException("PROJECTID");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(PROJECTID));
             }
-            if ((PROJECTCODE == null)) {
+            if ((EMPID == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(PROJECTCODE));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(EMPID));
             }
-            if ((PROJECTNAME == null)) {
+            if ((PROJECTCODE == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(PROJECTNAME));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(PROJECTCODE));
             }
-            if ((TOTALWORKTIME.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(TOTALWORKTIME.Value));
-            }
-            else {
+            if ((PROJECTNAME == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((TOTALSCALE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(TOTALSCALE.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(PROJECTNAME));
+            }
+            if ((TOTALWORKTIME.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(TOTALWORKTIME.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((ASSISTAMOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(ASSISTAMOUNT.Value));
+            if ((TOTALSCALE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(TOTALSCALE.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((LEADERAMOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(LEADERAMOUNT.Value));
+            if ((ASSISTAMOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(ASSISTAMOUNT.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((VISELEADERAMOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(VISELEADERAMOUNT.Value));
+            if ((LEADERAMOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(LEADERAMOUNT.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((TOTALWORKERAMOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(TOTALWORKERAMOUNT.Value));
+            if ((VISELEADERAMOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(VISELEADERAMOUNT.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((MEMO == null)) {
+            if ((TOTALWORKERAMOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(TOTALWORKERAMOUNT.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MEMO));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((MODIFIEDBY == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((SUITEID == null)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(SUITEID));
+            }
+            if ((ISVOID == null)) {
+                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(ISVOID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1394,96 +1623,139 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string PROJECTID, string PROJECTCODE, string PROJECTNAME, global::System.Nullable<decimal> TOTALWORKTIME, global::System.Nullable<decimal> TOTALSCALE, global::System.Nullable<decimal> ASSISTAMOUNT, global::System.Nullable<decimal> LEADERAMOUNT, global::System.Nullable<decimal> VISELEADERAMOUNT, global::System.Nullable<decimal> TOTALWORKERAMOUNT, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_PROJECTID) {
+        public virtual int Update(
+                    string PROJECTID, 
+                    string EMPID, 
+                    string PROJECTCODE, 
+                    string PROJECTNAME, 
+                    global::System.Nullable<decimal> TOTALWORKTIME, 
+                    global::System.Nullable<decimal> TOTALSCALE, 
+                    global::System.Nullable<decimal> ASSISTAMOUNT, 
+                    global::System.Nullable<decimal> LEADERAMOUNT, 
+                    global::System.Nullable<decimal> VISELEADERAMOUNT, 
+                    global::System.Nullable<decimal> TOTALWORKERAMOUNT, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID, 
+                    string Original_PROJECTID) {
             if ((PROJECTID == null)) {
                 throw new global::System.ArgumentNullException("PROJECTID");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(PROJECTID));
             }
-            if ((PROJECTCODE == null)) {
+            if ((EMPID == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(PROJECTCODE));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(EMPID));
             }
-            if ((PROJECTNAME == null)) {
+            if ((PROJECTCODE == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(PROJECTNAME));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(PROJECTCODE));
             }
-            if ((TOTALWORKTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(TOTALWORKTIME.Value));
-            }
-            else {
+            if ((PROJECTNAME == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((TOTALSCALE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(TOTALSCALE.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(PROJECTNAME));
+            }
+            if ((TOTALWORKTIME.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(TOTALWORKTIME.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((ASSISTAMOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(ASSISTAMOUNT.Value));
+            if ((TOTALSCALE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(TOTALSCALE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((LEADERAMOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(LEADERAMOUNT.Value));
+            if ((ASSISTAMOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(ASSISTAMOUNT.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((VISELEADERAMOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(VISELEADERAMOUNT.Value));
+            if ((LEADERAMOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(LEADERAMOUNT.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((TOTALWORKERAMOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(TOTALWORKERAMOUNT.Value));
+            if ((VISELEADERAMOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(VISELEADERAMOUNT.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((MEMO == null)) {
+            if ((TOTALWORKERAMOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(TOTALWORKERAMOUNT.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MEMO));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((MODIFIEDBY == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((SUITEID == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(SUITEID));
+            }
+            if ((ISVOID == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(ISVOID));
             }
             if ((Original_PROJECTID == null)) {
                 throw new global::System.ArgumentNullException("Original_PROJECTID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_PROJECTID));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_PROJECTID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1504,8 +1776,26 @@ namespace SQMS.Application.Config.Schema.PROJECTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string PROJECTCODE, string PROJECTNAME, global::System.Nullable<decimal> TOTALWORKTIME, global::System.Nullable<decimal> TOTALSCALE, global::System.Nullable<decimal> ASSISTAMOUNT, global::System.Nullable<decimal> LEADERAMOUNT, global::System.Nullable<decimal> VISELEADERAMOUNT, global::System.Nullable<decimal> TOTALWORKERAMOUNT, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_PROJECTID) {
-            return this.Update(Original_PROJECTID, PROJECTCODE, PROJECTNAME, TOTALWORKTIME, TOTALSCALE, ASSISTAMOUNT, LEADERAMOUNT, VISELEADERAMOUNT, TOTALWORKERAMOUNT, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_PROJECTID);
+        public virtual int Update(
+                    string EMPID, 
+                    string PROJECTCODE, 
+                    string PROJECTNAME, 
+                    global::System.Nullable<decimal> TOTALWORKTIME, 
+                    global::System.Nullable<decimal> TOTALSCALE, 
+                    global::System.Nullable<decimal> ASSISTAMOUNT, 
+                    global::System.Nullable<decimal> LEADERAMOUNT, 
+                    global::System.Nullable<decimal> VISELEADERAMOUNT, 
+                    global::System.Nullable<decimal> TOTALWORKERAMOUNT, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID, 
+                    string Original_PROJECTID) {
+            return this.Update(Original_PROJECTID, EMPID, PROJECTCODE, PROJECTNAME, TOTALWORKTIME, TOTALSCALE, ASSISTAMOUNT, LEADERAMOUNT, VISELEADERAMOUNT, TOTALWORKERAMOUNT, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, Original_PROJECTID);
         }
     }
 }

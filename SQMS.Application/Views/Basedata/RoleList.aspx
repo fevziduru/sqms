@@ -30,7 +30,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="ROLEID" HeaderText="ROLEID" ReadOnly="True"  SortExpression="ROLEID" Visible="False" />
             <asp:HyperLinkField DataNavigateUrlFields="ROLEID" 
-                DataNavigateUrlFormatString="/Views/Basedata/RoleView.aspx?id={0}"
+                DataNavigateUrlFormatString="/Views/Basedata/RoleView.aspx?p=roleview&id={0}"
                 DataTextField="ROLENAME" HeaderText="角色名称" SortExpression="ROLENAME" HeaderStyle-HorizontalAlign="Left" />
             <asp:BoundField DataField="ROLECODE" HeaderText="角色编码"  SortExpression="ROLECODE" HeaderStyle-HorizontalAlign="Left" />  
             <%--<asp:BoundField DataField="MEMO" HeaderText="角色备注"  SortExpression="MEMO" HeaderStyle-HorizontalAlign="Left" /> --%>

@@ -960,13 +960,13 @@ namespace SQMS.Application.Config.Schema.ENUMERATIONTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"ENUMERATION\" WHERE ((\"ENUMID\" = :Original_ENUMID" +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"ENUMERATION\" WHERE ((\"ENUMID\" = :Original_ENUMID" +
                 "))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ENUMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ENUMID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_DEVUSER_0804\".\"ENUMERATION\" (\"ENUMID\", \"ENUMCODE\", \"ENUMNAME\", " +
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_PRIVATE_0814\".\"ENUMERATION\" (\"ENUMID\", \"ENUMCODE\", \"ENUMNAME\", " +
                 "\"ENUMTYPE\", \"MEMO\", \"CREATED\", \"CREATEDBY\", \"MODIFIED\", \"MODIFIEDBY\") VALUES (:E" +
                 "NUMID, :ENUMCODE, :ENUMNAME, :ENUMTYPE, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, " +
                 ":MODIFIEDBY)";
@@ -982,7 +982,7 @@ namespace SQMS.Application.Config.Schema.ENUMERATIONTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""ENUMERATION"" SET ""ENUMID"" = :ENUMID, ""ENUMCODE"" = :ENUMCODE, ""ENUMNAME"" = :ENUMNAME, ""ENUMTYPE"" = :ENUMTYPE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""ENUMID"" = :Original_ENUMID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""ENUMERATION"" SET ""ENUMID"" = :ENUMID, ""ENUMCODE"" = :ENUMCODE, ""ENUMNAME"" = :ENUMNAME, ""ENUMTYPE"" = :ENUMTYPE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""ENUMID"" = :Original_ENUMID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ENUMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ENUMID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ENUMCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ENUMCODE", global::System.Data.DataRowVersion.Current, false, null));
@@ -999,7 +999,7 @@ namespace SQMS.Application.Config.Schema.ENUMERATIONTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1008,7 +1008,7 @@ namespace SQMS.Application.Config.Schema.ENUMERATIONTableAdapters {
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, " +
-                "MODIFIEDBY FROM SQMS_DEVUSER_0804.ENUMERATION";
+                "MODIFIEDBY FROM SQMS_PRIVATE_0814.ENUMERATION";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
