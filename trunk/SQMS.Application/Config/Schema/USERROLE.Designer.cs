@@ -266,6 +266,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnPASSPORTID;
             
+            private global::System.Data.DataColumn columnORGANIZATIONID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public USERROLEDataTable() {
                 this.TableName = "USERROLE";
@@ -311,6 +313,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ORGANIZATIONIDColumn {
+                get {
+                    return this.columnORGANIZATIONID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -339,11 +348,12 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public USERROLERow AddUSERROLERow(string ROLEID, string PASSPORTID) {
+            public USERROLERow AddUSERROLERow(string ROLEID, string PASSPORTID, string ORGANIZATIONID) {
                 USERROLERow rowUSERROLERow = ((USERROLERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ROLEID,
-                        PASSPORTID};
+                        PASSPORTID,
+                        ORGANIZATIONID};
                 rowUSERROLERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUSERROLERow);
                 return rowUSERROLERow;
@@ -372,6 +382,7 @@ namespace SQMS.Application.Config.Schema {
             internal void InitVars() {
                 this.columnROLEID = base.Columns["ROLEID"];
                 this.columnPASSPORTID = base.Columns["PASSPORTID"];
+                this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -380,6 +391,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnROLEID);
                 this.columnPASSPORTID = new global::System.Data.DataColumn("PASSPORTID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPASSPORTID);
+                this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGANIZATIONID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnROLEID,
                                 this.columnPASSPORTID}, true));
@@ -387,6 +400,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnROLEID.MaxLength = 40;
                 this.columnPASSPORTID.AllowDBNull = false;
                 this.columnPASSPORTID.MaxLength = 40;
+                this.columnORGANIZATIONID.AllowDBNull = false;
+                this.columnORGANIZATIONID.MaxLength = 40;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_USERROLE");
                 this.ExtendedProperties.Add("Generator_UserTableName", "USERROLE");
             }
@@ -539,6 +554,16 @@ namespace SQMS.Application.Config.Schema {
                     this[this.tableUSERROLE.PASSPORTIDColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGANIZATIONID {
+                get {
+                    return ((string)(this[this.tableUSERROLE.ORGANIZATIONIDColumn]));
+                }
+                set {
+                    this[this.tableUSERROLE.ORGANIZATIONIDColumn] = value;
+                }
+            }
         }
         
         /// <summary>
@@ -666,29 +691,32 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
             tableMapping.DataSetTable = "USERROLE";
             tableMapping.ColumnMappings.Add("ROLEID", "ROLEID");
             tableMapping.ColumnMappings.Add("PASSPORTID", "PASSPORTID");
+            tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"USERROLE\" WHERE ((\"ROLEID\" = :Original_ROLEID) A" +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"USERROLE\" WHERE ((\"ROLEID\" = :Original_ROLEID) A" +
                 "ND (\"PASSPORTID\" = :Original_PASSPORTID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_DEVUSER_0804\".\"USERROLE\" (\"ROLEID\", \"PASSPORTID\") VALUES (:ROLE" +
-                "ID, :PASSPORTID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_PRIVATE_0814\".\"USERROLE\" (\"ROLEID\", \"PASSPORTID\", \"ORGANIZATION" +
+                "ID\") VALUES (:ROLEID, :PASSPORTID, :ORGANIZATIONID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"SQMS_DEVUSER_0804\".\"USERROLE\" SET \"ROLEID\" = :ROLEID, \"PASSPORTID\" = :PAS" +
-                "SPORTID WHERE ((\"ROLEID\" = :Original_ROLEID) AND (\"PASSPORTID\" = :Original_PASSP" +
-                "ORTID))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"SQMS_PRIVATE_0814\".\"USERROLE\" SET \"ROLEID\" = :ROLEID, \"PASSPORTID\" = :PAS" +
+                "SPORTID, \"ORGANIZATIONID\" = :ORGANIZATIONID WHERE ((\"ROLEID\" = :Original_ROLEID)" +
+                " AND (\"PASSPORTID\" = :Original_PASSPORTID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ROLEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROLEID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Original, false, null));
         }
@@ -696,7 +724,7 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -704,7 +732,7 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ROLEID, PASSPORTID FROM SQMS_DEVUSER_0804.USERROLE";
+            this._commandCollection[0].CommandText = "SELECT ROLEID, PASSPORTID, ORGANIZATIONID FROM SQMS_PRIVATE_0814.USERROLE";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -790,7 +818,7 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string ROLEID, string PASSPORTID) {
+        public virtual int Insert(string ROLEID, string PASSPORTID, string ORGANIZATIONID) {
             if ((ROLEID == null)) {
                 throw new global::System.ArgumentNullException("ROLEID");
             }
@@ -802,6 +830,12 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(PASSPORTID));
+            }
+            if ((ORGANIZATIONID == null)) {
+                throw new global::System.ArgumentNullException("ORGANIZATIONID");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ORGANIZATIONID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -822,7 +856,7 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ROLEID, string PASSPORTID, string Original_ROLEID, string Original_PASSPORTID) {
+        public virtual int Update(string ROLEID, string PASSPORTID, string ORGANIZATIONID, string Original_ROLEID, string Original_PASSPORTID) {
             if ((ROLEID == null)) {
                 throw new global::System.ArgumentNullException("ROLEID");
             }
@@ -835,17 +869,23 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(PASSPORTID));
             }
+            if ((ORGANIZATIONID == null)) {
+                throw new global::System.ArgumentNullException("ORGANIZATIONID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ORGANIZATIONID));
+            }
             if ((Original_ROLEID == null)) {
                 throw new global::System.ArgumentNullException("Original_ROLEID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_ROLEID));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_ROLEID));
             }
             if ((Original_PASSPORTID == null)) {
                 throw new global::System.ArgumentNullException("Original_PASSPORTID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_PASSPORTID));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_PASSPORTID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -866,8 +906,8 @@ namespace SQMS.Application.Config.Schema.USERROLETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Original_ROLEID, string Original_PASSPORTID) {
-            return this.Update(Original_ROLEID, Original_PASSPORTID, Original_ROLEID, Original_PASSPORTID);
+        public virtual int Update(string ORGANIZATIONID, string Original_ROLEID, string Original_PASSPORTID) {
+            return this.Update(Original_ROLEID, Original_PASSPORTID, ORGANIZATIONID, Original_ROLEID, Original_PASSPORTID);
         }
     }
 }

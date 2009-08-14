@@ -35,7 +35,7 @@ namespace SQMS.Application.Views.Basedata
                 this.lblEmpStatus.Text = ConvertUtil.ToStringOrDefault(drEmployee["EMPSTATUS"]);
                 this.lblMobile.Text = ConvertUtil.ToStringOrDefault(drEmployee["MOBILE"]);
                 this.lblDepartment.Text = ConvertUtil.ToStringOrDefault(
-                    srv.GetReferenceValue("deptname", "department", "deptid", ConvertUtil.ToStringOrDefault(drEmployee["deptid"])));
+                    srv.GetReferenceValue("orgname", "organization", "orgid", ConvertUtil.ToStringOrDefault(drEmployee["deptid"])));
                 this.lblSex.Text = ConvertUtil.ToStringOrDefault(
                     srv.GetReferenceValue("enumname", "enumeration", "enumid", ConvertUtil.ToStringOrDefault(drEmployee["sex"])));
                 this.lblEquipment.Text = ConvertUtil.ToStringOrDefault(

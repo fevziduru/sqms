@@ -88,6 +88,7 @@ namespace SQMS.Application.Views.Basedata
                             DataRow drRole = dtRoles.NewRow();
                             drRole["passportid"] = drPassport["passportid"];
                             drRole["roleid"] = item.Value;
+                            drRole["organizationid"] = CurrentUser.OrganizationID;
                             dtRoles.Rows.Add(drRole);
                         }
                     }
@@ -129,7 +130,7 @@ namespace SQMS.Application.Views.Basedata
         /// <param name="e"></param>
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)    //3
         {
-            ControlBindingHelper.BindDropDownList(this.ddlDepartment, srv.GetDepartments(), "deptname", "deptid");
+            ControlBindingHelper.BindDropDownList(this.ddlDepartment, srv.GetDepartments(), "orgname", "orgid");
             ControlBindingHelper.BindDropDownList(this.cblRoles, srv.GetRoles(), "rolename", "roleid");
             //ControlBindingHelper.BindDropDownList(this.ddlEquipment, srv.GetEquipments(), "equname", "equid");
             ControlBindingHelper.BindDropDownList(this.ddlSex, srv.GetSex(), "enumname", "enumid");
@@ -161,7 +162,7 @@ namespace SQMS.Application.Views.Basedata
                 this.ddlStatus.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
                     ConvertUtil.ToStringOrDefault(drEmployee["EMPSTATUS"])));
                 this.txtMobile.Text = ConvertUtil.ToStringOrDefault(drEmployee["MOBILE"]);
-                this.ddlDepartment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("deptname", "DEPARTMENT", "DEPTID",
+                this.ddlDepartment.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("orgname", "ORGANIZATION", "orgid",
                     ConvertUtil.ToStringOrDefault(drEmployee["DEPTID"])));
                 this.ddlSex.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
                     ConvertUtil.ToStringOrDefault(drEmployee["sex"])));

@@ -13,7 +13,8 @@ namespace SQMS.Services
         public PassportService PassportService { get; private set; }
         public RoleService RoleService { get; private set; }
         public EnumerationService EnumService { get; private set; }
-        public DepartmentService DepartmentService { get; private set; }
+        //public DepartmentService DepartmentService { get; private set; }
+        public OrganizationService OrganizationService { get; private set; }
         public EquipmentService EquipmentService { get; private set; }
         public UserRoleService UserRoleService { get; private set; }
 
@@ -23,7 +24,7 @@ namespace SQMS.Services
             PassportService = ServiceManager.CreateService<PassportService>();
             RoleService = ServiceManager.CreateService<RoleService>();
             EnumService = ServiceManager.CreateService<EnumerationService>();
-            DepartmentService = ServiceManager.CreateService<DepartmentService>();
+            OrganizationService = ServiceManager.CreateService<OrganizationService>();
             EquipmentService = ServiceManager.CreateService<EquipmentService>();
             UserRoleService = ServiceManager.CreateService<UserRoleService>();
             
@@ -51,7 +52,8 @@ namespace SQMS.Services
 
         public DataSet GetDepartments()
         {
-            return DepartmentService.LoadAll();
+            return OrganizationService.LoadByCondition(
+                "orgtype='department' and organizationid='" + CurrentUser.OrganizationID + "'");
         }
 
         public DataSet GetEquipments()

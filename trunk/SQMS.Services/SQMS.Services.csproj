@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DepartmentService.cs" />
+    <Compile Include="OrganizationService.cs" />
     <Compile Include="Domain\Common\PagingParameter.cs" />
     <Compile Include="Domain\QualityControl\LatLng.cs" />
     <Compile Include="Domain\QualityControl\LatLngBounds.cs" />

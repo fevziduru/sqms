@@ -65,17 +65,16 @@ namespace SQMS.Services
                     //取职员信息
                     DataRow drEmployee = DataSetUtil.GetFirstRowFromDataTable(
                         DefaultSession.GetDataTableFromCommand(
-                            @"select    t.empid, 
+                            @"select  t.empid, 
                                         t.empname, 
-                                        d.parentdept, 
-                                        d.deptid, 
-                                        d.deptname, 
-                                        o.orgid, 
-                                        o.orgname, 
+                                        d.orgid deptid,
+                                        d.orgname deptname,
+                                        o.orgid orgid, 
+                                        o.orgname orgname, 
                                         o.orgalias 
                                 from employee t
-                                left join department d on t.deptid = d.deptid
-                                left join ORAGANIZATION o on o.orgid = d.orgid
+                                left join ORGANIZATION d on t.deptid = d.orgid and d.orgtype='department'
+                                left join ORGANIZATION o on o.orgid = t.organizationid and o.orgtype='organization'
                                 where t.empid = :employeeid",
                         ConvertUtil.ToStringOrDefault(drPassport["EMPID"])));
 

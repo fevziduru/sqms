@@ -284,6 +284,10 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
+            private global::System.Data.DataColumn columnORGANIZATIONID;
+            
+            private global::System.Data.DataColumn columnSUITEID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public PASSPORTDataTable() {
                 this.TableName = "PASSPORT";
@@ -392,6 +396,20 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ORGANIZATIONIDColumn {
+                get {
+                    return this.columnORGANIZATIONID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SUITEIDColumn {
+                get {
+                    return this.columnSUITEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -420,7 +438,7 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public PASSPORTRow AddPASSPORTRow(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY) {
+            public PASSPORTRow AddPASSPORTRow(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID) {
                 PASSPORTRow rowPASSPORTRow = ((PASSPORTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PASSPORTID,
@@ -433,7 +451,9 @@ namespace SQMS.Application.Config.Schema {
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
-                        MODIFIEDBY};
+                        MODIFIEDBY,
+                        ORGANIZATIONID,
+                        SUITEID};
                 rowPASSPORTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPASSPORTRow);
                 return rowPASSPORTRow;
@@ -470,6 +490,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
+                this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
+                this.columnSUITEID = base.Columns["SUITEID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -496,6 +518,10 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIED);
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
+                this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGANIZATIONID);
+                this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUITEID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPASSPORTID}, true));
                 this.columnPASSPORTID.AllowDBNull = false;
@@ -512,6 +538,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
+                this.columnORGANIZATIONID.MaxLength = 40;
+                this.columnSUITEID.MaxLength = 40;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_PASSPORT");
                 this.ExtendedProperties.Add("Generator_UserTableName", "PASSPORT");
             }
@@ -791,6 +819,36 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGANIZATIONID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePASSPORT.ORGANIZATIONIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PASSPORT”中列“ORGANIZATIONID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePASSPORT.ORGANIZATIONIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string SUITEID {
+                get {
+                    try {
+                        return ((string)(this[this.tablePASSPORT.SUITEIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“PASSPORT”中列“SUITEID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablePASSPORT.SUITEIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsPASSWORDNull() {
                 return this.IsNull(this.tablePASSPORT.PASSWORDColumn);
             }
@@ -858,6 +916,26 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMODIFIEDBYNull() {
                 this[this.tablePASSPORT.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGANIZATIONIDNull() {
+                return this.IsNull(this.tablePASSPORT.ORGANIZATIONIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGANIZATIONIDNull() {
+                this[this.tablePASSPORT.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSUITEIDNull() {
+                return this.IsNull(this.tablePASSPORT.SUITEIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSUITEIDNull() {
+                this[this.tablePASSPORT.SUITEIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -995,16 +1073,18 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
+            tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
+            tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_DEVUSER_0804\".\"PASSPORT\" WHERE ((\"PASSPORTID\" = :Original_PASSP" +
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"PASSPORT\" WHERE ((\"PASSPORTID\" = :Original_PASSP" +
                 "ORTID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_DEVUSER_0804"".""PASSPORT"" (""PASSPORTID"", ""EMPID"", ""PASSPORTCODE"", ""PASSPORT"", ""PASSWORD"", ""ISVOID"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"") VALUES (:PASSPORTID, :EMPID, :PASSPORTCODE, :PASSPORT, :PASSWORD, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""PASSPORT"" (""PASSPORTID"", ""EMPID"", ""PASSPORTCODE"", ""PASSPORT"", ""PASSWORD"", ""ISVOID"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"") VALUES (:PASSPORTID, :EMPID, :PASSPORTCODE, :PASSPORT, :PASSWORD, :ISVOID, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1017,9 +1097,11 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_DEVUSER_0804"".""PASSPORT"" SET ""PASSPORTID"" = :PASSPORTID, ""EMPID"" = :EMPID, ""PASSPORTCODE"" = :PASSPORTCODE, ""PASSPORT"" = :PASSPORT, ""PASSWORD"" = :PASSWORD, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY WHERE ((""PASSPORTID"" = :Original_PASSPORTID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""PASSPORT"" SET ""PASSPORTID"" = :PASSPORTID, ""EMPID"" = :EMPID, ""PASSPORTCODE"" = :PASSPORTCODE, ""PASSPORT"" = :PASSPORT, ""PASSWORD"" = :PASSWORD, ""ISVOID"" = :ISVOID, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID WHERE ((""PASSPORTID"" = :Original_PASSPORTID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1032,13 +1114,15 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_PASSPORTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PASSPORTID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1047,7 +1131,8 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT PASSPORTID, EMPID, PASSPORTCODE, PASSPORT, \"PASSWORD\", ISVOID, MEMO, CREAT" +
-                "ED, CREATEDBY, MODIFIED, MODIFIEDBY FROM SQMS_DEVUSER_0804.PASSPORT";
+                "ED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID FROM SQMS_PRIVATE_0" +
+                "814.PASSPORT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1127,7 +1212,7 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY) {
+        public virtual int Insert(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID) {
             if ((PASSPORTID == null)) {
                 throw new global::System.ArgumentNullException("PASSPORTID");
             }
@@ -1194,6 +1279,18 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
             }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((SUITEID == null)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(SUITEID));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1213,7 +1310,7 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_PASSPORTID) {
+        public virtual int Update(string PASSPORTID, string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string Original_PASSPORTID) {
             if ((PASSPORTID == null)) {
                 throw new global::System.ArgumentNullException("PASSPORTID");
             }
@@ -1280,11 +1377,23 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
             }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((SUITEID == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(SUITEID));
+            }
             if ((Original_PASSPORTID == null)) {
                 throw new global::System.ArgumentNullException("Original_PASSPORTID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_PASSPORTID));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_PASSPORTID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1305,8 +1414,8 @@ namespace SQMS.Application.Config.Schema.PASSPORTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string Original_PASSPORTID) {
-            return this.Update(Original_PASSPORTID, EMPID, PASSPORTCODE, PASSPORT, PASSWORD, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_PASSPORTID);
+        public virtual int Update(string EMPID, string PASSPORTCODE, string PASSPORT, string PASSWORD, string ISVOID, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string Original_PASSPORTID) {
+            return this.Update(Original_PASSPORTID, EMPID, PASSPORTCODE, PASSPORT, PASSWORD, ISVOID, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, Original_PASSPORTID);
         }
     }
 }

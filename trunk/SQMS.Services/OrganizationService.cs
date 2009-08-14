@@ -6,11 +6,11 @@ using EasyDev.BL.Services;
 
 namespace SQMS.Services
 {
-    public class DepartmentService : GenericService
+    public class OrganizationService : GenericService
     {
         protected override void Initialize()
         {
-            this.BOName = "DEPARTMENT";
+            this.BOName = "ORGANIZATION";
             base.Initialize();
         }
     }

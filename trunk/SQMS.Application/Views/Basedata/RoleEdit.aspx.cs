@@ -220,7 +220,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect("RoleEdit.aspx");
+            Response.Redirect("RoleEdit.aspx?p=roleedit");
         }
 
         public void btnSave_Click(object sender, EventArgs e)//Save
@@ -242,7 +242,7 @@ namespace SQMS.Application.Views.Basedata
                 throw ex;
             }
 
-            Response.Redirect(String.Format("RoleView.aspx?id={0}", this.ID));
+            Response.Redirect(String.Format("RoleView.aspx?p=roleview&id={0}", this.ID));
         }
 
         private void SaveRolePermission()
@@ -252,7 +252,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected void btnBack2List_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RoleList.aspx");
+            Response.Redirect("RoleList.aspx?p=rolelist");
         }
 
         protected void lbPerSelect_Click(object sender, EventArgs e)

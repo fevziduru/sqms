@@ -21,16 +21,18 @@ namespace SQMS.Application.Config.Schema {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("EMPLOYEE")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ORGANIZATION")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class EMPLOYEE : global::System.Data.DataSet {
+    public partial class ORGANIZATION : global::System.Data.DataSet {
         
-        private EMPLOYEEDataTable tableEMPLOYEE;
+        private ORGANIZATIONDataTable tableORGANIZATION;
+        
+        private global::System.Data.DataRelation relationFK_ORGANIZA_RELPARENT_ORGANIZA;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public EMPLOYEE() {
+        public ORGANIZATION() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -40,7 +42,7 @@ namespace SQMS.Application.Config.Schema {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected EMPLOYEE(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ORGANIZATION(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -53,8 +55,8 @@ namespace SQMS.Application.Config.Schema {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["EMPLOYEE"] != null)) {
-                    base.Tables.Add(new EMPLOYEEDataTable(ds.Tables["EMPLOYEE"]));
+                if ((ds.Tables["ORGANIZATION"] != null)) {
+                    base.Tables.Add(new ORGANIZATIONDataTable(ds.Tables["ORGANIZATION"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -77,9 +79,9 @@ namespace SQMS.Application.Config.Schema {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public EMPLOYEEDataTable _EMPLOYEE {
+        public ORGANIZATIONDataTable _ORGANIZATION {
             get {
-                return this.tableEMPLOYEE;
+                return this.tableORGANIZATION;
             }
         }
         
@@ -120,7 +122,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public override global::System.Data.DataSet Clone() {
-            EMPLOYEE cln = ((EMPLOYEE)(base.Clone()));
+            ORGANIZATION cln = ((ORGANIZATION)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -142,8 +144,8 @@ namespace SQMS.Application.Config.Schema {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["EMPLOYEE"] != null)) {
-                    base.Tables.Add(new EMPLOYEEDataTable(ds.Tables["EMPLOYEE"]));
+                if ((ds.Tables["ORGANIZATION"] != null)) {
+                    base.Tables.Add(new ORGANIZATIONDataTable(ds.Tables["ORGANIZATION"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -175,27 +177,32 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableEMPLOYEE = ((EMPLOYEEDataTable)(base.Tables["EMPLOYEE"]));
+            this.tableORGANIZATION = ((ORGANIZATIONDataTable)(base.Tables["ORGANIZATION"]));
             if ((initTable == true)) {
-                if ((this.tableEMPLOYEE != null)) {
-                    this.tableEMPLOYEE.InitVars();
+                if ((this.tableORGANIZATION != null)) {
+                    this.tableORGANIZATION.InitVars();
                 }
             }
+            this.relationFK_ORGANIZA_RELPARENT_ORGANIZA = this.Relations["FK_ORGANIZA_RELPARENT_ORGANIZA"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitClass() {
-            this.DataSetName = "EMPLOYEE";
+            this.DataSetName = "ORGANIZATION";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/EMPLOYEE.xsd";
+            this.Namespace = "http://tempuri.org/ORGANIZATION.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableEMPLOYEE = new EMPLOYEEDataTable();
-            base.Tables.Add(this.tableEMPLOYEE);
+            this.tableORGANIZATION = new ORGANIZATIONDataTable();
+            base.Tables.Add(this.tableORGANIZATION);
+            this.relationFK_ORGANIZA_RELPARENT_ORGANIZA = new global::System.Data.DataRelation("FK_ORGANIZA_RELPARENT_ORGANIZA", new global::System.Data.DataColumn[] {
+                        this.tableORGANIZATION.ORGIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableORGANIZATION.PARENTORGColumn}, false);
+            this.Relations.Add(this.relationFK_ORGANIZA_RELPARENT_ORGANIZA);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerialize_EMPLOYEE() {
+        private bool ShouldSerialize_ORGANIZATION() {
             return false;
         }
         
@@ -208,7 +215,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            EMPLOYEE ds = new EMPLOYEE();
+            ORGANIZATION ds = new ORGANIZATION();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -252,7 +259,7 @@ namespace SQMS.Application.Config.Schema {
             return type;
         }
         
-        public delegate void EMPLOYEERowChangeEventHandler(object sender, EMPLOYEERowChangeEvent e);
+        public delegate void ORGANIZATIONRowChangeEventHandler(object sender, ORGANIZATIONRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -260,33 +267,37 @@ namespace SQMS.Application.Config.Schema {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class EMPLOYEEDataTable : global::System.Data.TypedTableBase<EMPLOYEERow> {
+        public partial class ORGANIZATIONDataTable : global::System.Data.TypedTableBase<ORGANIZATIONRow> {
             
-            private global::System.Data.DataColumn columnEMPID;
+            private global::System.Data.DataColumn columnORGID;
             
-            private global::System.Data.DataColumn columnDEPTID;
+            private global::System.Data.DataColumn columnCOUNTRY;
             
-            private global::System.Data.DataColumn columnEQUID;
+            private global::System.Data.DataColumn columnCITY;
             
-            private global::System.Data.DataColumn columnSEX;
+            private global::System.Data.DataColumn columnPARENTORG;
             
-            private global::System.Data.DataColumn columnEMPNAME;
+            private global::System.Data.DataColumn columnPROVINCE;
             
-            private global::System.Data.DataColumn columnEMPCODE;
+            private global::System.Data.DataColumn columnORGCODE;
             
-            private global::System.Data.DataColumn columnEMPSTATUS;
+            private global::System.Data.DataColumn columnORGNAME;
             
-            private global::System.Data.DataColumn columnMOBILE;
+            private global::System.Data.DataColumn columnORGTYPE;
             
-            private global::System.Data.DataColumn columnISVOID;
+            private global::System.Data.DataColumn columnORGALIAS;
             
-            private global::System.Data.DataColumn columnJOBTITLE;
+            private global::System.Data.DataColumn columnORGSTATUS;
+            
+            private global::System.Data.DataColumn columnORGADDRESS;
+            
+            private global::System.Data.DataColumn columnZIPCODE;
+            
+            private global::System.Data.DataColumn columnCONTACT;
             
             private global::System.Data.DataColumn columnCONTACTTEL;
             
-            private global::System.Data.DataColumn columnBIRTHDAY;
-            
-            private global::System.Data.DataColumn columnDEGREE;
+            private global::System.Data.DataColumn columnEMAIL;
             
             private global::System.Data.DataColumn columnMEMO;
             
@@ -296,22 +307,26 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
+            private global::System.Data.DataColumn columnISVOID;
+            
+            private global::System.Data.DataColumn columnSUITEID;
+            
+            private global::System.Data.DataColumn columnDATABASEID;
+            
             private global::System.Data.DataColumn columnMODIFIED;
             
             private global::System.Data.DataColumn columnORGANIZATIONID;
             
-            private global::System.Data.DataColumn columnSUITEID;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEEDataTable() {
-                this.TableName = "EMPLOYEE";
+            public ORGANIZATIONDataTable() {
+                this.TableName = "ORGANIZATION";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EMPLOYEEDataTable(global::System.Data.DataTable table) {
+            internal ORGANIZATIONDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -327,78 +342,99 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected EMPLOYEEDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ORGANIZATIONDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EMPIDColumn {
+            public global::System.Data.DataColumn ORGIDColumn {
                 get {
-                    return this.columnEMPID;
+                    return this.columnORGID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DEPTIDColumn {
+            public global::System.Data.DataColumn COUNTRYColumn {
                 get {
-                    return this.columnDEPTID;
+                    return this.columnCOUNTRY;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EQUIDColumn {
+            public global::System.Data.DataColumn CITYColumn {
                 get {
-                    return this.columnEQUID;
+                    return this.columnCITY;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SEXColumn {
+            public global::System.Data.DataColumn PARENTORGColumn {
                 get {
-                    return this.columnSEX;
+                    return this.columnPARENTORG;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EMPNAMEColumn {
+            public global::System.Data.DataColumn PROVINCEColumn {
                 get {
-                    return this.columnEMPNAME;
+                    return this.columnPROVINCE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EMPCODEColumn {
+            public global::System.Data.DataColumn ORGCODEColumn {
                 get {
-                    return this.columnEMPCODE;
+                    return this.columnORGCODE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EMPSTATUSColumn {
+            public global::System.Data.DataColumn ORGNAMEColumn {
                 get {
-                    return this.columnEMPSTATUS;
+                    return this.columnORGNAME;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn MOBILEColumn {
+            public global::System.Data.DataColumn ORGTYPEColumn {
                 get {
-                    return this.columnMOBILE;
+                    return this.columnORGTYPE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ISVOIDColumn {
+            public global::System.Data.DataColumn ORGALIASColumn {
                 get {
-                    return this.columnISVOID;
+                    return this.columnORGALIAS;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn JOBTITLEColumn {
+            public global::System.Data.DataColumn ORGSTATUSColumn {
                 get {
-                    return this.columnJOBTITLE;
+                    return this.columnORGSTATUS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ORGADDRESSColumn {
+                get {
+                    return this.columnORGADDRESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ZIPCODEColumn {
+                get {
+                    return this.columnZIPCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn CONTACTColumn {
+                get {
+                    return this.columnCONTACT;
                 }
             }
             
@@ -410,16 +446,9 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn BIRTHDAYColumn {
+            public global::System.Data.DataColumn EMAILColumn {
                 get {
-                    return this.columnBIRTHDAY;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DEGREEColumn {
-                get {
-                    return this.columnDEGREE;
+                    return this.columnEMAIL;
                 }
             }
             
@@ -452,6 +481,27 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISVOIDColumn {
+                get {
+                    return this.columnISVOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SUITEIDColumn {
+                get {
+                    return this.columnSUITEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn DATABASEIDColumn {
+                get {
+                    return this.columnDATABASEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn MODIFIEDColumn {
                 get {
                     return this.columnMODIFIED;
@@ -466,13 +516,6 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SUITEIDColumn {
-                get {
-                    return this.columnSUITEID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -481,144 +524,163 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERow this[int index] {
+            public ORGANIZATIONRow this[int index] {
                 get {
-                    return ((EMPLOYEERow)(this.Rows[index]));
+                    return ((ORGANIZATIONRow)(this.Rows[index]));
                 }
             }
             
-            public event EMPLOYEERowChangeEventHandler EMPLOYEERowChanging;
+            public event ORGANIZATIONRowChangeEventHandler ORGANIZATIONRowChanging;
             
-            public event EMPLOYEERowChangeEventHandler EMPLOYEERowChanged;
+            public event ORGANIZATIONRowChangeEventHandler ORGANIZATIONRowChanged;
             
-            public event EMPLOYEERowChangeEventHandler EMPLOYEERowDeleting;
+            public event ORGANIZATIONRowChangeEventHandler ORGANIZATIONRowDeleting;
             
-            public event EMPLOYEERowChangeEventHandler EMPLOYEERowDeleted;
+            public event ORGANIZATIONRowChangeEventHandler ORGANIZATIONRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddEMPLOYEERow(EMPLOYEERow row) {
+            public void AddORGANIZATIONRow(ORGANIZATIONRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERow AddEMPLOYEERow(
-                        string EMPID, 
-                        string DEPTID, 
-                        string EQUID, 
-                        string SEX, 
-                        string EMPNAME, 
-                        string EMPCODE, 
-                        string EMPSTATUS, 
-                        string MOBILE, 
-                        string ISVOID, 
-                        string JOBTITLE, 
+            public ORGANIZATIONRow AddORGANIZATIONRow(
+                        string ORGID, 
+                        string COUNTRY, 
+                        string CITY, 
+                        ORGANIZATIONRow parentORGANIZATIONRowByFK_ORGANIZA_RELPARENT_ORGANIZA, 
+                        string PROVINCE, 
+                        string ORGCODE, 
+                        string ORGNAME, 
+                        string ORGTYPE, 
+                        string ORGALIAS, 
+                        string ORGSTATUS, 
+                        string ORGADDRESS, 
+                        string ZIPCODE, 
+                        string CONTACT, 
                         string CONTACTTEL, 
-                        System.DateTime BIRTHDAY, 
-                        string DEGREE, 
+                        string EMAIL, 
                         string MEMO, 
                         System.DateTime CREATED, 
                         string CREATEDBY, 
                         string MODIFIEDBY, 
+                        string ISVOID, 
+                        string SUITEID, 
+                        string DATABASEID, 
                         System.DateTime MODIFIED, 
-                        string ORGANIZATIONID, 
-                        string SUITEID) {
-                EMPLOYEERow rowEMPLOYEERow = ((EMPLOYEERow)(this.NewRow()));
+                        string ORGANIZATIONID) {
+                ORGANIZATIONRow rowORGANIZATIONRow = ((ORGANIZATIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        EMPID,
-                        DEPTID,
-                        EQUID,
-                        SEX,
-                        EMPNAME,
-                        EMPCODE,
-                        EMPSTATUS,
-                        MOBILE,
-                        ISVOID,
-                        JOBTITLE,
+                        ORGID,
+                        COUNTRY,
+                        CITY,
+                        null,
+                        PROVINCE,
+                        ORGCODE,
+                        ORGNAME,
+                        ORGTYPE,
+                        ORGALIAS,
+                        ORGSTATUS,
+                        ORGADDRESS,
+                        ZIPCODE,
+                        CONTACT,
                         CONTACTTEL,
-                        BIRTHDAY,
-                        DEGREE,
+                        EMAIL,
                         MEMO,
                         CREATED,
                         CREATEDBY,
                         MODIFIEDBY,
+                        ISVOID,
+                        SUITEID,
+                        DATABASEID,
                         MODIFIED,
-                        ORGANIZATIONID,
-                        SUITEID};
-                rowEMPLOYEERow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowEMPLOYEERow);
-                return rowEMPLOYEERow;
+                        ORGANIZATIONID};
+                if ((parentORGANIZATIONRowByFK_ORGANIZA_RELPARENT_ORGANIZA != null)) {
+                    columnValuesArray[3] = parentORGANIZATIONRowByFK_ORGANIZA_RELPARENT_ORGANIZA[0];
+                }
+                rowORGANIZATIONRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowORGANIZATIONRow);
+                return rowORGANIZATIONRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERow FindByEMPID(string EMPID) {
-                return ((EMPLOYEERow)(this.Rows.Find(new object[] {
-                            EMPID})));
+            public ORGANIZATIONRow FindByORGID(string ORGID) {
+                return ((ORGANIZATIONRow)(this.Rows.Find(new object[] {
+                            ORGID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                EMPLOYEEDataTable cln = ((EMPLOYEEDataTable)(base.Clone()));
+                ORGANIZATIONDataTable cln = ((ORGANIZATIONDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new EMPLOYEEDataTable();
+                return new ORGANIZATIONDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnEMPID = base.Columns["EMPID"];
-                this.columnDEPTID = base.Columns["DEPTID"];
-                this.columnEQUID = base.Columns["EQUID"];
-                this.columnSEX = base.Columns["SEX"];
-                this.columnEMPNAME = base.Columns["EMPNAME"];
-                this.columnEMPCODE = base.Columns["EMPCODE"];
-                this.columnEMPSTATUS = base.Columns["EMPSTATUS"];
-                this.columnMOBILE = base.Columns["MOBILE"];
-                this.columnISVOID = base.Columns["ISVOID"];
-                this.columnJOBTITLE = base.Columns["JOBTITLE"];
+                this.columnORGID = base.Columns["ORGID"];
+                this.columnCOUNTRY = base.Columns["COUNTRY"];
+                this.columnCITY = base.Columns["CITY"];
+                this.columnPARENTORG = base.Columns["PARENTORG"];
+                this.columnPROVINCE = base.Columns["PROVINCE"];
+                this.columnORGCODE = base.Columns["ORGCODE"];
+                this.columnORGNAME = base.Columns["ORGNAME"];
+                this.columnORGTYPE = base.Columns["ORGTYPE"];
+                this.columnORGALIAS = base.Columns["ORGALIAS"];
+                this.columnORGSTATUS = base.Columns["ORGSTATUS"];
+                this.columnORGADDRESS = base.Columns["ORGADDRESS"];
+                this.columnZIPCODE = base.Columns["ZIPCODE"];
+                this.columnCONTACT = base.Columns["CONTACT"];
                 this.columnCONTACTTEL = base.Columns["CONTACTTEL"];
-                this.columnBIRTHDAY = base.Columns["BIRTHDAY"];
-                this.columnDEGREE = base.Columns["DEGREE"];
+                this.columnEMAIL = base.Columns["EMAIL"];
                 this.columnMEMO = base.Columns["MEMO"];
                 this.columnCREATED = base.Columns["CREATED"];
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
+                this.columnISVOID = base.Columns["ISVOID"];
+                this.columnSUITEID = base.Columns["SUITEID"];
+                this.columnDATABASEID = base.Columns["DATABASEID"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
-                this.columnSUITEID = base.Columns["SUITEID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnEMPID = new global::System.Data.DataColumn("EMPID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEMPID);
-                this.columnDEPTID = new global::System.Data.DataColumn("DEPTID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDEPTID);
-                this.columnEQUID = new global::System.Data.DataColumn("EQUID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEQUID);
-                this.columnSEX = new global::System.Data.DataColumn("SEX", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSEX);
-                this.columnEMPNAME = new global::System.Data.DataColumn("EMPNAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEMPNAME);
-                this.columnEMPCODE = new global::System.Data.DataColumn("EMPCODE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEMPCODE);
-                this.columnEMPSTATUS = new global::System.Data.DataColumn("EMPSTATUS", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEMPSTATUS);
-                this.columnMOBILE = new global::System.Data.DataColumn("MOBILE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMOBILE);
-                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnISVOID);
-                this.columnJOBTITLE = new global::System.Data.DataColumn("JOBTITLE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnJOBTITLE);
+                this.columnORGID = new global::System.Data.DataColumn("ORGID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGID);
+                this.columnCOUNTRY = new global::System.Data.DataColumn("COUNTRY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCOUNTRY);
+                this.columnCITY = new global::System.Data.DataColumn("CITY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCITY);
+                this.columnPARENTORG = new global::System.Data.DataColumn("PARENTORG", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPARENTORG);
+                this.columnPROVINCE = new global::System.Data.DataColumn("PROVINCE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPROVINCE);
+                this.columnORGCODE = new global::System.Data.DataColumn("ORGCODE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGCODE);
+                this.columnORGNAME = new global::System.Data.DataColumn("ORGNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGNAME);
+                this.columnORGTYPE = new global::System.Data.DataColumn("ORGTYPE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGTYPE);
+                this.columnORGALIAS = new global::System.Data.DataColumn("ORGALIAS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGALIAS);
+                this.columnORGSTATUS = new global::System.Data.DataColumn("ORGSTATUS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGSTATUS);
+                this.columnORGADDRESS = new global::System.Data.DataColumn("ORGADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnORGADDRESS);
+                this.columnZIPCODE = new global::System.Data.DataColumn("ZIPCODE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnZIPCODE);
+                this.columnCONTACT = new global::System.Data.DataColumn("CONTACT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCONTACT);
                 this.columnCONTACTTEL = new global::System.Data.DataColumn("CONTACTTEL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCONTACTTEL);
-                this.columnBIRTHDAY = new global::System.Data.DataColumn("BIRTHDAY", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBIRTHDAY);
-                this.columnDEGREE = new global::System.Data.DataColumn("DEGREE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDEGREE);
+                this.columnEMAIL = new global::System.Data.DataColumn("EMAIL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMAIL);
                 this.columnMEMO = new global::System.Data.DataColumn("MEMO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMEMO);
                 this.columnCREATED = new global::System.Data.DataColumn("CREATED", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -627,88 +689,96 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnCREATEDBY);
                 this.columnMODIFIEDBY = new global::System.Data.DataColumn("MODIFIEDBY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIEDBY);
+                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVOID);
+                this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSUITEID);
+                this.columnDATABASEID = new global::System.Data.DataColumn("DATABASEID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATABASEID);
                 this.columnMODIFIED = new global::System.Data.DataColumn("MODIFIED", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODIFIED);
                 this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORGANIZATIONID);
-                this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSUITEID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnEMPID}, true));
-                this.columnEMPID.AllowDBNull = false;
-                this.columnEMPID.Unique = true;
-                this.columnEMPID.MaxLength = 40;
-                this.columnDEPTID.MaxLength = 40;
-                this.columnEQUID.MaxLength = 40;
-                this.columnSEX.MaxLength = 40;
-                this.columnEMPNAME.AllowDBNull = false;
-                this.columnEMPNAME.MaxLength = 60;
-                this.columnEMPCODE.AllowDBNull = false;
-                this.columnEMPCODE.MaxLength = 40;
-                this.columnEMPSTATUS.MaxLength = 20;
-                this.columnMOBILE.MaxLength = 20;
-                this.columnISVOID.MaxLength = 1;
-                this.columnJOBTITLE.MaxLength = 40;
+                                this.columnORGID}, true));
+                this.columnORGID.AllowDBNull = false;
+                this.columnORGID.Unique = true;
+                this.columnORGID.MaxLength = 40;
+                this.columnCOUNTRY.MaxLength = 40;
+                this.columnCITY.MaxLength = 40;
+                this.columnPARENTORG.MaxLength = 40;
+                this.columnPROVINCE.MaxLength = 40;
+                this.columnORGCODE.AllowDBNull = false;
+                this.columnORGCODE.MaxLength = 40;
+                this.columnORGNAME.MaxLength = 60;
+                this.columnORGTYPE.MaxLength = 60;
+                this.columnORGALIAS.MaxLength = 60;
+                this.columnORGSTATUS.MaxLength = 2000;
+                this.columnORGADDRESS.MaxLength = 200;
+                this.columnZIPCODE.MaxLength = 20;
+                this.columnCONTACT.MaxLength = 20;
                 this.columnCONTACTTEL.MaxLength = 20;
-                this.columnDEGREE.MaxLength = 20;
+                this.columnEMAIL.MaxLength = 100;
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
-                this.columnORGANIZATIONID.MaxLength = 40;
+                this.columnISVOID.MaxLength = 1;
                 this.columnSUITEID.MaxLength = 40;
-                this.ExtendedProperties.Add("Generator_TablePropName", "_EMPLOYEE");
-                this.ExtendedProperties.Add("Generator_UserTableName", "EMPLOYEE");
+                this.columnDATABASEID.MaxLength = 40;
+                this.columnORGANIZATIONID.MaxLength = 40;
+                this.ExtendedProperties.Add("Generator_TablePropName", "_ORGANIZATION");
+                this.ExtendedProperties.Add("Generator_UserTableName", "ORGANIZATION");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERow NewEMPLOYEERow() {
-                return ((EMPLOYEERow)(this.NewRow()));
+            public ORGANIZATIONRow NewORGANIZATIONRow() {
+                return ((ORGANIZATIONRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new EMPLOYEERow(builder);
+                return new ORGANIZATIONRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(EMPLOYEERow);
+                return typeof(ORGANIZATIONRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.EMPLOYEERowChanged != null)) {
-                    this.EMPLOYEERowChanged(this, new EMPLOYEERowChangeEvent(((EMPLOYEERow)(e.Row)), e.Action));
+                if ((this.ORGANIZATIONRowChanged != null)) {
+                    this.ORGANIZATIONRowChanged(this, new ORGANIZATIONRowChangeEvent(((ORGANIZATIONRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.EMPLOYEERowChanging != null)) {
-                    this.EMPLOYEERowChanging(this, new EMPLOYEERowChangeEvent(((EMPLOYEERow)(e.Row)), e.Action));
+                if ((this.ORGANIZATIONRowChanging != null)) {
+                    this.ORGANIZATIONRowChanging(this, new ORGANIZATIONRowChangeEvent(((ORGANIZATIONRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.EMPLOYEERowDeleted != null)) {
-                    this.EMPLOYEERowDeleted(this, new EMPLOYEERowChangeEvent(((EMPLOYEERow)(e.Row)), e.Action));
+                if ((this.ORGANIZATIONRowDeleted != null)) {
+                    this.ORGANIZATIONRowDeleted(this, new ORGANIZATIONRowChangeEvent(((ORGANIZATIONRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.EMPLOYEERowDeleting != null)) {
-                    this.EMPLOYEERowDeleting(this, new EMPLOYEERowChangeEvent(((EMPLOYEERow)(e.Row)), e.Action));
+                if ((this.ORGANIZATIONRowDeleting != null)) {
+                    this.ORGANIZATIONRowDeleting(this, new ORGANIZATIONRowChangeEvent(((ORGANIZATIONRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveEMPLOYEERow(EMPLOYEERow row) {
+            public void RemoveORGANIZATIONRow(ORGANIZATIONRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -716,7 +786,7 @@ namespace SQMS.Application.Config.Schema {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                EMPLOYEE ds = new EMPLOYEE();
+                ORGANIZATION ds = new ORGANIZATION();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -734,7 +804,7 @@ namespace SQMS.Application.Config.Schema {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "EMPLOYEEDataTable";
+                attribute2.FixedValue = "ORGANIZATIONDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -779,148 +849,198 @@ namespace SQMS.Application.Config.Schema {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class EMPLOYEERow : global::System.Data.DataRow {
+        public partial class ORGANIZATIONRow : global::System.Data.DataRow {
             
-            private EMPLOYEEDataTable tableEMPLOYEE;
+            private ORGANIZATIONDataTable tableORGANIZATION;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EMPLOYEERow(global::System.Data.DataRowBuilder rb) : 
+            internal ORGANIZATIONRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableEMPLOYEE = ((EMPLOYEEDataTable)(this.Table));
+                this.tableORGANIZATION = ((ORGANIZATIONDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EMPID {
+            public string ORGID {
                 get {
-                    return ((string)(this[this.tableEMPLOYEE.EMPIDColumn]));
+                    return ((string)(this[this.tableORGANIZATION.ORGIDColumn]));
                 }
                 set {
-                    this[this.tableEMPLOYEE.EMPIDColumn] = value;
+                    this[this.tableORGANIZATION.ORGIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DEPTID {
-                get {
-                    try {
-                        return ((string)(this[this.tableEMPLOYEE.DEPTIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“DEPTID”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableEMPLOYEE.DEPTIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EQUID {
+            public string COUNTRY {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.EQUIDColumn]));
+                        return ((string)(this[this.tableORGANIZATION.COUNTRYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“EQUID”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“COUNTRY”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.EQUIDColumn] = value;
+                    this[this.tableORGANIZATION.COUNTRYColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string SEX {
+            public string CITY {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.SEXColumn]));
+                        return ((string)(this[this.tableORGANIZATION.CITYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“SEX”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“CITY”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.SEXColumn] = value;
+                    this[this.tableORGANIZATION.CITYColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EMPNAME {
-                get {
-                    return ((string)(this[this.tableEMPLOYEE.EMPNAMEColumn]));
-                }
-                set {
-                    this[this.tableEMPLOYEE.EMPNAMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EMPCODE {
-                get {
-                    return ((string)(this[this.tableEMPLOYEE.EMPCODEColumn]));
-                }
-                set {
-                    this[this.tableEMPLOYEE.EMPCODEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EMPSTATUS {
+            public string PARENTORG {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.EMPSTATUSColumn]));
+                        return ((string)(this[this.tableORGANIZATION.PARENTORGColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“EMPSTATUS”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“PARENTORG”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.EMPSTATUSColumn] = value;
+                    this[this.tableORGANIZATION.PARENTORGColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string MOBILE {
+            public string PROVINCE {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.MOBILEColumn]));
+                        return ((string)(this[this.tableORGANIZATION.PROVINCEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“MOBILE”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“PROVINCE”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.MOBILEColumn] = value;
+                    this[this.tableORGANIZATION.PROVINCEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ISVOID {
+            public string ORGCODE {
                 get {
-                    try {
-                        return ((string)(this[this.tableEMPLOYEE.ISVOIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“ISVOID”的值为 DBNull。", e);
-                    }
+                    return ((string)(this[this.tableORGANIZATION.ORGCODEColumn]));
                 }
                 set {
-                    this[this.tableEMPLOYEE.ISVOIDColumn] = value;
+                    this[this.tableORGANIZATION.ORGCODEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string JOBTITLE {
+            public string ORGNAME {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.JOBTITLEColumn]));
+                        return ((string)(this[this.tableORGANIZATION.ORGNAMEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“JOBTITLE”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGNAME”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.JOBTITLEColumn] = value;
+                    this[this.tableORGANIZATION.ORGNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGTYPE {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ORGTYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGTYPE”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ORGTYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGALIAS {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ORGALIASColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGALIAS”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ORGALIASColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGSTATUS {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ORGSTATUSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGSTATUS”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ORGSTATUSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ORGADDRESS {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ORGADDRESSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGADDRESS”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ORGADDRESSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ZIPCODE {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ZIPCODEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ZIPCODE”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ZIPCODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string CONTACT {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.CONTACTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“CONTACT”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.CONTACTColumn] = value;
                 }
             }
             
@@ -928,44 +1048,29 @@ namespace SQMS.Application.Config.Schema {
             public string CONTACTTEL {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.CONTACTTELColumn]));
+                        return ((string)(this[this.tableORGANIZATION.CONTACTTELColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“CONTACTTEL”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“CONTACTTEL”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.CONTACTTELColumn] = value;
+                    this[this.tableORGANIZATION.CONTACTTELColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime BIRTHDAY {
+            public string EMAIL {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableEMPLOYEE.BIRTHDAYColumn]));
+                        return ((string)(this[this.tableORGANIZATION.EMAILColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“BIRTHDAY”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“EMAIL”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.BIRTHDAYColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DEGREE {
-                get {
-                    try {
-                        return ((string)(this[this.tableEMPLOYEE.DEGREEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“DEGREE”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableEMPLOYEE.DEGREEColumn] = value;
+                    this[this.tableORGANIZATION.EMAILColumn] = value;
                 }
             }
             
@@ -973,14 +1078,14 @@ namespace SQMS.Application.Config.Schema {
             public string MEMO {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.MEMOColumn]));
+                        return ((string)(this[this.tableORGANIZATION.MEMOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“MEMO”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“MEMO”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.MEMOColumn] = value;
+                    this[this.tableORGANIZATION.MEMOColumn] = value;
                 }
             }
             
@@ -988,14 +1093,14 @@ namespace SQMS.Application.Config.Schema {
             public System.DateTime CREATED {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableEMPLOYEE.CREATEDColumn]));
+                        return ((global::System.DateTime)(this[this.tableORGANIZATION.CREATEDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“CREATED”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“CREATED”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.CREATEDColumn] = value;
+                    this[this.tableORGANIZATION.CREATEDColumn] = value;
                 }
             }
             
@@ -1003,14 +1108,14 @@ namespace SQMS.Application.Config.Schema {
             public string CREATEDBY {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.CREATEDBYColumn]));
+                        return ((string)(this[this.tableORGANIZATION.CREATEDBYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“CREATEDBY”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“CREATEDBY”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.CREATEDBYColumn] = value;
+                    this[this.tableORGANIZATION.CREATEDBYColumn] = value;
                 }
             }
             
@@ -1018,44 +1123,29 @@ namespace SQMS.Application.Config.Schema {
             public string MODIFIEDBY {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.MODIFIEDBYColumn]));
+                        return ((string)(this[this.tableORGANIZATION.MODIFIEDBYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“MODIFIEDBY”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“MODIFIEDBY”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.MODIFIEDBYColumn] = value;
+                    this[this.tableORGANIZATION.MODIFIEDBYColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime MODIFIED {
+            public string ISVOID {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableEMPLOYEE.MODIFIEDColumn]));
+                        return ((string)(this[this.tableORGANIZATION.ISVOIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“MODIFIED”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ISVOID”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.MODIFIEDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ORGANIZATIONID {
-                get {
-                    try {
-                        return ((string)(this[this.tableEMPLOYEE.ORGANIZATIONIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“ORGANIZATIONID”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableEMPLOYEE.ORGANIZATIONIDColumn] = value;
+                    this[this.tableORGANIZATION.ISVOIDColumn] = value;
                 }
             }
             
@@ -1063,185 +1153,300 @@ namespace SQMS.Application.Config.Schema {
             public string SUITEID {
                 get {
                     try {
-                        return ((string)(this[this.tableEMPLOYEE.SUITEIDColumn]));
+                        return ((string)(this[this.tableORGANIZATION.SUITEIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“SUITEID”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“SUITEID”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableEMPLOYEE.SUITEIDColumn] = value;
+                    this[this.tableORGANIZATION.SUITEIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDEPTIDNull() {
-                return this.IsNull(this.tableEMPLOYEE.DEPTIDColumn);
+            public string DATABASEID {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.DATABASEIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“DATABASEID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.DATABASEIDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDEPTIDNull() {
-                this[this.tableEMPLOYEE.DEPTIDColumn] = global::System.Convert.DBNull;
+            public System.DateTime MODIFIED {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableORGANIZATION.MODIFIEDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“MODIFIED”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.MODIFIEDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsEQUIDNull() {
-                return this.IsNull(this.tableEMPLOYEE.EQUIDColumn);
+            public string ORGANIZATIONID {
+                get {
+                    try {
+                        return ((string)(this[this.tableORGANIZATION.ORGANIZATIONIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“ORGANIZATION”中列“ORGANIZATIONID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableORGANIZATION.ORGANIZATIONIDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetEQUIDNull() {
-                this[this.tableEMPLOYEE.EQUIDColumn] = global::System.Convert.DBNull;
+            public ORGANIZATIONRow ORGANIZATIONRowParent {
+                get {
+                    return ((ORGANIZATIONRow)(this.GetParentRow(this.Table.ParentRelations["FK_ORGANIZA_RELPARENT_ORGANIZA"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_ORGANIZA_RELPARENT_ORGANIZA"]);
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSEXNull() {
-                return this.IsNull(this.tableEMPLOYEE.SEXColumn);
+            public bool IsCOUNTRYNull() {
+                return this.IsNull(this.tableORGANIZATION.COUNTRYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSEXNull() {
-                this[this.tableEMPLOYEE.SEXColumn] = global::System.Convert.DBNull;
+            public void SetCOUNTRYNull() {
+                this[this.tableORGANIZATION.COUNTRYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsEMPSTATUSNull() {
-                return this.IsNull(this.tableEMPLOYEE.EMPSTATUSColumn);
+            public bool IsCITYNull() {
+                return this.IsNull(this.tableORGANIZATION.CITYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetEMPSTATUSNull() {
-                this[this.tableEMPLOYEE.EMPSTATUSColumn] = global::System.Convert.DBNull;
+            public void SetCITYNull() {
+                this[this.tableORGANIZATION.CITYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsMOBILENull() {
-                return this.IsNull(this.tableEMPLOYEE.MOBILEColumn);
+            public bool IsPARENTORGNull() {
+                return this.IsNull(this.tableORGANIZATION.PARENTORGColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetMOBILENull() {
-                this[this.tableEMPLOYEE.MOBILEColumn] = global::System.Convert.DBNull;
+            public void SetPARENTORGNull() {
+                this[this.tableORGANIZATION.PARENTORGColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsISVOIDNull() {
-                return this.IsNull(this.tableEMPLOYEE.ISVOIDColumn);
+            public bool IsPROVINCENull() {
+                return this.IsNull(this.tableORGANIZATION.PROVINCEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetISVOIDNull() {
-                this[this.tableEMPLOYEE.ISVOIDColumn] = global::System.Convert.DBNull;
+            public void SetPROVINCENull() {
+                this[this.tableORGANIZATION.PROVINCEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsJOBTITLENull() {
-                return this.IsNull(this.tableEMPLOYEE.JOBTITLEColumn);
+            public bool IsORGNAMENull() {
+                return this.IsNull(this.tableORGANIZATION.ORGNAMEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetJOBTITLENull() {
-                this[this.tableEMPLOYEE.JOBTITLEColumn] = global::System.Convert.DBNull;
+            public void SetORGNAMENull() {
+                this[this.tableORGANIZATION.ORGNAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGTYPENull() {
+                return this.IsNull(this.tableORGANIZATION.ORGTYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGTYPENull() {
+                this[this.tableORGANIZATION.ORGTYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGALIASNull() {
+                return this.IsNull(this.tableORGANIZATION.ORGALIASColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGALIASNull() {
+                this[this.tableORGANIZATION.ORGALIASColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGSTATUSNull() {
+                return this.IsNull(this.tableORGANIZATION.ORGSTATUSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGSTATUSNull() {
+                this[this.tableORGANIZATION.ORGSTATUSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGADDRESSNull() {
+                return this.IsNull(this.tableORGANIZATION.ORGADDRESSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGADDRESSNull() {
+                this[this.tableORGANIZATION.ORGADDRESSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsZIPCODENull() {
+                return this.IsNull(this.tableORGANIZATION.ZIPCODEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetZIPCODENull() {
+                this[this.tableORGANIZATION.ZIPCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCONTACTNull() {
+                return this.IsNull(this.tableORGANIZATION.CONTACTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCONTACTNull() {
+                this[this.tableORGANIZATION.CONTACTColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsCONTACTTELNull() {
-                return this.IsNull(this.tableEMPLOYEE.CONTACTTELColumn);
+                return this.IsNull(this.tableORGANIZATION.CONTACTTELColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCONTACTTELNull() {
-                this[this.tableEMPLOYEE.CONTACTTELColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.CONTACTTELColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsBIRTHDAYNull() {
-                return this.IsNull(this.tableEMPLOYEE.BIRTHDAYColumn);
+            public bool IsEMAILNull() {
+                return this.IsNull(this.tableORGANIZATION.EMAILColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetBIRTHDAYNull() {
-                this[this.tableEMPLOYEE.BIRTHDAYColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDEGREENull() {
-                return this.IsNull(this.tableEMPLOYEE.DEGREEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDEGREENull() {
-                this[this.tableEMPLOYEE.DEGREEColumn] = global::System.Convert.DBNull;
+            public void SetEMAILNull() {
+                this[this.tableORGANIZATION.EMAILColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMEMONull() {
-                return this.IsNull(this.tableEMPLOYEE.MEMOColumn);
+                return this.IsNull(this.tableORGANIZATION.MEMOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMEMONull() {
-                this[this.tableEMPLOYEE.MEMOColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.MEMOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsCREATEDNull() {
-                return this.IsNull(this.tableEMPLOYEE.CREATEDColumn);
+                return this.IsNull(this.tableORGANIZATION.CREATEDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCREATEDNull() {
-                this[this.tableEMPLOYEE.CREATEDColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.CREATEDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsCREATEDBYNull() {
-                return this.IsNull(this.tableEMPLOYEE.CREATEDBYColumn);
+                return this.IsNull(this.tableORGANIZATION.CREATEDBYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetCREATEDBYNull() {
-                this[this.tableEMPLOYEE.CREATEDBYColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.CREATEDBYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMODIFIEDBYNull() {
-                return this.IsNull(this.tableEMPLOYEE.MODIFIEDBYColumn);
+                return this.IsNull(this.tableORGANIZATION.MODIFIEDBYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetMODIFIEDBYNull() {
-                this[this.tableEMPLOYEE.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.MODIFIEDBYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsMODIFIEDNull() {
-                return this.IsNull(this.tableEMPLOYEE.MODIFIEDColumn);
+            public bool IsISVOIDNull() {
+                return this.IsNull(this.tableORGANIZATION.ISVOIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetMODIFIEDNull() {
-                this[this.tableEMPLOYEE.MODIFIEDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsORGANIZATIONIDNull() {
-                return this.IsNull(this.tableEMPLOYEE.ORGANIZATIONIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetORGANIZATIONIDNull() {
-                this[this.tableEMPLOYEE.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            public void SetISVOIDNull() {
+                this[this.tableORGANIZATION.ISVOIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsSUITEIDNull() {
-                return this.IsNull(this.tableEMPLOYEE.SUITEIDColumn);
+                return this.IsNull(this.tableORGANIZATION.SUITEIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetSUITEIDNull() {
-                this[this.tableEMPLOYEE.SUITEIDColumn] = global::System.Convert.DBNull;
+                this[this.tableORGANIZATION.SUITEIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsDATABASEIDNull() {
+                return this.IsNull(this.tableORGANIZATION.DATABASEIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetDATABASEIDNull() {
+                this[this.tableORGANIZATION.DATABASEIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMODIFIEDNull() {
+                return this.IsNull(this.tableORGANIZATION.MODIFIEDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMODIFIEDNull() {
+                this[this.tableORGANIZATION.MODIFIEDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGANIZATIONIDNull() {
+                return this.IsNull(this.tableORGANIZATION.ORGANIZATIONIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGANIZATIONIDNull() {
+                this[this.tableORGANIZATION.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public ORGANIZATIONRow[] GetORGANIZATIONRows() {
+                if ((this.Table.ChildRelations["FK_ORGANIZA_RELPARENT_ORGANIZA"] == null)) {
+                    return new ORGANIZATIONRow[0];
+                }
+                else {
+                    return ((ORGANIZATIONRow[])(base.GetChildRows(this.Table.ChildRelations["FK_ORGANIZA_RELPARENT_ORGANIZA"])));
+                }
             }
         }
         
@@ -1249,20 +1454,20 @@ namespace SQMS.Application.Config.Schema {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class EMPLOYEERowChangeEvent : global::System.EventArgs {
+        public class ORGANIZATIONRowChangeEvent : global::System.EventArgs {
             
-            private EMPLOYEERow eventRow;
+            private ORGANIZATIONRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERowChangeEvent(EMPLOYEERow row, global::System.Data.DataRowAction action) {
+            public ORGANIZATIONRowChangeEvent(ORGANIZATIONRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EMPLOYEERow Row {
+            public ORGANIZATIONRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1277,7 +1482,7 @@ namespace SQMS.Application.Config.Schema {
         }
     }
 }
-namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
+namespace SQMS.Application.Config.Schema.ORGANIZATIONTableAdapters {
     
     
     /// <summary>
@@ -1290,7 +1495,7 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class EMPLOYEETableAdapter : global::System.ComponentModel.Component {
+    public partial class ORGANIZATIONTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OracleClient.OracleDataAdapter _adapter;
         
@@ -1301,7 +1506,7 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         private bool _clearBeforeFill;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public EMPLOYEETableAdapter() {
+        public ORGANIZATIONTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1367,82 +1572,95 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             this._adapter = new global::System.Data.OracleClient.OracleDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "EMPLOYEE";
-            tableMapping.ColumnMappings.Add("EMPID", "EMPID");
-            tableMapping.ColumnMappings.Add("DEPTID", "DEPTID");
-            tableMapping.ColumnMappings.Add("EQUID", "EQUID");
-            tableMapping.ColumnMappings.Add("SEX", "SEX");
-            tableMapping.ColumnMappings.Add("EMPNAME", "EMPNAME");
-            tableMapping.ColumnMappings.Add("EMPCODE", "EMPCODE");
-            tableMapping.ColumnMappings.Add("EMPSTATUS", "EMPSTATUS");
-            tableMapping.ColumnMappings.Add("MOBILE", "MOBILE");
-            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
-            tableMapping.ColumnMappings.Add("JOBTITLE", "JOBTITLE");
+            tableMapping.DataSetTable = "ORGANIZATION";
+            tableMapping.ColumnMappings.Add("ORGID", "ORGID");
+            tableMapping.ColumnMappings.Add("COUNTRY", "COUNTRY");
+            tableMapping.ColumnMappings.Add("CITY", "CITY");
+            tableMapping.ColumnMappings.Add("PARENTORG", "PARENTORG");
+            tableMapping.ColumnMappings.Add("PROVINCE", "PROVINCE");
+            tableMapping.ColumnMappings.Add("ORGCODE", "ORGCODE");
+            tableMapping.ColumnMappings.Add("ORGNAME", "ORGNAME");
+            tableMapping.ColumnMappings.Add("ORGTYPE", "ORGTYPE");
+            tableMapping.ColumnMappings.Add("ORGALIAS", "ORGALIAS");
+            tableMapping.ColumnMappings.Add("ORGSTATUS", "ORGSTATUS");
+            tableMapping.ColumnMappings.Add("ORGADDRESS", "ORGADDRESS");
+            tableMapping.ColumnMappings.Add("ZIPCODE", "ZIPCODE");
+            tableMapping.ColumnMappings.Add("CONTACT", "CONTACT");
             tableMapping.ColumnMappings.Add("CONTACTTEL", "CONTACTTEL");
-            tableMapping.ColumnMappings.Add("BIRTHDAY", "BIRTHDAY");
-            tableMapping.ColumnMappings.Add("DEGREE", "DEGREE");
+            tableMapping.ColumnMappings.Add("EMAIL", "EMAIL");
             tableMapping.ColumnMappings.Add("MEMO", "MEMO");
             tableMapping.ColumnMappings.Add("CREATED", "CREATED");
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
+            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
+            tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
+            tableMapping.ColumnMappings.Add("DATABASEID", "DATABASEID");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
-            tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"EMPLOYEE\" WHERE ((\"EMPID\" = :Original_EMPID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"ORGANIZATION\" WHERE ((\"ORGID\" = :Original_ORGID)" +
+                ")";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ORGID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""EMPLOYEE"" (""EMPID"", ""DEPTID"", ""EQUID"", ""SEX"", ""EMPNAME"", ""EMPCODE"", ""EMPSTATUS"", ""MOBILE"", ""ISVOID"", ""JOBTITLE"", ""CONTACTTEL"", ""BIRTHDAY"", ""DEGREE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIEDBY"", ""MODIFIED"", ""ORGANIZATIONID"", ""SUITEID"") VALUES (:EMPID, :DEPTID, :EQUID, :SEX, :EMPNAME, :EMPCODE, :EMPSTATUS, :MOBILE, :ISVOID, :JOBTITLE, :CONTACTTEL, :BIRTHDAY, :DEGREE, :MEMO, :CREATED, :CREATEDBY, :MODIFIEDBY, :MODIFIED, :ORGANIZATIONID, :SUITEID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""ORGANIZATION"" (""ORGID"", ""COUNTRY"", ""CITY"", ""PARENTORG"", ""PROVINCE"", ""ORGCODE"", ""ORGNAME"", ""ORGTYPE"", ""ORGALIAS"", ""ORGSTATUS"", ""ORGADDRESS"", ""ZIPCODE"", ""CONTACT"", ""CONTACTTEL"", ""EMAIL"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIEDBY"", ""ISVOID"", ""SUITEID"", ""DATABASEID"", ""MODIFIED"", ""ORGANIZATIONID"") VALUES (:ORGID, :COUNTRY, :CITY, :PARENTORG, :PROVINCE, :ORGCODE, :ORGNAME, :ORGTYPE, :ORGALIAS, :ORGSTATUS, :ORGADDRESS, :ZIPCODE, :CONTACT, :CONTACTTEL, :EMAIL, :MEMO, :CREATED, :CREATEDBY, :MODIFIEDBY, :ISVOID, :SUITEID, :DATABASEID, :MODIFIED, :ORGANIZATIONID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEPTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEPTID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPNAME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPCODE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPSTATUS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPSTATUS", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MOBILE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MOBILE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("JOBTITLE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "JOBTITLE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("COUNTRY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "COUNTRY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENTORG", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENTORG", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROVINCE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROVINCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGTYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGALIAS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGALIAS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGSTATUS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGSTATUS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGADDRESS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGADDRESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ZIPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ZIPCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CONTACT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CONTACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CONTACTTEL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CONTACTTEL", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("BIRTHDAY", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "BIRTHDAY", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEGREE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEGREE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMAIL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMAIL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATABASEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DATABASEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""EMPLOYEE"" SET ""EMPID"" = :EMPID, ""DEPTID"" = :DEPTID, ""EQUID"" = :EQUID, ""SEX"" = :SEX, ""EMPNAME"" = :EMPNAME, ""EMPCODE"" = :EMPCODE, ""EMPSTATUS"" = :EMPSTATUS, ""MOBILE"" = :MOBILE, ""ISVOID"" = :ISVOID, ""JOBTITLE"" = :JOBTITLE, ""CONTACTTEL"" = :CONTACTTEL, ""BIRTHDAY"" = :BIRTHDAY, ""DEGREE"" = :DEGREE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIEDBY"" = :MODIFIEDBY, ""MODIFIED"" = :MODIFIED, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID WHERE ((""EMPID"" = :Original_EMPID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""ORGANIZATION"" SET ""ORGID"" = :ORGID, ""COUNTRY"" = :COUNTRY, ""CITY"" = :CITY, ""PARENTORG"" = :PARENTORG, ""PROVINCE"" = :PROVINCE, ""ORGCODE"" = :ORGCODE, ""ORGNAME"" = :ORGNAME, ""ORGTYPE"" = :ORGTYPE, ""ORGALIAS"" = :ORGALIAS, ""ORGSTATUS"" = :ORGSTATUS, ""ORGADDRESS"" = :ORGADDRESS, ""ZIPCODE"" = :ZIPCODE, ""CONTACT"" = :CONTACT, ""CONTACTTEL"" = :CONTACTTEL, ""EMAIL"" = :EMAIL, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIEDBY"" = :MODIFIEDBY, ""ISVOID"" = :ISVOID, ""SUITEID"" = :SUITEID, ""DATABASEID"" = :DATABASEID, ""MODIFIED"" = :MODIFIED, ""ORGANIZATIONID"" = :ORGANIZATIONID WHERE ((""ORGID"" = :Original_ORGID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEPTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEPTID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPNAME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPCODE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPSTATUS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPSTATUS", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MOBILE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MOBILE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("JOBTITLE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "JOBTITLE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("COUNTRY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "COUNTRY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENTORG", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENTORG", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PROVINCE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PROVINCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGTYPE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGTYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGALIAS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGALIAS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGSTATUS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGSTATUS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGADDRESS", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGADDRESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ZIPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ZIPCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CONTACT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CONTACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CONTACTTEL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CONTACTTEL", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("BIRTHDAY", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "BIRTHDAY", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEGREE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEGREE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMAIL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMAIL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATABASEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DATABASEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_ORGID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1456,16 +1674,14 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT EMPID, DEPTID, EQUID, SEX, EMPNAME, EMPCODE, EMPSTATUS, MOBILE, ISVOID, JO" +
-                "BTITLE, CONTACTTEL, BIRTHDAY, \"DEGREE\", MEMO, CREATED, CREATEDBY, MODIFIEDBY, MO" +
-                "DIFIED, ORGANIZATIONID, SUITEID FROM SQMS_PRIVATE_0814.EMPLOYEE";
+            this._commandCollection[0].CommandText = @"SELECT ORGID, COUNTRY, CITY, PARENTORG, PROVINCE, ORGCODE, ORGNAME, ORGTYPE, ORGALIAS, ORGSTATUS, ORGADDRESS, ZIPCODE, CONTACT, CONTACTTEL, EMAIL, MEMO, CREATED, CREATEDBY, MODIFIEDBY, ISVOID, SUITEID, DATABASEID, MODIFIED, ORGANIZATIONID FROM SQMS_PRIVATE_0814.""ORGANIZATION""";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(EMPLOYEE.EMPLOYEEDataTable dataTable) {
+        public virtual int Fill(ORGANIZATION.ORGANIZATIONDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1477,23 +1693,23 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual EMPLOYEE.EMPLOYEEDataTable GetData() {
+        public virtual ORGANIZATION.ORGANIZATIONDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            EMPLOYEE.EMPLOYEEDataTable dataTable = new EMPLOYEE.EMPLOYEEDataTable();
+            ORGANIZATION.ORGANIZATIONDataTable dataTable = new ORGANIZATION.ORGANIZATIONDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(EMPLOYEE.EMPLOYEEDataTable dataTable) {
+        public virtual int Update(ORGANIZATION.ORGANIZATIONDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(EMPLOYEE dataSet) {
-            return this.Adapter.Update(dataSet, "EMPLOYEE");
+        public virtual int Update(ORGANIZATION dataSet) {
+            return this.Adapter.Update(dataSet, "ORGANIZATION");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1512,12 +1728,12 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_EMPID) {
-            if ((Original_EMPID == null)) {
-                throw new global::System.ArgumentNullException("Original_EMPID");
+        public virtual int Delete(string Original_ORGID) {
+            if ((Original_ORGID == null)) {
+                throw new global::System.ArgumentNullException("Original_ORGID");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_EMPID));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_ORGID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1539,145 +1755,173 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
-                    string EMPID, 
-                    string DEPTID, 
-                    string EQUID, 
-                    string SEX, 
-                    string EMPNAME, 
-                    string EMPCODE, 
-                    string EMPSTATUS, 
-                    string MOBILE, 
-                    string ISVOID, 
-                    string JOBTITLE, 
+                    string ORGID, 
+                    string COUNTRY, 
+                    string CITY, 
+                    string PARENTORG, 
+                    string PROVINCE, 
+                    string ORGCODE, 
+                    string ORGNAME, 
+                    string ORGTYPE, 
+                    string ORGALIAS, 
+                    string ORGSTATUS, 
+                    string ORGADDRESS, 
+                    string ZIPCODE, 
+                    string CONTACT, 
                     string CONTACTTEL, 
-                    global::System.Nullable<global::System.DateTime> BIRTHDAY, 
-                    string DEGREE, 
+                    string EMAIL, 
                     string MEMO, 
                     global::System.Nullable<global::System.DateTime> CREATED, 
                     string CREATEDBY, 
                     string MODIFIEDBY, 
+                    string ISVOID, 
+                    string SUITEID, 
+                    string DATABASEID, 
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
-                    string ORGANIZATIONID, 
-                    string SUITEID) {
-            if ((EMPID == null)) {
-                throw new global::System.ArgumentNullException("EMPID");
+                    string ORGANIZATIONID) {
+            if ((ORGID == null)) {
+                throw new global::System.ArgumentNullException("ORGID");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(EMPID));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ORGID));
             }
-            if ((DEPTID == null)) {
+            if ((COUNTRY == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(DEPTID));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(COUNTRY));
             }
-            if ((EQUID == null)) {
+            if ((CITY == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(EQUID));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(CITY));
             }
-            if ((SEX == null)) {
+            if ((PARENTORG == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(SEX));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(PARENTORG));
             }
-            if ((EMPNAME == null)) {
-                throw new global::System.ArgumentNullException("EMPNAME");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(EMPNAME));
-            }
-            if ((EMPCODE == null)) {
-                throw new global::System.ArgumentNullException("EMPCODE");
+            if ((PROVINCE == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(EMPCODE));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(PROVINCE));
             }
-            if ((EMPSTATUS == null)) {
+            if ((ORGCODE == null)) {
+                throw new global::System.ArgumentNullException("ORGCODE");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ORGCODE));
+            }
+            if ((ORGNAME == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(EMPSTATUS));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ORGNAME));
             }
-            if ((MOBILE == null)) {
+            if ((ORGTYPE == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MOBILE));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ORGTYPE));
             }
-            if ((ISVOID == null)) {
+            if ((ORGALIAS == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ISVOID));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ORGALIAS));
             }
-            if ((JOBTITLE == null)) {
+            if ((ORGSTATUS == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(JOBTITLE));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ORGSTATUS));
             }
-            if ((CONTACTTEL == null)) {
+            if ((ORGADDRESS == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(CONTACTTEL));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(ORGADDRESS));
             }
-            if ((BIRTHDAY.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(BIRTHDAY.Value));
-            }
-            else {
+            if ((ZIPCODE == null)) {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((DEGREE == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(ZIPCODE));
+            }
+            if ((CONTACT == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(DEGREE));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(CONTACT));
             }
-            if ((MEMO == null)) {
+            if ((CONTACTTEL == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(MEMO));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(CONTACTTEL));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((EMAIL == null)) {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(EMAIL));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(CREATEDBY));
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(MEMO));
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(MODIFIEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ISVOID == null)) {
                 this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(SUITEID));
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(ISVOID));
+            }
+            if ((SUITEID == null)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(SUITEID));
+            }
+            if ((DATABASEID == null)) {
+                this.Adapter.InsertCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(DATABASEID));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[22].Value = ((System.DateTime)(MODIFIED.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[23].Value = ((string)(ORGANIZATIONID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1699,152 +1943,180 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    string EMPID, 
-                    string DEPTID, 
-                    string EQUID, 
-                    string SEX, 
-                    string EMPNAME, 
-                    string EMPCODE, 
-                    string EMPSTATUS, 
-                    string MOBILE, 
-                    string ISVOID, 
-                    string JOBTITLE, 
+                    string ORGID, 
+                    string COUNTRY, 
+                    string CITY, 
+                    string PARENTORG, 
+                    string PROVINCE, 
+                    string ORGCODE, 
+                    string ORGNAME, 
+                    string ORGTYPE, 
+                    string ORGALIAS, 
+                    string ORGSTATUS, 
+                    string ORGADDRESS, 
+                    string ZIPCODE, 
+                    string CONTACT, 
                     string CONTACTTEL, 
-                    global::System.Nullable<global::System.DateTime> BIRTHDAY, 
-                    string DEGREE, 
+                    string EMAIL, 
                     string MEMO, 
                     global::System.Nullable<global::System.DateTime> CREATED, 
                     string CREATEDBY, 
                     string MODIFIEDBY, 
+                    string ISVOID, 
+                    string SUITEID, 
+                    string DATABASEID, 
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
                     string ORGANIZATIONID, 
-                    string SUITEID, 
-                    string Original_EMPID) {
-            if ((EMPID == null)) {
-                throw new global::System.ArgumentNullException("EMPID");
+                    string Original_ORGID) {
+            if ((ORGID == null)) {
+                throw new global::System.ArgumentNullException("ORGID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(EMPID));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ORGID));
             }
-            if ((DEPTID == null)) {
+            if ((COUNTRY == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(DEPTID));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(COUNTRY));
             }
-            if ((EQUID == null)) {
+            if ((CITY == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(EQUID));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(CITY));
             }
-            if ((SEX == null)) {
+            if ((PARENTORG == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(SEX));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(PARENTORG));
             }
-            if ((EMPNAME == null)) {
-                throw new global::System.ArgumentNullException("EMPNAME");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(EMPNAME));
-            }
-            if ((EMPCODE == null)) {
-                throw new global::System.ArgumentNullException("EMPCODE");
+            if ((PROVINCE == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(EMPCODE));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(PROVINCE));
             }
-            if ((EMPSTATUS == null)) {
+            if ((ORGCODE == null)) {
+                throw new global::System.ArgumentNullException("ORGCODE");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ORGCODE));
+            }
+            if ((ORGNAME == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(EMPSTATUS));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ORGNAME));
             }
-            if ((MOBILE == null)) {
+            if ((ORGTYPE == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MOBILE));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ORGTYPE));
             }
-            if ((ISVOID == null)) {
+            if ((ORGALIAS == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ISVOID));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ORGALIAS));
             }
-            if ((JOBTITLE == null)) {
+            if ((ORGSTATUS == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(JOBTITLE));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ORGSTATUS));
             }
-            if ((CONTACTTEL == null)) {
+            if ((ORGADDRESS == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(CONTACTTEL));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(ORGADDRESS));
             }
-            if ((BIRTHDAY.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(BIRTHDAY.Value));
-            }
-            else {
+            if ((ZIPCODE == null)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((DEGREE == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(ZIPCODE));
+            }
+            if ((CONTACT == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(DEGREE));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(CONTACT));
             }
-            if ((MEMO == null)) {
+            if ((CONTACTTEL == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(MEMO));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(CONTACTTEL));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((EMAIL == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(EMAIL));
+            }
+            if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(CREATEDBY));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(MEMO));
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(MODIFIEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ISVOID == null)) {
                 this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(SUITEID));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(ISVOID));
             }
-            if ((Original_EMPID == null)) {
-                throw new global::System.ArgumentNullException("Original_EMPID");
+            if ((SUITEID == null)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_EMPID));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(SUITEID));
+            }
+            if ((DATABASEID == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(DATABASEID));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(MODIFIED.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((ORGANIZATIONID == null)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((Original_ORGID == null)) {
+                throw new global::System.ArgumentNullException("Original_ORGID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_ORGID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1866,27 +2138,31 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    string DEPTID, 
-                    string EQUID, 
-                    string SEX, 
-                    string EMPNAME, 
-                    string EMPCODE, 
-                    string EMPSTATUS, 
-                    string MOBILE, 
-                    string ISVOID, 
-                    string JOBTITLE, 
+                    string COUNTRY, 
+                    string CITY, 
+                    string PARENTORG, 
+                    string PROVINCE, 
+                    string ORGCODE, 
+                    string ORGNAME, 
+                    string ORGTYPE, 
+                    string ORGALIAS, 
+                    string ORGSTATUS, 
+                    string ORGADDRESS, 
+                    string ZIPCODE, 
+                    string CONTACT, 
                     string CONTACTTEL, 
-                    global::System.Nullable<global::System.DateTime> BIRTHDAY, 
-                    string DEGREE, 
+                    string EMAIL, 
                     string MEMO, 
                     global::System.Nullable<global::System.DateTime> CREATED, 
                     string CREATEDBY, 
                     string MODIFIEDBY, 
+                    string ISVOID, 
+                    string SUITEID, 
+                    string DATABASEID, 
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
                     string ORGANIZATIONID, 
-                    string SUITEID, 
-                    string Original_EMPID) {
-            return this.Update(Original_EMPID, DEPTID, EQUID, SEX, EMPNAME, EMPCODE, EMPSTATUS, MOBILE, ISVOID, JOBTITLE, CONTACTTEL, BIRTHDAY, DEGREE, MEMO, CREATED, CREATEDBY, MODIFIEDBY, MODIFIED, ORGANIZATIONID, SUITEID, Original_EMPID);
+                    string Original_ORGID) {
+            return this.Update(Original_ORGID, COUNTRY, CITY, PARENTORG, PROVINCE, ORGCODE, ORGNAME, ORGTYPE, ORGALIAS, ORGSTATUS, ORGADDRESS, ZIPCODE, CONTACT, CONTACTTEL, EMAIL, MEMO, CREATED, CREATEDBY, MODIFIEDBY, ISVOID, SUITEID, DATABASEID, MODIFIED, ORGANIZATIONID, Original_ORGID);
         }
     }
 }
