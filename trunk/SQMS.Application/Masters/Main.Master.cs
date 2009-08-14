@@ -8,6 +8,9 @@ using System.Web.Security;
 using System.Threading;
 using EasyDev.SQMS;
 using System.Data;
+using EasyDev.BL.Services;
+using SQMS.Services;
+using EasyDev.Util;
 
 namespace SQMS.Application.Masters
 {
@@ -49,9 +52,33 @@ namespace SQMS.Application.Masters
             }
         }
 
+        private MenuService srv = null;
+        private DataTable dtMenu = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            NativeServiceManager sm = new NativeServiceManager();
+            srv = sm.CreateService<MenuService>();
+
+            if (!Page.IsPostBack)
+            {
+                dtMenu = srv.GetMenuData();
+                ViewState.Add("MENU", dtMenu);
+            }
+            else
+            {
+                dtMenu = ViewState["MENU"] as DataTable;
+            }
+            this.tvMenu.Nodes.Clear();
+
+            //TreeNode node = new TreeNode();
+            //node.Text = Convert.ToString("应用程序");
+            ////node.Value = Convert.ToString(item["menuid"]);
+            ////node.NavigateUrl = Convert.ToString(item["url"]);
+            //node.ToolTip = Convert.ToString("应用程序");
+            //this.tvMenu.Nodes.Add(node);
+
+            CreateMenu(tvMenu.Nodes, dtMenu, "_app");
         }
 
         public void btnLogout_OnClick(object sender, EventArgs e)
@@ -68,25 +95,83 @@ namespace SQMS.Application.Masters
             Response.Redirect(FormsAuthentication.LoginUrl + "?status=q", true);
         }
 
-        protected void appNav_TreeNodeDataBound(object sender, TreeNodeEventArgs e)
+        /// <summary>
+        /// 构造树形菜单
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <param name="dt"></param>
+        /// <param name="pid"></param>
+        private void CreateMenu(TreeNodeCollection nodes, DataTable dt, string pid)
         {
-            //SiteMapNode smn = e.Node.DataItem as SiteMapNode;
+            string filter = string.Format("parentmenu='{0}'", pid);
+            DataRow[] subdrSet = dt.Select(filter);
+            TreeNode node;
+
+            foreach (DataRow item in subdrSet)
+            {
+                //item["resourcekey"]用于权限判断
+                DataRow[] drResult = 
+                    CurrentUser.Permissions.Select("residentity='" + ConvertUtil.ToStringOrDefault(item["resourcekey"]) + "'");
+                node = new TreeNode();
+                if (ConvertUtil.ToStringOrDefault(item["itemorder"]).Length > 1)
+                {
+                    if (drResult.Length > 0)
+                    {
+                        node.Text = Convert.ToString(item["title"]);
+                        node.Value = Convert.ToString(item["menuid"]);
+                        node.NavigateUrl = Convert.ToString(item["url"]);
+                        node.ToolTip = Convert.ToString(item["title"]);
+                        nodes.Add(node);
+                    }
+                    else
+                    {
+
+                    }                            
+                }
+                else
+                {
+                    node.Text = Convert.ToString(item["title"]);
+                    node.Value = Convert.ToString(item["menuid"]);
+                    node.NavigateUrl = Convert.ToString(item["url"]);
+                    node.ToolTip = Convert.ToString(item["title"]);
+                    nodes.Add(node);
+                }
+
+                CreateMenu(node.ChildNodes, dt, node.Value);
+
+                if (node.ChildNodes.Count == 0 && ConvertUtil.ToStringOrDefault(item["type"]).Equals("_func"))
+                {
+                    this.tvMenu.Nodes.Remove(node);
+                }
+            }
+        }
+
+        //private bool IsMenuAuthorized(string resid)
+        //{
             
-            //if (smn != null)
-            //{
-            //    DataRow[] keys = CurrentUser.Permissions.Select("residentity='" + smn.ResourceKey + "'");
-            //    if (keys.Length == 0)
-            //    { 
-            //        //TODO:没有被授权，不能访问
-            //        e.Node.NavigateUrl = "javascript:void(0);";
+        //}
+
+
+        //protected void appNav_TreeNodeDataBound(object sender, TreeNodeEventArgs e)
+        //{
+        //    //SiteMapNode smn = e.Node.DataItem as SiteMapNode;
+            
+        //    //if (smn != null)
+        //    //{
+        //    //    DataRow[] keys = CurrentUser.Permissions.Select("residentity='" + smn.ResourceKey + "'");
+        //    //    if (keys.Length == 0)
+        //    //    { 
+        //    //        //TODO:没有被授权，不能访问
+        //    //        e.Node.NavigateUrl = "javascript:void(0);";
                     
-            //    }
-            //}
-        }
+        //    //    }
+        //    //}
+        //}
 
-        protected void appNav_TreeNodePopulate(object sender, TreeNodeEventArgs e)
-        {
+        //protected void appNav_TreeNodePopulate(object sender, TreeNodeEventArgs e)
+        //{
 
-        }
+        //}
+
     }
 }

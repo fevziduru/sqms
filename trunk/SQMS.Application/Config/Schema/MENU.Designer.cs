@@ -272,7 +272,9 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnMEMO;
             
-            private global::System.Data.DataColumn columnPARENT;
+            private global::System.Data.DataColumn columnPARENTMENU;
+            
+            private global::System.Data.DataColumn columnITEMORDER;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public MENUDataTable() {
@@ -340,9 +342,16 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PARENTColumn {
+            public global::System.Data.DataColumn PARENTMENUColumn {
                 get {
-                    return this.columnPARENT;
+                    return this.columnPARENTMENU;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ITEMORDERColumn {
+                get {
+                    return this.columnITEMORDER;
                 }
             }
             
@@ -375,7 +384,7 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MENURow AddMENURow(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENT) {
+            public MENURow AddMENURow(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENTMENU, string ITEMORDER) {
                 MENURow rowMENURow = ((MENURow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MENUID,
@@ -383,7 +392,8 @@ namespace SQMS.Application.Config.Schema {
                         URL,
                         RESOURCEKEY,
                         MEMO,
-                        PARENT};
+                        PARENTMENU,
+                        ITEMORDER};
                 rowMENURow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMENURow);
                 return rowMENURow;
@@ -414,7 +424,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnURL = base.Columns["URL"];
                 this.columnRESOURCEKEY = base.Columns["RESOURCEKEY"];
                 this.columnMEMO = base.Columns["MEMO"];
-                this.columnPARENT = base.Columns["PARENT"];
+                this.columnPARENTMENU = base.Columns["PARENTMENU"];
+                this.columnITEMORDER = base.Columns["ITEMORDER"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -429,8 +440,10 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnRESOURCEKEY);
                 this.columnMEMO = new global::System.Data.DataColumn("MEMO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMEMO);
-                this.columnPARENT = new global::System.Data.DataColumn("PARENT", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPARENT);
+                this.columnPARENTMENU = new global::System.Data.DataColumn("PARENTMENU", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPARENTMENU);
+                this.columnITEMORDER = new global::System.Data.DataColumn("ITEMORDER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnITEMORDER);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMENUID}, true));
                 this.columnMENUID.AllowDBNull = false;
@@ -440,7 +453,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnURL.MaxLength = 200;
                 this.columnRESOURCEKEY.MaxLength = 200;
                 this.columnMEMO.MaxLength = 1000;
-                this.columnPARENT.MaxLength = 40;
+                this.columnPARENTMENU.MaxLength = 40;
+                this.columnITEMORDER.MaxLength = 600;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_MENU");
                 this.ExtendedProperties.Add("Generator_UserTableName", "MENU");
             }
@@ -645,17 +659,32 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PARENT {
+            public string PARENTMENU {
                 get {
                     try {
-                        return ((string)(this[this.tableMENU.PARENTColumn]));
+                        return ((string)(this[this.tableMENU.PARENTMENUColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“MENU”中列“PARENT”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“MENU”中列“PARENTMENU”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableMENU.PARENTColumn] = value;
+                    this[this.tableMENU.PARENTMENUColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ITEMORDER {
+                get {
+                    try {
+                        return ((string)(this[this.tableMENU.ITEMORDERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MENU”中列“ITEMORDER”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMENU.ITEMORDERColumn] = value;
                 }
             }
             
@@ -700,13 +729,23 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPARENTNull() {
-                return this.IsNull(this.tableMENU.PARENTColumn);
+            public bool IsPARENTMENUNull() {
+                return this.IsNull(this.tableMENU.PARENTMENUColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPARENTNull() {
-                this[this.tableMENU.PARENTColumn] = global::System.Convert.DBNull;
+            public void SetPARENTMENUNull() {
+                this[this.tableMENU.PARENTMENUColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsITEMORDERNull() {
+                return this.IsNull(this.tableMENU.ITEMORDERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetITEMORDERNull() {
+                this[this.tableMENU.ITEMORDERColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -838,7 +877,8 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
             tableMapping.ColumnMappings.Add("URL", "URL");
             tableMapping.ColumnMappings.Add("RESOURCEKEY", "RESOURCEKEY");
             tableMapping.ColumnMappings.Add("MEMO", "MEMO");
-            tableMapping.ColumnMappings.Add("PARENT", "PARENT");
+            tableMapping.ColumnMappings.Add("PARENTMENU", "PARENTMENU");
+            tableMapping.ColumnMappings.Add("ITEMORDER", "ITEMORDER");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -848,26 +888,29 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"SQMS_PRIVATE_0814\".\"MENU\" (\"MENUID\", \"TITLE\", \"URL\", \"RESOURCEKEY\", " +
-                "\"MEMO\", \"PARENT\") VALUES (:MENUID, :TITLE, :URL, :RESOURCEKEY, :MEMO, :PARENT)";
+                "\"MEMO\", \"PARENTMENU\", \"ITEMORDER\") VALUES (:MENUID, :TITLE, :URL, :RESOURCEKEY, " +
+                ":MEMO, :PARENTMENU, :ITEMORDER)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MENUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MENUID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TITLE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TITLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("URL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "URL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESOURCEKEY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESOURCEKEY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENT", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENTMENU", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENTMENU", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ITEMORDER", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ITEMORDER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE \"SQMS_PRIVATE_0814\".\"MENU\" SET \"MENUID\" = :MENUID, \"TITLE\" = :TITLE, \"URL\"" +
-                " = :URL, \"RESOURCEKEY\" = :RESOURCEKEY, \"MEMO\" = :MEMO, \"PARENT\" = :PARENT WHERE " +
-                "((\"MENUID\" = :Original_MENUID))";
+                " = :URL, \"RESOURCEKEY\" = :RESOURCEKEY, \"MEMO\" = :MEMO, \"PARENTMENU\" = :PARENTMEN" +
+                "U, \"ITEMORDER\" = :ITEMORDER WHERE ((\"MENUID\" = :Original_MENUID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MENUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MENUID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TITLE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TITLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("URL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "URL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RESOURCEKEY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "RESOURCEKEY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENT", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PARENTMENU", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PARENTMENU", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ITEMORDER", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ITEMORDER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_MENUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MENUID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -882,7 +925,8 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENT FROM SQMS_PRIVATE_0814.MENU";
+            this._commandCollection[0].CommandText = "SELECT MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER FROM SQMS_PRI" +
+                "VATE_0814.MENU";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -962,7 +1006,7 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENT) {
+        public virtual int Insert(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENTMENU, string ITEMORDER) {
             if ((MENUID == null)) {
                 throw new global::System.ArgumentNullException("MENUID");
             }
@@ -993,11 +1037,17 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(MEMO));
             }
-            if ((PARENT == null)) {
+            if ((PARENTMENU == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(PARENT));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(PARENTMENU));
+            }
+            if ((ITEMORDER == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ITEMORDER));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1018,7 +1068,7 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENT, string Original_MENUID) {
+        public virtual int Update(string MENUID, string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENTMENU, string ITEMORDER, string Original_MENUID) {
             if ((MENUID == null)) {
                 throw new global::System.ArgumentNullException("MENUID");
             }
@@ -1049,17 +1099,23 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(MEMO));
             }
-            if ((PARENT == null)) {
+            if ((PARENTMENU == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(PARENT));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(PARENTMENU));
+            }
+            if ((ITEMORDER == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ITEMORDER));
             }
             if ((Original_MENUID == null)) {
                 throw new global::System.ArgumentNullException("Original_MENUID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_MENUID));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_MENUID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1080,8 +1136,8 @@ namespace SQMS.Application.Config.Schema.MENUTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENT, string Original_MENUID) {
-            return this.Update(Original_MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENT, Original_MENUID);
+        public virtual int Update(string TITLE, string URL, string RESOURCEKEY, string MEMO, string PARENTMENU, string ITEMORDER, string Original_MENUID) {
+            return this.Update(Original_MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, Original_MENUID);
         }
     }
 }
