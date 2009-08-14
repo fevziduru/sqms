@@ -102,9 +102,9 @@ namespace EasyDev.SQMS.HttpModules
                         }
                         else
                         {
-                            throw new Exception("_missing_permission_argument");
+                            //throw new Exception("_missing_permission_argument");
                             //对权限判断进行严格处理(去掉此处的注释可放宽对权限的判断条件)
-                            //permission = context.Request.Url.Segments[context.Request.Url.Segments.Length - 1].Replace(".aspx", "");
+                            permission = context.Request.Url.Segments[context.Request.Url.Segments.Length - 1].Replace(".aspx", "");
                         }                        
 
                         //bool isAuthorized = false;
