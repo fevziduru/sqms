@@ -59,13 +59,13 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.UpdatePanel UpdatePanelQualityPoint;
         
         /// <summary>
-        /// TableQualityPoint control.
+        /// GridViewMP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table TableQualityPoint;
+        protected global::System.Web.UI.WebControls.GridView GridViewMP;
         
         /// <summary>
         /// UpdatePanelMonitorPointSearch control.
@@ -93,6 +93,24 @@ namespace SQMS.Application.Views.Quality {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonPointSearch;
+        
+        /// <summary>
+        /// UpdatePanelVideoList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelVideoList;
+        
+        /// <summary>
+        /// GridViewVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewVideo;
         
         /// <summary>
         /// UpdatePanelMap control.

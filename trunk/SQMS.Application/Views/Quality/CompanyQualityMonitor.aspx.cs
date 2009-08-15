@@ -96,39 +96,6 @@ namespace SQMS.Application.Views.Quality
 
         private void bindMonitorPointTable(DataTable dtPoint)
         {
-            //this.TableQualityPoint.Rows.Clear();
-            //TableHeaderCell headerCell1 = new TableHeaderCell();
-            //headerCell1.Text = "片区监控点";
-            //TableHeaderCell headerCell2 = new TableHeaderCell();
-            //headerCell2.Text = "负责人";
-            //TableHeaderRow headerRow = new TableHeaderRow();
-            //headerRow.Cells.Add(headerCell1);
-            //headerRow.Cells.Add(headerCell2);
-            //this.TableQualityPoint.Rows.Add(headerRow);
-            //foreach (DataRow drPoint in dtPoint.Rows)
-            //{
-            //    TableCell cell1 = new TableCell();
-            //    string mpName = ConvertUtil.ToStringOrDefault(drPoint["MPNAME"]);
-            //    string mpId = ConvertUtil.ToStringOrDefault(drPoint["MPID"]);
-            //    string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
-            //    string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
-            //    string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
-            //    LinkButton lnkBtn = new LinkButton();
-            //    lnkBtn.Text = mpName;
-            //    lnkBtn.OnClientClick = "setToMarker(&quot;" + mpId + "&quot;,&quot;" + mpName + "&quot;," + lat + "," + lng + "," + lv + ",true,true)";
-            //    lnkBtn.Command += new CommandEventHandler(lnkBtn_Command);
-                
-            //    cell1.Controls.Add(lnkBtn);
-            //    //cell1.Text =
-            //    //    "<a href='javascript:setToMarker(&quot;" + mpId + "&quot;,&quot;" + mpName + "&quot;," + lat + "," + lng + "," + lv + ",true,true);'>" + mpName + "</a>";
-
-            //    TableCell cell2 = new TableCell();
-            //    cell2.Text = ConvertUtil.ToStringOrDefault(drPoint["EMPNAME"]);
-            //    TableRow row = new TableRow();
-            //    row.Cells.Add(cell1);
-            //    row.Cells.Add(cell2);
-            //    this.TableQualityPoint.Rows.Add(row);
-            //}
             this.GridViewMP.DataSource = dtPoint;
             this.GridViewMP.DataBind();
             this.UpdatePanelQualityPoint.Update();
