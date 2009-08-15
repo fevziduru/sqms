@@ -45,6 +45,7 @@ namespace SQMS.Application.Views.Basedata
                                 
                 drOP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drOP["MODIFIEDBY"] = CurrentUser.PassportID;
+                drOP["ORGANIZATIONID"] = CurrentUser.OrganizationID;
             }
         }
 

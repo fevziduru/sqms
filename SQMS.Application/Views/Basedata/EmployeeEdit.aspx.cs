@@ -52,6 +52,7 @@ namespace SQMS.Application.Views.Basedata
                                 
                 drEmployee["MODIFIEDBY"] = CurrentUser.PassportID;
                 drEmployee["MODIFIED"] = DateTime.Now;
+                drEmployee["ORGANIZATIONID"] = CurrentUser.OrganizationID;
             }
 
             DataRow drPassport = DataSetUtil.GetFirstRowFromDataSet(ViewData, "PASSPORT");
@@ -69,6 +70,7 @@ namespace SQMS.Application.Views.Basedata
                     drPassport["PASSPORTCODE"] = srv.PassportService.GenerateCode();
                     drPassport["CREATEDBY"] = srv.CurrentUser.Passport;
                     drPassport["MODIFIEDBY"] = srv.CurrentUser.Passport;
+                    drPassport["ORGANIZATIONID"] = CurrentUser.OrganizationID;
 
                     this.ID = ConvertUtil.ToStringOrDefault(drEmployee["EMPID"]);
                 }
