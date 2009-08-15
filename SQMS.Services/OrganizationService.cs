@@ -9,6 +9,8 @@ namespace SQMS.Services
 {
     public class OrganizationService : GenericService
     {
+
+
         protected override void Initialize()
         {
             this.BOName = "ORGANIZATION";
@@ -41,6 +43,11 @@ namespace SQMS.Services
             {
                 throw e;
             }
+        }
+
+        public void SetParent2null(string orgid)
+        {
+            DefaultSession.GetDataSetFromCommand(@"update ORGANIZATION set PARENTORG = null WHERE PARENTORG = :orgid", orgid);
         }
 
     }
