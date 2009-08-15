@@ -34,7 +34,7 @@
                         <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
                     <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>
+                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;
                     <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
                 </td>
             </tr>
