@@ -88,7 +88,7 @@
     
     <div style="margin:18 18; height:400;overflow:auto">    
     <yyc:SmartGridView ID="sGrid" AllowSorting="false" Width="100%"  FixRowColumn-FixColumns="0"
-            MouseOverCssClass="OverRow" AutoGenerateColumns="false" HeaderStyle-CssClass="Freezing"
+            MouseOverCssClass="OverRow" AutoGenerateColumns="false"
             HeaderStyle-BackColor="#EDEDED" EnableViewState="true" 
             MergeCells="0" runat='server'>
         <CascadeCheckboxes>
