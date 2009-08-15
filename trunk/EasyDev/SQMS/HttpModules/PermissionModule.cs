@@ -38,12 +38,15 @@ namespace EasyDev.SQMS.HttpModules
         /// <param name="e"></param>
         void context_Error(object sender, EventArgs e)
         {
-            HttpContext context = ((HttpApplication)sender).Context;
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.Message);
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.StackTrace);
+            if (ConvertUtil.ToStringOrDefault(ConfigurationManager.AppSettings["global_exception_handler"]).Equals("true"))
+            {
+                HttpContext context = ((HttpApplication)sender).Context;
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.Message);
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.StackTrace);
 
-            context.Response.Redirect("~/" + 
-                ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
+                context.Response.Redirect("~/" +
+                    ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
+            }
         }
 
         void context_AcquireRequestState(object sender, EventArgs e)
@@ -66,7 +69,7 @@ namespace EasyDev.SQMS.HttpModules
                     else
                     {
                         //如果用户已经通过FORMS验证，但是SESSION中的用户信息不存在
-                        context.Response.Redirect(FormsAuthentication.LoginUrl+"?status=q&p=__pub__");
+                        //context.Response.Redirect(FormsAuthentication.LoginUrl+"?status=q&p=__pub__");
                     }
                 }
 

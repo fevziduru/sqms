@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using log4net;
 using System.Configuration;
+using EasyDev.Util;
 
 namespace SQMS.Application
 {
@@ -35,11 +36,13 @@ namespace SQMS.Application
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
-            HttpContext context = ((HttpApplication)sender).Context;
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.Message);
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.StackTrace);
-
+            if (ConvertUtil.ToStringOrDefault(ConfigurationManager.AppSettings["global_exception_handler"]).Equals("true"))
+            {
+                Exception ex = Server.GetLastError();
+                HttpContext context = ((HttpApplication)sender).Context;
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.Message);
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.StackTrace);
+            }
             //context.Response.Redirect("~/" +
             //    ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);
         }
