@@ -15,12 +15,30 @@ drop sequence SEQ_ROAD;
 drop sequence SEQ_ENUMERATION;
 drop sequence SEQ_MENU;
 drop sequence SEQ_OPERATION;
+drop sequence SEQ_VIDEO;
+drop sequence SEQ_MONITORPOINTVIDEO;
+
+-- Create sequence 
+create sequence SEQ_MONITORPOINTVIDEO
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_VIDEO
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
 
 -- Create sequence 
 create sequence SEQ_EMPLOYEE
 minvalue 0
 maxvalue 999999999999999999999999999
-start with 0
+start with 357
 increment by 1
 cache 20;
 
@@ -133,7 +151,7 @@ cache 20;
 create sequence SEQ_OPERATION
 minvalue 0
 maxvalue 999999999999999999999999999
-start with 0
+start with 63
 increment by 1
 cache 20;
 
