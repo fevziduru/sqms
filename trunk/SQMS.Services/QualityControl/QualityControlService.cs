@@ -25,6 +25,11 @@ namespace SQMS.Services.QualityControl
         }
 
         #region 获取数据
+        /// <summary>
+        /// 根据路段ID获取监控点
+        /// </summary>
+        /// <param name="regionId"></param>
+        /// <returns></returns>
         public DataTable GetMonitorPointList(string regionId)
         {
             string sql = @"SELECT M.MPID,
@@ -56,6 +61,11 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
+        /// <summary>
+        /// 获取监控点详细信息
+        /// </summary>
+        /// <param name="mpId"></param>
+        /// <returns></returns>
         public DataTable GetMonitorPoint(string mpId)
         {
             string sql = @"SELECT M.MPID,
@@ -93,6 +103,14 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
+        /// <summary>
+        /// 获取质量监控数据列表总数
+        /// </summary>
+        /// <param name="qmId">监控点ID</param>
+        /// <param name="qcType">监控类型，QC_TYPE_NORMAL或QC_TYPE_DYNAMIC</param>
+        /// <param name="beginDate">质量监控采集起始时间</param>
+        /// <param name="endDate">质量监控采集截止时间</param>
+        /// <returns></returns>
         public int GetQualityControlInfoListCount(string qmId, string qcType, DateTime beginDate, DateTime endDate)
         {
             if (String.IsNullOrEmpty(qmId))
@@ -125,6 +143,13 @@ namespace SQMS.Services.QualityControl
             }
             return count;
         }
+        /// <summary>
+        /// 获取质量监控数据列表总数
+        /// </summary>
+        /// <param name="qmId">监控点ID</param>
+        /// <param name="qcType">监控类型，QC_TYPE_NORMAL或QC_TYPE_DYNAMIC</param>
+        /// <param name="beginDate">质量监控采集起始时间</param>
+        /// <returns></returns>
         public int GetQualityControlInfoListCount(string qmId, string qcType, DateTime beginDate)
         {
             return this.GetQualityControlInfoListCount(qmId, qcType, beginDate, new DateTime());
@@ -172,7 +197,7 @@ namespace SQMS.Services.QualityControl
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON
   LEFT JOIN EMPLOYEE E3 ON E3.EMPID = Q.CHECKPERSON
   LEFt JOIN EMPLOYEE E4 ON E4.EMPID = Q.CREATEDBY
-  LEFT JOIN ORAGANIZATION O ON O.ORGID = Q.WORKUNIT
+  LEFT JOIN ORGANIZATION O ON O.ORGID = Q.WORKUNIT
   LEFT JOIN MPASSIGNMENT M ON M.MPID = Q.MPID
   LEFT JOIN ENUMERATION ENUM1 ON ENUM1.ENUMID = Q.STATUS
   LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE
@@ -250,7 +275,7 @@ namespace SQMS.Services.QualityControl
   LEFT JOIN EMPLOYEE E1 ON E1.EMPID = Q.CHARGEPERSON
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON
   LEFT JOIN EMPLOYEE E3 ON E3.EMPID = Q.CHECKPERSON
-  LEFT JOIN ORAGANIZATION O ON O.ORGID = Q.WORKUNIT
+  LEFT JOIN ORGANIZATION O ON O.ORGID = Q.WORKUNIT
   LEFT JOIN MPASSIGNMENT M ON M.MPID = Q.MPID
   LEFT JOIN ENUMERATION ENUM1 ON ENUM1.ENUMID = Q.STATUS
   LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE
@@ -299,7 +324,7 @@ namespace SQMS.Services.QualityControl
   LEFT JOIN EMPLOYEE E1 ON E1.EMPID = Q.CHARGEPERSON
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON
   LEFT JOIN EMPLOYEE E3 ON E3.EMPID = Q.CHECKPERSON
-  LEFT JOIN ORAGANIZATION O ON O.ORGID = Q.WORKUNIT
+  LEFT JOIN ORGANIZATION O ON O.ORGID = Q.WORKUNIT
   LEFT JOIN MPASSIGNMENT M ON M.MPID = Q.MPID
   LEFT JOIN ENUMERATION ENUM1 ON ENUM1.ENUMID = Q.STATUS
   LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE
@@ -399,8 +424,6 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
-        #endregion
-
         public DataTable GetVideo(string videoId)
         {
             string sql = @"SELECT V.VIDEOID,
@@ -455,5 +478,6 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
+        #endregion
     }
 }
