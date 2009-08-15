@@ -114,6 +114,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Config\Schema\PASSPORT.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -627,14 +628,17 @@
     </None>
     <None Include="Config\Schema\ORGANIZATION.xsc">
       <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Config\Schema\ORGANIZATION.xsd">
+    <Content Include="Config\Schema\ORGANIZATION.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ORGANIZATION.Designer.cs</LastGenOutput>
-    </None>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Config\Schema\ORGANIZATION.xss">
       <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Config\Schema\PASSPORT.xsc">
       <DependentUpon>PASSPORT.xsd</DependentUpon>
@@ -803,6 +807,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\CSS\main.css" />
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
     <Content Include="Views\Basedata\EquipmentView.aspx" />

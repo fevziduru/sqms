@@ -38,7 +38,8 @@ namespace EasyDev.SQMS.HttpModules
         void context_Error(object sender, EventArgs e)
         {
             HttpContext context = ((HttpApplication)sender).Context;
-            logger.Debug(context.Error.Message);
+            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.Message);
+            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), context.Error.StackTrace);
 
             context.Response.Redirect("~/" + 
                 ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + context.Error.Message);

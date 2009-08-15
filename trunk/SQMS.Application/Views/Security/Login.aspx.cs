@@ -25,7 +25,10 @@ namespace SQMS.Application.Views.Security
             if (status == "q")
             {
                 FormsAuthentication.SignOut();
-                Session.Remove("USER_INFO");
+                if (Session["USER_INFO"] != null)
+                {
+                    Session.Remove("USER_INFO");
+                }
                 Thread.CurrentPrincipal = null;
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, null);
                 cookie.Expires = DateTime.Now.AddMinutes(-1);

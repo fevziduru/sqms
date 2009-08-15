@@ -6,38 +6,57 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="../Resources/CSS/Controls/Calendar/Calendar.css" type="text/css" rel="Stylesheet" />
+    <link href="../Resources/CSS/main.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript">
+        function switchTreeMenu(obj) {
+            if (obj.style.display == "none") {
+                obj.style.display = "block";
+            }
+            else {
+                obj.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" >
+    <asp:ScriptManager ID="ScriptManager1" runat="server" >
         <Scripts>
             <asp:ScriptReference Path="~/Resources/Scripts/Controls/Calendar.js" />
             <asp:ScriptReference Path="~/Resources/Scripts/Common/main.js" />
         </Scripts>
-        </asp:ScriptManager>
-        
+        </asp:ScriptManager> 
         <table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%">        
             <tr>
-                <td align="right" style="height:20px"><asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="注销" OnClick="btnLogout_OnClick"></asp:LinkButton></td>
+                <td align="right" style="height:20px;font-size:10pt;background-color:#C7E6F4">
+                    <span>用户：<a href='/Views/Basedata/EmployeeView.aspx?p=employeeview&id=<%=CurrentUser.EmployeeID %>'>
+                        <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
+                    <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>
+                    <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
+                </td>
             </tr>
             <tr>
-                <td style="height:20">&nbsp;</td>
+                <td style="height:50;background-color:#2A7ACA">&nbsp;</td>
             </tr>
             <tr>            
                 <td align="left" valign="top">
                 <table style="width:100%;height:100%" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td style="width:20%" valign="top" align="left">
+                        <td id="nav" style="width:15%;border-right:solid 0px #6B86B3" valign="top" align="left">
                         <!--根据权限过滤的树形菜单-->
-                        <asp:TreeView ID="tvMenu" runat="server" ImageSet="Arrows">
-                        <ParentNodeStyle Font-Bold="False" />
-                        <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-                        <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
-                            HorizontalPadding="0px" VerticalPadding="0px" />
-                        <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" 
-                            HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
-                        </asp:TreeView>
+                        <div style="margin:10 10">
+                            <asp:TreeView ID="tvMenu" runat="server" ImageSet="Arrows">
+                            <ParentNodeStyle Font-Bold="False" />
+                            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                            <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
+                                HorizontalPadding="0px" VerticalPadding="0px" />
+                            <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" 
+                                HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                            </asp:TreeView>
+                        </div>
                             <%--<asp:TreeView ID="appNav" runat="server" Width="100%" 
                                 DataSourceID="SiteMapDataSource1" 
                                 ontreenodedatabound="appNav_TreeNodeDataBound" ShowLines="True" 
@@ -51,6 +70,7 @@
                             </asp:TreeView>
                             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />--%>
                         </td>
+                        <td id="bar" onclick="switchTreeMenu(document.getElementById('nav'))" style="cursor:hand;width:10px;background-color:#6B86B3"></td>
                         <td  align="left" valign="top">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                         </td>
@@ -60,10 +80,12 @@
                 </td>
             </tr>
             <tr>
-                <td style="height:30px">&nbsp;</td>
+                <td id="footer" style="height:40px;background-color:#2A7ACA">&nbsp;</td>
+            </tr>
+            <tr style="height:20px;background-color:#C7E6F4">
+                <td>&nbsp;</td>
             </tr>
         </table>
-        
     </div>
     </form>
 </body>
