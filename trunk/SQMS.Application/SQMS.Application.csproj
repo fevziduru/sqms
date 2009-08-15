@@ -192,6 +192,27 @@
     <Compile Include="Views\Basedata\EquipmentView.aspx.designer.cs">
       <DependentUpon>EquipmentView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Basedata\OrganizationEdit.aspx.cs">
+      <DependentUpon>OrganizationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OrganizationEdit.aspx.designer.cs">
+      <DependentUpon>OrganizationEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\OrganizationList.aspx.cs">
+      <DependentUpon>OrganizationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OrganizationList.aspx.designer.cs">
+      <DependentUpon>OrganizationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Basedata\OrganizationView.aspx.cs">
+      <DependentUpon>OrganizationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Basedata\OrganizationView.aspx.designer.cs">
+      <DependentUpon>OrganizationView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Basedata\ResourceEdit.aspx.cs">
       <DependentUpon>ResourceEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -228,6 +249,20 @@
       <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\sGridItemList.cs" />
+    <Compile Include="Views\Components\OrganizationEdit.ascx.cs">
+      <DependentUpon>OrganizationEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\OrganizationEdit.ascx.designer.cs">
+      <DependentUpon>OrganizationEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\OrganizationTree.ascx.cs">
+      <DependentUpon>OrganizationTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\OrganizationTree.ascx.designer.cs">
+      <DependentUpon>OrganizationTree.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\External\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -822,11 +857,16 @@
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
     <Content Include="Views\Basedata\EquipmentView.aspx" />
+    <Content Include="Views\Basedata\OrganizationEdit.aspx" />
+    <Content Include="Views\Basedata\OrganizationList.aspx" />
+    <Content Include="Views\Basedata\OrganizationView.aspx" />
     <Content Include="Views\Basedata\ResourceEdit.aspx" />
     <Content Include="Views\Basedata\ResourceList.aspx" />
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
     <Content Include="Views\Common\Portal.aspx" />
+    <Content Include="Views\Components\OrganizationEdit.ascx" />
+    <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
