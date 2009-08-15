@@ -50,6 +50,11 @@ namespace SQMS.Services
             DefaultSession.GetDataSetFromCommand(@"update ORGANIZATION set PARENTORG = null WHERE PARENTORG = :orgid", orgid);
         }
 
+        public void SetVoid(string orgid)
+        {
+            DefaultSession.GetDataSetFromCommand(@"update ORGANIZATION set ISVOID = 'Y' WHERE ORGID = :orgid", orgid);
+        }
+
     }
 
 }
