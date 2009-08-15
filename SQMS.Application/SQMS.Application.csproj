@@ -164,6 +164,13 @@
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.cs">
+      <DependentUpon>Video.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.designer.cs">
+      <DependentUpon>Video.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Basedata\EquipmentEdit.aspx.cs">
       <DependentUpon>EquipmentEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -808,6 +815,10 @@
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\CSS\main.css" />
+    <Content Include="Resources\Images\Controls\Map\marker2.png" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
+    <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
     <Content Include="Views\Basedata\EquipmentView.aspx" />

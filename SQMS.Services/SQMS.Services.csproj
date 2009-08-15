@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\QualityControl\Video.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="OrganizationService.cs" />
     <Compile Include="Domain\Common\PagingParameter.cs" />

@@ -21,6 +21,15 @@ namespace SQMS.Services.Domain.QualityControl
         private string createdBy;
         private DateTime modified;
         private string modifiedBy;
+        private int level = 14;
+        /// <summary>
+        /// 获取或设置地图缩放等级，监控点只在该监控点该缩放级别上显示
+        /// </summary>
+        public int Level
+        {
+            get { return level; }
+            set { level = value; }
+        }
 
         public string MonitorPointId
         {

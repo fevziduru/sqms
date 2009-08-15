@@ -33,6 +33,16 @@ namespace SQMS.Services.Domain.QualityControl
         /// 巡查员
         private string inspectEmpName;
 
+        private int qualityLevel;
+        /// <summary>
+        /// 监控数据的质量等级
+        /// </summary>
+        public int QualityLevel
+        {
+            get { return qualityLevel; }
+            set { qualityLevel = value; }
+        }
+
         public string Memo
         {
             get

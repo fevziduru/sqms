@@ -20,14 +20,18 @@ namespace SQMS.Application.Views.Components.List
 
         public static readonly string URL_PARAM_CURRENT_PAGE = "pageno";
         private int rowsCount = 0;
-
+        /// <summary>
+        /// 获取或设置带分页记录的总数
+        /// </summary>
         public int RowsCount
         {
             get { return rowsCount; }
             set { rowsCount = value; }
         }
         private int pageSize = 10;
-
+        /// <summary>
+        /// 获取或设置每页记录数
+        /// </summary>
         public int PageSize
         {
             get { return pageSize; }
@@ -35,7 +39,9 @@ namespace SQMS.Application.Views.Components.List
         }
 
         private int pageCount = 0;
-
+        /// <summary>
+        /// 获取页面总数
+        /// </summary>
         public int PageCount
         {
             get
@@ -48,7 +54,9 @@ namespace SQMS.Application.Views.Components.List
             }
         }
         private int currentPage = 1;
-
+        /// <summary>
+        /// 获取或设置当前页码
+        /// </summary>
         public int CurrentPage
         {
             get
@@ -81,13 +89,18 @@ namespace SQMS.Application.Views.Components.List
             }
         }
         private AlternatelyModeEnum alternatelyMode = AlternatelyModeEnum.UrlQueryString;
-
+        /// <summary>
+        /// 获取或设置分页模式
+        /// </summary>
         public AlternatelyModeEnum AlternatelyMode
         {
             get { return alternatelyMode; }
             set { alternatelyMode = value; }
         }
         private static object _currentPageChanging = new object();
+        /// <summary>
+        /// 分页时引发的事件，在该事件处理函数中自行处理分页
+        /// </summary>
         public event CommandEventHandler CurrentPageChanging
         {
             add
@@ -99,14 +112,6 @@ namespace SQMS.Application.Views.Components.List
                 Events.RemoveHandler(_currentPageChanging, value);
             }
         }
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            if (!IsPostBack)
-            {
-                this.Init();
-            }
-        }
             
         public void Init()
         {
@@ -116,22 +121,22 @@ namespace SQMS.Application.Views.Components.List
             int end = this.CurrentPage + 2;
             if (start < 1)
             {
-                start = 1;
                 end = end + 1 - start;
+                start = 1;
             }
             if (end > this.PageCount)
             {
-                end = this.PageCount;
                 start = start - (end - this.PageCount);
+                end = this.PageCount;
             }
             for (int i = start; i <= end; i++)
             {
                 outputIndexes.Add(this.CurrentPage - 1 + i);
             }
-            if (start != 1)
+            if (!this.CurrentPage.Equals(1))
             {
                 this.divPagingBar.Controls.Add(this.createNumbericPageIndex(1));
-                if (start - 1 > 1)
+                if (this.CurrentPage - 1 > 1)
                 {
                     Label l = new Label();
                     l.Text = "...";
@@ -185,7 +190,7 @@ namespace SQMS.Application.Views.Components.List
         protected void lnkBtnPageIndex_Click(object sender, EventArgs e)
         {
             LinkButton lnkBtn = (LinkButton)sender;
-            this.CurrentPage = ConvertUtil.ToInt(lnkBtn.CommandArgument) + 1;
+            this.CurrentPage = ConvertUtil.ToInt(lnkBtn.CommandArgument);
             if (Events[_currentPageChanging] != null)
             {
                 CommandEventArgs arg = new CommandEventArgs("", this.CurrentPage);

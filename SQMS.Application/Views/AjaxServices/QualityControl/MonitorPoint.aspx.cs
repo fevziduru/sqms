@@ -81,6 +81,7 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
                 mp.MonitorPointName = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
                 mp.OrganizationId = "";
                 mp.RegionId = "";
+                mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
 
                 list.Add(mp);
             }
