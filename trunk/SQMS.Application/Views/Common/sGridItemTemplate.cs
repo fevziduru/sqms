@@ -48,6 +48,7 @@ namespace SQMS.Application.Views.Common
                     CheckBox check1 = new CheckBox();
                     check1.ID = idName;
                     check1.AutoPostBack = false;//false
+                    check1.Attributes.Add("title", columnName);
                     check1.CheckedChanged += new EventHandler(check_CheckedChanged);
                     container.Controls.Add(check1);
                     break;
