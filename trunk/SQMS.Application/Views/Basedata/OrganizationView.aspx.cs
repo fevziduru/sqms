@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SQMS.Application.Views.Basedata
 {
-    public partial class OraganizationEdit : System.Web.UI.Page
+    public partial class OrganizationView : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

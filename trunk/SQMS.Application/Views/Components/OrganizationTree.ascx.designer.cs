@@ -8,27 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SQMS.Application.Views.Basedata {
+namespace SQMS.Application.Views.Components {
     
     
-    public partial class OrganizationEdit {
+    public partial class OrganizationTree {
         
         /// <summary>
-        /// OrganizationTree1 control.
+        /// TreeView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SQMS.Application.Views.Components.OrganizationTree OrganizationTree1;
-        
-        /// <summary>
-        /// OrganizationEdit1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SQMS.Application.Views.Components.OrganizationEdit OrganizationEdit1;
+        protected global::System.Web.UI.WebControls.TreeView TreeView1;
     }
 }
