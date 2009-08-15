@@ -22,6 +22,12 @@ namespace EasyDev.Util
                 if (dsFrom.Tables.Contains(tableName))
                 {
                     dt = dsFrom.Tables[tableName];
+                    //对于有自关联的表，要先删除其自关联关系，否则无法移除表
+                    if (dsFrom.Relations.Count > 0)
+                    {
+                        dsFrom.Relations.Clear();
+                    }
+
                     dsFrom.Tables.Remove(tableName);
                     return dt;
                 }
@@ -50,6 +56,12 @@ namespace EasyDev.Util
                 if (dsFrom.Tables[index] != null)
                 {
                     dt = dsFrom.Tables[index];
+                    //对于有自关联的表，要先删除其自关联关系，否则无法移除表
+                    if (dsFrom.Relations.Count > 0)
+                    {
+                        dsFrom.Relations.Clear();
+                    }
+
                     dsFrom.Tables.RemoveAt(index);
                     return dt;
                 }
