@@ -29,6 +29,12 @@ namespace SQMS.Application.Views.Components
             this.CreateMenu(this.TreeView1.Nodes, dtORG, ""); 
         }
 
+        public void RefreshMenu(DataTable dtORG)
+        {
+            this.TreeView1.Nodes.Clear();
+            this.CreateMenu(this.TreeView1.Nodes, dtORG, "");
+        }
+
         private void CreateMenu(TreeNodeCollection nodes, DataTable dt, string pid)
         {
             string filter;
