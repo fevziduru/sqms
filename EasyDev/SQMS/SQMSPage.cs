@@ -362,14 +362,17 @@ namespace EasyDev.SQMS
         /// <param name="e"></param>
         void SQMSPage_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
-            string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;            
-            this.ErrorPage = ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + errorId;
+            if (ConvertUtil.ToStringOrDefault(ConfigurationManager.AppSettings["global_exception_handler"]).Equals("true"))
+            {
+                Exception ex = Server.GetLastError();
+                string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;
+                this.ErrorPage = ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + errorId;
 
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.Message);
-            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.StackTrace);
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.Message);
+                logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.StackTrace);
 
-            Response.Redirect(this.ErrorPage);
+                Response.Redirect(this.ErrorPage);
+            }
         }
 
         /// <summary>
