@@ -39,6 +39,7 @@ namespace SQMS.Application.Views.Basedata
                 drEqu["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";                
                 drEqu["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drEqu["MODIFIEDBY"] = CurrentUser.PassportID;
+                drEqu["ORGANIZATIONID"] = CurrentUser.OrganizationID;
             }
         }
 

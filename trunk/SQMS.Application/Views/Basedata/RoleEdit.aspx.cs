@@ -30,19 +30,25 @@ namespace SQMS.Application.Views.Basedata
         {
             DataRow drRole = DataSetUtil.GetFirstRowFromDataSet(ViewData, "ROLE");
 
-            if (this.ID.Length == 0)
-            {
-                this.ID = Service.GetNextSequenceID();
-            }
+            
 
             if (drRole != null)
             {
-                drRole["ROLEID"] = this.ID;
+                if (this.ID.Length == 0)
+                {
+                    this.ID = Service.GetNextSequenceID();
+                    drRole["CREATED"] = DateTime.Now.ToString();
+                    drRole["CREATEDBY"] = CurrentUser.PassportID;
+                }
 
+                drRole["ROLEID"] = this.ID;
                 drRole["ROLECODE"] = this.txtRoleCode.Text;
                 drRole["ROLENAME"] = this.txtRoleName.Text;
                 drRole["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
                 drRole["MEMO"] = this.txtMemo.Text;
+                drRole["MODIFIED"] = DateTime.Now.ToString();
+                drRole["MODIFIEDBY"] = CurrentUser.PassportID;
+                drRole["ORGANIZATIONID"] = CurrentUser.OrganizationID;
             }
 
         }

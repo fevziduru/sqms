@@ -95,10 +95,10 @@ namespace EasyDev.SQMS.HttpModules
                             {
                                 permission = context.Request.QueryString["p"].ToString();        //URL中的权限信息
                             }
-                            else
-                            {
-                                throw new Exception("_missing_permission_argument");
-                            }
+                            //else
+                            //{
+                            //    throw new Exception("_missing_permission_argument");
+                            //}
                             querystring = context.Request.Url.Query.Substring(1);//context.Request.RawUrl.Substring(context.Request.RawUrl.IndexOf('?'));
                         }
                         else

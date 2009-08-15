@@ -43,6 +43,7 @@ namespace SQMS.Application.Views.Basedata
                 drRes["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
                 drRes["MODIFIED"] = DateTime.Now;
                 drRes["MODIFIEDBY"] = CurrentUser.PassportID;
+                drRes["ORGANIZATIONID"] = CurrentUser.OrganizationID;
             }
         }
 
