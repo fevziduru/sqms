@@ -22,6 +22,7 @@ namespace SQMS.Application.Views.Quality
         private RegionService svcRegion = null;
 
         private DataTable dtProject = null;
+        private DataTable dtVideo = null;
         private DataTable dtOrg = null;
 
         protected void Page_Init(object sender, EventArgs e)
@@ -57,16 +58,8 @@ namespace SQMS.Application.Views.Quality
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
         {
             base.OnLoadDataEventHandler(sender, e);
-            
-            //TODO:请修改此处获取环卫公司参照
             this.dtOrg = this.svcProject.GetOrganizationListInProject();
-            DataRow drOrg = DataSetUtil.GetFirstRowFromDataTable(this.dtOrg);
-            if (null != drOrg)
-            {
-                this.dtProject = this.svcProject.GetProjectListByOrg(ConvertUtil.ToStringOrDefault(drOrg["ORGANIZATIONID"]));
-            }
-            //this.ViewData.Tables.Add(dtProject);
-            //DataSet dsEmployee = this.svcEmployee.gete
+            this.dtProject = this.svcProject.GetProjectListByOrg();
 
         }
 
@@ -101,34 +94,21 @@ namespace SQMS.Application.Views.Quality
 
         private void bindMonitorPointTable(DataTable dtPoint)
         {
-            this.TableQualityPoint.Rows.Clear();
-            TableHeaderCell headerCell1 = new TableHeaderCell();
-            headerCell1.Text = "片区监控点";
-            TableHeaderCell headerCell2 = new TableHeaderCell();
-            headerCell2.Text = "负责人";
-            TableHeaderRow headerRow = new TableHeaderRow();
-            headerRow.Cells.Add(headerCell1);
-            headerRow.Cells.Add(headerCell2);
-            this.TableQualityPoint.Rows.Add(headerRow);
-            foreach (DataRow drPoint in dtPoint.Rows)
-            {
-                TableCell cell1 = new TableCell();
-                string mpName = ConvertUtil.ToStringOrDefault(drPoint["MPNAME"]);
-                string mpId = ConvertUtil.ToStringOrDefault(drPoint["MPID"]);
-                string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
-                string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
-                cell1.Text =
-                    "<a href='javascript:setToMarker(&quot;" + mpId + "&quot;,&quot;" + mpName + "&quot;," + lat + "," + lng + ",true,true);'>" + mpName + "</a>";
-
-                TableCell cell2 = new TableCell();
-                cell2.Text = ConvertUtil.ToStringOrDefault(drPoint["EMPNAME"]);
-                TableRow row = new TableRow();
-                row.Cells.Add(cell1);
-                row.Cells.Add(cell2);
-                this.TableQualityPoint.Rows.Add(row);
-            }
-
+            this.GridViewMP.DataSource = dtPoint;
+            this.GridViewMP.DataBind();
             this.UpdatePanelQualityPoint.Update();
+        }
+
+        protected void lnkBtnMP_Command(object sender, CommandEventArgs e)
+        {
+            DataTable dt = this.svcQualityControl.GetVideoList(ConvertUtil.ToStringOrDefault(e.CommandArgument));
+            this.bindVideoTable(dt);
+        }
+        private void bindVideoTable(DataTable dt)
+        {
+            this.GridViewVideo.DataSource = dt;
+            this.GridViewVideo.DataBind();
+            this.UpdatePanelVideoList.Update();
         }
         private void bindProjectTreeView(DataTable dtProject)
         {
@@ -139,15 +119,14 @@ namespace SQMS.Application.Views.Quality
                 TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
                 this.TreeViewProject.Nodes.Add(node);
             }
-            this.UpdatePanelProjectTree.Update();
         }
-        //TODO：修改此处
+
         protected void DropDownListProjectManager_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = null;
             if (String.IsNullOrEmpty(this.DropDownListProjectManager.SelectedValue))
             {
-                dt = this.svcProject.GetProjectList();
+                dt = this.svcProject.GetProjectListByOrg();
             }
             else
             {
@@ -157,5 +136,20 @@ namespace SQMS.Application.Views.Quality
             this.bindMonitorPointTable(new DataTable());
         }
 
+        protected void GridViewMP_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView drPointView = (DataRowView)e.Row.DataItem;
+                DataRow drPoint = drPointView.Row;
+                string mpName = ConvertUtil.ToStringOrDefault(drPoint["MPNAME"]);
+                string mpId = ConvertUtil.ToStringOrDefault(drPoint["MPID"]);
+                string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
+                string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
+                string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
+                LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
+                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + ",true,true);";
+            }
+        }
     }
 }

@@ -9,9 +9,6 @@
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/Wrapper.js" type="text/javascript"></script>
 
-<%--<script src="../../Resources/Scripts/Controls/GoogleMap/VideoPlayer/AC_OETags.js"
-    language="javascript" type="text/javascript"></script>--%>
-
 <!-- Sam Skin CSS -->
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
 <!-- Dependencies -->
@@ -29,20 +26,6 @@
 <!-- Source file -->
 
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
-
-<script language="JavaScript" type="text/javascript">
-<!--
-    // -----------------------------------------------------------------------------
-    // Globals
-    // Major version of Flash required
-    var requiredMajorVersion = 9;
-    // Minor version of Flash required
-    var requiredMinorVersion = 0;
-    // Minor version of Flash required
-    var requiredRevision = 124;
-    // -----------------------------------------------------------------------------
-// -->
-</script>
 
 <div>
     <div class="yui-skin-sam">
@@ -63,7 +46,9 @@
     <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span><span id="spanRequestNum">
     </span>
 </div>
-<div id="divLog" style="overflow:auto;height:150px;">Logger inited.<br /></div>
+
+<div id="divLog" style="overflow: auto;">
+</div>
 
 <script type="text/javascript">
     var markers = new Object();
@@ -73,9 +58,9 @@
     var polyPoints = new Array();
     var videoPanel = null;
     var flashPlayerCreated = false;
-    
+
     function log(msg) {
-        document.getElementById("divLog").innerHTML += msg + "<br />";
+        //document.getElementById("divLog").innerHTML += msg + "<br />";
     }
     function unload() {
         GUnload();
@@ -87,11 +72,12 @@
                 GEvent.addListener(map, "load", fetchMarkers);
                 GEvent.addListener(map, "moveend", fetchMarkers);
                 GEvent.addListener(map, "zoomend", showZoomLevel);
-                GEvent.addListener(map, "mouseover", showMouseLatLng);
-                GEvent.addListener(map, "mousemove", showMouseLatLng);
+                //GEvent.addListener(map, "mouseover", showMouseLatLng);
+                //GEvent.addListener(map, "mousemove", showMouseLatLng);
 
                 map.addControl(new GLargeMapControl());
                 map.addControl(new GMapTypeControl());
+                
                 map.enableDoubleClickZoom();
                 map.enableScrollWheelZoom();
 
@@ -231,6 +217,7 @@
         if (poly) {
             map.removeOverlay(poly);
         }
+        log(polyPoints.length);
         polyPoints.push(new GLatLng(lat, lng));
         poly = new GPolyline(polyPoints, "#0000af", 3, 0.6);
         //var length = poly.getLength() / 100;
@@ -258,6 +245,14 @@
             //change existing ones after our Panel has been
             //instantiated:
             videoPanel.cfg.setProperty("underlay", "matte");
+            videoPanel.hideEvent.subscribe(function() {
+                window.setTimeout(function() {
+                    try {
+                        var player = document.getElementById("MapVideo");
+                        player.stop();
+                    } catch (e) { }
+                }, 0);
+            });
             videoPanel.showEvent.subscribe(function() {
                 if (!flashPlayerCreated) {
                     var divVideo = document.getElementById("divVideo");
@@ -276,9 +271,11 @@
                 }
                 if (flashPlayerCreated) {
                     window.setTimeout(function() {
-                        var player = document.getElementById("MapVideo");
-                        player.setVideoId(videoId);
-                    }, 0);
+                        try {
+                            var player = document.getElementById("MapVideo");
+                            player.setVideoId(videoId);
+                        } catch (e) { }
+                    }, 2000);
                 }
             });
         }
@@ -287,4 +284,5 @@
     }
     
 </script>
+
 

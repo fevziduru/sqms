@@ -115,10 +115,6 @@ namespace SQMS.Services.QualityControl
         /// <returns></returns>
         public DataTable GetProjectListByOrg(string orgId)
         {
-            if (String.IsNullOrEmpty(orgId))
-            {
-                throw new ArgumentException("orgId参数不能为空");
-            }
             string sql = @"SELECT P.PROJECTID,
                                    P.PROJECTCODE,
                                    P.PROJECTNAME,
@@ -137,9 +133,11 @@ namespace SQMS.Services.QualityControl
                                    E.EMPNAME 
                               FROM PROJECT P
                               LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID ";
-
-            sql += " WHERE P.ORGANIZATIONID = '" + orgId + "'";
-            DataTable dt = null;
+            if (!String.IsNullOrEmpty(orgId))
+            {
+                sql += " WHERE P.ORGANIZATIONID = '" + orgId + "'";
+            }
+            DataTable dt = new DataTable();
             try
             {
                 dt = this.DefaultSession.GetDataTableFromCommand(sql);
@@ -150,6 +148,11 @@ namespace SQMS.Services.QualityControl
                 log.Error(e.ToString());
             }
             return dt;
+        }
+
+        public DataTable GetProjectListByOrg()
+        {
+            return this.GetProjectListByOrg(String.Empty);
         }
     }
 }
