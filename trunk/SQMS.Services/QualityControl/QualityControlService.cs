@@ -38,12 +38,13 @@ namespace SQMS.Services.QualityControl
                                    M.CREATEDBY,
                                    M.MODIFIED,
                                    M.MODIFIEDBY,
-                                   E.EMPNAME
+                                   E.EMPNAME,
+                                   M.MPLEVEL
                               FROM MPASSIGNMENT M
                               LEFT JOIN ROAD R ON R.ROADID = M.ROADID
                               LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
                               LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID
-                             WHERE M.ROADID = '" +regionId+"'";
+                             WHERE M.ROADID = '" + regionId+"'";
             DataTable dt = new DataTable();
             try
             {
@@ -72,7 +73,8 @@ namespace SQMS.Services.QualityControl
        M.MODIFIED,
        M.MODIFIEDBY,
        E2.EMPNAME AS MODIFIEDBYNAME,
-       E.EMPNAME AS PROJECTMANAGER
+       E.EMPNAME AS PROJECTMANAGER,
+       M.MPLEVEL
   FROM MPASSIGNMENT M
   LEFT JOIN EMPLOYEE E1 ON E1.EMPID = M.CREATEDBY
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = M.MODIFIEDBY
@@ -163,7 +165,8 @@ namespace SQMS.Services.QualityControl
        ROUND(Q.LONGITUDE, 4) AS LONGITUDE,
        ROUND(Q.LATITUDE, 4) AS LATITUDE,
        Q.TYPE,
-       ENUM2.ENUMNAME AS QCTYPE
+       ENUM2.ENUMNAME AS QCTYPE,
+       Q.QUALITYLEVEL
   FROM QUALITY Q
   LEFT JOIN EMPLOYEE E1 ON E1.EMPID = Q.CHARGEPERSON
   LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON
@@ -339,7 +342,8 @@ namespace SQMS.Services.QualityControl
                                    M.CREATEDBY,
                                    M.MODIFIED,
                                    M.MODIFIEDBY,
-                                   E.EMPNAME
+                                   E.EMPNAME,
+                                   M.MPLEVEL
                               FROM MPASSIGNMENT M
                               LEFT JOIN ROAD R ON R.ROADID = M.ROADID
                               LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
@@ -370,7 +374,8 @@ namespace SQMS.Services.QualityControl
                                        M.CREATEDBY,
                                        M.MODIFIED,
                                        M.MODIFIEDBY,
-                                       E.EMPNAME
+                                       E.EMPNAME,
+                                       M.MPLEVEL
                               FROM MPASSIGNMENT M
                               LEFT JOIN ROAD R ON R.ROADID = M.ROADID
                               LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
@@ -395,5 +400,60 @@ namespace SQMS.Services.QualityControl
             return dt;
         }
         #endregion
+
+        public DataTable GetVideo(string videoId)
+        {
+            string sql = @"SELECT V.VIDEOID,
+       V.VIDEONAME,
+       V.MEMO,
+       V.VIDEOURL,
+       V.TRACE,
+       V.CREATED,
+       E1.EMPNAME AS CREATEDBY,
+       V.MODIFIED,
+       E2.EMPNAME AS MODIFIEDBY
+  FROM VIDEO V
+  LEFT JOIN EMPLOYEE E1 ON E1.EMPID = V.CREATEDBY
+  LEFT JOIN EMPLOYEE E2 ON E2.EMPID = V.MODIFIEDBY
+ WHERE V.VIDEOID = '"+videoId+"'";
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
+
+        public DataTable GetVideoList(string mpId)
+        {
+            string sql = @"SELECT V.VIDEOID,
+       V.VIDEONAME,
+       V.MEMO,
+       V.VIDEOURL,
+       V.TRACE,
+       V.CREATED,
+       E1.EMPNAME AS CREATEDBY,
+       V.MODIFIED,
+       E2.EMPNAME AS MODIFIEDBY
+  FROM VIDEO V
+ INNER JOIN MONITORPOINTINVIDEO MINV ON MINV.VIDEOID = V.VIDEOID
+  LEFT JOIN EMPLOYEE E1 ON E1.EMPID = V.CREATEDBY
+  LEFT JOIN EMPLOYEE E2 ON E2.EMPID = V.MODIFIEDBY
+ WHERE MINV.MPID = '" + mpId + "'";
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
     }
 }

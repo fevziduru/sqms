@@ -6,7 +6,7 @@
     <style type="text/css">
         body
         {
-            margin:0 0 0 0;
+            margin: 0 0 0 0;
         }
         div table tr td
         {
@@ -14,17 +14,17 @@
         }
         .left
         {
-            position:relative;
+            position: relative;
             width: 19%;
             height: 650px;
             float: left;
         }
         .right
         {
-            float:right;
-            position: relative; 
-            display:inline;
-            width:80%;
+            float: right;
+            position: relative;
+            display: inline;
+            width: 80%;
         }
     </style>
 </asp:Content>
@@ -37,9 +37,8 @@
                 <div>
                     <asp:UpdatePanel ID="UpdatePanelProjectManager" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <span>负责人:</span><span><asp:DropDownList ID="DropDownListProjectManager" 
-                                runat="server" AutoPostBack="true" 
-                                onselectedindexchanged="DropDownListProjectManager_SelectedIndexChanged">
+                            <span>负责人:</span><span><asp:DropDownList ID="DropDownListProjectManager" runat="server"
+                                AutoPostBack="true" OnSelectedIndexChanged="DropDownListProjectManager_SelectedIndexChanged">
                             </asp:DropDownList>
                             </span>
                         </ContentTemplate>
@@ -53,17 +52,30 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-            <div>
+            <div style="height: 300px; overflow: auto;">
                 <div>
                     作业现场</div>
                 <asp:UpdatePanel ID="UpdatePanelQualityPoint" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Table ID="TableQualityPoint" runat="server">
+                        <asp:GridView ID="GridViewMP" runat="server" AllowPaging="False" Width="100%"
+                            AutoGenerateColumns="False" DataKeyNames="MPID" 
+                            EmptyDataText="没有可显示的数据记录。" onrowdatabound="GridViewMP_RowDataBound">
+                            <Columns>
+                                <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="片区监控点">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LnkBtnMPName" runat="server" Text='<%#Eval("MPNAME") %>' OnCommand="lnkBtnMP_Command"
+                                            CommandArgument='<%#Eval("MPID") %>' OnClientClick='setToMarker("<%#Eval("MPID") %>","<%#Eval("MPNAME") %>",<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>,<%#Eval("MPLEVEL") %>,true,true)'></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="EMPNAME" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
+                            </Columns>
+                        </asp:GridView>
+                        <%--<asp:Table ID="TableQualityPoint" runat="server">
                             <asp:TableHeaderRow>
                                 <asp:TableHeaderCell Text="片区监控点" />
                                 <asp:TableHeaderCell Text="负责人" />
                             </asp:TableHeaderRow>
-                        </asp:Table>
+                        </asp:Table>--%>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -75,6 +87,25 @@
                         <span>
                             <asp:TextBox ID="TextBoxPointSearch" runat="server"></asp:TextBox></span> <span>
                                 <asp:Button runat="server" ID="ButtonPointSearch" Text="查询" OnClick="ButtonPointSearch_Click" /></span>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div>
+                <div>
+                    视频数据</div>
+                <asp:UpdatePanel ID="UpdatePanelVideoList" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:GridView ID="GridViewVideo" runat="server" AllowPaging="True" Width="100%" AllowSorting="True"
+                            AutoGenerateColumns="False" DataKeyNames="VIDEOID" EmptyDataText="没有可显示的数据记录。">
+                            <Columns>
+                                <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="名称">
+                                    <ItemTemplate>
+                                        <a href="javascript:openVideo(&quot;<%#Eval("VIDEOID") %>&quot;,&quot;<%#Eval("VIDEONAME") %>&quot;)"><%#Eval("VIDEONAME") %></a>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="CREATEDBY" HeaderText="拍摄者" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
+                            </Columns>
+                        </asp:GridView>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

@@ -8,6 +8,7 @@ function WGMarker() {
     this.mpName = "";
     this.lat = "";
     this.lng = "";
+    this.lv = 14;
 }
 WGMarker.iframeQcNormal = null;
 WGMarker.iframeQcDynamic = null;
@@ -22,11 +23,12 @@ WGMarker.prototype.openInfoWindowHtmlTab = function() {
     var tab1 = new GInfoWindowTab("常态数据", this.getInfoHtmlElement("_qc_type_normal"));
     var tab2 = new GInfoWindowTab("巡检数据", this.getInfoHtmlElement("_qc_type_dynamic"));
     //this.gMap.openInfoWindowTabsHtml(this.gMarker.getLatLng(), [tab1,tab2]);
-    this.gMap.openInfoWindowTabs(this.gMarker.getLatLng(), [tab1, tab2]);
+    //this.gMap.openInfoWindowTabs(this.gMarker.getLatLng(), [tab1, tab2]);
+    this.gMarker.openInfoWindowTabs([tab1, tab2]);
 }
 
 WGMarker.prototype.getInfoHtml = function(qcType) {
-    var html = "<iframe src='QualityMonitorPointMap.aspx?qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
+    var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
     return html;
 }
 WGMarker.prototype.getInfoHtmlElement = function(qcType) {
@@ -37,7 +39,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcNormal.height = 300;
             WGMarker.iframeQcNormal.frameBorder = "0";
         }
-        WGMarker.iframeQcNormal.src = "QualityMonitorPointMap.aspx?qcType=" + qcType + "&mpid=" + this.mpId;
+        WGMarker.iframeQcNormal.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcNormal;
     }
     else if (qcType == "_qc_type_dynamic") {
@@ -47,22 +49,42 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcDynamic.height = 300;
             WGMarker.iframeQcDynamic.frameBorder = "0";
         }
-        WGMarker.iframeQcDynamic.src = "QualityMonitorPointMap.aspx?qcType=" + qcType + "&mpid=" + this.mpId;
+        WGMarker.iframeQcDynamic.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcDynamic;
     }
     return null;
 }
 var WGMarkerFactory = {
-    createWGMarker: function(mpId, mpName, lat, lng, gmap) {
+    MAX_ZOOM_LEVEL : 19,
+    markerManager: null,
+    gmap: null,
+    getMarkerManager: function() {
+        if (!WGMarkerFactory.markerManager) {
+            WGMarkerFactory.markerManager = new MarkerManager(WGMarkerFactory.gmap);
+        }
+        return WGMarkerFactory.markerManager;
+    },
+    createWGMarker: function(mpId, mpName, lat, lng, lv) {
+        var icon = new GIcon();
+        icon.image = "/Resources/Images/Controls/Map/marker2.png";
+        icon.iconAnchor = new GPoint(6, 32);
+        icon.infoWindowAnchor = new GPoint(16, 0);
+        icon.iconSize = new GSize(32, 32);
+
         var m = new WGMarker();
         m.mpId = mpId;
         m.mpName = mpName;
         m.lat = lat;
         m.lng = lng;
-        m.gMap = gmap;
-        m.gMarker = new GMarker(new GLatLng(lat, lng), { title: mpName });
+        m.gMap = WGMarkerFactory.gmap;
+        m.level = (lv < 1 || lv > 19) ? 14 : lv;
+        m.gMarker = new GMarker(new GLatLng(lat, lng), { icon: icon, title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
-        gmap.addOverlay(m.gMarker);
+        //GEvent.addListener(m.gMarker, "infowindowopen", function() { alert("infowindowopen"); });
+        //GEvent.addListener(m.gMarker, "infowindowclose", function() { alert("infowindowclose"); });
+
+
+        //gmap.addOverlay(m.gMarker);
         return m;
     }
 }
