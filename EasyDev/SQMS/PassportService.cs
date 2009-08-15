@@ -7,16 +7,16 @@ using System.Data;
 using EasyDev.Util;
 using EasyDev.SQMS;
 
-namespace SQMS.Services
+namespace EasyDev.SQMS
 {
     public class PassportService : GenericService
     {
-        private RoleService roleService = null;        
+        //private RoleService roleService = null;        
 
         protected override void Initialize()
         {
             this.BOName = "PASSPORT";
-            roleService = ServiceManager.CreateService<RoleService>();
+            //roleService = ServiceManager.CreateService<RoleService>();
 
             base.Initialize();
         }
@@ -25,10 +25,10 @@ namespace SQMS.Services
         /// 取得所有角色
         /// </summary>
         /// <returns></returns>
-        public DataSet GetRoles()
-        {
-            return roleService.LoadAll();
-        }
+        //public DataSet GetRoles()
+        //{
+        //    return roleService.LoadAll();
+        //}
 
         /// <summary>
         /// 用户登录验证
@@ -82,7 +82,7 @@ namespace SQMS.Services
                                 left join passport p on p.empid = t.empid and p.isvoid = 'N'
                                 left join userrole ur on p.passportid = ur.passportid
                                 left join role r on r.roleid = ur.roleid
-                                where p.passport = :employeeid",name));
+                                where p.passport = :passport and r.roleid=:roleid", name, role));
 
                     ui = new UserInfo();
                     //ui.Passport = name;

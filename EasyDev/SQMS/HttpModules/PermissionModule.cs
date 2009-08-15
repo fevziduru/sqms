@@ -10,6 +10,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Configuration;
 using log4net;
+using EasyDev.BL.Services;
 
 namespace EasyDev.SQMS.HttpModules
 {
@@ -49,6 +50,7 @@ namespace EasyDev.SQMS.HttpModules
         {
             HttpContext context = ((HttpApplication)sender).Context;
             HttpCookie authCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            UserInfo userInfo = null;
 
             if (authCookie != null)
             {
@@ -56,8 +58,19 @@ namespace EasyDev.SQMS.HttpModules
                 UserIdentity uid = new UserIdentity(context.User.Identity.Name);
                 if (context.Session != null)
                 {
-                    uid.UserInfo = context.Session["USER_INFO"] as UserInfo;
+                    if (context.Session["USER_INFO"] != null)
+                    {
+                        //uid.UserInfo = context.Session["USER_INFO"] as UserInfo;
+                        userInfo = context.Session["USER_INFO"] as UserInfo;
+                    }
+                    else
+                    {
+                        //如果用户已经通过FORMS验证，但是SESSION中的用户信息不存在
+                        context.Response.Redirect(FormsAuthentication.LoginUrl+"?status=q&p=__pub__");
+                    }
                 }
+
+                uid.UserInfo = userInfo;
                 Thread.CurrentPrincipal = new PassportPrincipal(uid);
 
                 //判断有没有权限访问当前页
@@ -69,7 +82,7 @@ namespace EasyDev.SQMS.HttpModules
             }
             else
             {
-                //TODO:authCookie为空则说明未登录或已经注销
+                //authCookie为空则说明未登录或已经注销
             }
         }
         #endregion
@@ -107,8 +120,6 @@ namespace EasyDev.SQMS.HttpModules
                             //对权限判断进行严格处理(去掉此处的注释可放宽对权限的判断条件)
                             permission = context.Request.Url.Segments[context.Request.Url.Segments.Length - 1].Replace(".aspx", "");
                         }                        
-
-                        //bool isAuthorized = false;
 
                         if (permission.Equals("__pub__") == false)
                         {

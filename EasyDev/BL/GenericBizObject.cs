@@ -227,6 +227,34 @@ namespace EasyDev.BL
 
             return this.LoadByCondition(cond);
         }
+
+        /// <summary>
+        /// 根据条件删除数据
+        /// </summary>
+        /// <param name="cond"></param>
+        /// <returns></returns>
+        //public virtual bool DeleteByCondition(string cond)
+        //{
+        //    StringBuilder sbComm = new StringBuilder();
+
+        //    try
+        //    {
+        //        if (cond.Length > 0)
+        //        {
+        //            cond = " WHERE " + cond;
+        //        }
+
+        //        sbComm.AppendFormat("DELETE FROM {0} {1}", this.FullName, cond);
+
+        //        this.CurrentSession.ExecuteCommand(sbComm.ToString());
+
+        //        return true;
+        //    }
+        //    catch (PersistenceException e)
+        //    {
+        //        throw e;
+        //    }
+        //}
         
         /// <summary>
         /// 根据条件加载数据
@@ -250,6 +278,7 @@ namespace EasyDev.BL
 
                 #region 重新加载域模型数据
                 //this._data.EnforceConstraints = false;
+                //对于有自关联的表，要先删除其自关联关系，否则无法移除表
                 this._data.Relations.Clear();
                 //清除数据集中的数据表
                 this._data.Tables.Clear();
@@ -536,9 +565,9 @@ namespace EasyDev.BL
                 StringBuilder deleteCommand = new StringBuilder();
                 deleteCommand.Append(string.Format("DELETE FROM {0} WHERE {1}", this.Entity, cond));
 
-                _session.ExecuteCommand(deleteCommand.ToString());
+                CurrentSession.ExecuteCommand(deleteCommand.ToString());
             }
-            catch (System.Exception e)
+            catch (PersistenceException e)
             {
                 throw e;
             }
@@ -552,7 +581,7 @@ namespace EasyDev.BL
                     _session.GetScalarObjectFromCommand(
                     string.Format(@"SELECT SEQ_{0}.nextval FROM dual", tableName)));
             }
-            catch (Exception e)
+            catch (PersistenceException e)
             {
                 throw e;
             }

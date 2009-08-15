@@ -11,6 +11,7 @@ using EasyDev.Util;
 using System.Threading;
 using System.Configuration;
 using log4net;
+using System.Web.Security;
 
 namespace EasyDev.SQMS
 {
@@ -32,6 +33,28 @@ namespace EasyDev.SQMS
             get;
             set;
         }
+
+        /// <summary>
+        /// 本地服务管理器
+        /// </summary>
+        private NativeServiceManager serviceManager = null;
+
+        /// <summary>
+        /// 服务管理器
+        /// </summary>
+        public NativeServiceManager ServiceManager
+        {
+            get
+            {
+                if (this.serviceManager == null)
+                {
+                    this.serviceManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
+                }
+
+                return this.serviceManager;
+            }
+        }
+
 
         protected virtual IService Service
         {
@@ -71,12 +94,14 @@ namespace EasyDev.SQMS
                         else
                         {
                             //TODO: UserInfo为空的处理
+                            Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                         }
                     }
                 }
                 else
                 {
                     //TODO: UserInfo为空的处理
+                    Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                 }
 
                 return userinfo;
@@ -291,7 +316,7 @@ namespace EasyDev.SQMS
         protected override void OnLoad(EventArgs e)
         {
             this.Error += new EventHandler(SQMSPage_Error);
-            this.ID = ConvertUtil.EmptyOrString(Request.Params["id"]);
+            this.ID = ConvertUtil.ToStringOrDefault(Request.Params["id"]);
 
             //初始化页面成员数据
             this.OnPreInitializeView += new EventHandler<EventArgs>(OnPreInitializeViewEventHandler);

@@ -16,11 +16,12 @@ namespace SQMS.Application.Views.Security
     public partial class _Default : SQMSPage<PassportService>
     {
         private PassportService srv = null;
+        private RoleService roleSrv = null;
         private string status = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            status = ConvertUtil.EmptyOrString(Request.QueryString["status"]);
+            status = ConvertUtil.ToStringOrDefault(Request.QueryString["status"]);
 
             if (status == "q")
             {
@@ -40,13 +41,14 @@ namespace SQMS.Application.Views.Security
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
             srv = (PassportService)Service;
+            roleSrv = ServiceManager.CreateService<RoleService>();
         }
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                ControlBindingHelper.BindDropDownList(ddlRole, srv.GetRoles(), "rolename", "roleid");
+                ControlBindingHelper.BindDropDownList(ddlRole, roleSrv.LoadAll(), "rolename", "roleid");
             }
         }
 

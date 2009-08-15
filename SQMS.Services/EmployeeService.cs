@@ -5,6 +5,7 @@ using System.Text;
 using EasyDev.BL.Services;
 using System.Data;
 using EasyDev.Util;
+using EasyDev.SQMS;
 
 namespace SQMS.Services
 {

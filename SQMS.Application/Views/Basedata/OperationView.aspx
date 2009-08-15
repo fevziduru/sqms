@@ -5,12 +5,15 @@
 
     <div>
      <table style="width:100%">
+     <tr>
+            <td align="right"><a href="OperationList.aspx?p=operationlist">返回到列表</a></td>
+        </tr>
         <tr>
-            <td>
+            <td align="center">
                 <fieldset>
-                <asp:Button runat="server" ID="Button4" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button2" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/>
+                <asp:Button runat="server" ID="Button4" Width="110px"  Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button2" Width="110px"  Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button1" Width="110px"  Text="删除" OnClick="btnDelete_OnClick"/>
                 </fieldset>
             </td>
         </tr>
@@ -35,13 +38,13 @@
     </fieldset>    
     <br />
     
-     <table style="width:100%">
+    <table style="width:100%">
         <tr>
-            <td>
+            <td align="center">
                 <fieldset>
-                <asp:Button runat="server" ID="Button3" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button5" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
-                <asp:Button runat="server" ID="Button6" Text="删除" OnClick="btnDelete_OnClick"/>
+                <asp:Button runat="server" Width="110px"  ID="Button3" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" Width="110px"  ID="Button5" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                <asp:Button runat="server" Width="110px" ID="Button6" Text="删除" OnClick="btnDelete_OnClick"/>
                 </fieldset>
             </td>
         </tr>

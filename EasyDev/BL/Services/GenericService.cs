@@ -137,17 +137,6 @@ namespace EasyDev.BL.Services
         }
 
         /// <summary>
-        /// 业务对象
-        /// </summary>
-        //protected IGenericBizObject BO
-        //{
-        //    get
-        //    {
-        //        return this.bizObject;
-        //    }
-        //}
-
-        /// <summary>
         /// 资源管理器
         /// </summary>
         public IResourceManager ResourceManager
@@ -328,6 +317,11 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 加载视图
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public virtual DataSet LoadViewByName(string name)
         {
             try
@@ -340,6 +334,10 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 根据主键值删除数据
+        /// </summary>
+        /// <param name="key"></param>
         public virtual void DeleteByKey(object key)
         {
             try
@@ -352,6 +350,10 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 删除由多主属性构成的数据表数据
+        /// </summary>
+        /// <param name="keys"></param>
         public virtual void DeleteByKeys(IDictionary<string, object> keys)
         {
             try
@@ -364,6 +366,27 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 根据条件删除数据
+        /// </summary>
+        /// <param name="condition">删除条件，语法同SQL中的WHERE，但不带WHERE关键字</param>
+        public virtual void DeleteByCondition(string condition)
+        {
+            try
+            {
+                this.bizObject.DeleteByCondition(condition);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 按条件加载
+        /// </summary>
+        /// <param name="cond">加载条件，语法同SQL中的WHERE，但不带WHERE关键字</param>
+        /// <returns></returns>
         public virtual DataSet LoadByCondition(string cond)
         {
             try
@@ -383,6 +406,10 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 取下一个ORACLE序列号
+        /// </summary>
+        /// <returns></returns>
         public string GetNextSequenceID()
         {
             return this.bizObject.GetNextSequenceID(this.BOName);
@@ -439,6 +466,10 @@ namespace EasyDev.BL.Services
             }
         }
 
+        /// <summary>
+        /// 生成编号
+        /// </summary>
+        /// <returns></returns>
         public virtual string GenerateCode()
         {
             return this.BOName.Substring(0, 2) + "-" + DateTime.Now.Ticks.ToString();

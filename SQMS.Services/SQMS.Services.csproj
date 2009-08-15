@@ -62,7 +62,6 @@
     <Compile Include="EnumerationService.cs" />
     <Compile Include="EquipmentService.cs" />
     <Compile Include="OperationService.cs" />
-    <Compile Include="PassportService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityControl\ProjectService.cs" />
     <Compile Include="QualityControl\QualityControlService.cs" />

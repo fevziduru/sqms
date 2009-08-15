@@ -4,10 +4,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div>
-     <table>
+     <table style="width:100%">
+      <tr>
+            <td align="right"><a href="OperationList.aspx?p=operationlist">返回到列表</a></td>
+        </tr>
         <tr>
-            <td><asp:Button runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/></td>
-            <td><asp:Button runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/></td>
+            <td align="center">
+            <fieldset>
+                <asp:Button runat="server" ID="Button1" Width="110" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+                <asp:Button runat="server" ID="Button2" Width="110" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                </fieldset>
+            </td>
         </tr>
     </table>
     <table>
@@ -37,10 +44,14 @@
                     Height="181px" Width="488px" ></asp:TextBox></td>
         </tr>
     </table>
-    <table>
+    <table style="width:100%">
         <tr>
-            <td><asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click"/></td>
-            <td><asp:Button runat="server" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/></td>
+            <td align="center">
+            <fieldset>
+            <asp:Button runat="server" Width="110" ID="btnSave" Text="保存" OnClick="btnSave_Click"/>&nbsp;&nbsp;
+            <asp:Button runat="server" Width="110" ID="Button3" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+            </fieldset>
+            </td>
         </tr>
     </table>
     
