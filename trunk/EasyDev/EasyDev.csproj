@@ -213,6 +213,7 @@
     <Compile Include="SQMS\HttpHandlers\FrontHandlerFactory.cs" />
     <Compile Include="SQMS\HttpModules\PermissionModule.cs" />
     <Compile Include="SQMS\PassportPrincipal.cs" />
+    <Compile Include="SQMS\PassportService.cs" />
     <Compile Include="SQMS\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
