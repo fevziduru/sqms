@@ -58,12 +58,12 @@ namespace SQMS.Services
                             string.Format("PASSPORT='{0}' AND PASSWORD='{1}'", name, password)), this.BOName) != null)
                 {
                     //取账号信息
-                    DataRow drPassport =
-                        DataSetUtil.GetFirstRowFromDataSet(
-                        LoadByCondition("ISVOID='N' AND PASSPORT='" + name + "'"), BOName);
+                    //DataRow drPassport =
+                    //    DataSetUtil.GetFirstRowFromDataSet(
+                    //    LoadByCondition("ISVOID='N' AND PASSPORT='" + name + "'"), BOName);
 
                     //取职员信息
-                    DataRow drEmployee = DataSetUtil.GetFirstRowFromDataTable(
+                    DataRow drUserInfo = DataSetUtil.GetFirstRowFromDataTable(
                         DefaultSession.GetDataTableFromCommand(
                             @"select  t.empid, 
                                         t.empname, 
@@ -71,23 +71,32 @@ namespace SQMS.Services
                                         d.orgname deptname,
                                         o.orgid orgid, 
                                         o.orgname orgname, 
-                                        o.orgalias 
+                                        o.orgalias,
+                                        r.roleid,
+                                        r.rolename,
+                                        p.passportid,
+                                        p.passport
                                 from employee t
                                 left join ORGANIZATION d on t.deptid = d.orgid and d.orgtype='department'
                                 left join ORGANIZATION o on o.orgid = t.organizationid and o.orgtype='organization'
-                                where t.empid = :employeeid",
-                        ConvertUtil.ToStringOrDefault(drPassport["EMPID"])));
+                                left join passport p on p.empid = t.empid and p.isvoid = 'N'
+                                left join userrole ur on p.passportid = ur.passportid
+                                left join role r on r.roleid = ur.roleid
+                                where p.passport = :employeeid",name));
 
                     ui = new UserInfo();
-                    ui.Passport = name;
-                    ui.RoleID = role;
-                    ui.PassportID = ConvertUtil.ToStringOrDefault(drPassport["PASSPORTID"]);
-                    ui.EmployeeID = ConvertUtil.ToStringOrDefault(drPassport["EMPID"]);
-                    ui.OrganizationID = ConvertUtil.ToStringOrDefault(drEmployee["orgid"]);
-                    ui.OrganizationName = ConvertUtil.ToStringOrDefault(drEmployee["orgname"]);
-                    ui.DepartmentID = ConvertUtil.ToStringOrDefault(drEmployee["deptid"]);
-                    ui.DepartmentName = ConvertUtil.ToStringOrDefault(drEmployee["deptname"]);
-                    ui.EmployeeName = ConvertUtil.ToStringOrDefault(drEmployee["EMPNAME"]);
+                    //ui.Passport = name;
+                    //ui.RoleID = role;
+                    ui.Passport = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORT"]);
+                    ui.PassportID = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORTID"]);
+                    ui.EmployeeID = ConvertUtil.ToStringOrDefault(drUserInfo["EMPID"]);
+                    ui.OrganizationID = ConvertUtil.ToStringOrDefault(drUserInfo["orgid"]);
+                    ui.OrganizationName = ConvertUtil.ToStringOrDefault(drUserInfo["orgname"]);
+                    ui.DepartmentID = ConvertUtil.ToStringOrDefault(drUserInfo["deptid"]);
+                    ui.DepartmentName = ConvertUtil.ToStringOrDefault(drUserInfo["deptname"]);
+                    ui.EmployeeName = ConvertUtil.ToStringOrDefault(drUserInfo["EMPNAME"]);
+                    ui.RoleID = ConvertUtil.ToStringOrDefault(drUserInfo["ROLEID"]);
+                    ui.RoleName = ConvertUtil.ToStringOrDefault(drUserInfo["ROLENAME"]);
 
                     ui.Roles = GetUserRole(name);   //取得用户角色
                     ui.Permissions = GetUserPermission(name, role); //取得用户权限以相关的操作

@@ -1,0 +1,13 @@
+﻿body
+{
+    font-family:微软雅黑;
+    font-style:normal;
+    font-variant:normal;
+    text-decoration:none;
+    margin: 0 0;
+}
+
+a:actived, a:link, a:visited
+{
+    text-decoration:none;  
+}

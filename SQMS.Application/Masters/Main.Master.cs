@@ -40,12 +40,14 @@ namespace SQMS.Application.Masters
                         else
                         {
                             //TODO: UserInfo为空的处理
+                            Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__", true);
                         }
                     }
                 }
                 else
                 {
                     //TODO: UserInfo为空的处理
+                    Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__", true);
                 }
 
                 return userinfo;

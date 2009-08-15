@@ -341,7 +341,8 @@ namespace EasyDev.SQMS
             string errorId = ex.Message.Length == 0 ? "_default_exception" : ex.Message;            
             this.ErrorPage = ConfigurationManager.AppSettings["ErrorPage"] + "?id=" + errorId;
 
-            logger.Debug(ex.Message);
+            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.Message);
+            logger.DebugFormat("[YinPSoft-Debug-{0}] - {1}", DateTime.Now.ToString(), ex.StackTrace);
 
             Response.Redirect(this.ErrorPage);
         }
