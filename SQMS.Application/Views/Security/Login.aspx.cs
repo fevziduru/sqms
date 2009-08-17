@@ -102,7 +102,7 @@ namespace SQMS.Application.Views.Security
             }
             else
             {
-                FormsAuthentication.RedirectToLoginPage();
+                Response.Redirect(FormsAuthentication.LoginUrl, true);
             }
         }
     }

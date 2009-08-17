@@ -39,6 +39,23 @@
             </td>
         </tr>
         <tr>
+            <td style="width:110px">操作标识：</td>
+            <td style="width:330px" colspan="3">
+                <asp:TextBox ID="txtIdentity" runat="server" ></asp:TextBox><span style="color:Red">*</span>
+                <asp:RequiredFieldValidator ID="rfvIdentity" runat="server" 
+                    ControlToValidate="txtIdentity" 
+                    SetFocusOnError="true"
+                    ErrorMessage="操作标识必填"
+                    Display="Dynamic" ></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="3">
+                <asp:CheckBox ID="cbIsvoid" runat="server" Text="禁用" />
+            </td>
+        </tr>
+        <tr>
             <td>备注：</td>
             <td colspan="3"><asp:TextBox TextMode="MultiLine" ID="txtMemo" runat="server" 
                     Height="181px" Width="488px" ></asp:TextBox></td>

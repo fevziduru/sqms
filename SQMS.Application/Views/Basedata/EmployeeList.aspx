@@ -14,9 +14,9 @@
         </tr>
     </table>
     <br />
-    <asp:GridView ID="gvEmployeeList" runat="server" AllowPaging="True"  Width="100%"
+    <asp:GridView ID="gvEmployeeList" runat="server" AllowPaging="True"  Width="100%" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="EMPID" OnSorting="gvEmployeeList_Sorting"
-        EmptyDataText="没有可显示的数据记录。" 
+        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
          onrowcommand="GridView1_RowCommand" 
         onpageindexchanging="gvEmployeeList_PageIndexChanging">
         <Columns>
@@ -45,6 +45,7 @@
             <ItemStyle Width="60px" />
             </asp:CommandField>
         </Columns>
+        <FooterStyle CssClass="footer" />
     </asp:GridView>
     <br />
     <table style="width:100%">

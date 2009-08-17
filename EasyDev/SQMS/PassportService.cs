@@ -83,23 +83,29 @@ namespace EasyDev.SQMS
                                 left join userrole ur on p.passportid = ur.passportid
                                 left join role r on r.roleid = ur.roleid
                                 where p.passport = :passport and r.roleid=:roleid", name, role));
+                    if (drUserInfo != null)
+                    {
+                        ui = new UserInfo();
+                        //ui.Passport = name;
+                        //ui.RoleID = role;
+                        ui.Passport = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORT"]);
+                        ui.PassportID = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORTID"]);
+                        ui.EmployeeID = ConvertUtil.ToStringOrDefault(drUserInfo["EMPID"]);
+                        ui.OrganizationID = ConvertUtil.ToStringOrDefault(drUserInfo["orgid"]);
+                        ui.OrganizationName = ConvertUtil.ToStringOrDefault(drUserInfo["orgname"]);
+                        ui.DepartmentID = ConvertUtil.ToStringOrDefault(drUserInfo["deptid"]);
+                        ui.DepartmentName = ConvertUtil.ToStringOrDefault(drUserInfo["deptname"]);
+                        ui.EmployeeName = ConvertUtil.ToStringOrDefault(drUserInfo["EMPNAME"]);
+                        ui.RoleID = ConvertUtil.ToStringOrDefault(drUserInfo["ROLEID"]);
+                        ui.RoleName = ConvertUtil.ToStringOrDefault(drUserInfo["ROLENAME"]);
 
-                    ui = new UserInfo();
-                    //ui.Passport = name;
-                    //ui.RoleID = role;
-                    ui.Passport = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORT"]);
-                    ui.PassportID = ConvertUtil.ToStringOrDefault(drUserInfo["PASSPORTID"]);
-                    ui.EmployeeID = ConvertUtil.ToStringOrDefault(drUserInfo["EMPID"]);
-                    ui.OrganizationID = ConvertUtil.ToStringOrDefault(drUserInfo["orgid"]);
-                    ui.OrganizationName = ConvertUtil.ToStringOrDefault(drUserInfo["orgname"]);
-                    ui.DepartmentID = ConvertUtil.ToStringOrDefault(drUserInfo["deptid"]);
-                    ui.DepartmentName = ConvertUtil.ToStringOrDefault(drUserInfo["deptname"]);
-                    ui.EmployeeName = ConvertUtil.ToStringOrDefault(drUserInfo["EMPNAME"]);
-                    ui.RoleID = ConvertUtil.ToStringOrDefault(drUserInfo["ROLEID"]);
-                    ui.RoleName = ConvertUtil.ToStringOrDefault(drUserInfo["ROLENAME"]);
-
-                    ui.Roles = GetUserRole(name);   //取得用户角色
-                    ui.Permissions = GetUserPermission(name, role); //取得用户权限以相关的操作
+                        ui.Roles = GetUserRole(name);   //取得用户角色
+                        ui.Permissions = GetUserPermission(name, role); //取得用户权限以相关的操作
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
             catch (Exception e)
@@ -144,14 +150,15 @@ namespace EasyDev.SQMS
             try
             {
                 DataTable dt = DefaultSession.GetDataTableFromCommand(
-                        @"select ri.resname, ri.viewname, ri.resid, ri.residentity, o.opid, o.opname, ri.location
+                        @"select ri.resname,ri.restype,o.opidentity, ri.viewname, ri.resid, ri.residentity, o.opid, o.opname, ri.location
                         from passport p
                         left join userrole ur on p.passportid = ur.passportid
                         left join role r on r.roleid = ur.roleid
                         left join respermission rp on rp.roleid = r.roleid
                         left join resourceitem ri on ri.resid = rp.resid
-                        left join operation o on o.opid = rp.opid
-                        where p.passport = :passport and p.isvoid = 'N' and r.roleid=:role", passport, role);
+                        inner join operation o on o.opid = rp.opid and o.isvoid='N' and o.oporder >= 0
+                        where p.passport = :passport and p.isvoid = 'N' and r.roleid=:roleid 
+                        order by o.oporder asc", passport, role);
                 dt.TableName = "UserPermission";
 
                 return dt;

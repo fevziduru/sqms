@@ -12,13 +12,38 @@ using System.Threading;
 using System.Configuration;
 using log4net;
 using System.Web.Security;
+using EasyDev.SQMS;
+using SQMS.Application.Views.Components;
+using System.Web.UI.WebControls;
 
-namespace EasyDev.SQMS
+namespace SQMS.Application
 {
     public class SQMSPage<T> : Page
         where T : IService, new()
     {
         private ILog logger = LogManager.GetLogger(typeof(SQMSPage<T>));
+
+        public string ResourceIdentity
+        {
+            get
+            {
+                if (Request.QueryString["p"] == null) 
+                    return "";
+                else 
+                    return ConvertUtil.ToStringOrDefault(Request.QueryString["p"]);
+            }
+        }
+
+        /// <summary>
+        /// 操作栏
+        /// </summary>
+        public OperationBar OperationBar
+        {
+            get
+            {
+                return this.Master.FindControl("__OperationBar__") as OperationBar;                
+            }
+        }
 
         public string ResourceName
         {
@@ -65,7 +90,7 @@ namespace EasyDev.SQMS
         public SQMSPage()
         {
             Initialize();
-        }        
+        }
 
         protected virtual void Initialize()
         {
@@ -94,14 +119,14 @@ namespace EasyDev.SQMS
                         else
                         {
                             //TODO: UserInfo为空的处理
-                            Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
+                            //Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                         }
                     }
                 }
                 else
                 {
                     //TODO: UserInfo为空的处理
-                    Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
+                    //Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                 }
 
                 return userinfo;
@@ -115,6 +140,22 @@ namespace EasyDev.SQMS
         private static object _deleted = new object();
         private static object _loading = new object();
         private static object _loaded = new object();
+        private static object _initOperationBar = new object();
+
+        /// <summary>
+        /// 初始化操作栏事件
+        /// </summary>
+        public event EventHandler<EventArgs> OnInitializeOperationBar
+        {
+            add
+            {
+                Events.AddHandler(_initOperationBar, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(_initOperationBar, value);
+            }
+        }
 
         /// <summary>
         /// 加载数据后处理事件
@@ -324,6 +365,8 @@ namespace EasyDev.SQMS
             this.OnInitializeView += new EventHandler<EventArgs>(OnInitializeViewEventHandler);
             //加载视图数据
             this.OnLoadData += new EventHandler<EventArgs>(OnLoadDataEventHandler);
+            //初始化操作拦
+            this.OnInitializeOperationBar += new EventHandler<EventArgs>(OnInitializeOperationBarEventHandler);            
 
             base.OnLoad(e);
 
@@ -335,6 +378,13 @@ namespace EasyDev.SQMS
             if (Events[_recoveryUI] != null)    //OnRecoveryUI
             {
                 (Events[_recoveryUI] as EventHandler<EventArgs>)(this, e);
+            }
+                        
+            InitOperationByPermission();    //初始化操作按钮
+
+            if (Events[_initOperationBar] != null)  //OnInitializeOperationBar
+            {
+                (Events[_initOperationBar] as EventHandler<EventArgs>)(this, e);
             }
 
             if (!Page.IsPostBack)
@@ -353,6 +403,27 @@ namespace EasyDev.SQMS
             {
 
             }
+        }
+
+        private void InitOperationByPermission()
+        {
+            if (CurrentUser != null)
+            {
+                DataRow[] ops = CurrentUser.Permissions.Select("residentity='" + this.ResourceIdentity + "'");
+                if (ops.Length > 0)
+                {
+                    for (int i = 0; i < ops.Length; i++)
+                    {
+                        this.OperationBar.Buttons.Add(ConvertUtil.ToStringOrDefault(ops[i]["opidentity"]),
+                            new Button() { Text = ConvertUtil.ToStringOrDefault(ops[i]["opname"]), Width = 100 });
+                    }
+                }
+            }
+        }
+        
+        protected virtual void OnInitializeOperationBarEventHandler(object sender, EventArgs e)
+        {
+            //DO NOTHING HERE, IT WILL BE OVERRIDDEN BY SUB CLASS
         }
 
         /// <summary>

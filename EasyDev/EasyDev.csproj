@@ -214,9 +214,6 @@
     <Compile Include="SQMS\HttpModules\PermissionModule.cs" />
     <Compile Include="SQMS\PassportPrincipal.cs" />
     <Compile Include="SQMS\PassportService.cs" />
-    <Compile Include="SQMS\SQMSPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="SQMS\UserIdentity.cs" />
     <Compile Include="SQMS\UserInfo.cs" />
     <Compile Include="Util\CompressException.cs" />

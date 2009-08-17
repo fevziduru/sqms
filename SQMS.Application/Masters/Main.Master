@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="SQMS.Application.Masters.Main" %>
 
+<%@ Register src="../Views/Components/OperationBar.ascx" tagname="OperationBar" tagprefix="uc1" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title></title>
@@ -16,6 +18,20 @@
                 obj.style.display = "none";
             }
         }
+
+        function switchFullScreen(objs) {
+            for (var i = 0; i < objs.length; i++) {
+                if (objs[i].style.display == "none") {
+                    objs[i].style.display = "block";
+                }
+                else {
+                    objs[i].style.display = "none";
+                }   
+            }
+//                document.getElementById("header").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
+//            document.getElementById("footer").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
+//            document.getElementById("bottom").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
+        }
     </script>
 </head>
 <body>
@@ -29,17 +45,25 @@
         </asp:ScriptManager> 
         <table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%">        
             <tr>
-                <td align="right" style="height:20px;font-size:10pt;background-color:#C7E6F4">
+                <td valign="middle" align="right" style="height:20px;font-size:10pt;background-color:#C7E6F4">
                     <span>用户：<a href='/Views/Basedata/EmployeeView.aspx?p=employeeview&id=<%=CurrentUser.EmployeeID %>'>
                         <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
                     <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;
+                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <%--<a href="javascript:switchFullScreen();">Full</a>&nbsp;&nbsp;--%>
+                    <input type="button" style="width:20;height:20"
+                        onclick="switchFullScreen([document.getElementById('header'),document.getElementById('footer'),document.getElementById('bottom'),document.getElementById('nav')])" value="   "/>&nbsp;&nbsp;
                     <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
                 </td>
             </tr>
-            <tr>
+            <tr id="header">
                 <td style="height:50;background-color:#2A7ACA">&nbsp;</td>
+            </tr>
+            <tr>
+                <td id="opbar" style="height:20px;border-bottom:solid 1px #000">                    
+                    <uc1:OperationBar ID="__OperationBar__" runat="server" />                    
+                </td>
             </tr>
             <tr>
                 <td align="left" valign="top">
@@ -57,18 +81,6 @@
                                 HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
                             </asp:TreeView>
                         </div>
-                            <%--<asp:TreeView ID="appNav" runat="server" Width="100%" 
-                                DataSourceID="SiteMapDataSource1" 
-                                ontreenodedatabound="appNav_TreeNodeDataBound" ShowLines="True" 
-                                ontreenodepopulate="appNav_TreeNodePopulate">
-                                <ParentNodeStyle Font-Bold="False" />
-                                <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-                                <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
-                                    HorizontalPadding="0px" VerticalPadding="0px" />
-                                <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" 
-                                    HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
-                            </asp:TreeView>
-                            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />--%>
                         </td>
                         <td id="bar" onclick="switchTreeMenu(document.getElementById('nav'))" style="cursor:hand;width:10px;background-color:#6B86B3"></td>
                         <td  align="left" valign="top">
@@ -79,10 +91,10 @@
                     
                 </td>
             </tr>
-            <tr>
-                <td id="footer" style="height:40px;background-color:#2A7ACA">&nbsp;</td>
+            <tr id="footer">
+                <td style="height:40px;background-color:#2A7ACA">&nbsp;</td>
             </tr>
-            <tr style="height:20px;background-color:#C7E6F4">
+            <tr id="bottom" style="height:20px;background-color:#C7E6F4">
                 <td>&nbsp;</td>
             </tr>
         </table>
