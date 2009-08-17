@@ -164,6 +164,9 @@
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Foundation\SQMSPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,6 +252,13 @@
       <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\sGridItemList.cs" />
+    <Compile Include="Views\Components\OperationBar.ascx.cs">
+      <DependentUpon>OperationBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\OperationBar.ascx.designer.cs">
+      <DependentUpon>OperationBar.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\OrganizationEdit.ascx.cs">
       <DependentUpon>OrganizationEdit.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -851,6 +861,13 @@
     </Content>
     <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Images\Controls\Map\marker2.png" />
+    <Content Include="Resources\Images\GridView\Back.gif" />
+    <Content Include="Resources\Images\GridView\header_back.gif" />
+    <Content Include="Resources\Images\GridView\PgFirst.gif" />
+    <Content Include="Resources\Images\GridView\PgLast.gif" />
+    <Content Include="Resources\Images\GridView\PgNext.gif" />
+    <Content Include="Resources\Images\GridView\PgPrev.gif" />
+    <Content Include="Resources\Images\GridView\plus.gif" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
@@ -865,6 +882,7 @@
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
     <Content Include="Views\Common\Portal.aspx" />
+    <Content Include="Views\Components\OperationBar.ascx" />
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />

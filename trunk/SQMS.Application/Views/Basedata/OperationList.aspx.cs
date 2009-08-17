@@ -125,5 +125,13 @@ namespace SQMS.Application.Views.Basedata
         {
             Response.Redirect("OperationEdit.aspx?p=operationnew");
         }
+
+        protected override void OnInitializeOperationBarEventHandler(object sender, EventArgs e)
+        {
+            this.OperationBar.Title = "操作";
+            this.OperationBar.SubTitle = "操作列表";
+            this.OperationBar.AssignButtonEvent("delete", btnDelete_OnClick);
+            this.OperationBar.AssignButtonEvent("create", btnNew_Click);
+        }
     }
 }

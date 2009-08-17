@@ -7,18 +7,18 @@
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button Width="110px" ID="Button2" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="Button1" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="Button5" runat="server" Text="启用" OnClick="btnActive_OnClick" />
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button2" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button1" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button5" runat="server" Text="启用" OnClick="btnActive_OnClick" />
                 </fieldset>
             </td>
         </tr>
     </table>
     <br />
     
-    <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True"
+    <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="RESID" OnSorting="gvList_Sorting" PageSize="25"
-        EmptyDataText="没有可显示的数据记录。" 
+        EmptyDataText="没有可显示的数据记录。" ShowFooter="true" 
         onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
@@ -48,15 +48,16 @@
                 <ItemStyle Width="60px" />
             </asp:CommandField>
         </Columns>
+        <FooterStyle CssClass="footer" />
     </asp:GridView>    
     <br />
     <table style="width:100%">
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button Width="110px" ID="Button3" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="Button4" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" ID="Button6" runat="server" Text="启用" OnClick="btnActive_OnClick" />
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button3" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button4" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button6" runat="server" Text="启用" OnClick="btnActive_OnClick" />
                 </fieldset>
             </td>
         </tr>

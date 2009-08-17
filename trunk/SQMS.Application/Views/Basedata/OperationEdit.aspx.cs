@@ -23,11 +23,15 @@ namespace SQMS.Application.Views.Basedata
 
         }
 
+        protected override void OnInitializeOperationBarEventHandler(object sender, EventArgs e)
+        {
+            this.OperationBar.AssignButtonEvent("edit", btnSave_Click);
+            this.OperationBar.AssignButtonEvent("saveandnew", btnSaveAndNew_Click);
+        }
+
         protected override void GetViewData()
         {
             DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(ViewData, "OPERATION");
-
-            
 
             if (drOP != null)
             {
@@ -42,6 +46,8 @@ namespace SQMS.Application.Views.Basedata
                 drOP["OPCODE"] = this.txtOpCode.Text;
                 drOP["OPNAME"] = this.txtOpName.Text;
                 drOP["MEMO"] = this.txtMemo.Text;
+                drOP["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
+                drOP["OPIDENTITY"] = this.txtIdentity.Text;
                                 
                 drOP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drOP["MODIFIEDBY"] = CurrentUser.PassportID;
@@ -77,9 +83,11 @@ namespace SQMS.Application.Views.Basedata
                 DataRow drOP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, "OPERATION");
                 if (drOP != null)
                 {
-                    this.txtOpCode.Text = ConvertUtil.EmptyOrString(drOP["OPCODE"]);
-                    this.txtOpName.Text = ConvertUtil.EmptyOrString(drOP["OPNAME"]);
-                    this.txtMemo.Text = ConvertUtil.EmptyOrString(drOP["MEMO"]);
+                    this.txtOpCode.Text = ConvertUtil.ToStringOrDefault(drOP["OPCODE"]);
+                    this.txtOpName.Text = ConvertUtil.ToStringOrDefault(drOP["OPNAME"]);
+                    this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drOP["MEMO"]);
+                    this.txtIdentity.Text = ConvertUtil.ToStringOrDefault(drOP["OPIDENTITY"]);
+                    this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drOP["ISVOID"]).Equals("Y");
                 }
             }
         }

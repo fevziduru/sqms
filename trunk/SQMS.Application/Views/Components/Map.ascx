@@ -2,7 +2,7 @@
 
 <script type="text/javascript" src="../../Resources/Scripts/Common/cookie.js"></script>
 
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUwa&hl=zh-CN"
     type="text/javascript"></script>
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/MarkerManager.js" type="text/javascript"></script>
