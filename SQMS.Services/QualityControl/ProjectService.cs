@@ -43,7 +43,7 @@ namespace SQMS.Services.QualityControl
                                    E.EMPNAME 
                               FROM PROJECT P
                               LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID 
-                              WHERE 1=1 /*P.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + "'*/";
+                              WHERE 1=1 AND P.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + "'";
             if (!String.IsNullOrEmpty(employeeId))
             {
                 sql += " AND P.EMPID = '" + employeeId + "'";
@@ -98,7 +98,7 @@ namespace SQMS.Services.QualityControl
         {
             string sql = @"SELECT MAX(O.ORGNAME) ORGNAME, P.ORGANIZATIONID
   FROM PROJECT P
-  LEFT JOIN ORAGANIZATION O ON O.ORGID = P.ORGANIZATIONID
+  LEFT JOIN ORGANIZATION O ON O.ORGID = P.ORGANIZATIONID
  GROUP BY P.ORGANIZATIONID";
             DataTable dt = new DataTable();
             try

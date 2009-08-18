@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" CodeBehind="RoadList.aspx.cs" Inherits="SQMS.Application.Views.Road.RoadList"
     MasterPageFile="~/Masters/Main.Master" %>
-
-<%@ Register TagName="PagingBar" TagPrefix="uc" Src="~/Views/Components/List/PagingBar.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -66,9 +64,6 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}"
-                    SelectMethod="GetData" TypeName="SQMS.Application.Config.Schema.ROADTableAdapters.ROADTableAdapter">
-                </asp:ObjectDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

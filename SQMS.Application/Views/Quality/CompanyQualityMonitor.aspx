@@ -16,7 +16,7 @@
         {
             position: relative;
             width: 19%;
-            height: 650px;
+            /*height: 650px;*/
             float: left;
         }
         .right
