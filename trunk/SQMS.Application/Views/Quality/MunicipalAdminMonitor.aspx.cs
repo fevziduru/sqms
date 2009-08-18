@@ -35,7 +35,7 @@ namespace SQMS.Application.Views.Quality
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.OperationBar.Visible = false;
         }
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
         {
