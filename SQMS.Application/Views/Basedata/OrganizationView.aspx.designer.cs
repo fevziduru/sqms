@@ -14,15 +14,6 @@ namespace SQMS.Application.Views.Basedata {
     public partial class OrganizationView {
         
         /// <summary>
-        /// OrganizationTree1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SQMS.Application.Views.Components.OrganizationTree OrganizationTree1;
-        
-        /// <summary>
         /// Button4 control.
         /// </summary>
         /// <remarks>
