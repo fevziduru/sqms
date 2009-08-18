@@ -15,7 +15,9 @@
         }
     </script>
     
-    <div>
+    <div>    
+    <asp:TextBox ID="txtCondition" runat="server"></asp:TextBox>
+    <asp:Button ID="btnFilte" runat="server" Text="确定" OnClick="btnFilte_Click" />
     <asp:GridView Width="100%" ID="gvRefList" runat="server" AllowPaging="True" PageSize="15" 
             AutoGenerateColumns="False">
         <PagerSettings Position="TopAndBottom" 
