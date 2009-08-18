@@ -52,7 +52,7 @@ namespace SQMS.Application.Views.Basedata
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)    //3
         {
             DataTable dt = DataSetUtil.GetDataTableFromDataSet(this.ViewData, "ORGANIZATIONALL");
-            this.OrganizationTree1.CreateMenu(dt);
+            //this.OrganizationTree1.CreateMenu(dt);
 
             if (this.ID.Length == 0)
             {
