@@ -12,15 +12,10 @@
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 
     <tr>
-		<td width="220px">
-
-
-		        
+    
+<%--		<td width="220px">
 		    <uc1:OrganizationTree ID="OrganizationTree1" runat="server" />
-
-
-		        
-		</td>
+		</td>--%>
 		
 		<td width="100%">
 		
