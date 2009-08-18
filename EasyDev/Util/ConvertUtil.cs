@@ -53,7 +53,7 @@ namespace EasyDev.Util
         }
 
         /// <summary>
-        /// 返回对象的字符串表示
+        /// 返回对象的字符串表示,去掉前后空格
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -61,19 +61,13 @@ namespace EasyDev.Util
         {
             try
             {
-                if (null == obj)
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return Convert.ToString(obj);
-                }
+                return Convert.ToString(obj).Trim();
             }
-            catch (ConvertException e)
+            catch
             {
-                throw e;
+
             }
+            return string.Empty;
         }
 
         /// <summary>
@@ -247,8 +241,8 @@ namespace EasyDev.Util
                 return Convert.ToDecimal(obj);
             }
             catch
-            { 
-                return 0; 
+            {
+                return 0;
             }
         }
         /// <summary>
@@ -288,7 +282,7 @@ namespace EasyDev.Util
                 }
             }
             catch
-            {}
+            { }
             return value;
         }
         /// <summary>
@@ -314,6 +308,29 @@ namespace EasyDev.Util
             catch
             { }
             return value;
+        }
+        /// <summary>
+        /// 转换成bool类型，特别的，"Y"转换成True，"N"转换成False
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static bool ToBool(object p)
+        {
+            string str = ToStringOrDefault(p);
+            if ("N".Equals(str))
+            {
+                return false;
+            }
+            if ("Y".Equals(str))
+            {
+                return true;
+            }
+            try
+            {
+                return Convert.ToBoolean(p);
+            }
+            catch { }
+            return false;
         }
     }
 }

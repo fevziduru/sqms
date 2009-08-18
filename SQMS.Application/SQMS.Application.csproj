@@ -423,12 +423,12 @@
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Road\RaodEdit.aspx.cs">
-      <DependentUpon>RaodEdit.aspx</DependentUpon>
+    <Compile Include="Views\Road\RoadEdit.aspx.cs">
+      <DependentUpon>RoadEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Road\RaodEdit.aspx.designer.cs">
-      <DependentUpon>RaodEdit.aspx</DependentUpon>
+    <Compile Include="Views\Road\RoadEdit.aspx.designer.cs">
+      <DependentUpon>RoadEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Road\RoadList.aspx.cs">
       <DependentUpon>RoadList.aspx</DependentUpon>
@@ -889,7 +889,7 @@
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
-    <Content Include="Views\Road\RaodEdit.aspx" />
+    <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
   </ItemGroup>
   <ItemGroup>

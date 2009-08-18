@@ -14,15 +14,6 @@ namespace SQMS.Application.Views.Road {
     public partial class RoadList {
         
         /// <summary>
-        /// ButtonNew1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNew1;
-        
-        /// <summary>
         /// ButtonDelete1 control.
         /// </summary>
         /// <remarks>
@@ -50,12 +41,12 @@ namespace SQMS.Application.Views.Road {
         protected global::System.Web.UI.WebControls.GridView GridViewRoad;
         
         /// <summary>
-        /// Pagingbar1 control.
+        /// ObjectDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SQMS.Application.Views.Components.List.PagingBar Pagingbar1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
     }
 }

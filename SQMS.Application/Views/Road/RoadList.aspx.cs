@@ -17,21 +17,23 @@ namespace SQMS.Application.Views.Road
     {
         private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
         private RegionService svcRegion = null;
-
-        private DataTable dtRegion = null;
+        private DataTable dtRegion
+        {
+            get 
+            {
+                return this.ViewState["dtRegion"] as DataTable;
+            }
+            set
+            {
+                value.TableName = "Region";
+                this.ViewState.Add("dtRegion", value);
+            }
+        }
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
             this.svcRegion = this.svcManager.CreateService<RegionService>();
-            if (!IsPostBack)
-            {
-                this.Pagingbar1.CurrentPageChanging += new CommandEventHandler(Pagingbar1_CurrentPageChanging);
-                this.Pagingbar1.AlternatelyMode = SQMS.Application.Views.Components.List.PagingBar.AlternatelyModeEnum.PostBack;
-                this.Pagingbar1.PageSize = 1;
-                this.Pagingbar1.RowsCount = this.svcRegion.GetRegionListCount(this.CurrentUser.OrganizationID);
-                this.Pagingbar1.Init();
-            }
         }
 
 
@@ -48,7 +50,7 @@ namespace SQMS.Application.Views.Road
                 this.GridViewRoad.Attributes.Add("SortExpression", "id");
                 this.GridViewRoad.Attributes.Add("SortDirection", "ASC");
 
-                this.dtRegion = this.svcRegion.GetRegionList(new PagingParameter(1, 1));
+                this.dtRegion = this.svcRegion.GetRegionList(null);
                 this.bindGridViewRoad(this.dtRegion);
             }
         }
@@ -65,33 +67,38 @@ namespace SQMS.Application.Views.Road
                 
             }
         }
-        protected void Pagingbar1_CurrentPageChanging(object sender, CommandEventArgs e)
-        {
-            int clickedPageNo = ConvertUtil.ToInt(e.CommandArgument);
-            PagingParameter p = new PagingParameter(clickedPageNo, this.Pagingbar1.PageSize);
-            this.dtRegion = this.svcRegion.GetRegionList(p);
-            this.bindGridViewRoad(this.dtRegion);
-            this.Pagingbar1.CurrentPage = clickedPageNo;
-           
-        }
-        protected void ButtonNew_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void ButtonDelete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    Service.DeleteByKey(ids[i]);
+                }
+            }
+            catch
+            {
+                
+            }
 
-        }
-
-        protected void GridViewRoad_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
+            //删除数据后重新加载数据
+            this.dtRegion = this.svcRegion.GetRegionList(null);
+            this.GridViewRoad.DataSource = this.dtRegion.DefaultView;
+            this.GridViewRoad.DataBind();
         }
 
         protected void GridViewRoad_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
+        }
+
+        protected void GridViewRoad_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.GridViewRoad.PageIndex = e.NewPageIndex;
+            this.GridViewRoad.DataSource = this.dtRegion.DefaultView;
+            this.GridViewRoad.DataBind();
         }
     }
 }
