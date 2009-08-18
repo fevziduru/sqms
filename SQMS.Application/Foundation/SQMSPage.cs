@@ -41,7 +41,14 @@ namespace SQMS.Application
         {
             get
             {
-                return this.Master.FindControl("__OperationBar__") as OperationBar;                
+                if (this.Master != null && this.Master.FindControl("__OperationBar__") != null)
+                {
+                    return this.Master.FindControl("__OperationBar__") as OperationBar;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -407,15 +414,18 @@ namespace SQMS.Application
 
         private void InitOperationByPermission()
         {
-            if (CurrentUser != null)
+            if (this.OperationBar != null && this.OperationBar.Visible)
             {
-                DataRow[] ops = CurrentUser.Permissions.Select("residentity='" + this.ResourceIdentity + "'");
-                if (ops.Length > 0)
+                if (CurrentUser != null)
                 {
-                    for (int i = 0; i < ops.Length; i++)
+                    DataRow[] ops = CurrentUser.Permissions.Select("residentity='" + this.ResourceIdentity + "'");
+                    if (ops.Length > 0)
                     {
-                        this.OperationBar.Buttons.Add(ConvertUtil.ToStringOrDefault(ops[i]["opidentity"]),
-                            new Button() { Text = ConvertUtil.ToStringOrDefault(ops[i]["opname"]), Width = 100 });
+                        for (int i = 0; i < ops.Length; i++)
+                        {
+                            this.OperationBar.Buttons.Add(ConvertUtil.ToStringOrDefault(ops[i]["opidentity"]),
+                                new Button() { Text = ConvertUtil.ToStringOrDefault(ops[i]["opname"]), Width = 100 });
+                        }
                     }
                 }
             }
