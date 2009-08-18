@@ -18,10 +18,15 @@ namespace SQMS.Application.Views.Components
     public partial class OrganizationTree : UserControl
     {
         private OrganizationService srv = null;
+        public string pid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        public void SetPID(string pid)
+        {
+            this.pid = pid;
         }
 
         public void CreateMenu(DataTable dtORG)
@@ -55,21 +60,12 @@ namespace SQMS.Application.Views.Components
                 node = new TreeNode();
                 node.Text =  Convert.ToString(item["ORGNAME"]);
                 node.Value = Convert.ToString(item["ORGID"]);
-                node.NavigateUrl = Convert.ToString(String.Format("~/Views/Basedata/OrganizationEdit.aspx?p=operationedit&id={0}", item["ORGID"]));
+                node.NavigateUrl = Convert.ToString(String.Format("~/Views/Basedata/OrganizationList.aspx?p=operationlist&pid={0}", item["ORGID"]));
                 node.ToolTip = Convert.ToString(item["ORGNAME"]);
                 nodes.Add(node);
                 CreateMenu(node.ChildNodes, dt, node.Value);
             });
         }
-
-        protected void TreeView1_SelectedNodeChanged(Object sender, EventArgs e)
-        {
-            //TreeNode tr1 = sender as TreeNode;
-        }
-
-
-
-
 
     }
 }

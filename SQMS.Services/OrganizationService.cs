@@ -31,6 +31,30 @@ namespace SQMS.Services
             }
         }
 
+        public DataSet GetORGViewByPID(string PARENTORG)
+        {
+            try
+            {
+                DataSet ds;
+
+                if (PARENTORG == "")
+                {
+                    ds = DefaultSession.GetDataSetFromCommand(@"select * from ORGANIZATION");
+                }
+                else
+                {
+                    ds = DefaultSession.GetDataSetFromCommand(@"select * from ORGANIZATION where PARENTORG = :PARENTORG", PARENTORG);
+                }
+                
+                ds.Tables[0].TableName = "ORGANIZATION";
+                return ds;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public DataSet GetORGViewList()
         {
             try
