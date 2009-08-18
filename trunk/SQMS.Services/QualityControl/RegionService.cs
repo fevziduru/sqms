@@ -126,5 +126,66 @@ namespace SQMS.Services.QualityControl
         {
             return this.GetRegionListCount(this.CurrentUser.OrganizationID);
         }
+
+        public DataTable GetRegion(string roadId)
+        {
+            string sql =@"SELECT R.ROADID,
+       R.PROJECTID,
+       R.ROADCODE,
+       R.ROADNAME,
+       R.ROADTYPE,
+       E.ENUMNAME AS ROADTYPENAME,
+       R.BEGINTIME,
+       R.ENDTIME,
+       R.WORKTIME,
+       R.WORKERAMOUNT,
+       R.MEMO,
+       R.AVGWORKERAMOUNT,
+       R.CREATED,
+       R.CREATEDBY,
+       R.MODIFIED,
+       R.MODIFIEDBY,
+       R.ISVOID,
+       R.ORGANIZATIONID,
+       R.SUITEID
+  FROM ROAD R
+  LEFT JOIN ENUMERATION E ON E.ENUMID = R.ROADTYPE
+ WHERE R.ROADID = '"+roadId+"'";
+            DataTable dt = null;
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+                throw;
+            }
+            return dt;
+        }
+        public DataTable GetRoadType()
+        {
+            string sql = @"SELECT E.ENUMID,
+       E.ENUMCODE,
+       E.ENUMNAME,
+       E.ENUMTYPE,
+       E.MEMO,
+       E.CREATED,
+       E.CREATEDBY,
+       E.MODIFIED,
+       E.MODIFIEDBY
+  FROM ENUMERATION E
+ WHERE E.ENUMTYPE = '_road_type'";
+            DataTable dt = null;
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
     }
 }

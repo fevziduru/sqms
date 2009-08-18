@@ -19,6 +19,8 @@ namespace SQMS.Application.Views.Components.List
         }
 
         public static readonly string URL_PARAM_CURRENT_PAGE = "pageno";
+
+        private LinkButton lnkBtnPageIndex = null;
         private int rowsCount = 0;
         /// <summary>
         /// 获取或设置带分页记录的总数
@@ -112,7 +114,18 @@ namespace SQMS.Application.Views.Components.List
                 Events.RemoveHandler(_currentPageChanging, value);
             }
         }
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            if (!IsPostBack)
+            {
+                this.lnkBtnPageIndex = new LinkButton();
+                this.lnkBtnPageIndex.ID = "LnkBtnPageIndex";
+                this.lnkBtnPageIndex.Command += new CommandEventHandler(lnkBtnPageIndex_Click);
+            }
             
+        }
         public void Init()
         {
             divPagingBar.Controls.Clear();
@@ -180,10 +193,10 @@ namespace SQMS.Application.Views.Components.List
         }
         private WebControl createNumbericPageIndexPostBack(int pageNo)
         {
-            LinkButton lnkBtnPageIndex = new LinkButton();
+            LinkButton lnkBtnPageIndex = this.lnkBtnPageIndex;
             lnkBtnPageIndex.Text = ConvertUtil.ToStringOrDefault(pageNo);
             lnkBtnPageIndex.CommandArgument = ConvertUtil.ToStringOrDefault(pageNo);
-            lnkBtnPageIndex.Click +=new EventHandler(lnkBtnPageIndex_Click);
+            //lnkBtnPageIndex.Click +=new EventHandler(lnkBtnPageIndex_Click);
             return lnkBtnPageIndex;
         }
 

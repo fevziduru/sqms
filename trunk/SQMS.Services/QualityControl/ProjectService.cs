@@ -69,7 +69,10 @@ namespace SQMS.Services.QualityControl
         {
             return this.GetProjectList(String.Empty);
         }
-
+        /// <summary>
+        /// 获取登录用户所属公司的项目负责人列表
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetProjectManagerList()
         {
             string sql = @"SELECT MAX(E.EMPNAME) AS EMPNAME, P.EMPID
@@ -149,7 +152,10 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
-
+        /// <summary>
+        /// 获取所有公司的项目列表
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetProjectListByOrg()
         {
             return this.GetProjectListByOrg(String.Empty);
