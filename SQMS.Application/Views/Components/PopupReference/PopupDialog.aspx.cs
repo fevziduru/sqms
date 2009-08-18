@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using System.Data;
 using SQMS.Services;
 using SQMS.Services.ReferenceServices;
+using EasyDev.Util;
+using EasyDev.SQMS;
 
 namespace SQMS.Application
 {
-    public partial class PopupDialog : System.Web.UI.Page
+    public partial class PopupDialog : Page
     {
         private DataTable Data = null;
+        IReferenceService srv = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,11 +23,9 @@ namespace SQMS.Application
             string t = Request.QueryString["t"];
 
             this.gvRefList.PageIndexChanging += new GridViewPageEventHandler(gvRefList_PageIndexChanging);
-            this.gvRefList.RowDataBound += new GridViewRowEventHandler(gvRefList_RowDataBound);
-            this.gvRefList.PreRender += new EventHandler(gvRefList_PreRender);
 
-            IReferenceService srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as IReferenceService;
-
+            srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as IReferenceService;
+            
             if (!Page.IsPostBack)
             {
                 if (srv != null)
@@ -62,46 +63,40 @@ namespace SQMS.Application
             }
         }
 
-        protected override void Render(HtmlTextWriter writer)
+        public void btnFilte_Click(object sender, EventArgs e)
         {
-            //foreach (GridViewRow row in this.gvRefList.Rows)
-            //{
-            //    LinkButton lb = row.FindControl("lbSelect") as LinkButton;
-            //    if (lb != null)
-            //    {
-            //        lb.Attributes.Remove("href");
-            //    }
-            //}
+            string orgid = ((UserInfo)Session["USER_INFO"]).OrganizationID;
+            Data = DataSetUtil.GetDataTableFromDataSet(
+                ((EquipmentRefService)srv).LoadByCondition(
+                    "EQUNAME LIKE '%" + this.txtCondition.Text + "%' ISVOID='N' AND ORGANIZATIONID='" + orgid + "'"), "EQUIPMENT");
 
-            base.Render(writer);
-        }
+            ViewState["Data"] = Data;
+            gvRefList.DataSource = Data;
+            gvRefList.DataKeyNames = new string[] { "value" };
 
-        void gvRefList_PreRender(object sender, EventArgs e)
-        {
+            this.gvRefList.Columns.Clear();
 
-            //for (int i = 0; i < this.gvRefList.Columns.Count; i++)
-            //{
-            //    if (this.gvRefList.Columns[i].HeaderText.Equals("value", StringComparison.CurrentCultureIgnoreCase) ||
-            //        this.gvRefList.Columns[i].HeaderText.Equals("text", StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        this.gvRefList.Columns[i].Visible = false;
-            //    }
-            //}
+            TemplateField templateField = new TemplateField();
+            templateField.ItemTemplate = LoadTemplate("SelectTemplateField.ascx");
+            this.gvRefList.Columns.Add(templateField);
 
-        }
+            foreach (DataColumn col in Data.Columns)
+            {
+                if (col.ColumnName.Equals("value", StringComparison.CurrentCultureIgnoreCase) ||
+                    col.ColumnName.Equals("text", StringComparison.CurrentCultureIgnoreCase))
+                {
 
-        void gvRefList_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    HiddenField hf = e.Row.FindControl("hidValue") as HiddenField;
-            //    HiddenField hf2 = e.Row.FindControl("hidText") as HiddenField;
-            //    LinkButton lb = e.Row.FindControl("lbSelect") as LinkButton;
-            //    if (lb != null)
-            //    {
-            //        lb.Attributes.Add("onclick", "SelectItem({'value':'" + hf.Value + "','text':'" + hf2.Value + "'})");
-            //    }
-            //}
+                }
+                else
+                {
+                    BoundField field = new BoundField();
+                    field.HeaderText = col.Caption;
+                    field.DataField = col.ColumnName;
+                    this.gvRefList.Columns.Add(field);
+                }
+            }
+
+            this.gvRefList.DataBind();  
         }
 
         void gvRefList_PageIndexChanging(object sender, GridViewPageEventArgs e)
