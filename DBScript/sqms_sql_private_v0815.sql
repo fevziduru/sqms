@@ -711,6 +711,8 @@ CREATE TABLE OPERATION  (
    MODIFIEDBY           VARCHAR2(40),
    ISVOID               VARCHAR2(1),
    ORGANIZATIONID       VARCHAR2(40),
+   OPIDENTITY           VARCHAR2(40),
+   OPORDER              NUMBER,
    CONSTRAINT PK_OPERATION PRIMARY KEY (OPID)
 );
 
@@ -1090,6 +1092,7 @@ CREATE TABLE QUALITY  (
    TYPE                 VARCHAR2(40),
    ORGANIZATIONID       VARCHAR2(40),
    SUITEID              VARCHAR2(40),
+   QUALITYLEVEL         NUMBER,
    ISVOID               VARCHAR2(1),
    CONSTRAINT PK_QUALITY PRIMARY KEY (QMID)
 );
@@ -1555,7 +1558,7 @@ CREATE TABLE VIDEO  (
    VIDEONAME            VARCHAR2(100),
    MEMO                 VARCHAR2(500),
    VIDEOURL             VARCHAR2(100),
-   TRACE                VARCHAR2(4000),
+   TRACE                CLOB,
    CREATED              DATE,
    CREATEDBY            VARCHAR2(40),
    MODIFIED             DATE,
