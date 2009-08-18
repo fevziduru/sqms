@@ -14,6 +14,7 @@ namespace SQMS.Application.Views.Basedata
 
     public partial class OrganizationList : SQMSPage<OrganizationService>
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -26,6 +27,7 @@ namespace SQMS.Application.Views.Basedata
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
 
+ 
         }
 
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
@@ -35,7 +37,14 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
         {
-            this.gvList.DataSource = this.ViewData;
+            if (Request.QueryString["pid"] != null)
+            {
+                this.gvList.DataSource = (Service as OrganizationService).GetORGViewByPID(Request.QueryString["pid"]);
+            }
+            else
+            {
+                this.gvList.DataSource = this.ViewData;
+            }
             this.gvList.DataBind();
 
             DataTable dt = DataSetUtil.GetDataTableFromDataSet(this.ViewData, "ORGANIZATION");
