@@ -39,9 +39,9 @@
         </div>
     </div>
 </div>
-<div id="map_canvas" style="height: 600px">
+<div id="map_canvas" style="height: 600px;">
 </div>
-<div>
+<div style="display:none;">
     <span>经纬度:</span> <span id="spanLatLng" style="width: 300px;"></span><span>缩放级别:</span>
     <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span><span id="spanRequestNum">
     </span>
@@ -68,6 +68,7 @@
     function initMap() {
         if (GBrowserIsCompatible()) {
             if (!map) {
+                document.getElementById("map_canvas").style.height = document.body.clientHeight - 170;
                 map = new GMap2(document.getElementById("map_canvas"));
                 GEvent.addListener(map, "load", fetchMarkers);
                 GEvent.addListener(map, "moveend", fetchMarkers);
