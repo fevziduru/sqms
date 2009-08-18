@@ -40,6 +40,7 @@ namespace SQMS.Application.Views.Security
 
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
+            //this.OperationBar.Visible = false;
             srv = (PassportService)Service;
             roleSrv = ServiceManager.CreateService<RoleService>();
         }
