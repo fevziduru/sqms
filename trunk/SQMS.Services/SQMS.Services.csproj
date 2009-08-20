@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -48,12 +49,15 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\QualityControl\Video.cs" />
-    <Compile Include="MenuService.cs" />
-    <Compile Include="OrganizationService.cs" />
+    <Compile Include="MenuService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OrganizationService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Domain\Common\PagingParameter.cs" />
     <Compile Include="Domain\QualityControl\LatLng.cs" />
     <Compile Include="Domain\QualityControl\LatLngBounds.cs" />
@@ -64,19 +68,41 @@
     <Compile Include="EmployeeService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EnumerationService.cs" />
-    <Compile Include="EquipmentService.cs" />
-    <Compile Include="OperationService.cs" />
+    <Compile Include="EnumerationService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EquipmentService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OperationService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QualityControl\ProjectService.cs" />
-    <Compile Include="QualityControl\QualityControlService.cs" />
-    <Compile Include="QualityControl\RegionService.cs" />
-    <Compile Include="ReferenceServices\EquipmentRefService.cs" />
+    <Compile Include="QualityControl\ProjectService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QualityControl\QualityControlService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QualityControl\RegionService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReferenceServices\EquipmentRefService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReferenceServices\IReferenceService.cs" />
-    <Compile Include="ResourceService.cs" />
-    <Compile Include="ResPermissionService.cs" />
-    <Compile Include="RoleService.cs" />
-    <Compile Include="UserRoleService.cs" />
+    <Compile Include="ResourceService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ResPermissionService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RoleService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserRoleService.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyDev\EasyDev.csproj">

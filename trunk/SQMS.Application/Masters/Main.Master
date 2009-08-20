@@ -60,7 +60,7 @@
             <tr id="header">
                 <td style="height:50;background-color:#2A7ACA">&nbsp;</td>
             </tr>
-            <tr>
+            <tr style="display:none">
                 <td id="opbar" style="height:20px;border-bottom:solid 1px #000">                    
                     <uc1:OperationBar ID="__OperationBar__" runat="server" />                    
                 </td>
