@@ -504,6 +504,10 @@
     <Compile Include="Views\Quality\QualityMonitorPointMap.aspx.designer.cs">
       <DependentUpon>QualityMonitorPointMap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebServices\MobileWebService.asmx.cs">
+      <DependentUpon>MobileWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\EasyDev.Persistence.Config" />
@@ -891,11 +895,13 @@
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
+    <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AjaxServices\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
+    <Folder Include="QualityData\" />
     <Folder Include="Templates\" />
     <Folder Include="Views\Mobile\" />
   </ItemGroup>

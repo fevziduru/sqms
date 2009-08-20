@@ -61,6 +61,7 @@
       <HintPath>D:\Program Files\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Routing.dll</HintPath>
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -77,7 +78,9 @@
     <Compile Include="BL\BizObjectFactory.cs" />
     <Compile Include="BL\GenericBizObject.cs" />
     <Compile Include="BL\IGenericBizObject.cs" />
-    <Compile Include="BL\Services\GenericService.cs" />
+    <Compile Include="BL\Services\GenericService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BL\Services\IService.cs" />
     <Compile Include="BL\Services\IServiceManager.cs" />
     <Compile Include="BL\Services\NativeServiceManager.cs" />
@@ -213,7 +216,9 @@
     <Compile Include="SQMS\HttpHandlers\FrontHandlerFactory.cs" />
     <Compile Include="SQMS\HttpModules\PermissionModule.cs" />
     <Compile Include="SQMS\PassportPrincipal.cs" />
-    <Compile Include="SQMS\PassportService.cs" />
+    <Compile Include="SQMS\PassportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SQMS\UserIdentity.cs" />
     <Compile Include="SQMS\UserInfo.cs" />
     <Compile Include="Util\CompressException.cs" />
