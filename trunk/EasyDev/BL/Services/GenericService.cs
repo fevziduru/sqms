@@ -9,13 +9,14 @@ using System.Web.Caching;
 using System.Web;
 using EasyDev.SQMS;
 using System.Threading;
+using System.Web.Services;
 
 namespace EasyDev.BL.Services
 {
     /// <summary>
     /// 通用服务
     /// </summary>
-    public class GenericService : IService
+    public class GenericService : WebService, IService
     {
         #region 私有成员
         /// <summary>
