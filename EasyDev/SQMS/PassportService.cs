@@ -156,7 +156,7 @@ namespace EasyDev.SQMS
                         left join role r on r.roleid = ur.roleid
                         left join respermission rp on rp.roleid = r.roleid
                         left join resourceitem ri on ri.resid = rp.resid
-                        inner join operation o on o.opid = rp.opid and o.isvoid='N' and o.oporder >= 0
+                        left join operation o on o.opid = rp.opid and o.isvoid='N' and o.oporder >= 0
                         where p.passport = :passport and p.isvoid = 'N' and r.roleid=:roleid 
                         order by o.oporder asc", passport, role);
                 dt.TableName = "UserPermission";
