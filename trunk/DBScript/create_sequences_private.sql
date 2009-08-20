@@ -16,10 +16,10 @@ drop sequence SEQ_ENUMERATION;
 drop sequence SEQ_MENU;
 drop sequence SEQ_OPERATION;
 drop sequence SEQ_VIDEO;
-drop sequence SEQ_MONITORPOINTVIDEO;
+drop sequence SEQ_QUALITYDATA;
 
 -- Create sequence 
-create sequence SEQ_MONITORPOINTVIDEO
+create sequence SEQ_QUALITYDATA
 minvalue 0
 maxvalue 999999999999999999999999999
 start with 0
