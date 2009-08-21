@@ -17,7 +17,7 @@ namespace SQMS.Application.Views.Basedata
         {
             if (!Page.IsPostBack)
             {
-                this.gvList.Attributes.Add("SortExpression", "RESID");
+                this.gvList.Attributes.Add("SortExpression", "OPID");
                 this.gvList.Attributes.Add("SortDirection", "ASC");
             }
         }
@@ -123,7 +123,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OperationEdit.aspx?p=operationnew");
+            Response.Redirect("OperationEdit.aspx?p=operationnew", true);
         }
 
         protected override void OnInitializeOperationBarEventHandler(object sender, EventArgs e)
