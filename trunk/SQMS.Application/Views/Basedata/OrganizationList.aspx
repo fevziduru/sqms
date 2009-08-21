@@ -8,23 +8,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="height:100%">
 
     <tr>
-		<td width="220px">
-
-
-		        
+		<td width="17%" align="left" valign="top">
 		    <uc1:OrganizationTree ID="OrganizationTree1" runat="server" />
-
-
-		        
 		</td>
-		
-		<td width="100%">
-		
-
-		
+		<td width="83%" align="left" valign="top">
 		                        <div>
                     <table style="width:100%">
                             <tr>
