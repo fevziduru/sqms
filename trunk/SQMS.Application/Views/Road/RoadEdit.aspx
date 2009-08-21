@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoadEdit.aspx.cs" Inherits="SQMS.Application.Views.Road.RoadEdit"
     MasterPageFile="~/Masters/Main.Master" %>
-
+<%@ Register src="../Components/PopupReference/PopupReference.ascx" tagname="PopupReference" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,6 +43,12 @@
                         <asp:RequiredFieldValidator ID="RFVRoadCode" runat="server" ControlToValidate="TextBoxRoadCode"
                             SetFocusOnError="true" ErrorMessage="路段编码必填" Display="Dynamic"></asp:RequiredFieldValidator>
                     </td>
+                </tr>
+                <tr>
+                    <td>所属项目：</td>
+                    <td><uc1:PopupReference ID="RefProject" Service="SQMS.Services.ReferenceServices.ProjectRefService" AssemblyName="SQMS.Services" runat="server" /></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>
