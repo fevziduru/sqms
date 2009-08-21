@@ -68,6 +68,15 @@ namespace SQMS.Application.Views.Road {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVRoadCode;
         
         /// <summary>
+        /// RefProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SQMS.Application.PopupReference RefProject;
+        
+        /// <summary>
         /// DropDownListRoadType control.
         /// </summary>
         /// <remarks>

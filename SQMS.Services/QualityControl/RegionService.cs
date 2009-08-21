@@ -131,6 +131,7 @@ namespace SQMS.Services.QualityControl
         {
             string sql =@"SELECT R.ROADID,
        R.PROJECTID,
+       P.PROJECTNAME,
        R.ROADCODE,
        R.ROADNAME,
        R.ROADTYPE,
@@ -150,6 +151,7 @@ namespace SQMS.Services.QualityControl
        R.SUITEID
   FROM ROAD R
   LEFT JOIN ENUMERATION E ON E.ENUMID = R.ROADTYPE
+  LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
  WHERE R.ROADID = '"+roadId+"'";
             DataTable dt = null;
             try

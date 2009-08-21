@@ -124,6 +124,8 @@ namespace SQMS.Application.Views.Road
                 this.TextBoxWorkEndTime.Text = ConvertUtil.ToStringOrDefault(this.drRoad["ENDTIME"]);
                 this.TextBoxWorkerNum.Text = ConvertUtil.ToStringOrDefault(this.drRoad["WORKERAMOUNT"]);
                 this.TextBoxWorkTime.Text = ConvertUtil.ToStringOrDefault(this.drRoad["WORKTIME"]);
+                this.RefProject.SelectedValue = ConvertUtil.ToStringOrDefault(this.drRoad["ProjectId"]);
+                this.RefProject.SelectedText = ConvertUtil.ToStringOrDefault(this.drRoad["ProjectName"]);
                 ListItem li = this.DropDownListRoadType.Items.FindByValue(ConvertUtil.ToStringOrDefault(this.drRoad["ROADTYPE"]));
                 if (li != null)
                 {
@@ -137,7 +139,10 @@ namespace SQMS.Application.Views.Road
         {
             this.GetViewData();
             DataSet ds = new DataSet();
-            ds.Tables.Add(this.dtRoad);
+            DataTable dtSave = this.dtRoad.Copy();
+            dtSave.Columns.Remove("ROADTYPENAME");
+            dtSave.Columns.Remove("PROJECTNAME");
+            ds.Tables.Add(dtSave);
 
             this.Service.Save(ds);
             Response.Write("<script>alert('保存成功');location.href='RoadList.aspx?p=RoadRoadList';</script>");
@@ -167,8 +172,9 @@ namespace SQMS.Application.Views.Road
             this.drRoad["MODIFIED"] = DateTime.Now;
             this.drRoad["MODIFIEDBY"] = this.CurrentUser.EmployeeID;
             this.drRoad["ISVOID"] = (this.CheckBoxIsVoid.Checked) ? "Y" : "N";
+            this.drRoad["PRJECTID"] = this.RefProject.SelectedValue;
 
-            this.dtRoad.Columns.Remove("ROADTYPENAME");
+            
         }
 
         protected void BtnSaveAndNew_Click(object sender, EventArgs e)

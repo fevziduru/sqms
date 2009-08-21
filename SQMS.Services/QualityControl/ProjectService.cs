@@ -5,6 +5,7 @@ using System.Text;
 using EasyDev.BL.Services;
 using System.Data;
 using log4net;
+using EasyDev.PL.SqlBuilder;
 
 namespace SQMS.Services.QualityControl
 {
@@ -159,6 +160,76 @@ namespace SQMS.Services.QualityControl
         public DataTable GetProjectListByOrg()
         {
             return this.GetProjectListByOrg(String.Empty);
+        }
+
+        public DataTable GetProject(string projectId)
+        {
+            string sql = @"SELECT P.PROJECTID,
+                                   P.PROJECTCODE,
+                                   P.PROJECTNAME,
+                                   P.TOTALWORKTIME,
+                                   P.TOTALSCALE,
+                                   P.ASSISTAMOUNT,
+                                   P.LEADERAMOUNT,
+                                   P.VISELEADERAMOUNT,
+                                   P.TOTALWORKERAMOUNT,
+                                   P.MEMO,
+                                   P.CREATED,
+                                   P.CREATEDBY,
+                                   P.MODIFIED,
+                                   P.MODIFIEDBY,
+                                   P.EMPID,
+                                   P.ISVOID,
+                                   E.EMPNAME 
+                              FROM PROJECT P
+                              LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID 
+                              WHERE P.ProjectId = '" + projectId+"' AND P.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + "'";
+
+            DataTable dt = null;
+            try
+            {
+                dt = this.DefaultSession.GetDataTableFromCommand(sql);
+                dt.TableName = PROJECT_TABLENAME;
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+            }
+            return dt;
+        }
+
+        public override void Save(DataSet dsSave)
+        {
+            try
+            {
+                if (dsSave.Tables.Count > 0)
+                {
+                    DataTable dt = dsSave.Tables[0];
+                    dt.PrimaryKey = new DataColumn[] { dt.Columns["ProjectId"] };
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row.RowState == DataRowState.Added)
+                        {
+                            this.DefaultSession.ExecuteCommand(SqlBuilder.BuildInsertCommand(this.BOName, row.Table, row));
+                        }
+                        else if (row.RowState == DataRowState.Modified)
+                        {
+                            this.DefaultSession.ExecuteCommand(SqlBuilder.BuildUpdateCommand(this.BOName, row.Table, row));
+                        }
+                        else if (row.RowState == DataRowState.Deleted)
+                        {
+                            this.DefaultSession.ExecuteCommand(SqlBuilder.BuildDeleteCommand(this.BOName, row.Table, row));
+                        }
+                    }
+
+                    dsSave.AcceptChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error(e.ToString());
+                throw;
+            }
         }
     }
 }
