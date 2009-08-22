@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using EasyDev.Configuration;
 using System.Collections.Generic;
 using EasyDev.Util;
+using EasyDev.PL.IdentityStrategy;
 
 namespace EasyDev.PL
 {
@@ -27,6 +28,18 @@ namespace EasyDev.PL
         /// 数据库事务对象
         /// </summary>
         protected DbTransaction _transaction = null;
+
+        
+        //private IGenerator _identityGenerator = null;
+
+        /// <summary>
+        /// 主键值生成器
+        /// </summary>
+        public IGenerator IdentityGenerator
+        {
+            get;
+            set;
+        }
 
         private PersistenceConfigManager ConfigManager
         {
@@ -139,6 +152,18 @@ namespace EasyDev.PL
                     CurrentDbProvider = providerItem.ProviderType;
                     break;
                 }
+            }
+
+            if (CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
+                    CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
+            {
+                IdentityGenerator = GeneratorFactory.CreateGenerator<OracleSequenceGenerator>();
+                ((OracleSequenceGenerator)IdentityGenerator).TableName = "";
+                ((OracleSequenceGenerator)IdentityGenerator).Session = this;
+            }
+            else
+            {
+                IdentityGenerator = GeneratorFactory.CreateGenerator<CommonIdentityGenerator>();
             }
         }
 

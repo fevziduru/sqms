@@ -23,8 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\EasyDev.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -170,7 +169,11 @@
     <Compile Include="PL\Exceptions\DALCoreException.cs" />
     <Compile Include="PL\Exceptions\PersistenceException.cs" />
     <Compile Include="PL\GenericDBFactory.cs" />
+    <Compile Include="PL\IdentityStrategy\CommonIdentityGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\GeneratorFactory.cs" />
     <Compile Include="PL\IdentityStrategy\IdentityGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\IGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\OracleSequenceGenerator.cs" />
     <Compile Include="PL\Query\QueryObject.cs" />
     <Compile Include="PL\Sessions\AccessSession.cs" />
     <Compile Include="PL\Sessions\DBSessionBase.cs" />

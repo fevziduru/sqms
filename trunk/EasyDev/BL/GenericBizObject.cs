@@ -9,6 +9,12 @@ using System.Collections;
 
 namespace EasyDev.BL
 {
+    /// <summary>
+    /// 通用业务对象，用于执行常用的数据存取操作，通过内部的数据库会话对象与数据库进行交互，并将数据保存在数据集（强类型或弱类型）中。
+    /// 另外，此对象也支持从数据库中加载视图数据，通过视图名称将通过定义视图的查询加载数据到视图数据集合中
+    /// </summary>
+    /// <remarks>此对象可被序列化</remarks>
+    /// <typeparam name="T">数据集类型，此类型必须由DataSet类继承</typeparam>
     [Serializable]
     public class GenericBizObject<T> : IGenericBizObject, IDisposable
         where T : DataSet
@@ -23,7 +29,7 @@ namespace EasyDev.BL
 
         #region 公共属性
         /// <summary>
-        /// BO名称
+        /// 通用业务对象的名称，在服务中初始化时与服务对应的xsd数据集架构文件同名
         /// </summary>
         public string BOName
         {
@@ -37,7 +43,7 @@ namespace EasyDev.BL
         public string FullName { get; set; }
 
         /// <summary>
-        /// 域模型表示的表名称
+        /// 业务对象表示的表名称
         /// </summary>
         public string Entity
         {
@@ -46,7 +52,7 @@ namespace EasyDev.BL
         }
 
         /// <summary>
-        /// 数据集架构
+        /// 数据集架构，对应配置信息中的xsd数据集架构文件名称
         /// </summary>
         public string Schema
         {
@@ -55,7 +61,7 @@ namespace EasyDev.BL
         }
 
         /// <summary>
-        /// 与域模型关联的数据库会话
+        /// 与业务对象关联的数据库会话
         /// </summary>
         public GenericDBSession CurrentSession
         {
@@ -66,7 +72,7 @@ namespace EasyDev.BL
         }
 
         /// <summary>
-        /// 域模型数据
+        /// 业务对象数据
         /// </summary>
         public T Data
         {
@@ -74,11 +80,17 @@ namespace EasyDev.BL
             set { _data = value; }
         }
 
+        /// <summary>
+        /// 业务对象所包含的数据
+        /// </summary>
         public DataSet BOData
         {
             get { return (DataSet)_data; }
         }
 
+        /// <summary>
+        /// 视图集合数据
+        /// </summary>
         public DataSet Views
         {
             get
@@ -90,16 +102,32 @@ namespace EasyDev.BL
 
         #region 公共构造方法
 
+        /// <summary>
+        /// 构造方法
+        /// </summary>
+        /// <param name="ds"><seealso cref="GenericBizObject<T>">T类型</seealso>数据集</param>
         public GenericBizObject(T ds)
         {
             this._data = ds;
             this.views = new DataSet();
         }
 
-        public GenericBizObject(T ds, GenericDBSession session)
+        /// <summary>
+        /// 构造方法
+        /// </summary>
+        /// <param name="ds"><seealso cref="GenericBizObject<T>"/></param>
+        /// <param name="session">与当前业务对象关联的数据库会话对象</param>
+        public GenericBizObject(T ds, GenericDBSession session, string tableName)
         {
             this._data = ds;
             this._session = session;
+            this.BOName = tableName;
+            if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient",StringComparison.CurrentCultureIgnoreCase) ||
+                CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client",StringComparison.CurrentCultureIgnoreCase))
+            {
+                ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = tableName;
+            }
+
             this.views = new DataSet();
         }
         #endregion
@@ -109,6 +137,7 @@ namespace EasyDev.BL
         public void Dispose()
         {
             this._data = null;
+            this.views = null;
         }
 
         #endregion
@@ -118,7 +147,10 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据行状态将数据同步到数据库
         /// </summary>
-        /// <returns></returns>
+        /// <exception cref="PersistenceException">数据同步出错时将引发异常</exception>
+        /// <remarks>
+        /// 数据同步方法只同步与当前业务对象相关的数据，即当前BOName对应的xsd数据集架构文件相关的数据表
+        /// </remarks>
         public virtual void Synchronize()
         {
             try
@@ -154,7 +186,11 @@ namespace EasyDev.BL
         /// <summary>
         /// 加载所有数据
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回true则成功</returns>
+        /// <remarks>
+        /// 此方法的返回值可以不用接收，因为此方法出错会抛出异常
+        /// </remarks>
+        /// <exception cref="PersistenceException">加载数据出错时抛出异常</exception>
         public virtual bool LoadAll()
         {
             return this.LoadByCondition("");
@@ -163,8 +199,13 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据主键加载数据
         /// </summary>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// 此方法的返回值可以不用接收，因为此方法出错会抛出异常<br/>
+        /// 此方法通过主键加载数据，而主键信息则包含在xsd数据集架构文件中
+        /// </remarks>
+        /// <param name="keyValue">主键值</param>
+        /// <exception cref="PersistenceException">加载数据出错时抛出异常</exception>
+        /// <returns>返回true则成功</returns>
         public virtual bool LoadByPrimaryKey(object keyValue)
         {
             string cond = "";
@@ -196,8 +237,14 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据主键加载数据（多主键情况）
         /// </summary>
-        /// <param name="keyValues"></param>
-        /// <returns></returns>
+        /// <param name="keyValues">多主键的主属性名称及其值组成的键值对集合</param>
+        /// <remarks>
+        /// 此方法的返回值可以不用接收，因为此方法出错会抛出异常<br/>
+        /// 此方法通过主键加载数据，而主键信息则包含在xsd数据集架构文件中<br/>
+        /// 因为无法判断多主键情况下，多个主属性的排列顺序，所以通过IDictionary对象来传递多主键的值
+        /// </remarks>
+        /// <exception cref="PersistenceException">加载数据出错时抛出异常</exception>
+        /// <returns>返回true时成功</returns>
         public virtual bool LoadByPrimaryKeys(IDictionary<string,object> keyValues)
         {
             string cond = "";
@@ -227,40 +274,13 @@ namespace EasyDev.BL
 
             return this.LoadByCondition(cond);
         }
-
-        /// <summary>
-        /// 根据条件删除数据
-        /// </summary>
-        /// <param name="cond"></param>
-        /// <returns></returns>
-        //public virtual bool DeleteByCondition(string cond)
-        //{
-        //    StringBuilder sbComm = new StringBuilder();
-
-        //    try
-        //    {
-        //        if (cond.Length > 0)
-        //        {
-        //            cond = " WHERE " + cond;
-        //        }
-
-        //        sbComm.AppendFormat("DELETE FROM {0} {1}", this.FullName, cond);
-
-        //        this.CurrentSession.ExecuteCommand(sbComm.ToString());
-
-        //        return true;
-        //    }
-        //    catch (PersistenceException e)
-        //    {
-        //        throw e;
-        //    }
-        //}
         
         /// <summary>
         /// 根据条件加载数据
         /// </summary>
-        /// <param name="whereCond"></param>
-        /// <returns></returns>
+        /// <param name="whereCond">条件表达式</param>
+        /// <exception cref="PersistenceException">加载数据出错时抛出异常</exception>
+        /// <returns>返回true时成功</returns>
         public virtual bool LoadByCondition(string whereCond)
         {
             StringBuilder sb = new StringBuilder();
@@ -276,10 +296,10 @@ namespace EasyDev.BL
                                 SqlBuilder.GetColumns(this._data.Tables[this._entityName])
                                 , this.FullName, whereCond);
 
-                #region 重新加载域模型数据
-                //this._data.EnforceConstraints = false;
+                #region 重新加载业务对象数据
                 //对于有自关联的表，要先删除其自关联关系，否则无法移除表
                 this._data.Relations.Clear();
+
                 //清除数据集中的数据表
                 this._data.Tables.Clear();
                 
@@ -292,6 +312,7 @@ namespace EasyDev.BL
                 this._data.Tables[this._entityName].Merge(
                     this._session.GetDataTableFromCommand(sb.ToString()), true, MissingSchemaAction.AddWithKey);
 
+                //修改数据集中的表名，使其与XSD数据集架构文件同名以方便使用
                 if (this._data.Tables.Count > 0)
                 {
                     this._data.Tables[0].TableName = this._entityName;
@@ -309,7 +330,11 @@ namespace EasyDev.BL
         /// <summary>
         /// 创建新行
         /// </summary>
-        /// <returns></returns>
+        /// <remarks>
+        /// 在创建新行的时候会同时处理不能为空的列，对于这些列会自动添加GUID值进行填充，在使用的时候可将其覆盖
+        /// </remarks>
+        /// <exception cref="PersistenceException">加载数据出错时抛出异常</exception>
+        /// <returns>返回当前创建的新行</returns>
         public virtual DataRow Create()
         {
             DataRow drNew = null;
@@ -321,9 +346,27 @@ namespace EasyDev.BL
                     drNew = dt.NewRow();
                     //处理主键
                     for (int i = 0; i < dt.PrimaryKey.Length; i++)
-                    {   
-                        //drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GUIDIdentity();
-                        drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GetNextSequenceId(_session, BOName);
+                    {
+                        #region Masked
+                        //if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient", 
+                        //        StringComparison.CurrentCultureIgnoreCase) ||
+                        //    CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client", 
+                        //        StringComparison.CurrentCultureIgnoreCase))
+                        //{
+                        //    ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = BOName;
+                        //    drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
+
+                        //    //drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GetNextSequenceId(_session, BOName);
+                        //}
+                        //else
+                        //{
+                        //    drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
+                        //    //drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GUIDIdentity();
+                        //} 
+                        #endregion
+                        
+                        //TODO:待测
+                        drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
                     }
 
                     //处理空值约束
@@ -360,23 +403,24 @@ namespace EasyDev.BL
             {
                 throw e;
             }
+
             return drNew;
         }
         
         /// <summary>
-        /// 判断模型是否为空
+        /// 判断业务对象数据是否为空
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回true则数据为空</returns>
+        [Obsolete("此方法已经过时，请使用IsEmpty方法")]
         public virtual bool IsModelEmpty()
         {
-            return this.Data.Tables.Count <= 0 
-                || (this.Data.Tables.Count > 0 && this.Data.Tables[0].Rows.Count <= 0);
+            return IsEmpty();
         }
 
         /// <summary>
-        /// 判断BO是否为空
+        /// 判断业务对象数据是否为空
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回true则数据为空</returns>
         public virtual bool IsEmpty()
         {
             return this.Data.Tables.Count <= 0
@@ -384,12 +428,15 @@ namespace EasyDev.BL
         }
 
         /// <summary>
-        /// 取得模型中的第一行
+        /// 取得业务对象数据中的第一行
         /// </summary>
-        /// <returns></returns>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <returns>返回业务对象数据中的第一行</returns>
         public virtual DataRow GetFirstRow()
         {
-            if (IsModelEmpty() == false)
+            if (IsEmpty() == false)
             {
                 return this.Data.Tables[0].Rows[0];
             }
@@ -400,12 +447,12 @@ namespace EasyDev.BL
         }
 
         /// <summary>
-        /// 取得模型中的第一张表
+        /// 取得业务对象数据中的第一张表
         /// </summary>
-        /// <returns></returns>
+        /// <returns>业务对象数据中的第一个数据表</returns>
         public virtual DataTable GetFirstTable()
         {
-            if (IsModelEmpty() == false)
+            if (IsEmpty() == false)
             {
                 return this.Data.Tables[0];
             }
@@ -428,8 +475,8 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据名称打开视图
         /// </summary>
-        /// <param name="viewName"></param>
-        /// <returns></returns>
+        /// <param name="viewName">视图名称</param>
+        /// <returns>视图数据</returns>
         public DataSet LoadViewByName(string viewName)
         {
             try
@@ -445,9 +492,9 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据条件打开视图
         /// </summary>
-        /// <param name="viewName"></param>
-        /// <param name="cond"></param>
-        /// <returns></returns>
+        /// <param name="viewName">视图名称</param>
+        /// <param name="cond">条件表达式</param>
+        /// <returns>视图数据</returns>
         public DataSet LoadViewByCondition(string viewName, string cond)
         {
             try
@@ -482,16 +529,17 @@ namespace EasyDev.BL
         /// <summary>
         /// 从视图集合中移除视图
         /// </summary>
-        /// <param name="viewName"></param>
+        /// <param name="viewName">视图名称</param>
         public void RemoveFromViews(string viewName)
         {
             this.views.Tables.Remove(viewName);
         }
 
         /// <summary>
-        /// 根据ID删除数据
+        /// 根据主键值删除数据
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">主键值</param>
+        /// <exception cref="PersistenceException">删除出错时抛出异常</exception>
         public void DeleteByPrimaryKey(object key)
         {
             string cond = string.Empty;
@@ -515,7 +563,7 @@ namespace EasyDev.BL
 
                 this.DeleteByCondition(cond);
             }
-            catch (System.Exception e)
+            catch (PersistenceException e)
             {
                 throw e;
             }
@@ -524,7 +572,8 @@ namespace EasyDev.BL
         /// <summary>
         /// 多主键删除
         /// </summary>
-        /// <param name="keys"></param>
+        /// <param name="keys">主键键值对集合</param>
+        /// <exception cref="PersistenceException">删除出错时抛出异常</exception>
         public void DeleteByPrimaryKeys(IDictionary<string, object> keys)
         {
             string cond = string.Empty;
@@ -548,7 +597,7 @@ namespace EasyDev.BL
 
                 this.DeleteByCondition(cond);
             }
-            catch (System.Exception e)
+            catch (PersistenceException e)
             {
                 throw e;
             }
@@ -557,7 +606,8 @@ namespace EasyDev.BL
         /// <summary>
         /// 按条件删除
         /// </summary>
-        /// <param name="cond"></param>
+        /// <param name="cond">删除条件表达式</param>
+        /// <exception cref="PersistenceException">删除出错时抛出异常</exception>
         public void DeleteByCondition(string cond)
         {
             try
@@ -573,6 +623,15 @@ namespace EasyDev.BL
             }
         }
 
+        /// <summary>
+        /// 根据表名取得对应的最新序列码
+        /// </summary>
+        /// <param name="tableName">表名</param>
+        /// <remarks>
+        /// 在数据库中要有以SEQ_[TABLENAME]命名的序列，否则会出现异常
+        /// </remarks>        
+        /// <exception cref="PersistenceException">如果没有找到序列则抛出异常</exception>
+        /// <returns>序列值</returns>
         public string GetNextSequenceID(string tableName)
         {
             try

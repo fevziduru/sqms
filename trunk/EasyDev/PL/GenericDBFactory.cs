@@ -115,7 +115,8 @@ namespace EasyDev.DAL
         /// <typeparam name="T">泛型类型</typeparam>
         /// <param name="dataSourceName">位于配置文件中的数据源名称</param>
         /// <returns>对应泛型类型的实例化对象</returns>
-        public T CreateDBSession<T>() where T : IDBSession, new()
+        public T CreateDBSession<T>() 
+            where T : IDBSession, new()
         {
             return new T();
         }
@@ -128,7 +129,8 @@ namespace EasyDev.DAL
         /// <param name="name">程序集名称</param>
         /// <param name="source">程序集名称类型(名称字符串，配置字符串)</param>
         /// <returns>对应泛型类型的实例化对象</returns>
-        public T CreateDBSession<T>(string name,AssemblyNameSource source) where T : IDBSession, new()
+        public T CreateDBSession<T>(string name,AssemblyNameSource source) 
+            where T : IDBSession, new()
         {
             Assembly assembly = null;
 
