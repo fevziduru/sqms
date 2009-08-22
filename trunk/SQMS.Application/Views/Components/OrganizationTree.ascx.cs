@@ -31,13 +31,19 @@ namespace SQMS.Application.Views.Components
 
         public void CreateMenu(DataTable dtORG)
         {
+            TreeNode node = new TreeNode();
+            node.Text = "所有机构&部门";
+            node.Value = "";
+            node.NavigateUrl = Convert.ToString(String.Format("~/Views/Basedata/OrganizationList.aspx?p=operationlist&pid={0}", ""));
+            node.ToolTip = "";
+            this.TreeView1.Nodes.Add(node);
             this.CreateMenu(this.TreeView1.Nodes, dtORG, ""); 
         }
 
         public void RefreshMenu(DataTable dtORG)
         {
             this.TreeView1.Nodes.Clear();
-            this.CreateMenu(this.TreeView1.Nodes, dtORG, "");
+            this.CreateMenu(dtORG);
         }
 
         private void CreateMenu(TreeNodeCollection nodes, DataTable dt, string pid)

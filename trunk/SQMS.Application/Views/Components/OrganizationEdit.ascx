@@ -57,7 +57,7 @@
                     <tr>
                         <td class="style4">上级机构：</td>
                         <td class="style3">
-                            <asp:TextBox ID="tbOrgParent" runat="server" Enabled="False"></asp:TextBox>
+                            <asp:TextBox ID="tbOrgParent" runat="server" Enabled="False" Visible="False"></asp:TextBox>
                             <asp:DropDownList ID="ddlParent" runat="server" AutoPostBack="True" 
                                 onselectedindexchanged="ddlParent_SelectedIndexChanged">
                             </asp:DropDownList>
