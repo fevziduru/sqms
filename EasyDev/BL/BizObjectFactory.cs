@@ -109,7 +109,6 @@ namespace EasyDev.BL
         /// <param name="_namespace"></param>
         /// <param name="schema"></param>
         /// <returns></returns>
-        [Obsolete("推荐使用不带Session参数的重载")]
         public GenericBizObject<T> CreateBizObject<T>(GenericDBSession session, string _namespace, string schema)
             where T : DataSet
         {
@@ -156,9 +155,9 @@ namespace EasyDev.BL
                     throw new PersistenceException("_missing_scheme_file");
                 }
 
-                instanceDto = new GenericBizObject<T>((T)dsTemp, session);
+                instanceDto = new GenericBizObject<T>((T)dsTemp, session, schema);
                 instanceDto.Entity = schema;
-                instanceDto.BOName = schema;
+                //instanceDto.BOName = schema;
                 instanceDto.FullName = fullName;
                 instanceDto.Schema = filePath;
             }
