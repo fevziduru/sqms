@@ -124,7 +124,7 @@ namespace SQMS.Application.Views.Project
             ds.Tables.Add(dtSave);
 
             this.Service.Save(ds);
-            Response.Write("<script>alert('保存成功');location.href='ProjectList.aspx?p=ProjectProjectList';</script>");
+            Response.Write("<script>alert('保存成功');location.href='ProjectList.aspx?p=projectlist';</script>");
         }
 
         protected override void GetViewData()
@@ -159,7 +159,7 @@ namespace SQMS.Application.Views.Project
         protected void BtnSaveAndNew_Click(object sender, EventArgs e)
         {
             this.BtnSave_Click(sender, e);
-            this.Response.Redirect("ProjectEdit.aspx?p=ProjectProjectNew");
+            this.Response.Redirect("ProjectEdit.aspx?p=projectnew");
         }
     }
 }
