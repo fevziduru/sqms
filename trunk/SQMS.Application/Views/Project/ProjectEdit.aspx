@@ -8,7 +8,7 @@
         <table style="width: 100%">
             <tr>
                 <td align="right">
-                    <a href="ProjectList.aspx?p=ProjectProjectList">返回到列表</a>
+                    <a href="ProjectList.aspx?p=projectlist">返回到列表</a>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,10 @@
                     </td>
                     <td>
                         <!---TODO:修改为职员picker--->
-                        <uc1:PopupReference ID="RefEmp" Service="SQMS.Services.ReferenceServices.EmployeeRefService" AssemblyName="SQMS.Services" runat="server" />
+                        <uc1:PopupReference ID="RefEmp" 
+                         HeaderColumns="EMPID:职员ID,EMPNAME:职员名称,SEX:性别,EMPCODE:职员编码,JOBTITLE:职位"
+                        Service="SQMS.Services.EmployeeService" SearchColumn="EMPNAME" KeyField="EMPID" TextField="EMPNAME"
+                        AssemblyName="SQMS.Services" runat="server" />
                     </td>
                     <td>
                         助理人数

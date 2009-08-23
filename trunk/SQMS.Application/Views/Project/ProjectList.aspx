@@ -8,7 +8,7 @@
             <tr>
                 <td align="center">
                     <fieldset>
-                        <button id="btnNew" onclick="location.href='ProjectEdit.aspx?p=ProjectProjectNew';" style="width:110px;">新增</button>&nbsp;&nbsp;
+                        <button id="btnNew" onclick="location.href='ProjectEdit.aspx?p=projectnew';" style="width:110px;">新增</button>&nbsp;&nbsp;
                         <asp:Button Width="110px" ID="ButtonDelete1" runat="server" Text="删除" OnClick="ButtonDelete_Click" />
                     </fieldset>
                 </td>
@@ -54,7 +54,7 @@
                             <HeaderTemplate>
                                 操作</HeaderTemplate>
                             <ItemTemplate>
-                                <a href="ProjectEdit.aspx?p=ProjectProjectEdit&id=<%# Eval("ProjectID") %>">编辑</a>
+                                <a href="ProjectEdit.aspx?p=projectedit&id=<%# Eval("ProjectID") %>">编辑</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
