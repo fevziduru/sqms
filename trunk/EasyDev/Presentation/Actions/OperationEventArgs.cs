@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace EasyDev.Presentation.Actions
+namespace EasyDev.Presentation
 {
     public class OperationEventArgs : EventArgs
     {

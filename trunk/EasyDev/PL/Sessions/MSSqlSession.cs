@@ -1,16 +1,16 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using EasyDev.DAL.Sessions;
 using EasyDev.Util;
-using EasyDev.PL;
+using System;
 
-namespace EasyDev.DAL
+namespace EasyDev.PL
 {
     /// <summary>
     /// 数据库连接会话，会话对象通过获取SQL命令文本执行SQL命令，
     /// 也可以从外部获取继承于IDbCommand接口的对象来执行SQL命令
     /// </summary>
+    [Obsolete("此类已经过时")]
     public class MSSqlSession : DBSessionBase, IDBSession
     {
         /// <summary>

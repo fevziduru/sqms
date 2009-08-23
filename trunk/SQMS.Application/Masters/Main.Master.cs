@@ -8,7 +8,7 @@ using System.Web.Security;
 using System.Threading;
 using EasyDev.SQMS;
 using System.Data;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using SQMS.Services;
 using EasyDev.Util;
 

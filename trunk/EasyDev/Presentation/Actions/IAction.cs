@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasyDev.Presentation.Actions
+namespace EasyDev.Presentation
 {
     public interface IAction
     {

@@ -2,12 +2,11 @@ using System;
 using System.Data;
 using System.Data.OracleClient;
 using System.Configuration;
-using EasyDev.DAL.Sessions;
 using EasyDev.Util;
-using EasyDev.PL;
 
-namespace EasyDev.DAL.Sessions
+namespace EasyDev.PL
 {
+    [Obsolete("此类已经过时")]
     public class OracleSession : DBSessionBase, IDBSession
     {
         /// <summary>

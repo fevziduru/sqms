@@ -1,11 +1,13 @@
 using System.Data;
 using EasyDev.PL;
+using System;
 
-namespace EasyDev.DAL
+namespace EasyDev.PL
 {
     /// <summary>
     /// 数据库连接的公共基类
     /// </summary>
+    [Obsolete("此类已经过时")]
     public abstract class DBSessionBase  : IDBSession
     {
         /// <summary>

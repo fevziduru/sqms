@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasyDev.PL.IdentityStrategy
+namespace EasyDev.PL
 {
     /// <summary>
     /// Oracle序列值生成策略

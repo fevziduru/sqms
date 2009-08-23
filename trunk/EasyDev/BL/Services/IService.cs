@@ -6,7 +6,7 @@ using System.Data;
 using EasyDev.PL;
 using EasyDev.SQMS;
 
-namespace EasyDev.BL.Services
+namespace EasyDev.BL
 {
     public interface IService
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using EasyDev.SQMS;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using System.Web.Security;
 using System.Threading;
 using System.IO;

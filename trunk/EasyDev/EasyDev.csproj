@@ -174,7 +174,6 @@
     <Compile Include="PL\IdentityStrategy\IdentityGenerator.cs" />
     <Compile Include="PL\IdentityStrategy\IGenerator.cs" />
     <Compile Include="PL\IdentityStrategy\OracleSequenceGenerator.cs" />
-    <Compile Include="PL\Query\QueryObject.cs" />
     <Compile Include="PL\Sessions\AccessSession.cs" />
     <Compile Include="PL\Sessions\DBSessionBase.cs" />
     <Compile Include="PL\Sessions\DBSessionManager.cs" />
@@ -247,9 +246,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EasyDev.pfx" />
+    <None Include="PL\EasyDev.PL.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BL\Exceptions\" />
+    <Folder Include="PL\Query\" />
     <Folder Include="Presentation\Common\" />
     <Folder Include="Presentation\Filters\" />
     <Folder Include="Presentation\Handlers\" />

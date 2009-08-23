@@ -7,7 +7,7 @@ using EasyDev.Util;
 using System.Data;
 using System.Web.Security;
 
-namespace EasyDev.SQMS.HttpHandlers
+namespace EasyDev.SQMS
 {
     public class FrontHandlerFactory : IHttpHandlerFactory
     {

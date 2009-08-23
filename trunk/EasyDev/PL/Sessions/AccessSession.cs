@@ -1,12 +1,13 @@
 using System.Data;
-using EasyDev.DAL;
 using System.Configuration;
 using System.Data.OleDb;
 using EasyDev.Util;
 using EasyDev.PL;
+using System;
 
-namespace EasyDev.DAL.Sessions
+namespace EasyDev.DAL
 {
+    [Obsolete("此类已经过时")]
     public class AccessSession : DBSessionBase, IDBSession
     {
         /// <summary>

@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace EasyDev.DAL
+namespace EasyDev.PL
 {
     public interface IDBSession
     {

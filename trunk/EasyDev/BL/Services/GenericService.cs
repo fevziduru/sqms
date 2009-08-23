@@ -11,7 +11,7 @@ using EasyDev.SQMS;
 using System.Threading;
 using System.Web.Services;
 
-namespace EasyDev.BL.Services
+namespace EasyDev.BL
 {
     /// <summary>
     /// 通用服务

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasyDev.PL.IdentityStrategy
+namespace EasyDev.PL
 {
     /// <summary>
     /// 生成器接口

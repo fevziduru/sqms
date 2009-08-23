@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using System.Data;
 using log4net;
 using SQMS.Services.Domain.QualityControl;
