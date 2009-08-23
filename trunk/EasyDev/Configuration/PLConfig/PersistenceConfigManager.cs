@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
 using System.Xml;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using System.Web;
-using System.Web.Caching;
+using WebCaching = System.Web.Caching;
 
 namespace EasyDev.Configuration
 {
@@ -27,7 +25,7 @@ namespace EasyDev.Configuration
         /// </summary>
         private string defaultSchemaDir = string.Empty;
 
-        private Cache DataSourceCache { get; set; }
+        private WebCaching.Cache DataSourceCache { get; set; }
 
         /// <summary>
         /// 配置文件位置

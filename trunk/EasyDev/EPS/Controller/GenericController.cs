@@ -1,7 +1,6 @@
 ﻿using EasyDev.EPS.BusinessObject;
-using EasyDev.EPS.Portal;
 using System.Web;
-using System.Web.Caching;
+using WebCaching = System.Web.Caching;
 using System;
 using System.Web.Routing;
 using System.Web.Mvc;
@@ -42,7 +41,7 @@ namespace EasyDev.EPS
         /// <summary>
         /// 业务对象缓存
         /// </summary>
-        protected virtual Cache BOCache { get; set; }
+        protected virtual WebCaching.Cache BOCache { get; set; }
 
         public GenericController()
         {   

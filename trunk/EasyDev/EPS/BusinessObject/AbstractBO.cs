@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EasyDev.PL;
-using EasyDev.EPS.Portal;
-using System.Web.Caching;
+using WebCaching = System.Web.Caching;
 using System.Web;
 using EasyDev.EPS.Attributes;
 
@@ -24,7 +21,7 @@ namespace EasyDev.EPS.BusinessObject
         /// SESSION集合同时也作为SESSION对象的缓存对象，用于多数据库环境
         /// </summary>
         //public virtual IDictionary<string, IGenericDBSession> SessionCache { get; set; }
-        private Cache SessionCache { get; set; }
+        private WebCaching.Cache SessionCache { get; set; }
 
         /// <summary>
         /// 业务对象所引用的数据模型
