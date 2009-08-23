@@ -13,3 +13,4 @@ E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\Ea
 E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\zh-CN\EasyDev.resources.dll
 E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.dll
 E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.pdb
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\EasyDev.XML

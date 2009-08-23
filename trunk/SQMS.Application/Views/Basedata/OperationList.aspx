@@ -14,7 +14,7 @@
         </tr>
     </table>
     <br />
-    <asp:GridView ID="gvList" runat="server" AllowPaging="True" Width="100%" 
+    <asp:GridView ID="gvList" runat="server" AllowPaging="True" Width="100%" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OPID" OnSorting="gvList_Sorting"
         EmptyDataText="没有可显示的数据记录。" 
         onrowcommand="gvList_RowCommand" 
