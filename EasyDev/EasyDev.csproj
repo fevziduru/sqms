@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A18AA3B5-C973-4193-8421-82D191C8966D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyDev</RootNamespace>
+    <AssemblyName>EasyDev</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>EasyDev.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\EasyDev.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.102.2.20, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Abstractions.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files\Microsoft ASP.NET\ASP.NET MVC RC\Assemblies\System.Web.Routing.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Applications\EPS\BusinessObject\AbstractBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\BOFactory.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\GenericBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\GenericList\ListBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\GenericList\ListColumnBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\IBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\ModelNotFoundException.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\ModelNullException.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\ParameterizedCommandBuilder.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Portal\PartBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Portal\SchemaBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Portal\ZoneBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Security\PermissionBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Security\RoleBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\Security\UserBO.cs" />
+    <Compile Include="Applications\EPS\BusinessObject\SQLBuilder.cs" />
+    <Compile Include="Applications\EPS\Controller\AuthenticationController.cs" />
+    <Compile Include="Applications\EPS\Controller\EnsureLoginAttribute.cs" />
+    <Compile Include="Applications\EPS\Controller\GenericController.cs" />
+    <Compile Include="Applications\EPS\Model\AbstractModel.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\DatabaseNameAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\DisplayNameAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\EmailValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\KeyPropertyAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\ListVisibleAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\NumberRangeValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\RegularExpressionValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\RequiredValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\UrlValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\Attributes\ValidatorAttribute.cs" />
+    <Compile Include="Applications\EPS\Model\CommandExpressionException.cs" />
+    <Compile Include="Applications\EPS\Model\GenericList\List.cs" />
+    <Compile Include="Applications\EPS\Model\GenericList\ListColumn.cs" />
+    <Compile Include="Applications\EPS\Model\IModel.cs" />
+    <Compile Include="Applications\EPS\Model\IValidator.cs" />
+    <Compile Include="Applications\EPS\Model\ModelFactory.cs" />
+    <Compile Include="Applications\EPS\Model\Portal\Part.cs" />
+    <Compile Include="Applications\EPS\Model\Portal\Schema.cs" />
+    <Compile Include="Applications\EPS\Model\Portal\Zone.cs" />
+    <Compile Include="Applications\EPS\Model\Security\Permissions.cs" />
+    <Compile Include="Applications\EPS\Model\Security\Right.cs" />
+    <Compile Include="Applications\EPS\Model\Security\Roles.cs" />
+    <Compile Include="Applications\EPS\Model\Security\UserInRole.cs" />
+    <Compile Include="Applications\EPS\Model\Security\Users.cs" />
+    <Compile Include="Applications\EPS\Service\AbstractService.cs" />
+    <Compile Include="Applications\EPS\Service\GenericList\GenericListEventArgs.cs" />
+    <Compile Include="Applications\EPS\Service\GenericList\GenericListService.cs" />
+    <Compile Include="Applications\EPS\Service\GenericList\GenericListServiceException.cs" />
+    <Compile Include="Applications\EPS\Service\GenericList\IListDataService.cs" />
+    <Compile Include="Applications\EPS\Service\IService.cs" />
+    <Compile Include="Applications\EPS\Service\Portal\IPortalDataService.cs" />
+    <Compile Include="Applications\EPS\Service\Portal\PortalService.cs" />
+    <Compile Include="Applications\EPS\Service\Portal\PortalServiceException.cs" />
+    <Compile Include="Applications\EPS\Service\Security\InvalidUserException.cs" />
+    <Compile Include="Applications\EPS\Service\Security\PermissionService.cs" />
+    <Compile Include="Applications\EPS\Service\Security\RoleService.cs" />
+    <Compile Include="Applications\EPS\Service\Security\SecurityService.cs" />
+    <Compile Include="Applications\EPS\Service\Security\UserLoginService.cs" />
+    <Compile Include="Applications\EPS\Service\Security\UserService.cs" />
+    <Compile Include="Applications\EPS\Service\ServiceFactory.cs" />
+    <Compile Include="Applications\SQMS\HttpHandlers\FrontHandler.cs" />
+    <Compile Include="Applications\SQMS\HttpHandlers\FrontHandlerFactory.cs" />
+    <Compile Include="Applications\SQMS\HttpModules\PermissionModule.cs" />
+    <Compile Include="Applications\SQMS\PassportPrincipal.cs" />
+    <Compile Include="Applications\SQMS\PassportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Applications\SQMS\UserIdentity.cs" />
+    <Compile Include="Applications\SQMS\UserInfo.cs" />
+    <Compile Include="Cache\CacheFactory.cs" />
+    <Compile Include="Cache\CacheItem.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="BL\BizObjectFactory.cs" />
+    <Compile Include="BL\GenericBizObject.cs" />
+    <Compile Include="BL\IGenericBizObject.cs" />
+    <Compile Include="BL\Services\GenericService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BL\Services\IService.cs" />
+    <Compile Include="BL\Services\IServiceManager.cs" />
+    <Compile Include="BL\Services\NativeServiceManager.cs" />
+    <Compile Include="BL\Services\RemotingServiceManager.cs" />
+    <Compile Include="BL\Services\ServiceManagerFactory.cs" />
+    <Compile Include="Common\ExceptionBase.cs" />
+    <Compile Include="Common\IException.cs" />
+    <Compile Include="Configuration\ConfigurationBase.cs" />
+    <Compile Include="Configuration\ConfigurationConstant.cs" />
+    <Compile Include="Configuration\ConfigurationFactory.cs" />
+    <Compile Include="Configuration\DataSourceConfig.cs" />
+    <Compile Include="Configuration\ExceptionPolicyConfig.cs" />
+    <Compile Include="Configuration\Exceptions\ConfigException.cs" />
+    <Compile Include="Configuration\GenericConfiguration.cs" />
+    <Compile Include="Configuration\ICustomConfiguration.cs" />
+    <Compile Include="Configuration\PersistenceConfig.cs" />
+    <Compile Include="Configuration\PLConfig\DataSource.cs" />
+    <Compile Include="Configuration\PLConfig\IDataSource.cs" />
+    <Compile Include="Configuration\PLConfig\PersistenceConfigManager.cs" />
+    <Compile Include="Configuration\ResourceConfig\ResourceItemConfig.cs" />
+    <Compile Include="Configuration\ResourceConfig\ResourcesConfigManager.cs" />
+    <Compile Include="Configuration\SSODataProviderConfig.cs" />
+    <Compile Include="PL\Builder\SqlBuilder.cs" />
+    <Compile Include="PL\DataSources\DataSourceManager.cs" />
+    <Compile Include="PL\DataSources\DataSourceObject.cs" />
+    <Compile Include="PL\DataSources\IDataSourceObject.cs" />
+    <Compile Include="PL\Exceptions\DALCoreException.cs" />
+    <Compile Include="PL\Exceptions\PersistenceException.cs" />
+    <Compile Include="PL\GenericDBFactory.cs" />
+    <Compile Include="PL\IdentityStrategy\CommonIdentityGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\GeneratorFactory.cs" />
+    <Compile Include="PL\IdentityStrategy\IdentityGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\IGenerator.cs" />
+    <Compile Include="PL\IdentityStrategy\OracleSequenceGenerator.cs" />
+    <Compile Include="PL\Sessions\AccessSession.cs" />
+    <Compile Include="PL\Sessions\DBSessionBase.cs" />
+    <Compile Include="PL\Sessions\DBSessionManager.cs" />
+    <Compile Include="PL\Sessions\GenericDBSession.cs" />
+    <Compile Include="PL\Sessions\IDBSession.cs" />
+    <Compile Include="PL\Sessions\IDBSessionManager.cs" />
+    <Compile Include="PL\Sessions\IGenericDBSession.cs" />
+    <Compile Include="PL\Sessions\MSSqlSession.cs" />
+    <Compile Include="PL\Sessions\OracleSession.cs" />
+    <Compile Include="Presentation\Actions\ActionFactory.cs" />
+    <Compile Include="Presentation\Actions\GenericAction.cs" />
+    <Compile Include="Presentation\Actions\IAction.cs" />
+    <Compile Include="Presentation\Actions\OperationEventArgs.cs" />
+    <Compile Include="Presentation\GenericMasterPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\GenericPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\GenericUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Globalization\GlobalizationManager.cs" />
+    <Compile Include="Resources\Globalization\Globalizer.cs" />
+    <Compile Include="Resources\Globalization\GlobalizerBase.cs" />
+    <Compile Include="Resources\Globalization\IGlobalizer.cs" />
+    <Compile Include="Resources\GlobalizeException.cs" />
+    <Compile Include="Resources\IResourceManager.cs" />
+    <Compile Include="Resources\ResourceManagerBase.cs" />
+    <Compile Include="Resources\ResourceManagerFactory.cs" />
+    <Compile Include="Resources\StandardResourceManager.cs" />
+    <Compile Include="Resources\XmlResourceManager.cs" />
+    <Compile Include="Security\IUserAuthentication.cs" />
+    <Compile Include="Security\Principal.cs" />
+    <Compile Include="Security\UserAuthentication.cs" />
+    <Compile Include="Security\UserIdentity.cs" />
+    <Compile Include="Security\UserInfo.cs" />
+    <Compile Include="Security\UserSecurityException.cs" />
+    <Compile Include="Security\UserSecurityManager.cs" />
+    <Compile Include="Util\CompressException.cs" />
+    <Compile Include="Util\CompressUtil.cs" />
+    <Compile Include="Util\ConvertException.cs" />
+    <Compile Include="Util\ConvertUtil.cs" />
+    <Compile Include="Util\DataSetUtil.cs" />
+    <Compile Include="Util\ExtractException.cs" />
+    <Compile Include="Util\SerializeUtil.cs" />
+    <Compile Include="Util\StreamUtil.cs" />
+    <Compile Include="Util\TypeUtil.cs" />
+    <Compile Include="Util\XmlUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Languages\Default\GenericService.en-US.resx" />
+    <EmbeddedResource Include="Resources\Languages\Default\GenericService.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_en-US.xml" />
+    <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_zh-CN.xml" />
+    <Content Include="Resources\Languages\GenericService_en-US.xml" />
+    <Content Include="Resources\Languages\GenericService_zh-CN.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Applications\EPS\BusinessObject\GenericList\.svn\all-wcprops" />
+    <None Include="Applications\EPS\BusinessObject\GenericList\.svn\entries" />
+    <None Include="Applications\EPS\BusinessObject\GenericList\.svn\format" />
+    <None Include="Applications\EPS\BusinessObject\GenericList\.svn\text-base\ListBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\GenericList\.svn\text-base\ListColumnBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\all-wcprops" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\entries" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\format" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\text-base\PartBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\text-base\SchemaBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Portal\.svn\text-base\ZoneBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\all-wcprops" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\entries" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\format" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\text-base\PermissionBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\text-base\RoleBO.cs.svn-base" />
+    <None Include="Applications\EPS\BusinessObject\Security\.svn\text-base\UserBO.cs.svn-base" />
+    <None Include="Applications\EPS\Controller\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Controller\.svn\entries" />
+    <None Include="Applications\EPS\Controller\.svn\format" />
+    <None Include="Applications\EPS\Controller\.svn\text-base\AuthenticationController.cs.svn-base" />
+    <None Include="Applications\EPS\Controller\.svn\text-base\EnsureLoginAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Controller\.svn\text-base\GenericController.cs.svn-base" />
+    <None Include="Applications\EPS\Model\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Model\.svn\entries" />
+    <None Include="Applications\EPS\Model\.svn\format" />
+    <None Include="Applications\EPS\Model\.svn\text-base\AbstractModel.cs.svn-base" />
+    <None Include="Applications\EPS\Model\.svn\text-base\CommandExpressionException.cs.svn-base" />
+    <None Include="Applications\EPS\Model\.svn\text-base\IModel.cs.svn-base" />
+    <None Include="Applications\EPS\Model\.svn\text-base\IValidator.cs.svn-base" />
+    <None Include="Applications\EPS\Model\.svn\text-base\ModelFactory.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\entries" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\format" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\DatabaseNameAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\DisplayNameAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\EmailValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\KeyPropertyAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\ListVisibleAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\NumberRangeValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\RegularExpressionValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\RequiredValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\UrlValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Attributes\.svn\text-base\ValidatorAttribute.cs.svn-base" />
+    <None Include="Applications\EPS\Model\GenericList\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Model\GenericList\.svn\entries" />
+    <None Include="Applications\EPS\Model\GenericList\.svn\format" />
+    <None Include="Applications\EPS\Model\GenericList\.svn\text-base\List.cs.svn-base" />
+    <None Include="Applications\EPS\Model\GenericList\.svn\text-base\ListColumn.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Portal\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Model\Portal\.svn\entries" />
+    <None Include="Applications\EPS\Model\Portal\.svn\format" />
+    <None Include="Applications\EPS\Model\Portal\.svn\text-base\Part.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Portal\.svn\text-base\Schema.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Portal\.svn\text-base\Zone.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Security\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Model\Security\.svn\entries" />
+    <None Include="Applications\EPS\Model\Security\.svn\format" />
+    <None Include="Applications\EPS\Model\Security\.svn\text-base\Permissions.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Security\.svn\text-base\Right.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Security\.svn\text-base\Roles.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Security\.svn\text-base\UserInRole.cs.svn-base" />
+    <None Include="Applications\EPS\Model\Security\.svn\text-base\Users.cs.svn-base" />
+    <None Include="Applications\EPS\Service\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Service\.svn\entries" />
+    <None Include="Applications\EPS\Service\.svn\format" />
+    <None Include="Applications\EPS\Service\.svn\text-base\AbstractService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\.svn\text-base\IService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\.svn\text-base\ServiceFactory.cs.svn-base" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\entries" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\format" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\text-base\GenericListEventArgs.cs.svn-base" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\text-base\GenericListService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\text-base\GenericListServiceException.cs.svn-base" />
+    <None Include="Applications\EPS\Service\GenericList\.svn\text-base\IListDataService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Portal\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Service\Portal\.svn\entries" />
+    <None Include="Applications\EPS\Service\Portal\.svn\format" />
+    <None Include="Applications\EPS\Service\Portal\.svn\text-base\IPortalDataService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Portal\.svn\text-base\PortalService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Portal\.svn\text-base\PortalServiceException.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\all-wcprops" />
+    <None Include="Applications\EPS\Service\Security\.svn\entries" />
+    <None Include="Applications\EPS\Service\Security\.svn\format" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\InvalidUserException.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\PermissionService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\RoleService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\SecurityService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\UserLoginService.cs.svn-base" />
+    <None Include="Applications\EPS\Service\Security\.svn\text-base\UserService.cs.svn-base" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\all-wcprops" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\dir-prop-base" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\entries" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\format" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\text-base\FrontHandler.cs.svn-base" />
+    <None Include="Applications\SQMS\HttpHandlers\.svn\text-base\FrontHandlerFactory.cs.svn-base" />
+    <None Include="Applications\SQMS\HttpModules\.svn\all-wcprops" />
+    <None Include="Applications\SQMS\HttpModules\.svn\dir-prop-base" />
+    <None Include="Applications\SQMS\HttpModules\.svn\entries" />
+    <None Include="Applications\SQMS\HttpModules\.svn\format" />
+    <None Include="Applications\SQMS\HttpModules\.svn\text-base\PermissionModule.cs.svn-base" />
+    <None Include="EasyDev.pfx" />
+    <None Include="PL\EasyDev.PL.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Applications\EPS\BusinessObject\GenericList\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\GenericList\.svn\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\GenericList\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\GenericList\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\GenericList\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Portal\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Portal\.svn\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\Portal\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Portal\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\Portal\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Security\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Security\.svn\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\Security\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\BusinessObject\Security\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\BusinessObject\Security\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Controller\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Controller\.svn\props\" />
+    <Folder Include="Applications\EPS\Controller\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Controller\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Controller\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Model\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Model\.svn\props\" />
+    <Folder Include="Applications\EPS\Model\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Model\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Model\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Model\Attributes\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Attributes\.svn\props\" />
+    <Folder Include="Applications\EPS\Model\Attributes\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Attributes\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Model\Attributes\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Model\GenericList\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Model\GenericList\.svn\props\" />
+    <Folder Include="Applications\EPS\Model\GenericList\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Model\GenericList\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Model\GenericList\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Model\Portal\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Portal\.svn\props\" />
+    <Folder Include="Applications\EPS\Model\Portal\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Portal\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Model\Portal\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Model\Security\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Security\.svn\props\" />
+    <Folder Include="Applications\EPS\Model\Security\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Model\Security\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Model\Security\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Service\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Service\.svn\props\" />
+    <Folder Include="Applications\EPS\Service\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Service\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Service\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Service\GenericList\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Service\GenericList\.svn\props\" />
+    <Folder Include="Applications\EPS\Service\GenericList\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Service\GenericList\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Service\GenericList\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Service\Portal\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Service\Portal\.svn\props\" />
+    <Folder Include="Applications\EPS\Service\Portal\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Service\Portal\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Service\Portal\.svn\tmp\text-base\" />
+    <Folder Include="Applications\EPS\Service\Security\.svn\prop-base\" />
+    <Folder Include="Applications\EPS\Service\Security\.svn\props\" />
+    <Folder Include="Applications\EPS\Service\Security\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\EPS\Service\Security\.svn\tmp\props\" />
+    <Folder Include="Applications\EPS\Service\Security\.svn\tmp\text-base\" />
+    <Folder Include="Applications\SQMS\HttpHandlers\.svn\prop-base\" />
+    <Folder Include="Applications\SQMS\HttpHandlers\.svn\props\" />
+    <Folder Include="Applications\SQMS\HttpHandlers\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\SQMS\HttpHandlers\.svn\tmp\props\" />
+    <Folder Include="Applications\SQMS\HttpHandlers\.svn\tmp\text-base\" />
+    <Folder Include="Applications\SQMS\HttpModules\.svn\prop-base\" />
+    <Folder Include="Applications\SQMS\HttpModules\.svn\props\" />
+    <Folder Include="Applications\SQMS\HttpModules\.svn\tmp\prop-base\" />
+    <Folder Include="Applications\SQMS\HttpModules\.svn\tmp\props\" />
+    <Folder Include="Applications\SQMS\HttpModules\.svn\tmp\text-base\" />
+    <Folder Include="BL\Exceptions\" />
+    <Folder Include="PL\Query\" />
+    <Folder Include="Presentation\Common\" />
+    <Folder Include="Presentation\Filters\" />
+    <Folder Include="Presentation\Handlers\" />
+    <Folder Include="Presentation\Portal\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
