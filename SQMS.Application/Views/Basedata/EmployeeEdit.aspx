@@ -71,9 +71,9 @@
         <tr>
             <td>设备：</td>
             <td>
-                <%--<asp:DropDownList Width="210px"  ID="ddlEquipment" runat="server"></asp:DropDownList>--%>
-                
-                <uc1:PopupReference ID="refEquipment" Service="SQMS.Services.EquipmentRefService" AssemblyName="SQMS.Services" runat="server" />
+                <uc1:PopupReference ID="refEquipment" Service="SQMS.Services.EquipmentService" 
+                HeaderColumns="EQUID:设备ID, EQUNAME:设备名称, ISVOID:设备状态" 
+                KeyField="EQUID" TextField="EQUNAME" SearchColumn="EQUNAME" AssemblyName="SQMS.Services" runat="server" />
             </td>
             <td>出生日期：</td>
             <td><%=SQMS.Application.HtmlHelper.HtmlExtension.Calendar("calBirthday", currdate) %></td>
