@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SQMS.Services.QualityControl;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using System.Data;
 using SQMS.Services;
 using EasyDev.Util;

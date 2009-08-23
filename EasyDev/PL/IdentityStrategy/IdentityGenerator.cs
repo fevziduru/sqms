@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyDev.PL.IdentityStrategy
+namespace EasyDev.PL
 {
     /// <summary>
     /// 生成主键值的方法

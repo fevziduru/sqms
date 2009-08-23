@@ -5,6 +5,9 @@ using System.Data.Common;
 
 namespace EasyDev.PL
 {
+    /// <summary>
+    /// 数据源对象接口
+    /// </summary>
     public interface IDataSourceObject
     {
         DbConnection GetDBConnection();

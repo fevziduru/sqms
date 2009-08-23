@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using System.Configuration;
-using EasyDev.DAL.Sessions;
 using System.Runtime.Remoting;
 using EasyDev.PL;
 using EasyDev.Util;
@@ -84,6 +83,7 @@ namespace EasyDev.DAL
         /// </summary> 
         /// <param name="dataSourceName"></param>
         /// <returns></returns>
+        [Obsolete("此方法已经过时")]
         public MSSqlSession CreateMSSqlSessionByName(string dataSourceName)
         {
             return new MSSqlSession(dataSourceName);
@@ -94,6 +94,7 @@ namespace EasyDev.DAL
         /// </summary>
         /// <param name="dataSourceName"></param>
         /// <returns></returns>
+        [Obsolete("此方法已经过时")]
         public OracleSession CreateOracleSessionByName(string dataSourceName)
         {
             return new OracleSession(dataSourceName);
@@ -104,6 +105,7 @@ namespace EasyDev.DAL
         /// </summary>
         /// <param name="dataSourceName"></param>
         /// <returns></returns>
+        [Obsolete("此方法已经过时")]
         public AccessSession CreateAccessSessionByName(string dataSourceName)
         {
             return new AccessSession(dataSourceName);

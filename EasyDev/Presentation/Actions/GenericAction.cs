@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using System.ComponentModel;
 using System.Data;
 
-namespace EasyDev.Presentation.Actions
+namespace EasyDev.Presentation
 {
     public class GenericAction : IAction
     {

@@ -4,7 +4,6 @@ using EasyDev.Configuration;
 using System.Data;
 using System.IO;
 using EasyDev.PL;
-using EasyDev.PL.IdentityStrategy;
 
 namespace EasyDev.BL
 {

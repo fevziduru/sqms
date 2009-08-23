@@ -10,9 +10,9 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Configuration;
 using log4net;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 
-namespace EasyDev.SQMS.HttpModules
+namespace EasyDev.SQMS
 {
     public class PermissionModule : IHttpModule
     {

@@ -1,13 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using EasyDev.Configuration;
 using System.Data.Common;
-using System.Xml;
-using System.Collections;
 
 namespace EasyDev.PL
 {
+    /// <summary>
+    /// 数据源管理器
+    /// <example>
+    /// 创建默认的数据源:<br/>
+    /// <code>
+    /// IDataSourceObject dsObj = DataSourceManager.CreateDefaultDataSource();
+    /// </code>
+    /// 创建命名数据源：<br/>
+    /// <code>
+    /// IDataSourceObject dsObj = DataSourceManager.CreateDataSource(dataSourceName);
+    /// </code>
+    /// <remarks>
+    /// 数据源名称是在EasyDev.Persistence.Config文件中设置的名称，默认数据源是在这个配置文件中DataSources结点Default属性的值所对应的数据源配置
+    /// </remarks>
+    /// </example>
+    /// </summary>
     public class DataSourceManager
     {
         private static PersistenceConfigManager configMgr = null;
@@ -29,7 +40,7 @@ namespace EasyDev.PL
         /// <summary>
         /// 根据配置信息中的数据源名称产生会话对象的方法
         /// </summary>
-        /// <param name="name">provider的名称</param>
+        /// <param name="name">数据源配置的名称</param>
         /// <returns></returns>
         public static DataSourceObject CreateDataSource(string name)
         {

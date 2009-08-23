@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EasyDev.Presentation;
 using SQMS.Services;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using EasyDev.SQMS;
 using System.Data;
 using EasyDev.Util;
@@ -108,7 +108,7 @@ namespace SQMS.Application.Views.Basedata
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
         {
             srv = Service as RoleService;
-            passportService = EasyDev.BL.Services.ServiceManagerFactory.CreateNativeServiceManager().CreateService<PassportService>();
+            passportService = EasyDev.BL.ServiceManagerFactory.CreateNativeServiceManager().CreateService<PassportService>();
 
             sGridItemlist = new Common.sGridItemList(srv, this.ID);
 

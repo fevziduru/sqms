@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 
-namespace EasyDev.SQMS.HttpHandlers
+namespace EasyDev.SQMS
 {
     public class FrontHandler : IHttpHandler
     {

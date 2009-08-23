@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
-using EasyDev.BL.Services;
+using EasyDev.BL;
 using SQMS.Services.ReferenceServices;
 
 namespace SQMS.Services

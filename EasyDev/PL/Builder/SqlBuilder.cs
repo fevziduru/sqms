@@ -5,8 +5,11 @@ using System.Data;
 using System.Collections;
 using System.Data.Common;
 
-namespace EasyDev.PL.SqlBuilder
+namespace EasyDev.PL
 {
+    /// <summary>
+    /// SQL代码生成器
+    /// </summary>
     public class SqlBuilder
     {
         #region 私有方法
@@ -124,6 +127,12 @@ namespace EasyDev.PL.SqlBuilder
 
         #endregion
 
+        /// <summary>
+        /// 生成主键列
+        /// </summary>
+        /// <param name="dt">主键所在的表</param>
+        /// <param name="dr">数据行</param>
+        /// <returns></returns>
         public static string BuildPrimaryColumns(DataTable dt, DataRow dr)
         {
             StringBuilder sb = new StringBuilder();
@@ -146,6 +155,16 @@ namespace EasyDev.PL.SqlBuilder
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 生成主键列
+        /// </summary>
+        /// <param name="dr">数据行</param>
+        /// <returns></returns>
+        public static string BuildPrimaryColumns(DataRow dr)
+        {
+            return BuildPrimaryColumns(dr.Table, dr);
         }
         
         /// <summary>
@@ -174,6 +193,7 @@ namespace EasyDev.PL.SqlBuilder
         /// <summary>
         /// 创建INSERT语句
         /// </summary>
+        /// <param name="fullName">INSERT语句操作的数据表名</param>
         /// <param name="dt"></param>
         /// <param name="dr"></param>
         /// <returns></returns>
@@ -189,8 +209,20 @@ namespace EasyDev.PL.SqlBuilder
         }
 
         /// <summary>
+        /// 创建INSERT语句
+        /// </summary>
+        /// <param name="fullName">INSERT语句操作的数据表名</param>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        public static string BuildInsertCommand(string fullName, DataRow dr)
+        {
+            return BuildInsertCommand(fullName, dr.Table, dr);
+        }
+
+        /// <summary>
         /// 创建DELETE语句
         /// </summary>
+        /// <param name="fullName">DELETE语句操作的数据表名</param>
         /// <param name="dt"></param>
         /// <param name="dr"></param>
         /// <returns></returns>
@@ -219,9 +251,20 @@ namespace EasyDev.PL.SqlBuilder
         }
 
         /// <summary>
+        /// 创建DELETE语句
+        /// </summary>
+        /// <param name="fullName">DELETE语句操作的数据表名</param>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        public static string BuildDeleteCommand(string fullName, DataRow dr)
+        {
+            return BuildDeleteCommand(fullName, dr.Table, dr);
+        }
+
+        /// <summary>
         /// 创建UPDATE语句
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">UPDATE语句操作的数据表名</param>
         /// <param name="dr"></param>
         /// <returns></returns>
         public static string BuildUpdateCommand(string fullName,DataTable dt, DataRow dr)
@@ -239,6 +282,17 @@ namespace EasyDev.PL.SqlBuilder
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// 创建UPDATE语句
+        /// </summary>
+        /// <param name="fullName">UPDATE语句操作的数据表名</param>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        public static string BuildUpdateCommand(string fullName, DataRow dr)
+        {
+            return BuildUpdateCommand(fullName, dr.Table, dr);
         }
     }
 }

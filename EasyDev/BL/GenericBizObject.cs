@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
 using EasyDev.PL;
-using EasyDev.PL.SqlBuilder;
-using EasyDev.PL.IdentityStrategy;
 using System.Text;
 using System.Collections.Generic;
 using System.Collections;

@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using EasyDev.Configuration;
 using System.Collections.Generic;
 using EasyDev.Util;
-using EasyDev.PL.IdentityStrategy;
 
 namespace EasyDev.PL
 {
@@ -28,9 +27,6 @@ namespace EasyDev.PL
         /// 数据库事务对象
         /// </summary>
         protected DbTransaction _transaction = null;
-
-        
-        //private IGenerator _identityGenerator = null;
 
         /// <summary>
         /// 主键值生成器
@@ -924,6 +920,11 @@ namespace EasyDev.PL
             this._transaction = this.Connection.BeginTransaction();
         }
 
+        /// <summary>
+        /// 取得下一个序列
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
         public virtual string GetNextID(string tableName)
         {
             return ConvertUtil.ToStringOrDefault(GetScalarObjectFromCommand(
