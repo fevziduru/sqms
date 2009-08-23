@@ -1,0 +1,16 @@
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\EasyDev.XML
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\EasyDev.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\EasyDev.pdb
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\en-US\EasyDev.resources.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\zh-CN\EasyDev.resources.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\log4net.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\Oracle.DataAccess.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\bin\Debug\log4net.xml
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\ResolveAssemblyReference.cache
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.Resources.Languages.Default.GenericService.en-US.resources
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.Resources.Languages.Default.GenericService.zh-CN.resources
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.csproj.GenerateResource.Cache
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\en-US\EasyDev.resources.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\zh-CN\EasyDev.resources.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.dll
+E:\Workbench\我的项目\环卫质量监控平台\编码阶段\src root\SQMS\EasyDev\obj\Debug\EasyDev.pdb
