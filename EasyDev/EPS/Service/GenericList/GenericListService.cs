@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using EasyDev.EPS.BusinessObject;
-using EasyDev.EPS.Portal;
 using System.Data;
 using System.Reflection;
-using EasyDev.ApplicationCache;
+using EasyDev.Cache;
 using EasyDev.EPS.BusinessObject.GenericList;
 using EasyDev.Util;
 

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EasyDev.PL;
 using EasyDev.Resources;
 using System.Data;
-using System.Web.Caching;
+using WebCaching = System.Web.Caching;
 using System.Web;
 using EasyDev.SQMS;
 using System.Threading;
@@ -44,7 +42,7 @@ namespace EasyDev.BL
         /// </summary>
         private ResourceManagerFactory resMgrFactory = null;
 
-        private Cache SessionPool
+        private WebCaching.Cache SessionPool
         {
             get;
             set;

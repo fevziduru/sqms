@@ -5,7 +5,7 @@ using System.Text;
 using EasyDev.EPS.BusinessObject;
 using System.Web;
 using EasyDev.EPS.Portal;
-using System.Web.Caching;
+using WebCaching = System.Web.Caching;
 
 namespace EasyDev.EPS
 {
@@ -16,7 +16,7 @@ namespace EasyDev.EPS
         /// <summary>
         /// 业务对象缓存
         /// </summary>        
-        private Cache BOCache { get; set; }
+        private WebCaching.Cache BOCache { get; set; }
 
         /// <summary>
         /// 通用业务对象
