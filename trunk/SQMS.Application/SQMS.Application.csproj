@@ -506,7 +506,6 @@
     </Compile>
     <Compile Include="WebServices\MobileWebService.asmx.cs">
       <DependentUpon>MobileWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -591,10 +590,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasyDev\EasyDev.csproj">
-      <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
-      <Name>EasyDev</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SQMS.Services\SQMS.Services.csproj">
       <Project>{B714CFE0-2934-4AED-8994-B371A6D44405}</Project>
       <Name>SQMS.Services</Name>
