@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using EasyDev.BL;
 using EasyDev.Presentation;
-using System.ComponentModel;
 using System.Data;
 using EasyDev.Util;
 using System.Threading;
 using System.Configuration;
 using log4net;
-using System.Web.Security;
 using EasyDev.SQMS;
 using SQMS.Application.Views.Components;
 using System.Web.UI.WebControls;
