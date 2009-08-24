@@ -64,7 +64,7 @@
     <Compile Include="Domain\QualityControl\MonitorPoint.cs" />
     <Compile Include="Domain\QualityControl\QualityControlInfo.cs" />
     <Compile Include="Domain\QualityControl\QualityControlType.cs" />
-    <Compile Include="Domain\QualityControl\Region.cs" />
+    <Compile Include="Domain\QualityControl\Road.cs" />
     <Compile Include="EmployeeService.cs">
       <SubType>Component</SubType>
     </Compile>
