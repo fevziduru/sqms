@@ -28,9 +28,9 @@ namespace SQMS.Services.QualityControl
         /// <summary>
         /// 根据路段ID获取监控点
         /// </summary>
-        /// <param name="regionId"></param>
+        /// <param name="roadId"></param>
         /// <returns></returns>
-        public DataTable GetMonitorPointList(string regionId)
+        public DataTable GetMonitorPointList(string roadId)
         {
             string sql = @"SELECT M.MPID,
                                    M.ROADID,
@@ -49,7 +49,7 @@ namespace SQMS.Services.QualityControl
                               LEFT JOIN ROAD R ON R.ROADID = M.ROADID
                               LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID
                               LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID
-                             WHERE M.ROADID = '" + regionId+"'";
+                             WHERE M.ROADID = '" + roadId+"'";
             DataTable dt = new DataTable();
             try
             {

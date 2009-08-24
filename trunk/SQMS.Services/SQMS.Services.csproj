@@ -84,7 +84,7 @@
     <Compile Include="QualityControl\QualityControlService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="QualityControl\RegionService.cs">
+    <Compile Include="QualityControl\RoadService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\EmployeeRefService.cs">

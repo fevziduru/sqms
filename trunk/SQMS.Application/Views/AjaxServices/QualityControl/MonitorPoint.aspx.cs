@@ -80,7 +80,7 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
                 mp.MonitorPointId = ConvertUtil.ToStringOrDefault(dr["MPID"]);
                 mp.MonitorPointName = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
                 mp.OrganizationId = "";
-                mp.RegionId = "";
+                mp.RoadId = "";
                 mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
 
                 list.Add(mp);

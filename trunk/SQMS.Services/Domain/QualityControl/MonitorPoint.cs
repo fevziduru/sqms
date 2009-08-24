@@ -11,7 +11,7 @@ namespace SQMS.Services.Domain.QualityControl
     {
         private string organizationId;
         private string monitorPointId;
-        private string regionId;
+        private string roadId;
         private string monitorPointCode;
         private string monitorPointName;
         private decimal lat;
@@ -151,15 +151,15 @@ namespace SQMS.Services.Domain.QualityControl
             }
         }
 
-        public string RegionId
+        public string RoadId
         {
             get
             {
-                return regionId;
+                return roadId;
             }
             set
             {
-                this.regionId = value;
+                this.roadId = value;
             }
         }
 

@@ -41,24 +41,6 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Label LabelMPName;
         
         /// <summary>
-        /// LabelMPLng control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMPLng;
-        
-        /// <summary>
-        /// LabelMPLat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMPLat;
-        
-        /// <summary>
         /// LinkImageSource control.
         /// </summary>
         /// <remarks>
@@ -75,15 +57,6 @@ namespace SQMS.Application.Views.Quality {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelDataFetchTime;
-        
-        /// <summary>
-        /// LabelQCCrood control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelQCCrood;
         
         /// <summary>
         /// LabelQCType control.

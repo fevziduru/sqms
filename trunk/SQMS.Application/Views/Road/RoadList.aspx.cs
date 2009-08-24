@@ -13,27 +13,27 @@ using EasyDev.Util;
 
 namespace SQMS.Application.Views.Road
 {
-    public partial class RoadList : SQMSPage<RegionService>
+    public partial class RoadList : SQMSPage<RoadService>
     {
         private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
-        private RegionService svcRegion = null;
-        private DataTable dtRegion
+        private RoadService svcRoad = null;
+        private DataTable dtRoad
         {
             get 
             {
-                return this.ViewState["dtRegion"] as DataTable;
+                return this.ViewState["dtRoad"] as DataTable;
             }
             set
             {
-                value.TableName = "Region";
-                this.ViewState.Add("dtRegion", value);
+                value.TableName = "Road";
+                this.ViewState.Add("dtRoad", value);
             }
         }
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            this.svcRegion = this.svcManager.CreateService<RegionService>();
+            this.svcRoad = this.svcManager.CreateService<RoadService>();
         }
 
 
@@ -50,8 +50,8 @@ namespace SQMS.Application.Views.Road
                 this.GridViewRoad.Attributes.Add("SortExpression", "id");
                 this.GridViewRoad.Attributes.Add("SortDirection", "ASC");
 
-                this.dtRegion = this.svcRegion.GetRegionList(null);
-                this.bindGridViewRoad(this.dtRegion);
+                this.dtRoad = this.svcRoad.GetRoadList(null);
+                this.bindGridViewRoad(this.dtRoad);
             }
         }
 
@@ -84,8 +84,8 @@ namespace SQMS.Application.Views.Road
             }
 
             //删除数据后重新加载数据
-            this.dtRegion = this.svcRegion.GetRegionList(null);
-            this.GridViewRoad.DataSource = this.dtRegion.DefaultView;
+            this.dtRoad = this.svcRoad.GetRoadList(null);
+            this.GridViewRoad.DataSource = this.dtRoad.DefaultView;
             this.GridViewRoad.DataBind();
         }
 
@@ -97,7 +97,7 @@ namespace SQMS.Application.Views.Road
         protected void GridViewRoad_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.GridViewRoad.PageIndex = e.NewPageIndex;
-            this.GridViewRoad.DataSource = this.dtRegion.DefaultView;
+            this.GridViewRoad.DataSource = this.dtRoad.DefaultView;
             this.GridViewRoad.DataBind();
         }
     }
