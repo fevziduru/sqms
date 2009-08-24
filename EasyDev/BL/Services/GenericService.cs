@@ -8,6 +8,10 @@ using System.Web;
 using EasyDev.SQMS;
 using System.Threading;
 using System.Web.Services;
+using System.Linq.Expressions;
+using System.Reflection;
+using EasyDev.Util;
+using System.Data.Common;
 
 namespace EasyDev.BL
 {
@@ -51,7 +55,7 @@ namespace EasyDev.BL
         /// <summary>
         /// 根据名称创建SESSION
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">配置文件中的SESSION名称</param>
         /// <returns></returns>
         public virtual GenericDBSession GetSession(string name)
         {
@@ -70,6 +74,59 @@ namespace EasyDev.BL
             }
 
             return session;
+        }
+
+        /// <summary>
+        /// 取得公共库SESSION
+        /// </summary>
+        /// <returns></returns>
+        public virtual GenericDBSession GetPubSession()
+        {
+            return GetSession("SQMS.PUB");
+        }
+
+        /// <summary>
+        /// 查找数据库SESSION,此方法根据表达式给出的条件到公共库中提取SESSION对象
+        /// </summary>
+        /// <param name="exp">查询表达式</param>
+        /// <example>
+        /// 从数据库中提取属于指定机构的数据库SESSION对象<br/>
+        /// <code>
+        /// GenericDBSession session = GetSession(p=>p["orgid"].ToString().Equal("spec_orgid"));
+        /// </code>
+        /// 取得与用户信息相关的数据库SESSION对象<br/>
+        /// <code>
+        /// GenericDBSession session = GetSession(p=>p["orgid"].ToString().Equal(CurrentUser.OrganizationID));
+        /// </code>
+        /// </example>
+        /// <returns></returns>
+        public virtual GenericDBSession GetSession(Expression<Func<DataRow, bool>> exp)
+        {
+            try
+            {
+                GenericDBSession pubsession = GetPubSession();
+                Func<DataRow, bool> func = exp.Compile();
+                DataSourceObject dso = null;
+                DataTable dtDso = pubsession.GetDataTableFromCommand(@"select db.connectionstring, db.provider from database db 
+                left join organization o on o.databaseid = db.databaseid");
+
+                foreach (DataRow row in dtDso.Rows)
+                {
+                    if ((bool)func.DynamicInvoke(row))
+                    {
+                        string provider = ConvertUtil.ToStringOrDefault(row["provider"]);
+                        string connstr = ConvertUtil.ToStringOrDefault(row["connectionstring"]);
+                        dso = new DataSourceObject(DbProviderFactories.GetFactory(provider));
+                        dso.ProviderName = ConvertUtil.ToStringOrDefault(row["name"]);
+                    }
+                }
+
+                return DBSessionManager.CreateDBSession(dso);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         #endregion

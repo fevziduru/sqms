@@ -15,7 +15,25 @@ namespace SQMS.Application
             set;
         }
 
+        public string KeyField
+        {
+            get;
+            set;
+        }
+
+        public string TextField
+        {
+            get;
+            set;
+        }
+
         public string AssemblyName
+        {
+            get;
+            set;
+        }
+
+        public string SearchColumn
         {
             get;
             set;
@@ -42,6 +60,19 @@ namespace SQMS.Application
             set
             {
                 this.txtValueField.Text = value;
+            }
+        }
+
+        private string hc = "";
+        public string HeaderColumns
+        {
+            get
+            {
+                return HttpUtility.UrlEncode(hc);
+            }
+            set
+            {
+                hc = HttpUtility.UrlEncode(value);
             }
         }
 
