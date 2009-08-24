@@ -19,7 +19,7 @@ namespace SQMS.Application.Views.Quality
         private QualityControlService svcQualityControl = null;
         private ProjectService svcProject = null;
         private EmployeeService svcEmployee = null;
-        private RegionService svcRegion = null;
+        private RoadService svcRoad = null;
 
         private DataTable dtProject = null;
         private DataTable dtVideo = null;
@@ -30,7 +30,7 @@ namespace SQMS.Application.Views.Quality
             this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
             this.svcProject = this.svcManager.CreateService<ProjectService>();
             this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
-            this.svcRegion = this.svcManager.CreateService<RegionService>();
+            this.svcRoad = this.svcManager.CreateService<RoadService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -68,15 +68,15 @@ namespace SQMS.Application.Views.Quality
             string[] valueArray = this.TreeViewProject.SelectedNode.Value.Split(new char[] { '&' });
             if (valueArray[1].Equals("project") && this.TreeViewProject.SelectedNode.ChildNodes.Count <= 0)
             {
-                DataTable dtChildren = this.svcRegion.GetRegionListInProject(valueArray[0]);
+                DataTable dtChildren = this.svcRoad.GetRoadListInProject(valueArray[0]);
                 foreach (DataRow drChild in dtChildren.Rows)
                 {
-                    string nodeValue = ConvertUtil.ToStringOrDefault(drChild["ROADID"]) + "&region";
+                    string nodeValue = ConvertUtil.ToStringOrDefault(drChild["ROADID"]) + "&road";
                     TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drChild["ROADNAME"]), nodeValue);
                     this.TreeViewProject.SelectedNode.ChildNodes.Add(node);
                 }
             }
-            else if (valueArray[1].Equals("region"))
+            else if (valueArray[1].Equals("road"))
             {
                 //读取监控点
                 DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);

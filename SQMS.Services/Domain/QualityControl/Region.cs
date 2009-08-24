@@ -1,18 +1,18 @@
-﻿// File:    Region.cs
+﻿// File:    Road.cs
 // Author:  fishtrees
 // Created: 2009年8月8日 10:47:20
-// Purpose: Definition of Class Region
+// Purpose: Definition of Class Road
 
 using System;
 namespace SQMS.Services.Domain.QualityControl
 {
-    public class Region
+    public class Road
     {
-        private string regionId;
+        private string roadId;
         private string projectId;
-        private string regionCode;
-        private string regionName;
-        private string regionType;
+        private string roadCode;
+        private string roadName;
+        private string roadType;
         private DateTime workBeginTime;
         private DateTime workEndTime;
         private decimal totalWorkTime;
@@ -24,51 +24,51 @@ namespace SQMS.Services.Domain.QualityControl
         private DateTime modified;
         private string modifiedBy;
 
-        public string RegionId
+        public string RoadId
         {
             get
             {
-                return regionId;
+                return roadId;
             }
             set
             {
-                this.regionId = value;
+                this.roadId = value;
             }
         }
 
-        public string RegionCode
+        public string RoadCode
         {
             get
             {
-                return regionCode;
+                return roadCode;
             }
             set
             {
-                this.regionCode = value;
+                this.roadCode = value;
             }
         }
 
-        public string RegionName
+        public string RoadName
         {
             get
             {
-                return regionName;
+                return roadName;
             }
             set
             {
-                this.regionName = value;
+                this.roadName = value;
             }
         }
 
-        public string RegionType
+        public string RoadType
         {
             get
             {
-                return regionType;
+                return roadType;
             }
             set
             {
-                this.regionType = value;
+                this.roadType = value;
             }
         }
 

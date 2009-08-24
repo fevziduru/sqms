@@ -20,7 +20,7 @@ namespace SQMS.Application.Views.Quality
         private QualityControlService svcQualityControl = null;
         private ProjectService svcProject = null;
         private EmployeeService svcEmployee = null;
-        private RegionService svcRegion = null;
+        private RoadService svcRoad = null;
 
         private DataTable dtNormalQc = null;
         private DataTable dtDynamicQc = null;
@@ -48,7 +48,7 @@ namespace SQMS.Application.Views.Quality
             this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
             this.svcProject = this.svcManager.CreateService<ProjectService>();
             this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
-            this.svcRegion = this.svcManager.CreateService<RegionService>();
+            this.svcRoad = this.svcManager.CreateService<RoadService>();
         }
         protected override void OnLoad(EventArgs e)
         {

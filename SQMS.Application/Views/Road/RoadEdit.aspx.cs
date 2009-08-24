@@ -12,7 +12,7 @@ using log4net;
 
 namespace SQMS.Application.Views.Road
 {
-    public partial class RoadEdit : SQMSPage<RegionService>
+    public partial class RoadEdit : SQMSPage<RoadService>
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(RoadEdit));
 
@@ -101,9 +101,9 @@ namespace SQMS.Application.Views.Road
             base.OnLoadDataEventHandler(sender, e);
             if (!IsPostBack)
             {
-                RegionService svc = (RegionService)this.Service;
+                RoadService svc = (RoadService)this.Service;
                 this.dtRoadType = svc.GetRoadType();
-                this.dtRoad = svc.GetRegion(this.roadId);
+                this.dtRoad = svc.GetRoad(this.roadId);
             }
         }
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)

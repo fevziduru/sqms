@@ -11,16 +11,16 @@ using EasyDev.Util;
 
 namespace SQMS.Services.QualityControl
 {
-    public class RegionService : GenericService
+    public class RoadService : GenericService
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(RegionService));
+        private static readonly ILog log = LogManager.GetLogger(typeof(RoadService));
 
         protected override void Initialize()
         {
             this.BOName = "ROAD";
             base.Initialize();
         }
-        public DataTable GetRegionListInProject(string projectId)
+        public DataTable GetRoadListInProject(string projectId)
         {
             string sql = @"SELECT R.ROADID,
                                    R.PROJECTID,
@@ -51,11 +51,11 @@ namespace SQMS.Services.QualityControl
             }
             return dt;
         }
-        public DataTable GetRegionList(PagingParameter pagingParam)
+        public DataTable GetRoadList(PagingParameter pagingParam)
         {
-            return this.GetRegionList(this.CurrentUser.OrganizationID, pagingParam);
+            return this.GetRoadList(this.CurrentUser.OrganizationID, pagingParam);
         }
-        public DataTable GetRegionList(string orgId,PagingParameter pagingParam)
+        public DataTable GetRoadList(string orgId,PagingParameter pagingParam)
         {
             if (String.IsNullOrEmpty(orgId))
             {
@@ -100,7 +100,7 @@ namespace SQMS.Services.QualityControl
             return dt;
         }
 
-        public int GetRegionListCount(string orgId)
+        public int GetRoadListCount(string orgId)
         {
             if (String.IsNullOrEmpty(orgId))
             {
@@ -122,12 +122,12 @@ namespace SQMS.Services.QualityControl
         }
 
 
-        public int GetRegionListCount()
+        public int GetRoadListCount()
         {
-            return this.GetRegionListCount(this.CurrentUser.OrganizationID);
+            return this.GetRoadListCount(this.CurrentUser.OrganizationID);
         }
 
-        public DataTable GetRegion(string roadId)
+        public DataTable GetRoad(string roadId)
         {
             string sql =@"SELECT R.ROADID,
        R.PROJECTID,

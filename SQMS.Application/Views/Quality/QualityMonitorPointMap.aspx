@@ -107,16 +107,13 @@
     </asp:ScriptManager>
     <div>
         <div>
-            <asp:Label ID="LabelMPName" runat="server"></asp:Label><span>（经纬度：<asp:Label ID="LabelMPLng"
-                runat="server"></asp:Label>,<asp:Label ID="LabelMPLat" runat="server"></asp:Label>）</span></div>
+            <asp:Label ID="LabelMPName" runat="server"></asp:Label></div>
         <div>
             <div>
                 <asp:HyperLink ID="LinkImageSource" runat="server" Target="_blank"></asp:HyperLink>
             </div>
             <div>
                 <span><span>数据采集时间：</span><span><asp:Label ID="LabelDataFetchTime" runat="server"></asp:Label></span></span></div>
-            <div>
-                <span><span>采集坐标：</span><span><asp:Label ID="LabelQCCrood" runat="server"></asp:Label></span></span></div>
             <div>
                 <span><span>类型：</span><span><asp:Label ID="LabelQCType" runat="server"></asp:Label></span></span></div>
             <div>
