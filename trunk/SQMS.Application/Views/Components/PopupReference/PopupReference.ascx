@@ -3,12 +3,12 @@
 function popup(textfieldid, valuefieldid) {
     var date = new Date();
     var result = window.showModalDialog(
-        "/Views/Components/PopupReference/PopupDialog.aspx?s=<%=Service %>&t=<%=AssemblyName %>&r=" + date.valueOf(),
+        "/Views/Components/PopupReference/PopupDialog.aspx?hc=<%=HeaderColumns %>&tf=<%=TextField %>&kf=<%=KeyField %>&sf=<%=SearchColumn %>&s=<%=Service %>&t=<%=AssemblyName %>&r=" + date.valueOf(),
         document.getElementById(textfieldid),
         "dialogWidth=800px;dialogHeight=600px");
     if (result != null) {
-        document.getElementById(valuefieldid).value = result.value;
-        document.getElementById(textfieldid).value = result.text;
+        document.getElementById(valuefieldid).value = result['<%=KeyField %>'];
+        document.getElementById(textfieldid).value = result['<%=TextField %>'];
     }
 }
 </script>

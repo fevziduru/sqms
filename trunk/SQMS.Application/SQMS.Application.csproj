@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalErrorMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\DATABASE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\EMPLOYEE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -601,6 +606,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\Schema\DATABASE.xsc">
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\DATABASE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DATABASE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\DATABASE.xss">
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\EMPLOYEE.xsc">
       <DependentUpon>EMPLOYEE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
