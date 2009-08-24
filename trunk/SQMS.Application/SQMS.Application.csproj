@@ -407,6 +407,13 @@
     <Compile Include="Views\Project\ProjectList.aspx.designer.cs">
       <DependentUpon>ProjectList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Project\ProjectView.aspx.cs">
+      <DependentUpon>ProjectView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Project\ProjectView.aspx.designer.cs">
+      <DependentUpon>ProjectView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -441,6 +448,13 @@
     </Compile>
     <Compile Include="Views\Road\RoadList.aspx.designer.cs">
       <DependentUpon>RoadList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Road\RoadView.aspx.cs">
+      <DependentUpon>RoadView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Road\RoadView.aspx.designer.cs">
+      <DependentUpon>RoadView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Security\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -907,10 +921,12 @@
     <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
+    <Content Include="Views\Project\ProjectView.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
+    <Content Include="Views\Road\RoadView.aspx" />
     <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>

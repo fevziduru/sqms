@@ -107,8 +107,7 @@ namespace EasyDev.BL
                 GenericDBSession pubsession = GetPubSession();
                 Func<DataRow, bool> func = exp.Compile();
                 DataSourceObject dso = null;
-                DataTable dtDso = pubsession.GetDataTableFromCommand(@"select db.connectionstring, db.provider from database db 
-                left join organization o on o.databaseid = db.databaseid");
+                DataTable dtDso = pubsession.GetDataTableFromCommand(@"select db.connectionstring, db.provider from database db left join organization o on o.databaseid = db.databaseid");
 
                 foreach (DataRow row in dtDso.Rows)
                 {
