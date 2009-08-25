@@ -8,7 +8,7 @@
             <tr>
                 <td align="center">
                     <fieldset>
-                        <button id="btnNew" onclick="location.href='RoadEdit.aspx?p=RoadRoadNew';" style="width:110px;">新增</button>&nbsp;&nbsp;
+                        <button id="btnNew" onclick="location.href='RoadEdit.aspx?p=roadnew';" style="width:110px;">新增</button>&nbsp;&nbsp;
                         <asp:Button Width="110px" ID="ButtonDelete1" runat="server" Text="删除" OnClick="ButtonDelete_Click" />
                     </fieldset>
                 </td>
@@ -21,7 +21,7 @@
                     AutoGenerateColumns="False" DataKeyNames="ROADID" EmptyDataText="没有可显示的数据记录。"
                     OnPageIndexChanging="GridViewRoad_PageIndexChanging">
                     <Columns>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center"  HeaderStyle-Width="30px">
                             <HeaderTemplate>
                                 <input name="header" onclick='SelectAll("<%=this.GridViewRoad.ClientID %>")' type="checkbox"
                                     value='<%#Eval("ROADID") %>' />
@@ -35,10 +35,9 @@
                             SortExpression="ROADID" Visible="False">
                             <HeaderStyle HorizontalAlign="Left" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="ROADNAME" HeaderText="路段名称" ReadOnly="True" HeaderStyle-HorizontalAlign="Left"
-                            SortExpression="ROADNAME">
-                            <HeaderStyle HorizontalAlign="Left" />
-                        </asp:BoundField>
+                           <asp:HyperLinkField DataNavigateUrlFields="ROADID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+                DataNavigateUrlFormatString="/Views/Road/RoadView.aspx?p=roadview&id={0}" 
+                DataTextField="ROADNAME" HeaderText="路段名称" SortExpression="ROADNAME" />                        
                         <asp:BoundField DataField="ROADCODE" HeaderText="路段编码" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-HorizontalAlign="Left" SortExpression="ROADCODE">
                             <HeaderStyle HorizontalAlign="Left" />
@@ -59,7 +58,7 @@
                             <HeaderTemplate>
                                 操作</HeaderTemplate>
                             <ItemTemplate>
-                                <a href="RoadEdit.aspx?p=RoadRoadEdit&id=<%# Eval("ROADID") %>">编辑</a>
+                                <a href="RoadEdit.aspx?p=roadedit&id=<%# Eval("ROADID") %>">编辑</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

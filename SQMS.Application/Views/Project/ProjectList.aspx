@@ -21,7 +21,7 @@
                     AutoGenerateColumns="False" DataKeyNames="ProjectID" EmptyDataText="没有可显示的数据记录。"
                     OnPageIndexChanging="GridViewProject_PageIndexChanging">
                     <Columns>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
                             <HeaderTemplate>
                                 <input name="header" onclick='SelectAll("<%=this.GridViewProject.ClientID %>")' type="checkbox"
                                     value='<%#Eval("ProjectID") %>' />
@@ -35,10 +35,10 @@
                             SortExpression="ProjectID" Visible="False">
                             <HeaderStyle HorizontalAlign="Left" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="ProjectNAME" HeaderText="项目名称" ReadOnly="True" HeaderStyle-HorizontalAlign="Left"
-                            SortExpression="ProjectNAME">
-                            <HeaderStyle HorizontalAlign="Left" />
-                        </asp:BoundField>
+                         <asp:HyperLinkField DataNavigateUrlFields="PROJECTID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+                DataNavigateUrlFormatString="/Views/Project/ProjectView.aspx?p=projectview&id={0}" 
+                DataTextField="PROJECTNAME" HeaderText="项目名称" SortExpression="PROJECTNAME" />
+                        
                         <asp:BoundField DataField="ProjectCODE" HeaderText="项目编码" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-HorizontalAlign="Left" SortExpression="ProjectCODE">
                             <HeaderStyle HorizontalAlign="Left" />
