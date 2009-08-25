@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Applications\SQMS\UserIdentity.cs" />
     <Compile Include="Applications\SQMS\UserInfo.cs" />
+    <Compile Include="BL\Services\AbstractServiceManager.cs" />
     <Compile Include="Cache\CacheFactory.cs" />
     <Compile Include="Cache\CacheItem.cs" />
     <Compile Include="Cache\CacheManager.cs" />
@@ -183,15 +184,9 @@
     <Compile Include="PL\IdentityStrategy\IdentityGenerator.cs" />
     <Compile Include="PL\IdentityStrategy\IGenerator.cs" />
     <Compile Include="PL\IdentityStrategy\OracleSequenceGenerator.cs" />
-    <Compile Include="PL\Sessions\AccessSession.cs" />
-    <Compile Include="PL\Sessions\DBSessionBase.cs" />
     <Compile Include="PL\Sessions\DBSessionManager.cs" />
     <Compile Include="PL\Sessions\GenericDBSession.cs" />
-    <Compile Include="PL\Sessions\IDBSession.cs" />
-    <Compile Include="PL\Sessions\IDBSessionManager.cs" />
     <Compile Include="PL\Sessions\IGenericDBSession.cs" />
-    <Compile Include="PL\Sessions\MSSqlSession.cs" />
-    <Compile Include="PL\Sessions\OracleSession.cs" />
     <Compile Include="Presentation\Actions\ActionFactory.cs" />
     <Compile Include="Presentation\Actions\GenericAction.cs" />
     <Compile Include="Presentation\Actions\IAction.cs" />
