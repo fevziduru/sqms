@@ -5,7 +5,11 @@ using System.Text;
 
 namespace EasyDev.BL
 {
-    public interface IServiceManager
-    {
-    }
+        /// <summary>
+        /// 服务管理器接口
+        /// </summary>
+        public interface IServiceManager
+        {
+                
+        }
 }

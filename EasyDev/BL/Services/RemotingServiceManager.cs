@@ -5,8 +5,8 @@ using System.Text;
 
 namespace EasyDev.BL
 {
-    public class RemotingServiceManager : IServiceManager
+    public class RemotingServiceManager : AbstractServiceManager
     {
-
+            public RemotingServiceManager() { }            
     }
 }
