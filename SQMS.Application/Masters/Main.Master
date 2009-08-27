@@ -20,24 +20,21 @@
         }
 
         function switchFullScreen(objs) {
-            for (var i = 0; i < objs.length; i++) {
-                if (objs[i].style.display == "none") {
-                    objs[i].style.display = "block";
+                for (var i = 0; i < objs.length; i++) {
+                        if (objs[i].style.display == "none") {
+                                objs[i].style.display = "block";
+                        }
+                        else {
+                                objs[i].style.display = "none";
+                        }
                 }
-                else {
-                    objs[i].style.display = "none";
-                }   
-            }
-//                document.getElementById("header").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
-//            document.getElementById("footer").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
-//            document.getElementById("bottom").style.display = (document.getElementById("").style.display == "block" ? "none" : "block");
         }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    <asp:ScriptManager ID="ScriptManager1" runat="server" >
+    <asp:ScriptManager ID="ScriptManager1" runat="server"  AsyncPostBackTimeout="300" >
         <Scripts>
             <asp:ScriptReference Path="~/Resources/Scripts/Controls/Calendar.js" />
             <asp:ScriptReference Path="~/Resources/Scripts/Common/main.js" />
@@ -50,10 +47,10 @@
                         <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
                     <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <%--<a href="javascript:switchFullScreen();">Full</a>&nbsp;&nbsp;--%>
-                    <input type="button" style="width:20;height:20"
-                        onclick="switchFullScreen([document.getElementById('header'),document.getElementById('footer'),document.getElementById('bottom'),document.getElementById('nav')])" value="   "/>&nbsp;&nbsp;
+                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;<%--|&nbsp;&nbsp;
+                    <a href="javascript:switchFullScreen();">Full</a>&nbsp;&nbsp;--%>
+                  <%--  <input type="button" style="width:20;height:20"
+                        onclick="switchFullScreen([document.getElementById('header'),document.getElementById('footer'),document.getElementById('bottom'),document.getElementById('nav')])" value="   "/>&nbsp;&nbsp;--%>
                     <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
                 </td>
             </tr>
