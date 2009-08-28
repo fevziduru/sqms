@@ -49,7 +49,7 @@
                     <td>
                         <!---TODO:修改为职员picker--->
                         <uc1:PopupReference ID="RefEmp" 
-                         HeaderColumns="EMPID:职员ID,EMPNAME:职员名称,SEX:性别,EMPCODE:职员编码,JOBTITLE:职位"
+                         HeaderColumns="EMPID:职员ID,EMPNAME:职员名称,SEX:性别,JOBTITLE:职位" KeyFieldName="职员编号" TextFieldName="职员名称"
                         Service="SQMS.Services.EmployeeService" SearchColumn="EMPNAME" KeyField="EMPID" TextField="EMPNAME"
                         AssemblyName="SQMS.Services" runat="server" />
                     </td>

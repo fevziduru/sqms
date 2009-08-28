@@ -7,78 +7,104 @@ using System.Web.UI.WebControls;
 
 namespace SQMS.Application
 {
-    public partial class PopupReference : System.Web.UI.UserControl
-    {
-        public string Service
+        public partial class PopupReference : System.Web.UI.UserControl
         {
-            get;
-            set;
-        }
+                public string Service
+                {
+                        get;
+                        set;
+                }
 
-        public string KeyField
-        {
-            get;
-            set;
-        }
+                public string KeyField
+                {
+                        get;
+                        set;
+                }
 
-        public string TextField
-        {
-            get;
-            set;
-        }
+                public string TextField
+                {
+                        get;
+                        set;
+                }
 
-        public string AssemblyName
-        {
-            get;
-            set;
-        }
+                public string AssemblyName
+                {
+                        get;
+                        set;
+                }
 
-        public string SearchColumn
-        {
-            get;
-            set;
-        }
+                public string SearchColumn
+                {
+                        get;
+                        set;
+                }
 
-        public string SelectedText
-        {
-            get
-            {
-                return this.txtDisplayField.Text;
-            }
-            set
-            {
-                this.txtDisplayField.Text = value;
-            }
-        }
+                public string SelectedText
+                {
+                        get
+                        {
+                                return this.txtDisplayField.Text;
+                        }
+                        set
+                        {
+                                this.txtDisplayField.Text = value;
+                        }
+                }
+                
+                public string SelectedValue
+                {
+                        get
+                        {
+                                return this.txtValueField.Text;
+                        }
+                        set
+                        {
+                                this.txtValueField.Text = value;
+                        }
+                }
 
-        public string SelectedValue
-        {
-            get
-            {
-                return this.txtValueField.Text;
-            }
-            set
-            {
-                this.txtValueField.Text = value;
-            }
-        }
+                private string _keyFieldName;
+                public string KeyFieldName 
+                {
+                        get
+                        {
+                                return HttpUtility.UrlEncode(_keyFieldName);
+                        }
+                        set 
+                        {
+                                _keyFieldName = HttpUtility.UrlDecode(value);
+                        }
+                }
 
-        private string hc = "";
-        public string HeaderColumns
-        {
-            get
-            {
-                return HttpUtility.UrlEncode(hc);
-            }
-            set
-            {
-                hc = HttpUtility.UrlEncode(value);
-            }
-        }
+                private string _textFieldName;
+                public string TextFieldName
+                {
+                        get
+                        {
+                                return HttpUtility.UrlEncode(_textFieldName);
+                        }
+                        set
+                        {
+                                _textFieldName = HttpUtility.UrlDecode(value);
+                        }
+                }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+                private string hc = "";
+                public string HeaderColumns
+                {
+                        get
+                        {
+                                return HttpUtility.UrlEncode(hc);
+                        }
+                        set
+                        {
+                                hc = HttpUtility.UrlDecode(value);
+                        }
+                }
 
+                protected void Page_Load(object sender, EventArgs e)
+                {
+
+                }
         }
-    }
 }

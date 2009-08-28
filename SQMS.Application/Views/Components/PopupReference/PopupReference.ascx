@@ -3,7 +3,7 @@
 function popup(textfieldid, valuefieldid) {
     var date = new Date();
     var result = window.showModalDialog(
-        "/Views/Components/PopupReference/PopupDialog.aspx?hc=<%=HeaderColumns %>&tf=<%=TextField %>&kf=<%=KeyField %>&sf=<%=SearchColumn %>&s=<%=Service %>&t=<%=AssemblyName %>&r=" + date.valueOf(),
+        "/Views/Components/PopupReference/PopupDialog.aspx?tfn=<%=TextFieldName %>&kfn=<%=KeyFieldName %>&hc=<%=HeaderColumns %>&tf=<%=TextField %>&kf=<%=KeyField %>&sf=<%=SearchColumn %>&s=<%=Service %>&t=<%=AssemblyName %>&r=" + date.valueOf(),
         document.getElementById(textfieldid),
         "dialogWidth=800px;dialogHeight=600px");
     if (result != null) {

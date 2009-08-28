@@ -172,6 +172,13 @@
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.cs">
       <DependentUpon>QualityInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -900,6 +907,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="index.aspx" />
     <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Images\Controls\Map\marker2.png" />
     <Content Include="Resources\Images\GridView\Back.gif" />

@@ -7,6 +7,7 @@ using WebCaching = System.Web.Caching;
 using EasyDev.PL;
 using System.Linq;
 using System.Xml.Linq;
+using System.IO;
 
 namespace EasyDev.Configuration
 {
@@ -20,6 +21,8 @@ namespace EasyDev.Configuration
                 private static readonly string EasyDev_DATASOURCE_CONFIG = "EasyDev_DATASOURCE_CONFIG";
 
                 private static readonly string DEFAULT_DATASOURCE = "DEFAULT_DATASOURCE";
+
+                private FileSystemWatcher watcher = null;
 
                 /// <summary>
                 /// 默认数据提供程序
@@ -86,7 +89,35 @@ namespace EasyDev.Configuration
                 {
                         this.configPath = AppDomain.CurrentDomain.BaseDirectory + @"/Config/EasyDev.Persistence.Config";
                         this.datasources = new Dictionary<string, IDataSource>();
+                        watcher = new FileSystemWatcher();
+                        watcher.Filter = "EasyDev.Persistence.Config";
+                        watcher.Path = AppDomain.CurrentDomain.BaseDirectory + @"Config\\";
+                        watcher.Renamed += new RenamedEventHandler(watcher_Renamed);
+                        watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+                        watcher.Deleted += new FileSystemEventHandler(watcher_Deleted);
+                        watcher.EnableRaisingEvents = true;
+                        watcher.IncludeSubdirectories = false;
                         this.Initialize();
+                }
+
+                void watcher_Deleted(object sender, FileSystemEventArgs e)
+                {
+                        this.datasources.Clear();
+                        HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                }
+
+                void watcher_Changed(object sender, FileSystemEventArgs e)
+                {
+                        //数据源配置文件的位置固定
+                        HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                        FetchPersistenceConfig();
+                }
+
+                void watcher_Renamed(object sender, RenamedEventArgs e)
+                {
+                        //数据源配置文件的位置固定
+                        HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                        FetchPersistenceConfig();
                 }
 
                 /// <summary>
@@ -114,25 +145,29 @@ namespace EasyDev.Configuration
                 /// </summary>
                 private void Initialize()
                 {
+                        FetchPersistenceConfig();
+                }
+
+                private void FetchPersistenceConfig()
+                {
                         lock (HttpRuntime.Cache)
                         {
                                 this.datasources = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
 
                                 if (this.datasources == null)
                                 {
-                                        InitDatasourcesConfig();
+                                        InitDataSource();
                                 }
                         }
                 }
 
                 /// <summary>
                 /// 初始化数据源
-                /// TODO: 待测方法
                 /// </summary>
                 private void InitDataSource()
                 {
                         IEnumerable<XElement> nodes = 
-                                from p in XElement.Load("EasyDev.Persistence.Config.xml").Elements("EasyDev.Persistence.Config/DataSources") select p;
+                                from p in XElement.Load(AppDomain.CurrentDomain.BaseDirectory+@"Config\\EasyDev.Persistence.Config").Elements("DataSources") select p;
 
                         if (nodes != null && nodes.Count<XElement>() > 0)
                         {
