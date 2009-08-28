@@ -24,7 +24,8 @@ WGMarker.prototype.openInfoWindowHtmlTab = function() {
     var tab2 = new GInfoWindowTab("巡检数据", this.getInfoHtmlElement("_qc_type_dynamic"));
     //this.gMap.openInfoWindowTabsHtml(this.gMarker.getLatLng(), [tab1,tab2]);
     //this.gMap.openInfoWindowTabs(this.gMarker.getLatLng(), [tab1, tab2]);
-    this.gMarker.openInfoWindowTabs([tab1, tab2]);
+    this.gMarker.openInfoWindowTabs([tab1, tab2], { pixelOffset: 0, maxWidth: 500, maxContent: $get("divMaxInfoWindowContent"), maxTitle: $get("maxInfoWindowTitle") });
+    currentClickedMarker = this;
 }
 
 WGMarker.prototype.getInfoHtml = function(qcType) {
@@ -38,6 +39,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcNormal.width = 500;
             WGMarker.iframeQcNormal.height = 300;
             WGMarker.iframeQcNormal.frameBorder = "0";
+            WGMarker.iframeQcNormal.id = "iframeQcNormal";
         }
         WGMarker.iframeQcNormal.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcNormal;
@@ -48,6 +50,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcDynamic.width = 500;
             WGMarker.iframeQcDynamic.height = 300;
             WGMarker.iframeQcDynamic.frameBorder = "0";
+            WGMarker.iframeQcDynamic.id = "iframeQcDynamic";
         }
         WGMarker.iframeQcDynamic.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcDynamic;
@@ -55,7 +58,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
     return null;
 }
 var WGMarkerFactory = {
-    MAX_ZOOM_LEVEL : 19,
+    MAX_ZOOM_LEVEL: 19,
     markerManager: null,
     gmap: null,
     getMarkerManager: function() {
@@ -80,6 +83,9 @@ var WGMarkerFactory = {
         m.level = (lv < 1 || lv > 19) ? 14 : lv;
         m.gMarker = new GMarker(new GLatLng(lat, lng), { icon: icon, title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
+        GEvent.addListener(m.gMarker, "infowindowopen", function() {
+            map.getInfoWindow().enableMaximize();
+        });
         //GEvent.addListener(m.gMarker, "infowindowopen", function() { alert("infowindowopen"); });
         //GEvent.addListener(m.gMarker, "infowindowclose", function() { alert("infowindowclose"); });
 

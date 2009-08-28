@@ -172,6 +172,13 @@
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.cs">
+      <DependentUpon>QualityInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.designer.cs">
+      <DependentUpon>QualityInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -903,7 +910,21 @@
     <Content Include="Resources\Images\GridView\PgPrev.gif" />
     <Content Include="Resources\Images\GridView\plus.gif" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\Map.js" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\css\lightbox.css" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\effects.js" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\blank.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\bullet.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\closelabel.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\loading.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\nextlabel.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\images\prevlabel.gif" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\lightbox.js" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\prototype.js" />
+    <Content Include="Resources\Scripts\Controls\LightBox2\scriptaculous.js" />
+    <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
