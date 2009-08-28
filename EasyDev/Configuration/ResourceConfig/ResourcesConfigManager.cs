@@ -8,146 +8,146 @@ using System.Web;
 
 namespace EasyDev.Configuration
 {
-    /// <summary>
-    /// 资源配置管理器
-    /// </summary>
-    public class ResourcesConfigManager 
-    {
         /// <summary>
-        /// 配置文件位置
+        /// 资源配置管理器
         /// </summary>
-        private string configPath = string.Empty;
-
-        /// <summary>
-        /// 资源配置集合
-        /// </summary>
-        private IDictionary<string, ResourceItemConfig> resources = null;
-        
-        private static readonly object lockHelper = new object();
-
-        private static ResourcesConfigManager _instance = null;
-
-        public string DefaultResrouceAssembly
+        public class ResourcesConfigManager
         {
-            get;
-            set;
-        }
+                /// <summary>
+                /// 配置文件位置
+                /// </summary>
+                private string configPath = string.Empty;
 
-        private ResourcesConfigManager()
-        {
-            this.configPath = AppDomain.CurrentDomain.BaseDirectory + @"/Config/EasyDev.Resources.Config";
-            this.resources = new Dictionary<string, ResourceItemConfig>();
-            this.Initialize();
-        }
+                /// <summary>
+                /// 资源配置集合
+                /// </summary>
+                private IDictionary<string, ResourceItemConfig> resources = null;
 
-        /// <summary>
-        /// 取得资源管理器实例
-        /// </summary>
-        /// <returns></returns>
-        public static ResourcesConfigManager GetInstance()
-        {
-            if (_instance == null)
-            {
-                lock (lockHelper)
+                private static readonly object lockHelper = new object();
+
+                private static ResourcesConfigManager _instance = null;
+
+                public string DefaultResrouceAssembly
                 {
-                    if (_instance == null)
-                    {
-                        _instance = new ResourcesConfigManager();
-                    }
+                        get;
+                        set;
                 }
-            }
 
-            return _instance;
-        }
-        
-        private void Initialize()
-        {
-            //缓存配置信息
-            //lock (HttpRuntime.Cache)
-            //{
-            //    this.resources = HttpRuntime.Cache.Get("EDFK_RES_CONFIG") as Dictionary<string, ResourceItemConfig>;
-
-            //    if (this.resources == null)
-            //    {
-                    InitResourceConfig();
-                //    HttpRuntime.Cache.Insert("EDFK_RES_CONFIG", this.resources);
-                //}
-            //}            
-        }
-
-        private void InitResourceConfig()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(this.configPath);
-                XmlNode resRoot = doc.SelectSingleNode("EasyDev.Resources.Config/Resources");
-                if (resRoot != null)
+                private ResourcesConfigManager()
                 {
-                    if (resRoot.Attributes["DefaultAssembly"] != null)
-                    {
-                        this.DefaultResrouceAssembly = resRoot.Attributes["DefaultAssembly"].Value;
-                    }
-                    else
-                    {
-                        throw new System.Exception("_can't_find_DefaultAssembly_in_resources_node");
-                    }
+                        this.configPath = AppDomain.CurrentDomain.BaseDirectory + @"/Config/EasyDev.Resources.Config";
+                        this.resources = new Dictionary<string, ResourceItemConfig>();
+                        this.Initialize();
+                }
 
-                    XmlNodeList resourceNodes = resRoot.SelectNodes("Resource");
-                    if (resourceNodes != null && resourceNodes.Count > 0)
-                    {
-                        IEnumerator itr_Nodes = resourceNodes.GetEnumerator();
-                        while (itr_Nodes.MoveNext())
+                /// <summary>
+                /// 取得资源管理器实例
+                /// </summary>
+                /// <returns></returns>
+                public static ResourcesConfigManager GetInstance()
+                {
+                        if (_instance == null)
                         {
-                            ResourceItemConfig newResourceItem = new ResourceItemConfig();
-                            XmlNode currentNode = (XmlNode)itr_Nodes.Current;
-                            string name = currentNode.SelectSingleNode("Name").InnerText;
-                            if (name.Length == 0)
-                            {
-                                throw new System.Exception("_resource_must_have_a_name");
-                            }
-                            else
-                            {
-                                newResourceItem.Name = name;
-                                newResourceItem.Assembly = currentNode.SelectSingleNode("Assembly").InnerText;
-                                newResourceItem.BaseName = newResourceItem.Assembly + "." + name;
-                                newResourceItem.Culture = currentNode.SelectSingleNode("Culture").InnerText;
-
-                                KeyValuePair<string, ResourceItemConfig> item = new KeyValuePair<string, ResourceItemConfig>(name, newResourceItem);
-                                this.resources.Add(item);
-                            }
+                                lock (lockHelper)
+                                {
+                                        if (_instance == null)
+                                        {
+                                                _instance = new ResourcesConfigManager();
+                                        }
+                                }
                         }
-                    }
+
+                        return _instance;
                 }
-                else
+
+                private void Initialize()
                 {
-                    throw new System.Exception("_can't_find_Resources_node_in_config_file");
+                        //缓存配置信息
+                        //lock (HttpRuntime.Cache)
+                        //{
+                        //    this.resources = HttpRuntime.Cache.Get("EDFK_RES_CONFIG") as Dictionary<string, ResourceItemConfig>;
+
+                        //    if (this.resources == null)
+                        //    {
+                        InitResourceConfig();
+                        //    HttpRuntime.Cache.Insert("EDFK_RES_CONFIG", this.resources);
+                        //}
+                        //}
                 }
-            }
-            catch (System.Exception e)
-            {
-                throw e;
-            }
-        }
 
-        /// <summary>
-        /// 根据名称取得资源对象
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public ResourceItemConfig GetResourceItemByName(string name)
-        {
-            return this.resources[name];
-        }
+                private void InitResourceConfig()
+                {
+                        try
+                        {
+                                XmlDocument doc = new XmlDocument();
+                                doc.Load(this.configPath);
+                                XmlNode resRoot = doc.SelectSingleNode("EasyDev.Resources.Config/Resources");
+                                if (resRoot != null)
+                                {
+                                        if (resRoot.Attributes["DefaultAssembly"] != null)
+                                        {
+                                                this.DefaultResrouceAssembly = resRoot.Attributes["DefaultAssembly"].Value;
+                                        }
+                                        else
+                                        {
+                                                throw new System.Exception("_can't_find_DefaultAssembly_in_resources_node");
+                                        }
 
-        /// <summary>
-        /// 判断对应名称的资源配置项在配置中是否存在
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public bool IsResourceItemExist(string name)
-        {
-            return this.resources.Keys.Contains(name);
+                                        XmlNodeList resourceNodes = resRoot.SelectNodes("Resource");
+                                        if (resourceNodes != null && resourceNodes.Count > 0)
+                                        {
+                                                IEnumerator itr_Nodes = resourceNodes.GetEnumerator();
+                                                while (itr_Nodes.MoveNext())
+                                                {
+                                                        ResourceItemConfig newResourceItem = new ResourceItemConfig();
+                                                        XmlNode currentNode = (XmlNode)itr_Nodes.Current;
+                                                        string name = currentNode.SelectSingleNode("Name").InnerText;
+                                                        if (name.Length == 0)
+                                                        {
+                                                                throw new System.Exception("_resource_must_have_a_name");
+                                                        }
+                                                        else
+                                                        {
+                                                                newResourceItem.Name = name;
+                                                                newResourceItem.Assembly = currentNode.SelectSingleNode("Assembly").InnerText;
+                                                                newResourceItem.BaseName = newResourceItem.Assembly + "." + name;
+                                                                newResourceItem.Culture = currentNode.SelectSingleNode("Culture").InnerText;
+
+                                                                KeyValuePair<string, ResourceItemConfig> item = new KeyValuePair<string, ResourceItemConfig>(name, newResourceItem);
+                                                                this.resources.Add(item);
+                                                        }
+                                                }
+                                        }
+                                }
+                                else
+                                {
+                                        throw new System.Exception("_can't_find_Resources_node_in_config_file");
+                                }
+                        }
+                        catch (System.Exception e)
+                        {
+                                throw e;
+                        }
+                }
+
+                /// <summary>
+                /// 根据名称取得资源对象
+                /// </summary>
+                /// <param name="name"></param>
+                /// <returns></returns>
+                public ResourceItemConfig GetResourceItemByName(string name)
+                {
+                        return this.resources[name];
+                }
+
+                /// <summary>
+                /// 判断对应名称的资源配置项在配置中是否存在
+                /// </summary>
+                /// <param name="name"></param>
+                /// <returns></returns>
+                public bool IsResourceItemExist(string name)
+                {
+                        return this.resources.Keys.Contains(name);
+                }
         }
-    }
 }
