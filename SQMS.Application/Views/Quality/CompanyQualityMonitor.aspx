@@ -100,7 +100,7 @@
                             <Columns>
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="名称">
                                     <ItemTemplate>
-                                        <a href="javascript:openVideo(&quot;<%#Eval("VIDEOID") %>&quot;,&quot;<%#Eval("VIDEONAME") %>&quot;)"><%#Eval("VIDEONAME") %></a>
+                                        <a href="javascript:openVideo(&quot;<%#Eval("VIDEOID") %>&quot;,&quot;<%#Eval("VIDEONAME") %>&quot;,true)"><%#Eval("VIDEONAME") %></a>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="CREATEDBY" HeaderText="拍摄者" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />

@@ -22,6 +22,7 @@ namespace SQMS.Application.Views.Quality
         private EmployeeService svcEmployee = null;
         private RoadService svcRoad = null;
 
+        private DataTable dtVideo = null;
         private DataTable dtNormalQc = null;
         private DataTable dtDynamicQc = null;
         private DataTable dtMonitorPoint = null;
@@ -73,6 +74,7 @@ namespace SQMS.Application.Views.Quality
                     drQc = DataSetUtil.GetFirstRowFromDataTable(this.dtNormalQc);
                 }
                 this.bindQcDetail(drQc);
+                this.bindVideoTable(this.dtVideo);
             }
         }
 
@@ -85,6 +87,7 @@ namespace SQMS.Application.Views.Quality
                 this.initQcNormalData(pagingParam);
                 this.initQcDynamicData(pagingParam);
                 this.dtMonitorPoint = this.svcQualityControl.GetMonitorPoint(this.MonitorPointId);
+                this.dtVideo = this.svcQualityControl.GetVideoList(this.MonitorPointId);
             }
         }
         private void initQcNormalData(PagingParameter pagingParam)
@@ -104,8 +107,6 @@ namespace SQMS.Application.Views.Quality
                 this.LabelMPCode.Text = ConvertUtil.ToStringOrDefault(dr["MPCODE"]);
                 this.LabelMPCreated.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
                 this.LabelMPCreatedBy.Text = ConvertUtil.ToStringOrDefault(dr["CREATEDBYNAME"]);
-                this.LabelMPLat.Text = ConvertUtil.ToStringOrDefault(dr["LATITUDE"]);
-                this.LabelMPLng.Text = ConvertUtil.ToStringOrDefault(dr["LONGITUDE"]);
                 this.LabelMPMemo.Text = ConvertUtil.ToStringOrDefault(dr["MEMO"]);
                 this.LabelMPModified.Text = ConvertUtil.ToStringOrDefault(dr["MODIFIED"]);
                 this.LabelMPModifiedBy.Text = ConvertUtil.ToStringOrDefault(dr["MODIFIEDBYNAME"]);
@@ -136,11 +137,8 @@ namespace SQMS.Application.Views.Quality
                 this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
                 this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
                 this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
-                this.LabelMPLat.Text = ConvertUtil.ToStringOrDefault(dr["MPLAT"]);
-                this.LabelMPLng.Text = ConvertUtil.ToStringOrDefault(dr["MPLNG"]);
                 this.LabelMPName.Text = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
                 this.LabelPatrolMan.Text = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
-                this.LabelQCCrood.Text = ConvertUtil.ToStringOrDefault(dr["LONGITUDE"]) + "," + ConvertUtil.ToStringOrDefault(dr["LATITUDE"]);
                 this.LabelQCState.Text = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
                 this.LabelQCType.Text = ConvertUtil.ToStringOrDefault(dr["QCTYPE"]);
             }
@@ -151,13 +149,6 @@ namespace SQMS.Application.Views.Quality
             DataRow dr = DataSetUtil.GetFirstRowFromDataTable(dt);
             this.bindQcDetail(dr);
             this.UpdatePanelQcInfo.Update();
-        }
-        protected void PagingBarQcNormal_CurrentPageChanging(object sender, CommandEventArgs e)
-        {
-            //PagingParameter pagingParam = new PagingParameter(this.PagingBarQcNormal.CurrentPage, this.PagingBarQcNormal.PageSize);
-            //this.initQcNormalData(pagingParam);
-            //this.bindListViewQcNormal(this.dtNormalQc);
-            
         }
 
         protected void BtnSearch_Click(object sender, EventArgs e)
@@ -177,6 +168,12 @@ namespace SQMS.Application.Views.Quality
                 this.UpdatePanelQcListNormal.Update();
             }
             
+        }
+
+        private void bindVideoTable(DataTable dt)
+        {
+            this.GridViewVideo.DataSource = dt;
+            this.GridViewVideo.DataBind();
         }
     }
 }

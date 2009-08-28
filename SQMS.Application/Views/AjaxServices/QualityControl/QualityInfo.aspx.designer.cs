@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SQMS.Application.Views.Components {
+namespace SQMS.Application.Views.AjaxServices.QualityControl {
     
     
-    public partial class Map {
+    public partial class QualityInfo {
     }
 }

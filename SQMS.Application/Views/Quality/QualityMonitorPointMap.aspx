@@ -62,7 +62,7 @@
 		            'padding:0;' +
 		            'border:0;' +
 		            'background-color:#4D81BD;' +
-		            'background-image:none;' ;
+		            'background-image:none;';
                 divMore.style.position = "absolute";
                 divMore.style.top = "0px";
                 divMore.style.left = "0px";
@@ -71,7 +71,7 @@
                 divMore.appendChild(divMoreClose);
                 topDocument.body.appendChild(divMore);
 
-                $addHandler(lnkMoreClose, "click", function() {this.parentElement.parentElement.style.display = 'none'; });
+                $addHandler(lnkMoreClose, "click", function() { this.parentElement.parentElement.style.display = 'none'; });
             }
             if (!iframeMore) {
                 iframeMore = topDocument.createElement('iframe');
@@ -80,7 +80,7 @@
                 iframeMore.style.width = "100%";
                 divMore.appendChild(iframeMore);
             }
-            
+
             if (divMore.style.display == 'none') {
                 divMore.style.display = '';
             }
