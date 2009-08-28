@@ -13,242 +13,244 @@ using EasyDev.BL;
 
 namespace SQMS.Application
 {
-    public partial class PopupDialog : Page
-    {
-        private DataTable Data = null;
-        GenericService srv = null;
-        private string KeyField = null;
-        private string TextField = null;
-        private string orgid = "";
-        private string[] HeaderColumns = null;
-
-        protected void Page_Load(object sender, EventArgs e)
+        public partial class PopupDialog : Page
         {
-            orgid = ((UserInfo)Session["USER_INFO"]).OrganizationID;
-            string s = Request.QueryString["s"];
-            string t = Request.QueryString["t"];
-            KeyField = Request.QueryString["kf"];
-            TextField = Request.QueryString["tf"];
-            HeaderColumns = HttpUtility.UrlDecode(Request.QueryString["hc"]).Split(new char[] { ',' });
-            
-            this.gvRefList.PageIndexChanging += new GridViewPageEventHandler(gvRefList_PageIndexChanging);
+                private DataTable Data = null;
+                GenericService srv = null;
+                private string KeyField = null;
+                private string TextField = null;
+                private string TextFieldName = "";
+                private string KeyFieldName = "";
+                private string orgid = "";
+                private string[] HeaderColumns = null;
 
-            srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as GenericService;
-            
-            if (!Page.IsPostBack)
-            {
-                if (srv != null)
+                protected void Page_Load(object sender, EventArgs e)
                 {
-                    Data = DataSetUtil.GetDataTableFromDataSet(
-                        srv.LoadByCondition("ISVOID='N' AND ORGANIZATIONID='" + orgid + "'"), srv.BOName);
+                        orgid = ((UserInfo)Session["USER_INFO"]).OrganizationID;
+                        string s = Request.QueryString["s"];
+                        string t = Request.QueryString["t"];
+                        KeyField = Request.QueryString["kf"];
+                        KeyFieldName = HttpUtility.UrlDecode(ConvertUtil.ToStringOrDefault(Request.QueryString["kfn"]));
+                        TextFieldName = HttpUtility.UrlDecode(ConvertUtil.ToStringOrDefault(Request.QueryString["tfn"]));
+                        TextField = Request.QueryString["tf"];
+                        HeaderColumns = HttpUtility.UrlDecode(Request.QueryString["hc"]).Split(new char[] { ',' });
 
-                    ViewState.Add("Data", Data);
-                    gvRefList.DataSource = Data;
-                    gvRefList.DataKeyNames = new string[] { KeyField };
+                        this.gvRefList.PageIndexChanging += new GridViewPageEventHandler(gvRefList_PageIndexChanging);
 
-                    this.gvRefList.Columns.Clear();
+                        srv = Activator.CreateInstance(Type.GetType(s + "," + t)) as GenericService;
 
-                    HyperLinkField hfield = new HyperLinkField();
-                    hfield.DataTextField = TextField;
-                    hfield.DataNavigateUrlFormatString =
-                        "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
-                    hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
-                    this.gvRefList.Columns.Add(hfield);
-
-                    BoundField key = new BoundField();
-                    key.DataField = KeyField;
-                    this.gvRefList.Columns.Add(key);
-
-                    BoundField text = new BoundField();
-                    text.DataField = TextField;
-                    this.gvRefList.Columns.Add(text);
-
-                    if (HeaderColumns == null || HeaderColumns.Length == 0)
-                    {
-                        foreach (DataColumn col in Data.Columns)
+                        if (!Page.IsPostBack)
                         {
-                            if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
-                                col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
-                            {
+                                if (srv != null)
+                                {
+                                        Data = DataSetUtil.GetDataTableFromDataSet(
+                                            srv.LoadByCondition("ISVOID='N' AND ORGANIZATIONID='" + orgid + "'"), srv.BOName);
 
-                            }
-                            else
-                            {
-                                BoundField field = new BoundField();
-                                field.HeaderText = col.Caption;
-                                field.DataField = col.ColumnName;
-                                this.gvRefList.Columns.Add(field);
-                            }
+                                        ViewState.Add("Data", Data);
+                                        gvRefList.DataSource = Data;
+                                        gvRefList.DataKeyNames = new string[] { KeyField };
+
+                                        this.gvRefList.Columns.Clear();
+
+                                        HyperLinkField hfield = new HyperLinkField();
+                                        hfield.DataTextField = TextField;
+                                        hfield.DataNavigateUrlFormatString =
+                                            "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
+                                        hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
+                                        this.gvRefList.Columns.Add(hfield);
+
+                                        BoundField key = new BoundField();
+                                        key.DataField = KeyField;
+                                        key.HeaderText = KeyFieldName;
+                                        this.gvRefList.Columns.Add(key);
+
+                                        BoundField text = new BoundField();
+                                        text.DataField = TextField;
+                                        text.HeaderText = TextFieldName;
+                                        this.gvRefList.Columns.Add(text);
+
+                                        if (HeaderColumns == null || HeaderColumns.Length == 0)
+                                        {
+                                                foreach (DataColumn col in Data.Columns)
+                                                {
+                                                        if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
+                                                            col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                                BoundField field = new BoundField();
+                                                                field.HeaderText = col.Caption;
+                                                                field.DataField = col.ColumnName;
+                                                                this.gvRefList.Columns.Add(field);
+                                                        }
+                                                }
+                                        }
+                                        else
+                                        {
+                                                for (int i = 0; i < HeaderColumns.Length; i++)
+                                                {
+                                                        string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
+
+                                                        if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
+                                                            tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
+                                                        {
+                                                                BoundField field = new BoundField();
+                                                                field.HeaderText = tmp[1].Trim();
+                                                                field.DataField = tmp[0].Trim();
+                                                                this.gvRefList.Columns.Add(field);
+                                                        }
+                                                }
+                                        }
+
+                                        this.gvRefList.DataBind();
+                                }
                         }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < HeaderColumns.Length; i++)
+                }
+
+                public void btnFilte_Click(object sender, EventArgs e)
+                {
+                        string sf = Request.QueryString["sf"];
+                        Data = DataSetUtil.GetDataTableFromDataSet(
+                            ((GenericService)srv).LoadByCondition(
+                                sf + " LIKE '%" + this.txtCondition.Text + "%' AND ISVOID='N' AND ORGANIZATIONID='" + orgid + "'"), srv.BOName);
+
+                        ViewState["Data"] = Data;
+                        gvRefList.DataSource = Data;
+                        gvRefList.DataKeyNames = new string[] { KeyField };
+
+                        this.gvRefList.Columns.Clear();
+
+                        HyperLinkField hfield = new HyperLinkField();
+                        hfield.DataTextField = TextField;
+                        hfield.NavigateUrl = "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
+                        hfield.DataNavigateUrlFormatString =
+                            "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
+                        hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
+                        this.gvRefList.Columns.Add(hfield);
+
+                        BoundField key = new BoundField();
+                        key.DataField = KeyField;
+                        key.HeaderText = KeyFieldName;
+                        this.gvRefList.Columns.Add(key);
+
+                        BoundField text = new BoundField();
+                        text.DataField = TextField;
+                        text.HeaderText = TextFieldName;
+                        this.gvRefList.Columns.Add(text);
+
+                        if (HeaderColumns == null || HeaderColumns.Length == 0)
                         {
-                            string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
+                                foreach (DataColumn col in Data.Columns)
+                                {
+                                        if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
+                                            col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
+                                        {
 
-                            if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
-                                tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
-                            {
-                                BoundField field = new BoundField();
-                                field.HeaderText = tmp[1];
-                                field.DataField = tmp[0];
-                                this.gvRefList.Columns.Add(field);
-                            }
+                                        }
+                                        else
+                                        {
+                                                BoundField field = new BoundField();
+                                                field.HeaderText = col.Caption;
+                                                field.DataField = col.ColumnName;
+                                                this.gvRefList.Columns.Add(field);
+                                        }
+                                }
                         }
-                    }
+                        else
+                        {
+                                for (int i = 0; i < HeaderColumns.Length; i++)
+                                {
+                                        string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
 
-                    this.gvRefList.DataBind();
+                                        if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
+                                            tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
+                                        {
+                                                BoundField field = new BoundField();
+                                                field.HeaderText = tmp[1].Trim();
+                                                field.DataField = tmp[0].Trim();
+                                                this.gvRefList.Columns.Add(field);
+                                        }
+                                }
+                        }
+
+                        this.gvRefList.DataBind();
                 }
-            }
-        }
 
-        public void btnFilte_Click(object sender, EventArgs e)
-        {
-            string sf = Request.QueryString["sf"];
-            Data = DataSetUtil.GetDataTableFromDataSet(
-                ((GenericService)srv).LoadByCondition(
-                    sf + " LIKE '%" + this.txtCondition.Text + "%' AND ISVOID='N' AND ORGANIZATIONID='" + orgid + "'"), srv.BOName);
-
-            ViewState["Data"] = Data;
-            gvRefList.DataSource = Data;
-            gvRefList.DataKeyNames = new string[] { KeyField };
-
-            this.gvRefList.Columns.Clear();
-
-            //TemplateField templateField = new TemplateField();
-            //templateField.ItemTemplate = LoadTemplate("SelectTemplateField.ascx");            
-            //this.gvRefList.Columns.Add(templateField);
-
-            HyperLinkField hfield = new HyperLinkField();
-            hfield.DataTextField = TextField;
-            hfield.NavigateUrl = "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
-            hfield.DataNavigateUrlFormatString =
-                "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
-            hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
-            this.gvRefList.Columns.Add(hfield);
-
-            BoundField key = new BoundField();
-            key.DataField = KeyField;
-            this.gvRefList.Columns.Add(key);
-
-            BoundField text = new BoundField();
-            text.DataField = TextField;
-            this.gvRefList.Columns.Add(text);
-
-            if (HeaderColumns == null || HeaderColumns.Length == 0)
-            {
-                foreach (DataColumn col in Data.Columns)
+                void gvRefList_PageIndexChanging(object sender, GridViewPageEventArgs e)
                 {
-                    if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
-                        col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
-                    {
+                        this.gvRefList.PageIndex = e.NewPageIndex;
 
-                    }
-                    else
-                    {
-                        BoundField field = new BoundField();
-                        field.HeaderText = col.Caption;
-                        field.DataField = col.ColumnName;
-                        this.gvRefList.Columns.Add(field);
-                    }
+                        Data = ViewState["Data"] as DataTable;
+                        gvRefList.DataSource = Data;
+                        gvRefList.DataKeyNames = new string[] { KeyField };
+
+                        this.gvRefList.Columns.Clear();
+
+                        HyperLinkField hfield = new HyperLinkField();
+                        hfield.DataTextField = TextField;
+                        hfield.DataNavigateUrlFormatString =
+                            "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
+                        hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
+                        this.gvRefList.Columns.Add(hfield);
+
+                        BoundField key = new BoundField();
+                        key.DataField = KeyField;
+                        key.HeaderText = KeyFieldName;
+                        this.gvRefList.Columns.Add(key);
+
+                        BoundField text = new BoundField();
+                        text.DataField = TextField;
+                        text.HeaderText = TextFieldName;
+                        this.gvRefList.Columns.Add(text);
+
+                        if (HeaderColumns == null || HeaderColumns.Length == 0)
+                        {
+                                foreach (DataColumn col in Data.Columns)
+                                {
+                                        if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
+                                            col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                                BoundField field = new BoundField();
+                                                field.HeaderText = col.Caption;
+                                                field.DataField = col.ColumnName;
+                                                this.gvRefList.Columns.Add(field);
+                                        }
+                                }
+                        }
+                        else
+                        {
+                                for (int i = 0; i < HeaderColumns.Length; i++)
+                                {
+                                        string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
+
+                                        if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
+                                            tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
+                                        {
+                                                BoundField field = new BoundField();
+                                                field.HeaderText = tmp[1].Trim();
+                                                field.DataField = tmp[0].Trim();
+                                                this.gvRefList.Columns.Add(field);
+                                        }
+                                }
+                        }
+
+                        this.gvRefList.DataBind();
                 }
-            }
-            else
-            {
-                for (int i = 0; i < HeaderColumns.Length; i++)
+
+                protected void gvRefList_RowDataBound(object sender, GridViewRowEventArgs e)
                 {
-                    string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
-
-                    if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
-                        tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
-                    {
-                        BoundField field = new BoundField();
-                        field.HeaderText = tmp[1];
-                        field.DataField = tmp[0];
-                        this.gvRefList.Columns.Add(field);
-                    }
+                        if (e.Row.RowType == DataControlRowType.DataRow)
+                        {
+                                e.Row.Cells[0].Attributes.Add("onclick", "javascript:SelectItem({'" + KeyField + "':'" + e.Row.Cells[1].Text + "','" + TextField + "':'" + e.Row.Cells[2].Text + "'})");
+                                e.Row.Cells[0].Text = "选择";
+                                e.Row.Cells[0].Attributes.Add("cursor", "hand");
+                        }
                 }
-            }
-
-            this.gvRefList.DataBind();  
         }
-
-        void gvRefList_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.gvRefList.PageIndex = e.NewPageIndex;
-
-            Data = ViewState["Data"] as DataTable;
-            gvRefList.DataSource = Data;
-            gvRefList.DataKeyNames = new string[] { KeyField };
-
-            this.gvRefList.Columns.Clear();
-
-            //TemplateField templateField = new TemplateField();
-            //templateField.ItemTemplate = LoadTemplate("SelectTemplateField.ascx");
-            //this.gvRefList.Columns.Add(templateField);
-
-            HyperLinkField hfield = new HyperLinkField();
-            hfield.DataTextField = TextField;
-            hfield.DataNavigateUrlFormatString =
-                "javascript:SelectItem({{'" + KeyField + "':'{0}','" + TextField + "':'{1}'}})";
-            hfield.DataNavigateUrlFields = new string[] { KeyField, TextField };
-            this.gvRefList.Columns.Add(hfield);
-
-            BoundField key = new BoundField();
-            key.DataField = KeyField;            
-            this.gvRefList.Columns.Add(key);
-
-            BoundField text = new BoundField();
-            text.DataField = TextField;
-            this.gvRefList.Columns.Add(text);
-
-            if (HeaderColumns == null || HeaderColumns.Length == 0)
-            {
-                foreach (DataColumn col in Data.Columns)
-                {
-                    if (col.ColumnName.Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) ||
-                        col.ColumnName.Equals(TextField, StringComparison.CurrentCultureIgnoreCase))
-                    {
-
-                    }
-                    else
-                    {
-                        BoundField field = new BoundField();
-                        field.HeaderText = col.Caption;
-                        field.DataField = col.ColumnName;
-                        this.gvRefList.Columns.Add(field);
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < HeaderColumns.Length; i++)
-                {
-                    string[] tmp = HeaderColumns[i].Split(new char[] { ':' });
-
-                    if (tmp[0].Equals(KeyField, StringComparison.CurrentCultureIgnoreCase) == false &&
-                        tmp[0].Equals(TextField, StringComparison.CurrentCultureIgnoreCase) == false)
-                    {
-                        BoundField field = new BoundField();
-                        field.HeaderText = tmp[1];
-                        field.DataField = tmp[0];
-                        this.gvRefList.Columns.Add(field);
-                    }
-                }
-            }
-
-            this.gvRefList.DataBind();            
-        }
-
-        protected void gvRefList_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Cells[0].Attributes.Add("onclick", "javascript:SelectItem({'" + KeyField + "':'" + e.Row.Cells[1].Text + "','" + TextField + "':'" + e.Row.Cells[2].Text + "'})");
-                e.Row.Cells[0].Text = "选择";
-                e.Row.Cells[0].Attributes.Add("cursor", "hand");
-            }
-        }
-    }
 }

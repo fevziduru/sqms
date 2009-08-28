@@ -72,7 +72,7 @@
             <td>设备：</td>
             <td>
                 <uc1:PopupReference ID="refEquipment" Service="SQMS.Services.EquipmentService" 
-                HeaderColumns="EQUID:设备ID, EQUNAME:设备名称, ISVOID:设备状态" 
+                HeaderColumns="EQUID:设备ID,EQUNAME:设备名称,ISVOID:设备状态" KeyFieldName="设备编号" TextFieldName="设备名称"
                 KeyField="EQUID" TextField="EQUNAME" SearchColumn="EQUNAME" AssemblyName="SQMS.Services" runat="server" />
             </td>
             <td>出生日期：</td>
