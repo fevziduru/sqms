@@ -43,15 +43,16 @@ namespace SQMS.Application.Views.AjaxServices.QualityControl
 
         private IList<QualityControlInfo> createQualityInfo(DataTable dt)
         {
-            DataRow dr = dt.Rows[0];
-            QualityControlInfo q = new QualityControlInfo();
-            q.Created = ConvertUtil.ToDateTime(dr["created"]);
-            q.CreatedBy = ConvertUtil.ToStringOrDefault(dr["createdby"]);
-            q.Description = ConvertUtil.ToStringOrDefault(dr["memo"]);
-            q.EmergencyEmpName = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
-            q.EmployeeName = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
-            q.InspectEmpName = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
-            return q;
+            //DataRow dr = dt.Rows[0];
+            //QualityControlInfo q = new QualityControlInfo();
+            //q.Created = ConvertUtil.ToDateTime(dr["created"]);
+            //q.CreatedBy = ConvertUtil.ToStringOrDefault(dr["createdby"]);
+            //q.Description = ConvertUtil.ToStringOrDefault(dr["memo"]);
+            //q.EmergencyEmpName = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
+            //q.EmployeeName = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
+            //q.InspectEmpName = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
+            //return q;
+            throw new NotImplementedException();
         }
     }
 }
