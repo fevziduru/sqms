@@ -238,6 +238,7 @@ CREATE TABLE EMPLOYEE  (
    EMPSTATUS            VARCHAR2(20),
    MOBILE               VARCHAR2(20),
    ISVOID               CHAR(1),
+   ISEQUACTIVATE        CHAR(1),
    JOBTITLE             VARCHAR2(40),
    CONTACTTEL           VARCHAR2(20),
    BIRTHDAY             DATE,

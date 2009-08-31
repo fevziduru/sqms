@@ -17,6 +17,10 @@ drop sequence SEQ_MENU;
 drop sequence SEQ_OPERATION;
 drop sequence SEQ_VIDEO;
 drop sequence SEQ_QUALITYDATA;
+drop sequence SEQ_TIMESCHEMA;
+drop sequence SEQ_TIMEITEM;
+drop sequence SEQ_TIME;
+drop sequence SEQ_MENU;
 
 -- Create sequence 
 create sequence SEQ_QUALITYDATA
@@ -165,6 +169,30 @@ cache 20;
 
 -- Create sequence 
 create sequence SEQ_MENU
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_TIME
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_TIMEITME
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_TIMESCHEMA
 minvalue 0
 maxvalue 999999999999999999999999999
 start with 0
