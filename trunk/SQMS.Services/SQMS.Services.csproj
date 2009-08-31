@@ -55,6 +55,9 @@
     <Compile Include="MenuService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MonitorVideoService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="OrganizationService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,7 +109,13 @@
     <Compile Include="RoleService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UpdateQualityDataService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserRoleService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VideoService.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

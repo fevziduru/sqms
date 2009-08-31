@@ -302,6 +302,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnSUITEID;
             
+            private global::System.Data.DataColumn columnISEQUACTIVATE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public EMPLOYEEDataTable() {
                 this.TableName = "EMPLOYEE";
@@ -473,6 +475,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISEQUACTIVATEColumn {
+                get {
+                    return this.columnISEQUACTIVATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -521,7 +530,8 @@ namespace SQMS.Application.Config.Schema {
                         string MODIFIEDBY, 
                         System.DateTime MODIFIED, 
                         string ORGANIZATIONID, 
-                        string SUITEID) {
+                        string SUITEID, 
+                        string ISEQUACTIVATE) {
                 EMPLOYEERow rowEMPLOYEERow = ((EMPLOYEERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EMPID,
@@ -543,7 +553,8 @@ namespace SQMS.Application.Config.Schema {
                         MODIFIEDBY,
                         MODIFIED,
                         ORGANIZATIONID,
-                        SUITEID};
+                        SUITEID,
+                        ISEQUACTIVATE};
                 rowEMPLOYEERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEMPLOYEERow);
                 return rowEMPLOYEERow;
@@ -589,6 +600,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
                 this.columnSUITEID = base.Columns["SUITEID"];
+                this.columnISEQUACTIVATE = base.Columns["ISEQUACTIVATE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -633,6 +645,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnORGANIZATIONID);
                 this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSUITEID);
+                this.columnISEQUACTIVATE = new global::System.Data.DataColumn("ISEQUACTIVATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISEQUACTIVATE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnEMPID}, true));
                 this.columnEMPID.AllowDBNull = false;
@@ -650,12 +664,13 @@ namespace SQMS.Application.Config.Schema {
                 this.columnISVOID.MaxLength = 1;
                 this.columnJOBTITLE.MaxLength = 40;
                 this.columnCONTACTTEL.MaxLength = 20;
-                this.columnDEGREE.MaxLength = 20;
+                this.columnDEGREE.MaxLength = 40;
                 this.columnMEMO.MaxLength = 2000;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
                 this.columnORGANIZATIONID.MaxLength = 40;
                 this.columnSUITEID.MaxLength = 40;
+                this.columnISEQUACTIVATE.MaxLength = 1;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_EMPLOYEE");
                 this.ExtendedProperties.Add("Generator_UserTableName", "EMPLOYEE");
             }
@@ -1075,6 +1090,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISEQUACTIVATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMPLOYEE.ISEQUACTIVATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“EMPLOYEE”中列“ISEQUACTIVATE”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableEMPLOYEE.ISEQUACTIVATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsDEPTIDNull() {
                 return this.IsNull(this.tableEMPLOYEE.DEPTIDColumn);
             }
@@ -1243,6 +1273,16 @@ namespace SQMS.Application.Config.Schema {
             public void SetSUITEIDNull() {
                 this[this.tableEMPLOYEE.SUITEIDColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISEQUACTIVATENull() {
+                return this.IsNull(this.tableEMPLOYEE.ISEQUACTIVATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISEQUACTIVATENull() {
+                this[this.tableEMPLOYEE.ISEQUACTIVATEColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1388,15 +1428,16 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
+            tableMapping.ColumnMappings.Add("ISEQUACTIVATE", "ISEQUACTIVATE");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"EMPLOYEE\" WHERE ((\"EMPID\" = :Original_EMPID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0815\".\"EMPLOYEE\" WHERE ((\"EMPID\" = :Original_EMPID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""EMPLOYEE"" (""EMPID"", ""DEPTID"", ""EQUID"", ""SEX"", ""EMPNAME"", ""EMPCODE"", ""EMPSTATUS"", ""MOBILE"", ""ISVOID"", ""JOBTITLE"", ""CONTACTTEL"", ""BIRTHDAY"", ""DEGREE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIEDBY"", ""MODIFIED"", ""ORGANIZATIONID"", ""SUITEID"") VALUES (:EMPID, :DEPTID, :EQUID, :SEX, :EMPNAME, :EMPCODE, :EMPSTATUS, :MOBILE, :ISVOID, :JOBTITLE, :CONTACTTEL, :BIRTHDAY, :DEGREE, :MEMO, :CREATED, :CREATEDBY, :MODIFIEDBY, :MODIFIED, :ORGANIZATIONID, :SUITEID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0815"".""EMPLOYEE"" (""EMPID"", ""DEPTID"", ""EQUID"", ""SEX"", ""EMPNAME"", ""EMPCODE"", ""EMPSTATUS"", ""MOBILE"", ""ISVOID"", ""JOBTITLE"", ""CONTACTTEL"", ""BIRTHDAY"", ""DEGREE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIEDBY"", ""MODIFIED"", ""ORGANIZATIONID"", ""SUITEID"", ""ISEQUACTIVATE"") VALUES (:EMPID, :DEPTID, :EQUID, :SEX, :EMPNAME, :EMPCODE, :EMPSTATUS, :MOBILE, :ISVOID, :JOBTITLE, :CONTACTTEL, :BIRTHDAY, :DEGREE, :MEMO, :CREATED, :CREATEDBY, :MODIFIEDBY, :MODIFIED, :ORGANIZATIONID, :SUITEID, :ISEQUACTIVATE)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEPTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEPTID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1418,9 +1459,10 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISEQUACTIVATE", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISEQUACTIVATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""EMPLOYEE"" SET ""EMPID"" = :EMPID, ""DEPTID"" = :DEPTID, ""EQUID"" = :EQUID, ""SEX"" = :SEX, ""EMPNAME"" = :EMPNAME, ""EMPCODE"" = :EMPCODE, ""EMPSTATUS"" = :EMPSTATUS, ""MOBILE"" = :MOBILE, ""ISVOID"" = :ISVOID, ""JOBTITLE"" = :JOBTITLE, ""CONTACTTEL"" = :CONTACTTEL, ""BIRTHDAY"" = :BIRTHDAY, ""DEGREE"" = :DEGREE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIEDBY"" = :MODIFIEDBY, ""MODIFIED"" = :MODIFIED, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID WHERE ((""EMPID"" = :Original_EMPID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0815"".""EMPLOYEE"" SET ""EMPID"" = :EMPID, ""DEPTID"" = :DEPTID, ""EQUID"" = :EQUID, ""SEX"" = :SEX, ""EMPNAME"" = :EMPNAME, ""EMPCODE"" = :EMPCODE, ""EMPSTATUS"" = :EMPSTATUS, ""MOBILE"" = :MOBILE, ""ISVOID"" = :ISVOID, ""JOBTITLE"" = :JOBTITLE, ""CONTACTTEL"" = :CONTACTTEL, ""BIRTHDAY"" = :BIRTHDAY, ""DEGREE"" = :DEGREE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIEDBY"" = :MODIFIEDBY, ""MODIFIED"" = :MODIFIED, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISEQUACTIVATE"" = :ISEQUACTIVATE WHERE ((""EMPID"" = :Original_EMPID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DEPTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "DEPTID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1442,13 +1484,14 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISEQUACTIVATE", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISEQUACTIVATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString3"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1458,7 +1501,7 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT EMPID, DEPTID, EQUID, SEX, EMPNAME, EMPCODE, EMPSTATUS, MOBILE, ISVOID, JO" +
                 "BTITLE, CONTACTTEL, BIRTHDAY, \"DEGREE\", MEMO, CREATED, CREATEDBY, MODIFIEDBY, MO" +
-                "DIFIED, ORGANIZATIONID, SUITEID FROM SQMS_PRIVATE_0814.EMPLOYEE";
+                "DIFIED, ORGANIZATIONID, SUITEID, ISEQUACTIVATE FROM SQMS_PRIVATE_0815.EMPLOYEE";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1558,7 +1601,8 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
                     string MODIFIEDBY, 
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
                     string ORGANIZATIONID, 
-                    string SUITEID) {
+                    string SUITEID, 
+                    string ISEQUACTIVATE) {
             if ((EMPID == null)) {
                 throw new global::System.ArgumentNullException("EMPID");
             }
@@ -1679,6 +1723,12 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[19].Value = ((string)(SUITEID));
             }
+            if ((ISEQUACTIVATE == null)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(ISEQUACTIVATE));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1719,6 +1769,7 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
                     string ORGANIZATIONID, 
                     string SUITEID, 
+                    string ISEQUACTIVATE, 
                     string Original_EMPID) {
             if ((EMPID == null)) {
                 throw new global::System.ArgumentNullException("EMPID");
@@ -1840,11 +1891,17 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(SUITEID));
             }
+            if ((ISEQUACTIVATE == null)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(ISEQUACTIVATE));
+            }
             if ((Original_EMPID == null)) {
                 throw new global::System.ArgumentNullException("Original_EMPID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_EMPID));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_EMPID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1885,8 +1942,9 @@ namespace SQMS.Application.Config.Schema.EMPLOYEETableAdapters {
                     global::System.Nullable<global::System.DateTime> MODIFIED, 
                     string ORGANIZATIONID, 
                     string SUITEID, 
+                    string ISEQUACTIVATE, 
                     string Original_EMPID) {
-            return this.Update(Original_EMPID, DEPTID, EQUID, SEX, EMPNAME, EMPCODE, EMPSTATUS, MOBILE, ISVOID, JOBTITLE, CONTACTTEL, BIRTHDAY, DEGREE, MEMO, CREATED, CREATEDBY, MODIFIEDBY, MODIFIED, ORGANIZATIONID, SUITEID, Original_EMPID);
+            return this.Update(Original_EMPID, DEPTID, EQUID, SEX, EMPNAME, EMPCODE, EMPSTATUS, MOBILE, ISVOID, JOBTITLE, CONTACTTEL, BIRTHDAY, DEGREE, MEMO, CREATED, CREATEDBY, MODIFIEDBY, MODIFIED, ORGANIZATIONID, SUITEID, ISEQUACTIVATE, Original_EMPID);
         }
     }
 }

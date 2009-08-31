@@ -336,7 +336,10 @@ namespace EasyDev.BL
                 {
                         try
                         {
-                                this.bizObject.LoadByPrimaryKeys(keys);
+                                if (keys != null)
+                                {
+                                        this.bizObject.LoadByPrimaryKeys(keys);
+                                }
                                 if (this.bizObject.IsEmpty())
                                 {
                                         if (isCreateNew)
@@ -354,12 +357,22 @@ namespace EasyDev.BL
                 }
 
                 /// <summary>
+                /// 创建新行
+                /// </summary>
+                /// <returns></returns>
+                public virtual DataRow Create()
+                {
+                        return this.bizObject.Create();
+                }
+
+                /// <summary>
                 /// 通用保存方法，保存与当前BOName指定的数据表相关的数据
                 /// </summary>
                 /// <param name="dsSave"></param>
                 public virtual void Save(DataSet dsSave)
-                {
-                        this.bizObject.BOData.Merge(dsSave);
+                {                 
+                        this.bizObject.BOData = dsSave;
+                        //this.bizObject.BOData.Merge(dsSave);
                         this.bizObject.Synchronize();
                 }
 

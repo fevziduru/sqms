@@ -107,7 +107,7 @@ namespace EasyDev.Configuration
                 }
 
                 void watcher_Changed(object sender, FileSystemEventArgs e)
-                {
+                {                        
                         //数据源配置文件的位置固定
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
                         FetchPersistenceConfig();
