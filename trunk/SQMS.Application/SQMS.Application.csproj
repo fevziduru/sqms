@@ -452,6 +452,27 @@
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.designer.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\MonitorPointEdit.aspx.cs">
+      <DependentUpon>MonitorPointEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointEdit.aspx.designer.cs">
+      <DependentUpon>MonitorPointEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointList.aspx.cs">
+      <DependentUpon>MonitorPointList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointList.aspx.designer.cs">
+      <DependentUpon>MonitorPointList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointView.aspx.cs">
+      <DependentUpon>MonitorPointView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\MonitorPointView.aspx.designer.cs">
+      <DependentUpon>MonitorPointView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\MunicipalAdminMonitor.aspx.cs">
       <DependentUpon>MunicipalAdminMonitor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1009,6 +1030,9 @@
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />
+    <Content Include="Views\Quality\MonitorPointEdit.aspx" />
+    <Content Include="Views\Quality\MonitorPointList.aspx" />
+    <Content Include="Views\Quality\MonitorPointView.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />

@@ -65,8 +65,6 @@
             <td><asp:TextBox ID="txtContactTel"  Width="210" runat="server" ></asp:TextBox></td>  
             <td>移动电话：</td>
             <td><asp:TextBox ID="txtMobile" Width="210" runat="server" ></asp:TextBox></td>
-            <%--<td>职位：</td>
-            <td><asp:TextBox Visible="false" ID="txtJobTitile" runat="server" ></asp:TextBox></td>            --%>
         </tr>
         <tr>
             <td>设备：</td>
