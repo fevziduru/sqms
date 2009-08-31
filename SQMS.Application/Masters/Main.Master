@@ -69,7 +69,7 @@
                         <td id="nav" style="width:15%;border-right:solid 0px #6B86B3" valign="top" align="left">
                         <!--根据权限过滤的树形菜单-->
                         <div style="margin:10 10">
-                            <asp:TreeView ID="tvMenu" runat="server" ImageSet="Arrows">
+                            <asp:TreeView ID="tvMenu" runat="server" ImageSet="Arrows" ExpandDepth="3" ShowExpandCollapse="true">
                             <ParentNodeStyle Font-Bold="False" />
                             <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
                             <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 

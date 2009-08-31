@@ -109,6 +109,11 @@
       <DependentUpon>MENU.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Config\Schema\MONITORPOINTINVIDEO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\MPASSIGNMENT1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +173,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Config\Schema\VIDEO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VIDEO.xsd</DependentUpon>
     </Compile>
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +301,13 @@
     </Compile>
     <Compile Include="Views\Components\OrganizationTree.ascx.designer.cs">
       <DependentUpon>OrganizationTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
+      <DependentUpon>UpdateQualityData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\UpdateQualityData.aspx.designer.cs">
+      <DependentUpon>UpdateQualityData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\External\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -700,6 +717,17 @@
       <DependentUpon>MENU.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xsc">
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MONITORPOINTINVIDEO.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xss">
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\MPASSIGNMENT.xsc">
       <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -852,6 +880,17 @@
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Config\Schema\VIDEO.xsc">
+      <DependentUpon>VIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\VIDEO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VIDEO.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\VIDEO.xss">
+      <DependentUpon>VIDEO.xsd</DependentUpon>
+    </None>
     <Content Include="Web.sitemap" />
     <Content Include="error.htm" />
     <Content Include="Views\External\ErrorPage.aspx" />
@@ -948,6 +987,7 @@
     <Content Include="Views\Components\OperationBar.ascx" />
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />
+    <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />

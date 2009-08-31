@@ -87,13 +87,13 @@ function openVideo(videoId, videoName, drawTrace, notOpenPanel) {
     }
 }
 function letPlayerPlay(videoId, drawTrace) {
-    try {
-        var player = document.getElementById("MapVideo");
-        if (!drawTrace) {
-            drawTrace = false;
-        } else {
-            drawTrace = true;
-        }
-        player.setVideoId(videoId, drawTrace);
-    } catch (e) { }
+        try {
+                var player = document.getElementById("MapVideo");
+                if (!drawTrace) {
+                        drawTrace = false;
+                } else {
+                        drawTrace = true;
+                }
+                player.setVideoId(videoId, drawTrace);
+        } catch (e) { }
 }

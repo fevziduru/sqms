@@ -21,7 +21,7 @@ namespace EasyDev.BL
         /// 模型数据，业务对象包含的数据
         /// </summary>
         DataSet BOData
-        { get; }
+        { get; set; }
 
         /// <summary>
         /// 数据同步，根据数据行的状态自动同步数据到数据库

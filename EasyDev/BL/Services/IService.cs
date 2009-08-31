@@ -13,6 +13,8 @@ namespace EasyDev.BL
         /// </summary>
         public interface IService
         {
+                DataRow Create();
+
                 string GenerateCode();
 
                 string BOName { get; }
