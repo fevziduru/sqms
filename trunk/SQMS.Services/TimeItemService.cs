@@ -6,16 +6,15 @@ using EasyDev.BL;
 
 namespace SQMS.Services
 {
-        public class TimeSchemaService : GenericService
+        public class TimeItemService : GenericService
         {
-            public TimeItemService TimeItemService { get; private set; }
 
                 protected override void Initialize()
                 {
-                        BOName = "TIMESCHEMA";
+                        BOName = "TIMEITEM";
                         base.Initialize();
 
-                        this.TimeItemService = ServiceManager.CreateService<TimeItemService>();
+
                 }
         }
 }
