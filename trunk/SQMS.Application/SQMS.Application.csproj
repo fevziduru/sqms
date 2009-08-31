@@ -947,6 +947,24 @@
       <LastGenOutput>GlobalErrorMessages.Designer.cs</LastGenOutput>
     </Content>
     <Content Include="index.aspx" />
+    <Content Include="QualityData\t5\t5_20090829181640.flv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QualityData\t5\t5_20090829181640.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QualityData\t5\t5_20090829181640.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QualityData\t6\t6_20090814181640.flv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QualityData\t6\t6_20090814181640.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QualityData\t6\t6_20090814181640.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\CSS\main.css" />
     <Content Include="Resources\Images\Controls\Map\marker2.png" />
     <Content Include="Resources\Images\GridView\Back.gif" />
@@ -1002,7 +1020,6 @@
     <Folder Include="AjaxServices\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
-    <Folder Include="QualityData\" />
     <Folder Include="Templates\" />
     <Folder Include="Views\Mobile\" />
   </ItemGroup>
