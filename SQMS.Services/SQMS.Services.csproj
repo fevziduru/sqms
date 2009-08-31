@@ -109,6 +109,9 @@
     <Compile Include="RoleService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TimeSchemaService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UpdateQualityDataService.cs">
       <SubType>Component</SubType>
     </Compile>
