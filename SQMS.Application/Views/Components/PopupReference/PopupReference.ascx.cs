@@ -63,48 +63,31 @@ namespace SQMS.Application
                         }
                 }
 
-                private string _keyFieldName;
-                public string KeyFieldName 
+                //private string _keyFieldName;
+                public string KeyFieldName
                 {
-                        get
-                        {
-                                return HttpUtility.UrlEncode(_keyFieldName);
-                        }
-                        set 
-                        {
-                                _keyFieldName = HttpUtility.UrlDecode(value);
-                        }
+                        get;
+                        set;
                 }
 
-                private string _textFieldName;
+                //private string _textFieldName;
                 public string TextFieldName
                 {
-                        get
-                        {
-                                return HttpUtility.UrlEncode(_textFieldName);
-                        }
-                        set
-                        {
-                                _textFieldName = HttpUtility.UrlDecode(value);
-                        }
+                        get;
+                        set;
                 }
 
-                private string hc = "";
+                //private string hc = "";
                 public string HeaderColumns
                 {
-                        get
-                        {
-                                return HttpUtility.UrlEncode(hc);
-                        }
-                        set
-                        {
-                                hc = HttpUtility.UrlDecode(value);
-                        }
+                        get;
+                        set;
                 }
 
                 protected void Page_Load(object sender, EventArgs e)
                 {
-
+                        this.lbPop.HRef = string.Format(@"javascript:popup('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", this.txtDisplayField.ClientID, this.txtValueField.ClientID, TextFieldName, KeyFieldName,
+                                HeaderColumns, TextField, KeyField, SearchColumn, Service, AssemblyName);
                 }
         }
 }

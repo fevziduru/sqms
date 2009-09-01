@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EasyDev.SQMS;
 using System.Data;
-using SQMS.Services.QualityControl;
+using SQMS.Services;
 using EasyDev.Util;
 using log4net;
 using SQMS.Application.HtmlHelper;

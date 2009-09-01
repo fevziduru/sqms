@@ -30,8 +30,8 @@ namespace SQMS.Application
                         string s = Request.QueryString["s"];
                         string t = Request.QueryString["t"];
                         KeyField = Request.QueryString["kf"];
-                        KeyFieldName = HttpUtility.UrlDecode(ConvertUtil.ToStringOrDefault(Request.QueryString["kfn"]));
-                        TextFieldName = HttpUtility.UrlDecode(ConvertUtil.ToStringOrDefault(Request.QueryString["tfn"]));
+                        KeyFieldName = ConvertUtil.ToStringOrDefault(Request.QueryString["kfn"]);
+                        TextFieldName = ConvertUtil.ToStringOrDefault(Request.QueryString["tfn"]);
                         TextField = Request.QueryString["tf"];
                         HeaderColumns = HttpUtility.UrlDecode(Request.QueryString["hc"]).Split(new char[] { ',' });
 

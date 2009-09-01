@@ -46,3 +46,23 @@ function checkIsAllSelected(objs) {
     return result;
 }
 /******************************************************/
+
+function popup(textfieldid, valuefieldid, textFieldName, keyFieldName, headerColumns, textField, keyField, searchColumn, service, assemblyName) {
+        var date = new Date();
+        var result = window.showModalDialog(
+        "/Views/Components/PopupReference/PopupDialog.aspx?tfn=" + textFieldName +
+                "&kfn=" + keyFieldName +
+                "&hc=" + headerColumns +
+                "&tf=" + textField +
+                "&kf=" + keyField +
+                "&sf=" + searchColumn +
+                "&s=" + service +
+                "&t=" + assemblyName + 
+                "&r=" + date.valueOf(), 
+        document.getElementById(textfieldid),
+        "dialogWidth=800px;dialogHeight=600px");
+        if (result != null) {
+                document.getElementById(valuefieldid).value = result['<%=KeyField %>'];
+                document.getElementById(textfieldid).value = result['<%=TextField %>'];
+        }
+}

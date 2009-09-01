@@ -270,6 +270,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnVIDEOURL;
             
+            private global::System.Data.DataColumn columnTRACE;
+            
             private global::System.Data.DataColumn columnCREATED;
             
             private global::System.Data.DataColumn columnCREATEDBY;
@@ -281,8 +283,6 @@ namespace SQMS.Application.Config.Schema {
             private global::System.Data.DataColumn columnORGANIZATIONID;
             
             private global::System.Data.DataColumn columnSUITEID;
-            
-            private global::System.Data.DataColumn columnTRACE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public VIDEODataTable() {
@@ -343,6 +343,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TRACEColumn {
+                get {
+                    return this.columnTRACE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn CREATEDColumn {
                 get {
                     return this.columnCREATED;
@@ -385,13 +392,6 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TRACEColumn {
-                get {
-                    return this.columnTRACE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -420,20 +420,20 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public VIDEORow AddVIDEORow(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string TRACE) {
+            public VIDEORow AddVIDEORow(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, string TRACE, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID) {
                 VIDEORow rowVIDEORow = ((VIDEORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         VIDEOID,
                         VIDEONAME,
                         MEMO,
                         VIDEOURL,
+                        TRACE,
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
                         MODIFIEDBY,
                         ORGANIZATIONID,
-                        SUITEID,
-                        TRACE};
+                        SUITEID};
                 rowVIDEORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVIDEORow);
                 return rowVIDEORow;
@@ -463,13 +463,13 @@ namespace SQMS.Application.Config.Schema {
                 this.columnVIDEONAME = base.Columns["VIDEONAME"];
                 this.columnMEMO = base.Columns["MEMO"];
                 this.columnVIDEOURL = base.Columns["VIDEOURL"];
+                this.columnTRACE = base.Columns["TRACE"];
                 this.columnCREATED = base.Columns["CREATED"];
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
                 this.columnSUITEID = base.Columns["SUITEID"];
-                this.columnTRACE = base.Columns["TRACE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -482,6 +482,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMEMO);
                 this.columnVIDEOURL = new global::System.Data.DataColumn("VIDEOURL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVIDEOURL);
+                this.columnTRACE = new global::System.Data.DataColumn("TRACE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTRACE);
                 this.columnCREATED = new global::System.Data.DataColumn("CREATED", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCREATED);
                 this.columnCREATEDBY = new global::System.Data.DataColumn("CREATEDBY", typeof(string), null, global::System.Data.MappingType.Element);
@@ -494,8 +496,6 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnORGANIZATIONID);
                 this.columnSUITEID = new global::System.Data.DataColumn("SUITEID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSUITEID);
-                this.columnTRACE = new global::System.Data.DataColumn("TRACE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTRACE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnVIDEOID}, true));
                 this.columnVIDEOID.AllowDBNull = false;
@@ -503,12 +503,12 @@ namespace SQMS.Application.Config.Schema {
                 this.columnVIDEOID.MaxLength = 40;
                 this.columnVIDEONAME.MaxLength = 100;
                 this.columnMEMO.MaxLength = 500;
-                this.columnVIDEOURL.MaxLength = 100;
+                this.columnVIDEOURL.MaxLength = 2000;
+                this.columnTRACE.MaxLength = 2147483647;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
                 this.columnORGANIZATIONID.MaxLength = 40;
                 this.columnSUITEID.MaxLength = 40;
-                this.columnTRACE.MaxLength = 2147483647;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_VIDEO");
                 this.ExtendedProperties.Add("Generator_UserTableName", "VIDEO");
             }
@@ -698,6 +698,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string TRACE {
+                get {
+                    try {
+                        return ((string)(this[this.tableVIDEO.TRACEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“VIDEO”中列“TRACE”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableVIDEO.TRACEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public System.DateTime CREATED {
                 get {
                     try {
@@ -788,21 +803,6 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TRACE {
-                get {
-                    try {
-                        return ((string)(this[this.tableVIDEO.TRACEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“VIDEO”中列“TRACE”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableVIDEO.TRACEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsVIDEONAMENull() {
                 return this.IsNull(this.tableVIDEO.VIDEONAMEColumn);
             }
@@ -830,6 +830,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetVIDEOURLNull() {
                 this[this.tableVIDEO.VIDEOURLColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsTRACENull() {
+                return this.IsNull(this.tableVIDEO.TRACEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetTRACENull() {
+                this[this.tableVIDEO.TRACEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -890,16 +900,6 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetSUITEIDNull() {
                 this[this.tableVIDEO.SUITEIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsTRACENull() {
-                return this.IsNull(this.tableVIDEO.TRACEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetTRACENull() {
-                this[this.tableVIDEO.TRACEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1030,56 +1030,56 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
             tableMapping.ColumnMappings.Add("VIDEONAME", "VIDEONAME");
             tableMapping.ColumnMappings.Add("MEMO", "MEMO");
             tableMapping.ColumnMappings.Add("VIDEOURL", "VIDEOURL");
+            tableMapping.ColumnMappings.Add("TRACE", "TRACE");
             tableMapping.ColumnMappings.Add("CREATED", "CREATED");
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
-            tableMapping.ColumnMappings.Add("TRACE", "TRACE");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0815\".\"VIDEO\" WHERE ((\"VIDEOID\" = :Original_VIDEOID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0831\".\"VIDEO\" WHERE ((\"VIDEOID\" = :Original_VIDEOID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_VIDEOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0815"".""VIDEO"" (""VIDEOID"", ""VIDEONAME"", ""MEMO"", ""VIDEOURL"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""TRACE"") VALUES (:VIDEOID, :VIDEONAME, :MEMO, :VIDEOURL, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :TRACE)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0831"".""VIDEO"" (""VIDEOID"", ""VIDEONAME"", ""MEMO"", ""VIDEOURL"", ""TRACE"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"") VALUES (:VIDEOID, :VIDEONAME, :MEMO, :VIDEOURL, :TRACE, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEONAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEONAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOURL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TRACE", global::System.Data.OracleClient.OracleType.Clob, 0, global::System.Data.ParameterDirection.Input, "TRACE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TRACE", global::System.Data.OracleClient.OracleType.Clob, 0, global::System.Data.ParameterDirection.Input, "TRACE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0815"".""VIDEO"" SET ""VIDEOID"" = :VIDEOID, ""VIDEONAME"" = :VIDEONAME, ""MEMO"" = :MEMO, ""VIDEOURL"" = :VIDEOURL, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""TRACE"" = :TRACE WHERE ((""VIDEOID"" = :Original_VIDEOID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0831"".""VIDEO"" SET ""VIDEOID"" = :VIDEOID, ""VIDEONAME"" = :VIDEONAME, ""MEMO"" = :MEMO, ""VIDEOURL"" = :VIDEOURL, ""TRACE"" = :TRACE, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID WHERE ((""VIDEOID"" = :Original_VIDEOID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEONAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEONAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOURL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TRACE", global::System.Data.OracleClient.OracleType.Clob, 0, global::System.Data.ParameterDirection.Input, "TRACE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TRACE", global::System.Data.OracleClient.OracleType.Clob, 0, global::System.Data.ParameterDirection.Input, "TRACE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_VIDEOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString3"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString4"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1087,8 +1087,8 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT VIDEOID, VIDEONAME, MEMO, VIDEOURL, CREATED, CREATEDBY, MODIFIED, MODIFIED" +
-                "BY, ORGANIZATIONID, SUITEID, \"TRACE\" FROM SQMS_PRIVATE_0815.VIDEO";
+            this._commandCollection[0].CommandText = "SELECT VIDEOID, VIDEONAME, MEMO, VIDEOURL, \"TRACE\", CREATED, CREATEDBY, MODIFIED," +
+                " MODIFIEDBY, ORGANIZATIONID, SUITEID FROM SQMS_PRIVATE_0831.VIDEO";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1168,7 +1168,7 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string TRACE) {
+        public virtual int Insert(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, string TRACE, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID) {
             if ((VIDEOID == null)) {
                 throw new global::System.ArgumentNullException("VIDEOID");
             }
@@ -1193,47 +1193,47 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(VIDEOURL));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((TRACE == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(TRACE));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(SUITEID));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ORGANIZATIONID));
             }
-            if ((TRACE == null)) {
+            if ((SUITEID == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(TRACE));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(SUITEID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1254,7 +1254,7 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string TRACE, string Original_VIDEOID) {
+        public virtual int Update(string VIDEOID, string VIDEONAME, string MEMO, string VIDEOURL, string TRACE, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string Original_VIDEOID) {
             if ((VIDEOID == null)) {
                 throw new global::System.ArgumentNullException("VIDEOID");
             }
@@ -1279,47 +1279,47 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(VIDEOURL));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((TRACE == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(TRACE));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(SUITEID));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ORGANIZATIONID));
             }
-            if ((TRACE == null)) {
+            if ((SUITEID == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(TRACE));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(SUITEID));
             }
             if ((Original_VIDEOID == null)) {
                 throw new global::System.ArgumentNullException("Original_VIDEOID");
@@ -1346,8 +1346,8 @@ namespace SQMS.Application.Config.Schema.VIDEOTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string VIDEONAME, string MEMO, string VIDEOURL, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string TRACE, string Original_VIDEOID) {
-            return this.Update(Original_VIDEOID, VIDEONAME, MEMO, VIDEOURL, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, TRACE, Original_VIDEOID);
+        public virtual int Update(string VIDEONAME, string MEMO, string VIDEOURL, string TRACE, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string Original_VIDEOID) {
+            return this.Update(Original_VIDEOID, VIDEONAME, MEMO, VIDEOURL, TRACE, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, Original_VIDEOID);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Main.Master" AutoEventWireup="true" CodeBehind="MonitorPointEdit.aspx.cs" Inherits="SQMS.Application.Views.Quality.MonitorPointEdit" %>
 <%@ Register src="../Components/PopupReference/PopupReference.ascx" tagname="PopupReference" tagprefix="uc1" %>
+<%@ Register src="../Components/PopupReference/PopupReference.ascx" tagname="PopupReference" tagprefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -44,24 +45,45 @@
         </tr>
         
           <tr>
-            <td>所属路段：</td>
-            <td>
+            <td style="width:110px">所属路段：</td>
+            <td  style="width:330px">
                 <uc1:PopupReference ID="refRoad" Service="SQMS.Services.RoadService" 
                 HeaderColumns="ROADID:路段ID,ROADNAME:路段名称,ISVOID:路段状态" KeyFieldName="路段编号" TextFieldName="路段名称"
                 KeyField="ROADID" TextField="ROADNAME" SearchColumn="ROADNAME" AssemblyName="SQMS.Services" runat="server" />
             </td>
-            <td>监控时间段：</td>
-            <td>
-                <uc1:PopupReference ID="refTimeSchema" Service="SQMS.Services.TimeSchemaService" 
+            <td style="width:110px">监控时间段：</td>
+            <td style="width:330px">
+                <uc2:PopupReference ID="refTimeSchema" Service="SQMS.Services.TimeSchemaService" 
                 HeaderColumns="SCHEMAID:时间段ID,SCHEMANAME:时间段名称,ISVOID:时间段状态" KeyFieldName="时间段编号" TextFieldName="时间段名称"
                 KeyField="SCHEMAID" TextField="SCHEMANAME" SearchColumn="SCHEMANAME" AssemblyName="SQMS.Services" runat="server" />
             </td>
         </tr>
          <tr>
-            <td>经度：</td>
-            <td><asp:TextBox ID="txtLng"  Width="210" runat="server" ></asp:TextBox></td>  
-            <td>纬度：</td>
-            <td><asp:TextBox ID="txtLat" Width="210" runat="server" ></asp:TextBox></td>
+            <td  style="width:110px">经度：</td>
+            <td style="width:330px"><asp:TextBox ID="txtLng"  Width="210" runat="server" ></asp:TextBox></td>  
+            <td style="width:110px">纬度：</td>
+            <td style="width:330px"><asp:TextBox ID="txtLat" Width="210" runat="server" ></asp:TextBox></td>
+        </tr>
+         <tr>
+            <td style="width:110px">浮动距离：</td>
+            <td  style="width:330px">
+                <asp:TextBox ID="txtFloatDist"  Width="210" runat="server"></asp:TextBox>&nbsp;米                
+            </td>            
+            <td style="width:110px">地图缩放级别：</td>
+            <td style="width:330px">
+                <asp:TextBox ID="txtMapLevel" runat="server" Width="210"></asp:TextBox>
+                <asp:RangeValidator ID="rvMapLevel" runat="server" ControlToValidate="txtMapLevel" 
+                        Display="Dynamic"
+                        SetFocusOnError="true" 
+                        MinimumValue="1" MaximumValue="19" Type="Integer"
+                        ErrorMessage="缩放级别只能在1-19之间"></asp:RangeValidator>
+            </td>
+        </tr>
+       <tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:CheckBox ID="cbIsvoid" runat="server" Text="禁用" />
+            </td>
         </tr>
         <tr>
             <td>备注：</td>
