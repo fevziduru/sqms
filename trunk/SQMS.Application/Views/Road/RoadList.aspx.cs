@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SQMS.Services.QualityControl;
+using SQMS.Services;
 using EasyDev.SQMS;
 using EasyDev.BL;
 using System.Data;

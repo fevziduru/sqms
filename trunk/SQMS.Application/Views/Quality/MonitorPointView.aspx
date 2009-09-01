@@ -42,6 +42,16 @@
             <td><asp:Label ID="lblLat" Width="210" runat="server" ></asp:Label></td>
         </tr>
         <tr>
+            <td>浮动距离：</td>
+            <td><asp:Label ID="lblFloatDist"  Width="210" runat="server" ></asp:Label></td>              
+            <td>缩放级别：</td>
+            <td><asp:Label ID="lblMapLevel"  Width="210" runat="server" ></asp:Label></td>              
+        </tr>
+           <tr>
+            <td>状态：</td>
+            <td colspan="3"><asp:Label ID="lblIsvoid" runat="server" ></asp:Label></td>
+        </tr>
+        <tr>
             <td>备注：</td>
             <td colspan="3"><asp:Label ID="lblMemo" Width="210" runat="server" ></asp:Label></td>
         </tr>

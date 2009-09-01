@@ -9,7 +9,7 @@ using log4net;
 using SQMS.Services.Domain.Common;
 using EasyDev.Util;
 
-namespace SQMS.Services.QualityControl
+namespace SQMS.Services
 {
     public class RoadService : GenericService
     {

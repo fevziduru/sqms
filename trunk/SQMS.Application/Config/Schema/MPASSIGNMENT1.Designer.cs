@@ -266,6 +266,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnROADID;
             
+            private global::System.Data.DataColumn columnSCHEMAID;
+            
             private global::System.Data.DataColumn columnMPCODE;
             
             private global::System.Data.DataColumn columnMPNAME;
@@ -289,6 +291,10 @@ namespace SQMS.Application.Config.Schema {
             private global::System.Data.DataColumn columnSUITEID;
             
             private global::System.Data.DataColumn columnISVOID;
+            
+            private global::System.Data.DataColumn columnMPLEVEL;
+            
+            private global::System.Data.DataColumn columnFLOATDIST;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public MPASSIGNMENTDataTable() {
@@ -331,6 +337,13 @@ namespace SQMS.Application.Config.Schema {
             public global::System.Data.DataColumn ROADIDColumn {
                 get {
                     return this.columnROADID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SCHEMAIDColumn {
+                get {
+                    return this.columnSCHEMAID;
                 }
             }
             
@@ -419,6 +432,20 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn MPLEVELColumn {
+                get {
+                    return this.columnMPLEVEL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FLOATDISTColumn {
+                get {
+                    return this.columnFLOATDIST;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -447,11 +474,29 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public MPASSIGNMENTRow AddMPASSIGNMENTRow(string MPID, string ROADID, string MPCODE, string MPNAME, decimal LONGITUDE, decimal LATITUDE, string MEMO, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string ISVOID) {
+            public MPASSIGNMENTRow AddMPASSIGNMENTRow(
+                        string MPID, 
+                        string ROADID, 
+                        string SCHEMAID, 
+                        string MPCODE, 
+                        string MPNAME, 
+                        decimal LONGITUDE, 
+                        decimal LATITUDE, 
+                        string MEMO, 
+                        System.DateTime CREATED, 
+                        string CREATEDBY, 
+                        System.DateTime MODIFIED, 
+                        string MODIFIEDBY, 
+                        string ORGANIZATIONID, 
+                        string SUITEID, 
+                        string ISVOID, 
+                        decimal MPLEVEL, 
+                        decimal FLOATDIST) {
                 MPASSIGNMENTRow rowMPASSIGNMENTRow = ((MPASSIGNMENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MPID,
                         ROADID,
+                        SCHEMAID,
                         MPCODE,
                         MPNAME,
                         LONGITUDE,
@@ -463,7 +508,9 @@ namespace SQMS.Application.Config.Schema {
                         MODIFIEDBY,
                         ORGANIZATIONID,
                         SUITEID,
-                        ISVOID};
+                        ISVOID,
+                        MPLEVEL,
+                        FLOATDIST};
                 rowMPASSIGNMENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMPASSIGNMENTRow);
                 return rowMPASSIGNMENTRow;
@@ -491,6 +538,7 @@ namespace SQMS.Application.Config.Schema {
             internal void InitVars() {
                 this.columnMPID = base.Columns["MPID"];
                 this.columnROADID = base.Columns["ROADID"];
+                this.columnSCHEMAID = base.Columns["SCHEMAID"];
                 this.columnMPCODE = base.Columns["MPCODE"];
                 this.columnMPNAME = base.Columns["MPNAME"];
                 this.columnLONGITUDE = base.Columns["LONGITUDE"];
@@ -503,6 +551,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
                 this.columnSUITEID = base.Columns["SUITEID"];
                 this.columnISVOID = base.Columns["ISVOID"];
+                this.columnMPLEVEL = base.Columns["MPLEVEL"];
+                this.columnFLOATDIST = base.Columns["FLOATDIST"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -511,6 +561,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMPID);
                 this.columnROADID = new global::System.Data.DataColumn("ROADID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnROADID);
+                this.columnSCHEMAID = new global::System.Data.DataColumn("SCHEMAID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSCHEMAID);
                 this.columnMPCODE = new global::System.Data.DataColumn("MPCODE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMPCODE);
                 this.columnMPNAME = new global::System.Data.DataColumn("MPNAME", typeof(string), null, global::System.Data.MappingType.Element);
@@ -535,12 +587,17 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnSUITEID);
                 this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnISVOID);
+                this.columnMPLEVEL = new global::System.Data.DataColumn("MPLEVEL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMPLEVEL);
+                this.columnFLOATDIST = new global::System.Data.DataColumn("FLOATDIST", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFLOATDIST);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMPID}, true));
                 this.columnMPID.AllowDBNull = false;
                 this.columnMPID.Unique = true;
                 this.columnMPID.MaxLength = 40;
                 this.columnROADID.MaxLength = 40;
+                this.columnSCHEMAID.MaxLength = 40;
                 this.columnMPCODE.MaxLength = 40;
                 this.columnMPNAME.MaxLength = 200;
                 this.columnMEMO.MaxLength = 2000;
@@ -704,6 +761,21 @@ namespace SQMS.Application.Config.Schema {
                 }
                 set {
                     this[this.tableMPASSIGNMENT.ROADIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string SCHEMAID {
+                get {
+                    try {
+                        return ((string)(this[this.tableMPASSIGNMENT.SCHEMAIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“SCHEMAID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.SCHEMAIDColumn] = value;
                 }
             }
             
@@ -888,6 +960,36 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal MPLEVEL {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMPASSIGNMENT.MPLEVELColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“MPLEVEL”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.MPLEVELColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal FLOATDIST {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMPASSIGNMENT.FLOATDISTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“FLOATDIST”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.FLOATDISTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsROADIDNull() {
                 return this.IsNull(this.tableMPASSIGNMENT.ROADIDColumn);
             }
@@ -895,6 +997,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetROADIDNull() {
                 this[this.tableMPASSIGNMENT.ROADIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSCHEMAIDNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.SCHEMAIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSCHEMAIDNull() {
+                this[this.tableMPASSIGNMENT.SCHEMAIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1015,6 +1127,26 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetISVOIDNull() {
                 this[this.tableMPASSIGNMENT.ISVOIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMPLEVELNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.MPLEVELColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMPLEVELNull() {
+                this[this.tableMPASSIGNMENT.MPLEVELColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFLOATDISTNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.FLOATDISTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFLOATDISTNull() {
+                this[this.tableMPASSIGNMENT.FLOATDISTColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1143,6 +1275,7 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             tableMapping.DataSetTable = "MPASSIGNMENT";
             tableMapping.ColumnMappings.Add("MPID", "MPID");
             tableMapping.ColumnMappings.Add("ROADID", "ROADID");
+            tableMapping.ColumnMappings.Add("SCHEMAID", "SCHEMAID");
             tableMapping.ColumnMappings.Add("MPCODE", "MPCODE");
             tableMapping.ColumnMappings.Add("MPNAME", "MPNAME");
             tableMapping.ColumnMappings.Add("LONGITUDE", "LONGITUDE");
@@ -1155,18 +1288,21 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             tableMapping.ColumnMappings.Add("SUITEID", "SUITEID");
             tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
+            tableMapping.ColumnMappings.Add("MPLEVEL", "MPLEVEL");
+            tableMapping.ColumnMappings.Add("FLOATDIST", "FLOATDIST");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0814\".\"MPASSIGNMENT\" WHERE ((\"MPID\" = :Original_MPID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0831\".\"MPASSIGNMENT\" WHERE ((\"MPID\" = :Original_MPID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0814"".""MPASSIGNMENT"" (""MPID"", ""ROADID"", ""MPCODE"", ""MPNAME"", ""LONGITUDE"", ""LATITUDE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"") VALUES (:MPID, :ROADID, :MPCODE, :MPNAME, :LONGITUDE, :LATITUDE, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :ISVOID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0831"".""MPASSIGNMENT"" (""MPID"", ""ROADID"", ""SCHEMAID"", ""MPCODE"", ""MPNAME"", ""LONGITUDE"", ""LATITUDE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"", ""MPLEVEL"", ""FLOATDIST"") VALUES (:MPID, :ROADID, :SCHEMAID, :MPCODE, :MPNAME, :LONGITUDE, :LATITUDE, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :ISVOID, :MPLEVEL, :FLOATDIST)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROADID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROADID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPCODE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LONGITUDE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "LONGITUDE", global::System.Data.DataRowVersion.Current, false, null));
@@ -1179,12 +1315,15 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "MPLEVEL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATDIST", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATDIST", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0814"".""MPASSIGNMENT"" SET ""MPID"" = :MPID, ""ROADID"" = :ROADID, ""MPCODE"" = :MPCODE, ""MPNAME"" = :MPNAME, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID WHERE ((""MPID"" = :Original_MPID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0831"".""MPASSIGNMENT"" SET ""MPID"" = :MPID, ""ROADID"" = :ROADID, ""SCHEMAID"" = :SCHEMAID, ""MPCODE"" = :MPCODE, ""MPNAME"" = :MPNAME, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID, ""MPLEVEL"" = :MPLEVEL, ""FLOATDIST"" = :FLOATDIST WHERE ((""MPID"" = :Original_MPID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROADID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROADID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPCODE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPNAME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LONGITUDE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "LONGITUDE", global::System.Data.DataRowVersion.Current, false, null));
@@ -1197,13 +1336,15 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SUITEID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SUITEID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "MPLEVEL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATDIST", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATDIST", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString4"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1211,9 +1352,9 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MPID, ROADID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDB" +
-                "Y, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID FROM SQMS_PRIVATE_0814." +
-                "MPASSIGNMENT";
+            this._commandCollection[0].CommandText = "SELECT MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED" +
+                ", CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLO" +
+                "ATDIST FROM SQMS_PRIVATE_0831.MPASSIGNMENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1293,7 +1434,24 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string MPID, string ROADID, string MPCODE, string MPNAME, global::System.Nullable<decimal> LONGITUDE, global::System.Nullable<decimal> LATITUDE, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string ISVOID) {
+        public virtual int Insert(
+                    string MPID, 
+                    string ROADID, 
+                    string SCHEMAID, 
+                    string MPCODE, 
+                    string MPNAME, 
+                    global::System.Nullable<decimal> LONGITUDE, 
+                    global::System.Nullable<decimal> LATITUDE, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID, 
+                    global::System.Nullable<decimal> MPLEVEL, 
+                    global::System.Nullable<decimal> FLOATDIST) {
             if ((MPID == null)) {
                 throw new global::System.ArgumentNullException("MPID");
             }
@@ -1306,77 +1464,95 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ROADID));
             }
-            if ((MPCODE == null)) {
+            if ((SCHEMAID == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(MPCODE));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(SCHEMAID));
             }
-            if ((MPNAME == null)) {
+            if ((MPCODE == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(MPNAME));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(MPCODE));
             }
-            if ((LONGITUDE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(LONGITUDE.Value));
-            }
-            else {
+            if ((MPNAME == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((LATITUDE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(LATITUDE.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(MPNAME));
+            }
+            if ((LONGITUDE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(LONGITUDE.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((MEMO == null)) {
+            if ((LATITUDE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(LATITUDE.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MEMO));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(SUITEID));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(ORGANIZATIONID));
             }
-            if ((ISVOID == null)) {
+            if ((SUITEID == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(ISVOID));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(SUITEID));
+            }
+            if ((ISVOID == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(ISVOID));
+            }
+            if ((MPLEVEL.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(MPLEVEL.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((FLOATDIST.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(FLOATDIST.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1397,7 +1573,25 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MPID, string ROADID, string MPCODE, string MPNAME, global::System.Nullable<decimal> LONGITUDE, global::System.Nullable<decimal> LATITUDE, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string ISVOID, string Original_MPID) {
+        public virtual int Update(
+                    string MPID, 
+                    string ROADID, 
+                    string SCHEMAID, 
+                    string MPCODE, 
+                    string MPNAME, 
+                    global::System.Nullable<decimal> LONGITUDE, 
+                    global::System.Nullable<decimal> LATITUDE, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID, 
+                    global::System.Nullable<decimal> MPLEVEL, 
+                    global::System.Nullable<decimal> FLOATDIST, 
+                    string Original_MPID) {
             if ((MPID == null)) {
                 throw new global::System.ArgumentNullException("MPID");
             }
@@ -1410,83 +1604,101 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ROADID));
             }
-            if ((MPCODE == null)) {
+            if ((SCHEMAID == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(MPCODE));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(SCHEMAID));
             }
-            if ((MPNAME == null)) {
+            if ((MPCODE == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(MPNAME));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(MPCODE));
             }
-            if ((LONGITUDE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(LONGITUDE.Value));
-            }
-            else {
+            if ((MPNAME == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((LATITUDE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(LATITUDE.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(MPNAME));
+            }
+            if ((LONGITUDE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(LONGITUDE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((MEMO == null)) {
+            if ((LATITUDE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(LATITUDE.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(MEMO));
-            }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MEMO));
+            }
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(CREATED.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(CREATEDBY));
-            }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(MODIFIED.Value));
-            }
-            else {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(CREATEDBY));
+            }
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(MODIFIED.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(ORGANIZATIONID));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(MODIFIEDBY));
             }
-            if ((SUITEID == null)) {
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(SUITEID));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(ORGANIZATIONID));
             }
-            if ((ISVOID == null)) {
+            if ((SUITEID == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(ISVOID));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(SUITEID));
+            }
+            if ((ISVOID == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(ISVOID));
+            }
+            if ((MPLEVEL.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(MPLEVEL.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((FLOATDIST.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(FLOATDIST.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             if ((Original_MPID == null)) {
                 throw new global::System.ArgumentNullException("Original_MPID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_MPID));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_MPID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1507,8 +1719,25 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ROADID, string MPCODE, string MPNAME, global::System.Nullable<decimal> LONGITUDE, global::System.Nullable<decimal> LATITUDE, string MEMO, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, string SUITEID, string ISVOID, string Original_MPID) {
-            return this.Update(Original_MPID, ROADID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, Original_MPID);
+        public virtual int Update(
+                    string ROADID, 
+                    string SCHEMAID, 
+                    string MPCODE, 
+                    string MPNAME, 
+                    global::System.Nullable<decimal> LONGITUDE, 
+                    global::System.Nullable<decimal> LATITUDE, 
+                    string MEMO, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    string SUITEID, 
+                    string ISVOID, 
+                    global::System.Nullable<decimal> MPLEVEL, 
+                    global::System.Nullable<decimal> FLOATDIST, 
+                    string Original_MPID) {
+            return this.Update(Original_MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, Original_MPID);
         }
     }
 }
