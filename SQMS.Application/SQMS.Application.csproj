@@ -302,13 +302,6 @@
     <Compile Include="Views\Components\OrganizationTree.ascx.designer.cs">
       <DependentUpon>OrganizationTree.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Components\SimpleSmallMap.aspx.cs">
-      <DependentUpon>SimpleSmallMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Components\SimpleSmallMap.aspx.designer.cs">
-      <DependentUpon>SimpleSmallMap.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1033,7 +1026,6 @@
     <Content Include="Views\Components\OperationBar.ascx" />
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />
-    <Content Include="Views\Components\SimpleSmallMap.aspx" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
