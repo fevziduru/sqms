@@ -85,6 +85,42 @@
                 </tr>
             </table>
         </fieldset>
+        <br />
+        <fieldset>
+        <legend>项目路段</legend>
+        <div style="margin:18 18; height:400;overflow:auto">
+          <asp:GridView ID="gvRoadList" runat="server" AllowPaging="False"  Width="100%" CssClass="gridview"
+        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ROADID" OnSorting="gvRoadList_Sorting"
+        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
+         onrowcommand="GridView1_RowCommand" >
+        <Columns>
+            <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
+                <HeaderTemplate>
+                    <input name="header" onclick='SelectAll("<%=this.gvRoadList.ClientID %>")' type="checkbox" value='<%#Eval("ROADID") %>' />
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <input name="__KeyValues__" type="checkbox" value='<%#Eval("ROADID") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>--%>
+            <asp:BoundField DataField="ROADID" HeaderText="ROADID" ReadOnly="True" HeaderStyle-HorizontalAlign="Left"
+                SortExpression="ROADID" Visible="False" />
+            <asp:HyperLinkField DataNavigateUrlFields="ROADID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+                DataNavigateUrlFormatString="/Views/Road/RoadView.aspx?p=roadview&id={0}" 
+                DataTextField="ROADNAME" HeaderText="职员名称" SortExpression="ROADNAME" />
+            <asp:BoundField DataField="ROADCODE" HeaderText="职员编码"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+                SortExpression="ROADCODE" />
+            <asp:BoundField DataField="WORKERAMOUNT" HeaderText="工作人数"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" 
+                SortExpression="WORKERAMOUNT" />
+            <asp:BoundField DataField="WORKTIME" HeaderText="工作时间" SortExpression="WORKTIME" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" />
+            <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center"
+                SelectText="编辑">
+            <ItemStyle Width="60px" />
+            </asp:CommandField>
+        </Columns>
+        <FooterStyle CssClass="footer" />
+    </asp:GridView>
+    </div>
+        </fieldset>
         
         <table width="100%">
         <tr>
