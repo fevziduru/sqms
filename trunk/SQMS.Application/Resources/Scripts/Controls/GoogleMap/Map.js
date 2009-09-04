@@ -81,8 +81,8 @@ function initMap() {
             map.enableScrollWheelZoom();
 
             var lastLatLngCookie = new Cookie("lastlatlng");
-            var lastLat = 29.5548;
-            var lastLng = 106.5483;
+            var lastLat = initLat;
+            var lastLng = initLng;
             if (lastLatLngCookie.lat) {
                 lastLat = lastLatLngCookie.lat;
             }
