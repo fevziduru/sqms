@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SQMS.Services;
 using System.Data;
 using EasyDev.Util;
+using SQMS.Application.HtmlHelper;
 
 namespace SQMS.Application.Views.Road
 {
@@ -68,6 +69,8 @@ namespace SQMS.Application.Views.Road
                                 this.gvList.DataSource = dtMP;
                                 this.gvList.DataBind();
                         }
+
+                        ControlBindingHelper.BindDropDownList(this.ddlTimeSchema, ViewData.Tables["TIMESCHEMA"], "SCHEMANAME", "SCHEMAID");
                 }
 
                 protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -116,6 +119,7 @@ namespace SQMS.Application.Views.Road
                 {
                         this.ViewData = Service.LoadByKey(this.ID, true);
                         this.ViewData.Merge(roadService.GetMonitorPointsByRoad(this.ID));
+                        this.ViewData.Merge(roadService.TimeSchemaService.LoadByCondition("organizationid='" + CurrentUser.OrganizationID + "'"));
                 }
 
                 public void btnDelete_OnClick(object sender, EventArgs e)
@@ -137,6 +141,26 @@ namespace SQMS.Application.Views.Road
                 protected void gvList_RowDataBound(object sender, GridViewRowEventArgs e)
                 {
                        
+                }
+
+                protected void btnSetTimeSchema_Click(object sender, EventArgs e)
+                {
+                        try
+                        {
+                                string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
+                                string timeschemaid = this.ddlTimeSchema.SelectedValue;
+                                if (timeschemaid != null && timeschemaid.Length > 0)
+                                {
+                                        for (int i = 0; i < ids.Length; i++)
+                                        {
+                                                roadService.mpService.UpdateMonitorPointTimeSchema(timeschemaid, ids[i]);
+                                        }
+                                }
+                        }
+                        catch (Exception ex)
+                        {
+                                throw ex;
+                        }
                 }
         }
 }

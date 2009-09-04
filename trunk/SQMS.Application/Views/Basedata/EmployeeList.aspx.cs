@@ -17,7 +17,7 @@ namespace SQMS.Application.Views.Basedata
         {
             if (!Page.IsPostBack)
             {
-                this.gvEmployeeList.Attributes.Add("SortExpression", "id");
+                this.gvEmployeeList.Attributes.Add("SortExpression", "EMPID");
                 this.gvEmployeeList.Attributes.Add("SortDirection", "ASC");
             }
         }
@@ -29,7 +29,7 @@ namespace SQMS.Application.Views.Basedata
 
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
         {
-            this.ViewData = Service.LoadAll();
+                this.ViewData = Service.LoadByCondition("ORGANIZATIONID='" + CurrentUser.OrganizationID + "'");
         }
 
         protected override void OnInitializeViewEventHandler(object sender, EventArgs e)

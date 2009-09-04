@@ -15,11 +15,18 @@ namespace SQMS.Services
         {
                 private static readonly ILog log = LogManager.GetLogger(typeof(RoadService));
 
+                public TimeSchemaService TimeSchemaService { get; private set; }
+                public MonitorPointService mpService { get; private set; }
+                
                 protected override void Initialize()
                 {
                         this.BOName = "ROAD";
+                        TimeSchemaService = ServiceManager.CreateService<TimeSchemaService>();
+                        mpService = ServiceManager.CreateService<MonitorPointService>();
+
                         base.Initialize();
                 }
+
                 public DataTable GetRoadListInProject(string projectId)
                 {
                         string sql = @"SELECT R.ROADID,

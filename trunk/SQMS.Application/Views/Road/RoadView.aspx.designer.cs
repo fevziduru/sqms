@@ -140,6 +140,24 @@ namespace SQMS.Application.Views.Road {
         protected global::System.Web.UI.WebControls.Label lblMemo;
         
         /// <summary>
+        /// ddlTimeSchema 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTimeSchema;
+        
+        /// <summary>
+        /// btnSetTimeSchema 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSetTimeSchema;
+        
+        /// <summary>
         /// gvList 控件。
         /// </summary>
         /// <remarks>

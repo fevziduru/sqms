@@ -108,9 +108,19 @@
             </table>
         </fieldset>
         <br />
+        
+        <br />
         <fieldset>
         <legend>路段监控点</legend>
+        
         <div style="margin:18 18; height:400;overflow:auto">
+        <table>
+         <tr>
+                <td><asp:DropDownList ID="ddlTimeSchema" runat="server" AutoPostBack="false" Width="210"></asp:DropDownList></td>
+                <td><asp:Button ID="btnSetTimeSchema" runat="server" Text="设置监控时间段" 
+                                CommandName="Select" onclick="btnSetTimeSchema_Click" /></td>
+         </tr>
+        </table>
         <asp:GridView ID="gvList" runat="server" AllowPaging="False"  Width="100%" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MPID" OnSorting="gvList_Sorting"
         EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
