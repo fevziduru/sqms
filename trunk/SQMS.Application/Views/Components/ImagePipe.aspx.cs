@@ -49,7 +49,7 @@ namespace SQMS.Application.Views.Components
                         g.Clear(Color.Transparent);
 
                         //生成新图像并输出到浏览器
-                        g.DrawImage(b, new Rectangle(0, 0, towidth, toheight), new Rectangle(towidth, toheight, b.Width, b.Height), GraphicsUnit.Pixel);
+                        g.DrawImage(b, new Rectangle(0, 0, towidth, toheight), new Rectangle(0, 0, b.Width, b.Height), GraphicsUnit.Pixel);
 
                         bmp.Save(Response.OutputStream, b.RawFormat);
                         //释放内存

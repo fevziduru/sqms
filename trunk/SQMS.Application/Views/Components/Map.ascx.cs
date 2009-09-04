@@ -9,13 +9,17 @@ namespace SQMS.Application.Views.Components
 {
     public partial class Map : System.Web.UI.UserControl
     {
-        private IList<string[]> monitorPoints;
-        
-        public IList<string[]> MonitorPoints
+
+        private bool autoFetchMarker = true;
+        /// <summary>
+        /// 是否自动获取地图标记（监控点）
+        /// </summary>
+        public bool AutoFetchMarker
         {
-            get { return monitorPoints; }
-            set { monitorPoints = value; }
+            get { return autoFetchMarker; }
+            set { autoFetchMarker = value; }
         }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
