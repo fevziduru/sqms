@@ -76,16 +76,13 @@ namespace SQMS.Application.Views.Quality
                                                 ConvertUtil.ToStringOrDefault(drQuality["STATUS"])));
                                         this.lblLng.Text = ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]);
                                         this.lblLat.Text = ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]);
-                                        //if (ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]).IndexOf("http") >= 0)
-                                        //{
-                                        //        this.imgQuality.Attributes.Add("src", ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
-                                        //}
-                                        //else
-                                        //{
-                                        //        this.imgQuality.Attributes.Add("src", "~/Views/Components/ImagePipe.aspx?filename=" + ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
-                                        //}
                                         this.imgQuality.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
+                                        this.hlImage.NavigateUrl = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
+                                        this.hlImage.Text = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         //TODO:采集点视频
+                                        this.hlVideo.Text = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
+                                        this.hlVideo.Attributes.Add("onclick", "");
+
                                         this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(drQuality["QUALITYLEVEL"]);
                                         this.lblType.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID",
                                                 ConvertUtil.ToStringOrDefault(drQuality["TYPE"])));

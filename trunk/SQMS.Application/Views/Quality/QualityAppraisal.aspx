@@ -47,12 +47,15 @@
         <tr>
                 <td>采集点图片：</td>
                 <td colspan="3">
-                        <iframe frameborder="0" style="border-color:#888;border-width:3;overflow:hidden" runat="server" id="imgQuality"></iframe>
+                        <iframe frameborder="0" style="border-color:#888;border-width:3;overflow:hidden" runat="server" id="imgQuality"></iframe><br />
+                        <asp:HyperLink ID="hlImage" runat="server" Target="_blank"></asp:HyperLink>
                 </td>
         </tr>
         <tr>
                 <td>采集点视频：</td>
-                <td colspan="3"><asp:LinkButton ID="lbVideo" runat="server"></asp:LinkButton></td>
+                <td colspan="3">
+                        <asp:HyperLink ID="hlVideo" runat="server"></asp:HyperLink>
+                </td>
         </tr>
         <tr>
                 <td>质量评分：</td>
