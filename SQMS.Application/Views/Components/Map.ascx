@@ -62,4 +62,6 @@
     var requestNum = 0;
     var currentClickedMarker = null;
     var autoFetchMarker = <%=(this.AutoFetchMarker ? "true" : "false") %>;
+    var initLat = <%=this.InitLatLng.Lat %>;
+    var initLng = <%=this.InitLatLng.Lng %>;
 </script>

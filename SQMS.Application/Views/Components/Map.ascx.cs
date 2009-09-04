@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SQMS.Services.Domain.QualityControl;
 
 namespace SQMS.Application.Views.Components
 {
@@ -20,6 +21,18 @@ namespace SQMS.Application.Views.Components
             set { autoFetchMarker = value; }
         }
 
+        private LatLng initLatLng = new LatLng(29.5548M, 106.5483M);
+        /// <summary>
+        /// 地图初始中心经纬度
+        /// </summary>
+        public LatLng InitLatLng
+        {
+            get { return initLatLng; }
+            set
+            {
+                initLatLng = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
