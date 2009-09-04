@@ -37,8 +37,8 @@ namespace SQMS.Application.Views.Components
 
                                 //int towidth = b.Width * 130 / b.Height;
                                 //int toheight = 95;
-                                int towidth = 130;
-                                int toheight = 95;
+                                int towidth = 170;
+                                int toheight = 110;
                                 int oh = b.Height;
                                 int ow = b.Width;
                                 int x = 0;
@@ -54,7 +54,7 @@ namespace SQMS.Application.Views.Components
                                 else
                                 {
                                         ow = b.Width;
-                                        oh = b.Width * 95 / towidth;
+                                        oh = b.Width * 110 / towidth;
                                         x = 0;
                                         y = (b.Height - oh) / 2;
                                 }

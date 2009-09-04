@@ -11,7 +11,7 @@
             <td align="center">
                 <fieldset>
                         
-                        <asp:LinkButton runat="server" Width="110px" ID="Button7" Text="质量评估" OnClick="btnQuality_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button7" Text="质量评估" OnClick="btnQuality_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button5" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button2" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button1" Text="删除" OnClick="btnDelete_OnClick"/>
@@ -64,7 +64,7 @@
         <tr>
             <td align="center">
                 <fieldset>
-                        <asp:LinkButton runat="server" Width="110px" ID="LinkButton1" Text="质量评估" OnClick="btnQuality_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="LinkButton1" Text="质量评估" OnClick="btnQuality_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button3" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button4" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
                         <asp:Button runat="server" Width="110px" ID="Button6" Text="删除" OnClick="btnDelete_OnClick"/>
