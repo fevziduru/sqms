@@ -685,5 +685,5 @@ function pause(numberMillis) {
 
 
 
-function initLightbox() { myLightbox = new Lightbox(); }
-Event.observe(window, 'load', initLightbox, false);
+//function initLightbox() { myLightbox = new Lightbox(); }
+//Event.observe(window, 'load', initLightbox, false);

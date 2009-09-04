@@ -10,8 +10,11 @@ function initMap() {
         if (!map) {
             document.getElementById("map_canvas").style.height = document.body.clientHeight - 170;
             map = new GMap2(document.getElementById("map_canvas"));
-            GEvent.addListener(map, "load", fetchMarkers);
-            GEvent.addListener(map, "moveend", fetchMarkers);
+
+            if (true == autoFetchMarker) {
+                GEvent.addListener(map, "load", fetchMarkers);
+                GEvent.addListener(map, "moveend", fetchMarkers);
+            }
             GEvent.addListener(map, "zoomend", showZoomLevel);
             GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
                 var infoWindow = map.getInfoWindow();

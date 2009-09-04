@@ -6,34 +6,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <!-- Dependencies -->
-    <!-- Sam Skin CSS for TabView -->
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/tabview/assets/skins/sam/tabview.css" />
-    <!-- JavaScript Dependencies for Tabview: -->
+    <!-- Combo-handled YUI CSS files: -->
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/reset-fonts-grids/reset-fonts-grids.css&2.7.0/build/base/base-min.css&2.7.0/build/assets/skins/sam/skin.css">
+    <!-- Combo-handled YUI JS files: -->
 
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
-
-    <!-- OPTIONAL: Connection (required for dynamic loading of data) -->
-
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/connection/connection-min.js"></script>
-
-    <!-- Source file for TabView -->
-
-    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/tabview/tabview-min.js"></script>
-
-    <!-- Source file -->
-
-    <script src="http://yui.yahooapis.com/2.7.0/build/imageloader/imageloader-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/utilities/utilities.js&2.7.0/build/datasource/datasource-min.js&2.7.0/build/autocomplete/autocomplete-min.js&2.7.0/build/container/container-min.js&2.7.0/build/menu/menu-min.js&2.7.0/build/button/button-min.js&2.7.0/build/calendar/calendar-min.js&2.7.0/build/carousel/carousel-min.js&2.7.0/build/json/json-min.js&2.7.0/build/charts/charts-min.js&2.7.0/build/slider/slider-min.js&2.7.0/build/colorpicker/colorpicker-min.js&2.7.0/build/cookie/cookie-min.js&2.7.0/build/paginator/paginator-min.js&2.7.0/build/datatable/datatable-min.js&2.7.0/build/editor/editor-min.js&2.7.0/build/history/history-min.js&2.7.0/build/resize/resize-min.js&2.7.0/build/imagecropper/imagecropper-min.js&2.7.0/build/imageloader/imageloader-min.js&2.7.0/build/selector/selector-min.js&2.7.0/build/layout/layout-min.js&2.7.0/build/logger/logger-min.js&2.7.0/build/profiler/profiler-min.js&2.7.0/build/profilerviewer/profilerviewer-min.js&2.7.0/build/stylesheet/stylesheet-min.js&2.7.0/build/tabview/tabview-min.js&2.7.0/build/treeview/treeview-min.js&2.7.0/build/uploader/uploader.js&2.7.0/build/yuitest/yuitest-min.js"></script>
 
     <script type="text/javascript" src="../../Resources/Scripts/Controls/GoogleMap/Video.js"></script>
+
+    <link rel="stylesheet" href="../../Resources/Scripts/Controls/LightBox2/css/lightbox.css"
+        type="text/css" media="screen" />
+
+    <script type="text/javascript" src="../../Resources/Scripts/Controls/LightBox2/prototype.js"></script>
+
+    <script type="text/javascript" src="../../Resources/Scripts/Controls/LightBox2/scriptaculous.js?load=effects"></script>
+
+    <script type="text/javascript" src="../../Resources/Scripts/Controls/LightBox2/lightbox.js"></script>
 
     <style type="text/css">
         body
         {
             margin: 0 0 0 0;
             font-size: 12px;
+            text-align: left;
         }
         div table tr td th
         {
@@ -60,7 +55,98 @@
     </asp:ScriptManager>
 
     <script type="text/javascript">
-        var myTabs = new YAHOO.widget.TabView("divTabs");
+        var cal1 = null;
+        var currentInfoList = new Array();
+        var lightbox1 = null;
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return "";
+        }
+        Sys.Application.add_load(function() {
+            var myTabs = new YAHOO.widget.TabView("divTabs");
+            initCaledar();
+            lightbox1 = new Lightbox();
+        });
+        function calSelectedHandler(type, args, obj) {
+            var dates = args[0];
+            var date = dates[0];
+            var year = date[0], month = date[1], day = date[2];
+            $get("labelDate").innerText = year + "年" + month + "月" + day + "日";
+
+            var url = "/Views/AjaxServices/QualityControl/QualityInfo.aspx?p=AjaxServicesQualityControlQualityInfo&mpid="
+                    + getUrlParam("mpid") + "&type=" + getUrlParam("qcType") + "&begin_time=" + year + "-" + month + "-" + day;
+            wRequest = new Sys.Net.WebRequest();
+            Sys.Net.WebRequestManager.add_completedRequest(initQCList);
+            wRequest.set_url(url);
+            Sys.Net.WebRequestManager.executeRequest(wRequest);
+        }
+        function initQCList(executor, eventArgs) {
+            if (executor.get_responseAvailable()) {
+                if (executor.get_statusCode() == "200") {
+                    var body = executor.get_responseData();
+                    var qcInfos = [];
+                    try {
+                        qcInfos = Sys.Serialization.JavaScriptSerializer.deserialize(body);
+                    }
+                    catch (e) { };
+                    if (qcInfos) {
+                        var length1 = qcInfos.length;
+                        currentInfoList.length = 0;
+                        currentInfoList = qcInfos;
+                        var imageContainer = new YAHOO.util.Element($get("divImages"));
+                        var children = YAHOO.util.Dom.getChildren("divImages");
+                        if (imageContainer) {
+                            var length2 = children.length;
+                            for (var i = 0; i < length2; i++) {
+                                imageContainer.removeChild(children[i]);
+                            }
+                        }
+                        for (var i = 0; i < length1; i++) {
+                            var a = document.createElement("a");
+                            a.href = qcInfos[i].Url;
+                            a.rel = "lightbox";
+                            if (imageContainer) {
+                                imageContainer.appendChild(a);
+                            }
+                        }
+                        lightbox1.initialize();
+                    }
+                }
+            }
+        }
+        function initCaledar() {
+            cal1 = new YAHOO.widget.Calendar("divCal", { START_WEEKDAY: 1, MULTI_SELECT: false });
+
+            // Correct formats for Chinese: dd.mm.yyyy, dd.mm, mm.yyyy
+            cal1.cfg.setProperty("MDY_YEAR_POSITION", 1);
+            cal1.cfg.setProperty("MDY_MONTH_POSITION", 2);
+            cal1.cfg.setProperty("MDY_DAY_POSITION", 3);
+
+            cal1.cfg.setProperty("MY_YEAR_POSITION", 1);
+            cal1.cfg.setProperty("MY_MONTH_POSITION", 2);
+
+
+            // Date labels for Chinese locale
+            cal1.cfg.setProperty("MONTHS_SHORT", ["一月", "二月", "三月", "五月", "六月", "七月", "八月", "八月", "九月", "十月", "十一月", "十二月"]);
+            cal1.cfg.setProperty("MONTHS_LONG", ["一月", "二月", "三月", "五月", "六月", "七月", "八月", "八月", "九月", "十月", "十一月", "十二月"]);
+            cal1.cfg.setProperty("WEEKDAYS_1CHAR", ["日", "一", "二", "三", "四", "五", "六"]);
+            cal1.cfg.setProperty("WEEKDAYS_SHORT", ["日", "一", "二", "三", "四", "五", "六"]);
+            cal1.cfg.setProperty("WEEKDAYS_MEDIUM", ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]);
+            cal1.cfg.setProperty("WEEKDAYS_LONG", ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]);
+
+            cal1.cfg.setProperty("MY_LABEL_YEAR_POSITION", 1);
+            cal1.cfg.setProperty("MY_LABEL_MONTH_POSITION", 2);
+            cal1.cfg.setProperty("MY_LABEL_YEAR_SUFFIX", "\u5E74");
+            cal1.cfg.setProperty("MY_LABEL_MONTH_SUFFIX", "");
+
+            cal1.selectEvent.subscribe(calSelectedHandler, cal1, true);
+            cal1.select(cal1.today);
+            cal1.render();
+        }
     </script>
 
     <div class="yui-skin-sam">
@@ -93,9 +179,16 @@
                 </div>
                 <div>
                     <div class="top">
-                    <div id="divImages"></div>
+                        <div>
+                            <label id="labelDate">
+                            </label>
+                        </div>
+                        <div id="divCal">
+                        </div>
+                        <div id="divImages">
+                        </div>
                     </div>
-                    <div id="divLeft" class="left">
+                    <div id="divLeft" class="left" style="display: none;">
                         <div>
                             <!--时间段过滤器-->
                             <div>
@@ -169,7 +262,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="right" class="right">
+                    <div id="right" class="right" style="display: none;">
                         <!--QC详细数据-->
                         <asp:UpdatePanel ID="UpdatePanelQcInfo" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>

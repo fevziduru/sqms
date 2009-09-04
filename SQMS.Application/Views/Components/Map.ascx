@@ -61,4 +61,5 @@
     var map = null;
     var requestNum = 0;
     var currentClickedMarker = null;
+    var autoFetchMarker = <%=(this.AutoFetchMarker ? "true" : "false") %>;
 </script>
