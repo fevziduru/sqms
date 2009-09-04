@@ -13,6 +13,8 @@ namespace SQMS.Application.Views.Quality
         public partial class QualityAppraisal : SQMSPage<QualityControlService>
         {
                 private QualityControlService srv = null;
+                public string videoUrl = "";
+                public string imageUrl = "";
 
                 public string MPID = string.Empty;
 
@@ -64,29 +66,28 @@ namespace SQMS.Application.Views.Quality
                                 if (drQuality != null)
                                 {
                                         this.lblQMCode.Text = ConvertUtil.ToStringOrDefault(drQuality["QMCODE"]);
-                                        this.lblWorkUnit.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ORGNAME", "ORGANIZATION", "ORGID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["WORKUNIT"])));
-                                        this.lblChargePerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["CHARGEPERSON"])));
-                                        this.lblEmergencyPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["EMERGENCYPERSON"])));
-                                        this.lblCheckPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["CHECKPERSON"])));
-                                        this.lblStatus.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["STATUS"])));
+                                        this.lblWorkUnit.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ORGNAME", "ORGANIZATION", "ORGID", ConvertUtil.ToStringOrDefault(drQuality["WORKUNIT"])));
+                                        this.lblChargePerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drQuality["CHARGEPERSON"])));
+                                        this.lblEmergencyPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drQuality["EMERGENCYPERSON"])));
+                                        this.lblCheckPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drQuality["CHECKPERSON"])));
+                                        this.lblStatus.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drQuality["STATUS"])));
                                         this.lblLng.Text = ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]);
                                         this.lblLat.Text = ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]);
                                         this.imgQuality.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
-                                        this.hlImage.NavigateUrl = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
-                                        this.hlImage.Text = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
-                                        //TODO:采集点视频
+                                        this.hlImage.HRef = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
+                                        //this.hlImage.Text = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
+                                        this.imageUrl = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         this.hlVideo.Text = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
-                                        this.hlVideo.Attributes.Add("onclick", "");
+                                        //this.hlVideo.Attributes.Add("onclick", "document.getElementById('MapVideo').setExternVideoUrl('" + ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]) + "',true)");
+                                        this.videoUrl = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
 
                                         this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(drQuality["QUALITYLEVEL"]);
-                                        this.lblType.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID",
-                                                ConvertUtil.ToStringOrDefault(drQuality["TYPE"])));
+                                        this.lblType.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drQuality["TYPE"])));
                                         this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drQuality["MEMO"]);
+
+                                        this.loc.HRef =
+                                                "javascript:showModalDialog('/Views/Components/SimpleSmallMap.aspx?p=__pub__&lat=" +
+                                                ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]) + "&lng=" + ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]) + "',null, 'dialogWidth=300px;dialogHeight=200px')";
                                 }
                         }
                 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SQMS.Services.Domain.QualityControl;
+using EasyDev.Util;
 
 namespace SQMS.Application.Views.Components
 {
@@ -36,7 +37,8 @@ namespace SQMS.Application.Views.Components
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+                initLatLng = new LatLng(Convert.ToDecimal(ConvertUtil.ToStringOrDefault(Request.QueryString["lat"])), 
+                        Convert.ToDecimal(ConvertUtil.ToStringOrDefault(Request.QueryString["lng"])));
         }
     }
 }

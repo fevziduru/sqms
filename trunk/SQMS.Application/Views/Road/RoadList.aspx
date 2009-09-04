@@ -17,7 +17,7 @@
         <br />
         <asp:UpdatePanel ID="UpdatePanelGridViewRoad" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <asp:GridView ID="GridViewRoad" runat="server" AllowPaging="True" Width="100%" AllowSorting="False"
+                <asp:GridView ID="GridViewRoad" runat="server" AllowPaging="True" Width="100%" AllowSorting="False" CssClass="gridview"
                     AutoGenerateColumns="False" DataKeyNames="ROADID" EmptyDataText="没有可显示的数据记录。"
                     OnPageIndexChanging="GridViewRoad_PageIndexChanging">
                     <Columns>

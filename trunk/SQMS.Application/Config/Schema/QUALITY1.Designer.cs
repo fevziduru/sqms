@@ -306,6 +306,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnIMAGEURL;
             
+            private global::System.Data.DataColumn columnVIDEOURL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public QUALITYDataTable() {
                 this.TableName = "QUALITY";
@@ -491,6 +493,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn VIDEOURLColumn {
+                get {
+                    return this.columnVIDEOURL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -541,7 +550,8 @@ namespace SQMS.Application.Config.Schema {
                         string SUITEID, 
                         string ISVOID, 
                         decimal QUALITYLEVEL, 
-                        string IMAGEURL) {
+                        string IMAGEURL, 
+                        string VIDEOURL) {
                 QUALITYRow rowQUALITYRow = ((QUALITYRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MEMO,
@@ -565,7 +575,8 @@ namespace SQMS.Application.Config.Schema {
                         SUITEID,
                         ISVOID,
                         QUALITYLEVEL,
-                        IMAGEURL};
+                        IMAGEURL,
+                        VIDEOURL};
                 rowQUALITYRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQUALITYRow);
                 return rowQUALITYRow;
@@ -613,6 +624,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnISVOID = base.Columns["ISVOID"];
                 this.columnQUALITYLEVEL = base.Columns["QUALITYLEVEL"];
                 this.columnIMAGEURL = base.Columns["IMAGEURL"];
+                this.columnVIDEOURL = base.Columns["VIDEOURL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -661,6 +673,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnQUALITYLEVEL);
                 this.columnIMAGEURL = new global::System.Data.DataColumn("IMAGEURL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIMAGEURL);
+                this.columnVIDEOURL = new global::System.Data.DataColumn("VIDEOURL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVIDEOURL);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnQMID}, true));
                 this.columnMEMO.MaxLength = 2000;
@@ -683,6 +697,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnSUITEID.MaxLength = 40;
                 this.columnISVOID.MaxLength = 1;
                 this.columnIMAGEURL.MaxLength = 1000;
+                this.columnVIDEOURL.MaxLength = 1000;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_QUALITY");
                 this.ExtendedProperties.Add("Generator_UserTableName", "QUALITY");
             }
@@ -1137,6 +1152,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string VIDEOURL {
+                get {
+                    try {
+                        return ((string)(this[this.tableQUALITY.VIDEOURLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“QUALITY”中列“VIDEOURL”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableQUALITY.VIDEOURLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsMEMONull() {
                 return this.IsNull(this.tableQUALITY.MEMOColumn);
             }
@@ -1335,6 +1365,16 @@ namespace SQMS.Application.Config.Schema {
             public void SetIMAGEURLNull() {
                 this[this.tableQUALITY.IMAGEURLColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsVIDEOURLNull() {
+                return this.IsNull(this.tableQUALITY.VIDEOURLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetVIDEOURLNull() {
+                this[this.tableQUALITY.VIDEOURLColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1482,6 +1522,7 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             tableMapping.ColumnMappings.Add("QUALITYLEVEL", "QUALITYLEVEL");
             tableMapping.ColumnMappings.Add("IMAGEURL", "IMAGEURL");
+            tableMapping.ColumnMappings.Add("VIDEOURL", "VIDEOURL");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1490,7 +1531,7 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_QMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "QMID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0831"".""QUALITY"" (""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""QMID"", ""CHARGEPERSON"", ""WORKUNIT"", ""STATUS"", ""MPID"", ""EMERGENCYPERSON"", ""QMCODE"", ""CHECKPERSON"", ""MATERIAL"", ""LONGITUDE"", ""LATITUDE"", ""TYPE"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"", ""QUALITYLEVEL"", ""IMAGEURL"") VALUES (:MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :QMID, :CHARGEPERSON, :WORKUNIT, :STATUS, :MPID, :EMERGENCYPERSON, :QMCODE, :CHECKPERSON, :MATERIAL, :LONGITUDE, :LATITUDE, :TYPE, :ORGANIZATIONID, :SUITEID, :ISVOID, :QUALITYLEVEL, :IMAGEURL)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0831"".""QUALITY"" (""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""QMID"", ""CHARGEPERSON"", ""WORKUNIT"", ""STATUS"", ""MPID"", ""EMERGENCYPERSON"", ""QMCODE"", ""CHECKPERSON"", ""MATERIAL"", ""LONGITUDE"", ""LATITUDE"", ""TYPE"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"", ""QUALITYLEVEL"", ""IMAGEURL"", ""VIDEOURL"") VALUES (:MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :QMID, :CHARGEPERSON, :WORKUNIT, :STATUS, :MPID, :EMERGENCYPERSON, :QMCODE, :CHECKPERSON, :MATERIAL, :LONGITUDE, :LATITUDE, :TYPE, :ORGANIZATIONID, :SUITEID, :ISVOID, :QUALITYLEVEL, :IMAGEURL, :VIDEOURL)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
@@ -1514,9 +1555,10 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("QUALITYLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITYLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMAGEURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "IMAGEURL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOURL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0831"".""QUALITY"" SET ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""QMID"" = :QMID, ""CHARGEPERSON"" = :CHARGEPERSON, ""WORKUNIT"" = :WORKUNIT, ""STATUS"" = :STATUS, ""MPID"" = :MPID, ""EMERGENCYPERSON"" = :EMERGENCYPERSON, ""QMCODE"" = :QMCODE, ""CHECKPERSON"" = :CHECKPERSON, ""MATERIAL"" = :MATERIAL, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""TYPE"" = :TYPE, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID, ""QUALITYLEVEL"" = :QUALITYLEVEL, ""IMAGEURL"" = :IMAGEURL WHERE ((""QMID"" = :Original_QMID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0831"".""QUALITY"" SET ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""QMID"" = :QMID, ""CHARGEPERSON"" = :CHARGEPERSON, ""WORKUNIT"" = :WORKUNIT, ""STATUS"" = :STATUS, ""MPID"" = :MPID, ""EMERGENCYPERSON"" = :EMERGENCYPERSON, ""QMCODE"" = :QMCODE, ""CHECKPERSON"" = :CHECKPERSON, ""MATERIAL"" = :MATERIAL, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""TYPE"" = :TYPE, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID, ""QUALITYLEVEL"" = :QUALITYLEVEL, ""IMAGEURL"" = :IMAGEURL, ""VIDEOURL"" = :VIDEOURL WHERE ((""QMID"" = :Original_QMID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
@@ -1540,6 +1582,7 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("QUALITYLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITYLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMAGEURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "IMAGEURL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("VIDEOURL", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "VIDEOURL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_QMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "QMID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -1554,7 +1597,7 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, QMID, CHARGEPERSON, WORKUNIT, STATUS, MPID, EMERGENCYPERSON, QMCODE, CHECKPERSON, MATERIAL, LONGITUDE, LATITUDE, ""TYPE"", ORGANIZATIONID, SUITEID, ISVOID, QUALITYLEVEL, IMAGEURL FROM SQMS_PRIVATE_0831.QUALITY";
+            this._commandCollection[0].CommandText = @"SELECT MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, QMID, CHARGEPERSON, WORKUNIT, STATUS, MPID, EMERGENCYPERSON, QMCODE, CHECKPERSON, MATERIAL, LONGITUDE, LATITUDE, ""TYPE"", ORGANIZATIONID, SUITEID, ISVOID, QUALITYLEVEL, IMAGEURL, VIDEOURL FROM SQMS_PRIVATE_0831.QUALITY";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1656,7 +1699,8 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
                     string SUITEID, 
                     string ISVOID, 
                     global::System.Nullable<decimal> QUALITYLEVEL, 
-                    string IMAGEURL) {
+                    string IMAGEURL, 
+                    string VIDEOURL) {
             if ((MEMO == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1789,6 +1833,12 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[21].Value = ((string)(IMAGEURL));
             }
+            if ((VIDEOURL == null)) {
+                this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[22].Value = ((string)(VIDEOURL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1831,6 +1881,7 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
                     string ISVOID, 
                     global::System.Nullable<decimal> QUALITYLEVEL, 
                     string IMAGEURL, 
+                    string VIDEOURL, 
                     string Original_QMID) {
             if ((MEMO == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -1964,11 +2015,17 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(IMAGEURL));
             }
+            if ((VIDEOURL == null)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(VIDEOURL));
+            }
             if ((Original_QMID == null)) {
                 throw new global::System.ArgumentNullException("Original_QMID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_QMID));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_QMID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2011,8 +2068,9 @@ namespace SQMS.Application.Config.Schema.QUALITYTableAdapters {
                     string ISVOID, 
                     global::System.Nullable<decimal> QUALITYLEVEL, 
                     string IMAGEURL, 
+                    string VIDEOURL, 
                     string Original_QMID) {
-            return this.Update(MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_QMID, CHARGEPERSON, WORKUNIT, STATUS, MPID, EMERGENCYPERSON, QMCODE, CHECKPERSON, MATERIAL, LONGITUDE, LATITUDE, TYPE, ORGANIZATIONID, SUITEID, ISVOID, QUALITYLEVEL, IMAGEURL, Original_QMID);
+            return this.Update(MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, Original_QMID, CHARGEPERSON, WORKUNIT, STATUS, MPID, EMERGENCYPERSON, QMCODE, CHECKPERSON, MATERIAL, LONGITUDE, LATITUDE, TYPE, ORGANIZATIONID, SUITEID, ISVOID, QUALITYLEVEL, IMAGEURL, VIDEOURL, Original_QMID);
         }
     }
 }
