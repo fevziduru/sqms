@@ -11,16 +11,7 @@
 namespace SQMS.Application.Views.Quality {
     
     
-    public partial class MonitorPointView {
-        
-        /// <summary>
-        /// Button7 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Button7;
+    public partial class QualityAppraisal {
         
         /// <summary>
         /// Button5 控件。
@@ -32,58 +23,58 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
-        /// Button2 控件。
+        /// lblQMCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Label lblQMCode;
         
         /// <summary>
-        /// Button1 控件。
+        /// lblWorkUnit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label lblWorkUnit;
         
         /// <summary>
-        /// lblMPName 控件。
+        /// lblChargePerson 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMPName;
+        protected global::System.Web.UI.WebControls.Label lblChargePerson;
         
         /// <summary>
-        /// lblMPCode 控件。
+        /// lblEmergencyPerson 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMPCode;
+        protected global::System.Web.UI.WebControls.Label lblEmergencyPerson;
         
         /// <summary>
-        /// lblRoad 控件。
+        /// lblCheckPerson 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRoad;
+        protected global::System.Web.UI.WebControls.Label lblCheckPerson;
         
         /// <summary>
-        /// lblTimeSchema 控件。
+        /// lblStatus 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTimeSchema;
+        protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
         /// lblLng 控件。
@@ -104,31 +95,40 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Label lblLat;
         
         /// <summary>
-        /// lblFloatDist 控件。
+        /// imgQuality 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFloatDist;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl imgQuality;
         
         /// <summary>
-        /// lblMapLevel 控件。
+        /// lbVideo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMapLevel;
+        protected global::System.Web.UI.WebControls.LinkButton lbVideo;
         
         /// <summary>
-        /// lblIsvoid 控件。
+        /// txtQualityLevel 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIsvoid;
+        protected global::System.Web.UI.WebControls.TextBox txtQualityLevel;
+        
+        /// <summary>
+        /// lblType 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblType;
         
         /// <summary>
         /// lblMemo 控件。
@@ -140,39 +140,12 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Label lblMemo;
         
         /// <summary>
-        /// LinkButton1 控件。
+        /// Button1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
-        /// <summary>
-        /// Button3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
-        /// Button4 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
-        
-        /// <summary>
-        /// Button6 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

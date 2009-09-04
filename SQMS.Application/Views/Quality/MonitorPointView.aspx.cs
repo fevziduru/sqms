@@ -59,5 +59,10 @@ namespace SQMS.Application.Views.Quality
                 {
                         Response.Redirect("MonitorPointEdit.aspx?p=mpnew");
                 }
+
+                public void btnQuality_OnClick(object sender, EventArgs e)
+                {
+                        Response.Redirect("QualityAppraisalList.aspx?p=qalist&id=" + this.ID);
+                }
         }
 }

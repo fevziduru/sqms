@@ -281,6 +281,13 @@
       <DependentUpon>Portal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\sGridItemList.cs" />
+    <Compile Include="Views\Components\ImagePipe.aspx.cs">
+      <DependentUpon>ImagePipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\ImagePipe.aspx.designer.cs">
+      <DependentUpon>ImagePipe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\OperationBar.ascx.cs">
       <DependentUpon>OperationBar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -301,6 +308,13 @@
     </Compile>
     <Compile Include="Views\Components\OrganizationTree.ascx.designer.cs">
       <DependentUpon>OrganizationTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\SimpleSmallMap.aspx.cs">
+      <DependentUpon>SimpleSmallMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\SimpleSmallMap.aspx.designer.cs">
+      <DependentUpon>SimpleSmallMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
@@ -479,6 +493,20 @@
     </Compile>
     <Compile Include="Views\Quality\MunicipalAdminMonitor.aspx.designer.cs">
       <DependentUpon>MunicipalAdminMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\QualityAppraisal.aspx.cs">
+      <DependentUpon>QualityAppraisal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\QualityAppraisal.aspx.designer.cs">
+      <DependentUpon>QualityAppraisal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\QualityAppraisalList.aspx.cs">
+      <DependentUpon>QualityAppraisalList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\QualityAppraisalList.aspx.designer.cs">
+      <DependentUpon>QualityAppraisalList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
@@ -1023,9 +1051,11 @@
     <Content Include="Views\Basedata\ResourceView.aspx" />
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
     <Content Include="Views\Common\Portal.aspx" />
+    <Content Include="Views\Components\ImagePipe.aspx" />
     <Content Include="Views\Components\OperationBar.ascx" />
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />
+    <Content Include="Views\Components\SimpleSmallMap.aspx" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
@@ -1034,6 +1064,8 @@
     <Content Include="Views\Quality\MonitorPointList.aspx" />
     <Content Include="Views\Quality\MonitorPointView.aspx" />
     <Content Include="Views\Quality\MunicipalAdminMonitor.aspx" />
+    <Content Include="Views\Quality\QualityAppraisal.aspx" />
+    <Content Include="Views\Quality\QualityAppraisalList.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
