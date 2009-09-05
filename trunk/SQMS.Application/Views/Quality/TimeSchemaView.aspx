@@ -10,13 +10,14 @@
     
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="EquipmentList.aspx?p=equlist">返回到列表</a></td>
+            <td align="right"><a href="TimeSchemaList.aspx?p=tslist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">
                 <fieldset>    
-                    <asp:Button Width="110px" runat="server" ID="Button1" Text="保存" OnClick="btnSave_Click"/>
-                    <asp:Button Width="110px" runat="server" ID="Button2" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                        <asp:Button runat="server" Width="110px" ID="Button1" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button2" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button12" Text="删除" OnClick="btnDelete_OnClick"/>
                 </fieldset>
             </td>
         </tr>
@@ -28,22 +29,22 @@
         <table style="width:100%">
             <tr>
                 <td>
-                模板名称：<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                模板名称：<asp:Label ID="lblSCHEMANAME" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                开始时间：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                开始时间：<asp:Label ID="lblBEGINTIME" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                结束时间：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                结束时间：<asp:Label ID="lblENDTIME" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                浮动时间：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                浮动时间：<asp:Label ID="lblFLOATTIME" runat="server"></asp:Label>
                     <span>分钟</span>
                 </td>
             </tr>       
@@ -62,9 +63,7 @@
          <table id="timepoint" border="0" cellspacing="0" cellpadding="0" width="100%">
                 <tr>
                     <td>
-                    关键时间点：</input> 
-                     
-                        <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblTIMESPANS" runat="server"></asp:Label>
                     </td>
                 </tr>    
                
@@ -77,13 +76,13 @@
         <table style="width:100%">
             <tr>
                 <td>
-                每隔<asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                每隔<asp:Label ID="lblTIMESPAN" runat="server"></asp:Label>
                     <span>小时覆盖所有监控点至少一次</span>
                 </td>
             </tr>           
             <tr>
                 <td>
-                巡检<asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                巡检<asp:Label ID="lblTIMESPOT" runat="server"></asp:Label>
                     <span>次</span>
                 </td>
             </tr>                                           
@@ -95,8 +94,9 @@
         <tr>        
             <td align="center">
                 <fieldset>    
-                    <asp:Button Width="110px" runat="server" ID="Button3" Text="保存" OnClick="btnSave_Click"/>
-                    <asp:Button Width="110px" runat="server" ID="Button4" Text="保存并新增" OnClick="btnSaveAndNew_Click"/>
+                        <asp:Button runat="server" Width="110px" ID="Button5" Text="新增" OnClick="btnNew_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button3" Text="编辑" OnClick="btnEdit_OnClick"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button4" Text="删除" OnClick="btnDelete_OnClick"/>
                 </fieldset>
             </td>
         </tr>
