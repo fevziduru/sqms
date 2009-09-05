@@ -154,9 +154,9 @@ namespace EasyDev.BL
                 {
                         try
                         {
-                                if (this._data.Tables.Count > 0)
+                                if (this._data.Tables.Count > 0 && this._data.Tables.Contains(BOName))
                                 {
-                                        DataTable dt = this._data.Tables[0];
+                                        DataTable dt = this._data.Tables[BOName];
                                         foreach (DataRow row in dt.Rows)
                                         {
                                                 if (row.RowState == DataRowState.Added)
