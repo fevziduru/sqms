@@ -28,7 +28,7 @@
                 defaultTime: new Date(2000, 00, 00, 00, 00, 00)
             });
 
-            var i = 1;
+            var i = $("#ts_count").attr("count");        
             $('#addTime').click(function() {
                 i++;
                 $('#timepoint').append('<tr><td>关键时间点：<input type="text" id="jk_time' + i + '" name="time" autocomplete="off"></input><div id="time' + i + '_picker" class="time_picker_div"></div></td></tr>');
@@ -52,7 +52,7 @@
     
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="EquipmentList.aspx?p=equlist">返回到列表</a></td>
+            <td align="right"><a href="TimeSchemaList.aspx?p=tslist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">
@@ -102,12 +102,7 @@
         </table>    
         
          <table id="timepoint" border="0" cellspacing="0" cellpadding="0" width="100%">
-                <tr>
-                    <td>
-                    关键时间点：<input type="text" id="jk_time" name="time" autocomplete="off"></input>
-                    <div id="time1_picker" class=""></div>
-                    </td>
-                </tr>    
+            <asp:Label ID="lblTIMESPOTS" runat="server" Text=""></asp:Label>
          </table>            
     
         </fieldset>         
@@ -119,12 +114,12 @@
         <table style="width:100%">
             <tr>
                 <td>
-                每隔<asp:TextBox ID="TextBox4" runat="server" ></asp:TextBox><span>小时覆盖所有监控点至少一次</span>
+                每隔<asp:TextBox ID="tbTIMESPAN" runat="server" ></asp:TextBox><span>小时覆盖所有监控点至少一次</span>
                 </td>
             </tr>           
             <tr>
                 <td>
-                巡检<asp:TextBox ID="TextBox6" runat="server" ></asp:TextBox><span>次</span>
+                巡检<asp:TextBox ID="tbTIMESPOT" runat="server" ></asp:TextBox><span>次</span>
                 </td>
             </tr>                                           
         </table>

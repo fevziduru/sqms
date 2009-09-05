@@ -68,22 +68,31 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.TextBox tbFLOATTIME;
         
         /// <summary>
-        /// TextBox4 control.
+        /// lblTIMESPOTS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.Label lblTIMESPOTS;
         
         /// <summary>
-        /// TextBox6 control.
+        /// tbTIMESPAN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox tbTIMESPAN;
+        
+        /// <summary>
+        /// tbTIMESPOT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbTIMESPOT;
         
         /// <summary>
         /// Button3 control.
