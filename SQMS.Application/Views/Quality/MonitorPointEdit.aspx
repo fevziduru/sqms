@@ -43,7 +43,10 @@
                     Display="Dynamic" ></asp:RequiredFieldValidator>
             </td>
         </tr>
-        
+        <tr>
+            <td>重要性：</td>
+            <td colspan="3"><asp:DropDownList Width="210px" ID="ddlImportance" runat="server"></asp:DropDownList></td>
+        </tr>
           <tr>
             <td style="width:110px">所属路段：</td>
             <td  style="width:330px">

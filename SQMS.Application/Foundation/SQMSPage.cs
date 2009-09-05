@@ -377,10 +377,10 @@ namespace SQMS.Application
                                 (Events[_initPage] as EventHandler<EventArgs>)(this, new EventArgs());
                         }
 
-                        if (Events[_recoveryUI] != null)    //OnRecoveryUI
-                        {
-                                (Events[_recoveryUI] as EventHandler<EventArgs>)(this, e);
-                        }
+                        //if (Events[_recoveryUI] != null)    //OnRecoveryUI
+                        //{
+                        //        (Events[_recoveryUI] as EventHandler<EventArgs>)(this, e);
+                        //}
 
                         InitOperationByPermission();    //初始化操作按钮
 

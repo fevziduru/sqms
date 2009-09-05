@@ -30,7 +30,10 @@
             <td style="width:110px">监控点编码：</td>
             <td style="width:330px"><asp:Label ID="lblMPCode" runat="server" ></asp:Label></td>
         </tr>
-        
+         <tr>
+            <td>重要性：</td>
+            <td><asp:Label ID="lblImportance" runat="server" ></asp:Label></td>
+        </tr>
           <tr>
             <td>所属路段：</td>
             <td><asp:Label ID="lblRoad" runat="server" ></asp:Label></td>
