@@ -22,7 +22,7 @@ namespace EasyDev.PL
             {
                 if (column.DataType == typeof(string) || column.DataType == typeof(Guid))
                 {
-                    sb.AppendFormat("'{0}',", dr[column.ColumnName]);
+                        sb.AppendFormat("'{0}',", dr[column.ColumnName] == null ? "" : dr[column.ColumnName]);
                 }
                 else if (column.DataType == typeof(DateTime))
                 {
@@ -34,11 +34,11 @@ namespace EasyDev.PL
                      || (column.DataType == typeof(float))
                 )
                 {
-                    sb.AppendFormat("{0},", dr[column.ColumnName]);
+                        sb.AppendFormat("{0},", dr[column.ColumnName] == null ? 0 : dr[column.ColumnName]);
                 }
                 else if (column.DataType == typeof(bool))
                 {
-                    sb.AppendFormat("'{0}',", dr[column.ColumnName]);
+                        sb.AppendFormat("'{0}',", dr[column.ColumnName] == null ? false : dr[column.ColumnName]);
                 }
                 else
                 {
