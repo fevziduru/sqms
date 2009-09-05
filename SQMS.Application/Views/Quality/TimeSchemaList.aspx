@@ -12,8 +12,7 @@
             <td align="center">
                 <fieldset>
                     <asp:Button Width="110px" CssClass="bgbutton" ID="Button2" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button1" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button5" runat="server" Text="启用" OnClick="btnActive_OnClick" />
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button1" runat="server" Text="删除" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
                 </fieldset>
             </td>
         </tr>
@@ -21,32 +20,27 @@
     <br />
     
     <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True" CssClass="gridview"
-        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="RESID" OnSorting="gvList_Sorting" PageSize="25"
+        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SCHEMAID" OnSorting="gvList_Sorting" PageSize="25"
         EmptyDataText="没有可显示的数据记录。" ShowFooter="true" 
         onrowcommand="gvList_RowCommand" 
         onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
             <asp:TemplateField HeaderStyle-Width="30px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                 <HeaderTemplate>
-                    <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("RESID") %>' />
+                    <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("SCHEMAID") %>' />
                 </HeaderTemplate>
                 <ItemTemplate>                
-                    <input name="__KeyValues__" type="checkbox" value='<%#Eval("RESID") %>' />
+                    <input name="__KeyValues__" type="checkbox" value='<%#Eval("SCHEMAID") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="RESID" HeaderText="RESID" ReadOnly="True" SortExpression="RESID" Visible="False" />
-            <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="RESID" ItemStyle-Width="120" 
-                DataNavigateUrlFormatString="/Views/Basedata/ResourceView.aspx?p=resview&id={0}" 
-                DataTextField="RESNAME" HeaderText="时间模板名称" SortExpression="RESNAME" />
+            <asp:BoundField DataField="SCHEMAID" HeaderText="SCHEMAID" ReadOnly="True" SortExpression="SCHEMAID" Visible="False" />
+            <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="SCHEMAID" ItemStyle-Width="120" 
+                DataNavigateUrlFormatString="TimeSchemaView.aspx?p=tsedit&id={0}" 
+                DataTextField="SCHEMANAME" HeaderText="时间模板名称" SortExpression="SCHEMANAME" />
             
-            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="RESIDENTITY" HeaderText="时间模板11"  ItemStyle-Width="200" SortExpression="RESIDENTITY" />
-            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="VIEWNAME" HeaderText="时间模板22" SortExpression="VIEWNAME" />
-            
-            <asp:TemplateField HeaderText="状态" SortExpression="ISVOID" HeaderStyle-HorizontalAlign="Left" ItemStyle-Width="80">
-                <ItemTemplate>
-                    <span><%#Eval("ISVOID").ToString().Equals("Y")?"禁用":"启用" %></span>
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="FLOATTIME" HeaderText="浮动时间"  ItemStyle-Width="200" SortExpression="FLOATTIME" />
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="BEGINTIME" HeaderText="开始时间" SortExpression="BEGINTIME" />
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="ENDTIME" HeaderText="结束时间" SortExpression="ENDTIME" />
             
             <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center" SelectText="编辑">
                 <ItemStyle Width="60px" />
@@ -60,8 +54,7 @@
             <td align="center">
                 <fieldset>
                     <asp:Button Width="110px" CssClass="bgbutton" ID="Button3" runat="server" Text="新增" onclick="btnNew_Click" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button4" runat="server" Text="禁用" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
-                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button6" runat="server" Text="启用" OnClick="btnActive_OnClick" />
+                    <asp:Button Width="110px" CssClass="bgbutton" ID="Button4" runat="server" Text="删除" OnClick="btnDelete_OnClick" />&nbsp;&nbsp;
                 </fieldset>
             </td>
         </tr>

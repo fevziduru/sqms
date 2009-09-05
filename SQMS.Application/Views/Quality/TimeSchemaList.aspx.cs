@@ -14,20 +14,20 @@ namespace SQMS.Application.Views.Quality
 
     public partial class TimeSchemaList : SQMSPage<TimeSchemaService>
     {
-        private ResourceService srv = null;
+        private TimeSchemaService srv = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                this.gvList.Attributes.Add("SortExpression", "RESID");
+                this.gvList.Attributes.Add("SortExpression", "SCHEMAID");
                 this.gvList.Attributes.Add("SortDirection", "ASC");
             }
         }
 
         protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
         {
-            srv = Service as ResourceService;
+            srv = Service as TimeSchemaService;
         }
 
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
@@ -105,15 +105,20 @@ namespace SQMS.Application.Views.Quality
 
         public void btnDelete_OnClick(object sender, EventArgs e)
         {
+
             try
             {
                 string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
                 for (int i = 0; i < ids.Length; i++)
                 {
-                    Service.DeleteByKey(ids[i]);
+                    //TIMEITEM
+                    srv.TimeItemService.DeleteByCondition("SCHEMAID = '" + ids[i] + "'");
+
+                    //TS
+                    srv.DeleteByKey(ids[i]);
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -124,26 +129,26 @@ namespace SQMS.Application.Views.Quality
             this.gvList.DataBind();
         }
 
-        public void btnActive_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
-                for (int i = 0; i < ids.Length; i++)
-                {
-                    srv.ActiveByKey(ids[i]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //public void btnActive_OnClick(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
+        //        for (int i = 0; i < ids.Length; i++)
+        //        {
+        //            srv.ActiveByKey(ids[i]);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
-            //删除数据后重新加载数据
-            this.ViewData = Service.LoadAll();
-            this.gvList.DataSource = this.ViewData;
-            this.gvList.DataBind();
-        }
+        //    //删除数据后重新加载数据
+        //    this.ViewData = Service.LoadAll();
+        //    this.gvList.DataSource = this.ViewData;
+        //    this.gvList.DataBind();
+        //}
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
