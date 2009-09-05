@@ -12,6 +12,8 @@ namespace SQMS.Application.Views.Quality
 {
         public partial class MonitorPointList : SQMSPage<MonitorPointService>
         {
+                private MonitorPointService srv = null;
+
                 protected void Page_Load(object sender, EventArgs e)
                 {
                         if (!Page.IsPostBack)
@@ -23,12 +25,12 @@ namespace SQMS.Application.Views.Quality
 
                 protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
                 {
-
+                        srv = Service as MonitorPointService;
                 }
 
                 protected override void OnLoadDataEventHandler(object sender, EventArgs e)
                 {
-                        this.ViewData = Service.LoadAll();
+                        this.ViewData = srv.GetListData();//Service.LoadByCondition("organizationid='" + CurrentUser.OrganizationID + "'");
                 }
 
                 protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace SQMS.Application.Views.Quality
                         this.gvList.Attributes["SortExpression"] = sortExpression;
                         this.gvList.Attributes["SortDirection"] = sortDirection;
 
-                        DataView dv = this.ViewData.Tables[0].DefaultView;
+                        DataView dv = this.ViewData.Tables[Service.BOName].DefaultView;
                         dv.Sort = string.Format("{0} {1}", sortExpression, sortDirection);
                         this.gvList.DataSource = dv;
                         this.gvList.DataBind();
@@ -115,7 +117,7 @@ namespace SQMS.Application.Views.Quality
                         }
 
                         //删除数据后重新加载数据
-                        this.ViewData = Service.LoadAll();
+                        this.ViewData = srv.GetListData();
                         this.gvList.DataSource = this.ViewData;
                         this.gvList.DataBind();
                 }

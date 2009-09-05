@@ -15,7 +15,7 @@
     </table>
     <br />
     
-    <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True"
+    <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MPID" OnSorting="gvList_Sorting" PageSize="25"
         EmptyDataText="没有可显示的数据记录。" 
         onrowcommand="gvList_RowCommand" 
@@ -33,7 +33,7 @@
             <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="MPID" 
                 DataNavigateUrlFormatString="/Views/Quality/MonitorPointView.aspx?p=mpview&id={0}" 
                 DataTextField="MPNAME" HeaderText="监控点名称" SortExpression="MPNAME" />
-                
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="IMPORTANCE" HeaderText="重要性" SortExpression="IMPORTANCE" />    
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LONGITUDE" HeaderText="经度" SortExpression="LONGITUDE" />
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LATITUDE" HeaderText="纬度" SortExpression="LATITUDE" />
             

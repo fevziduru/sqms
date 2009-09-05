@@ -182,6 +182,9 @@
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Foundation\SQMSUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,6 +440,41 @@
     </Compile>
     <Compile Include="Views\Components\PopupReference\SelectTemplateField.ascx.designer.cs">
       <DependentUpon>SelectTemplateField.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\EmployeeManagementPart.ascx.cs">
+      <DependentUpon>EmployeeManagementPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\EmployeeManagementPart.ascx.designer.cs">
+      <DependentUpon>EmployeeManagementPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\LatestProjectsPart.ascx.cs">
+      <DependentUpon>LatestProjectsPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\LatestProjectsPart.ascx.designer.cs">
+      <DependentUpon>LatestProjectsPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\LatestQualityDataPart.ascx.cs">
+      <DependentUpon>LatestQualityDataPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\LatestQualityDataPart.ascx.designer.cs">
+      <DependentUpon>LatestQualityDataPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\OrganizationManagementPart.ascx.cs">
+      <DependentUpon>OrganizationManagementPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\OrganizationManagementPart.ascx.designer.cs">
+      <DependentUpon>OrganizationManagementPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\TopScoreQualityPart.ascx.cs">
+      <DependentUpon>TopScoreQualityPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\TopScoreQualityPart.ascx.designer.cs">
+      <DependentUpon>TopScoreQualityPart.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Project\ProjectEdit.aspx.cs">
       <DependentUpon>ProjectEdit.aspx</DependentUpon>
@@ -1057,6 +1095,11 @@
     <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Components\SimpleSmallMap.aspx" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
+    <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
+    <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
+    <Content Include="Views\PortalParts\LatestQualityDataPart.ascx" />
+    <Content Include="Views\PortalParts\OrganizationManagementPart.ascx" />
+    <Content Include="Views\PortalParts\TopScoreQualityPart.ascx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />

@@ -134,6 +134,7 @@
     <Compile Include="Applications\SQMS\HttpHandlers\FrontHandler.cs" />
     <Compile Include="Applications\SQMS\HttpHandlers\FrontHandlerFactory.cs" />
     <Compile Include="Applications\SQMS\HttpModules\PermissionModule.cs" />
+    <Compile Include="Applications\SQMS\IPortalPartService.cs" />
     <Compile Include="Applications\SQMS\PassportPrincipal.cs" />
     <Compile Include="Applications\SQMS\PassportService.cs">
       <SubType>Component</SubType>

@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 using SQMS.Services;
 using System.Data;
 using EasyDev.Util;
+using SQMS.Application.HtmlHelper;
 
 namespace SQMS.Application.Views.Quality
 {
         public partial class MonitorPointEdit : SQMSPage<MonitorPointService>
         {
+                private MonitorPointService srv = null;
+
                 protected void Page_Load(object sender, EventArgs e)
                 {
 
@@ -44,6 +47,7 @@ namespace SQMS.Application.Views.Quality
                                 drMP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                                 drMP["MODIFIEDBY"] = CurrentUser.PassportID;
                                 drMP["ORGANIZATIONID"] = CurrentUser.OrganizationID;
+                                drMP["IMPORTANCE"] = this.ddlImportance.SelectedValue;
                         }
                 }
 
@@ -55,6 +59,7 @@ namespace SQMS.Application.Views.Quality
                 protected override void OnLoadDataEventHandler(object sender, EventArgs e)  //2
                 {
                         this.ViewData = Service.LoadByKey(this.ID, true);
+                        this.ViewData.Merge(srv.EnumService.GetEnumByType("_mp_importance"));
                 }
 
                 /// <summary>
@@ -64,6 +69,8 @@ namespace SQMS.Application.Views.Quality
                 /// <param name="e"></param>
                 protected override void OnInitializeViewEventHandler(object sender, EventArgs e)    //3
                 {
+                        ControlBindingHelper.BindDropDownList(this.ddlImportance, ViewData.Tables[srv.EnumService.BOName], "enumname", "enumid");
+
                         if (this.ID.Length == 0)
                         {
                                 //新增
@@ -91,7 +98,8 @@ namespace SQMS.Application.Views.Quality
                                         this.txtFloatDist.Text = ConvertUtil.ToStringOrDefault(drMP["FLOATDIST"]);
                                         this.txtMapLevel.Text = ConvertUtil.ToStringOrDefault(drMP["MPLEVEL"]);
                                         this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drMP["ISVOID"]).Equals("Y") ? true : false;
-                                }
+                                        this.ddlImportance.Items.FindByValue(ConvertUtil.ToStringOrDefault(drMP["IMPORTANCE"])).Selected = true;
+                                }                              
                         }
                 }
 
@@ -102,7 +110,7 @@ namespace SQMS.Application.Views.Quality
                 /// <param name="e"></param>
                 protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e) //1
                 {
-                        //srv = Service as OperationService;
+                        srv = Service as MonitorPointService;
                 }
 
                 public void btnSave_Click(object sender, EventArgs e)

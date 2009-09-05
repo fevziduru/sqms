@@ -6,10 +6,11 @@ using EasyDev.BL;
 using System.Data;
 using log4net;
 using EasyDev.PL;
+using EasyDev.Applications.SQMS;
 
 namespace SQMS.Services.QualityControl
 {
-        public class ProjectService : GenericService
+        public class ProjectService : GenericService, IPortalPartService
         {
                 private static readonly ILog log = LogManager.GetLogger(typeof(ProjectService));
                 public static readonly string PROJECT_TABLENAME = "PROJECT";
@@ -19,6 +20,7 @@ namespace SQMS.Services.QualityControl
                         this.BOName = "PROJECT";
                         base.Initialize();
                 }
+
                 /// <summary>
                 /// 在当前用户的组织内按负责人取项目列表
                 /// </summary>
@@ -247,5 +249,21 @@ namespace SQMS.Services.QualityControl
                                 throw e;
                         }
                 }
+
+                #region IPortalPartService 成员
+
+                public DataSet GetPortalPartData()
+                {
+                        try
+                        {
+                                return DefaultSession.GetDataSetFromCommand("select * from project p where rownum<=5 order by created desc");
+                        }
+                        catch (Exception e)
+                        {
+                                throw e;
+                        }
+                }
+
+                #endregion
         }
 }
