@@ -32,6 +32,7 @@ namespace SQMS.Application.Views.Quality
                     this.ID = Service.GetNextSequenceID();
                     drTimeSch["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
                     drTimeSch["CREATEDBY"] = CurrentUser.PassportID;
+                    drTimeSch["ORGANIZATIONID"] = CurrentUser.OrganizationID;
                 }
 
                 drTimeSch["SCHEMAID"] = this.ID;
@@ -43,6 +44,97 @@ namespace SQMS.Application.Views.Quality
 
                 drTimeSch["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
                 drTimeSch["MODIFIEDBY"] = CurrentUser.PassportID;
+
+
+                //TIMEITEM
+                DataTable dtTSItems = DataSetUtil.GetDataTableFromDataSet(this.ViewData, srv.TimeItemService.BOName);
+
+                DataRow drItemD;
+                bool isnewTiemItem = false;
+
+                try
+                {
+                    drItemD = dtTSItems.Select("TIMEITEMTYPE = '_qc_type_dynamic'").First();
+                }
+                catch (System.Exception)
+                {
+                    //drItemD = srv.TimeItemService.Create();
+                    drItemD = dtTSItems.NewRow();
+
+                    drItemD["TIMEITEMID"] = srv.TimeItemService.GetNextSequenceID();
+
+                    drItemD["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    drItemD["CREATEDBY"] = CurrentUser.PassportID;
+                    drItemD["ORGANIZATIONID"] = CurrentUser.OrganizationID;
+
+                    drItemD["TIMEITEMTYPE"] = "_qc_type_dynamic";
+                    drItemD["SCHEMAID"] = this.ID;
+
+                    drItemD["TIMESPOT"] = "00:00";
+
+                    drItemD["TIMESPAN"] = this.tbTIMESPAN.Text;
+                    drItemD["TIMES"] = this.tbTIMESPOT.Text;
+
+                    drItemD["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    drItemD["MODIFIEDBY"] = CurrentUser.PassportID;
+
+                    isnewTiemItem = true;
+                    dtTSItems.Rows.Add(drItemD);
+
+                }
+
+                drItemD["TIMEITEMTYPE"] = "_qc_type_dynamic";
+                drItemD["SCHEMAID"] = this.ID;
+
+                drItemD["TIMESPOT"] = "00:00";
+
+                drItemD["TIMESPAN"] = this.tbTIMESPAN.Text;
+                drItemD["TIMES"] = this.tbTIMESPOT.Text;
+
+                drItemD["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                drItemD["MODIFIEDBY"] = CurrentUser.PassportID;
+
+
+                //todo:添加数据
+                string[] times =  Request.Form["time"].ToString().Split(',');
+                this.srv.TimeItemService.DeleteByCondition("SCHEMAID = '" + this.ID + "' and TIMEITEMTYPE = '_qc_type_normal'");
+                foreach (string time in times)
+                { 
+                    if (time != "" )
+                    {
+                        //todo:保存
+                        isnewTiemItem = true;
+
+                        DataRow drItemN = dtTSItems.NewRow();
+
+                        drItemN["TIMEITEMID"] = srv.TimeItemService.GetNextSequenceID();
+                        drItemN["CREATED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                        drItemN["CREATEDBY"] = CurrentUser.PassportID;
+                        drItemN["ORGANIZATIONID"] = CurrentUser.OrganizationID;
+
+                        drItemN["TIMEITEMTYPE"] = "_qc_type_normal";
+                        drItemN["SCHEMAID"] = this.ID;
+
+                        drItemN["TIMESPOT"] = time;
+
+                        drItemN["TIMESPAN"] = -1;
+                        drItemN["TIMES"] = -1;
+
+                        drItemN["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
+                        drItemN["MODIFIEDBY"] = CurrentUser.PassportID;
+
+                        dtTSItems.Rows.Add(drItemN);
+
+                    }
+                }
+
+
+                if (isnewTiemItem)
+                {                   
+                    //???
+                    this.ViewData.Merge(dtTSItems);
+                }
+                
             }
         }
 
@@ -54,7 +146,7 @@ namespace SQMS.Application.Views.Quality
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)  //2
         {
             this.ViewData = this.srv.LoadByKey(this.ID, true);
-            this.ViewData.Merge(this.srv.TimeItemService.LoadByCondition("SCHEMAID = " + this.ID));
+            this.ViewData.Merge(this.srv.TimeItemService.LoadByCondition("SCHEMAID = '" + this.ID + "'"));
         }
 
         /// <summary>
@@ -71,22 +163,40 @@ namespace SQMS.Application.Views.Quality
             else
             {
                 //编辑
-                DataRow drTimeSch = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
+                DataRow drTimeSch = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, srv.BOName);
                 if (drTimeSch != null)
                 {
-                    //this.txtEquCode.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUCODE"]);
-                    //this.txtEquName.Text = ConvertUtil.ToStringOrDefault(drEqu["EQUNAME"]);
-                    //this.txtEquIdentity.Text = ConvertUtil.ToStringOrDefault(drEqu["IDENTIFY"]);
-                    //this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drEqu["ISVOID"]).Equals("Y") ? true : false;
-                    //this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drEqu["MEMO"]);
-
                     this.tbSCHEMANAME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["SCHEMANAME"]);
                     this.tbBEGINTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["BEGINTIME"]);
                     this.tbENDTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["ENDTIME"]);
                     this.tbFLOATTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["FLOATTIME"]); 
-
-
                 }
+
+                DataTable dtTSItems = DataSetUtil.GetDataTableFromDataSet(this.ViewData, srv.TimeItemService.BOName);
+                int tscount = 0;
+                foreach (DataRow drItem in dtTSItems.Rows)
+                {
+                    switch (ConvertUtil.ToStringOrDefault(drItem["TIMEITEMTYPE"]))
+                    {
+                        //_qc_type_normal
+                        case "_qc_type_normal":
+                            //todo:显示数据
+                            //drItemD["TIMESPOT"] = "00:00";
+                            tscount ++;
+                            this.lblTIMESPOTS.Text += "<tr><td>关键时间点：<input type='text' id='jk_time" + tscount + "' name='time' value = '" + ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"])  + "' autocomplete='off'></input><div id='time" + tscount + "_picker' class=''></div></td></tr>";
+                            break;
+                        //_qc_type_dynamic
+                        case "_qc_type_dynamic":
+                            this.tbTIMESPAN.Text = ConvertUtil.ToStringOrDefault(drItem["TIMESPAN"]);
+                            this.tbTIMESPOT.Text = ConvertUtil.ToStringOrDefault(drItem["TIMES"]);
+                            break;
+
+                        default: break;
+                    }
+                }
+
+                this.lblTIMESPOTS.Text += "<div id='ts_count' count=" + tscount + "></div>";
+
             }
         }
 
@@ -106,7 +216,8 @@ namespace SQMS.Application.Views.Quality
             try
             {
                 this.GetViewData();
-                this.Service.Save(this.ViewData);
+                this.srv.Save(this.ViewData);
+                this.srv.TimeItemService.Save(this.ViewData);
             }
             catch (Exception ex)
             {
@@ -121,7 +232,8 @@ namespace SQMS.Application.Views.Quality
             try
             {
                 this.GetViewData();
-                this.Service.Save(this.ViewData);
+                this.srv.Save(this.ViewData);
+                this.srv.TimeItemService.Save(this.ViewData);
             }
             catch (Exception ex)
             {
