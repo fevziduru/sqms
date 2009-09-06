@@ -214,6 +214,13 @@
     <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.designer.cs">
       <DependentUpon>QualityInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AjaxServices\QualityControl\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -305,6 +312,13 @@
     </Compile>
     <Compile Include="Views\Components\ImagePipe.aspx.designer.cs">
       <DependentUpon>ImagePipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\MapVideo.ascx.cs">
+      <DependentUpon>MapVideo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Components\MapVideo.ascx.designer.cs">
+      <DependentUpon>MapVideo.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\OperationBar.ascx.cs">
       <DependentUpon>OperationBar.ascx</DependentUpon>
@@ -1062,6 +1076,7 @@
     <Content Include="Resources\Scripts\Common\main.js" />
     <Content Include="Resources\Scripts\Controls\Calendar.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Map.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\MapVideo.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
@@ -1082,6 +1097,7 @@
     <Content Include="Resources\Scripts\Controls\LightBox2\prototype.js" />
     <Content Include="Resources\Scripts\Controls\LightBox2\scriptaculous.js" />
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
+    <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
@@ -1095,6 +1111,7 @@
     <Content Include="Views\Basedata\RoleAssignmentEdit.aspx" />
     <Content Include="Views\Common\Portal.aspx" />
     <Content Include="Views\Components\ImagePipe.aspx" />
+    <Content Include="Views\Components\MapVideo.ascx" />
     <Content Include="Views\Components\OperationBar.ascx" />
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />

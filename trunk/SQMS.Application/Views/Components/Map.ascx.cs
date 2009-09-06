@@ -37,8 +37,12 @@ namespace SQMS.Application.Views.Components
 
         protected void Page_Load(object sender, EventArgs e)
         {
-                initLatLng = new LatLng(Convert.ToDecimal(ConvertUtil.ToStringOrDefault(Request.QueryString["lat"])), 
-                        Convert.ToDecimal(ConvertUtil.ToStringOrDefault(Request.QueryString["lng"])));
+            decimal initLat = ConvertUtil.ToLat(ConvertUtil.ToStringOrDefault(Request.QueryString["lat"]));
+            decimal initLng = ConvertUtil.ToLng(ConvertUtil.ToStringOrDefault(Request.QueryString["lng"]));
+            if(initLat != 0 && initLng != 0)
+            {
+                initLatLng = new LatLng(initLat,initLng);
+            }
         }
     }
 }
