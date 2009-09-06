@@ -1124,7 +1124,6 @@
     <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AjaxServices\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
     <Folder Include="Templates\" />
