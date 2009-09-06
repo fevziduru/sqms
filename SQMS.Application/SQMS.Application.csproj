@@ -168,6 +168,21 @@
       <DependentUpon>ROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Config\Schema\TIME1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIME.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\TIMEITEM1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\TIMESCHEMA1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\USERROLE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -553,6 +568,27 @@
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\TimeSchemaEdit.aspx.cs">
+      <DependentUpon>TimeSchemaEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TimeSchemaEdit.aspx.designer.cs">
+      <DependentUpon>TimeSchemaEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\TimeSchemaList.aspx.cs">
+      <DependentUpon>TimeSchemaList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TimeSchemaList.aspx.designer.cs">
+      <DependentUpon>TimeSchemaList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\TimeSchemaView.aspx.cs">
+      <DependentUpon>TimeSchemaView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TimeSchemaView.aspx.designer.cs">
+      <DependentUpon>TimeSchemaView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Road\RoadEdit.aspx.cs">
       <DependentUpon>RoadEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -651,81 +687,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\EasyDev.Resources.Config" />
-    <Content Include="Resources\CSS\Controls\JSONTree\DragDropStyle.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\CSS\Controls\JSONTree\JSONTreeStyle.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\branch_line.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\common\folderclose.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\common\folderopen.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\common\leaf.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\common\mydoc.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\common\root.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\dot\branch.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\dot\turning.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\dot\vertical.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\last_node.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\solid\branch.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\solid\turning.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\solid\vertical.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\standard\line.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\standard\lineang.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\standard\lineints.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\standard\minus_node.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\standard\plus_node.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\JSONTree\vertical_line.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Controls\JSONTree\DragDrop.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Controls\JSONTree\EventHandlers.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Controls\JSONTree\JSONTree.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Controls\JSONTree\Util.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyDev\EasyDev.csproj">
@@ -953,6 +914,39 @@
       <DependentUpon>ROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Config\Schema\TIME.xsc">
+      <DependentUpon>TIME.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIME.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIME1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIME.xss">
+      <DependentUpon>TIME.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xsc">
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIMEITEM1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xss">
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xsc">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIMESCHEMA1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xss">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+    </None>
     <None Include="Config\Schema\USERROLE.xsc">
       <DependentUpon>USERROLE.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -981,33 +975,12 @@
     <Content Include="Web.sitemap" />
     <Content Include="error.htm" />
     <Content Include="Views\External\ErrorPage.aspx" />
-    <Content Include="Resources\CSS\Controls\Calendar\Calendar.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\Calendar\calendar.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Controls\Calendar\calendar.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Common\cookie.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Common\main.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\Controls\Calendar.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Views\AjaxServices\QualityControl\MonitorPoint.aspx" />
     <Content Include="Views\Basedata\EmployeeEdit.aspx" />
     <Content Include="Views\Basedata\EmployeeList.aspx" />
     <Content Include="Views\Basedata\EmployeeView.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Masters\Main.Master" />
-    <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Views\Basedata\OperationEdit.aspx" />
     <Content Include="Views\Basedata\OperationList.aspx" />
     <Content Include="Views\Basedata\OperationView.aspx" />
@@ -1052,7 +1025,31 @@
     <Content Include="QualityData\t6\_t6_20090814181640.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\CSS\Controls\Calendar\Calendar.css" />
+    <Content Include="Resources\CSS\Controls\JSONTree\DragDropStyle.css" />
+    <Content Include="Resources\CSS\Controls\JSONTree\JSONTreeStyle.css" />
     <Content Include="Resources\CSS\main.css" />
+    <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
+    <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\branch_line.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\folderclose.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\folderopen.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\leaf.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\mydoc.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\common\root.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\branch.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\turning.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\dot\vertical.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\last_node.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\branch.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\turning.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\solid\vertical.jpg" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\line.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\lineang.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\lineints.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\minus_node.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\standard\plus_node.gif" />
+    <Content Include="Resources\Images\Controls\JSONTree\vertical_line.jpg" />
     <Content Include="Resources\Images\Controls\Map\marker2.png" />
     <Content Include="Resources\Images\GridView\Back.gif" />
     <Content Include="Resources\Images\GridView\header_back.gif" />
@@ -1061,10 +1058,18 @@
     <Content Include="Resources\Images\GridView\PgNext.gif" />
     <Content Include="Resources\Images\GridView\PgPrev.gif" />
     <Content Include="Resources\Images\GridView\plus.gif" />
+    <Content Include="Resources\Scripts\Common\cookie.js" />
+    <Content Include="Resources\Scripts\Common\main.js" />
+    <Content Include="Resources\Scripts\Controls\Calendar.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\Map.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
-    <Content Include="Resources\Scripts\Controls\GoogleMap\Map.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\DragDrop.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\EventHandlers.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\JSONTree.js" />
+    <Content Include="Resources\Scripts\Controls\JSONTree\Util.js" />
     <Content Include="Resources\Scripts\Controls\LightBox2\css\lightbox.css" />
     <Content Include="Resources\Scripts\Controls\LightBox2\effects.js" />
     <Content Include="Resources\Scripts\Controls\LightBox2\images\blank.gif" />
@@ -1110,6 +1115,9 @@
     <Content Include="Views\Quality\QualityAppraisal.aspx" />
     <Content Include="Views\Quality\QualityAppraisalList.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
+    <Content Include="Views\Quality\TimeSchemaEdit.aspx" />
+    <Content Include="Views\Quality\TimeSchemaList.aspx" />
+    <Content Include="Views\Quality\TimeSchemaView.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
     <Content Include="Views\Road\RoadView.aspx" />
