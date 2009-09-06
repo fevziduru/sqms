@@ -224,7 +224,7 @@ namespace SQMS.Application.Views.Quality
                 throw ex;
             }
 
-            Response.Redirect(String.Format("TimeSchemaView.aspx?p=tsview&id={0}", this.ID));
+            Response.Redirect(String.Format("TimeSchemaView.aspx?p=timeschemaview&id={0}", this.ID));
         }
 
         public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -240,7 +240,7 @@ namespace SQMS.Application.Views.Quality
                 throw ex;
             }
 
-            Response.Redirect("TimeSchemaEdit.aspx?p=tsnew");
+            Response.Redirect("TimeSchemaEdit.aspx?p=timeschemanew");
         }
     }
 

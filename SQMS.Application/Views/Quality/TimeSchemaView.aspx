@@ -10,7 +10,7 @@
     
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="TimeSchemaList.aspx?p=tslist">返回到列表</a></td>
+            <td align="right"><a href="TimeSchemaList.aspx?p=timeschemalist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">

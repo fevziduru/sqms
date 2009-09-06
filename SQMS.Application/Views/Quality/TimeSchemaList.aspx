@@ -35,7 +35,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="SCHEMAID" HeaderText="SCHEMAID" ReadOnly="True" SortExpression="SCHEMAID" Visible="False" />
             <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="SCHEMAID" ItemStyle-Width="120" 
-                DataNavigateUrlFormatString="TimeSchemaView.aspx?p=tsedit&id={0}" 
+                DataNavigateUrlFormatString="TimeSchemaView.aspx?p=timeschemaedit&id={0}" 
                 DataTextField="SCHEMANAME" HeaderText="时间模板名称" SortExpression="SCHEMANAME" />
             
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="FLOATTIME" HeaderText="浮动时间"  ItemStyle-Width="200" SortExpression="FLOATTIME" />
