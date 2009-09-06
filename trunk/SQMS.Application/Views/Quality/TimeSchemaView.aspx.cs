@@ -81,17 +81,17 @@ namespace SQMS.Application.Views.Quality
                 throw ex;
             }
 
-            Response.Redirect("TimeSchemaList.aspx?p=tslist");
+            Response.Redirect("TimeSchemaList.aspx?p=timeschemalist");
         }
 
         public void btnEdit_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("TimeSchemaEdit.aspx?p=tsedit&id=" + this.ID);
+            Response.Redirect("TimeSchemaEdit.aspx?p=timeschemaedit&id=" + this.ID);
         }
 
         public void btnNew_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("TimeSchemaEdit.aspx?p=tsnew");
+            Response.Redirect("TimeSchemaEdit.aspx?p=timeschemanew");
         }
     }
 

@@ -56,7 +56,7 @@ namespace SQMS.Application.Views.Quality
                     {
                         DataKey key = this.gvList.DataKeys[Convert.ToInt32(e.CommandArgument)];
                         string id = ConvertUtil.ToStringOrDefault(key.Value);
-                        Response.Redirect("TimeSchemaEdit.aspx?p=tsedit&id=" + id);
+                        Response.Redirect("TimeSchemaEdit.aspx?p=timeschemaedit&id=" + id);
                         break;
                     }
                 case "Sort":
@@ -152,7 +152,7 @@ namespace SQMS.Application.Views.Quality
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("TimeSchemaEdit.aspx?p=tsnew");
+            Response.Redirect("TimeSchemaEdit.aspx?p=timeschemanew");
         }
     }
 

@@ -7,40 +7,39 @@
 	<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery.js"></script>
     <script type="text/javascript" src="../../Resources/Scripts/Controls/Timepicker/timepicker.js"></script>
 
-    <script language="javascript">
+    <script type="text/javascript">
 
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            /*
-            *	Utility functions
-            $.datepicker.setDefaults( settings ) - Set settings for all datepicker instances. 
-            $.datepicker.formatDate( format, date, settings ) - Format a date into a string value with a specified format. 
-            $.datepicker.iso8601Week( date ) - Determine the week of the year for a given date: 1 to 53. 
-            $.datepicker.parseDate( format, value, settings ) - Extract a date from a string value with a specified format. 
-            */
+                    /*
+                    *	Utility functions
+                    $.datepicker.setDefaults( settings ) - Set settings for all datepicker instances. 
+                    $.datepicker.formatDate( format, date, settings ) - Format a date into a string value with a specified format. 
+                    $.datepicker.iso8601Week( date ) - Determine the week of the year for a given date: 1 to 53. 
+                    $.datepicker.parseDate( format, value, settings ) - Extract a date from a string value with a specified format. 
+                    */
 
-            //$.datepicker.setDefaults( { dateFormat: 'hh,D', showOn: 'button', buttonImage: 'calendar.gif', buttonImageOnly: true } );
-            //#tbBEGINTIME , #tbENDTIME'
+                    //$.datepicker.setDefaults( { dateFormat: 'hh,D', showOn: 'button', buttonImage: 'calendar.gif', buttonImageOnly: true } );
+                    //#tbBEGINTIME , #tbENDTIME'
 
-            $('#jk_time').timepicker({
-                showAnim: 'slide',
-                duration: 'fast',
-                defaultTime: new Date(2000, 00, 00, 00, 00, 00)
+                    $('#jk_time').timepicker({
+                            showAnim: 'slide',
+                            duration: 'fast',
+                            defaultTime: new Date(2000, 00, 00, 00, 00, 00)
+                    });
+
+                    var i = $("#ts_count").attr("count");
+                    $('#addTime').click(function() {
+                            i++;
+                            $('#timepoint').append('<tr><td>关键时间点：<input type="text" id="jk_time' + i + '" name="time" autocomplete="off"></input><div id="time' + i + '_picker" class="time_picker_div"></div></td></tr>');
+
+                            $('#jk_time' + i).timepicker({
+                                    showAnim: 'slide',
+                                    duration: 'fast',
+                                    defaultTime: new Date(2000, 00, 00, 00, 00, 00)
+                            });
+                    });
             });
-
-            var i = $("#ts_count").attr("count");        
-            $('#addTime').click(function() {
-                i++;
-                $('#timepoint').append('<tr><td>关键时间点：<input type="text" id="jk_time' + i + '" name="time" autocomplete="off"></input><div id="time' + i + '_picker" class="time_picker_div"></div></td></tr>');
-                
-                $('#jk_time' + i).timepicker({
-                    showAnim: 'slide',
-                    duration: 'fast',
-                    defaultTime: new Date(2000, 00, 00, 00, 00, 00)
-                });
-            });
-
-        });	
        
     </script> 
     
@@ -52,7 +51,7 @@
     
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="TimeSchemaList.aspx?p=tslist">返回到列表</a></td>
+            <td align="right"><a href="TimeSchemaList.aspx?p=timeschemalist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">
