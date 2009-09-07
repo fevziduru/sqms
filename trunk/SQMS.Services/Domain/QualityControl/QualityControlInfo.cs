@@ -37,14 +37,16 @@ namespace SQMS.Services.Domain.QualityControl
         private int qualityLevel;
 
         private string url;
-
+        /// <summary>
+        /// 图片URL
+        /// </summary>
         public string Url
         {
             get { return url; }
             set { url = value; }
         }
         /// <summary>
-        /// 监控数据的质量等级
+        /// 监控数据的质量等级,1-5
         /// </summary>
         public int QualityLevel
         {

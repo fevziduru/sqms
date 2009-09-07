@@ -22,6 +22,15 @@ namespace SQMS.Services.Domain.QualityControl
         private DateTime modified;
         private string modifiedBy;
         private int level = 14;
+        private int lastestQCLevel = 0;
+        /// <summary>
+        /// 获取或设置监控点中最新常态监控数据的质量等级
+        /// </summary>
+        public int LastestQCLevel
+        {
+            get { return lastestQCLevel; }
+            set { lastestQCLevel = value; }
+        }
         /// <summary>
         /// 获取或设置地图缩放等级，监控点只在该监控点该缩放级别上显示
         /// </summary>
