@@ -184,7 +184,7 @@ increment by 1
 cache 20;
 
 -- Create sequence 
-create sequence SEQ_TIMEITME
+create sequence SEQ_TIMEITEM
 minvalue 0
 maxvalue 999999999999999999999999999
 start with 0
