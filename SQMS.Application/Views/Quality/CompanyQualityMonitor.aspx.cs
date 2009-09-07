@@ -141,8 +141,9 @@ namespace SQMS.Application.Views.Quality
                 string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
                 string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
                 string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
+                int qclv = ConvertUtil.ToInt(drPoint["LATESTQCLEVEL"]);
                 LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
-                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + ",true,true);";
+                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + "," + qclv + ",true,true);";
             }
         }
 

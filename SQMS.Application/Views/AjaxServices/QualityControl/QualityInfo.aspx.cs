@@ -69,6 +69,7 @@ namespace SQMS.Application.Views.AjaxServices.QualityControl
                 q.InspectEmpName = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
                 q.ValidStateName = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
                 q.Url = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
+                q.QualityLevel = ConvertUtil.ToInt(dr["QUALITYLEVEL"]);
                 list.Add(q);
             }
             return list;

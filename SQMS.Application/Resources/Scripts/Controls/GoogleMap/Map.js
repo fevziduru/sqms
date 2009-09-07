@@ -97,10 +97,10 @@ function initMap() {
         }
     }
 }
-function setToMarker(mpId, mpName, lat, lng, lv, openInfoWindow, setCenter) {
+function setToMarker(mpId, mpName, lat, lng, lv,qclv, openInfoWindow, setCenter) {
     var m;
     if (!markers[mpId]) {
-        m = createMarker(mpId, mpName, lat, lng, lv);
+        m = createMarker(mpId, mpName, lat, lng, lv,qclv);
         WGMarkerFactory.getMarkerManager().addMarkers([m.gMarker], m.level, WGMarkerFactory.MAX_ZOOM_LEVEL);
         WGMarkerFactory.getMarkerManager().refresh();
     }
@@ -122,13 +122,13 @@ function setToMarker(mpId, mpName, lat, lng, lv, openInfoWindow, setCenter) {
 function openMarkerInfoWindow(m) {
     m.openInfoWindowHtmlTab();
 }
-function createMarker(mpId, mpName, lat, lng, lv) {
+function createMarker(mpId, mpName, lat, lng, lv, qclv) {
     var marker = null;
     if (markers[mpId]) {
         return markers[mpId];
     }
     else {
-        marker = WGMarkerFactory.createWGMarker(mpId, mpName, lat, lng, lv);
+        marker = WGMarkerFactory.createWGMarker(mpId, mpName, lat, lng, lv,qclv);
         markers[mpId] = marker;
     }
     return marker;
@@ -164,7 +164,7 @@ function initMarker(executor, eventArgs) {
                         if (!lvMarkers[i]) {
                             lvMarkers[i] = { level: 14, markers: [] };
                         }
-                        var m = createMarker(mps[i].MonitorPointId, mps[i].MonitorPointName, mps[i].Lat, mps[i].Lng, mps[i].Level);
+                        var m = createMarker(mps[i].MonitorPointId, mps[i].MonitorPointName, mps[i].Lat, mps[i].Lng, mps[i].Level, mps[i].LastestQCLevel);
                         lvMarkers[i].markers.push(m.gMarker);
                         lvMarkers[i].level = m.level;
                     }

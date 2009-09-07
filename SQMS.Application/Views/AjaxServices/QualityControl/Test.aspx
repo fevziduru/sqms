@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <uc:MapVideo ID="MapVideo1" runat="server" AutoPlay="true" ExternVideoUrl="/test.flv" DrawTrace="false" VideoId="A00001" SourceByVideoId="true" />
+    <uc:MapVideo ID="MapVideo1" runat="server" AutoPlay="true" ExternVideoUrl="/test.flv" />
     <script type="text/javascript">
         Sys.Application.add_load(function() {
             MapVideoManager.getInstance("<%=this.MapVideo1.ClientID %>");

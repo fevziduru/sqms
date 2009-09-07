@@ -9,6 +9,7 @@ function WGMarker() {
     this.lat = "";
     this.lng = "";
     this.lv = 14;
+    this.qualityLevel = 0;
 }
 WGMarker.iframeQcNormal = null;
 WGMarker.iframeQcDynamic = null;
@@ -67,12 +68,21 @@ var WGMarkerFactory = {
         }
         return WGMarkerFactory.markerManager;
     },
-    createWGMarker: function(mpId, mpName, lat, lng, lv) {
+    createWGMarker: function(mpId, mpName, lat, lng, lv, qclv) {
         var icon = new GIcon();
-        icon.image = "/Resources/Images/Controls/Map/marker2.png";
-        icon.iconAnchor = new GPoint(6, 32);
-        icon.infoWindowAnchor = new GPoint(16, 0);
-        icon.iconSize = new GSize(32, 32);
+        if (!qclv) {
+            qclv = 0;
+        }
+        var iconImgName = "marker-qclv-";
+        if (qclv > 0) {
+            iconImgName += qclv + ".png";
+        } else {
+            iconImgName = "marker-blank.png";
+        }
+        icon.image = "/Resources/Images/Controls/Map/" + iconImgName;
+        icon.iconAnchor = new GPoint(5, 34);
+        icon.infoWindowAnchor = new GPoint(10, 0);
+        icon.iconSize = new GSize(20, 34);
 
         var m = new WGMarker();
         m.mpId = mpId;
@@ -81,6 +91,7 @@ var WGMarkerFactory = {
         m.lng = lng;
         m.gMap = WGMarkerFactory.gmap;
         m.level = (lv < 1 || lv > 19) ? 14 : lv;
+        m.qualityLevel = qclv;
         m.gMarker = new GMarker(new GLatLng(lat, lng), { icon: icon, title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
         GEvent.addListener(m.gMarker, "infowindowopen", function() {
