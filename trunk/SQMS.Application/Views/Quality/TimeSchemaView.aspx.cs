@@ -32,8 +32,8 @@ namespace SQMS.Application.Views.Quality
             if (drTS != null)
             {
                 this.lblSCHEMANAME.Text = ConvertUtil.ToStringOrDefault(drTS["SCHEMANAME"]);
-                this.lblBEGINTIME.Text = ConvertUtil.ToStringOrDefault(drTS["BEGINTIME"]);
-                this.lblENDTIME.Text = ConvertUtil.ToStringOrDefault(drTS["ENDTIME"]);
+                this.lblBEGINTIME.Text = Convert.ToDateTime(drTimeSch["BEGINTIME"]).ToString("hh:mm:ss");
+                this.lblENDTIME.Text = Convert.ToDateTime(drTimeSch["ENDTIME"]).ToString("hh:mm:ss");
                 this.lblFLOATTIME.Text = ConvertUtil.ToStringOrDefault(drTS["FLOATTIME"]);
             }
 

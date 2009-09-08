@@ -40,8 +40,8 @@ namespace SQMS.Application.Views.Quality
                 drTimeSch["SCHEMAID"] = this.ID;
 
                 drTimeSch["SCHEMANAME"] = this.tbSCHEMANAME.Text;
-                drTimeSch["BEGINTIME"] = this.strBEGINTIME;
-                drTimeSch["ENDTIME"] = this.strENDTIME;
+                drTimeSch["BEGINTIME"] = this.strBEGINTIME = Request.Form["tbBEGINTIME"];
+                drTimeSch["ENDTIME"] = this.strENDTIME = Request.Form["tbENDTIME"];
                 drTimeSch["FLOATTIME"] = this.tbFLOATTIME.Text;
 
                 drTimeSch["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
