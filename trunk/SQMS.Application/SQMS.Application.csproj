@@ -526,6 +526,13 @@
     <Compile Include="Views\Project\ProjectView.aspx.designer.cs">
       <DependentUpon>ProjectView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\DynamicAnchorContent.aspx.cs">
+      <DependentUpon>DynamicAnchorContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\DynamicAnchorContent.aspx.designer.cs">
+      <DependentUpon>DynamicAnchorContent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -581,6 +588,13 @@
     </Compile>
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\StaticAnchorContent.aspx.cs">
+      <DependentUpon>StaticAnchorContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\StaticAnchorContent.aspx.designer.cs">
+      <DependentUpon>StaticAnchorContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quality\TimeSchemaEdit.aspx.cs">
       <DependentUpon>TimeSchemaEdit.aspx</DependentUpon>
@@ -1081,6 +1095,7 @@
     <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />
+    <Content Include="Resources\Scripts\Controls\jquery.js" />
     <Content Include="Resources\Scripts\Controls\JSONTree\DragDrop.js" />
     <Content Include="Resources\Scripts\Controls\JSONTree\EventHandlers.js" />
     <Content Include="Resources\Scripts\Controls\JSONTree\JSONTree.js" />
@@ -1096,6 +1111,15 @@
     <Content Include="Resources\Scripts\Controls\LightBox2\lightbox.js" />
     <Content Include="Resources\Scripts\Controls\LightBox2\prototype.js" />
     <Content Include="Resources\Scripts\Controls\LightBox2\scriptaculous.js" />
+    <Content Include="Resources\Scripts\Controls\TimeBox\TimeBox.js" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\decrease.png" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\increase.png" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\jquery.js" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\screenshot.png" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.css" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.html" />
+    <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.js" />
+    <Content Include="Resources\SimpleVideoPlay.swf" />
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
@@ -1125,6 +1149,7 @@
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />
+    <Content Include="Views\Quality\DynamicAnchorContent.aspx" />
     <Content Include="Views\Quality\MonitorPointEdit.aspx" />
     <Content Include="Views\Quality\MonitorPointList.aspx" />
     <Content Include="Views\Quality\MonitorPointView.aspx" />
@@ -1132,6 +1157,7 @@
     <Content Include="Views\Quality\QualityAppraisal.aspx" />
     <Content Include="Views\Quality\QualityAppraisalList.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
+    <Content Include="Views\Quality\StaticAnchorContent.aspx" />
     <Content Include="Views\Quality\TimeSchemaEdit.aspx" />
     <Content Include="Views\Quality\TimeSchemaList.aspx" />
     <Content Include="Views\Quality\TimeSchemaView.aspx" />

@@ -208,11 +208,11 @@ namespace EasyDev.PL
                                 if (CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
                                     CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                        collection = Regex.Matches(commandText, ":\\w+", RegexOptions.Multiline);
+                                        collection = Regex.Matches(commandText, ":\\w+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
                                 }
                                 else
                                 {
-                                        collection = Regex.Matches(commandText, "@\\w+", RegexOptions.Multiline);
+                                        collection = Regex.Matches(commandText, "@\\w+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
                                 }
 
                                 if (collection.Count == 0)
