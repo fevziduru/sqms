@@ -30,7 +30,7 @@ function showHint(obj) {
 //初始化时间控件
 function InitTimeBox(id, hintMsg, errMsg) {
         var innerHtml = "<div id='" + id + "_main'>";
-        innerHtml += "<input type='text' id='" + id + "' value='' onchange='javascript:checkTime(this)' onblur='javascript:checkTime(this)' onfocus='javascript:showHint(this)' />";
+        innerHtml += "<input type='text' id='" + id + "' value='' name='time' onchange='javascript:checkTime(this)' onblur='javascript:checkTime(this)' onfocus='javascript:showHint(this)' />";
         innerHtml += "<div id='" + id + "_hint' style='margin:0 10;z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;text-align:center;vertical-align:middle'>";
         innerHtml += "<span style='margin:0 10;z-index:1000;font-size:10pt;vertical-align:absmiddle;padding:30;text-align:center'>" + hintMsg + "</span></div>";
         innerHtml += "<div id='" + id + "_errinfo' style='margin:0 10;z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB'>";
