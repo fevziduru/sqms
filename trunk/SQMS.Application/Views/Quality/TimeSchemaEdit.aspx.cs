@@ -15,6 +15,8 @@ namespace SQMS.Application.Views.Quality
     public partial class TimeSchemaEdit : SQMSPage<TimeSchemaService>
     {
         private TimeSchemaService srv;
+        public string strBEGINTIME;
+        public string strENDTIME;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,8 +40,8 @@ namespace SQMS.Application.Views.Quality
                 drTimeSch["SCHEMAID"] = this.ID;
 
                 drTimeSch["SCHEMANAME"] = this.tbSCHEMANAME.Text;
-                drTimeSch["BEGINTIME"] = this.tbBEGINTIME.Text;
-                drTimeSch["ENDTIME"] = this.tbENDTIME.Text;
+                drTimeSch["BEGINTIME"] = this.strBEGINTIME;
+                drTimeSch["ENDTIME"] = this.strENDTIME;
                 drTimeSch["FLOATTIME"] = this.tbFLOATTIME.Text;
 
                 drTimeSch["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
@@ -169,8 +171,8 @@ namespace SQMS.Application.Views.Quality
                 if (drTimeSch != null)
                 {
                     this.tbSCHEMANAME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["SCHEMANAME"]);
-                    this.tbBEGINTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["BEGINTIME"]);
-                    this.tbENDTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["ENDTIME"]);
+                    this.strBEGINTIME = Convert.ToDateTime(drTimeSch["BEGINTIME"]).ToString("hh:mm:ss");
+                    this.strENDTIME = Convert.ToDateTime(drTimeSch["ENDTIME"]).ToString("hh:mm:ss");
                     this.tbFLOATTIME.Text = ConvertUtil.ToStringOrDefault(drTimeSch["FLOATTIME"]); 
                 }
 
@@ -190,7 +192,7 @@ namespace SQMS.Application.Views.Quality
                             
                             this.lblTIMESPOTS.Text += String.Format(
 
-                               @"<div id='txt_main'>
+                               @"<div id='txt{1}_main'>
 	                             <input type='text' id='txt{1}' value='{0}' name='time' onchange='javascript:checkTime(this)' onblur='javascript:checkTime(this)' onfocus='javascript:showHint(this)' />
 	                             <div id='txt{1}_hint' style='z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middl;text-align:center'>
 		                         <span style='font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30'>时间格式为hh24(小时):mm(分钟):ss(秒)</span>
@@ -198,8 +200,7 @@ namespace SQMS.Application.Views.Quality
 	                                <div id='txt{1}_errinfo' style='z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB'>
 		                                <span style='font-size:10pt;vertical-align:absmiddle; padding:30;text-align:center'>时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)</span>
 	                                </div>
-                              </div>", ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"]), tscount);
-
+                              </div>", Convert.ToDateTime(drItem["TIMESPOT"]).ToString("hh:mm:ss"), tscount);
 
                             break;
                         //_qc_type_dynamic
