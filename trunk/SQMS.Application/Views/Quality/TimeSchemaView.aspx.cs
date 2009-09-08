@@ -45,7 +45,7 @@ namespace SQMS.Application.Views.Quality
                     //_qc_type_normal
                     case "_qc_type_normal":
                         //todo:显示数据
-                        this.lblTIMESPANS.Text += String.Format("关键时间点：{0} <br />", ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"]));
+                        this.lblTIMESPANS.Text += String.Format("关键时间点：{0} <br />", Convert.ToDateTime(drItem["TIMESPOT"]).ToString("hh:mm:ss") /*ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"])*/ );
                         break;
                     //_qc_type_dynamic
                     case "_qc_type_dynamic":
