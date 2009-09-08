@@ -5,6 +5,7 @@
     <link href="../../Resources/Scripts/Controls/Timepicker/timepicker.css" type="text/css" rel="Stylesheet" />
     
 	<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery.js"></script>
+    <script type="text/javascript" src="../../Resources/Scripts/Controls/TimeBox/TimeBox.js"></script>
     <script type="text/javascript" src="../../Resources/Scripts/Controls/Timepicker/timepicker.js"></script>
 
     <script type="text/javascript">
@@ -22,23 +23,26 @@
                     //$.datepicker.setDefaults( { dateFormat: 'hh,D', showOn: 'button', buttonImage: 'calendar.gif', buttonImageOnly: true } );
                     //#tbBEGINTIME , #tbENDTIME'
 
-                    $('#jk_time').timepicker({
-                            showAnim: 'slide',
-                            duration: 'fast',
-                            defaultTime: new Date(2000, 00, 00, 00, 00, 00)
-                    });
+//                    $('#jk_time').timepicker({
+//                            showAnim: 'slide',
+//                            duration: 'fast',
+//                            defaultTime: new Date(2000, 00, 00, 00, 00, 00)
+//                    });
 
-                    var i = $("#ts_count").attr("count");
-                    $('#addTime').click(function() {
-                            i++;
-                            $('#timepoint').append('<tr><td>关键时间点：<input type="text" id="jk_time' + i + '" name="time" autocomplete="off"></input><div id="time' + i + '_picker" class="time_picker_div"></div></td></tr>');
+//                    var i = $("#ts_count").attr("count");
+//                    $('#addTime').click(function() {
+//                            i++;
+//                            $('#timepoint').append('<tr><td>关键时间点：<input type="text" id="jk_time' + i + '" name="time" autocomplete="off"></input><div id="time' + i + '_picker" class="time_picker_div"></div></td></tr>');
 
-                            $('#jk_time' + i).timepicker({
-                                    showAnim: 'slide',
-                                    duration: 'fast',
-                                    defaultTime: new Date(2000, 00, 00, 00, 00, 00)
-                            });
-                    });
+//                            $('#jk_time' + i).timepicker({
+//                                    showAnim: 'slide',
+//                                    duration: 'fast',
+//                                    defaultTime: new Date(2000, 00, 00, 00, 00, 00)
+//                            });
+            //                    });
+
+
+
             });
        
     </script> 
@@ -95,9 +99,26 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <input type="button" id="addTime" value="添加关键时间点"></input>
-                </td>
-            </tr>
+                
+                    <span>关键时间点：</span>
+                
+                    <%-- <input type="button" id="addTime" value="添加关键时间点"></input>--%>
+                    <!--动态添加时间控件-->
+                    <input type="button" value="添加关键时间点" onclick="javascript:addTimeBox()">
+          
+                    <!--容纳时间控件的容器，必要-->
+                    <div id="container"></div>
+            
+                    <%-- <div id="txt_main">
+	                    <input type="text" id="txt" value="" name="time" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
+	                    <div id="txt_hint" style="z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middle;text-align:center">
+		                    <span style="font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30">时间格式为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+	                    <div id="txt_errinfo" style="z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB">
+		                    <span style="font-size:10pt;vertical-align:absmiddle; padding:30;text-align:center">时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+                    </div>--%>          
+            
         </table>    
         
          <table id="timepoint" border="0" cellspacing="0" cellpadding="0" width="100%">

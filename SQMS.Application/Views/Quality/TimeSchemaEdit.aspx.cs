@@ -73,6 +73,7 @@ namespace SQMS.Application.Views.Quality
                     drItemD["TIMESPOT"] = "00:00";
 
                     drItemD["TIMESPAN"] = this.tbTIMESPAN.Text;
+                    drItemD["FLOATTIME"] = this.tbFLOATTIME.Text;
                     drItemD["TIMES"] = this.tbTIMESPOT.Text;
 
                     drItemD["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
@@ -89,6 +90,7 @@ namespace SQMS.Application.Views.Quality
                 drItemD["TIMESPOT"] = "00:00";
 
                 drItemD["TIMESPAN"] = this.tbTIMESPAN.Text;
+                drItemD["FLOATTIME"] = this.tbFLOATTIME.Text;
                 drItemD["TIMES"] = this.tbTIMESPOT.Text;
 
                 drItemD["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
@@ -116,8 +118,8 @@ namespace SQMS.Application.Views.Quality
                         drItemN["SCHEMAID"] = this.ID;
 
                         drItemN["TIMESPOT"] = time;
-
                         drItemN["TIMESPAN"] = -1;
+                        drItemN["FLOATTIME"] = this.tbFLOATTIME.Text;
                         drItemN["TIMES"] = -1;
 
                         drItemN["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
@@ -183,7 +185,22 @@ namespace SQMS.Application.Views.Quality
                             //todo:显示数据
                             //drItemD["TIMESPOT"] = "00:00";
                             tscount ++;
-                            this.lblTIMESPOTS.Text += "<tr><td>关键时间点：<input type='text' id='jk_time" + tscount + "' name='time' value = '" + ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"])  + "' autocomplete='off'></input><div id='time" + tscount + "_picker' class=''></div></td></tr>";
+                            
+                            //this.lblTIMESPOTS.Text += "<tr><td>关键时间点：<input type='text' id='jk_time" + tscount + "' name='time' value = '" + ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"])  + "' autocomplete='off'></input><div id='time" + tscount + "_picker' class=''></div></td></tr>";
+                            
+                            this.lblTIMESPOTS.Text += String.Format(
+
+                               @"<div id='txt_main'>
+	                             <input type='text' id='txt{1}' value='{0}' name='time' onchange='javascript:checkTime(this)' onblur='javascript:checkTime(this)' onfocus='javascript:showHint(this)' />
+	                             <div id='txt{1}_hint' style='z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middl;text-align:center'>
+		                         <span style='font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30'>时间格式为hh24(小时):mm(分钟):ss(秒)</span>
+	                          </div>
+	                                <div id='txt{1}_errinfo' style='z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB'>
+		                                <span style='font-size:10pt;vertical-align:absmiddle; padding:30;text-align:center'>时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)</span>
+	                                </div>
+                              </div>", ConvertUtil.ToStringOrDefault(drItem["TIMESPOT"]), tscount);
+
+
                             break;
                         //_qc_type_dynamic
                         case "_qc_type_dynamic":
