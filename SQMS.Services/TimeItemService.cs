@@ -8,13 +8,12 @@ namespace SQMS.Services
 {
         public class TimeItemService : GenericService
         {
-
                 protected override void Initialize()
                 {
                         BOName = "TIMEITEM";
                         base.Initialize();
-
-
                 }
+
+
         }
 }

@@ -19,13 +19,15 @@ namespace SQMS.Services
         public static readonly string QC_TYPE_DYNAMIC = "_qc_type_dynamic";
 
         public EnumerationService EnumService { get; private set; }
+                public TimeItemService TimeItemService { get; private set; }
 
-        protected override void Initialize()
-        {
-            this.BOName = "QUALITY";
-            EnumService = ServiceManager.CreateService<EnumerationService>();
-            base.Initialize();
-        }
+                protected override void Initialize()
+                {
+                        this.BOName = "QUALITY";
+                        EnumService = ServiceManager.CreateService<EnumerationService>();
+                        TimeItemService = ServiceManager.CreateService<TimeItemService>();
+                        base.Initialize();
+                }
 
         #region 获取数据
         /// <summary>
@@ -300,6 +302,94 @@ namespace SQMS.Services
             return dt;
         }
         #endregion
+
+                public DataSet FindQualityData(string mpid, string type, int floattime)
+                {
+                        try
+                        {
+                                try
+                                {
+                                        DataSet ds = null;
+                                        if (type == "__all__")
+                                        {
+                                                ds = DefaultSession.GetDataSetFromCommand(@"select e1.empname emergencyperson,
+                                                                                                                                  e2.empname chargeperson, e3.empname checkperson, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit, o.orgname,t.material,t.created,t.videourl
+                                                                                from quality t
+                                                                                left join employee e1 on t.emergencyperson = e1.empid
+                                                                                left join employee e2 on t.chargeperson = e2.empid
+                                                                                left join employee e3 on t.checkperson = e3.empid
+                                                                                left join organization o on t.workunit = o.orgid
+                                                                                where t.organizationid=:orgid and t.mpid=:mpid and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)", CurrentUser.OrganizationID, mpid, floattime, floattime);
+                                        }
+                                        else
+                                        {
+                                                ds = DefaultSession.GetDataSetFromCommand(@"select e1.empname emergencyperson,
+                                                                                                                                  e2.empname chargeperson, e3.empname checkperson, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit, o.orgname,t.material,t.created,t.videourl
+                                                                                from quality t
+                                                                                left join employee e1 on t.emergencyperson = e1.empid
+                                                                                left join employee e2 on t.chargeperson = e2.empid
+                                                                                left join employee e3 on t.checkperson = e3.empid
+                                                                                left join organization o on t.workunit = o.orgid
+                                                                                where t.organizationid=:orgid and t.type=:type and t.mpid=:mpid and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)",
+                                                                                                                                                                                                                   CurrentUser.OrganizationID, type, mpid, floattime, floattime);
+                                        }
+                                        ds.Tables[0].TableName = BOName;
+                                        return ds;
+                                }
+                                catch (Exception e)
+                                {
+                                        throw e;
+                                }
+                        }
+                        catch (Exception e)
+                        {
+                                throw e;
+                        }
+                }
+
+                public DataSet FindQualityVideoData(string mpid, string type, int floattime)
+                {
+                        try
+                        {
+                                try
+                                {
+                                        DataSet ds = null;
+                                        if (type == "__all__")
+                                        {
+                                                ds = DefaultSession.GetDataSetFromCommand(@"select e1.empname emergencyperson,
+                                                                                                                                  e2.empname chargeperson, e3.empname checkperson, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit, o.orgname,t.material,t.created,t.videourl
+                                                                                from quality t
+                                                                                left join employee e1 on t.emergencyperson = e1.empid
+                                                                                left join employee e2 on t.chargeperson = e2.empid
+                                                                                left join employee e3 on t.checkperson = e3.empid
+                                                                                left join organization o on t.workunit = o.orgid
+                                                                                where  length(t.videourl) > 0 and  t.organizationid=:orgid and t.mpid=:mpid and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)", CurrentUser.OrganizationID, mpid, floattime, floattime);
+                                        }
+                                        else
+                                        {
+                                                ds = DefaultSession.GetDataSetFromCommand(@"select e1.empname emergencyperson,
+                                                                                                                                  e2.empname chargeperson, e3.empname checkperson, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit, o.orgname,t.material,t.created,t.videourl
+                                                                                from quality t
+                                                                                left join employee e1 on t.emergencyperson = e1.empid
+                                                                                left join employee e2 on t.chargeperson = e2.empid
+                                                                                left join employee e3 on t.checkperson = e3.empid
+                                                                                left join organization o on t.workunit = o.orgid
+                                                                                where  length(t.videourl) > 0 and  t.organizationid=:orgid and t.type=:type and t.mpid=:mpid and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)",
+                                                                                                                                                                                                                   CurrentUser.OrganizationID, type, mpid, floattime, floattime);
+                                        }
+                                        ds.Tables[0].TableName = BOName+"_Video";
+                                        return ds;
+                                }
+                                catch (Exception e)
+                                {
+                                        throw e;
+                                }
+                        }
+                        catch (Exception e)
+                        {
+                                throw e;
+                        }
+                }
 
         public DataTable FindQualityData(string mpid, string type)
         {
