@@ -78,12 +78,28 @@
             </tr>
             <tr> 
                 <td>
-                开始时间：<asp:TextBox ID="tbBEGINTIME" runat="server"></asp:TextBox>
+                        <div id="txt100_main">
+	                    开始时间：<input type="text" id="txt100" value="<% = strBEGINTIME %>" name="tbBEGINTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
+	                    <div id="txt100_hint" style="z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middle;text-align:center">
+		                    <span style="font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30">时间格式为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+	                    <div id="txt100_errinfo" style="z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB">
+		                    <span style="font-size:10pt;vertical-align:absmiddle; padding:30;text-align:center">时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+	                    
                 </td>
             </tr>
             <tr>
                 <td>
-                结束时间：<asp:TextBox ID="tbENDTIME" runat="server"></asp:TextBox>
+                        <div id="txt101_main">
+	                    结束时间：<input type="text" id="txt101" value="<% = strENDTIME %>" name="tbENDTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
+	                    <div id="txt101_hint" style="z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middle;text-align:center">
+		                    <span style="font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30">时间格式为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+	                    <div id="txt101_errinfo" style="z-index:1000;display:none;position:absolute;border:#ff0000 1px solid;background-color:#FFEDDB">
+		                    <span style="font-size:10pt;vertical-align:absmiddle; padding:30;text-align:center">时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)</span>
+	                    </div>
+	                    
                 </td>
             </tr>
             <tr>

@@ -41,24 +41,6 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.TextBox tbSCHEMANAME;
         
         /// <summary>
-        /// tbBEGINTIME control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBEGINTIME;
-        
-        /// <summary>
-        /// tbENDTIME control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbENDTIME;
-        
-        /// <summary>
         /// tbFLOATTIME control.
         /// </summary>
         /// <remarks>
