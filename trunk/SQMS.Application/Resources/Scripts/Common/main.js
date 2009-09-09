@@ -62,7 +62,7 @@ function popup(textfieldid, valuefieldid, textFieldName, keyFieldName, headerCol
         document.getElementById(textfieldid),
         "dialogWidth=800px;dialogHeight=600px");
         if (result != null) {
-                document.getElementById(valuefieldid).value = result['<%=KeyField %>'];
-                document.getElementById(textfieldid).value = result['<%=TextField %>'];
+                document.getElementById(valuefieldid).value = result[keyField];
+                document.getElementById(textfieldid).value = result[textField];
         }
 }
