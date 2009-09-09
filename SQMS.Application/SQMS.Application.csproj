@@ -589,12 +589,12 @@
     <Compile Include="Views\Quality\SanitationOfficeMonitor.aspx.designer.cs">
       <DependentUpon>SanitationOfficeMonitor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Quality\StaticAnchorContent.aspx.cs">
-      <DependentUpon>StaticAnchorContent.aspx</DependentUpon>
+    <Compile Include="Views\Quality\AnchorContent.aspx.cs">
+      <DependentUpon>AnchorContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Quality\StaticAnchorContent.aspx.designer.cs">
-      <DependentUpon>StaticAnchorContent.aspx</DependentUpon>
+    <Compile Include="Views\Quality\AnchorContent.aspx.designer.cs">
+      <DependentUpon>AnchorContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quality\TimeSchemaEdit.aspx.cs">
       <DependentUpon>TimeSchemaEdit.aspx</DependentUpon>
@@ -1157,7 +1157,7 @@
     <Content Include="Views\Quality\QualityAppraisal.aspx" />
     <Content Include="Views\Quality\QualityAppraisalList.aspx" />
     <Content Include="Views\Quality\SanitationOfficeMonitor.aspx" />
-    <Content Include="Views\Quality\StaticAnchorContent.aspx" />
+    <Content Include="Views\Quality\AnchorContent.aspx" />
     <Content Include="Views\Quality\TimeSchemaEdit.aspx" />
     <Content Include="Views\Quality\TimeSchemaList.aspx" />
     <Content Include="Views\Quality\TimeSchemaView.aspx" />

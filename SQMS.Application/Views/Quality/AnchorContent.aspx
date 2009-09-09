@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaticAnchorContent.aspx.cs"
-        Inherits="SQMS.Application.Views.Quality.StaticAnchorContent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AnchorContent.aspx.cs"
+        Inherits="SQMS.Application.Views.Quality.AnchorContent" %>
 
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="EasyDev.Util" %>

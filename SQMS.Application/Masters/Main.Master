@@ -47,6 +47,7 @@
                         <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
                     <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span><a href="/Views/Common/Portal.aspx?p=__pub__">主页</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
                     <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;<%--|&nbsp;&nbsp;
                     <a href="javascript:switchFullScreen();">Full</a>&nbsp;&nbsp;--%>
                   <%--  <input type="button" style="width:20;height:20"

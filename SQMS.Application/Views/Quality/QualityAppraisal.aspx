@@ -58,17 +58,17 @@
         <tr>
                 <td>采集点视频：</td>
                 <td colspan="3">
-                 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="320"
-                            height="280" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-                            <param name="movie" value="../../Resources/Scripts/Controls/GoogleMap/VideoPlayer/MapVideo.swf" />
-                            <param name="quality" value="high" />
-                            <param name="bgcolor" value="#869ca7" />
-                            <param name="allowScriptAccess" value="sameDomain" />
-                            <embed src="../../Resources/Scripts/Controls/GoogleMap/VideoPlayer/MapVideo.swf"
-                                quality="high" bgcolor="#869ca7" width="320" height="280" name="MapVideo" align="middle"
-                                play="true" loop="false" quality="high" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"
-                                pluginspage=" http://www.adobe.com/go/getflashplayer"></embed>
-                        </object><br />
+                 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="280"
+                     height="180" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
+                    <param name="movie" value="../../Resources/SimpleVideoPlay.swf?file=<%=videoUrl%>" />
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#869ca7" />                                                            
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <embed src="../../Resources/SimpleVideoPlay.swf?file=<%=videoUrl%>"
+                        quality="high" bgcolor="#869ca7" width="250" height="180" name="MapVideo" align="middle"
+                        play="true" loop="false" quality="high" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"
+                        pluginspage=" http://www.adobe.com/go/getflashplayer"></embed>
+                </object><br />
                         <asp:HyperLink ID="hlVideo" runat="server"></asp:HyperLink>
                 </td>
         </tr>
