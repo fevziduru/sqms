@@ -83,6 +83,7 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
                 mp.RoadId = "";
                 mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
                 mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
+                mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);
                 list.Add(mp);
             }
             return list;

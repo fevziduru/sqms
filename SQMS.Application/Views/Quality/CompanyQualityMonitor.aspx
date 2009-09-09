@@ -64,7 +64,7 @@
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="片区监控点">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LnkBtnMPName" runat="server" Text='<%#Eval("MPNAME") %>' OnCommand="lnkBtnMP_Command"
-                                            CommandArgument='<%#Eval("MPID") %>' OnClientClick='setToMarker("<%#Eval("MPID") %>","<%#Eval("MPNAME") %>",<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>,<%#Eval("MPLEVEL") %>,true,true)'></asp:LinkButton>
+                                            CommandArgument='<%#Eval("MPID") %>' OnClientClick='setToMarker("<%#Eval("MPID") %>","<%#Eval("MPNAME") %>",<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>,<%#Eval("MPLEVEL") %>,true,true,{isStart:"<%# Eval("ISSTART") %>"})'></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="EMPNAME" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />

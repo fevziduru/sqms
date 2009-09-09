@@ -10,12 +10,14 @@ function WGMarker() {
     this.lng = "";
     this.lv = 14;
     this.qualityLevel = 0;
+    this.isStart = false;
+    this.isEnd = false;
 }
 WGMarker.iframeQcNormal = null;
 WGMarker.iframeQcDynamic = null;
 WGMarker.prototype.onClick = function() {
     //this.gMap.setCenter(this.gMarker.getLatLng(), this.gMap.getZoom());
-    this.openInfoWindowHtmlTab();
+    this.openInfoWindowHtml();
 }
 
 WGMarker.prototype.openInfoWindowHtmlTab = function() {
@@ -28,7 +30,16 @@ WGMarker.prototype.openInfoWindowHtmlTab = function() {
     this.gMarker.openInfoWindowTabs([tab1, tab2], { pixelOffset: 0, maxWidth: 500, maxContent: $get("divMaxInfoWindowContent"), maxTitle: $get("maxInfoWindowTitle") });
     currentClickedMarker = this;
 }
-
+WGMarker.prototype.openInfoWindowHtml = function() {
+    var html = "";
+    if (this.isStart) {
+        html = this.getInfoHtml("_qc_type_dynamic");
+    } else {
+        html = this.getInfoHtml("_qc_type_normal");
+    }
+    this.gMarker.openInfoWindowHtml(html, { pixelOffset: 0, maxWidth: 500, maxContent: $get("divMaxInfoWindowContent"), maxTitle: $get("maxInfoWindowTitle") });
+    currentClickedMarker = this;
+}
 WGMarker.prototype.getInfoHtml = function(qcType) {
     var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
     return html;
@@ -68,7 +79,7 @@ var WGMarkerFactory = {
         }
         return WGMarkerFactory.markerManager;
     },
-    createWGMarker: function(mpId, mpName, lat, lng, lv, qclv) {
+    createWGMarker: function(mpId, mpName, lat, lng, lv, qclv, mpFields) {
         var icon = new GIcon();
         if (!qclv) {
             qclv = 0;
@@ -92,6 +103,7 @@ var WGMarkerFactory = {
         m.gMap = WGMarkerFactory.gmap;
         m.level = (lv < 1 || lv > 19) ? 14 : lv;
         m.qualityLevel = qclv;
+        m.isStart = (mpFields && mpFields.isStart && (mpFields.isStart == true || mpFields.isStart == "Y")) ? true : false;
         m.gMarker = new GMarker(new GLatLng(lat, lng), { icon: icon, title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
         GEvent.addListener(m.gMarker, "infowindowopen", function() {

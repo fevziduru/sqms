@@ -201,7 +201,7 @@ namespace SQMS.Services
                 }
                 public DataTable GetLatestQualityControlInfo(string mpId, string qcType)
                 {
-                        string sql = @"SELECT * FROM (" + this.getQualityMainSql() + @" WHERE Q.MPID = '" + mpId + "' "
+                    string sql = @"SELECT * FROM (" + this.getQualityMainSql() + @" WHERE Q.MPID = '" + mpId + "' "
                                + ((!String.IsNullOrEmpty(qcType)) ? "AND Q.TYPE='" + qcType + "' " : "")
                                + " AND Q.organizationid = '" + this.CurrentUser.OrganizationID + "' "
                                + " ORDER BY Q.CREATED DESC) WHERE ROWNUM = 1";
@@ -444,8 +444,11 @@ namespace SQMS.Services
                            M.LONGITUDE,
                            M.LATITUDE,
                            M.MEMO,
+                           M.MEMO AS MPMEMO,
                            M.CREATED,
                            M.CREATEDBY,
+                           M.ISSTART,
+                           M.ISEND,
                            E4.EMPNAME AS CREATEDBYNAME,
                            M.MODIFIED,
                            M.MODIFIEDBY,
@@ -460,6 +463,9 @@ namespace SQMS.Services
                            T.BEGINTIME,
                            T.ENDTIME,
                            R.ROADNAME,
+                           R.ROADCODE,
+                           R.MEMO AS ROADMEMO,
+                           ENUM3.ENUMNAME AS ROADTYPE,
                            P.PROJECTNAME
                   FROM MPASSIGNMENT M
                   LEFt JOIN EMPLOYEE E3 ON E3.EMPID = M.MODIFIEDBY AND E3.organizationid='" + this.CurrentUser.OrganizationID + @"'
@@ -467,12 +473,13 @@ namespace SQMS.Services
                   LEFT JOIN ROAD R ON R.ROADID = M.ROADID AND R.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
                   LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID AND P.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
                   LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID AND E.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
-                  LEFT JOIN TIMESCHEMA T ON T.SCHEMAID = M.SCHEMAID AND T.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'";
+                  LEFT JOIN TIMESCHEMA T ON T.SCHEMAID = M.SCHEMAID AND T.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
+                  LEFT JOIN ENUMERATION ENUM3 ON ENUM3.ENUMID = R.ROADTYPE";
                 }
 
                 private string getQualityMainSql()
                 {
-                        return @"SELECT Q.MEMO,
+                    return @"SELECT Q.MEMO,
                            Q.CREATED,
                            Q.CREATEDBY,
                            E4.EMPNAME AS CREATEDBYNAME,
@@ -499,7 +506,14 @@ namespace SQMS.Services
                            ROUND(Q.LATITUDE, 4) AS LATITUDE,
                            Q.TYPE,
                            ENUM2.ENUMNAME AS QCTYPE,
-                           Q.QUALITYLEVEL
+                           Q.QUALITYLEVEL,
+                           P.PROJECTNAME,
+                           R.ROADNAME,
+                           M.MEMO AS MPMEMO,
+                           M.MPCODE,
+                           R.ROADCODE,
+                           ENUM3.ENUMNAME AS ROADTYPE,
+                           R.MEMO AS ROADMEMO
                       FROM QUALITY Q
                       LEFT JOIN EMPLOYEE E1 ON E1.EMPID = Q.CHARGEPERSON AND E1.organizationid='" + this.CurrentUser.OrganizationID + @"'
                       LEFT JOIN EMPLOYEE E2 ON E2.EMPID = Q.EMERGENCYPERSON AND E2.organizationid='" + this.CurrentUser.OrganizationID + @"'
@@ -507,8 +521,11 @@ namespace SQMS.Services
                       LEFt JOIN EMPLOYEE E4 ON E4.EMPID = Q.CREATEDBY AND E4.organizationid='" + this.CurrentUser.OrganizationID + @"'
                       LEFT JOIN ORGANIZATION O ON O.ORGID = Q.WORKUNIT AND O.organizationid='" + this.CurrentUser.OrganizationID + @"'
                       LEFT JOIN MPASSIGNMENT M ON M.MPID = Q.MPID AND M.organizationid='" + this.CurrentUser.OrganizationID + @"'
+                      LEFT JOIN PROJECT P ON M.MPID = P.PROJECTID AND P.organizationid='" + this.CurrentUser.OrganizationID + @"'
                       LEFT JOIN ENUMERATION ENUM1 ON ENUM1.ENUMID = Q.STATUS 
-                      LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE";
+                      LEFT JOIN ENUMERATION ENUM2 ON ENUM2.ENUMID = Q.TYPE
+                      LEFT JOIN ROAD R ON R.ROADID = Q.ROADID AND R.organizationid='" + this.CurrentUser.OrganizationID + @"'
+                      LEFT JOIN ENUMERATION ENUM3 ON ENUM3.ENUMID = R.ROADTYPE";
                 }
 
                 private string getVideoMainSql()
