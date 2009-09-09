@@ -82,6 +82,23 @@ namespace SQMS.Application.Views.Quality
             {
                 //读取监控点
                 DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
+                DataRow[] searched = dtPoint.Select("ISSTART='Y'");
+                
+                DataRow drStartPoint = null;
+                if (searched.Length > 0)
+                {
+                    drStartPoint = searched[0];
+                }
+                else if(dtPoint.Rows.Count > 0)
+                {
+                    drStartPoint = dtPoint.Rows[0];
+                }
+                if (null != drStartPoint)
+                {
+                    string js = @"setToMarker('"+drStartPoint["MPID"]+"','"+drStartPoint["MPNAME"] +"',"+drStartPoint["LATITUDE"]+","+drStartPoint["LONGITUDE"]+","+drStartPoint["MPLEVEL"]+",0,true,true,{isStart:true});";
+                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(),"setToStart", js, true);
+                }
+                
                 this.bindMonitorPointTable(dtPoint);
             }
             this.TreeViewProject.SelectedNode.Expand();
@@ -142,8 +159,9 @@ namespace SQMS.Application.Views.Quality
                 string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
                 string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
                 int qclv = ConvertUtil.ToInt(drPoint["LATESTQCLEVEL"]);
+                string isStart = ConvertUtil.ToStringOrDefault(drPoint["isstart"]);
                 LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
-                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + "," + qclv + ",true,true);";
+                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + "," + qclv + ",true,true,{isStart:'" + isStart + "'});";
             }
         }
 

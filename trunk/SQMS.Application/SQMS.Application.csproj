@@ -178,6 +178,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TIMEITEM.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\TIMESCHEMA.cs">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Config\Schema\TIMESCHEMA1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

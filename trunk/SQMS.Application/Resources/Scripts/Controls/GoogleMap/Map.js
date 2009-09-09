@@ -97,10 +97,11 @@ function initMap() {
         }
     }
 }
-function setToMarker(mpId, mpName, lat, lng, lv,qclv, openInfoWindow, setCenter) {
+
+function setToMarker(mpId, mpName, lat, lng, lv,qclv, openInfoWindow, setCenter,mpFields) {
     var m;
     if (!markers[mpId]) {
-        m = createMarker(mpId, mpName, lat, lng, lv,qclv);
+        m = createMarker(mpId, mpName, lat, lng, lv, qclv, mpFields);
         WGMarkerFactory.getMarkerManager().addMarkers([m.gMarker], m.level, WGMarkerFactory.MAX_ZOOM_LEVEL);
         WGMarkerFactory.getMarkerManager().refresh();
     }
@@ -111,6 +112,7 @@ function setToMarker(mpId, mpName, lat, lng, lv,qclv, openInfoWindow, setCenter)
     if (setCenter == true) {
         map.setCenter(m.gMarker.getLatLng(), m.level);
     }
+
     if (openInfoWindow) {
         window.setTimeout(function() { openMarkerInfoWindow(m); });
     }
@@ -120,15 +122,15 @@ function setToMarker(mpId, mpName, lat, lng, lv,qclv, openInfoWindow, setCenter)
     lastLatLngCookie.store(365);
 }
 function openMarkerInfoWindow(m) {
-    m.openInfoWindowHtmlTab();
+    m.openInfoWindowHtml();
 }
-function createMarker(mpId, mpName, lat, lng, lv, qclv) {
+function createMarker(mpId, mpName, lat, lng, lv, qclv, mpFields) {
     var marker = null;
     if (markers[mpId]) {
         return markers[mpId];
     }
     else {
-        marker = WGMarkerFactory.createWGMarker(mpId, mpName, lat, lng, lv,qclv);
+        marker = WGMarkerFactory.createWGMarker(mpId, mpName, lat, lng, lv, qclv, mpFields);
         markers[mpId] = marker;
     }
     return marker;
@@ -164,7 +166,7 @@ function initMarker(executor, eventArgs) {
                         if (!lvMarkers[i]) {
                             lvMarkers[i] = { level: 14, markers: [] };
                         }
-                        var m = createMarker(mps[i].MonitorPointId, mps[i].MonitorPointName, mps[i].Lat, mps[i].Lng, mps[i].Level, mps[i].LastestQCLevel);
+                        var m = createMarker(mps[i].MonitorPointId, mps[i].MonitorPointName, mps[i].Lat, mps[i].Lng, mps[i].Level, mps[i].LastestQCLevel, { isStart: mps[i].IsStart });
                         lvMarkers[i].markers.push(m.gMarker);
                         lvMarkers[i].level = m.level;
                     }

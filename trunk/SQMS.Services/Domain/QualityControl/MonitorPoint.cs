@@ -23,6 +23,15 @@ namespace SQMS.Services.Domain.QualityControl
         private string modifiedBy;
         private int level = 14;
         private int lastestQCLevel = 0;
+        private bool isStart = false;
+        /// <summary>
+        /// 是否为路段起始点
+        /// </summary>
+        public bool IsStart
+        {
+            get { return isStart; }
+            set { isStart = value; }
+        }
         /// <summary>
         /// 获取或设置监控点中最新常态监控数据的质量等级
         /// </summary>

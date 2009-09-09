@@ -106,8 +106,30 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
-        <div>
-            <asp:Label ID="LabelMPName" runat="server"></asp:Label></div>
+        <div runat="server" id="divMP">
+            <!--监控点详细数据-->
+            <div>
+                <span>监控点名称：<asp:Label ID="LabelMPName" runat="server"></asp:Label></span><span><asp:Label
+                    ID="LabelMPCode" runat="server"></asp:Label></span></div>
+            <div>
+                所属项目：<asp:Label ID="LabelMPProject" runat="server"></asp:Label></div>
+            <div>
+                所属路段：<asp:Label ID="LabelMPRoad" runat="server"></asp:Label></div>
+            <div>
+                备注：<asp:Label ID="LabelMPMemo" runat="server"></asp:Label></div>
+        </div>
+        <div runat="server" id="divRoad">
+            <!--路段详细数据-->
+            <div>
+                <span>路段名称：<asp:Label ID="LabelRoadName" runat="server"></asp:Label></span><span><asp:Label
+                    ID="Label2" runat="server"></asp:Label></span></div>
+            <div>
+                所属项目：<asp:Label ID="LabelRoadProject" runat="server"></asp:Label></div>
+            <div>
+                路段类型：<asp:Label ID="LabelRoadType" runat="server"></asp:Label></div>
+            <div>
+                备注：<asp:Label ID="LabelRoadMemo" runat="server"></asp:Label></div>
+        </div>
         <div>
             <div>
                 <asp:HyperLink ID="LinkImageSource" runat="server" Target="_blank"></asp:HyperLink>
