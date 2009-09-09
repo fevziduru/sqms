@@ -27,7 +27,7 @@
             <asp:BoundField DataField="CHARGEPERSON" HeaderText="责任人"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="CHARGEPERSON" />
             <asp:BoundField DataField="EMERGENCYPERSON" HeaderText="应急处理责任人" SortExpression="ENMERGENCYPERSION" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" />
             <asp:BoundField DataField="CHECKPERSON" HeaderText="巡查员"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="CHECKPERSON" />
-            <asp:BoundField DataField="WORKUNIT" HeaderText="作业单位"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="WORKUNIT" />
+            <asp:BoundField DataField="ORGNAME" HeaderText="作业单位"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="WORKUNIT" />
             <asp:BoundField DataField="LONGITUDE" HeaderText="采集点经度"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="LONGITUDE" />
             <asp:BoundField DataField="LATITUDE" HeaderText="采集点纬度"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="LATITUDE" />
             <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center" SelectText="选择" HeaderText="质量评估" HeaderStyle-HorizontalAlign="Center">

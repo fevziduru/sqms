@@ -88,6 +88,10 @@ namespace SQMS.Application.Views.Quality
                                         this.loc.HRef =
                                                 "javascript:showModalDialog('/Views/Components/SimpleSmallMap.aspx?p=__pub__&lat=" +
                                                 ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]) + "&lng=" + ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]) + "',null, 'dialogWidth=300px;dialogHeight=200px')";
+                                        if (string.IsNullOrEmpty(this.MPID))
+                                        {
+                                                this.MPID = ConvertUtil.ToStringOrDefault(drQuality["MPID"]);
+                                        }
                                 }
                         }
                 }

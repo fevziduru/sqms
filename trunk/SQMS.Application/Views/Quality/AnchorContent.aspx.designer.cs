@@ -11,7 +11,7 @@
 namespace SQMS.Application.Views.Quality {
     
     
-    public partial class StaticAnchorContent {
+    public partial class AnchorContent {
         
         /// <summary>
         /// form1 控件。
