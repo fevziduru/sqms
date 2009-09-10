@@ -3,8 +3,8 @@
 <%@ Import Namespace="EasyDev.Util" %>
 
 <div style="width:100%;height:100%">
-<fieldset>
-<legend>最新项目信息</legend>
+
+
 <%
         DataTable dtPart = this.ViewData.Tables[0];
         if (dtPart != null)
@@ -27,9 +27,11 @@
                         <%
                 }
                 %>
+                <tr>
+                        <td colspan="2" valign="middle" align="right"><a href="../Project/ProjectList.aspx?p=projectlist">更多...</a></td>
+                </tr>
                 </table>
                 <%
         }
          %>
-</fieldset>
 </div>

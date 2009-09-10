@@ -530,13 +530,6 @@
     <Compile Include="Views\Project\ProjectView.aspx.designer.cs">
       <DependentUpon>ProjectView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Quality\DynamicAnchorContent.aspx.cs">
-      <DependentUpon>DynamicAnchorContent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Quality\DynamicAnchorContent.aspx.designer.cs">
-      <DependentUpon>DynamicAnchorContent.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1153,7 +1146,6 @@
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />
-    <Content Include="Views\Quality\DynamicAnchorContent.aspx" />
     <Content Include="Views\Quality\MonitorPointEdit.aspx" />
     <Content Include="Views\Quality\MonitorPointList.aspx" />
     <Content Include="Views\Quality\MonitorPointView.aspx" />

@@ -6,22 +6,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<h2>这里是应用程序主入口页面</h2>
-<table cellpadding="0" cellspacing="0" border="0" style="width:100%;height:100%">
+
+<table cellpadding="5" cellspacing="5" border="0" style="width:100%;">
 <tr>
-        <td align="center" valign="top">
-                <uc1:LatestQualityDataPart ID="LatestQualityDataPart1" runat="server" />
+        <td align="center" valign="top" style="width:50%">
+                <fieldset>
+                <legend>最新未评分的质量信息</legend>
+                        <uc1:LatestQualityDataPart ID="LatestQualityDataPart1" runat="server" />
+                </fieldset>
         </td>
-        <td align="center" valign="top">
-                <uc2:LatestProjectsPart ID="LatestProjectsPart1" runat="server" />
+        <td align="center" valign="top" style="width:50%">
+                <fieldset>
+                <legend>最新项目信息</legend>
+                        <uc2:LatestProjectsPart ID="LatestProjectsPart1" runat="server" />
+                </fieldset>
         </td>
 </tr>
 <tr>
-        <td align="center" valign="top">
-                <uc3:EmployeeManagementPart ID="EmployeeManagementPart1" runat="server" />
+        <td align="center" valign="top" style="width:50%">
+                <fieldset>
+                <legend>职员及其角色账号快速管理</legend>
+                        <uc3:EmployeeManagementPart ID="EmployeeManagementPart1" runat="server" />
+                </fieldset>
         </td>
-        <td align="center" valign="top">
+        <td align="center" valign="top" style="width:50%">
+                <fieldset>
                 <uc4:TopScoreQualityPart ID="TopScoreQualityPart1" runat="server" />
+                </fieldset>
         </td>
 </tr>
 </table>
