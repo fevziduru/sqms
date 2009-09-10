@@ -286,6 +286,8 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnFLOATTIME;
             
+            private global::System.Data.DataColumn columnISVOID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public TIMEITEMDataTable() {
                 this.TableName = "TIMEITEM";
@@ -401,6 +403,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISVOIDColumn {
+                get {
+                    return this.columnISVOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -429,7 +438,7 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMEITEMRow AddTIMEITEMRow(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, decimal TIMESPAN, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, decimal TIMES, decimal FLOATTIME) {
+            public TIMEITEMRow AddTIMEITEMRow(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, decimal TIMESPAN, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, decimal TIMES, decimal FLOATTIME, string ISVOID) {
                 TIMEITEMRow rowTIMEITEMRow = ((TIMEITEMRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TIMEITEMID,
@@ -443,7 +452,8 @@ namespace SQMS.Application.Config.Schema {
                         MODIFIEDBY,
                         ORGANIZATIONID,
                         TIMES,
-                        FLOATTIME};
+                        FLOATTIME,
+                        ISVOID};
                 rowTIMEITEMRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTIMEITEMRow);
                 return rowTIMEITEMRow;
@@ -481,6 +491,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
                 this.columnTIMES = base.Columns["TIMES"];
                 this.columnFLOATTIME = base.Columns["FLOATTIME"];
+                this.columnISVOID = base.Columns["ISVOID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -509,6 +520,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnTIMES);
                 this.columnFLOATTIME = new global::System.Data.DataColumn("FLOATTIME", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFLOATTIME);
+                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVOID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTIMEITEMID}, true));
                 this.columnTIMEITEMID.AllowDBNull = false;
@@ -520,6 +533,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
                 this.columnORGANIZATIONID.MaxLength = 40;
+                this.columnISVOID.MaxLength = 1;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_TIMEITEM");
                 this.ExtendedProperties.Add("Generator_UserTableName", "TIMEITEM");
             }
@@ -829,6 +843,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISVOID {
+                get {
+                    try {
+                        return ((string)(this[this.tableTIMEITEM.ISVOIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“TIMEITEM”中列“ISVOID”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableTIMEITEM.ISVOIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsSCHEMAIDNull() {
                 return this.IsNull(this.tableTIMEITEM.SCHEMAIDColumn);
             }
@@ -936,6 +965,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetFLOATTIMENull() {
                 this[this.tableTIMEITEM.FLOATTIMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISVOIDNull() {
+                return this.IsNull(this.tableTIMEITEM.ISVOIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISVOIDNull() {
+                this[this.tableTIMEITEM.ISVOIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1074,6 +1113,7 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
             tableMapping.ColumnMappings.Add("TIMES", "TIMES");
             tableMapping.ColumnMappings.Add("FLOATTIME", "FLOATTIME");
+            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1083,7 +1123,7 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_TIMEITEMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TIMEITEMID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0907"".""TIMEITEM"" (""TIMEITEMID"", ""SCHEMAID"", ""TIMEITEMTYPE"", ""TIMESPOT"", ""TIMESPAN"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""TIMES"", ""FLOATTIME"") VALUES (:TIMEITEMID, :SCHEMAID, :TIMEITEMTYPE, :TIMESPOT, :TIMESPAN, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :TIMES, :FLOATTIME)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0907"".""TIMEITEM"" (""TIMEITEMID"", ""SCHEMAID"", ""TIMEITEMTYPE"", ""TIMESPOT"", ""TIMESPAN"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""TIMES"", ""FLOATTIME"", ""ISVOID"") VALUES (:TIMEITEMID, :SCHEMAID, :TIMEITEMTYPE, :TIMESPOT, :TIMESPAN, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :TIMES, :FLOATTIME, :ISVOID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TIMEITEMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TIMEITEMID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1097,9 +1137,10 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TIMES", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "TIMES", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATTIME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0907"".""TIMEITEM"" SET ""TIMEITEMID"" = :TIMEITEMID, ""SCHEMAID"" = :SCHEMAID, ""TIMEITEMTYPE"" = :TIMEITEMTYPE, ""TIMESPOT"" = :TIMESPOT, ""TIMESPAN"" = :TIMESPAN, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""TIMES"" = :TIMES, ""FLOATTIME"" = :FLOATTIME WHERE ((""TIMEITEMID"" = :Original_TIMEITEMID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0907"".""TIMEITEM"" SET ""TIMEITEMID"" = :TIMEITEMID, ""SCHEMAID"" = :SCHEMAID, ""TIMEITEMTYPE"" = :TIMEITEMTYPE, ""TIMESPOT"" = :TIMESPOT, ""TIMESPAN"" = :TIMESPAN, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""TIMES"" = :TIMES, ""FLOATTIME"" = :FLOATTIME, ""ISVOID"" = :ISVOID WHERE ((""TIMEITEMID"" = :Original_TIMEITEMID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TIMEITEMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TIMEITEMID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1113,13 +1154,14 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TIMES", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "TIMES", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATTIME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_TIMEITEMID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "TIMEITEMID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString5"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1128,8 +1170,8 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT TIMEITEMID, SCHEMAID, TIMEITEMTYPE, TIMESPOT, TIMESPAN, CREATED, CREATEDBY" +
-                ", MODIFIED, MODIFIEDBY, ORGANIZATIONID, TIMES, FLOATTIME FROM SQMS_PRIVATE_0907." +
-                "TIMEITEM";
+                ", MODIFIED, MODIFIEDBY, ORGANIZATIONID, TIMES, FLOATTIME, ISVOID FROM SQMS_PRIVA" +
+                "TE_0907.TIMEITEM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1209,7 +1251,7 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME) {
+        public virtual int Insert(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME, string ISVOID) {
             if ((TIMEITEMID == null)) {
                 throw new global::System.ArgumentNullException("TIMEITEMID");
             }
@@ -1282,6 +1324,12 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
+            if ((ISVOID == null)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(ISVOID));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1301,7 +1349,7 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME, string Original_TIMEITEMID) {
+        public virtual int Update(string TIMEITEMID, string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME, string ISVOID, string Original_TIMEITEMID) {
             if ((TIMEITEMID == null)) {
                 throw new global::System.ArgumentNullException("TIMEITEMID");
             }
@@ -1374,11 +1422,17 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
+            if ((ISVOID == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(ISVOID));
+            }
             if ((Original_TIMEITEMID == null)) {
                 throw new global::System.ArgumentNullException("Original_TIMEITEMID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_TIMEITEMID));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_TIMEITEMID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1399,8 +1453,8 @@ namespace SQMS.Application.Config.Schema.TIMEITEMTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME, string Original_TIMEITEMID) {
-            return this.Update(Original_TIMEITEMID, SCHEMAID, TIMEITEMTYPE, TIMESPOT, TIMESPAN, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, TIMES, FLOATTIME, Original_TIMEITEMID);
+        public virtual int Update(string SCHEMAID, string TIMEITEMTYPE, string TIMESPOT, global::System.Nullable<decimal> TIMESPAN, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> TIMES, global::System.Nullable<decimal> FLOATTIME, string ISVOID, string Original_TIMEITEMID) {
+            return this.Update(Original_TIMEITEMID, SCHEMAID, TIMEITEMTYPE, TIMESPOT, TIMESPAN, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, TIMES, FLOATTIME, ISVOID, Original_TIMEITEMID);
         }
     }
 }

@@ -17,7 +17,7 @@
         <br />
         <asp:UpdatePanel ID="UpdatePanelGridViewProject" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <asp:GridView ID="GridViewProject" runat="server" AllowPaging="True" Width="100%" AllowSorting="False"
+                <asp:GridView ID="GridViewProject" runat="server" AllowPaging="True" Width="100%" AllowSorting="False" CssClass="gridview"
                     AutoGenerateColumns="False" DataKeyNames="ProjectID" EmptyDataText="没有可显示的数据记录。"
                     OnPageIndexChanging="GridViewProject_PageIndexChanging">
                     <Columns>

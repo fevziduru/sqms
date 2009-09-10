@@ -208,7 +208,7 @@ namespace EasyDev.PL
                                 if (CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
                                     CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                        collection = Regex.Matches(commandText, ":\\w+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+                                        collection = Regex.Matches(commandText, "[^\\w*]:\\w+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
                                 }
                                 else
                                 {
@@ -232,13 +232,13 @@ namespace EasyDev.PL
 
                                         DbParameter parameter = DataSource.GetDBParameter();
                                         parameter.Direction = ParameterDirection.Input;
-                                        parameter.ParameterName = collection[i].ToString();
+                                        parameter.ParameterName = collection[i].ToString().Substring(collection[i].ToString().IndexOf(":"));
                                         parameter.Value = paramValues[i];
 
                                         if (CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
                                             CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
                                         {
-                                                parameter.SourceColumn = collection[i].ToString().Replace(":", "");
+                                                parameter.SourceColumn = collection[i].ToString().Substring(collection[i].ToString().IndexOf(":") + 1);
                                         }
                                         else
                                         {
@@ -250,6 +250,7 @@ namespace EasyDev.PL
                         }
                         catch (ArgumentException e)
                         {
+                                ResetCommand();
                                 throw e;
                         }
                 }
@@ -268,7 +269,7 @@ namespace EasyDev.PL
                                 if (CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
                                     CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                        collection = Regex.Matches(commandText, ":\\w+", RegexOptions.Multiline);
+                                        collection = Regex.Matches(commandText, "[^\\w*]:\\w+", RegexOptions.Multiline);
                                 }
                                 else
                                 {

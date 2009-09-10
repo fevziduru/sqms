@@ -329,64 +329,64 @@ namespace SQMS.Services
                                                                                 left join employee e1 on t.emergencyperson = e1.empid
                                                                                 left join employee e2 on t.chargeperson = e2.empid
                                                                                 left join employee e3 on t.checkperson = e3.empid
-                                                                                left join organization o on t.workunit = o.orgid";
+                                                                                left join organization o on t.workunit = o.orgid ";
 
                                 string whereClause = string.Empty;
                                 if ("_Image" == dataType)
                                 {
-                                        whereClause = "where t.organizationid=:orgid and t.mpid=:mpid ";
+                                        whereClause = " where t.organizationid=:organizationid and t.mpid=:mpid ";
                                 }
                                 else
                                 {
-                                        whereClause = "where length(t.videourl)>0 and t.organizationid=:orgid and t.mpid=:mpid ";
+                                        whereClause = " where length(t.videourl)>0 and t.organizationid=:organizationid and t.mpid=:mpid ";
                                 }
                                                                 
                                 if (type == "__all__")
                                 {
                                         if (historyDate != null && historyDate.Length > 0)
                                         {
-                                                whereClause += " and to_char(t.created, 'yyyy-mm-dd') = :historydate  and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)";
-                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, historyDate, floattime, floattime);
+                                                whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'  and (t.created between t.created-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
+                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
                                         }
                                         else
                                         {
-                                                whereClause += " and (t.created between t.created-:ft/24/60 and t.created+:ft/24/60)";
-                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, floattime, floattime);
+                                                whereClause += " and (t.created between t.created-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
+                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
                                         }
                                 }
                                 else
                                 {
-                                        whereClause += " and t.type=:type";
+                                        whereClause += " and t.type=:type ";
 
                                         if (timespot != null && timespot.Length > 0)
                                         {
                                                 //添加常态监控时间点
-                                                whereClause += "and (to_date(:timespot,'yyyy-mm-dd hh24:mi:ss') between t.created-:ft/24/60 and t.created+:ft/24/60)";
+                                                whereClause += "and (to_date('" + timespot + "','hh24:mi:ss') between to_date(to_char(t.created,'hh24:mi:ss'), 'hh24:mi:ss')-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
 
-                                                //常态历史
+                                                //常态历史1
                                                 if (historyDate != null && historyDate.Length > 0)
                                                 {
-                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = :historydate";
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type, timespot, floattime, floattime, historyDate);
+                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'";
+                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
                                                 }
-                                                else  //常态非历史
+                                                else  //常态非历史1
                                                 {
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type, timespot, floattime, floattime);
+                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
                                                 }
                                         }
                                         else
                                         {
-                                                whereClause += " and t.created between :begintime and :endtime";
+                                                whereClause += " and to_date(to_char(t.created,'hh24:mi:ss'),'hh24:mi:ss') between to_date(" + beginTime + ",'hh24:mi:ss') and to_date(" + endTime + ",'hh24:mi:ss')";
 
                                                 //巡检历史
                                                 if (historyDate != null && historyDate.Length > 0)
                                                 {
-                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd hh24:mi:ss') = :historydate";
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type, beginTime, endTime, historyDate);
+                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'";
+                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
                                                 }
                                                 else   ////巡检非历史
                                                 {
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type, beginTime, endTime);
+                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
                                                 }                                                
                                         }
                                 }
@@ -404,27 +404,41 @@ namespace SQMS.Services
                 {
                         try
                         {
+                                string mainSql = @"select e1.empname emergencyperson,
+                                                                                e2.empname chargeperson, e3.empname checkperson,o.orgname, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit from quality t
+                                                                                left join employee e1 on t.emergencyperson = e1.empid
+                                                                                left join employee e2 on t.chargeperson = e2.empid
+                                                                                left join employee e3 on t.checkperson = e3.empid
+                                                                                left join organization o on t.workunit = o.orgid";
+                                string whereClause = "";
                                 DataTable dt = null;
                                 if (type == "__all__")
                                 {
-                                        dt = DefaultSession.GetDataTableFromCommand(@"select e1.empname emergencyperson,
-                                                                                e2.empname chargeperson, e3.empname checkperson,o.orgname, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit from quality t
-                                                                                left join employee e1 on t.emergencyperson = e1.empid
-                                                                                left join employee e2 on t.chargeperson = e2.empid
-                                                                                left join employee e3 on t.checkperson = e3.empid
-                                                                                left join organization o on t.workunit = o.orgid
-                                                                                where t.organizationid=:orgid and t.mpid=:mpid", CurrentUser.OrganizationID, mpid);
+                                        if (mpid.Length == 0)
+                                        {
+                                                whereClause = " where o.orgid=:orgid";
+                                                dt = DefaultSession.GetDataTableFromCommand(mainSql + whereClause, CurrentUser.OrganizationID);
+                                        }
+                                        else
+                                        {
+                                                whereClause = " where t.organizationid=:organizationid and t.mpid=:mpid";
+                                                dt = DefaultSession.GetDataTableFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
+                                        }
                                 }
                                 else
                                 {
-                                        dt = DefaultSession.GetDataTableFromCommand(@"select e1.empname emergencyperson,
-                                                                                e2.empname chargeperson, e3.empname checkperson,o.orgname, t.qmid, t.mpid,t.qmcode,t.longitude,t.latitude, t.workunit from quality t
-                                                                                left join employee e1 on t.emergencyperson = e1.empid
-                                                                                left join employee e2 on t.chargeperson = e2.empid
-                                                                                left join employee e3 on t.checkperson = e3.empid
-                                                                                left join organization o on t.workunit = o.orgid
-                                                                                where t.organizationid=:orgid and t.type=:type and t.mpid=:mpid", CurrentUser.OrganizationID, type, mpid);
+                                        if (mpid.Length == 0)
+                                        {
+                                                whereClause = " where o.orgid=:orgid and t.type=:type ";
+                                                dt = DefaultSession.GetDataTableFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, type);
+                                        }
+                                        else
+                                        {
+                                                whereClause = " where t.organizationid=:organizationid and t.type=:type and t.mpid=:mpid";
+                                                dt = DefaultSession.GetDataTableFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, type, mpid);
+                                        }
                                 }
+
                                 dt.TableName = BOName;
                                 return dt;
                         }

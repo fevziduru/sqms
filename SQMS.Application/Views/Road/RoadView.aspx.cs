@@ -147,7 +147,7 @@ namespace SQMS.Application.Views.Road
                 {
                         try
                         {
-                                string[] ids = Request.Params["__KeyValues__"].ToString().Split(',');
+                                string[] ids = ConvertUtil.ToStringOrDefault(Request.Params["__KeyValues__"]).Split(',');
                                 string timeschemaid = this.ddlTimeSchema.SelectedValue;
                                 if (timeschemaid != null && timeschemaid.Length > 0)
                                 {
@@ -156,6 +156,16 @@ namespace SQMS.Application.Views.Road
                                                 roadService.mpService.UpdateMonitorPointTimeSchema(timeschemaid, ids[i]);
                                         }
                                 }
+
+                                if (this.ViewData.Tables.Contains("MONITORPOINTS"))
+                                {
+                                        this.ViewData.Tables.Remove("MONITORPOINTS");
+                                }
+
+                                this.ViewData.Merge(roadService.GetMonitorPointsByRoad(this.ID));
+
+                                this.gvList.DataSource = this.ViewData.Tables["MONITORPOINTS"];
+                                this.gvList.DataBind();
                         }
                         catch (Exception ex)
                         {
