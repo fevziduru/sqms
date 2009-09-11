@@ -298,6 +298,12 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnIMPORTANCE;
             
+            private global::System.Data.DataColumn columnISSTART;
+            
+            private global::System.Data.DataColumn columnISEND;
+            
+            private global::System.Data.DataColumn columnLATESTQCLEVEL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public MPASSIGNMENTDataTable() {
                 this.TableName = "MPASSIGNMENT";
@@ -455,6 +461,27 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISSTARTColumn {
+                get {
+                    return this.columnISSTART;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISENDColumn {
+                get {
+                    return this.columnISEND;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn LATESTQCLEVELColumn {
+                get {
+                    return this.columnLATESTQCLEVEL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -501,7 +528,10 @@ namespace SQMS.Application.Config.Schema {
                         string ISVOID, 
                         decimal MPLEVEL, 
                         decimal FLOATDIST, 
-                        string IMPORTANCE) {
+                        string IMPORTANCE, 
+                        string ISSTART, 
+                        string ISEND, 
+                        decimal LATESTQCLEVEL) {
                 MPASSIGNMENTRow rowMPASSIGNMENTRow = ((MPASSIGNMENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MPID,
@@ -521,7 +551,10 @@ namespace SQMS.Application.Config.Schema {
                         ISVOID,
                         MPLEVEL,
                         FLOATDIST,
-                        IMPORTANCE};
+                        IMPORTANCE,
+                        ISSTART,
+                        ISEND,
+                        LATESTQCLEVEL};
                 rowMPASSIGNMENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMPASSIGNMENTRow);
                 return rowMPASSIGNMENTRow;
@@ -565,6 +598,9 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMPLEVEL = base.Columns["MPLEVEL"];
                 this.columnFLOATDIST = base.Columns["FLOATDIST"];
                 this.columnIMPORTANCE = base.Columns["IMPORTANCE"];
+                this.columnISSTART = base.Columns["ISSTART"];
+                this.columnISEND = base.Columns["ISEND"];
+                this.columnLATESTQCLEVEL = base.Columns["LATESTQCLEVEL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -605,6 +641,12 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnFLOATDIST);
                 this.columnIMPORTANCE = new global::System.Data.DataColumn("IMPORTANCE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIMPORTANCE);
+                this.columnISSTART = new global::System.Data.DataColumn("ISSTART", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISSTART);
+                this.columnISEND = new global::System.Data.DataColumn("ISEND", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISEND);
+                this.columnLATESTQCLEVEL = new global::System.Data.DataColumn("LATESTQCLEVEL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLATESTQCLEVEL);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMPID}, true));
                 this.columnMPID.AllowDBNull = false;
@@ -621,6 +663,8 @@ namespace SQMS.Application.Config.Schema {
                 this.columnSUITEID.MaxLength = 40;
                 this.columnISVOID.MaxLength = 1;
                 this.columnIMPORTANCE.MaxLength = 40;
+                this.columnISSTART.MaxLength = 1;
+                this.columnISEND.MaxLength = 1;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_MPASSIGNMENT");
                 this.ExtendedProperties.Add("Generator_UserTableName", "MPASSIGNMENT");
             }
@@ -1020,6 +1064,51 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISSTART {
+                get {
+                    try {
+                        return ((string)(this[this.tableMPASSIGNMENT.ISSTARTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“ISSTART”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.ISSTARTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ISEND {
+                get {
+                    try {
+                        return ((string)(this[this.tableMPASSIGNMENT.ISENDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“ISEND”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.ISENDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public decimal LATESTQCLEVEL {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMPASSIGNMENT.LATESTQCLEVELColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“MPASSIGNMENT”中列“LATESTQCLEVEL”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableMPASSIGNMENT.LATESTQCLEVELColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsROADIDNull() {
                 return this.IsNull(this.tableMPASSIGNMENT.ROADIDColumn);
             }
@@ -1188,6 +1277,36 @@ namespace SQMS.Application.Config.Schema {
             public void SetIMPORTANCENull() {
                 this[this.tableMPASSIGNMENT.IMPORTANCEColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISSTARTNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.ISSTARTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISSTARTNull() {
+                this[this.tableMPASSIGNMENT.ISSTARTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsISENDNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.ISENDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetISENDNull() {
+                this[this.tableMPASSIGNMENT.ISENDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsLATESTQCLEVELNull() {
+                return this.IsNull(this.tableMPASSIGNMENT.LATESTQCLEVELColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetLATESTQCLEVELNull() {
+                this[this.tableMPASSIGNMENT.LATESTQCLEVELColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1331,15 +1450,18 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             tableMapping.ColumnMappings.Add("MPLEVEL", "MPLEVEL");
             tableMapping.ColumnMappings.Add("FLOATDIST", "FLOATDIST");
             tableMapping.ColumnMappings.Add("IMPORTANCE", "IMPORTANCE");
+            tableMapping.ColumnMappings.Add("ISSTART", "ISSTART");
+            tableMapping.ColumnMappings.Add("ISEND", "ISEND");
+            tableMapping.ColumnMappings.Add("LATESTQCLEVEL", "LATESTQCLEVEL");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0831\".\"MPASSIGNMENT\" WHERE ((\"MPID\" = :Original_MPID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0907\".\"MPASSIGNMENT\" WHERE ((\"MPID\" = :Original_MPID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0831"".""MPASSIGNMENT"" (""MPID"", ""ROADID"", ""SCHEMAID"", ""MPCODE"", ""MPNAME"", ""LONGITUDE"", ""LATITUDE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"", ""MPLEVEL"", ""FLOATDIST"", ""IMPORTANCE"") VALUES (:MPID, :ROADID, :SCHEMAID, :MPCODE, :MPNAME, :LONGITUDE, :LATITUDE, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :ISVOID, :MPLEVEL, :FLOATDIST, :IMPORTANCE)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0907"".""MPASSIGNMENT"" (""MPID"", ""ROADID"", ""SCHEMAID"", ""MPCODE"", ""MPNAME"", ""LONGITUDE"", ""LATITUDE"", ""MEMO"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""SUITEID"", ""ISVOID"", ""MPLEVEL"", ""FLOATDIST"", ""IMPORTANCE"", ""ISSTART"", ""ISEND"", ""LATESTQCLEVEL"") VALUES (:MPID, :ROADID, :SCHEMAID, :MPCODE, :MPNAME, :LONGITUDE, :LATITUDE, :MEMO, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :SUITEID, :ISVOID, :MPLEVEL, :FLOATDIST, :IMPORTANCE, :ISSTART, :ISEND, :LATESTQCLEVEL)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROADID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROADID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1359,9 +1481,12 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "MPLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATDIST", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATDIST", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMPORTANCE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "IMPORTANCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISSTART", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISSTART", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISEND", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISEND", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LATESTQCLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "LATESTQCLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0831"".""MPASSIGNMENT"" SET ""MPID"" = :MPID, ""ROADID"" = :ROADID, ""SCHEMAID"" = :SCHEMAID, ""MPCODE"" = :MPCODE, ""MPNAME"" = :MPNAME, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID, ""MPLEVEL"" = :MPLEVEL, ""FLOATDIST"" = :FLOATDIST, ""IMPORTANCE"" = :IMPORTANCE WHERE ((""MPID"" = :Original_MPID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0907"".""MPASSIGNMENT"" SET ""MPID"" = :MPID, ""ROADID"" = :ROADID, ""SCHEMAID"" = :SCHEMAID, ""MPCODE"" = :MPCODE, ""MPNAME"" = :MPNAME, ""LONGITUDE"" = :LONGITUDE, ""LATITUDE"" = :LATITUDE, ""MEMO"" = :MEMO, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""SUITEID"" = :SUITEID, ""ISVOID"" = :ISVOID, ""MPLEVEL"" = :MPLEVEL, ""FLOATDIST"" = :FLOATDIST, ""IMPORTANCE"" = :IMPORTANCE, ""ISSTART"" = :ISSTART, ""ISEND"" = :ISEND, ""LATESTQCLEVEL"" = :LATESTQCLEVEL WHERE ((""MPID"" = :Original_MPID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ROADID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ROADID", global::System.Data.DataRowVersion.Current, false, null));
@@ -1381,13 +1506,16 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MPLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "MPLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATDIST", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATDIST", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMPORTANCE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "IMPORTANCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISSTART", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISSTART", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISEND", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISEND", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("LATESTQCLEVEL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "LATESTQCLEVEL", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_MPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MPID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString4"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1397,7 +1525,8 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED" +
                 ", CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLO" +
-                "ATDIST, IMPORTANCE FROM SQMS_PRIVATE_0831.MPASSIGNMENT";
+                "ATDIST, IMPORTANCE, ISSTART, ISEND, LATESTQCLEVEL FROM SQMS_PRIVATE_0907.MPASSIG" +
+                "NMENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1495,7 +1624,10 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
                     string ISVOID, 
                     global::System.Nullable<decimal> MPLEVEL, 
                     global::System.Nullable<decimal> FLOATDIST, 
-                    string IMPORTANCE) {
+                    string IMPORTANCE, 
+                    string ISSTART, 
+                    string ISEND, 
+                    global::System.Nullable<decimal> LATESTQCLEVEL) {
             if ((MPID == null)) {
                 throw new global::System.ArgumentNullException("MPID");
             }
@@ -1604,6 +1736,24 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[17].Value = ((string)(IMPORTANCE));
             }
+            if ((ISSTART == null)) {
+                this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(ISSTART));
+            }
+            if ((ISEND == null)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(ISEND));
+            }
+            if ((LATESTQCLEVEL.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(LATESTQCLEVEL.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1642,6 +1792,9 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
                     global::System.Nullable<decimal> MPLEVEL, 
                     global::System.Nullable<decimal> FLOATDIST, 
                     string IMPORTANCE, 
+                    string ISSTART, 
+                    string ISEND, 
+                    global::System.Nullable<decimal> LATESTQCLEVEL, 
                     string Original_MPID) {
             if ((MPID == null)) {
                 throw new global::System.ArgumentNullException("MPID");
@@ -1751,11 +1904,29 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(IMPORTANCE));
             }
+            if ((ISSTART == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(ISSTART));
+            }
+            if ((ISEND == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(ISEND));
+            }
+            if ((LATESTQCLEVEL.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(LATESTQCLEVEL.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
             if ((Original_MPID == null)) {
                 throw new global::System.ArgumentNullException("Original_MPID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_MPID));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_MPID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1794,8 +1965,11 @@ namespace SQMS.Application.Config.Schema.MPASSIGNMENTTableAdapters {
                     global::System.Nullable<decimal> MPLEVEL, 
                     global::System.Nullable<decimal> FLOATDIST, 
                     string IMPORTANCE, 
+                    string ISSTART, 
+                    string ISEND, 
+                    global::System.Nullable<decimal> LATESTQCLEVEL, 
                     string Original_MPID) {
-            return this.Update(Original_MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, Original_MPID);
+            return this.Update(Original_MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, ISSTART, ISEND, LATESTQCLEVEL, Original_MPID);
         }
     }
 }
