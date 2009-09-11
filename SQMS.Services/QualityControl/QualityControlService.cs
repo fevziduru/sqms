@@ -319,8 +319,19 @@ namespace SQMS.Services
                 public DataSet FindQualityData(string mpid, string type, int floattime, string historyDate, string timespot, string beginTime, string endTime, string dataType)
                 {
                         DataSet ds = null;
+
                         try
                         {
+                                //如果是非历史查询则默认为当天数据
+                                if (historyDate == null || historyDate.Length == 0)
+                                {
+                                        historyDate = DateTime.Now.ToString("yyyy-MM-dd");
+                                }
+                                else
+                                {
+                                        historyDate = Convert.ToDateTime(historyDate).ToString("yyyy-MM-dd");
+                                }
+
                                 string mainSql = @"select e1.empname emergencyperson,
                                                                                 e2.empname chargeperson, 
                                                                                 e3.empname checkperson,
@@ -340,55 +351,29 @@ namespace SQMS.Services
                                 {
                                         whereClause = " where length(t.videourl)>0 and t.organizationid=:organizationid and t.mpid=:mpid ";
                                 }
-                                                                
+
                                 if (type == "__all__")
                                 {
-                                        if (historyDate != null && historyDate.Length > 0)
-                                        {
-                                                whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'  and (t.created between t.created-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
-                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
-                                        }
-                                        else
-                                        {
-                                                whereClause += " and (t.created between t.created-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
-                                                ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
-                                        }
+                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'  and (t.created between t.created-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
+                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid);
                                 }
                                 else
                                 {
                                         whereClause += " and t.type=:type ";
 
-                                        if (timespot != null && timespot.Length > 0)
+                                        if (timespot != null && timespot.Length > 0)  //常态情况
                                         {
                                                 //添加常态监控时间点
-                                                whereClause += "and (to_date('" + timespot + "','hh24:mi:ss') between to_date(to_char(t.created,'hh24:mi:ss'), 'hh24:mi:ss')-" + floattime + "/24/60 and t.created+" + floattime + "/24/60)";
-
-                                                //常态历史1
-                                                if (historyDate != null && historyDate.Length > 0)
-                                                {
-                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'";
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
-                                                }
-                                                else  //常态非历史1
-                                                {
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
-                                                }
+                                                whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate +
+                                                        "' and to_date(to_char(t.created,'hh24:mi:ss'), 'hh24:mi:ss')  between (to_date('" + timespot + "','hh24:mi:ss')-" + floattime + "/24/60) and (to_date('" + timespot + "','hh24:mi:ss')+" + floattime + "/24/60)";
                                         }
-                                        else
+                                        else   //巡检情况
                                         {
-                                                whereClause += " and to_date(to_char(t.created,'hh24:mi:ss'),'hh24:mi:ss') between to_date(" + beginTime + ",'hh24:mi:ss') and to_date(" + endTime + ",'hh24:mi:ss')";
-
-                                                //巡检历史
-                                                if (historyDate != null && historyDate.Length > 0)
-                                                {
-                                                        whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + "'";
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
-                                                }
-                                                else   ////巡检非历史
-                                                {
-                                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
-                                                }                                                
+                                                whereClause += " and to_char(t.created, 'yyyy-mm-dd') = '" + historyDate + 
+                                                        "' and to_date(to_char(t.created,'hh24:mi:ss'),'hh24:mi:ss') between to_date('" + beginTime + "','hh24:mi:ss') and to_date('" + endTime + "','hh24:mi:ss')";
                                         }
+
+                                        ds = DefaultSession.GetDataSetFromCommand(mainSql + whereClause, CurrentUser.OrganizationID, mpid, type);
                                 }
 
                                 ds.Tables[0].TableName = BOName+dataType;
