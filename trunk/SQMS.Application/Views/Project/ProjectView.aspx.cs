@@ -117,5 +117,12 @@ namespace SQMS.Application.Views.Project
                 {
                         Response.Redirect("ProjectEdit.aspx?p=projectnew");
                 }
+
+                protected void gvList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+                {
+                        this.gvRoadList.PageIndex = e.NewPageIndex;
+                        this.gvRoadList.DataSource = this.ViewData.Tables["ROADS"];
+                        this.gvRoadList.DataBind();
+                }
         }
 }

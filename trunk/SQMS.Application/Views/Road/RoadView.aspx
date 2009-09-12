@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRQ6hbvwoS9GD89j9qEqTKobihdwiBTS_QjMbHbdYwkxWiBA-XpSkWHt_w&hl=zh-CN"
+
+        <script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRQ6hbvwoS9GD89j9qEqTKobihdwiBTS_QjMbHbdYwkxWiBA-XpSkWHt_w&hl=zh-CN"
     type="text/javascript"></script>
     
 <script type="text/javascript">
@@ -113,18 +114,22 @@
         <fieldset>
         <legend>路段监控点</legend>
         
-        <div style="margin:18 18; height:400;overflow:auto">
+        <div>
         <table>
          <tr>
                 <td><asp:DropDownList ID="ddlTimeSchema" runat="server" AutoPostBack="false" Width="210"></asp:DropDownList></td>
                 <td><asp:Button ID="btnSetTimeSchema" runat="server" Text="设置监控时间段" 
                                 CommandName="Select" onclick="btnSetTimeSchema_Click" /></td>
+                <td><asp:LinkButton ID="hlPreview" runat="server" OnClick="Preview_Click"></asp:LinkButton></td>
          </tr>
         </table>
-        <asp:GridView ID="gvList" runat="server" AllowPaging="False"  Width="100%" CssClass="gridview"
+        <asp:GridView ID="gvList" runat="server" AllowPaging="True"  Width="100%" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MPID" OnSorting="gvList_Sorting"
-        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
-         onrowcommand="GridView1_RowCommand" onrowdatabound="gvList_RowDataBound" >
+        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true" PageSize="8"
+         onrowcommand="GridView1_RowCommand" onrowdatabound="gvList_RowDataBound" 
+                        onpageindexchanging="gvList_PageIndexChanging" 
+                        onselectedindexchanged="gvList_SelectedIndexChanged" 
+                        onselectedindexchanging="gvList_SelectedIndexChanging" >
         <Columns>
             <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
                 <HeaderTemplate>

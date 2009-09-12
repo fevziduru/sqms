@@ -66,21 +66,13 @@ namespace SQMS.Application.Masters
                         {
                                 dtMenu = srv.GetMenuData();
                                 ViewState.Add("MENU", dtMenu);
+                                this.tvMenu.Nodes.Clear();
+                                CreateMenu(tvMenu.Nodes, dtMenu, "_app");
                         }
                         else
                         {
                                 dtMenu = ViewState["MENU"] as DataTable;
-                        }
-                        this.tvMenu.Nodes.Clear();
-
-                        //TreeNode node = new TreeNode();
-                        //node.Text = Convert.ToString("应用程序");
-                        ////node.Value = Convert.ToString(item["menuid"]);
-                        ////node.NavigateUrl = Convert.ToString(item["url"]);
-                        //node.ToolTip = Convert.ToString("应用程序");
-                        //this.tvMenu.Nodes.Add(node);
-
-                        CreateMenu(tvMenu.Nodes, dtMenu, "_app");
+                        }                        
                 }
 
                 public void btnLogout_OnClick(object sender, EventArgs e)

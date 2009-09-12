@@ -70,7 +70,17 @@ namespace SQMS.Application.Views.Road
                                 this.gvList.DataBind();
                         }
 
-                        ControlBindingHelper.BindDropDownList(this.ddlTimeSchema, ViewData.Tables["TIMESCHEMA"], "SCHEMANAME", "SCHEMAID");
+                        if (!IsPostBack)
+                        {
+                                ControlBindingHelper.BindDropDownList(this.ddlTimeSchema, ViewData.Tables["TIMESCHEMA"], "SCHEMANAME", "SCHEMAID");
+                        }
+
+                        hlPreview.Text = "预览时间段设置";
+                }
+
+                protected void Preview_Click(object sender, EventArgs e)
+                {
+                        Response.Redirect("~/Views/Quality/TimeSchemaView.aspx?p=timeschemaview&id=" + this.ddlTimeSchema.SelectedValue, true);
                 }
 
                 protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -171,6 +181,23 @@ namespace SQMS.Application.Views.Road
                         {
                                 throw ex;
                         }
+                }
+
+                protected void gvList_SelectedIndexChanged(object sender, EventArgs e)
+                {
+
+                }
+
+                protected void gvList_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+                {
+                        
+                }
+
+                protected void gvList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+                {
+                        this.gvList.PageIndex = e.NewPageIndex;
+                        this.gvList.DataSource = this.ViewData.Tables["MONITORPOINTS"];
+                        this.gvList.DataBind();
                 }
         }
 }
