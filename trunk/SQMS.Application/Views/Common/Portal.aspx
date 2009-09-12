@@ -31,6 +31,7 @@
         </td>
         <td align="center" valign="top" style="width:50%">
                 <fieldset>
+                <legend>质控数据评分前五名</legend>
                 <uc4:TopScoreQualityPart ID="TopScoreQualityPart1" runat="server" />
                 </fieldset>
         </td>

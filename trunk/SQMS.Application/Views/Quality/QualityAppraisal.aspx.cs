@@ -86,8 +86,11 @@ namespace SQMS.Application.Views.Quality
                                         this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drQuality["MEMO"]);
 
                                         this.loc.HRef =
-                                                "javascript:showModalDialog('/Views/Components/SimpleSmallMap.aspx?p=__pub__&lat=" +
-                                                ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]) + "&lng=" + ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]) + "',null, 'dialogWidth=300px;dialogHeight=200px')";
+                                                @"http://maps.google.com/maps?center="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&
+                                markers="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&f=q&hl=en
+                                         &geocode="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"
+                                &q=采集点位置&ll="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+"&ie=GB2312&t=h&gl=cn&z=16&iwloc=addr";
+
                                         if (string.IsNullOrEmpty(this.MPID))
                                         {
                                                 this.MPID = ConvertUtil.ToStringOrDefault(drQuality["MPID"]);

@@ -9,13 +9,14 @@ function checkTime(timebox) {
                 if (regex.test(timebox.value) == true) {
                         timebox.style.backgroundColor = "#fff";
                         timebox.style.color = "#000";
+                        timebox.style.borderWidth = "1";
                         document.getElementById(timebox.id + "_errinfo").style.display = "none";
                         isAllValidated = true;
                 }
                 else {
                         timebox.style.backgroundColor = "#FFF688";
                         timebox.style.color = "#ff0000";
-                        //timebox.focus();
+                        timebox.style.borderWidth = "1";
                         document.getElementById(timebox.id + "_errinfo").style.display = "block";
                         isAllValidated = false;
                 }
@@ -49,4 +50,8 @@ var count = 0;
 function addTimeBox() {
         count++;
         CreateTimeBox('container', 'tb' + "_" + count, '时间格式为hh24(小时):mm(分钟):ss(秒)', '时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)');
+}
+
+window.document.forms[0].onsubmit = function() {
+        return isAllValidated;
 }

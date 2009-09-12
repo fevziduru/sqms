@@ -42,11 +42,13 @@
                 <td><asp:Label ID="lblStatus" runat="server" ></asp:Label></td>
         </tr>
         <tr>
-                <td>采集点经度：</td>
-                <td><asp:Label ID="lblLng" runat="server" ></asp:Label></td>
-                <td>采集点纬度：</td>
-                <td><asp:Label ID="lblLat" runat="server" ></asp:Label>
-                <a style="display:none" runat="server" id="loc">位置</a>
+                <td>采集点位置：</td>
+                <td><a runat="server" id="loc"
+                        href='' target="_blank">
+                                (<asp:Label ID="lblLng" runat="server" ></asp:Label>,<asp:Label ID="lblLat" runat="server" ></asp:Label>)</a>
+                      </td>
+                <td></td>
+                <td>                
                 </td>
         </tr>
         <tr>

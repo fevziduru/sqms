@@ -4,7 +4,7 @@
 
     <link href="../../Resources/Scripts/Controls/Timepicker/timepicker.css" type="text/css" rel="Stylesheet" />
     
-	<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery.js"></script>
+	<%--<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery.js"></script>--%>
     <script type="text/javascript" src="../../Resources/Scripts/Controls/TimeBox/TimeBox.js"></script>
     <script type="text/javascript" src="../../Resources/Scripts/Controls/Timepicker/timepicker.js"></script>
 
@@ -79,7 +79,7 @@
             <tr> 
                 <td>
                         <div id="txt100_main">
-	                    开始时间：<input type="text" id="txt100" value="<% = strBEGINTIME %>" name="tbBEGINTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
+	                    开始时间：<input type="text" id="txt100" value="<%= strBEGINTIME %>" name="tbBEGINTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
 	                    <div id="txt100_hint" style="z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middle;text-align:center">
 		                    <span style="font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30">时间格式为hh24(小时):mm(分钟):ss(秒)</span>
 	                    </div>
@@ -92,7 +92,7 @@
             <tr>
                 <td>
                         <div id="txt101_main">
-	                    结束时间：<input type="text" id="txt101" value="<% = strENDTIME %>" name="tbENDTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
+	                    结束时间：<input type="text" id="txt101" value="<%= strENDTIME %>" name="tbENDTIME" onchange="javascript:checkTime(this)" onblur="javascript:checkTime(this)" onfocus="javascript:showHint(this)" />
 	                    <div id="txt101_hint" style="z-index:1000;display:none;position:absolute;border:#6B90DA 1px solid;background-color:#F0F7F9;vertical-align:middle;text-align:center">
 		                    <span style="font-size:10pt;vertical-align:absmiddle;text-align:center; padding:30">时间格式为hh24(小时):mm(分钟):ss(秒)</span>
 	                    </div>
@@ -150,12 +150,12 @@
         <table style="width:100%">
             <tr>
                 <td>
-                每隔<asp:TextBox ID="tbTIMESPAN" runat="server" ></asp:TextBox><span>小时覆盖所有监控点至少一次</span>
+                每隔<asp:TextBox ID="tbTIMESPAN" runat="server"></asp:TextBox><span>小时覆盖所有监控点至少一次</span>
                 </td>
             </tr>           
             <tr>
                 <td>
-                巡检<asp:TextBox ID="tbTIMESPOT" runat="server" ></asp:TextBox><span>次</span>
+                巡检<asp:TextBox ID="tbTIMESPOT" runat="server"></asp:TextBox><span>次</span>
                 </td>
             </tr>                                           
         </table>

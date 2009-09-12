@@ -560,6 +560,20 @@ namespace SQMS.Services
                         }
                 }
 
+                public DataSet GetSortedQualityData()
+                {
+                        try
+                        {
+                                return DefaultSession.GetDataSetFromCommand(@"select q.*,o.orgname,o.orgid, q.qualitylevel from quality q
+                                                left join organization o on o.organizationid = q.organizationid
+                                                where q.organizationid=:orgid and rownum<=5 and q.qualitylevel > -1  order by q.qualitylevel desc  ", CurrentUser.OrganizationID);
+                        }
+                        catch (Exception e)
+                        {
+                                throw e;
+                        }
+                }
+
                 #endregion
         }
 }
