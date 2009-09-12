@@ -88,11 +88,11 @@
         <br />
         <fieldset>
         <legend>项目路段</legend>
-        <div style="margin:18 18; height:400;overflow:auto">
-          <asp:GridView ID="gvRoadList" runat="server" AllowPaging="False"  Width="100%" CssClass="gridview"
+        <div>
+          <asp:GridView ID="gvRoadList" runat="server" AllowPaging="True"  Width="100%" CssClass="gridview"
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ROADID" OnSorting="gvRoadList_Sorting"
-        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
-         onrowcommand="GridView1_RowCommand" >
+        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true" PageSize="8"
+         onrowcommand="GridView1_RowCommand"   onpageindexchanging="gvList_PageIndexChanging" >
         <Columns>
             <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
                 <HeaderTemplate>
