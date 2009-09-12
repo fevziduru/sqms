@@ -135,11 +135,11 @@
                 </ItemTemplate>
             </asp:TemplateField>
             
-         <%--   <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+          <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <a href="javascript:showMap('<%#Eval("LONGITUDE")%>','<%#Eval("LATITUDE")%>')">地图位置</a>
+                    <a href='http://maps.google.com/maps?center=<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>&markers=<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>&f=q&hl=en&geocode=<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>&q=<%#Eval("MPNAME") %>&ll=<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>&ie=GB2312&t=h&gl=cn&z=16&iwloc=addr' target="_blank">位置</a>
                 </ItemTemplate>
-            </asp:TemplateField>      --%>     
+            </asp:TemplateField>      
                  
             <asp:BoundField DataField="MPID" HeaderText="MPID" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" SortExpression="MPID" Visible="False" />
             <asp:HyperLinkField DataNavigateUrlFields="MPID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"

@@ -77,6 +77,15 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
+        /// loc 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor loc;
+        
+        /// <summary>
         /// lblLng 控件。
         /// </summary>
         /// <remarks>
@@ -93,15 +102,6 @@ namespace SQMS.Application.Views.Quality {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLat;
-        
-        /// <summary>
-        /// loc 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor loc;
         
         /// <summary>
         /// hlImage 控件。
