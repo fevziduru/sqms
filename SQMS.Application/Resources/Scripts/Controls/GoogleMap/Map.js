@@ -5,6 +5,16 @@ function log(msg) {
 function unload() {
     GUnload();
 }
+function escKeyUpHandler(e) {
+    if (e.keyCode == '27') {
+        closeDetail();
+        $removeHandler(document.body, "keyup", escKeyUpHandler);
+    }
+}
+function closeDetail() {
+    this.parentElement.parentElement.style.display = 'none';
+    map.getInfoWindow().restore();
+}
 function initMap() {
     if (GBrowserIsCompatible()) {
         if (!map) {
@@ -17,7 +27,6 @@ function initMap() {
             }
             GEvent.addListener(map, "zoomend", showZoomLevel);
             GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
-
                 var url = "";
                 if (true == currentClickedMarker.fields.IsStart) {
                     url = "/Views/Quality/MonitorPointDetail.aspx?qcType=_qc_type_normal&mpid=" + currentClickedMarker.mpId;
@@ -27,10 +36,12 @@ function initMap() {
 
                 var divMore = document.getElementById("divMoreInfo");
                 var iframeMore = document.getElementById("iframeMoreInfo");
+
                 if (!divMore) {
                     var closeMoreText = document.createTextNode("关闭");
                     var lnkMoreClose = document.createElement('a');
                     lnkMoreClose.href = "javascript:void(0);";
+                    lnkMoreClose.setAttribute("title", "");
                     lnkMoreClose.appendChild(closeMoreText);
                     var divMoreClose = document.createElement('div');
                     divMoreClose.style.cssText = "text-align:right;";
@@ -50,10 +61,7 @@ function initMap() {
                     divMore.appendChild(divMoreClose);
                     document.body.appendChild(divMore);
 
-                    $addHandler(lnkMoreClose, "click", function() {
-                        this.parentElement.parentElement.style.display = 'none';
-                        map.getInfoWindow().restore();
-                    });
+                    $addHandler(lnkMoreClose, "click", closeDetail);
                 }
                 if (!iframeMore) {
                     iframeMore = document.createElement('iframe');
@@ -69,6 +77,8 @@ function initMap() {
                 divMore.style.height = window.screen.availHeight;
                 iframeMore.style.height = window.screen.availHeight;
                 iframeMore.src = url;
+
+                //$addHandler(window "keyup", escKeyUpHandler);
             });
             //GEvent.addListener(map, "mouseover", showMouseLatLng);
             //GEvent.addListener(map, "mousemove", showMouseLatLng);
@@ -171,6 +181,18 @@ function fetchMarkersById(mpid) {
     Sys.Net.WebRequestManager.executeRequest(wRequest);
     showRequestNum(requestNum++);
 }
+function setToRoad(roadId, mpId) {
+    setToMarkerListener.enable = true;
+    setToMarkerListener.setCenter = true;
+    setToMarkerListener.openInfoWindow = true;
+    setToMarkerListener.mpid = mpId;
+    if (markers[mpId]) {
+        setToMarkerListener.setToMarker();
+    }
+    else {
+        fetchMarkersByRoad(roadId);
+    }
+}
 function fetchMarkersByRoad(roadId) {
     var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&roadid=" + roadId;
     wRequest = new Sys.Net.WebRequest();
@@ -211,6 +233,7 @@ function initMarker(executor, eventArgs) {
                 if (true == foundNewMarker) {
                     WGMarkerFactory.getMarkerManager().refresh();
                 }
+                setToMarkerListener.setToMarker();
             }
         }
     }

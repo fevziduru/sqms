@@ -73,44 +73,66 @@ namespace SQMS.Application.Views.Quality
             if (valueArray[1].Equals("project") && this.TreeViewProject.SelectedNode.ChildNodes.Count <= 0)
             {
                 DataTable dtChildren = this.svcRoad.GetRoadListInProject(valueArray[0]);
+                int i = 1;
                 foreach (DataRow drChild in dtChildren.Rows)
                 {
-                    string nodeValue = ConvertUtil.ToStringOrDefault(drChild["ROADID"]) + "&road";
+                    string raodId = ConvertUtil.ToStringOrDefault(drChild["ROADID"]);
+                    string nodeValue = raodId + "&road";
                     TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drChild["ROADNAME"]), nodeValue);
+
+                    DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(raodId);
+                    DataRow[] searched = dtPoint.Select("ISSTART='Y'");
+
+                    DataRow drStartPoint = null;
+                    if (searched.Length > 0)
+                    {
+                        drStartPoint = searched[0];
+                    }
+                    else if (dtPoint.Rows.Count > 0)
+                    {
+                        drStartPoint = dtPoint.Rows[0];
+                    }
+                    if (null != drStartPoint)
+                    {
+                        node.NavigateUrl = "javascript:TreeView_SelectNode("+this.TreeViewProject.ClientID + "_Data, this,'"+this.TreeViewProject.ClientID+"t"+i+"');"
+                            + "__doPostBack('" + this.TreeViewProject.ClientID.Replace("_","$") + "','s" + this.TreeViewProject.SelectedNode.Value + "\\\\" + nodeValue + "');"
+                            + "setToRoad('" + raodId + "','" + drStartPoint["MPID"] + "');";
+                    }
                     this.TreeViewProject.SelectedNode.ChildNodes.Add(node);
+                    i++;
                 }
             }
             else if (valueArray[1].Equals("road"))
             {
                 //读取监控点
                 DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
-                DataRow[] searched = dtPoint.Select("ISSTART='Y'");
+                //DataRow[] searched = dtPoint.Select("ISSTART='Y'");
 
-                DataRow drStartPoint = null;
-                if (searched.Length > 0)
-                {
-                    drStartPoint = searched[0];
-                }
-                else if (dtPoint.Rows.Count > 0)
-                {
-                    drStartPoint = dtPoint.Rows[0];
-                }
-                if (null != drStartPoint)
-                {
-                    IList<MonitorPoint> mps = this.svcQualityControl.CreateMonitorPointList(dtPoint);
-                    string json = String.Empty;
-                    try
-                    {
-                        JavaScriptSerializer s = new JavaScriptSerializer();
-                        json = s.Serialize(mps);
-                    }
-                    catch
-                    {
+                //DataRow drStartPoint = null;
+                //if (searched.Length > 0)
+                //{
+                //    drStartPoint = searched[0];
+                //}
+                //else if (dtPoint.Rows.Count > 0)
+                //{
+                //    drStartPoint = dtPoint.Rows[0];
+                //}
+                //if (null != drStartPoint)
+                //{
+                //    IList<MonitorPoint> mps = this.svcQualityControl.CreateMonitorPointList(dtPoint);
+                //    string json = String.Empty;
+                //    try
+                //    {
+                //        JavaScriptSerializer s = new JavaScriptSerializer();
+                //        json = s.Serialize(mps);
+                //    }
+                //    catch
+                //    {
 
-                    }
-                    string js = @"fetchMarkersByRoad('" + valueArray[0] + "');setToMarker('" + drStartPoint["MPID"] + "','" + drStartPoint["MPNAME"] + "'," + drStartPoint["LATITUDE"] + "," + drStartPoint["LONGITUDE"] + "," + drStartPoint["MPLEVEL"] + ",0,true,true,{IsStart:true});";
-                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "setToStart", js, true);
-                }
+                //    }
+                //    //string js = @"fetchMarkersByRoad('" + valueArray[0] + "','" + drStartPoint["MPID"] + "');";
+                //    //ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "setToStart", js, true);
+                //}
 
                 this.bindMonitorPointTable(dtPoint);
             }
