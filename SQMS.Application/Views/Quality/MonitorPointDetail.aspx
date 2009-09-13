@@ -204,7 +204,8 @@
                         + '&type=_qc_type_dynamic'
                         + '&begintime=' + beginHourStr + ":" + beginMinStr + ":" + beginSecStr
                         + '&endtime=' + endHourStr + ":" + endMinStr + ":" + endSecStr
-                        + '&mpid=' + mp.MonitorPointId + '">',
+                        + '&mpid=' + mp.MonitorPointId
+                        + '&date=' + getUrlParam("date") + '">',
                         active: ((i == 0) ? true : false)
                     });
                     myTabs.addTab(tab);
@@ -230,53 +231,7 @@
             myTabs.appendTo(document.getElementById('divTabs'));
 
         }
-        function calSelectedHandler(type, args, obj) {
-            var dates = args[0];
-            var date = dates[0];
-            var year = date[0], month = date[1], day = date[2];
-            $get("labelDate").innerText = year + "年" + month + "月" + day + "日";
 
-            var url = "/Views/AjaxServices/QualityControl/QualityInfo.aspx?p=AjaxServicesQualityControlQualityInfo&mpid="
-                    + getUrlParam("mpid") + "&type=" + getUrlParam("qcType") + "&begin_time=" + year + "-" + month + "-" + day;
-            wRequest = new Sys.Net.WebRequest();
-            Sys.Net.WebRequestManager.add_completedRequest(initQCList);
-            wRequest.set_url(url);
-            Sys.Net.WebRequestManager.executeRequest(wRequest);
-        }
-        function initQCList(executor, eventArgs) {
-            if (executor.get_responseAvailable()) {
-                if (executor.get_statusCode() == "200") {
-                    var body = executor.get_responseData();
-                    var qcInfos = [];
-                    try {
-                        qcInfos = Sys.Serialization.JavaScriptSerializer.deserialize(body);
-                    }
-                    catch (e) { };
-                    if (qcInfos) {
-                        var length1 = qcInfos.length;
-                        currentInfoList.length = 0;
-                        currentInfoList = qcInfos;
-                        var imageContainer = new YAHOO.util.Element($get("divImages"));
-                        var children = YAHOO.util.Dom.getChildren("divImages");
-                        if (imageContainer) {
-                            var length2 = children.length;
-                            for (var i = 0; i < length2; i++) {
-                                imageContainer.removeChild(children[i]);
-                            }
-                        }
-                        for (var i = 0; i < length1; i++) {
-                            var a = document.createElement("a");
-                            a.href = qcInfos[i].Url;
-                            a.rel = "lightbox";
-                            if (imageContainer) {
-                                imageContainer.appendChild(a);
-                            }
-                        }
-                        lightbox1.initialize();
-                    }
-                }
-            }
-        }
         function initCaledar() {
             var Event = YAHOO.util.Event,
             Dom = YAHOO.util.Dom,
@@ -378,7 +333,7 @@
                             var mStr = selDate.getMonth() + 1;
                             var yStr = selDate.getFullYear();
 
-                            Dom.get("date").value = yStr + "年" + mStr + '月' + dStr + "日 " + wStr;
+                            Dom.get("date").value = yStr + "年" + mStr + '月' + dStr + "日";
 
 
                             if (mp.IsStart == true) {
@@ -424,7 +379,16 @@
 
                         dialog.hide();
                     });
-                    calendar.select(calendar.today);
+
+                    var initSelDateStr = getUrlParam("date").replace("-", "/");
+                    var initSelectedDate = null;
+                    if ("" == initSelDateStr) {
+                        initSelectedDate = calendar.today;
+                    } else {
+                        initSelectedDate = new Date(initSelDateStr);
+                    }
+                    calendar.select(initSelectedDate);
+
                     calendar.render();
                     calendar.renderEvent.subscribe(function() {
                         // Tell Dialog it's contents have changed, which allows 
@@ -443,6 +407,17 @@
 
                 dialog.show();
             });
+
+            var initSelDateStr = getUrlParam("date").replace("-", "/");
+            var initSelDate = null;
+            if ("" != initSelDateStr) {
+                initSelectedDate = new Date(initSelDateStr);
+
+            } else {
+                initSelectedDate = new Date();
+            }
+            Dom.get("date").value = initSelectedDate.format('yyyy年MM月dd日');
+
         }
     </script>
 
