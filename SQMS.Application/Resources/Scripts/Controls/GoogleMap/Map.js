@@ -128,7 +128,7 @@ var setToMarkerListener = {
         }
         var lastLatLngCookie = new Cookie("lastlatlng");
         lastLatLngCookie.lat = m.fields.Lat;
-        lastLatLngCookie.lng = m.fields.Lat;
+        lastLatLngCookie.lng = m.fields.Lng;
         lastLatLngCookie.store(365);
 
         this.enable = false;

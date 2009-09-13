@@ -466,6 +466,7 @@ namespace SQMS.Services
                            R.MEMO AS ROADMEMO,
                            ENUM3.ENUMNAME AS ROADTYPE,
                            P.PROJECTNAME,
+                           P.PROJECTID,
                            TS.SCHEMAID,
                            TS.SCHEMANAME,
                            TS.FLOATTIME,
@@ -618,6 +619,9 @@ namespace SQMS.Services
                         mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
                         mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
                         mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);
+                        mp.RoadName = ConvertUtil.ToStringOrDefault(dr["ROADNAME"]);
+                        mp.ProjectId = ConvertUtil.ToStringOrDefault(dr["ProjectId"]);
+                        mp.ProjectName = ConvertUtil.ToStringOrDefault(dr["ProjectName"]);
 
                         TimeSchema ts = new TimeSchema();
                         ts.TimeSchemaId = ConvertUtil.ToStringOrDefault(dr["SCHEMAID"]);

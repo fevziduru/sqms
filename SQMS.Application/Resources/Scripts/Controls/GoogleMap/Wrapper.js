@@ -9,7 +9,7 @@ function WGMarker() {
     this.mpName = "";
     this.lat = "";
     this.lng = "";
-    this.lv = 14;
+    this.lv = 10;
     this.qualityLevel = 0;
     this.isStart = false;
     this.isEnd = false;
@@ -29,7 +29,16 @@ WGMarker.prototype.openInfoWindowHtmlTab = function() {
     //this.gMap.openInfoWindowTabsHtml(this.gMarker.getLatLng(), [tab1,tab2]);
     //this.gMap.openInfoWindowTabs(this.gMarker.getLatLng(), [tab1, tab2]);
     this.gMarker.openInfoWindowTabs([tab1, tab2], { pixelOffset: 0, maxWidth: 500, maxContent: $get("divMaxInfoWindowContent"), maxTitle: $get("maxInfoWindowTitle") });
-    currentClickedMarker = this;
+//    if (currentClickedMarker) {
+//        prevClickedMarkerMeta.mpId = currentClickedMarker.mpId;
+//        prevClickedMarkerMeta.iconUrl = currentClickedMarker.gMarker.getIcon().image;
+//        currentClickedMarker.gMarker.setImage(this.gMarker.getIcon().image);
+//    }
+      currentClickedMarker = this;
+//    this.gMarker.setImage("/Resources/Images/Controls/Map/marker-blank-h.png");
+//    if (markers[prevClickedMarkerMeta.mpId]) {
+//        markers[prevClickedMarkerMeta.mpId].gMarker.setImage(prevClickedMarkerMeta.iconUrl);
+//    }
 }
 WGMarker.prototype.openInfoWindowHtml = function() {
     var html = "";
@@ -40,6 +49,7 @@ WGMarker.prototype.openInfoWindowHtml = function() {
     }
     this.gMarker.openInfoWindowHtml(html, { pixelOffset: 0, maxWidth: 500, maxContent: $get("divMaxInfoWindowContent"), maxTitle: $get("maxInfoWindowTitle") });
     currentClickedMarker = this;
+    $get("divCurrSelMPPath").innerHTML = "<h4 style='font-size:14px;'>" + this.fields.ProjectName + " - " + this.fields.RoadName + " - <a href='javascript:setToMarker(&quot;" + this.mpId + "&quot;,&quot;" + this.mpName + "&quot;," + this.lng + "," + this.lat + "," + this.lv + "," + this.qualityLevel + ",true,true);'>" + this.fields.MonitorPointName + "</a></h4>";
 }
 WGMarker.prototype.getInfoHtml = function(qcType) {
     var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
@@ -91,6 +101,9 @@ var WGMarkerFactory = {
         } else {
             iconImgName = "marker-blank.png";
         }
+        if (mpFields.IsStart == true) {
+            iconImgName = "marker-road-start.png";
+        }
         icon.image = "/Resources/Images/Controls/Map/" + iconImgName;
         icon.iconAnchor = new GPoint(5, 34);
         icon.infoWindowAnchor = new GPoint(10, 0);
@@ -102,7 +115,7 @@ var WGMarkerFactory = {
         m.lat = lat;
         m.lng = lng;
         m.gMap = WGMarkerFactory.gmap;
-        m.level = (lv < 1 || lv > 19) ? 14 : lv;
+        m.level = (lv < 1 || lv > 19) ? 10 : lv;
         m.qualityLevel = qclv;
         m.isStart = (mpFields && mpFields.IsStart && (mpFields.IsStart == true || mpFields.IsStart == "Y")) ? true : false;
         m.fields = mpFields;
