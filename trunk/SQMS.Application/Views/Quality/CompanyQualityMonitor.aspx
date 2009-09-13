@@ -109,6 +109,9 @@
                                         </ContentTemplate>
                                 </asp:UpdatePanel>
                         </div>
+                        <div id="divCal">
+                            
+                        </div>
                 </div>
                 <div id="right" class="right">
                         <asp:UpdatePanel ID="UpdatePanelMap" runat="server" UpdateMode="Conditional">
