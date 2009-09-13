@@ -63,15 +63,20 @@ namespace SQMS.Application.Views.Quality
             {
                 string meterialUrl = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
                 //this.LinkImageSource.ImageUrl = meterialUrl;
-                this.ifImage.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + meterialUrl);
+                this.LinkImageSource.ImageUrl = "/Views/Components/ImagePipe.aspx?filename=" + meterialUrl;
                 this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
                 this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
                 this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
                 this.LabelPatrolMan.Text = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
                 this.LabelQCState.Text = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
                 this.LabelQCType.Text = ConvertUtil.ToStringOrDefault(dr["QCTYPE"]);
-                string url = "/Views/Quality/AnchorContent.aspx?qcType=" + this.QualityControlType + "&mpid=" + ConvertUtil.ToStringOrDefault(dr["MPID"]);
+                string url = "/Views/Quality/MonitorPointDetail.aspx?qcType=" + this.QualityControlType + "&mpid=" + ConvertUtil.ToStringOrDefault(dr["MPID"]);
                 this.LinkMore.NavigateUrl = "javascript:openMoreInfo('" + url + "');";
+            }
+            else
+            {
+                this.divQC.Visible = false;
+                this.divNoQC.Visible = true;
             }
             if(null !=drMP)
             {

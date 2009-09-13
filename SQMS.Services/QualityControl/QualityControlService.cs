@@ -381,7 +381,7 @@ namespace SQMS.Services
                         }
                         catch (Exception e)
                         {
-                                throw e;
+                                throw;
                         }
                 }
 
@@ -465,7 +465,12 @@ namespace SQMS.Services
                            R.ROADCODE,
                            R.MEMO AS ROADMEMO,
                            ENUM3.ENUMNAME AS ROADTYPE,
-                           P.PROJECTNAME
+                           P.PROJECTNAME,
+                           TS.SCHEMAID,
+                           TS.SCHEMANAME,
+                           TS.FLOATTIME,
+                           TS.BEGINTIME,
+                           TS.ENDTIME
                   FROM MPASSIGNMENT M
                   LEFt JOIN EMPLOYEE E3 ON E3.EMPID = M.MODIFIEDBY AND E3.organizationid='" + this.CurrentUser.OrganizationID + @"'
                   LEFt JOIN EMPLOYEE E4 ON E4.EMPID = M.CREATEDBY AND E4.organizationid='" + this.CurrentUser.OrganizationID + @"'
@@ -473,7 +478,8 @@ namespace SQMS.Services
                   LEFT JOIN PROJECT P ON P.PROJECTID = R.PROJECTID AND P.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
                   LEFT JOIN EMPLOYEE E ON E.EMPID = P.EMPID AND E.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
                   LEFT JOIN TIMESCHEMA T ON T.SCHEMAID = M.SCHEMAID AND T.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'
-                  LEFT JOIN ENUMERATION ENUM3 ON ENUM3.ENUMID = R.ROADTYPE";
+                  LEFT JOIN ENUMERATION ENUM3 ON ENUM3.ENUMID = R.ROADTYPE
+                  LEFT JOIN TIMESCHEMA TS ON TS.SCHEMAID = M.SCHEMAID AND TS.ORGANIZATIONID='" + this.CurrentUser.OrganizationID + @"'";
                 }
 
                 private string getQualityMainSql()
@@ -590,5 +596,64 @@ namespace SQMS.Services
                                 throw e;
                         }
                 }
+
+                public IList<MonitorPoint> CreateMonitorPointList(DataTable dt)
+                {
+                    IList<MonitorPoint> list = new List<MonitorPoint>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        MonitorPoint mp = new MonitorPoint();
+                        mp.Created = ConvertUtil.ToDateTime(dr["Created"]);
+                        mp.CreatedBy = ConvertUtil.ToStringOrDefault(dr["CreatedBy"]);
+                        mp.Lat = ConvertUtil.ToLat(dr["LATITUDE"]);
+                        mp.Lng = ConvertUtil.ToLng(dr["LONGITUDE"]);
+                        mp.Memo = ConvertUtil.ToStringOrDefault(dr["MEMO"]);
+                        mp.Modified = ConvertUtil.ToDateTime(dr["Modified"]);
+                        mp.ModifiedBy = ConvertUtil.ToStringOrDefault(dr["ModifiedBy"]);
+                        mp.MonitorPointCode = ConvertUtil.ToStringOrDefault(dr["MPCODE"]);
+                        mp.MonitorPointId = ConvertUtil.ToStringOrDefault(dr["MPID"]);
+                        mp.MonitorPointName = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
+                        mp.OrganizationId = "";
+                        mp.RoadId = "";
+                        mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
+                        mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
+                        mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);
+
+                        TimeSchema ts = new TimeSchema();
+                        ts.TimeSchemaId = ConvertUtil.ToStringOrDefault(dr["SCHEMAID"]);
+                        ts.TimeSchemaName = ConvertUtil.ToStringOrDefault(dr["SCHEMANAME"]);
+                        ts.BeginTime = ConvertUtil.ToDateTime(dr["BEGINTIME"]);
+                        ts.EndTime = ConvertUtil.ToDateTime(dr["ENDTIME"]);
+                        ts.FloatTime =ConvertUtil.ToDecimal(dr["FLOATTIME"]);
+                        ts.BeginTimeString = ConvertUtil.ToStringOrDefault(dr["BEGINTIME"]);
+                        ts.EndTimeString = ConvertUtil.ToStringOrDefault(dr["ENDTIME"]);
+
+                        DataTable dtTimeItems = this.TimeItemService.SearchTimeItems(mp.MonitorPointId, "");
+                        foreach (DataRow drTimeItem in dtTimeItems.Rows)
+                        {
+                            TimeItem item = new TimeItem();
+                            item.TimeItemId = ConvertUtil.ToStringOrDefault(drTimeItem["TIMEITEMID"]);
+                            item.TimeItemType = ConvertUtil.ToStringOrDefault(drTimeItem["TIMEITEMTYPE"]);
+                            item.FloatTime = new TimeSpan(0, ConvertUtil.ToInt(drTimeItem["FLOATTIME"]), 0);
+                            item.Times = ConvertUtil.ToDecimal(drTimeItem["TIMES"]);
+                            item.TimeSpan = new TimeSpan(ConvertUtil.ToInt(drTimeItem["TIMESPAN"]), 0, 0);
+                            item.TimeSpot = ConvertUtil.ToStringOrDefault(drTimeItem["TIMESPOT"]);
+                            if (item.TimeItemType == "_qc_type_dynamic")
+                            {
+                                ts.Times = item.Times;
+                                ts.TimeSpan = (decimal)item.TimeSpan.TotalHours;
+                            }
+                            else
+                            {
+                                ts.TimeItems.Add(item);
+                            }
+                        }
+                        mp.TimeSchema = ts;
+                        list.Add(mp);
+                    }
+                    return list;
+                }
+
+                
         }
 }

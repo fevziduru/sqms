@@ -18,6 +18,7 @@ namespace SQMS.Application.Views.Quality
     {
         private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
         private QualityControlService svcQualityControl = null;
+        private TimeItemService svcTimeItem = null;
         private ProjectService svcProject = null;
         private EmployeeService svcEmployee = null;
         private RoadService svcRoad = null;
@@ -28,6 +29,7 @@ namespace SQMS.Application.Views.Quality
         private DataTable dtMonitorPoint = null;
         private int normalQcCount = 0;
         private int dynamicQcCount = 0;
+        protected DataTable TimeItemTable = null;
         protected string MonitorPointId
         {
             get
@@ -50,6 +52,7 @@ namespace SQMS.Application.Views.Quality
             this.svcProject = this.svcManager.CreateService<ProjectService>();
             this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
             this.svcRoad = this.svcManager.CreateService<RoadService>();
+            this.svcTimeItem = this.svcManager.CreateService<TimeItemService>();
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -88,6 +91,7 @@ namespace SQMS.Application.Views.Quality
                 this.initQcDynamicData(pagingParam);
                 this.dtMonitorPoint = this.svcQualityControl.GetMonitorPoint(this.MonitorPointId);
                 this.dtVideo = this.svcQualityControl.GetVideoList(this.MonitorPointId);
+                this.TimeItemTable = this.svcTimeItem.SearchTimeItems(this.MonitorPointId, this.QualityControlType);
             }
         }
         private void initQcNormalData(PagingParameter pagingParam)
@@ -117,30 +121,30 @@ namespace SQMS.Application.Views.Quality
         }
         private void bindListQcNormal(DataTable dt)
         {
-            this.GridViewQcNormal.DataSource = dt;
-            this.GridViewQcNormal.DataBind();
+            //this.GridViewQcNormal.DataSource = dt;
+            //this.GridViewQcNormal.DataBind();
             //this.PagingBarQcNormal.RowsCount = this.normalQcCount;
             //this.PagingBarQcNormal.CurrentPageChanging += new CommandEventHandler(PagingBarQcNormal_CurrentPageChanging);
             //this.DataPagerQcNormal.TotalRowCount = this.normalQcCount;
         }
         private void binListQcDynamic(DataTable dt)
         {
-            this.GridViewQcDynamic.DataSource = dt;
-            this.GridViewQcDynamic.DataBind();
+            //this.GridViewQcDynamic.DataSource = dt;
+            //this.GridViewQcDynamic.DataBind();
         }
         private void bindQcDetail(DataRow dr)
         {
             if (null != dr)
             {
                 string url = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
-                this.LinkImageSource.ImageUrl = url;
-                this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
-                this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
-                this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
-                this.LabelMPName.Text = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
-                this.LabelPatrolMan.Text = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
-                this.LabelQCState.Text = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
-                this.LabelQCType.Text = ConvertUtil.ToStringOrDefault(dr["QCTYPE"]);
+                //this.LinkImageSource.ImageUrl = url;
+                //this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
+                //this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
+                //this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);
+                //this.LabelMPName.Text = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
+                //this.LabelPatrolMan.Text = ConvertUtil.ToStringOrDefault(dr["CHECKPERSONNAME"]);
+                //this.LabelQCState.Text = ConvertUtil.ToStringOrDefault(dr["STATUSNAME"]);
+                //this.LabelQCType.Text = ConvertUtil.ToStringOrDefault(dr["QCTYPE"]);
             }
         }
         protected void LnkBtnQc_Command(object sender, CommandEventArgs e)
@@ -148,32 +152,32 @@ namespace SQMS.Application.Views.Quality
             DataTable dt = this.svcQualityControl.GetQualityControlInfo(ConvertUtil.ToStringOrDefault(e.CommandArgument));
             DataRow dr = DataSetUtil.GetFirstRowFromDataTable(dt);
             this.bindQcDetail(dr);
-            this.UpdatePanelQcInfo.Update();
+            //this.UpdatePanelQcInfo.Update();
         }
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            DateTime begin = ConvertUtil.ToDateTime(this.TextBoxBeginTime.Text);
-            DateTime end = ConvertUtil.ToDateTime(this.TextBoxEndTime.Text);
-            string qcType = ConvertUtil.ToStringOrDefault(this.HiddenFieldQcType.Value);
-            DataTable dt = this.svcQualityControl.GetQualityControlInfoList(this.MonitorPointId, qcType, begin, end, null);
-            if (QualityControlService.QC_TYPE_DYNAMIC == qcType)
-            {
-                this.binListQcDynamic(dt);
-                this.UpdatePanelQcListDynamic.Update();
-            }
-            else if(QualityControlService.QC_TYPE_NORMAL == qcType)
-            {
-                this.bindListQcNormal(dt);
-                this.UpdatePanelQcListNormal.Update();
-            }
+            //DateTime begin = ConvertUtil.ToDateTime(this.TextBoxBeginTime.Text);
+            //DateTime end = ConvertUtil.ToDateTime(this.TextBoxEndTime.Text);
+            //string qcType = ConvertUtil.ToStringOrDefault(this.HiddenFieldQcType.Value);
+            //DataTable dt = this.svcQualityControl.GetQualityControlInfoList(this.MonitorPointId, qcType, begin, end, null);
+            //if (QualityControlService.QC_TYPE_DYNAMIC == qcType)
+            //{
+            //    this.binListQcDynamic(dt);
+            //    this.UpdatePanelQcListDynamic.Update();
+            //}
+            //else if(QualityControlService.QC_TYPE_NORMAL == qcType)
+            //{
+            //    this.bindListQcNormal(dt);
+            //    this.UpdatePanelQcListNormal.Update();
+            //}
             
         }
 
         private void bindVideoTable(DataTable dt)
         {
-            this.GridViewVideo.DataSource = dt;
-            this.GridViewVideo.DataBind();
+            //this.GridViewVideo.DataSource = dt;
+            //this.GridViewVideo.DataBind();
         }
     }
 }
