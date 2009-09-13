@@ -3,11 +3,14 @@
 <script type="text/javascript" src="../../Resources/Scripts/Common/cookie.js"></script>
 
 <script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRQ6hbvwoS9GD89j9qEqTKobihdwiBTS_QjMbHbdYwkxWiBA-XpSkWHt_w&hl=zh-CN"
-    type="text/javascript"></script>
+        type="text/javascript"></script>
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/MarkerManager.js" type="text/javascript"></script>
+
 <script src="../../Resources/Scripts/Controls/GoogleMap/Wrapper.js" type="text/javascript"></script>
+
 <script type="text/javascript" src="../../Resources/Scripts/Controls/GoogleMap/Map.js"></script>
+
 <script type="text/javascript" src="../../Resources/Scripts/Controls/GoogleMap/Video.js"></script>
 
 <!-- Sam Skin CSS -->
@@ -29,31 +32,31 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
 
 <div>
-    <div class="yui-skin-sam">
-        <div id="videoPanel">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <div id="divVideo">
+        <div class="yui-skin-sam">
+                <div id="videoPanel">
+                        <div class="hd">
+                        </div>
+                        <div class="bd">
+                                <div id="divVideo">
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </div>
 <div id="map_canvas" style="height: 600px;">
 </div>
 <div style="display: none;">
-    <span>经纬度:</span> <span id="spanLatLng" style="width: 300px;"></span><span>缩放级别:</span>
-    <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span><span id="spanRequestNum">
-    </span>
+        <span>经纬度:</span> <span id="spanLatLng" style="width: 300px;"></span><span>缩放级别:</span>
+        <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span><span id="spanRequestNum">
+        </span>
 </div>
 <div id="divLog" style="overflow: auto;">
 </div>
 <div style="width: 100%">
-    <div id="divMaxInfoWindowTitle">
-    </div>
-    <div id="divMaxInfoWindowContent">
-    </div>
+        <div id="divMaxInfoWindowTitle">
+        </div>
+        <div id="divMaxInfoWindowContent">
+        </div>
 </div>
 
 <script type="text/javascript">
@@ -65,3 +68,4 @@
     var initLat = <%=this.InitLatLng.Lat %>;
     var initLng = <%=this.InitLatLng.Lng %>;
 </script>
+

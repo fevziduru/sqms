@@ -62,7 +62,8 @@ namespace SQMS.Application.Views.Quality
             if (null != dr)
             {
                 string meterialUrl = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
-                this.LinkImageSource.ImageUrl = meterialUrl;
+                //this.LinkImageSource.ImageUrl = meterialUrl;
+                this.ifImage.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + meterialUrl);
                 this.LabelDataFetchTime.Text = ConvertUtil.ToStringOrDefault(dr["CREATED"]);
                 this.LabelDutyMan.Text = ConvertUtil.ToStringOrDefault(dr["CHARGEPERSONNAME"]);
                 this.LabelEmergencyMan.Text = ConvertUtil.ToStringOrDefault(dr["EMERGENCYPERSONNAME"]);

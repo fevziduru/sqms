@@ -13,143 +13,143 @@ using EasyDev.SQMS;
 
 namespace SQMS.Application.Views.Quality
 {
-    public partial class SanitationOfficeMonitor : SQMSPage<QualityControlService>
-    {
-        private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
-        private QualityControlService svcQualityControl = null;
-        private ProjectService svcProject = null;
-        private EmployeeService svcEmployee = null;
-        private RoadService svcRoad = null;
-
-        private DataTable dtProject = null;
-        private DataTable dtVideo = null;
-        private DataTable dtOrg = null;
-
-        protected void Page_Init(object sender, EventArgs e)
+        public partial class SanitationOfficeMonitor : SQMSPage<QualityControlService>
         {
-            this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
-            this.svcProject = this.svcManager.CreateService<ProjectService>();
-            this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
-            this.svcRoad = this.svcManager.CreateService<RoadService>();
-        }
+                private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
+                private QualityControlService svcQualityControl = null;
+                private ProjectService svcProject = null;
+                private EmployeeService svcEmployee = null;
+                private RoadService svcRoad = null;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            this.OperationBar.Visible = false;
-        }
-        protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
-        {
-            base.OnInitializeViewEventHandler(sender, e);
+                private DataTable dtProject = null;
+                private DataTable dtVideo = null;
+                private DataTable dtOrg = null;
 
-            this.bindProjectTreeView(this.dtProject);
-
-            this.DropDownListProjectManager.DataSource = this.dtOrg;
-            this.DropDownListProjectManager.DataTextField = "ORGNAME";
-            this.DropDownListProjectManager.DataValueField = "ORGANIZATIONID";
-            this.DropDownListProjectManager.DataBind();
-            this.DropDownListProjectManager.Items.Insert(0, new ListItem("全部", String.Empty));
-
-        }
-        protected override void GetViewData()
-        {
-            base.GetViewData();
-        }
-
-        protected override void OnLoadDataEventHandler(object sender, EventArgs e)
-        {
-            base.OnLoadDataEventHandler(sender, e);
-            this.dtOrg = this.svcProject.GetOrganizationListInProject();
-            this.dtProject = this.svcProject.GetProjectListByOrg();
-
-        }
-
-        protected void TreeViewProject_SelectedNodeChanged(object sender, EventArgs e)
-        {
-            string[] valueArray = this.TreeViewProject.SelectedNode.Value.Split(new char[] { '&' });
-            if (valueArray[1].Equals("project") && this.TreeViewProject.SelectedNode.ChildNodes.Count <= 0)
-            {
-                DataTable dtChildren = this.svcRoad.GetRoadListInProject(valueArray[0]);
-                foreach (DataRow drChild in dtChildren.Rows)
+                protected void Page_Init(object sender, EventArgs e)
                 {
-                    string nodeValue = ConvertUtil.ToStringOrDefault(drChild["ROADID"]) + "&road";
-                    TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drChild["ROADNAME"]), nodeValue);
-                    this.TreeViewProject.SelectedNode.ChildNodes.Add(node);
+                        this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
+                        this.svcProject = this.svcManager.CreateService<ProjectService>();
+                        this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
+                        this.svcRoad = this.svcManager.CreateService<RoadService>();
                 }
-            }
-            else if (valueArray[1].Equals("road"))
-            {
-                //读取监控点
-                DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
-                this.bindMonitorPointTable(dtPoint);
-            }
-            this.TreeViewProject.SelectedNode.Expand();
-        }
 
-        protected void ButtonPointSearch_Click(object sender, EventArgs e)
-        {
-            string keyword = ConvertUtil.ToStringOrDefault(this.TextBoxPointSearch.Text);
-            DataTable dt = this.svcQualityControl.SearchMonitorPoint(keyword);
-            this.bindMonitorPointTable(dt);
-        }
+                protected void Page_Load(object sender, EventArgs e)
+                {
+                        this.OperationBar.Visible = false;
+                }
+                protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
+                {
+                        base.OnInitializeViewEventHandler(sender, e);
 
-        private void bindMonitorPointTable(DataTable dtPoint)
-        {
-            this.GridViewMP.DataSource = dtPoint;
-            this.GridViewMP.DataBind();
-            this.UpdatePanelQualityPoint.Update();
-        }
+                        this.bindProjectTreeView(this.dtProject);
 
-        protected void lnkBtnMP_Command(object sender, CommandEventArgs e)
-        {
-            DataTable dt = this.svcQualityControl.GetVideoList(ConvertUtil.ToStringOrDefault(e.CommandArgument));
-            this.bindVideoTable(dt);
-        }
-        private void bindVideoTable(DataTable dt)
-        {
-            this.GridViewVideo.DataSource = dt;
-            this.GridViewVideo.DataBind();
-            this.UpdatePanelVideoList.Update();
-        }
-        private void bindProjectTreeView(DataTable dtProject)
-        {
-            this.TreeViewProject.Nodes.Clear();
-            foreach (DataRow drProject in dtProject.Rows)
-            {
-                string nodeValue = ConvertUtil.ToStringOrDefault(drProject["PROJECTID"]) + "&project";
-                TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
-                this.TreeViewProject.Nodes.Add(node);
-            }
-        }
+                        this.DropDownListProjectManager.DataSource = this.dtOrg;
+                        this.DropDownListProjectManager.DataTextField = "ORGNAME";
+                        this.DropDownListProjectManager.DataValueField = "ORGANIZATIONID";
+                        this.DropDownListProjectManager.DataBind();
+                        this.DropDownListProjectManager.Items.Insert(0, new ListItem("全部", String.Empty));
 
-        protected void DropDownListProjectManager_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataTable dt = null;
-            if (String.IsNullOrEmpty(this.DropDownListProjectManager.SelectedValue))
-            {
-                dt = this.svcProject.GetProjectListByOrg();
-            }
-            else
-            {
-                dt = this.svcProject.GetProjectListByOrg(this.DropDownListProjectManager.SelectedValue);
-            }
-            this.bindProjectTreeView(dt);
-            this.bindMonitorPointTable(new DataTable());
-        }
+                }
+                protected override void GetViewData()
+                {
+                        base.GetViewData();
+                }
 
-        protected void GridViewMP_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                DataRowView drPointView = (DataRowView)e.Row.DataItem;
-                DataRow drPoint = drPointView.Row;
-                string mpName = ConvertUtil.ToStringOrDefault(drPoint["MPNAME"]);
-                string mpId = ConvertUtil.ToStringOrDefault(drPoint["MPID"]);
-                string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
-                string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
-                string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
-                LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
-                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + ",true,true);";
-            }
+                protected override void OnLoadDataEventHandler(object sender, EventArgs e)
+                {
+                        base.OnLoadDataEventHandler(sender, e);
+                        this.dtOrg = this.svcProject.GetOrganizationListInProject();
+                        this.dtProject = this.svcProject.GetProjectListByOrg();
+
+                }
+
+                protected void TreeViewProject_SelectedNodeChanged(object sender, EventArgs e)
+                {
+                        string[] valueArray = this.TreeViewProject.SelectedNode.Value.Split(new char[] { '&' });
+                        if (valueArray[1].Equals("project") && this.TreeViewProject.SelectedNode.ChildNodes.Count <= 0)
+                        {
+                                DataTable dtChildren = this.svcRoad.GetRoadListInProject(valueArray[0]);
+                                foreach (DataRow drChild in dtChildren.Rows)
+                                {
+                                        string nodeValue = ConvertUtil.ToStringOrDefault(drChild["ROADID"]) + "&road";
+                                        TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drChild["ROADNAME"]), nodeValue);
+                                        this.TreeViewProject.SelectedNode.ChildNodes.Add(node);
+                                }
+                        }
+                        else if (valueArray[1].Equals("road"))
+                        {
+                                //读取监控点
+                                DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
+                                this.bindMonitorPointTable(dtPoint);
+                        }
+                        this.TreeViewProject.SelectedNode.Expand();
+                }
+
+                protected void ButtonPointSearch_Click(object sender, EventArgs e)
+                {
+                        string keyword = ConvertUtil.ToStringOrDefault(this.TextBoxPointSearch.Text);
+                        DataTable dt = this.svcQualityControl.SearchMonitorPoint(keyword);
+                        this.bindMonitorPointTable(dt);
+                }
+
+                private void bindMonitorPointTable(DataTable dtPoint)
+                {
+                        this.GridViewMP.DataSource = dtPoint;
+                        this.GridViewMP.DataBind();
+                        this.UpdatePanelQualityPoint.Update();
+                }
+
+                protected void lnkBtnMP_Command(object sender, CommandEventArgs e)
+                {
+                        DataTable dt = this.svcQualityControl.GetVideoList(ConvertUtil.ToStringOrDefault(e.CommandArgument));
+                        this.bindVideoTable(dt);
+                }
+                private void bindVideoTable(DataTable dt)
+                {
+                        this.GridViewVideo.DataSource = dt;
+                        this.GridViewVideo.DataBind();
+                        this.UpdatePanelVideoList.Update();
+                }
+                private void bindProjectTreeView(DataTable dtProject)
+                {
+                        this.TreeViewProject.Nodes.Clear();
+                        foreach (DataRow drProject in dtProject.Rows)
+                        {
+                                string nodeValue = ConvertUtil.ToStringOrDefault(drProject["PROJECTID"]) + "&project";
+                                TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drProject["PROJECTNAME"]), nodeValue);
+                                this.TreeViewProject.Nodes.Add(node);
+                        }
+                }
+
+                protected void DropDownListProjectManager_SelectedIndexChanged(object sender, EventArgs e)
+                {
+                        DataTable dt = null;
+                        if (String.IsNullOrEmpty(this.DropDownListProjectManager.SelectedValue))
+                        {
+                                dt = this.svcProject.GetProjectListByOrg();
+                        }
+                        else
+                        {
+                                dt = this.svcProject.GetProjectListByOrg(this.DropDownListProjectManager.SelectedValue);
+                        }
+                        this.bindProjectTreeView(dt);
+                        this.bindMonitorPointTable(new DataTable());
+                }
+
+                protected void GridViewMP_RowDataBound(object sender, GridViewRowEventArgs e)
+                {
+                        if (e.Row.RowType == DataControlRowType.DataRow)
+                        {
+                                DataRowView drPointView = (DataRowView)e.Row.DataItem;
+                                DataRow drPoint = drPointView.Row;
+                                string mpName = ConvertUtil.ToStringOrDefault(drPoint["MPNAME"]);
+                                string mpId = ConvertUtil.ToStringOrDefault(drPoint["MPID"]);
+                                string lat = ConvertUtil.ToStringOrDefault(drPoint["LATITUDE"]);
+                                string lng = ConvertUtil.ToStringOrDefault(drPoint["LONGITUDE"]);
+                                string lv = ConvertUtil.ToStringOrDefault(drPoint["MPLEVEL"]);
+                                LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
+                                lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + ",true,true);";
+                        }
+                }
         }
-    }
 }
