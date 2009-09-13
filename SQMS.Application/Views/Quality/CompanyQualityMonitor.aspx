@@ -32,6 +32,23 @@
             display: inline;
             width: 80%;
         }
+        
+        .Freezing 
+        { 
+           position:relative ; 
+           table-layout:fixed;
+           top:expression(this.offsetParent.scrollTop);   
+           z-index: 10;
+        }
+           
+        .Freezing th
+        {
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space: nowrap;
+            padding:1px;
+            z-index:10;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,23 +66,26 @@
                                 </span>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        <br />
                         <asp:UpdatePanel ID="UpdatePanelProjectTree" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:TreeView ID="TreeViewProject" runat="server" PopulateNodesFromClient="true"
+                                <asp:TreeView ShowLines="true" ID="TreeViewProject" runat="server" PopulateNodesFromClient="true"
                                     OnSelectedNodeChanged="TreeViewProject_SelectedNodeChanged">
                                 </asp:TreeView>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
                 </fieldset>
+                <br />
             </div>
+              <fieldset>
+                    <legend>监控点</legend>
             <div style="height: 300px; overflow: auto;">
-                <fieldset>
-                    <legend>作业现场</legend>
+              
                     <asp:UpdatePanel ID="UpdatePanelQualityPoint" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewMP" runat="server" AllowPaging="False" Width="100%" AutoGenerateColumns="False"
-                                DataKeyNames="MPID" EmptyDataText="没有可显示的数据记录。" OnRowDataBound="GridViewMP_RowDataBound">
+                            <asp:GridView ID="GridViewMP" runat="server" AllowPaging="False" Width="100%" AutoGenerateColumns="False" HeaderStyle-CssClass="Freezing" CssClass="gridview"
+                                DataKeyNames="MPID" EmptyDataText="没有可显示的数据记录。" OnRowDataBound="GridViewMP_RowDataBound" >
                                 <Columns>
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="片区监控点">
                                         <ItemTemplate>
@@ -84,8 +104,10 @@
                         </asp:Table>--%>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                </fieldset>
+              
             </div>
+              </fieldset>
+                <br />
             <div>
                 <fieldset>
                     <legend>监控点查询</legend>
@@ -98,6 +120,7 @@
                     </asp:UpdatePanel>
                 </fieldset>
             </div>
+            <br />
             <div>
                 <fieldset>
                     <legend>视频数据</legend>
@@ -119,8 +142,9 @@
                     </asp:UpdatePanel>
                 </fieldset>
             </div>
+            <br />
             <div>
-                <fieldset>
+                <fieldset  style="text-align:center;vertical-align:absmiddle">
                     <legend>历史查询</legend>
                     <div id="divCalSideContainer" class="yui-skin-sam">
                         <div id="divCalSide">
