@@ -164,7 +164,7 @@ namespace SQMS.Application.Views.Quality
                         //获取时间点数据
                         ViewData = srv.TimeItemService.LoadByCondition("organizationid='" + CurrentUser.OrganizationID + "'");
                         DataRow drTimeItem = DataSetUtil.GetFirstRowFromDataSet(ViewData,srv.TimeItemService.BOName);
-                        int floattime = 3;
+                        int floattime = 0;
                         if (drTimeItem != null)
                         {
                                 floattime = Convert.ToInt32(drTimeItem["FLOATTIME"]);
