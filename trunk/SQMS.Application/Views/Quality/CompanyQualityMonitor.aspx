@@ -38,86 +38,95 @@
     <div>
         <div id="divLeft" class="left">
             <div>
-                <div>
-                    项目</div>
-                <div>
-                    <asp:UpdatePanel ID="UpdatePanelProjectManager" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <span>负责人:</span><span><asp:DropDownList ID="DropDownListProjectManager" runat="server"
-                                AutoPostBack="true" OnSelectedIndexChanged="DropDownListProjectManager_SelectedIndexChanged">
-                            </asp:DropDownList>
-                            </span>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="UpdatePanelProjectTree" runat="server" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <asp:TreeView ID="TreeViewProject" runat="server" PopulateNodesFromClient="true"
-                                OnSelectedNodeChanged="TreeViewProject_SelectedNodeChanged">
-                            </asp:TreeView>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
+                <fieldset>
+                    <legend>项目</legend>
+                    <div>
+                        <asp:UpdatePanel ID="UpdatePanelProjectManager" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <span>负责人:</span><span><asp:DropDownList ID="DropDownListProjectManager" runat="server"
+                                    AutoPostBack="true" OnSelectedIndexChanged="DropDownListProjectManager_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                </span>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <asp:UpdatePanel ID="UpdatePanelProjectTree" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:TreeView ID="TreeViewProject" runat="server" PopulateNodesFromClient="true"
+                                    OnSelectedNodeChanged="TreeViewProject_SelectedNodeChanged">
+                                </asp:TreeView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </fieldset>
             </div>
             <div style="height: 300px; overflow: auto;">
-                <div>
-                    作业现场</div>
-                <asp:UpdatePanel ID="UpdatePanelQualityPoint" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:GridView ID="GridViewMP" runat="server" AllowPaging="False" Width="100%" AutoGenerateColumns="False"
-                            DataKeyNames="MPID" EmptyDataText="没有可显示的数据记录。" OnRowDataBound="GridViewMP_RowDataBound">
-                            <Columns>
-                                <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="片区监控点">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="LnkBtnMPName" runat="server" Text='<%#Eval("MPNAME") %>' OnCommand="lnkBtnMP_Command"
-                                            CommandArgument='<%#Eval("MPID") %>' OnClientClick='setToMarker("<%#Eval("MPID") %>","<%#Eval("MPNAME") %>",<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>,<%#Eval("MPLEVEL") %>,true,true,{isStart:"<%# Eval("ISSTART") %>"})'></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="EMPNAME" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
-                            </Columns>
-                        </asp:GridView>
-                        <%--<asp:Table ID="TableQualityPoint" runat="server">
+                <fieldset>
+                    <legend>作业现场</legend>
+                    <asp:UpdatePanel ID="UpdatePanelQualityPoint" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewMP" runat="server" AllowPaging="False" Width="100%" AutoGenerateColumns="False"
+                                DataKeyNames="MPID" EmptyDataText="没有可显示的数据记录。" OnRowDataBound="GridViewMP_RowDataBound">
+                                <Columns>
+                                    <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="片区监控点">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="LnkBtnMPName" runat="server" Text='<%#Eval("MPNAME") %>' OnCommand="lnkBtnMP_Command"
+                                                CommandArgument='<%#Eval("MPID") %>' OnClientClick='setToMarker("<%#Eval("MPID") %>","<%#Eval("MPNAME") %>",<%#Eval("LATITUDE") %>,<%#Eval("LONGITUDE") %>,<%#Eval("MPLEVEL") %>,true,true,{isStart:"<%# Eval("ISSTART") %>"})'></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="EMPNAME" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
+                                </Columns>
+                            </asp:GridView>
+                            <%--<asp:Table ID="TableQualityPoint" runat="server">
                             <asp:TableHeaderRow>
                                 <asp:TableHeaderCell Text="片区监控点" />
                                 <asp:TableHeaderCell Text="负责人" />
                             </asp:TableHeaderRow>
                         </asp:Table>--%>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </fieldset>
             </div>
             <div>
-                <div>
-                    监控点查询</div>
-                <asp:UpdatePanel ID="UpdatePanelMonitorPointSearch" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <span>
-                            <asp:TextBox ID="TextBoxPointSearch" runat="server"></asp:TextBox></span> <span>
-                                <asp:Button runat="server" ID="ButtonPointSearch" Text="查询" OnClick="ButtonPointSearch_Click" /></span>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                <fieldset>
+                    <legend>监控点查询</legend>
+                    <asp:UpdatePanel ID="UpdatePanelMonitorPointSearch" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <span>
+                                <asp:TextBox ID="TextBoxPointSearch" runat="server"></asp:TextBox></span> <span>
+                                    <asp:Button runat="server" ID="ButtonPointSearch" Text="查询" OnClick="ButtonPointSearch_Click" /></span>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </fieldset>
             </div>
             <div>
-                <div>
-                    视频数据</div>
-                <asp:UpdatePanel ID="UpdatePanelVideoList" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:GridView ID="GridViewVideo" runat="server" AllowPaging="True" Width="100%" AllowSorting="True"
-                            AutoGenerateColumns="False" DataKeyNames="VIDEOID" EmptyDataText="没有可显示的数据记录。">
-                            <Columns>
-                                <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="名称">
-                                    <ItemTemplate>
-                                        <a href="javascript:openVideo(&quot;<%#Eval("VIDEOID") %>&quot;,&quot;<%#Eval("VIDEONAME") %>&quot;,true)">
-                                            <%#Eval("VIDEONAME") %></a>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="CREATEDBY" HeaderText="拍摄者" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
-                            </Columns>
-                        </asp:GridView>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                <fieldset>
+                    <legend>视频数据</legend>
+                    <asp:UpdatePanel ID="UpdatePanelVideoList" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewVideo" runat="server" AllowPaging="True" Width="100%" AllowSorting="True"
+                                AutoGenerateColumns="False" DataKeyNames="VIDEOID" EmptyDataText="没有可显示的数据记录。">
+                                <Columns>
+                                    <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="名称">
+                                        <ItemTemplate>
+                                            <a href="javascript:openVideo(&quot;<%#Eval("VIDEOID") %>&quot;,&quot;<%#Eval("VIDEONAME") %>&quot;,true)">
+                                                <%#Eval("VIDEONAME") %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="CREATEDBY" HeaderText="拍摄者" ReadOnly="True" HeaderStyle-HorizontalAlign="Left" />
+                                </Columns>
+                            </asp:GridView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </fieldset>
             </div>
-            <div id="divCalSideContainer" class="yui-skin-sam">
-                <div id="divCalSide">
-                </div>
+            <div>
+                <fieldset>
+                    <legend>历史查询</legend>
+                    <div id="divCalSideContainer" class="yui-skin-sam">
+                        <div id="divCalSide">
+                        </div>
+                    </div>
+                </fieldset>
             </div>
         </div>
         <div id="right" class="right">
