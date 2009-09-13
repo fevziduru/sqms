@@ -8,13 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SQMS.Application.Views.Quality
-{
-
-
-    public partial class MonitorPointDetail
-    {
-
+namespace SQMS.Application.Views.Quality {
+    
+    
+    public partial class MonitorPointDetail {
+        
+        /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -23,7 +30,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -32,7 +39,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-
+        
         /// <summary>
         /// LabelMPName control.
         /// </summary>
@@ -41,7 +48,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPName;
-
+        
         /// <summary>
         /// LabelMPCode control.
         /// </summary>
@@ -50,7 +57,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPCode;
-
+        
         /// <summary>
         /// LabelMPProject control.
         /// </summary>
@@ -59,7 +66,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPProject;
-
+        
         /// <summary>
         /// LabelMPRoad control.
         /// </summary>
@@ -68,7 +75,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPRoad;
-
+        
         /// <summary>
         /// LabelMPMemo control.
         /// </summary>
@@ -77,7 +84,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPMemo;
-
+        
         /// <summary>
         /// LabelMPCreatedBy control.
         /// </summary>
@@ -86,7 +93,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPCreatedBy;
-
+        
         /// <summary>
         /// LabelMPCreated control.
         /// </summary>
@@ -95,7 +102,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPCreated;
-
+        
         /// <summary>
         /// LabelMPModified control.
         /// </summary>
@@ -104,7 +111,7 @@ namespace SQMS.Application.Views.Quality
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMPModified;
-
+        
         /// <summary>
         /// LabelMPModifiedBy control.
         /// </summary>

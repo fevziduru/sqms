@@ -29,9 +29,9 @@ function initMap() {
             GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
                 var url = "";
                 if (true == currentClickedMarker.fields.IsStart) {
-                    url = "/Views/Quality/MonitorPointDetail.aspx?qcType=_qc_type_normal&mpid=" + currentClickedMarker.mpId;
+                    url = "/Views/Quality/MonitorPointDetail.aspx?qcType=_qc_type_dynami&mpid=" + currentClickedMarker.mpId;
                 } else if (false == currentClickedMarker.fields.IsStart) {
-                    url = "/Views/Quality/MonitorPointDetail.aspx?qcType=_qc_type_dynamic&mpid=" + currentClickedMarker.mpId;
+                    url = "/Views/Quality/MonitorPointDetail.aspx?qcType=_qc_type_normal&mpid=" + currentClickedMarker.mpId;
                 }
 
                 var divMore = document.getElementById("divMoreInfo");
