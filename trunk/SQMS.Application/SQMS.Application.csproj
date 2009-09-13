@@ -1075,6 +1075,14 @@
     <Content Include="Resources\Images\Controls\JSONTree\standard\minus_node.gif" />
     <Content Include="Resources\Images\Controls\JSONTree\standard\plus_node.gif" />
     <Content Include="Resources\Images\Controls\JSONTree\vertical_line.jpg" />
+    <Content Include="Resources\Images\Controls\Map\marker-blank-h.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-blank.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-qclv-1.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-qclv-2.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-qclv-3.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-qclv-4.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-qclv-5.png" />
+    <Content Include="Resources\Images\Controls\Map\marker-road-start.png" />
     <Content Include="Resources\Images\Controls\Map\marker2.png" />
     <Content Include="Resources\Images\GridView\Back.gif" />
     <Content Include="Resources\Images\GridView\header_back.gif" />

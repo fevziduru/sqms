@@ -220,7 +220,8 @@
                         + ' src="/Views/Quality/AnchorContent.aspx?p=__pub__&timespot=' + mp.TimeSchema.TimeItems[i].TimeSpot
                         + '&type=' + mp.TimeSchema.TimeItems[i].TimeItemType
                         + '&mpid=' + mp.MonitorPointId
-                        + '&timeitemid=' + mp.TimeSchema.TimeItems[i].TimeItemId + '">',
+                        + '&timeitemid=' + mp.TimeSchema.TimeItems[i].TimeItemId
+                        + '&date=' + getUrlParam("date") + '">',
                         active: ((i == 0) ? true : false)
                     }));
                 }
