@@ -575,5 +575,20 @@ namespace SQMS.Services
                 }
 
                 #endregion
+
+                public DataSet GetTimeSchemaByMPID(string mpid)
+                {
+                        try
+                        {
+                                return DefaultSession.GetDataSetFromCommand(@"select ti.timeitemtype,ti.timespot,ti.timespan,ti.times,ts.floattime,ts.begintime,ts.endtime from timeitem ti
+                                                                        left join timeschema ts on ti.schemaid = ts.schemaid
+                                                                        left join mpassignment mp on mp.schemaid = ts.schemaid
+                                                                        where mp.mpid=:mpid and mp.organizationid=:organizationid", mpid, CurrentUser.OrganizationID);
+                        }
+                        catch (Exception e)
+                        {
+                                throw e;
+                        }
+                }
         }
 }

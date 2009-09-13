@@ -1,18 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AnchorContent.aspx.cs"
-        Inherits="SQMS.Application.Views.Quality.AnchorContent" %>
-
-<%@ Import Namespace="System.Data" %>
-<%@ Import Namespace="EasyDev.Util" %>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-        <title></title>
-</head>
-<body>
-        <form id="form1" runat="server">
-        
-        
-        <div>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Main.Master" AutoEventWireup="true" CodeBehind="AnchorDetail.aspx.cs" Inherits="SQMS.Application.Views.Quality.AnchorDetail" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   <div>
                 <asp:DataList ID="lstImage" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" ShowFooter="False" ShowHeader="False">
                         <ItemTemplate>
                         <table cellpadding="5" cellspacing="3" style="width:100%" border="0">
@@ -92,6 +82,4 @@
                         </ItemTemplate>
                 </asp:DataList>
         </div>
-        </form>
-</body>
-</html>
+</asp:Content>
