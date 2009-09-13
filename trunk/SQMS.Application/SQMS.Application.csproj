@@ -1116,7 +1116,6 @@
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.css" />
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.html" />
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.js" />
-    <Content Include="Resources\SimpleVideoPlay.swf" />
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />

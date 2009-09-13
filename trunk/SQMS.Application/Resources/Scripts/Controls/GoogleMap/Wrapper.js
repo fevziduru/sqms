@@ -2,6 +2,7 @@
 /// <reference name="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"/>
 
 function WGMarker() {
+    this.fields = new Object();
     this.gMap = null;
     this.gMarker = null;
     this.mpId = "";
@@ -103,7 +104,8 @@ var WGMarkerFactory = {
         m.gMap = WGMarkerFactory.gmap;
         m.level = (lv < 1 || lv > 19) ? 14 : lv;
         m.qualityLevel = qclv;
-        m.isStart = (mpFields && mpFields.isStart && (mpFields.isStart == true || mpFields.isStart == "Y")) ? true : false;
+        m.isStart = (mpFields && mpFields.IsStart && (mpFields.IsStart == true || mpFields.IsStart == "Y")) ? true : false;
+        m.fields = mpFields;
         m.gMarker = new GMarker(new GLatLng(lat, lng), { icon: icon, title: mpName });
         GEvent.bind(m.gMarker, "click", m, m.onClick);
         GEvent.addListener(m.gMarker, "infowindowopen", function() {

@@ -24,6 +24,13 @@ namespace SQMS.Services.Domain.QualityControl
         private int level = 14;
         private int lastestQCLevel = 0;
         private bool isStart = false;
+        private TimeSchema timeSchema;
+
+        public TimeSchema TimeSchema
+        {
+            get { return timeSchema; }
+            set { timeSchema = value; }
+        }
         /// <summary>
         /// 是否为路段起始点
         /// </summary>

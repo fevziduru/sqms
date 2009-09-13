@@ -1,36 +1,36 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QualityMonitorPointMap.aspx.cs"
-        Inherits="SQMS.Application.Views.Quality.QualityMonitorPointMap" %>
+    Inherits="SQMS.Application.Views.Quality.QualityMonitorPointMap" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-        <title></title>
-        <style type="text/css">
-                body
-                {
-                        margin: 0 0 0 0;
-                        font-size: 12px;
-                }
-                div table tr td
-                {
-                        font-size: 12px;
-                }
-                .left
-                {
-                        width: 200px;
-                        height: 650px;
-                        float: left;
-                }
-                .right
-                {
-                }
-                .more_info
-                {
-                        float: left;
-                }
-        </style>
+<head id="Head1" runat="server">
+    <title></title>
+    <style type="text/css">
+        body
+        {
+            margin: 0 0 0 0;
+            font-size: 12px;
+        }
+        div table tr td
+        {
+            font-size: 12px;
+        }
+        .left
+        {
+            width: 200px;
+            height: 650px;
+            float: left;
+        }
+        .right
+        {
+        }
+        .more_info
+        {
+            float: left;
+        }
+    </style>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
         function openMoreInfo(url) {
             var topWindow = window.parent;
             while (topWindow.parent && topWindow.parent != topWindow) {
@@ -98,59 +98,61 @@
                 divMore.style.display = 'none';
             }
         }
-        </script>
+    </script>
 
 </head>
 <body>
-        <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <div>
-                <div runat="server" id="divMP">
-                        <!--监控点详细数据-->
-                        <div>
-                                <span>监控点名称：<asp:Label ID="LabelMPName" runat="server"></asp:Label></span><span><asp:Label
-                                        ID="LabelMPCode" runat="server"></asp:Label></span></div>
-                        <div>
-                                所属项目：<asp:Label ID="LabelMPProject" runat="server"></asp:Label></div>
-                        <div>
-                                所属路段：<asp:Label ID="LabelMPRoad" runat="server"></asp:Label></div>
-                        <div>
-                                备注：<asp:Label ID="LabelMPMemo" runat="server"></asp:Label></div>
-                </div>
-                <div runat="server" id="divRoad">
-                        <!--路段详细数据-->
-                        <div>
-                                <span>路段名称：<asp:Label ID="LabelRoadName" runat="server"></asp:Label></span><span><asp:Label
-                                        ID="Label2" runat="server"></asp:Label></span></div>
-                        <div>
-                                所属项目：<asp:Label ID="LabelRoadProject" runat="server"></asp:Label></div>
-                        <div>
-                                路段类型：<asp:Label ID="LabelRoadType" runat="server"></asp:Label></div>
-                        <div>
-                                备注：<asp:Label ID="LabelRoadMemo" runat="server"></asp:Label></div>
-                </div>
-                <div>
-                        <div>
-                                <%--<asp:HyperLink ID="LinkImageSource" runat="server" Target="_blank"></asp:HyperLink>--%>
-                                <iframe id="ifImage" frameborder="0" runat="server"></iframe>
-                        </div>
-                        <div>
-                                <span><span>数据采集时间：</span><span><asp:Label ID="LabelDataFetchTime" runat="server"></asp:Label></span></span></div>
-                        <div>
-                                <span><span>类型：</span><span><asp:Label ID="LabelQCType" runat="server"></asp:Label></span></span></div>
-                        <div>
-                                <span><span>状态：</span><span><asp:Label ID="LabelQCState" runat="server"></asp:Label></span></span></div>
-                        <div>
-                                <span><span>责任人：</span><span><asp:Label ID="LabelDutyMan" runat="server"></asp:Label></span></span></div>
-                        <div>
-                                <span><span>巡查员：</span><span><asp:Label ID="LabelPatrolMan" runat="server"></asp:Label></span></span></div>
-                        <div>
-                                <span><span>应急处理责任人：</span><span><asp:Label ID="LabelEmergencyMan" runat="server"></asp:Label></span></span></div>
-                </div>
-                <div>
-                        <asp:HyperLink ID="LinkMore" runat="server" Text="更多信息"></asp:HyperLink></div>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div>
+        <div runat="server" id="divMP">
+            <!--监控点详细数据-->
+            <div>
+                <span>监控点名称：<asp:Label ID="LabelMPName" runat="server"></asp:Label></span><span><asp:Label
+                    ID="LabelMPCode" runat="server"></asp:Label></span></div>
+            <div>
+                所属项目：<asp:Label ID="LabelMPProject" runat="server"></asp:Label></div>
+            <div>
+                所属路段：<asp:Label ID="LabelMPRoad" runat="server"></asp:Label></div>
+            <div>
+                备注：<asp:Label ID="LabelMPMemo" runat="server"></asp:Label></div>
         </div>
-        </form>
+        <div runat="server" id="divRoad">
+            <!--路段详细数据-->
+            <div>
+                <span>路段名称：<asp:Label ID="LabelRoadName" runat="server"></asp:Label></span><span><asp:Label
+                    ID="Label2" runat="server"></asp:Label></span></div>
+            <div>
+                所属项目：<asp:Label ID="LabelRoadProject" runat="server"></asp:Label></div>
+            <div>
+                路段类型：<asp:Label ID="LabelRoadType" runat="server"></asp:Label></div>
+            <div>
+                备注：<asp:Label ID="LabelRoadMemo" runat="server"></asp:Label></div>
+        </div>
+        <div runat="server" id="divQC">
+            <div>
+                <div>
+                    <asp:HyperLink ID="LinkImageSource" runat="server" Target="_blank"></asp:HyperLink>
+                </div>
+                <div>
+                    <span><span>数据采集时间：</span><span><asp:Label ID="LabelDataFetchTime" runat="server"></asp:Label></span></span></div>
+                <div>
+                    <span><span>类型：</span><span><asp:Label ID="LabelQCType" runat="server"></asp:Label></span></span></div>
+                <div>
+                    <span><span>状态：</span><span><asp:Label ID="LabelQCState" runat="server"></asp:Label></span></span></div>
+                <div>
+                    <span><span>责任人：</span><span><asp:Label ID="LabelDutyMan" runat="server"></asp:Label></span></span></div>
+                <div>
+                    <span><span>巡查员：</span><span><asp:Label ID="LabelPatrolMan" runat="server"></asp:Label></span></span></div>
+                <div>
+                    <span><span>应急处理责任人：</span><span><asp:Label ID="LabelEmergencyMan" runat="server"></asp:Label></span></span></div>
+            </div>
+            <div>
+                <asp:HyperLink ID="LinkMore" runat="server" Text="更多信息"></asp:HyperLink></div>
+        </div>
+        <div runat="server" id="divNoQC" visible="false">暂时没有质量监控数据</div>
+    </div>
+    </form>
 </body>
 </html>

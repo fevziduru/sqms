@@ -23,18 +23,22 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
         public static readonly string URL_PARAM_NE_LAT = "nelat";
         public static readonly string URL_PARAM_NE_LNG = "nelng";
         public static readonly string URL_PARAM_MPID = "mpid";
+        public static readonly string URL_PARAM_ROADID = "roadid";
 
         private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
         private QualityControlService svcQualityControl = null;
+        private TimeItemService svcTimeItem = null;
 
 
         protected void Page_Init(object sender, EventArgs e)
         {
             this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
+            this.svcTimeItem = this.svcManager.CreateService<TimeItemService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string roadId = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_ROADID]);
             string mpid = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_MPID]);
             decimal swlat = ConvertUtil.ToLat(this.Request.QueryString[URL_PARAM_SW_LAT]);
             decimal swlng = ConvertUtil.ToLng(this.Request.QueryString[URL_PARAM_SW_LNG]);
@@ -45,9 +49,21 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
             LatLng ne = new LatLng(nelat, nelng);
 
             LatLngBounds bound = new LatLngBounds(sw, ne);
-            DataTable dt = this.svcQualityControl.GetMonitorPointInLatLngBounds(bound);
+            DataTable dt = null;
+            if (!String.IsNullOrEmpty(mpid))
+            {
+                dt = this.svcQualityControl.GetMonitorPoint(mpid);
+            }
+            else if (!String.IsNullOrEmpty(roadId))
+            {
+                dt = this.svcQualityControl.GetMonitorPointList(roadId);
+            }
+            else
+            {
+                dt = this.svcQualityControl.GetMonitorPointInLatLngBounds(bound);
+            }
 
-            IList<Domain.MonitorPoint> list = this.CreateMonitorPointList(dt);
+            IList<Domain.MonitorPoint> list = this.svcQualityControl.CreateMonitorPointList(dt);
 
             string json = String.Empty;
             try
@@ -63,30 +79,6 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
             this.Response.Write(json);
         }
 
-        protected IList<Domain.MonitorPoint> CreateMonitorPointList(DataTable dt)
-        {
-            IList<Domain.MonitorPoint> list = new List<Domain.MonitorPoint>();
-            foreach (DataRow dr in dt.Rows)
-            {
-                Domain.MonitorPoint mp = new Domain.MonitorPoint();
-                mp.Created = ConvertUtil.ToDateTime(dr["Created"]);
-                mp.CreatedBy = ConvertUtil.ToStringOrDefault(dr["CreatedBy"]);
-                mp.Lat = ConvertUtil.ToLat(dr["LATITUDE"]);
-                mp.Lng = ConvertUtil.ToLng(dr["LONGITUDE"]);
-                mp.Memo = ConvertUtil.ToStringOrDefault(dr["MEMO"]);
-                mp.Modified = ConvertUtil.ToDateTime(dr["Modified"]);
-                mp.ModifiedBy = ConvertUtil.ToStringOrDefault(dr["ModifiedBy"]);
-                mp.MonitorPointCode = ConvertUtil.ToStringOrDefault(dr["MPCODE"]);
-                mp.MonitorPointId = ConvertUtil.ToStringOrDefault(dr["MPID"]);
-                mp.MonitorPointName = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
-                mp.OrganizationId = "";
-                mp.RoadId = "";
-                mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
-                mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
-                mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);
-                list.Add(mp);
-            }
-            return list;
-        }
+        
     }
 }

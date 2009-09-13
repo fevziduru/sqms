@@ -41,7 +41,7 @@ namespace SQMS.Application.Views.Quality
                 drMP["LATITUDE"] = this.txtLat.Text;
                 drMP["ROADID"] = this.refRoad.SelectedValue;
                 drMP["SCHEMAID"] = this.refTimeSchema.SelectedValue;
-                drMP["FLOATDIST"] = this.txtFloatDist.Text;
+                drMP["FLOATDIST"] = ConvertUtil.ToDecimal(this.txtFloatDist.Text);
                 drMP["MPLEVEL"] = this.txtMapLevel.Text;
                 drMP["ISVOID"] = this.cbIsvoid.Checked ? "Y" : "N";
                 drMP["MODIFIED"] = DateTime.Now.ToString("yyyy-MM-dd");
@@ -126,7 +126,7 @@ namespace SQMS.Application.Views.Quality
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
 
             Response.Redirect(String.Format("MonitorPointView.aspx?p=mpview&id={0}", this.ID));

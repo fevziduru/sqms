@@ -332,5 +332,46 @@ namespace EasyDev.Util
             catch { }
             return false;
         }
+
+        public static TimeSpan ToTimeSpan(object obj,TimeUnit unit)
+        {
+            //decimal num = Convert.ToDecimal(obj);
+            //if (num == 0.0M)
+            //{
+            //    return new TimeSpan();
+            //}
+            //decimal[] res1 = ResolveReal(num);
+
+            //TimeSpan s = new TimeSpan();
+            //switch (unit)
+            //{
+            //    case TimeUnit.Hour:
+            //        s.Add(new TimeSpan((int)res1[0],0,0);
+            //        decimal minutes = 60 * res1[1];
+            //        decimal[] res2 = ResolveReal(minutes);
+            //        s.Add(new TimeSpan(0,(int)res2[0],(in)))
+            //        return new TimeSpan(Convert.ToInt32(obj), 0, 0);
+            //    case TimeUnit.Minute:
+                    
+            //}
+            throw new NotImplementedException();
+        }
+
+        public static decimal[] ResolveReal(decimal d)
+        {
+            List<decimal> res = new List<decimal>();
+            decimal integer = Math.Floor(d);
+            if (integer >= 0.0M)
+            {
+                res.Add(integer);
+            }
+            else
+            {
+                return res.ToArray();
+            }
+            decimal dec = d - integer;
+            res.Add(dec);
+            return res.ToArray();
+        }
     }
 }

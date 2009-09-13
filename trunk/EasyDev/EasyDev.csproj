@@ -227,6 +227,7 @@
     <Compile Include="Util\ExtractException.cs" />
     <Compile Include="Util\SerializeUtil.cs" />
     <Compile Include="Util\StreamUtil.cs" />
+    <Compile Include="Util\TimeUnit.cs" />
     <Compile Include="Util\TypeUtil.cs" />
     <Compile Include="Util\XmlUtil.cs" />
   </ItemGroup>
