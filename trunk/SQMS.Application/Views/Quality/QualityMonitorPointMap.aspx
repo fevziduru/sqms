@@ -133,7 +133,7 @@
         <div runat="server" id="divQC">
             <div>
                 <div>
-                    <asp:HyperLink ID="LinkImageSource" runat="server" Target="_blank"></asp:HyperLink>
+                    <asp:HyperLink ID="LinkImageSource" runat="server" Width="150" Height="160" Target="_blank"></asp:HyperLink>
                 </div>
                 <div>
                     <span><span>数据采集时间：</span><span><asp:Label ID="LabelDataFetchTime" runat="server"></asp:Label></span></span></div>
