@@ -2,7 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+  <style type="text/css">
+        img.framed { 
+                padding: 10px; 
+                border: 2px solid #CCC; 
+                background-color: #FFF; 
+        } 
+        </style>
 <div>
 
 
@@ -52,9 +58,13 @@
                 </td>
         </tr>
         <tr>
-                <td style="width:210px">采集点图片(<a id="hlImage" runat="server" target="_blank">查看原图</a>)：</td>
+                <td style="width:210px">采集点图片：</td>
                 <td colspan="3">
-                        <span><iframe frameborder="0" runat="server" id="imgQuality"></iframe></span>
+                        <span>
+                        <img alt="点击查看原图" runat="server" style="width:250;height:160" id="imgQuality"  class="framed" />
+                        <%--<iframe frameborder="0" runat="server" id="imgQuality"></iframe>--%>
+                        
+                        </span>
                 </td>
         </tr>
         <tr>

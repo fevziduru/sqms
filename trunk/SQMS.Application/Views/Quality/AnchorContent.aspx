@@ -45,7 +45,7 @@
                                 <table cellpadding="5" cellspacing="3" style="width:100%" border="0">
                                         <tr>
                                                 <td colspan="2" align="center" valign="absmiddle">
-                                                        <a title="原始图片" target="_blank" href='<%#Eval("MATERIAL")%>'><img alt='原始图片' src='../Components/ImagePipe.aspx?filename=<%#Eval("MATERIAL") %>' class="framed" /></a>
+                                                        <a title="原始图片" target="_blank" href='<%#Eval("MATERIAL")%>'><img alt='点击查看原图' src='../Components/ImagePipe.aspx?filename=<%#Eval("MATERIAL") %>' class="framed" /></a>
                                                 </td>
                                         </tr>
                                         <tr>

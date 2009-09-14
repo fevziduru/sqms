@@ -74,7 +74,7 @@ namespace SQMS.Application.Views.Quality
                                         this.lblLng.Text = ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]);
                                         this.lblLat.Text = ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]);
                                         this.imgQuality.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
-                                        this.hlImage.HRef = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
+                                        //this.hlImage.HRef = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         //this.hlImage.Text = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         this.imageUrl = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         this.hlVideo.Text = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
