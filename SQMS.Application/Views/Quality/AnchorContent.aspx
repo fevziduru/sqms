@@ -17,6 +17,13 @@
 
         <!-- Source file for TabView -->
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/tabview-min.js"></script>  
+        <style type="text/css">
+        img.framed { 
+                padding: 10px; 
+                border: 2px solid #CCC; 
+                background-color: #FFF; 
+        } 
+        </style>
 </head>
 <body  class="yui-skin-sam" style="background-color:#fff">
         <form id="form1" runat="server">
@@ -34,34 +41,35 @@
                          <!--图片列表-->
                         <asp:DataList ID="lstImage" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" ShowFooter="False" ShowHeader="False">
                                 <ItemTemplate>
+                                <div style="width:100%;height:100%;text-align:center;vertical-align:middle">
                                 <table cellpadding="5" cellspacing="3" style="width:100%" border="0">
                                         <tr>
-                                                <td colspan="2"><iframe frameborder="0" src='../Components/ImagePipe.aspx?filename=<%#Eval("MATERIAL") %>'></iframe></td>
+                                                <td colspan="2" align="center" valign="absmiddle">
+                                                        <a title="原始图片" target="_blank" href='<%#Eval("MATERIAL")%>'><img alt='原始图片' src='../Components/ImagePipe.aspx?filename=<%#Eval("MATERIAL") %>' class="framed" /></a>
+                                                </td>
                                         </tr>
                                         <tr>
-                                                <td colspan="2" style="text-align:right;"><a target="_blank" href='<%#Eval("MATERIAL")%>'>原始图片</a></td>
-                                        </tr>
-                                        <tr>
-                                                <td>采集时间：</td>
+                                                <td align="right">采集时间：</td>
                                                 <td style="width:200px"><%#Convert.ToDateTime(Eval("CREATED")).ToString("yyyy-MM-dd hh:mm:ss") %></td>
                                         </tr>
                                         <tr>
-                                                <td>作业单位：</td>
+                                                <td align="right">作业单位：</td>
                                                 <td style="width:200px"><%#Eval("ORGNAME") %></td>
                                         </tr>
                                         <tr>
-                                                <td>负责人：</td>
+                                                <td align="right">负责人：</td>
                                                 <td style="width:200px"><%#Eval("CHARGEPERSON") %></td>
                                         </tr>
                                         <tr>
-                                                <td>采集点经度：</td>
+                                                <td align="right">采集点经度：</td>
                                                 <td style="width:200px"><%#Eval("LONGITUDE")%></td>
                                         </tr>
                                         <tr>
-                                                <td>采集点纬度：</td>
+                                                <td align="right">采集点纬度：</td>
                                                 <td style="width:200px"><%#Eval("LATITUDE")%></td>
                                         </tr>
                                 </table>
+                                </div>
                                 </ItemTemplate>
                         </asp:DataList>
                          </div>   
@@ -71,7 +79,7 @@
                                 <ItemTemplate>
                                 <table cellpadding="5" cellspacing="3" style="width:100%" border="0">
                                         <tr>
-                                                <td colspan="2">
+                                                <td colspan="2" align="center" valign="absmiddle">
                                                             <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="280"
                                                                      height="180" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
                                                                     <param name="movie" value="../../Resources/SimpleVideoPlay.swf?file=<%#Eval("VIDEOURL") %>" />
@@ -89,23 +97,23 @@
                                                 <td colspan="2" style="text-align:right;"><a target="_blank" href='<%#Eval("MATERIAL")%>'>原始图片</a></td>
                                         </tr>--%>
                                         <tr>
-                                                <td>采集时间：</td>
+                                                <td align="right">采集时间：</td>
                                                 <td style="width:200px"><%#Convert.ToDateTime(Eval("CREATED")).ToString("yyyy-MM-dd hh:mm:ss") %></td>
                                         </tr>
                                         <tr>
-                                                <td>作业单位：</td>
+                                                <td align="right">作业单位：</td>
                                                 <td style="width:200px"><%#Eval("ORGNAME") %></td>
                                         </tr>
                                         <tr>
-                                                <td>负责人：</td>
+                                                <td align="right">负责人：</td>
                                                 <td style="width:200px"><%#Eval("CHARGEPERSON") %></td>
                                         </tr>
                                         <tr>
-                                                <td>采集点经度：</td>
+                                                <td align="right">采集点经度：</td>
                                                 <td style="width:200px"><%#Eval("LONGITUDE")%></td>
                                         </tr>
                                         <tr>
-                                                <td>采集点纬度：</td>
+                                                <td align="right">采集点纬度：</td>
                                                 <td style="width:200px"><%#Eval("LATITUDE")%></td>
                                         </tr>
                                 </table>
