@@ -100,7 +100,9 @@
                 </tr>
                 <tr>
                 <td>状态：</td>
-                <td colspan="3"><asp:Label ID="lblIsvoid" runat="server"></asp:Label></td>                    
+                <td><asp:Label ID="lblIsvoid" runat="server"></asp:Label></td>               
+                <td>规模：</td>
+                <td><asp:Label ID="lblScale" runat="server"></asp:Label></td>                    
                 </tr>
                 <tr>
                     <td>备注：</td>

@@ -126,6 +126,7 @@ namespace SQMS.Application.Views.Road
                                 this.TextBoxWorkBeginTime.Text = ConvertUtil.ToStringOrDefault(this.drRoad["BEGINTIME"]);
                                 this.TextBoxWorkEndTime.Text = ConvertUtil.ToStringOrDefault(this.drRoad["ENDTIME"]);
                                 this.TextBoxWorkerNum.Text = ConvertUtil.ToStringOrDefault(this.drRoad["WORKERAMOUNT"]);
+                                this.txtScale.Text = ConvertUtil.ToStringOrDefault(this.drRoad["SCALE"]);
                                 this.TextBoxWorkTime.Text = ConvertUtil.ToStringOrDefault(this.drRoad["WORKTIME"]);
                                 this.RefProject.SelectedValue = ConvertUtil.ToStringOrDefault(this.drRoad["ProjectId"]);
                                 this.RefProject.SelectedText = ConvertUtil.ToStringOrDefault(this.drRoad["ProjectName"]);
@@ -145,6 +146,8 @@ namespace SQMS.Application.Views.Road
                         DataTable dtSave = this.dtRoad.Copy();
                         dtSave.Columns.Remove("ROADTYPENAME");
                         dtSave.Columns.Remove("PROJECTNAME");
+                        if (dtSave.Columns.Contains("PROJECTID1"))
+                                dtSave.Columns.Remove("PROJECTID1");
                         ds.Tables.Add(dtSave);
 
                         this.Service.Save(ds);
@@ -157,28 +160,27 @@ namespace SQMS.Application.Views.Road
                         base.GetViewData();
                         if (!this.isEdit)
                         {
-                                this.drRoad["ROADID"] = this.Service.GetNextSequenceID();
+                                this.drRoad["ROADID"] = this.ID = this.Service.GetNextSequenceID();
                                 this.drRoad["CREATED"] = DateTime.Now;
                                 this.drRoad["CREATEDBY"] = this.CurrentUser.EmployeeID;
                                 this.drRoad["ORGANIZATIONID"] = this.CurrentUser.OrganizationID;
-                                this.drRoad["PROJECTID"] = DBNull.Value;
+                                //this.drRoad["PROJECTID"] = DBNull.Value;
                         }
 
-                        this.drRoad["ROADCODE"] = ConvertUtil.ToStringOrDefault(this.TextBoxRoadCode.Text);
-                        this.drRoad["ROADNAME"] = ConvertUtil.ToStringOrDefault(this.TextBoxRoadName.Text);
-                        this.drRoad["ROADTYPE"] = ConvertUtil.ToStringOrDefault(this.DropDownListRoadType.SelectedValue);
+                        this.drRoad["ROADCODE"] = this.TextBoxRoadCode.Text;
+                        this.drRoad["ROADNAME"] = this.TextBoxRoadName.Text;
+                        this.drRoad["ROADTYPE"] = this.DropDownListRoadType.SelectedValue;
+                        this.drRoad["SCALE"] = this.txtScale.Text;
                         this.drRoad["BEGINTIME"] = ConvertUtil.ToDateTime(this.TextBoxWorkBeginTime.Text);
                         this.drRoad["ENDTIME"] = ConvertUtil.ToDateTime(this.TextBoxWorkEndTime.Text);
-                        this.drRoad["WORKTIME"] = ConvertUtil.ToDecimal(this.TextBoxWorkTime.Text);
-                        this.drRoad["WORKERAMOUNT"] = ConvertUtil.ToDecimal(this.TextBoxWorkerNum.Text);
-                        this.drRoad["MEMO"] = ConvertUtil.ToStringOrDefault(this.TextBoxMemo.Text);
-                        this.drRoad["AVGWORKERAMOUNT"] = ConvertUtil.ToDecimal(this.TextBoxAvgWorkAmount.Text);
+                        this.drRoad["WORKTIME"] = this.TextBoxWorkTime.Text;
+                        this.drRoad["WORKERAMOUNT"] = this.TextBoxWorkerNum.Text;
+                        this.drRoad["MEMO"] = this.TextBoxMemo.Text;
+                        this.drRoad["AVGWORKERAMOUNT"] = this.TextBoxAvgWorkAmount.Text;
                         this.drRoad["MODIFIED"] = DateTime.Now;
                         this.drRoad["MODIFIEDBY"] = this.CurrentUser.EmployeeID;
                         this.drRoad["ISVOID"] = (this.CheckBoxIsVoid.Checked) ? "Y" : "N";
-                        this.drRoad["PRJECTID"] = this.RefProject.SelectedValue;
-
-
+                        this.drRoad["PROJECTID"] = this.RefProject.SelectedValue;
                 }
 
                 protected void BtnSaveAndNew_Click(object sender, EventArgs e)

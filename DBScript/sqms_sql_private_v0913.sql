@@ -1492,6 +1492,7 @@ CREATE TABLE ROAD  (
    ISVOID               VARCHAR2(1)                    DEFAULT 'N' NOT NULL,
    ORGANIZATIONID       VARCHAR2(40),
    SUITEID              VARCHAR2(40),
+   SCALE                NUMBER,
    CONSTRAINT PK_ROAD PRIMARY KEY (ROADID)
 );
 

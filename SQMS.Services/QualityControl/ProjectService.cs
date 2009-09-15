@@ -173,6 +173,7 @@ namespace SQMS.Services.QualityControl
                                    P.TOTALSCALE,
                                    P.ASSISTAMOUNT,
                                    P.LEADERAMOUNT,
+                                   P.ORGANIZATIONID,
                                    P.VISELEADERAMOUNT,
                                    P.TOTALWORKERAMOUNT,
                                    P.MEMO,
