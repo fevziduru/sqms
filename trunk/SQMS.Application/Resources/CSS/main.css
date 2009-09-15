@@ -159,7 +159,7 @@ table.gridview table td
 }
 
 table.gridview th {
-    background-image:url(/Resources/Images/GridView/header_back.gif);
+    background-image:url(/Resources/Images/Controls/GridView/header_back.gif);
 }
 
 table.listview
@@ -178,7 +178,7 @@ table.listview table td
 }
 
 table.listview th {
-    background-image:url(/Resources/Images/GridView/header_back.gif);
+    background-image:url(/Resources/Images/Controls/GridView/header_back.gif);
 }
 
 table.detailstable td

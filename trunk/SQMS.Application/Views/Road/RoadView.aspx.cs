@@ -39,6 +39,7 @@ namespace SQMS.Application.Views.Road
                                 this.lblProject.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("PROJECTNAME", "PROJECT", "PROJECTID", ConvertUtil.ToStringOrDefault(drRoad["PROJECTID"])));
                                 this.lblRoadType.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drRoad["ROADTYPE"])));
                                 this.lblWorkTime.Text = ConvertUtil.ToStringOrDefault(drRoad["WORKTIME"]);
+                                this.lblScale.Text = ConvertUtil.ToStringOrDefault(drRoad["SCALE"]);
                                 if (drRoad["BEGINTIME"].Equals(DBNull.Value))
                                 {
                                         this.lblWorkBeginTime.Text = "";

@@ -133,11 +133,11 @@ namespace SQMS.Application.Views.Project
                         base.GetViewData();
                         if (!this.isEdit)
                         {
-                                this.drProject["ProjectID"] = this.Service.GetNextSequenceID();
+                                this.drProject["ProjectID"] = this.ID = this.Service.GetNextSequenceID();
                                 this.drProject["CREATED"] = DateTime.Now;
                                 this.drProject["CREATEDBY"] = this.CurrentUser.EmployeeID;
                                 this.drProject["ORGANIZATIONID"] = this.CurrentUser.OrganizationID;
-                                this.drProject["PROJECTID"] = DBNull.Value;
+                                //this.drProject["PROJECTID"] = DBNull.Value;
                         }
 
                         this.drProject["ProjectCODE"] = ConvertUtil.ToStringOrDefault(this.TextBoxProjectCode.Text);

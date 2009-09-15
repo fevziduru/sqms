@@ -106,8 +106,8 @@
                 SortExpression="ROADID" Visible="False" />
             <asp:HyperLinkField DataNavigateUrlFields="ROADID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
                 DataNavigateUrlFormatString="/Views/Road/RoadView.aspx?p=roadview&id={0}" 
-                DataTextField="ROADNAME" HeaderText="职员名称" SortExpression="ROADNAME" />
-            <asp:BoundField DataField="ROADCODE" HeaderText="职员编码"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+                DataTextField="ROADNAME" HeaderText="路段名称" SortExpression="ROADNAME" />
+            <asp:BoundField DataField="ROADCODE" HeaderText="路段编码"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
                 SortExpression="ROADCODE" />
             <asp:BoundField DataField="WORKERAMOUNT" HeaderText="工作人数"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" 
                 SortExpression="WORKERAMOUNT" />

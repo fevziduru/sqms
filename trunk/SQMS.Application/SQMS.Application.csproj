@@ -156,12 +156,6 @@
       <DependentUpon>RESPERMISSION.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Config\Schema\ROAD1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ROAD.xsd</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Config\Schema\ROLE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -917,7 +911,6 @@
     </None>
     <Content Include="Config\Schema\ROAD.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ROAD1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
