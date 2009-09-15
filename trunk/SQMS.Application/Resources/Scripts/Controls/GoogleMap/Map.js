@@ -80,6 +80,7 @@ function initMap() {
 
                 //$addHandler(window "keyup", escKeyUpHandler);
             });
+			GEvent.addListener(map, "click", showClickLatLng);
             //GEvent.addListener(map, "mouseover", showMouseLatLng);
             //GEvent.addListener(map, "mousemove", showMouseLatLng);
 
@@ -238,7 +239,9 @@ function initMarker(executor, eventArgs) {
         }
     }
 }
-
+function showClickLatLng(btn,latlng) {
+	showMouseLatLng(latlng);
+}
 function showMouseLatLng(latlng) {
     document.getElementById("spanLatLng").innerHTML = latlng.lat() + ", " + latlng.lng();
 }

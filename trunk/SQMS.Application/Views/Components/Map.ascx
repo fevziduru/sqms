@@ -51,7 +51,7 @@
 <div id="divCurrSelMPPath"></div>
 </fieldset>
 </div>
-<div style="display: none;">
+<div>
         <span>经纬度:</span> <span id="spanLatLng" style="width: 300px;"></span><span>缩放级别:</span>
         <span id="spanZoomLevel"></span>&nbsp;&nbsp;<span>请求次数:</span><span id="spanRequestNum">
         </span>
