@@ -39,7 +39,7 @@ namespace SQMS.Services
                 public DataTable GetMonitorPointList(string roadId)
                 {
                         string sql = this.getMonitorPointMainSql() + @"
-                             WHERE M.ROADID = '" + roadId + "' AND M.organizationid = '" + this.CurrentUser.OrganizationID + "'";
+                             WHERE M.ROADID = '" + roadId + "' AND M.organizationid = '" + this.CurrentUser.OrganizationID + "' Order by IMPORTANCE desc";
                         DataTable dt = new DataTable();
                         try
                         {
