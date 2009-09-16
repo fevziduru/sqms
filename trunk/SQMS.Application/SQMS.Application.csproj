@@ -1121,6 +1121,7 @@
     <Content Include="Resources\Scripts\Controls\yui\element-min.js" />
     <Content Include="Resources\Scripts\Controls\yui\tabview-min.js" />
     <Content Include="Resources\Scripts\Controls\yui\yahoo-dom-event.js" />
+    <Content Include="Resources\SimpleVideoPlay.swf" />
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />

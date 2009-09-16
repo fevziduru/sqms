@@ -9,8 +9,8 @@
         if (dtPart != null)
         {
                 %>
-                <table cellpadding="0" cellspacing="0" style="width:100%;height:100%">                
-                <tr style="height:25px">
+                <table cellpadding="0" cellspacing="0" style="width:100%;height:100%;font-size:x-small">                
+                <tr style="height:25px;font-weight:bold;background-color:#C7E6F4">
                         <td style="width:20%" align="left">采集时间</td>
                         <td align="left">作业单位</td>
                         <td align="right">评分</td>
