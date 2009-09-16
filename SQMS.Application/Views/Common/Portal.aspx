@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<table cellpadding="5" cellspacing="5" border="0" style="width:100%;">
+<table cellpadding="5" cellspacing="5" border="0" style="width:100%;font-size:x-small">
 <tr>
         <td align="center" valign="top" style="width:50%">
                 <fieldset>
