@@ -1,14 +1,19 @@
 ﻿/// <reference name="MicrosoftAjax.js"/>
-var poly;
+var polys=new Array();
 var polyPoints = new Array();
 var videoPanel = null;
 var flashPlayerCreated = false;
+var prevPoint = null;
+var polyLength = 0;
 
 function playVideo() {
         polyPoints.length = 0;
-        if (poly) {
-                map.removeOverlay(poly);
+        if (polys) {
+            for (var i = 0; i < polys.length; i++) {
+                map.removeOverlay(polys[i]);
+            }
         }
+        prevPoint = null;
         log("video started");
 }
 function stopVideo() {
@@ -18,15 +23,20 @@ function pauseVideo() {
         log("video paused");
 }
 function videoPlayerPlayheadUpdate(lat, lng) {
-        if (poly) {
-                map.removeOverlay(poly);
-        }
         log(polyPoints.length);
-        polyPoints.push(new GLatLng(lat, lng));
-        poly = new GPolyline(polyPoints, "#0000af", 3, 0.6);
-        //var length = poly.getLength() / 100;
+        var towPoints = new Array();
+        var point = new GLatLng(lat, lng);
+        if (prevPoint) {
+            towPoints.push(prevPoint);
+            towPoints.push(point);
+        }
+        var poly = new GPolyline(towPoints, "#0000af", 3, 0.6);
+        polyLength += poly.getLength() / 100;
         //var unit = " 米";
         map.addOverlay(poly);
+        polys.push(poly);
+        prevPoint = null;
+        prevPoint = point;
 }
 function openVideo(videoId, videoName, drawTrace, notOpenPanel) {
         if (!notOpenPanel) {
