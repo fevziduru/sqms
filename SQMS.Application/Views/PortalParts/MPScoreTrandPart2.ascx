@@ -16,7 +16,7 @@
 <div  class="yui-skin-sam">        
     <script type="text/javascript">
             var myTabs = new YAHOO.widget.TabView("mpdata2");  
-        </script>        
+        </script>
  <div id="mpdata2" class="yui-navset">
                 <ul class="yui-nav">   
                          <li class="selected"><a href="#tab1"><em>周统计</em></a></li>   
@@ -25,7 +25,7 @@
                 </ul>
                 <div class="yui-content">   
                          <div style="text-align:center">
-                    <igchart:UltraChart id="WeekChart" runat="server" ChartType="LineChart" Width="650" Height="350" Border-Thickness="0"  BackColor="#ffffff">
+                    <igchart:UltraChart id="WeekChart" runat="server"  ChartType="LineChart" Width="650" Height="350" Border-Thickness="0"  BackColor="#ffffff">
                     <LineChart DrawStyle="Solid" Thickness="3" NullHandling="Zero" MidPointAnchors="True" StartStyle="DiamondAnchor" HighLightLines="False" EndStyle="DiamondAnchor"></LineChart>
                     <Border CornerRadius="0" DrawStyle="Solid" Raised="False" Color="Black" Thickness="0"></Border>
                     <TitleRight Font="Microsoft Sans Serif, 7.8pt" Visible="False" Text="" FontSizeBestFit="False" Orientation="VerticalRightFacing" WrapText="False" Extent="26" FontColor="Black" HorizontalAlign="Near" VerticalAlign="Center" Location="Right">
