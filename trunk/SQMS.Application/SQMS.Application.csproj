@@ -30,10 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Infragistics35.WebUI.Shared.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics35.WebUI.Shared.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Infragistics\NetAdvantage for .NET 2009.1\ASP.NET\CLR3.5\Bin - Signed\20091_ASP.NET_CLR3x_Signed\Infragistics35.WebUI.Shared.v9.1.dll</HintPath>
+    </Reference>
     <Reference Include="Infragistics35.WebUI.UltraWebChart.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\WINDOWS\assembly\GAC_MSIL\Infragistics35.WebUI.UltraWebChart.v9.1\9.1.20091.1015__7dd5c3163f2cd0cb\Infragistics35.WebUI.UltraWebChart.v9.1.dll</HintPath>
+      <HintPath>C:\Program Files\Infragistics\NetAdvantage for .NET 2009.1\ASP.NET\CLR3.5\Bin - Signed\20091_ASP.NET_CLR3x_Signed\Infragistics35.WebUI.UltraWebChart.v9.1.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1557,9 +1560,6 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
