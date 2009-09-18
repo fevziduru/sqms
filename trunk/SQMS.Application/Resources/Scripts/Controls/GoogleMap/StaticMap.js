@@ -47,14 +47,14 @@ StaticMap.prototype.render = function() {
     var markers = "";
     for (var i = 0; i < this.markers.length; i++) {
         if (i == 0) {
-            markers += this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size +  this.markers[i].color;
+            markers += this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color;
         } else {
-            markers += "|" + this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size +  this.markers[i].color;
+            markers += "|" + this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color;
         }
     }
     var url = "http://ditu.google.cn/staticmap?"
-//        + "center=" + this.centerLat + "," + this.centerLng + "&"
-//        + "zoom=" + this.zoom + "&"
+    //        + "center=" + this.centerLat + "," + this.centerLng + "&"
+    //        + "zoom=" + this.zoom + "&"
         + "size=" + this.width + "x" + this.height + "&"
         + "maptype=" + this.mapType + "&"
         + "markers=" + markers + "&"
@@ -64,6 +64,9 @@ StaticMap.prototype.render = function() {
     imageEl.style.boder = "none";
 
     imageEl.setAttribute("src", url);
+    if (this.containerEl.children.length > 0) {
+        this.containerEl.removeChild(this.containerEl.children[0]);
+    }
     this.containerEl.appendChild(imageEl);
 }
 StaticMap.prototype.addMarker = function(marker) {
@@ -72,14 +75,27 @@ StaticMap.prototype.addMarker = function(marker) {
     }
 }
 
-
 var StaticMapFactory = {
     currentMpId: "",
     currentStaicMap: null,
-    isInRoadRequesting_: false,
-    createStaticMap: function(containerElId, currMpId) {
+    isInMarkersLoaded_: false,
+    /**
+    * @params containerElId string the static map container element's id.
+    * @params currMpId string the current monitor point id,this point will be displayed on static map with red marker. 
+    * @params w int (option) the static map's width,default width is 300px.
+    * @params h int (option) the static map's height,default height is 200px.
+    */
+    createStaticMap: function(containerElId, currMpId, w, h) {
         this.currentMpId = currMpId;
         this.currentStaicMap = new StaticMap(containerElId);
+        this.isInMarkersLoaded_ = false;
+        if (w && w > 0) {
+            this.currentStaicMap.width = w;
+        }
+        if (h && h > 0) {
+            this.currentStaicMap.height = h;
+        }
+
         var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mpid=" + currMpId;
 
         var handler = Function.createDelegate(this, function(executor, eventArgs) {
@@ -92,8 +108,7 @@ var StaticMapFactory = {
                 catch (e) { };
                 this.createStaticMarkers(mps);
                 var roadUrl = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&roadid=" + mps[0].RoadId;
-                if (this.isInRoadRequesting_ !== true) {
-                    this.isInRoadRequesting_ = true;
+                if (this.isInMarkersLoaded_ !== true) {
                     this.fetchMonitorPoints_(roadUrl, Function.createDelegate(this, function(executor, eventArgs) {
                         if (executor.get_statusCode() == "200") {
                             var body = executor.get_responseData();
@@ -103,6 +118,7 @@ var StaticMapFactory = {
                             } catch (e) { };
                             this.createStaticMarkers(mps);
                             this.currentStaicMap.render();
+                            this.isInMarkersLoaded_ = true;
                         }
                     }));
                 }
@@ -116,10 +132,10 @@ var StaticMapFactory = {
         }
     },
     fetchMonitorPoints_: function(url, handler) {
-        wRequest = new Sys.Net.WebRequest();
-        Sys.Net.WebRequestManager.add_completedRequest(handler);
+        var wRequest = new Sys.Net.WebRequest();
+        wRequest.add_completed(handler);
         wRequest.set_url(url);
-        Sys.Net.WebRequestManager.executeRequest(wRequest);
+        wRequest.invoke();
     },
     createStaticMarkers: function(mps) {
         if (mps) {
