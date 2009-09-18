@@ -10,11 +10,21 @@
 <body>
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="sm1"></asp:ScriptManager>
+    <button type="button" id="btnChange">change current marker</button>
     <div id="divStaticMap"></div>
     </form>
     <script type="text/javascript">
+        var currentId = "A00001"
         Sys.Application.add_load(function() {
-            StaticMapFactory.createStaticMap("divStaticMap", "A00001");
+            $addHandler($get("btnChange"), "click", function() {
+                if (currentId == "A00001") {
+                    currentId = "A00002";
+                } else {
+                    currentId = "A00001";
+                }
+                StaticMapFactory.createStaticMap("divStaticMap", currentId);
+            });
+            StaticMapFactory.createStaticMap("divStaticMap", currentId, 300, 400);
         });
     </script>
 </body>
