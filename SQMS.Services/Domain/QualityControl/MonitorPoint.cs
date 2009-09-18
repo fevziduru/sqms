@@ -215,6 +215,11 @@ namespace SQMS.Services.Domain.QualityControl
             get;
             set;
         }
+        public bool IsEnd
+        {
+            get;
+            set;
+        }
 
     }
 }
