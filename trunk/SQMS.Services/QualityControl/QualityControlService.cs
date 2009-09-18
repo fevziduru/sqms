@@ -620,6 +620,7 @@ namespace SQMS.Services
                         mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
                         mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
                         mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);
+                        mp.IsEnd = ConvertUtil.ToBool(dr["ISEND"]);
                         mp.RoadName = ConvertUtil.ToStringOrDefault(dr["ROADNAME"]);
                         mp.ProjectId = ConvertUtil.ToStringOrDefault(dr["ProjectId"]);
                         mp.ProjectName = ConvertUtil.ToStringOrDefault(dr["ProjectName"]);

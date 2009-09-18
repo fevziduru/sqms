@@ -102,7 +102,10 @@ var WGMarkerFactory = {
             iconImgName = "marker-blank.png";
         }
         if (mpFields.IsStart == true) {
-            iconImgName = "marker-road-start.png";
+            iconImgName = "marker-start.png";
+        }
+        if (mpFields.IsEnd == true) {
+            iconImgName = "marker-end.png";
         }
         icon.image = "/Resources/Images/Controls/Map/" + iconImgName;
         icon.iconAnchor = new GPoint(5, 34);

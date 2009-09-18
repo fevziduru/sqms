@@ -21,11 +21,12 @@ var StaticMapMarkerSize = {
 var StaticMapMarkerColor = {
     BLACK: "black", BROWN: "brown", GREEN: "green", PURPLE: "purple", YELLOW: "yellow", BLUE: "blue", GRAY: "gray", ORANGE: "orange", RED: "red", WHITE: "white"
 }
-function StaticMapMarker(lat, lng, size, color) {
+function StaticMapMarker(lat, lng, size, color, letter) {
     this.lat = lat;
     this.lng = lng;
     this.size = size ? size : StaticMapMarkerSize.SMALL;
     this.color = color ? color : StaticMapMarkerColor.ORANGE;
+    this.letter = letter;
 }
 function StaticMap(containerElId) {
     this.key = "ABQIAAAA41EnQa1wtzf10JQz5YdqmRQ6hbvwoS9GD89j9qEqTKobihdwiBTS_QjMbHbdYwkxWiBA-XpSkWHt_w";
@@ -47,9 +48,9 @@ StaticMap.prototype.render = function() {
     var markers = "";
     for (var i = 0; i < this.markers.length; i++) {
         if (i == 0) {
-            markers += this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color;
+            markers += this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color + this.markers[i].letter;
         } else {
-            markers += "|" + this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color;
+            markers += "|" + this.markers[i].lat + "," + this.markers[i].lng + "," + this.markers[i].size + this.markers[i].color + this.markers[i].letter;
         }
     }
     var url = "http://ditu.google.cn/staticmap?"
@@ -141,9 +142,13 @@ var StaticMapFactory = {
         if (mps) {
             for (var i = 0; i < mps.length; i++) {
                 if (mps[i].MonitorPointId == this.currentMpId) {
-                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.MID, StaticMapMarkerColor.RED));
+                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.MID, StaticMapMarkerColor.RED, ""));
+                } else if (mps[i].IsStart == true) {
+                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.MID, StaticMapMarkerColor.ORANGE, "s"));
+                } else if (mps[i].IsEnd == true) {
+                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.MID, StaticMapMarkerColor.ORANGE, "e"));
                 } else {
-                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.SMALL, StaticMapMarkerColor.ORANGE));
+                    this.currentStaicMap.addMarker(new StaticMapMarker(mps[i].Lat, mps[i].Lng, StaticMapMarkerSize.SMALL, StaticMapMarkerColor.ORANGE, ""));
                 }
             }
         }
