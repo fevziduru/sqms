@@ -1091,6 +1091,7 @@
     <Content Include="Resources\Scripts\Controls\GoogleMap\Map.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MapVideo.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\MarkerManager.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\StaticMap.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Wrapper.js" />

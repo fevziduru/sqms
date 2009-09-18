@@ -5,15 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
+    <script type="text/javascript" charset="utf-8" src="../../../Resources/Scripts/Controls/GoogleMap/StaticMap.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <uc:MapVideo ID="MapVideo1" runat="server" AutoPlay="true" ExternVideoUrl="/test.flv" />
+    <asp:ScriptManager runat="server" ID="sm1"></asp:ScriptManager>
+    <div id="divStaticMap"></div>
+    </form>
     <script type="text/javascript">
         Sys.Application.add_load(function() {
-            MapVideoManager.getInstance("<%=this.MapVideo1.ClientID %>");
+            StaticMapFactory.createStaticMap("divStaticMap", "A00001");
         });
     </script>
-    </form>
 </body>
 </html>

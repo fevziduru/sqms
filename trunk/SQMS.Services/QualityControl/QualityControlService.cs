@@ -457,6 +457,7 @@ namespace SQMS.Services
                            M.LATESTQCLEVEL,
                            M.ISEND,
                            M.ISSTART,
+                           M.ORGANIZATIONID,
                            T.SCHEMANAME,
                            T.FLOATTIME,
                            T.BEGINTIME,
@@ -614,8 +615,8 @@ namespace SQMS.Services
                         mp.MonitorPointCode = ConvertUtil.ToStringOrDefault(dr["MPCODE"]);
                         mp.MonitorPointId = ConvertUtil.ToStringOrDefault(dr["MPID"]);
                         mp.MonitorPointName = ConvertUtil.ToStringOrDefault(dr["MPNAME"]);
-                        mp.OrganizationId = "";
-                        mp.RoadId = "";
+                        mp.OrganizationId = ConvertUtil.ToStringOrDefault(dr["ORGANIZATIONID"]); ;
+                        mp.RoadId = ConvertUtil.ToStringOrDefault(dr["ROADID"]);
                         mp.Level = ConvertUtil.ToInt(dr["MPLEVEL"]);
                         mp.LastestQCLevel = ConvertUtil.ToInt(dr["LATESTQCLEVEL"]);
                         mp.IsStart = ConvertUtil.ToBool(dr["ISSTART"]);

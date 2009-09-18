@@ -32,12 +32,12 @@ namespace SQMS.Application.Views.AjaxServices.QualityControl {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// MapVideo1 control.
+        /// sm1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SQMS.Application.Views.Components.MapVideo MapVideo1;
+        protected global::System.Web.UI.ScriptManager sm1;
     }
 }

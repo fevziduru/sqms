@@ -243,7 +243,7 @@ function showClickLatLng(btn,latlng) {
 	showMouseLatLng(latlng);
 }
 function showMouseLatLng(latlng) {
-    document.getElementById("spanLatLng").innerHTML = latlng.lat() + ", " + latlng.lng();
+    document.getElementById("spanLatLng").innerHTML += latlng.lat() + ", " + latlng.lng() + "<br />";
 }
 
 function showZoomLevel(oldLevel, newLevel) {
