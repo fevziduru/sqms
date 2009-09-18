@@ -72,7 +72,7 @@
                 <td colspan="3">
                  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="280"
                      height="180" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
-                    <param name="movie" value="../../Resources/SimpleVideoPlay.swf?file=<%=videoUrl%>" />
+                    <param name="movie" value="../../Resources/Swf/SimpleVideoPlay.swf?file=<%=videoUrl%>" />
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#869ca7" />                                                            
                     <param name="allowScriptAccess" value="sameDomain" />

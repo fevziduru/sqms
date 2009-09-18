@@ -713,6 +713,7 @@ CREATE TABLE MPASSIGNMENT  (
    LATESTQCLEVEL        NUMBER                         DEFAULT -1 NOT NULL,
    ISSTART              CHAR(1)                        DEFAULT 'N' NOT NULL,
    ISEND                CHAR(1)                        DEFAULT 'N' NOT NULL,
+   ORDERINROAD          NUMBER                         DEFAULT 0 NOT NULL,
    CONSTRAINT PK_MPASSIGNMENT PRIMARY KEY (MPID)
 );
 

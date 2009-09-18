@@ -47,7 +47,7 @@ namespace SQMS.Application.Views.Road
                 {
                         if (!IsPostBack)
                         {
-                                this.GridViewRoad.Attributes.Add("SortExpression", "id");
+                                this.GridViewRoad.Attributes.Add("SortExpression", "ROADID");
                                 this.GridViewRoad.Attributes.Add("SortDirection", "ASC");
 
                                 this.dtRoad = this.svcRoad.GetRoadList(null);

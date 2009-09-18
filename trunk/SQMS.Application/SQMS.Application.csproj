@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics35.WebUI.Shared.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics35.WebUI.UltraWebChart.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\WINDOWS\assembly\GAC_MSIL\Infragistics35.WebUI.UltraWebChart.v9.1\9.1.20091.1015__7dd5c3163f2cd0cb\Infragistics35.WebUI.UltraWebChart.v9.1.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
@@ -205,6 +210,11 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.cs">
       <DependentUpon>QualityInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -345,6 +355,13 @@
     </Compile>
     <Compile Include="Views\Components\SimpleSmallMap.aspx.designer.cs">
       <DependentUpon>SimpleSmallMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\ChartDemo.aspx.cs">
+      <DependentUpon>ChartDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\ChartDemo.aspx.designer.cs">
+      <DependentUpon>ChartDemo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
@@ -488,6 +505,20 @@
     </Compile>
     <Compile Include="Views\PortalParts\LatestQualityDataPart.ascx.designer.cs">
       <DependentUpon>LatestQualityDataPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\MPScoreTrandPart2.ascx.cs">
+      <DependentUpon>MPScoreTrandPart2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\MPScoreTrandPart2.ascx.designer.cs">
+      <DependentUpon>MPScoreTrandPart2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PortalParts\MPScoreTrendPart.ascx.cs">
+      <DependentUpon>MPScoreTrendPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\MPScoreTrendPart.ascx.designer.cs">
+      <DependentUpon>MPScoreTrendPart.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\PortalParts\OrganizationManagementPart.ascx.cs">
       <DependentUpon>OrganizationManagementPart.ascx</DependentUpon>
@@ -1121,10 +1152,355 @@
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.css" />
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.html" />
     <Content Include="Resources\Scripts\Controls\Timepicker\timepicker.js" />
-    <Content Include="Resources\Scripts\Controls\yui\element-min.js" />
-    <Content Include="Resources\Scripts\Controls\yui\tabview-min.js" />
-    <Content Include="Resources\Scripts\Controls\yui\yahoo-dom-event.js" />
-    <Content Include="Resources\SimpleVideoPlay.swf" />
+    <Content Include="Resources\Scripts\Controls\yui\build\animation\animation-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\animation\animation-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\animation\animation.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\ajax-loader.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\asc.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\autocomplete.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\bg-h.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\bg-v.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\blankimage.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\button.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\calendar.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\carousel.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\colorpicker.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\container.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\datatable.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\desc.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\dt-arrow-dn.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\dt-arrow-up.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\editor-knob.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\editor-sprite-active.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\editor-sprite.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\editor.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\header_background.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\hue_bg.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\imagecropper.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\layout.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\layout_sprite.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\logger.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menu-button-arrow-disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menu-button-arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menu.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menubaritem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menubaritem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menuitem_checkbox.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menuitem_checkbox_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menuitem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\menuitem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\paginator.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\picker_mask.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\profilerviewer.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\resize.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\simpleeditor.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\slider.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\split-button-arrow-active.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\split-button-arrow-disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\split-button-arrow-focus.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\split-button-arrow-hover.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\split-button-arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\sprite.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\tabview.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\treeview-loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\treeview-sprite.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\treeview.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\wait.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\yuitest.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\assets\autocomplete-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\assets\skins\sam\autocomplete-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\assets\skins\sam\autocomplete.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\autocomplete-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\autocomplete-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\autocomplete\autocomplete.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\base\base-min.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\base\base.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\button-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\button-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\button.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\menu-button-arrow-disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\menu-button-arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\split-button-arrow-active.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\split-button-arrow-disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\split-button-arrow-focus.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\split-button-arrow-hover.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\assets\skins\sam\split-button-arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\button-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\button-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\button\button.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\calendar-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\calendar.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\calgrad.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\callt.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\calrt.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\calx.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\skins\sam\calendar-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\assets\skins\sam\calendar.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\calendar-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\calendar-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\calendar\calendar.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\assets\ajax-loader.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\assets\carousel-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\assets\skins\sam\ajax-loader.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\assets\skins\sam\carousel-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\assets\skins\sam\carousel.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\carousel-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\carousel-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\carousel\carousel.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\charts\assets\charts.swf" />
+    <Content Include="Resources\Scripts\Controls\yui\build\charts\charts-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\charts\charts-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\charts\charts.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\colorpicker-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\hue_thumb.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\picker_mask.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\picker_thumb.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\skins\sam\colorpicker-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\skins\sam\colorpicker.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\skins\sam\hue_bg.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\assets\skins\sam\picker_mask.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\colorpicker-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\colorpicker-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\colorpicker\colorpicker.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\connection\connection-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\connection\connection-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\connection\connection.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\alrt16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\blck16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\close12_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\container-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\container.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\hlp16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\info16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\skins\sam\container-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\skins\sam\container.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\tip16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\assets\warn16_1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container_core-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container_core-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\container\container_core.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\cookie\cookie-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\cookie\cookie-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\cookie\cookie.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datasource\datasource-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datasource\datasource-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datasource\datasource.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\datatable-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\datatable.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\skins\sam\datatable-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\skins\sam\datatable.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\skins\sam\dt-arrow-dn.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\assets\skins\sam\dt-arrow-up.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\datatable-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\datatable-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\datatable\datatable.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dom\dom-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dom\dom-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dom\dom.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dragdrop\dragdrop-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dragdrop\dragdrop-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\dragdrop\dragdrop.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\editor-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\simpleeditor-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\blankimage.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\editor-knob.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\editor-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\editor-sprite-active.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\editor-sprite.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\editor.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\simpleeditor-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\assets\skins\sam\simpleeditor.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\editor-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\editor-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\editor.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\simpleeditor-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\simpleeditor-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\editor\simpleeditor.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\element\element-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\element\element-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\element\element.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\event\event-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\event\event-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\event\event.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\fonts\fonts-min.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\fonts\fonts.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\get\get-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\get\get-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\get\get.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\grids\grids-min.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\grids\grids.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\history\assets\blank.html" />
+    <Content Include="Resources\Scripts\Controls\yui\build\history\history-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\history\history-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\history\history.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\assets\imagecropper-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\assets\skins\sam\imagecropper-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\assets\skins\sam\imagecropper.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\imagecropper-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\imagecropper-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imagecropper\imagecropper.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imageloader\imageloader-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imageloader\imageloader-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\imageloader\imageloader.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\json\json-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\json\json-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\json\json.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\assets\layout-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\assets\skins\sam\layout-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\assets\skins\sam\layout.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\assets\skins\sam\layout_sprite.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\layout-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\layout-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\layout\layout.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\assets\logger-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\assets\logger.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\assets\skins\sam\logger-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\assets\skins\sam\logger.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\logger-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\logger-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\logger\logger.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menubaritem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menubaritem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menubaritem_submenuindicator_selected.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_checkbox.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_checkbox_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_checkbox_selected.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menuitem_submenuindicator_selected.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu_down_arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu_down_arrow_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu_up_arrow.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\menu_up_arrow_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menu-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menu.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menubaritem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menubaritem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menuitem_checkbox.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menuitem_checkbox_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menuitem_submenuindicator.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\assets\skins\sam\menuitem_submenuindicator_disabled.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\menu-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\menu-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\menu\menu.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\assets\paginator-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\assets\skins\sam\paginator-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\assets\skins\sam\paginator.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\paginator-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\paginator-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\paginator\paginator.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\profilerviewer-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\asc.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\desc.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\header_background.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\profilerviewer-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\profilerviewer.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\assets\skins\sam\wait.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\profilerviewer-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\profilerviewer-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profilerviewer\profilerviewer.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profiler\profiler-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profiler\profiler-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\profiler\profiler.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\reset-fonts-grids\reset-fonts-grids.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\reset-fonts\reset-fonts.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\reset\reset-min.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\reset\reset.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\assets\resize-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\assets\skins\sam\layout_sprite.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\assets\skins\sam\resize-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\assets\skins\sam\resize.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\resize-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\resize-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\resize\resize.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\selector\selector-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\selector\selector-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\selector\selector.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\bg-fader.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\bg-h.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\bg-v-e.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\bg-v.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\left-thumb.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\right-thumb.png" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\skins\sam\bg-h.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\skins\sam\bg-v.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\skins\sam\slider-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\skins\sam\slider.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\slider-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\slider-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-bar.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-e.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-fader.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-n.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-s.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\assets\thumb-w.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\slider-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\slider-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\slider\slider.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\stylesheet\stylesheet-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\stylesheet\stylesheet-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\stylesheet\stylesheet.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\border_tabs.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\skin-sam.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\skins\sam\tabview-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\skins\sam\tabview.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\tabview-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\assets\tabview.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\tabview-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\tabview-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\tabview\tabview.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\check0.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\check1.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\check2.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\skins\sam\loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\skins\sam\treeview-loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\skins\sam\treeview-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\skins\sam\treeview-sprite.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\skins\sam\treeview.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\treeview-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\treeview-loading.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\treeview-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\assets\treeview-sprite.gif" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\treeview-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\treeview-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\treeview\treeview.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\uploader\assets\uploader.swf" />
+    <Content Include="Resources\Scripts\Controls\yui\build\uploader\uploader-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\uploader\uploader-experimental-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\uploader\uploader-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\uploader\uploader.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\utilities\utilities.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yahoo-dom-event\yahoo-dom-event.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yahoo\yahoo-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yahoo\yahoo-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yahoo\yahoo.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuiloader-dom-event\yuiloader-dom-event.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuiloader\yuiloader-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuiloader\yuiloader-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuiloader\yuiloader.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\assets\skins\sam\yuitest-skin.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\assets\skins\sam\yuitest.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\assets\testlogger.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\assets\yuitest-core.css" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest_core-debug.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest_core-min.js" />
+    <Content Include="Resources\Scripts\Controls\yui\build\yuitest\yuitest_core.js" />
+    <Content Include="Resources\Swf\charts.swf">
+    </Content>
+    <Content Include="Resources\Swf\expressinstall.swf" />
+    <Content Include="Resources\Swf\SimpleVideoPlay.swf" />
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
@@ -1145,10 +1521,14 @@
     <Content Include="Views\Components\OrganizationEdit.ascx" />
     <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Components\SimpleSmallMap.aspx" />
+    <Content Include="Views\Demo\ChartDemo.aspx" />
+    <Content Include="Views\Demo\HTMLPage1.htm" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
     <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
     <Content Include="Views\PortalParts\LatestQualityDataPart.ascx" />
+    <Content Include="Views\PortalParts\MPScoreTrandPart2.ascx" />
+    <Content Include="Views\PortalParts\MPScoreTrendPart.ascx" />
     <Content Include="Views\PortalParts\OrganizationManagementPart.ascx" />
     <Content Include="Views\PortalParts\TopScoreQualityPart.ascx" />
     <Content Include="Views\Project\ProjectEdit.aspx" />
@@ -1168,11 +1548,23 @@
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
     <Content Include="Views\Road\RoadView.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\sprite.psd" />
     <Content Include="WebServices\MobileWebService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_LocalResources\" />
+    <Folder Include="ChartImages\" />
     <Folder Include="Resources\Images\Controls\yui\" />
     <Folder Include="Templates\" />
     <Folder Include="Views\Mobile\" />

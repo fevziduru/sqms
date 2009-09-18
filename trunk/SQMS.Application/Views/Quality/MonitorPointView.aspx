@@ -41,10 +41,12 @@
             <td><asp:Label ID="lblTimeSchema" runat="server" ></asp:Label></td>
         </tr>
          <tr>
-            <td>经度：</td>
+                <td>序号：</td>
+                <td><asp:Label ID="lblOrderInRoad"  Width="210" runat="server" ></asp:Label></td>  
+            <%--<td>经度：</td>
             <td><asp:Label ID="lblLng"  Width="210" runat="server" ></asp:Label></td>  
             <td>纬度：</td>
-            <td><asp:Label ID="lblLat" Width="210" runat="server" ></asp:Label></td>
+            <td><asp:Label ID="lblLat" Width="210" runat="server" ></asp:Label></td>--%>
         </tr>
         <tr>
             <td>浮动距离：</td>
