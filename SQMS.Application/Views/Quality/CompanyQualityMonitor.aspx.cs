@@ -198,7 +198,7 @@ namespace SQMS.Application.Views.Quality
                 string projectName = ConvertUtil.ToStringOrDefault(drPoint["ProjectName"]);
                 string roadName = ConvertUtil.ToStringOrDefault(drPoint["RoadName"]);
                 LinkButton lnkBtn = (LinkButton)e.Row.Controls[0].Controls[1];
-                lnkBtn.Attributes.Add("style", "overflow:ellipsis;width:120");
+                //lnkBtn.Attributes.Add("style", "overflow:ellipsis;width:60");
                 lnkBtn.OnClientClick = "setToMarker('" + mpId + "','" + mpName + "'," + lat + "," + lng + "," + lv + "," + qclv + ",true,true,{IsStart:'" + isStart + "',ProjectName:'" + projectName + "',RoadName:'" + roadName + "'});";
             }
         }
