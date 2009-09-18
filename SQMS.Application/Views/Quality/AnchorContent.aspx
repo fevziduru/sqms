@@ -9,14 +9,14 @@
         <title></title>
         <!-- Dependencies -->
         <!-- Sam Skin CSS for TabView -->
-        <link rel="stylesheet" type="text/css" href="../../Resources/CSS/Controls/yui/assets/tabview.css" />
+        <link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
 
         <!-- JavaScript Dependencies for Tabview: -->
-        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/yahoo-dom-event.js"></script>
-        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/element-min.js"></script>
+        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>
 
         <!-- Source file for TabView -->
-        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/tabview-min.js"></script>  
+        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/tabview/tabview-min.js"></script>  
         <style type="text/css">
         img.framed { 
                 padding: 10px; 
@@ -82,7 +82,7 @@
                                                 <td colspan="2" align="center" valign="absmiddle">
                                                             <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="280"
                                                                      height="180" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
-                                                                    <param name="movie" value="../../Resources/SimpleVideoPlay.swf?file=<%#Eval("VIDEOURL") %>" />
+                                                                    <param name="movie" value="../../Resources/Swf/SimpleVideoPlay.swf?file=<%#Eval("VIDEOURL") %>" />
                                                                     <param name="quality" value="high" />
                                                                     <param name="bgcolor" value="#869ca7" />                                                            
                                                                     <param name="allowScriptAccess" value="sameDomain" />

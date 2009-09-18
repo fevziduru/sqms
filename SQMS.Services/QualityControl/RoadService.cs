@@ -204,10 +204,10 @@ namespace SQMS.Services
                 {
                         try
                         {
-                                DataTable dt = DefaultSession.GetDataTableFromCommand(@"select mp.mpid,mp.importance,ts.schemaname,mp.mpcode,mp.mpname,mp.longitude,mp.latitude,mp.floatdist,mp.mplevel from road t 
+                                DataTable dt = DefaultSession.GetDataTableFromCommand(@"select mp.orderinroad,mp.mpid,mp.importance,ts.schemaname,mp.mpcode,mp.mpname,mp.longitude,mp.latitude,mp.floatdist,mp.mplevel from road t 
                                                 left join mpassignment mp on t.roadid=mp.roadid
                                                 left join timeschema ts on ts.schemaid=mp.schemaid
-                                                where t.organizationid=:orgid and t.roadid=:roadid order by mp.importance desc", CurrentUser.OrganizationID, roadid);
+                                                where t.organizationid=:orgid and t.roadid=:roadid order by mp.importance, mp.orderinroad desc", CurrentUser.OrganizationID, roadid);
                                 dt.TableName = "MONITORPOINTS";
                                 return dt;
                         }

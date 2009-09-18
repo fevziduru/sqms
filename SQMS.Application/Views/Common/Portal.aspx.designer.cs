@@ -14,6 +14,15 @@ namespace SQMS.Application.Views.Common {
     public partial class Portal {
         
         /// <summary>
+        /// MPScoreTrandPart21 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::SQMS.Application.Views.PortalParts.MPScoreTrandPart2 MPScoreTrandPart21;
+        
+        /// <summary>
         /// LatestQualityDataPart1 控件。
         /// </summary>
         /// <remarks>
@@ -32,13 +41,13 @@ namespace SQMS.Application.Views.Common {
         protected global::SQMS.Application.Views.PortalParts.LatestProjectsPart LatestProjectsPart1;
         
         /// <summary>
-        /// EmployeeManagementPart1 控件。
+        /// MPScoreTrendPart1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::SQMS.Application.Views.PortalParts.EmployeeManagementPart EmployeeManagementPart1;
+        protected global::SQMS.Application.Views.PortalParts.MPScoreTrendPart MPScoreTrendPart1;
         
         /// <summary>
         /// TopScoreQualityPart1 控件。
@@ -48,5 +57,14 @@ namespace SQMS.Application.Views.Common {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::SQMS.Application.Views.PortalParts.TopScoreQualityPart TopScoreQualityPart1;
+        
+        /// <summary>
+        /// EmployeeManagementPart1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::SQMS.Application.Views.PortalParts.EmployeeManagementPart EmployeeManagementPart1;
     }
 }

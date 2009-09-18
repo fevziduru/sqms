@@ -29,8 +29,9 @@ namespace SQMS.Application.Views.Quality
                                 this.lblImportance.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drMP["IMPORTANCE"])));
                                 this.lblRoad.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("roadname", "road", "roadid", ConvertUtil.ToStringOrDefault(drMP["roadid"])));
                                 this.lblTimeSchema.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("schemaname", "timeschema", "schemaid", ConvertUtil.ToStringOrDefault(drMP["schemaid"])));
-                                this.lblLng.Text = ConvertUtil.ToStringOrDefault(drMP["LONGITUDE"]);
-                                this.lblLat.Text = ConvertUtil.ToStringOrDefault(drMP["LATITUDE"]);
+                                //this.lblLng.Text = ConvertUtil.ToStringOrDefault(drMP["LONGITUDE"]);
+                                //this.lblLat.Text = ConvertUtil.ToStringOrDefault(drMP["LATITUDE"]);
+                                this.lblOrderInRoad.Text = ConvertUtil.ToStringOrDefault(drMP["ORDERINROAD"]);
                                 this.lblFloatDist.Text = ConvertUtil.ToStringOrDefault(drMP["FLOATDIST"]);
                                 this.lblMapLevel.Text = ConvertUtil.ToStringOrDefault(drMP["MPLEVEL"]);
 
