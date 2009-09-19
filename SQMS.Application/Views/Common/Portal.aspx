@@ -5,6 +5,7 @@
 <%@ Register src="../PortalParts/TopScoreQualityPart.ascx" tagname="TopScoreQualityPart" tagprefix="uc4" %>
 <%@ Register src="../PortalParts/MPScoreTrendPart.ascx" tagname="MPScoreTrendPart" tagprefix="uc5" %>
 <%@ Register src="../PortalParts/MPScoreTrandPart2.ascx" tagname="MPScoreTrandPart2" tagprefix="uc6" %>
+<%@ Register src="../PortalParts/MonitorPointScoreKPIPart.ascx" tagname="MonitorPointScoreKPIPart" tagprefix="uc7" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,44 +50,50 @@
                 }
         }
 </script>
-<table cellpadding="5" cellspacing="5" border="0" style="width:100%;font-size:x-small">
+<table cellpadding="3" cellspacing="5" border="0" style="width:100%;font-size:x-small">
 <tr>
-        <td valign="top" style="width:50%">
+        <td valign="top" style="width:55%">
         <div>
-          <fieldset style="margin: 5 5">
+          <fieldset style="margin: 8 5">
                 <legend>监控点质量走势</legend>
                 <uc6:MPScoreTrandPart2 ID="MPScoreTrandPart21" runat="server" />
                 </fieldset>
         
-          <fieldset style="margin: 5 5">
+          <fieldset style="margin: 8 5">
                 <legend>最新未评分的质量信息</legend>
                         <uc1:LatestQualityDataPart ID="LatestQualityDataPart1" runat="server" />
-                </fieldset>
-                
-                <fieldset style="margin: 5 5">
-                <legend>最新项目信息</legend>
-                        <uc2:LatestProjectsPart ID="LatestProjectsPart1" runat="server" />
                 </fieldset>
         </div>
         </td> 
         
-        <td  align="left" valign="top" style="width:50%">
+        <td  align="left" valign="top" style="width:45%">
         <div>
+        
+        <fieldset style="margin:8 5">
+                <legend>监控点质量趋势</legend>
+                <uc7:MonitorPointScoreKPIPart ID="MonitorPointScoreKPIPart1" runat="server" />
+        </fieldset>
          
-                  <fieldset id="projecttrend"  style="margin: 5 5">
+                  <fieldset id="projecttrend"  style="margin: 8 5">
                 <legend>项目质量走势</legend>
                 <uc5:MPScoreTrendPart ID="MPScoreTrendPart1" runat="server" />
                 </fieldset>
-        <fieldset style="margin: 5 5">        
+        <fieldset style="margin: 8 5">        
                 <legend>质控数据评分前五名</legend>
                 <uc4:TopScoreQualityPart ID="TopScoreQualityPart1" runat="server" />
                 </fieldset>
                
+                <fieldset style="margin: 8 5">
+                <legend>最新项目信息</legend>
+                        <uc2:LatestProjectsPart ID="LatestProjectsPart1" runat="server" />
+                </fieldset>
                 
-                 <fieldset style="margin: 5 5">
+                 <fieldset style="margin: 8 5">
                 <legend>职员及其角色账号快速管理</legend>
                         <uc3:EmployeeManagementPart ID="EmployeeManagementPart1" runat="server" />
                 </fieldset>
+                
+                
         </div>
        
         </td>

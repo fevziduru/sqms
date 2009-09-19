@@ -66,7 +66,7 @@ namespace SQMS.Application.Foundation
                 /// <summary>
                 /// 界面元素数据
                 /// </summary>
-                protected DataSet ViewData
+                public DataSet ViewData
                 {
                         get
                         {

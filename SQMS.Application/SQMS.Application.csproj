@@ -509,6 +509,13 @@
     <Compile Include="Views\PortalParts\LatestQualityDataPart.ascx.designer.cs">
       <DependentUpon>LatestQualityDataPart.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\PortalParts\MonitorPointScoreKPIPart.ascx.cs">
+      <DependentUpon>MonitorPointScoreKPIPart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PortalParts\MonitorPointScoreKPIPart.ascx.designer.cs">
+      <DependentUpon>MonitorPointScoreKPIPart.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\PortalParts\MPScoreTrandPart2.ascx.cs">
       <DependentUpon>MPScoreTrandPart2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1082,6 +1089,8 @@
     <Content Include="Resources\CSS\Controls\JSONTree\JSONTreeStyle.css" />
     <Content Include="Resources\CSS\Controls\yui\assets\tabview.css" />
     <Content Include="Resources\CSS\main.css" />
+    <Content Include="Resources\Images\app\portal_kpi_down.gif" />
+    <Content Include="Resources\Images\app\portal_kpi_up.gif" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.gif" />
     <Content Include="Resources\Images\Controls\Calendar\calendar.jpg" />
     <Content Include="Resources\Images\Controls\JSONTree\branch_line.jpg" />
@@ -1530,6 +1539,7 @@
     <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
     <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
     <Content Include="Views\PortalParts\LatestQualityDataPart.ascx" />
+    <Content Include="Views\PortalParts\MonitorPointScoreKPIPart.ascx" />
     <Content Include="Views\PortalParts\MPScoreTrandPart2.ascx" />
     <Content Include="Views\PortalParts\MPScoreTrendPart.ascx" />
     <Content Include="Views\PortalParts\OrganizationManagementPart.ascx" />
