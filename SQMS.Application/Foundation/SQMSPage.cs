@@ -10,6 +10,7 @@ using log4net;
 using EasyDev.SQMS;
 using SQMS.Application.Views.Components;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace SQMS.Application
 {
@@ -121,18 +122,31 @@ namespace SQMS.Application
                                                 else
                                                 {
                                                         //TODO: UserInfo为空的处理
+                                                        //if (Request.RawUrl.Contains(FormsAuthentication.LoginUrl + "?status=q&p=__pub__") == false)
+                                                        //{
+                                                        //        Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
+                                                        //}
                                                         //Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                                                 }
                                         }
                                 }
                                 else
                                 {
+                                        //if (Request.RawUrl.Contains(FormsAuthentication.LoginUrl + "?status=q&p=__pub__") == false)
+                                        //{
+                                        //        Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
+                                        //}
                                         //TODO: UserInfo为空的处理
                                         //Response.Redirect(FormsAuthentication.LoginUrl + "?status=q&p=__pub__");
                                 }
 
                                 return userinfo;
                         }
+                }
+
+                private bool EnsureUserInfo()
+                {
+                        return !Request.RawUrl.Contains("Login") && this.CurrentUser == null;
                 }
 
                 #region 事件
@@ -358,6 +372,11 @@ namespace SQMS.Application
                 /// <param name="e"></param>
                 protected override void OnLoad(EventArgs e)
                 {
+                        if (EnsureUserInfo())
+                        {
+                                Response.Redirect(FormsAuthentication.LoginUrl);
+                        }
+
                         this.Error += new EventHandler(SQMSPage_Error);
                         this.ID = ConvertUtil.ToStringOrDefault(Request.Params["id"]);
 

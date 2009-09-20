@@ -17,6 +17,8 @@ namespace EasyDev.SQMS
         public class PermissionModule : IHttpModule
         {
                 private ILog logger = LogManager.GetLogger(typeof(PermissionModule));
+                //private PassportService passportSrv = null;
+                //private NativeServiceManager ServiceManager = null;
 
                 #region IHttpModule 成员
 
@@ -27,6 +29,9 @@ namespace EasyDev.SQMS
 
                 public void Init(HttpApplication context)
                 {
+                        //ServiceManager = ServiceManagerFactory.CreateNativeServiceManager();
+                        //passportSrv = ServiceManager.CreateService<PassportService>();
+
                         context.AcquireRequestState += new EventHandler(context_AcquireRequestState);
                         context.Error += new EventHandler(context_Error);
                 }

@@ -1,103 +1,215 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="SQMS.Application.Masters.Main" %>
 
-<%@ Register src="../Views/Components/OperationBar.ascx" tagname="OperationBar" tagprefix="uc1" %>
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<%@ Register Src="../Views/Components/OperationBar.ascx" TagName="OperationBar" TagPrefix="uc1" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-    <link href="../Resources/CSS/Controls/Calendar/Calendar.css" type="text/css" rel="Stylesheet" />
-    <link href="../Resources/CSS/main.css" type="text/css" rel="Stylesheet" />
-    <script type="text/javascript">
-        function switchTreeMenu(obj) {
-            if (obj.style.display == "none") {
-                obj.style.display = "block";
-            }
-            else {
-                obj.style.display = "none";
-            }
-        }
+        <title></title>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+        <link href="../Resources/CSS/Controls/Calendar/Calendar.css" type="text/css" rel="Stylesheet" />
+        <link href="../Resources/CSS/main.css" type="text/css" rel="Stylesheet" />
 
-        function switchFullScreen(objs) {
-                for (var i = 0; i < objs.length; i++) {
-                        if (objs[i].style.display == "none") {
-                                objs[i].style.display = "block";
+        <script type="text/javascript">
+                function switchTreeMenu(obj)
+                {
+                        if (obj.style.display == "none")
+                        {
+                                obj.style.display = "block";
                         }
-                        else {
-                                objs[i].style.display = "none";
+                        else
+                        {
+                                obj.style.display = "none";
                         }
                 }
-        }
-    </script>
+
+                function switchFullScreen(objs)
+                {
+                        for (var i = 0; i < objs.length; i++)
+                        {
+                                if (objs[i].style.display == "none")
+                                {
+                                        objs[i].style.display = "block";
+                                }
+                                else
+                                {
+                                        objs[i].style.display = "none";
+                                }
+                        }
+                }
+
+                function PopupSimpleMap(mpid)
+                {
+                        $("divStaticMap").css("display", "block");
+
+                        //alert(window.event.clientX + " " + window.event.clientY);
+                        $("divStaticMap").css("position", "absolute");
+                        $("divStaticMap").css("left", window.event.clientX);
+                        $("divStaticMap").css("top", window.event.clientY);
+                        $("divStaticMap").css("z-index", 1000000);
+                        
+                        StaticMapFactory.createStaticMap("divStaticMap", mpid, 400, 300);
+                        //var divMap = $("divStaticMap");
+
+
+                }
+
+                var mySimpleDialog;
+                var isInitialized = false;
+                function InitDialog(mpname)
+                {
+                        mySimpleDialog = new YAHOO.widget.SimpleDialog("dlg", {
+                                width: "430",
+                                effect: { effect: YAHOO.widget.ContainerEffect.FADE,
+                                        duration: 0.10
+                                },
+                                fixedcenter: true,
+                                constraintoviewport:true,
+                                modal: true,
+                                visible: false,
+                                draggable: true,
+                                zIndex:10000
+                        });
+
+                        mySimpleDialog.setHeader("监控点“" + mpname + "”位置");
+                        mySimpleDialog.setBody('<div id="divStaticMap" style="text-align:center;vertical-align:middle;position:relate;display: block"></div>');
+                        //mySimpleDialog.cfg.setProperty("icon", YAHOO.widget.SimpleDialog.ICON_WARN);
+
+                        var handleYes = function()
+                        {
+                                //user confirms the deletion of this item;
+                                //this method would perform that deletion;
+                                //when ready, hide the SimpleDialog:
+                                this.hide();
+                        }
+
+                        var handleNo = function()
+                        {
+                                //user cancels item deletion; this method
+                                //would handle the cancellation of the
+                                //process.
+                                //when ready, hide the SimpleDialog:
+                                this.hide();
+                        }
+                        
+//                        var myButtons = [{ text: "Yes",
+//                                handler: handleYes
+//                        },
+//				  { text: "Cancel",
+//				          handler: handleNo,
+//				          isDefault: true}];
+//                        mySimpleDialog.cfg.queueProperty("buttons", myButtons);
+                }
+
+                function OpenDialog(mpid, mpname)
+                {
+                        if (mySimpleDialog == null || isInitialized == false)
+                        {
+                                InitDialog(mpname);
+                        }
+
+                        mySimpleDialog.render(document.body);
+                        //mySimpleDialog.render(document.getElementById("mapcontainer"));
+                        mySimpleDialog.show();
+                        StaticMapFactory.createStaticMap("divStaticMap", mpid, 400, 300);
+                }
+
+        </script>
+        
+        <!-- Sam Skin CSS -->
+        <link rel="stylesheet" type="text/css" href="../Resources/Scripts/Controls/yui/build/container/assets/skins/sam/container.css" />
+
+        <!-- OPTIONAL: You only need the YUI Button CSS if you're including YUI Button, mentioned below. -->
+        <link rel="stylesheet" type="text/css" href="../Resources/Scripts/Controls/yui/build/button/assets/skins/sam/button.css" />
 </head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    <asp:ScriptManager ID="ScriptManager1" runat="server"  AsyncPostBackTimeout="300" >
-        <Scripts>
-            <asp:ScriptReference Path="~/Resources/Scripts/Controls/Calendar.js" />
-            <asp:ScriptReference Path="~/Resources/Scripts/Common/main.js" />
-            <asp:ScriptReference Path="~/Resources/Scripts/Controls/jquery.js" />
-        </Scripts>
-        </asp:ScriptManager> 
-        <table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;font-size:x-small">        
-            <tr>
-                <td valign="middle" align="right" style="height:20px;font-size:10pt;background-color:#C7E6F4">
-                    <span>用户：<a href='/Views/Basedata/EmployeeView.aspx?p=employeeview&id=<%=CurrentUser.EmployeeID %>'>
-                        <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
-                    <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <span><a href="/Views/Common/Portal.aspx?p=__pub__">主页</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/Views/Security/Login.aspx?p=__pub__&status=q">注销</a>&nbsp;&nbsp;<%--|&nbsp;&nbsp;
+<body class="yui-skin-sam">
+        <form id="form1" runat="server">
+        <div id="main">
+                <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="300">
+                        <Scripts>
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/animation/animation-min.js" />                                
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/connection/connection-min.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/dragdrop/dragdrop-min.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/element/element-min.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/button/button-min.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/container/container-min.js" />
+                                
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/Calendar.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Common/main.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/jquery.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/GoogleMap/StaticMap.js" />
+                        </Scripts>
+                </asp:ScriptManager>
+                
+                <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%;
+                        font-size: x-small">
+                        <tr>
+                                <td valign="middle" align="right" style="height: 20px; font-size: 10pt; background-color: #C7E6F4">
+                                        <span>用户：<a href='/Views/Basedata/EmployeeView.aspx?p=employeeview&id=<%=CurrentUser.EmployeeID %>'>
+                                                <%=CurrentUser.Passport %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp; <span>角色：<a href='/Views/Basedata/RoleView.aspx?p=roleview&id=<%=CurrentUser.RoleID%>'>
+                                                        <%=CurrentUser.RoleName %></a></span>&nbsp;&nbsp;|&nbsp;&nbsp; <span><a href="/Views/Common/Portal.aspx?p=__pub__">
+                                                                主页</a></span>&nbsp;&nbsp;|&nbsp;&nbsp; <a href="/Views/Security/Login.aspx?p=__pub__&status=q">
+                                                                        注销</a>&nbsp;&nbsp;<%--|&nbsp;&nbsp;
                     <a href="javascript:switchFullScreen();">Full</a>&nbsp;&nbsp;--%>
-                  <%--  <input type="button" style="width:20;height:20"
+                                        <%--  <input type="button" style="width:20;height:20"
                         onclick="switchFullScreen([document.getElementById('header'),document.getElementById('footer'),document.getElementById('bottom'),document.getElementById('nav')])" value="   "/>&nbsp;&nbsp;--%>
-                    <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
-                </td>
-            </tr>
-            <tr id="header">
-                <td style="height:50;background-color:#2A7ACA">&nbsp;</td>
-            </tr>
-            <tr style="display:none">
-                <td id="opbar" style="height:20px;border-bottom:solid 1px #000">                    
-                    <uc1:OperationBar ID="__OperationBar__" runat="server" />                    
-                </td>
-            </tr>
-            <tr>
-                <td align="left" valign="top">
-                <table style="width:100%;height:100%" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td id="nav" style="width:15%;border-right:solid 0px #6B86B3" valign="top" align="left">
-                        <!--根据权限过滤的树形菜单-->
-                        <div style="margin:10 10">
-                            <asp:TreeView NodeWrap="false" ID="tvMenu" runat="server" ImageSet="Arrows" ExpandDepth="3" ShowExpandCollapse="true">
-                            <ParentNodeStyle Font-Bold="False" />
-                            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-                            <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
-                                HorizontalPadding="0px" VerticalPadding="0px" />
-                            <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" 
-                                HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
-                            </asp:TreeView>
-                        </div>
-                        </td>
-                        <td id="bar" onclick="switchTreeMenu(document.getElementById('nav'))" style="cursor:hand;width:10px;background-color:#6B86B3"></td>
-                        <td  align="left" valign="top">
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                        </td>
-                    </tr>
+                                        <%--<asp:LinkButton ID="btnLogout" runat="server" CausesValidation="false" Text="退出" OnClick="btnLogout_OnClick"></asp:LinkButton>--%>
+                                </td>
+                        </tr>
+                        <tr id="header">
+                                <td style="height: 50; background-color: #2A7ACA">
+                                        &nbsp;
+                                </td>
+                        </tr>
+                        <tr style="display: none">
+                                <td id="opbar" style="height: 20px; border-bottom: solid 1px #000">
+                                        <uc1:OperationBar ID="__OperationBar__" runat="server" />
+                                </td>
+                        </tr>
+                        <tr>
+                                <td align="left" valign="top">
+                                        <table style="width: 100%; height: 100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                        <td id="nav" style="width: 15%; border-right: solid 0px #6B86B3" valign="top" align="left">
+                                                                <!--根据权限过滤的树形菜单-->
+                                                                <div style="margin: 10 10">
+                                                                        <asp:TreeView NodeWrap="false" ID="tvMenu" runat="server" ImageSet="Arrows" ExpandDepth="3"
+                                                                                ShowExpandCollapse="true">
+                                                                                <ParentNodeStyle Font-Bold="False" />
+                                                                                <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                                                                                <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px"
+                                                                                        VerticalPadding="0px" />
+                                                                                <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px"
+                                                                                        NodeSpacing="0px" VerticalPadding="0px" />
+                                                                        </asp:TreeView>
+                                                                </div>
+                                                        </td>
+                                                        <td id="bar" onclick="switchTreeMenu(document.getElementById('nav'))" style="cursor: hand;
+                                                                width: 10px; background-color: #6B86B3">
+                                                        </td>
+                                                        <td align="left" valign="top">
+                                                                <!--Simple Map-->
+                                                                
+                                                                <!--Simple Map-->
+                                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                </asp:ContentPlaceHolder>
+                                                        </td>
+                                                </tr>
+                                        </table>
+                                </td>
+                        </tr>
+                        <tr id="footer">
+                                <td style="height: 40px; background-color: #2A7ACA">
+                                        &nbsp;
+                                </td>
+                        </tr>
+                        <tr id="bottom" style="height: 20px; background-color: #C7E6F4">
+                                <td>
+                                        &nbsp;
+                                </td>
+                        </tr>
                 </table>
-                    
-                </td>
-            </tr>
-            <tr id="footer">
-                <td style="height:40px;background-color:#2A7ACA">&nbsp;</td>
-            </tr>
-            <tr id="bottom" style="height:20px;background-color:#C7E6F4">
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-    </div>
-    </form>
+        </div>
+        </form>
 </body>
 </html>

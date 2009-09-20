@@ -147,11 +147,25 @@ namespace EasyDev.BL
                                 UserIdentity ui = Thread.CurrentPrincipal.Identity as UserIdentity;
                                 if (ui != null)
                                 {
-                                        return ui.UserInfo;
+                                        if (ui.UserInfo != null)
+                                        {
+                                                return ui.UserInfo;
+                                        }
+                                        else
+                                        {
+                                                //if (ui.Name != null)
+                                                //{
+                                                //        PassportService srv = ServiceManager.CreateService<PassportService>();
+                                                        
+                                                //}
+                                                //Session["USER_INFO"]
+
+                                                return null;
+                                        }
                                 }
                                 else
                                 {
-                                        return null;
+                                        return null;                                       
                                 }
                         }
                         set

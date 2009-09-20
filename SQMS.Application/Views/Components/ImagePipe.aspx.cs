@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Configuration;
+using EasyDev.Util;
 
 namespace SQMS.Application.Views.Components
 {
@@ -35,10 +37,8 @@ namespace SQMS.Application.Views.Components
                                         b = new Bitmap(strSelectedFile);
                                 }
 
-                                //int towidth = b.Width * 130 / b.Height;
-                                //int toheight = 95;
-                                int towidth = 250;
-                                int toheight = 160;
+                                int towidth = ConvertUtil.ToInt(ConfigurationManager.AppSettings["ThumbnailWidth"]);
+                                int toheight = ConvertUtil.ToInt(ConfigurationManager.AppSettings["ThumbnailHeight"]);
                                 int oh = b.Height;
                                 int ow = b.Width;
                                 int x = 0;
