@@ -37,6 +37,9 @@ namespace SQMS.Application.Views.Quality
 
                                 this.lblIsvoid.Text = ConvertUtil.ToStringOrDefault(drMP["ISVOID"]).Equals("Y") ? "禁用" : "启用";
                                 this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drMP["MEMO"]);
+
+                                this.btnViewMPBottom.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.ID, ConvertUtil.ToStringOrDefault(drMP["MPNAME"])));
+                                this.btnViewMPTop.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.ID, ConvertUtil.ToStringOrDefault(drMP["MPNAME"])));
                         }
                 }
 

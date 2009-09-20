@@ -19,6 +19,7 @@
         <tr>
             <td align="center">
                 <fieldset>
+                        <input type="button" runat="server" style="width:110px" ID="btnViewMPTop"  value="查看位置"/>&nbsp;&nbsp;
                     <asp:Button runat="server" Width="110px" ID="Button5" Text="保存" OnClick="btnSave_Click"/>
                 </fieldset>
             </td>
@@ -32,58 +33,44 @@
         <tr>
                 <td style="width:110px">质控编码：</td>
                 <td style="width:330px"><asp:Label ID="lblQMCode" runat="server" ></asp:Label></td>
-                <td style="width:110px">作业单位：</td>
+                <td style="width:120px">作业单位：</td>
                 <td style="width:330px"><asp:Label ID="lblWorkUnit" runat="server" ></asp:Label></td>
         </tr>
         <tr>
-                <td>负责人：</td>
-                <td><asp:Label ID="lblChargePerson" runat="server" ></asp:Label></td>
-                <td>应急处理责任人：</td>
-                <td><asp:Label ID="lblEmergencyPerson" runat="server" ></asp:Label></td>
+                <td style="width:110px">负责人：</td>
+                <td style="width:330px"><asp:Label ID="lblChargePerson" runat="server" ></asp:Label></td>
+                <td style="width:130px">应急处理责任人：</td>
+                <td style="width:330px"><asp:Label ID="lblEmergencyPerson" runat="server" ></asp:Label></td>
         </tr>
         <tr>
-                <td>巡查人：</td>
-                <td><asp:Label ID="lblCheckPerson" runat="server" ></asp:Label></td>
-                <td>状态：</td>
-                <td><asp:Label ID="lblStatus" runat="server" ></asp:Label></td>
+                <td style="width:110px">巡查人：</td>
+                <td style="width:330px"><asp:Label ID="lblCheckPerson" runat="server" ></asp:Label></td>
+                <td style="width:110px">状态：</td>
+                <td style="width:330px"><asp:Label ID="lblStatus" runat="server" ></asp:Label></td>
         </tr>
+      
         <tr>
-                <td>采集点位置：</td>
-                <td><a runat="server" id="loc"
-                        href='' target="_blank">
-                                (<asp:Label ID="lblLng" runat="server" ></asp:Label>,<asp:Label ID="lblLat" runat="server" ></asp:Label>)</a>
-                      </td>
-                <td></td>
-                <td>                
-                </td>
-        </tr>
-        <tr>
-                <td style="width:210px">采集点图片：</td>
-                <td colspan="3">
-                        <span>
+                <td style="width:110px">采集点图片：</td>
+                <td style="width:330px">
                         <img alt="点击查看原图" runat="server" style="width:250;height:160" id="imgQuality"  class="framed" />
-                        <%--<iframe frameborder="0" runat="server" id="imgQuality"></iframe>--%>
-                        
-                        </span>
                 </td>
-        </tr>
-        <tr>
-                <td>采集点视频：</td>
-                <td colspan="3">
+                <td style="width:110px">采集点视频：</td>
+                <td style="width:30px">
                  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="MapVideo" width="280"
-                     height="180" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
+                     height="160" codebase=" http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" data='<%#Eval("VIDEOURL") %>'>
                     <param name="movie" value="../../Resources/Swf/SimpleVideoPlay.swf?file=<%=videoUrl%>" />
                     <param name="quality" value="high" />
                     <param name="bgcolor" value="#869ca7" />                                                            
                     <param name="allowScriptAccess" value="sameDomain" />
                     <embed src="../../Resources/SimpleVideoPlay.swf?file=<%=videoUrl%>"
-                        quality="high" bgcolor="#869ca7" width="250" height="180" name="MapVideo" align="middle"
+                        quality="high" bgcolor="#869ca7" width="250" height="160" name="MapVideo" align="middle"
                         play="true" loop="false" quality="high" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"
                         pluginspage=" http://www.adobe.com/go/getflashplayer"></embed>
                 </object><br />
                         <asp:HyperLink ID="hlVideo" runat="server"></asp:HyperLink>
                 </td>
         </tr>
+       
         <tr>
                 <td>质量评分：</td>
                 <td colspan="3"><asp:TextBox ID="txtQualityLevel" runat="server"></asp:TextBox></td>
@@ -105,13 +92,14 @@
         <tr>
             <td align="center">
                 <fieldset>
-                    <asp:Button runat="server" Width="110px" ID="Button1" Text="保存" OnClick="btnSave_Click"/>
+                        <input type="button" runat="server" style="width:110px" ID="btnViewMPBottom"  value="查看位置"/>&nbsp;&nbsp;
+                        <asp:Button runat="server" Width="110px" ID="Button1" Text="保存" OnClick="btnSave_Click"/>
                 </fieldset>
             </td>
         </tr>
     </table>
     <script type="text/javascript">
-            document.getElementById('MapVideo').setExternVideoUrl('<%=videoUrl %>', true);
+           // document.getElementById('MapVideo').setExternVideoUrl('<%=videoUrl %>', true);
 </script>
     </div>
 </asp:Content>

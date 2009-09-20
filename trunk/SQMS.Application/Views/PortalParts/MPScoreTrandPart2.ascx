@@ -7,8 +7,8 @@
         <link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
 
         <!-- JavaScript Dependencies for Tabview: -->
-        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>
+        <%--<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>--%>
 
         <!-- Source file for TabView -->
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/tabview/tabview-min.js"></script> 

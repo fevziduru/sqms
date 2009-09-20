@@ -5,9 +5,9 @@
 <link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
 <!-- JavaScript Dependencies for Tabview: -->
 
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<%--<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>
+<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>--%>
 
 <!-- Source file for TabView -->
 
@@ -193,7 +193,7 @@
         var mychart = new YAHOO.widget.LineChart("chartMonth", myDataSource,
 	{
 	        style:{
-	                legend:{display:"bottom"},
+	                legend:{display:"bottom"}
 	        },
 	        series: seriesDef,
 	        xField: "month",
@@ -255,7 +255,7 @@
         var mychart = new YAHOO.widget.LineChart("chartYear", myDataSource,
 	{
 	        style:{
-	                legend:{display:"bottom"},
+	                legend:{display:"bottom"}
 	        },
 	        series: seriesDef,
 	        xField: "month",

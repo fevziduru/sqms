@@ -6,12 +6,13 @@ using System.Security.Principal;
 
 namespace EasyDev.SQMS
 {
-    public class UserIdentity : GenericIdentity
-    {
-        public UserIdentity(string name)
-            : base(name)
-        { }
+        public class UserIdentity : GenericIdentity
+        {
+                public UserIdentity(string name)
+                        : base(name)
+                { }
 
-        public UserInfo UserInfo { get; set; }
-    }
+                //public string Password { get; set; }
+                public UserInfo UserInfo { get; set; }
+        }
 }

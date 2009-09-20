@@ -204,6 +204,7 @@ namespace SQMS.Services
                 {
                         try
                         {
+                                string orgid = CurrentUser.OrganizationID;
                                 DataTable dt = DefaultSession.GetDataTableFromCommand(@"select mp.orderinroad,mp.mpid,mp.importance,ts.schemaname,mp.mpcode,mp.mpname,mp.longitude,mp.latitude,mp.floatdist,mp.mplevel from road t 
                                                 left join mpassignment mp on t.roadid=mp.roadid
                                                 left join timeschema ts on ts.schemaid=mp.schemaid

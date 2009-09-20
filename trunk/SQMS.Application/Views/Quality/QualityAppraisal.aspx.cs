@@ -34,7 +34,14 @@ namespace SQMS.Application.Views.Quality
 
                         if (drQuality != null)
                         {
-                                drQuality["QUALITYLEVEL"] = this.txtQualityLevel.Text;
+                                if (this.txtQualityLevel.Text.Length == 0)
+                                {
+                                        drQuality["QUALITYLEVEL"] = -1;
+                                }
+                                else
+                                {
+                                        drQuality["QUALITYLEVEL"] = this.txtQualityLevel.Text;
+                                }
                         }
                 }
 
@@ -71,8 +78,8 @@ namespace SQMS.Application.Views.Quality
                                         this.lblEmergencyPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drQuality["EMERGENCYPERSON"])));
                                         this.lblCheckPerson.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drQuality["CHECKPERSON"])));
                                         this.lblStatus.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drQuality["STATUS"])));
-                                        this.lblLng.Text = ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]);
-                                        this.lblLat.Text = ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]);
+                                        //this.lblLng.Text = ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"]);
+                                        //this.lblLat.Text = ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"]);
                                         this.imgQuality.Attributes.Add("src", "/Views/Components/ImagePipe.aspx?filename=" + ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]));
                                         //this.hlImage.HRef = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
                                         //this.hlImage.Text = ConvertUtil.ToStringOrDefault(drQuality["MATERIAL"]);
@@ -81,20 +88,28 @@ namespace SQMS.Application.Views.Quality
                                         //this.hlVideo.Attributes.Add("onclick", "document.getElementById('MapVideo').setExternVideoUrl('" + ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]) + "',true)");
                                         this.videoUrl = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
 
-                                        this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(drQuality["QUALITYLEVEL"]);
+                                        decimal level = ConvertUtil.ToDecimal(drQuality["QUALITYLEVEL"]);
+                                        if (level > -1)
+                                        {
+                                                this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(level);
+                                        }
+                                        
                                         this.lblType.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drQuality["TYPE"])));
                                         this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drQuality["MEMO"]);
 
-                                        this.loc.HRef =
-                                                @"http://maps.google.com/maps?center="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&
-                                markers="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&f=q&hl=en
-                                         &geocode="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"
-                                &q=采集点位置&ll="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+"&ie=GB2312&t=h&gl=cn&z=16&iwloc=addr";
+//                                        this.loc.HRef =
+//                                                @"http://maps.google.com/maps?center="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&
+//                                markers="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"&f=q&hl=en
+//                                         &geocode="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+@"
+//                                &q=采集点位置&ll="+ConvertUtil.ToStringOrDefault(drQuality["LATITUDE"])+","+ConvertUtil.ToStringOrDefault(drQuality["LONGITUDE"])+"&ie=GB2312&t=h&gl=cn&z=16&iwloc=addr";
 
                                         if (string.IsNullOrEmpty(this.MPID))
                                         {
                                                 this.MPID = ConvertUtil.ToStringOrDefault(drQuality["MPID"]);
                                         }
+                                        string mpname = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("MPNAME", "MPASSIGNMENT", "MPID", this.MPID));
+                                        this.btnViewMPBottom.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.MPID, mpname));
+                                        this.btnViewMPTop.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.MPID, mpname));
                                 }
                         }
                 }
