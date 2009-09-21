@@ -1,26 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MonitorPointScoreKPIPart.ascx.cs" Inherits="SQMS.Application.Views.PortalParts.MonitorPointScoreKPIPart" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="EasyDev.Util" %>
-<!-- Dependencies -->
-<!-- Sam Skin CSS for TabView -->
-<link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
-<!-- JavaScript Dependencies for Tabview: -->
-
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>
-
-<!-- Source file for TabView -->
-
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/tabview/tabview-min.js"></script>
-
 
 <div class="yui-skin-sam">
 <script type="text/javascript">
-                var myTabs = new YAHOO.widget.TabView("mpdata");  
+                var myTabs = new YAHOO.widget.TabView("mpdata1");  
         </script>
 
-        <div id="mpdata" class="yui-navset">
+        <div id="mpdata1" class="yui-navset">
                 <ul class="yui-nav">
                         <li class="selected"><a href="#tab1"><em>周趋势</em></a></li>
                         <li><a href="#tab2"><em>月趋势</em></a></li>

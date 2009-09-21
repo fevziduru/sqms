@@ -9,7 +9,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+        <link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
+        
         <!-- Dependencies -->
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>
@@ -18,12 +19,8 @@
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/json/json-min.js"></script>
         <!-- Source files -->
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/charts/charts-min.js"></script>
-        
-        <!-- Dependencies -->
-        
-
-        <!-- Source file for TabView -->
         <script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/tabview/tabview-min.js"></script>  
+        
 <script type="text/javascript">
         function getOs() {
                 var OsObject = "";
@@ -45,47 +42,48 @@
 
         }
         window.onload = function() {
-        if (getOs() === "MSIE") {                        
-                        document.getElementById("projecttrend").style.display = "none";
-                }
+//        if (getOs() === "MSIE") {                        
+//                        document.getElementById("projecttrend").style.display = "none";
+//                }
         }
 </script>
-<table cellpadding="3" cellspacing="5" border="0" style="width:100%;font-size:x-small">
+<table cellpadding="3" cellspacing="5" border="0" style="width:100%;font-size:x-small;height:auto">
 <tr>
         <td valign="top" style="width:55%">
-        <div>
-          <fieldset style="margin: 8 5">
+                         <div> 
+                <fieldset id="projecttrend"  style="margin: 8 5">
+                <legend>项目质量走势</legend>
+                <uc5:MPScoreTrendPart ID="MPScoreTrendPart1" runat="server" />
+                </fieldset>
+                
+                <fieldset style="margin: 8 5">
                 <legend>监控点质量走势</legend>
                 <uc6:MPScoreTrandPart2 ID="MPScoreTrandPart21" runat="server" />
                 </fieldset>
-        
-          <fieldset style="margin: 8 5">
-                <legend>最新未评分的质量信息</legend>
-                        <uc1:LatestQualityDataPart ID="LatestQualityDataPart1" runat="server" />
-                </fieldset>
-        </div>
+                
+                   </div>
         </td> 
         
         <td  align="left" valign="top" style="width:45%">
         <div>
-        
         <fieldset style="margin:8 5">
                 <legend>监控点质量趋势</legend>
                 <uc7:MonitorPointScoreKPIPart ID="MonitorPointScoreKPIPart1" runat="server" />
         </fieldset>
-         
-                  <fieldset id="projecttrend"  style="margin: 8 5">
-                <legend>项目质量走势</legend>
-                <uc5:MPScoreTrendPart ID="MPScoreTrendPart1" runat="server" />
-                </fieldset>
-        <fieldset style="margin: 8 5">        
-                <legend>质控数据评分前五名</legend>
-                <uc4:TopScoreQualityPart ID="TopScoreQualityPart1" runat="server" />
-                </fieldset>
-               
-                <fieldset style="margin: 8 5">
+        <fieldset style="margin: 8 5">
                 <legend>最新项目信息</legend>
                         <uc2:LatestProjectsPart ID="LatestProjectsPart1" runat="server" />
+                </fieldset>
+         
+                   <fieldset style="margin: 8 5">        
+                <legend>质控数据评分前五名</legend>
+                <uc4:TopScoreQualityPart ID="TopScoreQualityPart1" runat="server" />
+                </fieldset>         
+               
+               
+                <fieldset style="margin: 8 5">
+                <legend>最新未评分的质量信息</legend>
+                        <uc1:LatestQualityDataPart ID="LatestQualityDataPart1" runat="server" />
                 </fieldset>
                 
                  <fieldset style="margin: 8 5">
