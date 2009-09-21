@@ -586,6 +586,27 @@
     <Compile Include="Views\Quality\AccidentView.aspx.designer.cs">
       <DependentUpon>AccidentView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\EmergencyEventEdit.aspx.cs">
+      <DependentUpon>EmergencyEventEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyEventEdit.aspx.designer.cs">
+      <DependentUpon>EmergencyEventEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyEventList.aspx.cs">
+      <DependentUpon>EmergencyEventList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyEventList.aspx.designer.cs">
+      <DependentUpon>EmergencyEventList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyEventView.aspx.cs">
+      <DependentUpon>EmergencyEventView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyEventView.aspx.designer.cs">
+      <DependentUpon>EmergencyEventView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\EmergencyMonitor.aspx.cs">
       <DependentUpon>EmergencyMonitor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1599,6 +1620,9 @@
     <Content Include="Views\Quality\AccidentEdit.aspx" />
     <Content Include="Views\Quality\AccidentList.aspx" />
     <Content Include="Views\Quality\AccidentView.aspx" />
+    <Content Include="Views\Quality\EmergencyEventEdit.aspx" />
+    <Content Include="Views\Quality\EmergencyEventList.aspx" />
+    <Content Include="Views\Quality\EmergencyEventView.aspx" />
     <Content Include="Views\Quality\EmergencyMonitor.aspx" />
     <Content Include="Views\Quality\MonitorPointEdit.aspx" />
     <Content Include="Views\Quality\MonitorPointList.aspx" />
@@ -1617,6 +1641,15 @@
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
     <Content Include="Views\Road\RoadView.aspx" />
+    <None Include="Config\Schema\EMERGENCYEVENT.xsc">
+      <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EMERGENCYEVENT.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\EMERGENCYEVENT.xss">
+      <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
