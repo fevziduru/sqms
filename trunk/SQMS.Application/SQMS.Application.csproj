@@ -32,11 +32,11 @@
   <ItemGroup>
     <Reference Include="Infragistics35.WebUI.Shared.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Infragistics\NetAdvantage for .NET 2009.1\ASP.NET\CLR3.5\Bin - Signed\20091_ASP.NET_CLR3x_Signed\Infragistics35.WebUI.Shared.v9.1.dll</HintPath>
+      <HintPath>..\Lib\Infragistics35.WebUI.Shared.v9.1.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics35.WebUI.UltraWebChart.v9.1, Version=9.1.20091.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Infragistics\NetAdvantage for .NET 2009.1\ASP.NET\CLR3.5\Bin - Signed\20091_ASP.NET_CLR3x_Signed\Infragistics35.WebUI.UltraWebChart.v9.1.dll</HintPath>
+      <HintPath>..\Lib\Infragistics35.WebUI.UltraWebChart.v9.1.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -585,6 +585,13 @@
     </Compile>
     <Compile Include="Views\Quality\AccidentView.aspx.designer.cs">
       <DependentUpon>AccidentView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyMonitor.aspx.cs">
+      <DependentUpon>EmergencyMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\EmergencyMonitor.aspx.designer.cs">
+      <DependentUpon>EmergencyMonitor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
@@ -1592,6 +1599,7 @@
     <Content Include="Views\Quality\AccidentEdit.aspx" />
     <Content Include="Views\Quality\AccidentList.aspx" />
     <Content Include="Views\Quality\AccidentView.aspx" />
+    <Content Include="Views\Quality\EmergencyMonitor.aspx" />
     <Content Include="Views\Quality\MonitorPointEdit.aspx" />
     <Content Include="Views\Quality\MonitorPointList.aspx" />
     <Content Include="Views\Quality\MonitorPointView.aspx" />
