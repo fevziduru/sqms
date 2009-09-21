@@ -6,7 +6,7 @@
     
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="EquipmentList.aspx?p=equlist">返回到列表</a></td>
+            <td align="right"><a href="ResourceList.aspx?p=reslist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">
