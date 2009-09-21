@@ -21,6 +21,7 @@ drop sequence SEQ_TIMESCHEMA;
 drop sequence SEQ_TIMEITEM;
 drop sequence SEQ_TIME;
 drop sequence SEQ_MENU;
+drop sequence SEQ_EMERGENCYEVENT;
 
 -- Create sequence 
 create sequence SEQ_QUALITYDATA
@@ -198,3 +199,12 @@ maxvalue 999999999999999999999999999
 start with 0
 increment by 1
 cache 20;
+
+-- Create sequence 
+create sequence SEQ_EMERGENCYEVENT
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
