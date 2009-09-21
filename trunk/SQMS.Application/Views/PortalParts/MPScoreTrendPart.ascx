@@ -1,17 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MPScoreTrendPart.ascx.cs"
         Inherits="SQMS.Application.Views.PortalParts.MPScoreTrendPart" %>
-<!-- Dependencies -->
-<!-- Sam Skin CSS for TabView -->
-<link rel="stylesheet" type="text/css" href="../../Resources/Scripts/Controls/yui/build/assets/skins/sam/tabview.css" />
-<!-- JavaScript Dependencies for Tabview: -->
-
-<%--<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/element/element-min.js"></script>--%>
-
-<!-- Source file for TabView -->
-
-<script type="text/javascript" src="../../Resources/Scripts/Controls/yui/build/tabview/tabview-min.js"></script>
 
 <div class="yui-skin-sam">
 
@@ -49,7 +37,7 @@
         <div style="text-align: right; margin: 5 5">
                 <a href="#">更多</a>
         </div>
-</div>
+
 
 <script type="text/javascript">
 
@@ -78,61 +66,35 @@
 	[
 		{ displayName: "项目1", yField: "mp1" },
 		{ displayName: "项目2", yField: "mp2" },
-		{ displayName: "项目3", yField: "mp3" },
+		{ displayName: "项目3", yField: "mp3" }
 	];
 
-        YAHOO.example.formatCurrencyAxisLabel = function(value) {
+        YAHOO.example.formatCurrencyAxisLabel = function(value)
+        {
                 return YAHOO.util.Number.format(value,
 		{
 		        prefix: "$",
 		        thousandsSeparator: ",",
 		        decimalPlaces: 2
 		});
-        }
+        };
 
-        YAHOO.example.getDataTipText = function(item, index, series) {
+        YAHOO.example.getDataTipText = function(item, index, series)
+        {
                 var toolTipText = series.displayName + " for " + item.month;
                 toolTipText += "\n" + YAHOO.example.formatCurrencyAxisLabel(item[series.yField]);
                 return toolTipText;
-        }
+        };
 
         var currencyAxis = new YAHOO.widget.NumericAxis();
         currencyAxis.minimum = 0;
         currencyAxis.labelFunction = YAHOO.example.formatCurrencyAxisLabel;
 
-        //Style object
-        var styleDef =
-	{
-	        legend: { display: "bottom" },
-	        xAxis:
-	    {
-	            majorTicks:
-	        {
-	                display: "inside",
-	                length: 3,
-	                size: 1
-	        },
-	            minorTicks:
-	        {
-	                display: "inside",
-	                length: 2
-	        },
-	            labelRotation: 0
-	    },
-	        yAxis:
-	    {
-	            zeroGridLine:
-	        {
-	                size: 2,
-	                color: 0xff0000
-	        },
-	            minorTicks: { display: "none" }
-	    }
-}
-	
         var mychart = new YAHOO.widget.LineChart("chartWeek", myDataSource,
 	{
-	        style: styleDef,
+	        style: {
+	                legend: { display: "bottom" }
+	        },
 	        series: seriesDef,
 	        xField: "weekday",
 	        yAxis: currencyAxis,
@@ -145,7 +107,7 @@
 
 <script type="text/javascript">
 
-        YAHOO.widget.Chart.SWFURL = "../../Resources/Swf/charts.swf"; 
+        YAHOO.widget.Chart.SWFURL = "../../Resources/Swf/charts.swf";
         YAHOO.example.monthlyExpenses =
 	[
 		{ month: "January", rent: 880.00, utilities: 894.68 },
@@ -171,20 +133,22 @@
 		{ displayName: "Utilities", yField: "utilities" }
 	];
 
-        YAHOO.example.formatCurrencyAxisLabel = function(value) {
+        YAHOO.example.formatCurrencyAxisLabel = function(value)
+        {
                 return YAHOO.util.Number.format(value,
 		{
 		        prefix: "$",
 		        thousandsSeparator: ",",
 		        decimalPlaces: 2
 		});
-        }
+        };
 
-        YAHOO.example.getDataTipText = function(item, index, series) {
+        YAHOO.example.getDataTipText = function(item, index, series)
+        {
                 var toolTipText = series.displayName + " for " + item.month;
                 toolTipText += "\n" + YAHOO.example.formatCurrencyAxisLabel(item[series.yField]);
                 return toolTipText;
-        }
+        };
 
         var currencyAxis = new YAHOO.widget.NumericAxis();
         currencyAxis.minimum = 800;
@@ -192,8 +156,8 @@
 
         var mychart = new YAHOO.widget.LineChart("chartMonth", myDataSource,
 	{
-	        style:{
-	                legend:{display:"bottom"}
+	        style: {
+	                legend: { display: "bottom" }
 	        },
 	        series: seriesDef,
 	        xField: "month",
@@ -207,7 +171,7 @@
 
 <script type="text/javascript">
 
-        YAHOO.widget.Chart.SWFURL = "../../Resources/Swf/charts.swf"; 
+        YAHOO.widget.Chart.SWFURL = "../../Resources/Swf/charts.swf";
         YAHOO.example.monthlyExpenses =
 	[
 		{ month: "January", rent: 880.00, utilities: 894.68 },
@@ -233,20 +197,22 @@
 		{ displayName: "Utilities", yField: "utilities" }
 	];
 
-        YAHOO.example.formatCurrencyAxisLabel = function(value) {
+        YAHOO.example.formatCurrencyAxisLabel = function(value)
+        {
                 return YAHOO.util.Number.format(value,
 		{
 		        prefix: "$",
 		        thousandsSeparator: ",",
 		        decimalPlaces: 2
 		});
-        }
+        };
 
-        YAHOO.example.getDataTipText = function(item, index, series) {
+        YAHOO.example.getDataTipText = function(item, index, series)
+        {
                 var toolTipText = series.displayName + " for " + item.month;
                 toolTipText += "\n" + YAHOO.example.formatCurrencyAxisLabel(item[series.yField]);
                 return toolTipText;
-        }
+        };
 
         var currencyAxis = new YAHOO.widget.NumericAxis();
         currencyAxis.minimum = 800;
@@ -254,8 +220,8 @@
 
         var mychart = new YAHOO.widget.LineChart("chartYear", myDataSource,
 	{
-	        style:{
-	                legend:{display:"bottom"}
+	        style: {
+	                legend: { display: "bottom" }
 	        },
 	        series: seriesDef,
 	        xField: "month",
@@ -267,3 +233,4 @@
 
 </script>
 
+</div>
