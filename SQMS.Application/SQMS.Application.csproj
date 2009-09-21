@@ -565,6 +565,27 @@
     <Compile Include="Views\Project\ProjectView.aspx.designer.cs">
       <DependentUpon>ProjectView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Quality\AccidentEdit.aspx.cs">
+      <DependentUpon>AccidentEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\AccidentEdit.aspx.designer.cs">
+      <DependentUpon>AccidentEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\AccidentList.aspx.cs">
+      <DependentUpon>AccidentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\AccidentList.aspx.designer.cs">
+      <DependentUpon>AccidentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\AccidentView.aspx.cs">
+      <DependentUpon>AccidentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\AccidentView.aspx.designer.cs">
+      <DependentUpon>AccidentView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Quality\MonitorPointDetail.aspx.cs">
       <DependentUpon>MonitorPointDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -648,6 +669,27 @@
     </Compile>
     <Compile Include="Views\Quality\TimeSchemaView.aspx.designer.cs">
       <DependentUpon>TimeSchemaView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceEdit.aspx.cs">
+      <DependentUpon>TrashEntranceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceEdit.aspx.designer.cs">
+      <DependentUpon>TrashEntranceEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceList.aspx.cs">
+      <DependentUpon>TrashEntranceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceList.aspx.designer.cs">
+      <DependentUpon>TrashEntranceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceView.aspx.cs">
+      <DependentUpon>TrashEntranceView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Quality\TrashEntranceView.aspx.designer.cs">
+      <DependentUpon>TrashEntranceView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Road\RoadEdit.aspx.cs">
       <DependentUpon>RoadEdit.aspx</DependentUpon>
@@ -1547,6 +1589,9 @@
     <Content Include="Views\Project\ProjectEdit.aspx" />
     <Content Include="Views\Project\ProjectList.aspx" />
     <Content Include="Views\Project\ProjectView.aspx" />
+    <Content Include="Views\Quality\AccidentEdit.aspx" />
+    <Content Include="Views\Quality\AccidentList.aspx" />
+    <Content Include="Views\Quality\AccidentView.aspx" />
     <Content Include="Views\Quality\MonitorPointEdit.aspx" />
     <Content Include="Views\Quality\MonitorPointList.aspx" />
     <Content Include="Views\Quality\MonitorPointView.aspx" />
@@ -1558,6 +1603,9 @@
     <Content Include="Views\Quality\TimeSchemaEdit.aspx" />
     <Content Include="Views\Quality\TimeSchemaList.aspx" />
     <Content Include="Views\Quality\TimeSchemaView.aspx" />
+    <Content Include="Views\Quality\TrashEntranceEdit.aspx" />
+    <Content Include="Views\Quality\TrashEntranceList.aspx" />
+    <Content Include="Views\Quality\TrashEntranceView.aspx" />
     <Content Include="Views\Road\RoadEdit.aspx" />
     <Content Include="Views\Road\RoadList.aspx" />
     <Content Include="Views\Road\RoadView.aspx" />
