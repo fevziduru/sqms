@@ -560,7 +560,7 @@ namespace SQMS.Services
                         {
                                 return DefaultSession.GetDataSetFromCommand(@"select q.*,o.orgname,o.orgid from quality q
                                                 left join organization o on o.organizationid = q.organizationid
-                                                where q.organizationid=:orgid and rownum<=5 and q.qualitylevel=-1  order by q.created desc  ", CurrentUser.OrganizationID);
+                                                where q.organizationid=:orgid and rownum<=5 and q.qualitylevel is null  order by q.created desc  ", CurrentUser.OrganizationID);
                         }
                         catch (Exception e)
                         {

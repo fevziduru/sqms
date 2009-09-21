@@ -63,7 +63,7 @@ namespace SQMS.Services
                                                         max(q.chargeperson) empid,
                                                         max(e.empname) chargeperson,
                                                         sum(decode(
-                                                            sign(to_number(to_char(q.created, 'yyyyiw'))-to_number(to_char(sysdate,'yyyyiw'))),0,1,-1,-1,49,1,0)*Q.QUALITYLEVEL) trend
+                                                            sign(to_number(to_char(q.created, 'yyyyiw'))-to_number(to_char(sysdate,'yyyyiw'))),0,1,-1,-1,49,1,0)*nvl(Q.QUALITYLEVEL,0)) trend
                                                 from mpassignment mp 
                                                 left join quality q on MP.MPID = Q.MPID and q.organizationid=:organizationid
                                                 left join employee e on e.empid = q.chargeperson and e.organizationid=:organizationid
@@ -83,7 +83,7 @@ namespace SQMS.Services
                                                         max(MP.MPNAME) mpname,
                                                         sum(decode(
                                                             to_number(to_char(q.created, 'yyyymm'))-to_number(to_char(sysdate, 'yyyymm')),0,1,
-                                                            to_number(to_char(q.created, 'yyyymm'))-to_number(to_char(add_months(q.created, -1),'yyyymm')),0,-1,0)*Q.QUALITYLEVEL) trend
+                                                            to_number(to_char(q.created, 'yyyymm'))-to_number(to_char(add_months(q.created, -1),'yyyymm')),0,-1,0)*nvl(Q.QUALITYLEVEL,0)) trend
                                                 from mpassignment mp 
                                                 left join quality q on MP.MPID = Q.MPID and q.organizationid=:organizationid
                                                 left join employee e on e.empid = q.chargeperson and e.organizationid=:organizationid
@@ -104,7 +104,7 @@ namespace SQMS.Services
                                                         max(MP.MPNAME) mpname,
                                                         sum(decode(
                                                             to_number(to_char(q.created, 'yyyy'))-to_number(to_char(sysdate, 'yyyy')),0,1,
-                                                            to_number(to_char(q.created, 'yyyy'))-to_number(to_char(add_months(q.created, -1),'yyyy')),1,-1,0)*Q.QUALITYLEVEL) trend
+                                                            to_number(to_char(q.created, 'yyyy'))-to_number(to_char(add_months(q.created, -1),'yyyy')),1,-1,0)*nvl(Q.QUALITYLEVEL,0)) trend
                                                 from mpassignment mp 
                                                 left join quality q on MP.MPID = Q.MPID and q.organizationid=:organizationid
                                                 left join employee e on e.empid=q.chargeperson and e.organizationid=:organizationid

@@ -36,7 +36,7 @@ namespace SQMS.Application.Views.Quality
                         {
                                 if (this.txtQualityLevel.Text.Length == 0)
                                 {
-                                        drQuality["QUALITYLEVEL"] = -1;
+                                        drQuality["QUALITYLEVEL"] = 0;
                                 }
                                 else
                                 {
@@ -89,10 +89,8 @@ namespace SQMS.Application.Views.Quality
                                         this.videoUrl = ConvertUtil.ToStringOrDefault(drQuality["VIDEOURL"]);
 
                                         decimal level = ConvertUtil.ToDecimal(drQuality["QUALITYLEVEL"]);
-                                        if (level > -1)
-                                        {
-                                                this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(level);
-                                        }
+                                        this.txtQualityLevel.Text = ConvertUtil.ToStringOrDefault(level);
+                                        
                                         
                                         this.lblType.Text = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drQuality["TYPE"])));
                                         this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drQuality["MEMO"]);
