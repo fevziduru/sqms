@@ -21,16 +21,16 @@ namespace SQMS.Application.Config.Schema {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TIMESCHEMA")]
+    [global::System.Xml.Serialization.XmlRootAttribute("EMERGENCYEVENT")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TIMESCHEMA : global::System.Data.DataSet {
+    public partial class EMERGENCYEVENT : global::System.Data.DataSet {
         
-        private TIMESCHEMADataTable tableTIMESCHEMA;
+        private EMERGENCYEVENTDataTable tableEMERGENCYEVENT;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public TIMESCHEMA() {
+        public EMERGENCYEVENT() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -40,7 +40,7 @@ namespace SQMS.Application.Config.Schema {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected TIMESCHEMA(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected EMERGENCYEVENT(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -53,8 +53,8 @@ namespace SQMS.Application.Config.Schema {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["TIMESCHEMA"] != null)) {
-                    base.Tables.Add(new TIMESCHEMADataTable(ds.Tables["TIMESCHEMA"]));
+                if ((ds.Tables["EMERGENCYEVENT"] != null)) {
+                    base.Tables.Add(new EMERGENCYEVENTDataTable(ds.Tables["EMERGENCYEVENT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -77,9 +77,9 @@ namespace SQMS.Application.Config.Schema {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TIMESCHEMADataTable _TIMESCHEMA {
+        public EMERGENCYEVENTDataTable _EMERGENCYEVENT {
             get {
-                return this.tableTIMESCHEMA;
+                return this.tableEMERGENCYEVENT;
             }
         }
         
@@ -120,7 +120,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public override global::System.Data.DataSet Clone() {
-            TIMESCHEMA cln = ((TIMESCHEMA)(base.Clone()));
+            EMERGENCYEVENT cln = ((EMERGENCYEVENT)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -142,8 +142,8 @@ namespace SQMS.Application.Config.Schema {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["TIMESCHEMA"] != null)) {
-                    base.Tables.Add(new TIMESCHEMADataTable(ds.Tables["TIMESCHEMA"]));
+                if ((ds.Tables["EMERGENCYEVENT"] != null)) {
+                    base.Tables.Add(new EMERGENCYEVENTDataTable(ds.Tables["EMERGENCYEVENT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -175,27 +175,27 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableTIMESCHEMA = ((TIMESCHEMADataTable)(base.Tables["TIMESCHEMA"]));
+            this.tableEMERGENCYEVENT = ((EMERGENCYEVENTDataTable)(base.Tables["EMERGENCYEVENT"]));
             if ((initTable == true)) {
-                if ((this.tableTIMESCHEMA != null)) {
-                    this.tableTIMESCHEMA.InitVars();
+                if ((this.tableEMERGENCYEVENT != null)) {
+                    this.tableEMERGENCYEVENT.InitVars();
                 }
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitClass() {
-            this.DataSetName = "TIMESCHEMA";
+            this.DataSetName = "EMERGENCYEVENT";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TIMESCHEMA.xsd";
+            this.Namespace = "http://tempuri.org/EMERGENCYEVENT.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTIMESCHEMA = new TIMESCHEMADataTable();
-            base.Tables.Add(this.tableTIMESCHEMA);
+            this.tableEMERGENCYEVENT = new EMERGENCYEVENTDataTable();
+            base.Tables.Add(this.tableEMERGENCYEVENT);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerialize_TIMESCHEMA() {
+        private bool ShouldSerialize_EMERGENCYEVENT() {
             return false;
         }
         
@@ -208,7 +208,7 @@ namespace SQMS.Application.Config.Schema {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TIMESCHEMA ds = new TIMESCHEMA();
+            EMERGENCYEVENT ds = new EMERGENCYEVENT();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -252,7 +252,7 @@ namespace SQMS.Application.Config.Schema {
             return type;
         }
         
-        public delegate void TIMESCHEMARowChangeEventHandler(object sender, TIMESCHEMARowChangeEvent e);
+        public delegate void EMERGENCYEVENTRowChangeEventHandler(object sender, EMERGENCYEVENTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -260,11 +260,15 @@ namespace SQMS.Application.Config.Schema {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TIMESCHEMADataTable : global::System.Data.TypedTableBase<TIMESCHEMARow> {
+        public partial class EMERGENCYEVENTDataTable : global::System.Data.TypedTableBase<EMERGENCYEVENTRow> {
+            
+            private global::System.Data.DataColumn columnEVENTID;
             
             private global::System.Data.DataColumn columnSCHEMAID;
             
-            private global::System.Data.DataColumn columnSCHEMANAME;
+            private global::System.Data.DataColumn columnEVENTNAME;
+            
+            private global::System.Data.DataColumn columnISVOID;
             
             private global::System.Data.DataColumn columnCREATED;
             
@@ -276,24 +280,28 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnORGANIZATIONID;
             
-            private global::System.Data.DataColumn columnFLOATTIME;
+            private global::System.Data.DataColumn columnCHECKTIME;
             
-            private global::System.Data.DataColumn columnBEGINTIME;
+            private global::System.Data.DataColumn columnCHECKUNIT;
             
-            private global::System.Data.DataColumn columnENDTIME;
+            private global::System.Data.DataColumn columnPRIVILIGE;
             
-            private global::System.Data.DataColumn columnISVOID;
+            private global::System.Data.DataColumn columnEMERGENCYCHARGEPERSON;
+            
+            private global::System.Data.DataColumn columnEVENTCODE;
+            
+            private global::System.Data.DataColumn columnMEMO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMADataTable() {
-                this.TableName = "TIMESCHEMA";
+            public EMERGENCYEVENTDataTable() {
+                this.TableName = "EMERGENCYEVENT";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TIMESCHEMADataTable(global::System.Data.DataTable table) {
+            internal EMERGENCYEVENTDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -309,9 +317,16 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected TIMESCHEMADataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected EMERGENCYEVENTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EVENTIDColumn {
+                get {
+                    return this.columnEVENTID;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -322,9 +337,16 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SCHEMANAMEColumn {
+            public global::System.Data.DataColumn EVENTNAMEColumn {
                 get {
-                    return this.columnSCHEMANAME;
+                    return this.columnEVENTNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ISVOIDColumn {
+                get {
+                    return this.columnISVOID;
                 }
             }
             
@@ -364,30 +386,44 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FLOATTIMEColumn {
+            public global::System.Data.DataColumn CHECKTIMEColumn {
                 get {
-                    return this.columnFLOATTIME;
+                    return this.columnCHECKTIME;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn BEGINTIMEColumn {
+            public global::System.Data.DataColumn CHECKUNITColumn {
                 get {
-                    return this.columnBEGINTIME;
+                    return this.columnCHECKUNIT;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ENDTIMEColumn {
+            public global::System.Data.DataColumn PRIVILIGEColumn {
                 get {
-                    return this.columnENDTIME;
+                    return this.columnPRIVILIGE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ISVOIDColumn {
+            public global::System.Data.DataColumn EMERGENCYCHARGEPERSONColumn {
                 get {
-                    return this.columnISVOID;
+                    return this.columnEMERGENCYCHARGEPERSON;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EVENTCODEColumn {
+                get {
+                    return this.columnEVENTCODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn MEMOColumn {
+                get {
+                    return this.columnMEMO;
                 }
             }
             
@@ -400,84 +436,96 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARow this[int index] {
+            public EMERGENCYEVENTRow this[int index] {
                 get {
-                    return ((TIMESCHEMARow)(this.Rows[index]));
+                    return ((EMERGENCYEVENTRow)(this.Rows[index]));
                 }
             }
             
-            public event TIMESCHEMARowChangeEventHandler TIMESCHEMARowChanging;
+            public event EMERGENCYEVENTRowChangeEventHandler EMERGENCYEVENTRowChanging;
             
-            public event TIMESCHEMARowChangeEventHandler TIMESCHEMARowChanged;
+            public event EMERGENCYEVENTRowChangeEventHandler EMERGENCYEVENTRowChanged;
             
-            public event TIMESCHEMARowChangeEventHandler TIMESCHEMARowDeleting;
+            public event EMERGENCYEVENTRowChangeEventHandler EMERGENCYEVENTRowDeleting;
             
-            public event TIMESCHEMARowChangeEventHandler TIMESCHEMARowDeleted;
+            public event EMERGENCYEVENTRowChangeEventHandler EMERGENCYEVENTRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddTIMESCHEMARow(TIMESCHEMARow row) {
+            public void AddEMERGENCYEVENTRow(EMERGENCYEVENTRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARow AddTIMESCHEMARow(string SCHEMAID, string SCHEMANAME, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, decimal FLOATTIME, System.DateTime BEGINTIME, System.DateTime ENDTIME, string ISVOID) {
-                TIMESCHEMARow rowTIMESCHEMARow = ((TIMESCHEMARow)(this.NewRow()));
+            public EMERGENCYEVENTRow AddEMERGENCYEVENTRow(string EVENTID, string SCHEMAID, string EVENTNAME, string ISVOID, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, System.DateTime CHECKTIME, string CHECKUNIT, string PRIVILIGE, string EMERGENCYCHARGEPERSON, string EVENTCODE, string MEMO) {
+                EMERGENCYEVENTRow rowEMERGENCYEVENTRow = ((EMERGENCYEVENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        EVENTID,
                         SCHEMAID,
-                        SCHEMANAME,
+                        EVENTNAME,
+                        ISVOID,
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
                         MODIFIEDBY,
                         ORGANIZATIONID,
-                        FLOATTIME,
-                        BEGINTIME,
-                        ENDTIME,
-                        ISVOID};
-                rowTIMESCHEMARow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTIMESCHEMARow);
-                return rowTIMESCHEMARow;
+                        CHECKTIME,
+                        CHECKUNIT,
+                        PRIVILIGE,
+                        EMERGENCYCHARGEPERSON,
+                        EVENTCODE,
+                        MEMO};
+                rowEMERGENCYEVENTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowEMERGENCYEVENTRow);
+                return rowEMERGENCYEVENTRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARow FindBySCHEMAID(string SCHEMAID) {
-                return ((TIMESCHEMARow)(this.Rows.Find(new object[] {
-                            SCHEMAID})));
+            public EMERGENCYEVENTRow FindByEVENTID(string EVENTID) {
+                return ((EMERGENCYEVENTRow)(this.Rows.Find(new object[] {
+                            EVENTID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                TIMESCHEMADataTable cln = ((TIMESCHEMADataTable)(base.Clone()));
+                EMERGENCYEVENTDataTable cln = ((EMERGENCYEVENTDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TIMESCHEMADataTable();
+                return new EMERGENCYEVENTDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
+                this.columnEVENTID = base.Columns["EVENTID"];
                 this.columnSCHEMAID = base.Columns["SCHEMAID"];
-                this.columnSCHEMANAME = base.Columns["SCHEMANAME"];
+                this.columnEVENTNAME = base.Columns["EVENTNAME"];
+                this.columnISVOID = base.Columns["ISVOID"];
                 this.columnCREATED = base.Columns["CREATED"];
                 this.columnCREATEDBY = base.Columns["CREATEDBY"];
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
                 this.columnORGANIZATIONID = base.Columns["ORGANIZATIONID"];
-                this.columnFLOATTIME = base.Columns["FLOATTIME"];
-                this.columnBEGINTIME = base.Columns["BEGINTIME"];
-                this.columnENDTIME = base.Columns["ENDTIME"];
-                this.columnISVOID = base.Columns["ISVOID"];
+                this.columnCHECKTIME = base.Columns["CHECKTIME"];
+                this.columnCHECKUNIT = base.Columns["CHECKUNIT"];
+                this.columnPRIVILIGE = base.Columns["PRIVILIGE"];
+                this.columnEMERGENCYCHARGEPERSON = base.Columns["EMERGENCYCHARGEPERSON"];
+                this.columnEVENTCODE = base.Columns["EVENTCODE"];
+                this.columnMEMO = base.Columns["MEMO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
+                this.columnEVENTID = new global::System.Data.DataColumn("EVENTID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEVENTID);
                 this.columnSCHEMAID = new global::System.Data.DataColumn("SCHEMAID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSCHEMAID);
-                this.columnSCHEMANAME = new global::System.Data.DataColumn("SCHEMANAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSCHEMANAME);
+                this.columnEVENTNAME = new global::System.Data.DataColumn("EVENTNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEVENTNAME);
+                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnISVOID);
                 this.columnCREATED = new global::System.Data.DataColumn("CREATED", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCREATED);
                 this.columnCREATEDBY = new global::System.Data.DataColumn("CREATEDBY", typeof(string), null, global::System.Data.MappingType.Element);
@@ -488,77 +536,87 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIEDBY);
                 this.columnORGANIZATIONID = new global::System.Data.DataColumn("ORGANIZATIONID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnORGANIZATIONID);
-                this.columnFLOATTIME = new global::System.Data.DataColumn("FLOATTIME", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFLOATTIME);
-                this.columnBEGINTIME = new global::System.Data.DataColumn("BEGINTIME", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBEGINTIME);
-                this.columnENDTIME = new global::System.Data.DataColumn("ENDTIME", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnENDTIME);
-                this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnISVOID);
+                this.columnCHECKTIME = new global::System.Data.DataColumn("CHECKTIME", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECKTIME);
+                this.columnCHECKUNIT = new global::System.Data.DataColumn("CHECKUNIT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHECKUNIT);
+                this.columnPRIVILIGE = new global::System.Data.DataColumn("PRIVILIGE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRIVILIGE);
+                this.columnEMERGENCYCHARGEPERSON = new global::System.Data.DataColumn("EMERGENCYCHARGEPERSON", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEMERGENCYCHARGEPERSON);
+                this.columnEVENTCODE = new global::System.Data.DataColumn("EVENTCODE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEVENTCODE);
+                this.columnMEMO = new global::System.Data.DataColumn("MEMO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMEMO);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSCHEMAID}, true));
-                this.columnSCHEMAID.AllowDBNull = false;
-                this.columnSCHEMAID.Unique = true;
+                                this.columnEVENTID}, true));
+                this.columnEVENTID.AllowDBNull = false;
+                this.columnEVENTID.Unique = true;
+                this.columnEVENTID.MaxLength = 40;
                 this.columnSCHEMAID.MaxLength = 40;
-                this.columnSCHEMANAME.MaxLength = 60;
+                this.columnEVENTNAME.MaxLength = 60;
+                this.columnISVOID.MaxLength = 1;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
                 this.columnORGANIZATIONID.MaxLength = 40;
-                this.columnISVOID.MaxLength = 1;
-                this.ExtendedProperties.Add("Generator_TablePropName", "_TIMESCHEMA");
-                this.ExtendedProperties.Add("Generator_UserTableName", "TIMESCHEMA");
+                this.columnCHECKUNIT.MaxLength = 1000;
+                this.columnPRIVILIGE.MaxLength = 40;
+                this.columnEMERGENCYCHARGEPERSON.MaxLength = 40;
+                this.columnEVENTCODE.MaxLength = 60;
+                this.columnMEMO.MaxLength = 2000;
+                this.ExtendedProperties.Add("Generator_TablePropName", "_EMERGENCYEVENT");
+                this.ExtendedProperties.Add("Generator_UserTableName", "EMERGENCYEVENT");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARow NewTIMESCHEMARow() {
-                return ((TIMESCHEMARow)(this.NewRow()));
+            public EMERGENCYEVENTRow NewEMERGENCYEVENTRow() {
+                return ((EMERGENCYEVENTRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TIMESCHEMARow(builder);
+                return new EMERGENCYEVENTRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(TIMESCHEMARow);
+                return typeof(EMERGENCYEVENTRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TIMESCHEMARowChanged != null)) {
-                    this.TIMESCHEMARowChanged(this, new TIMESCHEMARowChangeEvent(((TIMESCHEMARow)(e.Row)), e.Action));
+                if ((this.EMERGENCYEVENTRowChanged != null)) {
+                    this.EMERGENCYEVENTRowChanged(this, new EMERGENCYEVENTRowChangeEvent(((EMERGENCYEVENTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TIMESCHEMARowChanging != null)) {
-                    this.TIMESCHEMARowChanging(this, new TIMESCHEMARowChangeEvent(((TIMESCHEMARow)(e.Row)), e.Action));
+                if ((this.EMERGENCYEVENTRowChanging != null)) {
+                    this.EMERGENCYEVENTRowChanging(this, new EMERGENCYEVENTRowChangeEvent(((EMERGENCYEVENTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TIMESCHEMARowDeleted != null)) {
-                    this.TIMESCHEMARowDeleted(this, new TIMESCHEMARowChangeEvent(((TIMESCHEMARow)(e.Row)), e.Action));
+                if ((this.EMERGENCYEVENTRowDeleted != null)) {
+                    this.EMERGENCYEVENTRowDeleted(this, new EMERGENCYEVENTRowChangeEvent(((EMERGENCYEVENTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TIMESCHEMARowDeleting != null)) {
-                    this.TIMESCHEMARowDeleting(this, new TIMESCHEMARowChangeEvent(((TIMESCHEMARow)(e.Row)), e.Action));
+                if ((this.EMERGENCYEVENTRowDeleting != null)) {
+                    this.EMERGENCYEVENTRowDeleting(this, new EMERGENCYEVENTRowChangeEvent(((EMERGENCYEVENTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveTIMESCHEMARow(TIMESCHEMARow row) {
+            public void RemoveEMERGENCYEVENTRow(EMERGENCYEVENTRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -566,7 +624,7 @@ namespace SQMS.Application.Config.Schema {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TIMESCHEMA ds = new TIMESCHEMA();
+                EMERGENCYEVENT ds = new EMERGENCYEVENT();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -584,7 +642,7 @@ namespace SQMS.Application.Config.Schema {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TIMESCHEMADataTable";
+                attribute2.FixedValue = "EMERGENCYEVENTDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -629,158 +687,53 @@ namespace SQMS.Application.Config.Schema {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class TIMESCHEMARow : global::System.Data.DataRow {
+        public partial class EMERGENCYEVENTRow : global::System.Data.DataRow {
             
-            private TIMESCHEMADataTable tableTIMESCHEMA;
+            private EMERGENCYEVENTDataTable tableEMERGENCYEVENT;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TIMESCHEMARow(global::System.Data.DataRowBuilder rb) : 
+            internal EMERGENCYEVENTRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTIMESCHEMA = ((TIMESCHEMADataTable)(this.Table));
+                this.tableEMERGENCYEVENT = ((EMERGENCYEVENTDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string EVENTID {
+                get {
+                    return ((string)(this[this.tableEMERGENCYEVENT.EVENTIDColumn]));
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.EVENTIDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string SCHEMAID {
                 get {
-                    return ((string)(this[this.tableTIMESCHEMA.SCHEMAIDColumn]));
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.SCHEMAIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SCHEMAID\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableTIMESCHEMA.SCHEMAIDColumn] = value;
+                    this[this.tableEMERGENCYEVENT.SCHEMAIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string SCHEMANAME {
+            public string EVENTNAME {
                 get {
                     try {
-                        return ((string)(this[this.tableTIMESCHEMA.SCHEMANAMEColumn]));
+                        return ((string)(this[this.tableEMERGENCYEVENT.EVENTNAMEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SCHEMANAME\' in table \'TIMESCHEMA\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'EVENTNAME\' in table \'EMERGENCYEVENT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTIMESCHEMA.SCHEMANAMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime CREATED {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableTIMESCHEMA.CREATEDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CREATED\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.CREATEDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CREATEDBY {
-                get {
-                    try {
-                        return ((string)(this[this.tableTIMESCHEMA.CREATEDBYColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CREATEDBY\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.CREATEDBYColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime MODIFIED {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableTIMESCHEMA.MODIFIEDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIED\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.MODIFIEDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string MODIFIEDBY {
-                get {
-                    try {
-                        return ((string)(this[this.tableTIMESCHEMA.MODIFIEDBYColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIEDBY\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.MODIFIEDBYColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ORGANIZATIONID {
-                get {
-                    try {
-                        return ((string)(this[this.tableTIMESCHEMA.ORGANIZATIONIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ORGANIZATIONID\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.ORGANIZATIONIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public decimal FLOATTIME {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableTIMESCHEMA.FLOATTIMEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FLOATTIME\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.FLOATTIMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime BEGINTIME {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableTIMESCHEMA.BEGINTIMEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BEGINTIME\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.BEGINTIMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime ENDTIME {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableTIMESCHEMA.ENDTIMEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ENDTIME\' in table \'TIMESCHEMA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTIMESCHEMA.ENDTIMEColumn] = value;
+                    this[this.tableEMERGENCYEVENT.EVENTNAMEColumn] = value;
                 }
             }
             
@@ -788,115 +741,321 @@ namespace SQMS.Application.Config.Schema {
             public string ISVOID {
                 get {
                     try {
-                        return ((string)(this[this.tableTIMESCHEMA.ISVOIDColumn]));
+                        return ((string)(this[this.tableEMERGENCYEVENT.ISVOIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ISVOID\' in table \'TIMESCHEMA\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ISVOID\' in table \'EMERGENCYEVENT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTIMESCHEMA.ISVOIDColumn] = value;
+                    this[this.tableEMERGENCYEVENT.ISVOIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSCHEMANAMENull() {
-                return this.IsNull(this.tableTIMESCHEMA.SCHEMANAMEColumn);
+            public System.DateTime CREATED {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEMERGENCYEVENT.CREATEDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREATED\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.CREATEDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSCHEMANAMENull() {
-                this[this.tableTIMESCHEMA.SCHEMANAMEColumn] = global::System.Convert.DBNull;
+            public string CREATEDBY {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.CREATEDBYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CREATEDBY\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.CREATEDBYColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCREATEDNull() {
-                return this.IsNull(this.tableTIMESCHEMA.CREATEDColumn);
+            public System.DateTime MODIFIED {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEMERGENCYEVENT.MODIFIEDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIED\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.MODIFIEDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCREATEDNull() {
-                this[this.tableTIMESCHEMA.CREATEDColumn] = global::System.Convert.DBNull;
+            public string MODIFIEDBY {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.MODIFIEDBYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODIFIEDBY\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.MODIFIEDBYColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCREATEDBYNull() {
-                return this.IsNull(this.tableTIMESCHEMA.CREATEDBYColumn);
+            public string ORGANIZATIONID {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.ORGANIZATIONIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ORGANIZATIONID\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.ORGANIZATIONIDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCREATEDBYNull() {
-                this[this.tableTIMESCHEMA.CREATEDBYColumn] = global::System.Convert.DBNull;
+            public System.DateTime CHECKTIME {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableEMERGENCYEVENT.CHECKTIMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECKTIME\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.CHECKTIMEColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsMODIFIEDNull() {
-                return this.IsNull(this.tableTIMESCHEMA.MODIFIEDColumn);
+            public string CHECKUNIT {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.CHECKUNITColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CHECKUNIT\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.CHECKUNITColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetMODIFIEDNull() {
-                this[this.tableTIMESCHEMA.MODIFIEDColumn] = global::System.Convert.DBNull;
+            public string PRIVILIGE {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.PRIVILIGEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRIVILIGE\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.PRIVILIGEColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsMODIFIEDBYNull() {
-                return this.IsNull(this.tableTIMESCHEMA.MODIFIEDBYColumn);
+            public string EMERGENCYCHARGEPERSON {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.EMERGENCYCHARGEPERSONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EMERGENCYCHARGEPERSON\' in table \'EMERGENCYEVENT\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.EMERGENCYCHARGEPERSONColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetMODIFIEDBYNull() {
-                this[this.tableTIMESCHEMA.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+            public string EVENTCODE {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.EVENTCODEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EVENTCODE\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.EVENTCODEColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsORGANIZATIONIDNull() {
-                return this.IsNull(this.tableTIMESCHEMA.ORGANIZATIONIDColumn);
+            public string MEMO {
+                get {
+                    try {
+                        return ((string)(this[this.tableEMERGENCYEVENT.MEMOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MEMO\' in table \'EMERGENCYEVENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEMERGENCYEVENT.MEMOColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetORGANIZATIONIDNull() {
-                this[this.tableTIMESCHEMA.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            public bool IsSCHEMAIDNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.SCHEMAIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsFLOATTIMENull() {
-                return this.IsNull(this.tableTIMESCHEMA.FLOATTIMEColumn);
+            public void SetSCHEMAIDNull() {
+                this[this.tableEMERGENCYEVENT.SCHEMAIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetFLOATTIMENull() {
-                this[this.tableTIMESCHEMA.FLOATTIMEColumn] = global::System.Convert.DBNull;
+            public bool IsEVENTNAMENull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.EVENTNAMEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsBEGINTIMENull() {
-                return this.IsNull(this.tableTIMESCHEMA.BEGINTIMEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetBEGINTIMENull() {
-                this[this.tableTIMESCHEMA.BEGINTIMEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsENDTIMENull() {
-                return this.IsNull(this.tableTIMESCHEMA.ENDTIMEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetENDTIMENull() {
-                this[this.tableTIMESCHEMA.ENDTIMEColumn] = global::System.Convert.DBNull;
+            public void SetEVENTNAMENull() {
+                this[this.tableEMERGENCYEVENT.EVENTNAMEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsISVOIDNull() {
-                return this.IsNull(this.tableTIMESCHEMA.ISVOIDColumn);
+                return this.IsNull(this.tableEMERGENCYEVENT.ISVOIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetISVOIDNull() {
-                this[this.tableTIMESCHEMA.ISVOIDColumn] = global::System.Convert.DBNull;
+                this[this.tableEMERGENCYEVENT.ISVOIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCREATEDNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.CREATEDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCREATEDNull() {
+                this[this.tableEMERGENCYEVENT.CREATEDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCREATEDBYNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.CREATEDBYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCREATEDBYNull() {
+                this[this.tableEMERGENCYEVENT.CREATEDBYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMODIFIEDNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.MODIFIEDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMODIFIEDNull() {
+                this[this.tableEMERGENCYEVENT.MODIFIEDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMODIFIEDBYNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.MODIFIEDBYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMODIFIEDBYNull() {
+                this[this.tableEMERGENCYEVENT.MODIFIEDBYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsORGANIZATIONIDNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.ORGANIZATIONIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetORGANIZATIONIDNull() {
+                this[this.tableEMERGENCYEVENT.ORGANIZATIONIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCHECKTIMENull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.CHECKTIMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCHECKTIMENull() {
+                this[this.tableEMERGENCYEVENT.CHECKTIMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCHECKUNITNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.CHECKUNITColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCHECKUNITNull() {
+                this[this.tableEMERGENCYEVENT.CHECKUNITColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPRIVILIGENull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.PRIVILIGEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPRIVILIGENull() {
+                this[this.tableEMERGENCYEVENT.PRIVILIGEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEMERGENCYCHARGEPERSONNull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.EMERGENCYCHARGEPERSONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEMERGENCYCHARGEPERSONNull() {
+                this[this.tableEMERGENCYEVENT.EMERGENCYCHARGEPERSONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEVENTCODENull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.EVENTCODEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEVENTCODENull() {
+                this[this.tableEMERGENCYEVENT.EVENTCODEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMEMONull() {
+                return this.IsNull(this.tableEMERGENCYEVENT.MEMOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMEMONull() {
+                this[this.tableEMERGENCYEVENT.MEMOColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -904,20 +1063,20 @@ namespace SQMS.Application.Config.Schema {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class TIMESCHEMARowChangeEvent : global::System.EventArgs {
+        public class EMERGENCYEVENTRowChangeEvent : global::System.EventArgs {
             
-            private TIMESCHEMARow eventRow;
+            private EMERGENCYEVENTRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARowChangeEvent(TIMESCHEMARow row, global::System.Data.DataRowAction action) {
+            public EMERGENCYEVENTRowChangeEvent(EMERGENCYEVENTRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TIMESCHEMARow Row {
+            public EMERGENCYEVENTRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -932,7 +1091,7 @@ namespace SQMS.Application.Config.Schema {
         }
     }
 }
-namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
+namespace SQMS.Application.Config.Schema.EMERGENCYEVENTTableAdapters {
     
     
     /// <summary>
@@ -945,7 +1104,7 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TIMESCHEMATableAdapter : global::System.ComponentModel.Component {
+    public partial class EMERGENCYEVENTTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OracleClient.OracleDataAdapter _adapter;
         
@@ -956,7 +1115,7 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         private bool _clearBeforeFill;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public TIMESCHEMATableAdapter() {
+        public EMERGENCYEVENTTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1022,62 +1181,74 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
             this._adapter = new global::System.Data.OracleClient.OracleDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TIMESCHEMA";
+            tableMapping.DataSetTable = "EMERGENCYEVENT";
+            tableMapping.ColumnMappings.Add("EVENTID", "EVENTID");
             tableMapping.ColumnMappings.Add("SCHEMAID", "SCHEMAID");
-            tableMapping.ColumnMappings.Add("SCHEMANAME", "SCHEMANAME");
+            tableMapping.ColumnMappings.Add("EVENTNAME", "EVENTNAME");
+            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
             tableMapping.ColumnMappings.Add("CREATED", "CREATED");
             tableMapping.ColumnMappings.Add("CREATEDBY", "CREATEDBY");
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
             tableMapping.ColumnMappings.Add("ORGANIZATIONID", "ORGANIZATIONID");
-            tableMapping.ColumnMappings.Add("FLOATTIME", "FLOATTIME");
-            tableMapping.ColumnMappings.Add("BEGINTIME", "BEGINTIME");
-            tableMapping.ColumnMappings.Add("ENDTIME", "ENDTIME");
-            tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
+            tableMapping.ColumnMappings.Add("CHECKTIME", "CHECKTIME");
+            tableMapping.ColumnMappings.Add("CHECKUNIT", "CHECKUNIT");
+            tableMapping.ColumnMappings.Add("PRIVILIGE", "PRIVILIGE");
+            tableMapping.ColumnMappings.Add("EMERGENCYCHARGEPERSON", "EMERGENCYCHARGEPERSON");
+            tableMapping.ColumnMappings.Add("EVENTCODE", "EVENTCODE");
+            tableMapping.ColumnMappings.Add("MEMO", "MEMO");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE_0907\".\"TIMESCHEMA\" WHERE ((\"SCHEMAID\" = :Original_SCHEM" +
-                "AID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"SQMS_PRIVATE\".\"EMERGENCYEVENT\" WHERE ((\"EVENTID\" = :Original_EVENTID" +
+                "))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EVENTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_0907"".""TIMESCHEMA"" (""SCHEMAID"", ""SCHEMANAME"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""FLOATTIME"", ""BEGINTIME"", ""ENDTIME"", ""ISVOID"") VALUES (:SCHEMAID, :SCHEMANAME, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :FLOATTIME, :BEGINTIME, :ENDTIME, :ISVOID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE"".""EMERGENCYEVENT"" (""EVENTID"", ""SCHEMAID"", ""EVENTNAME"", ""ISVOID"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ORGANIZATIONID"", ""CHECKTIME"", ""CHECKUNIT"", ""PRIVILIGE"", ""EMERGENCYCHARGEPERSON"", ""EVENTCODE"", ""MEMO"") VALUES (:EVENTID, :SCHEMAID, :EVENTNAME, :ISVOID, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ORGANIZATIONID, :CHECKTIME, :CHECKUNIT, :PRIVILIGE, :EMERGENCYCHARGEPERSON, :EVENTCODE, :MEMO)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMANAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMANAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("BEGINTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "BEGINTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ENDTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "ENDTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CHECKTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CHECKTIME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CHECKUNIT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CHECKUNIT", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PRIVILIGE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PRIVILIGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMERGENCYCHARGEPERSON", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMERGENCYCHARGEPERSON", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_0907"".""TIMESCHEMA"" SET ""SCHEMAID"" = :SCHEMAID, ""SCHEMANAME"" = :SCHEMANAME, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""FLOATTIME"" = :FLOATTIME, ""BEGINTIME"" = :BEGINTIME, ""ENDTIME"" = :ENDTIME, ""ISVOID"" = :ISVOID WHERE ((""SCHEMAID"" = :Original_SCHEMAID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE"".""EMERGENCYEVENT"" SET ""EVENTID"" = :EVENTID, ""SCHEMAID"" = :SCHEMAID, ""EVENTNAME"" = :EVENTNAME, ""ISVOID"" = :ISVOID, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ORGANIZATIONID"" = :ORGANIZATIONID, ""CHECKTIME"" = :CHECKTIME, ""CHECKUNIT"" = :CHECKUNIT, ""PRIVILIGE"" = :PRIVILIGE, ""EMERGENCYCHARGEPERSON"" = :EMERGENCYCHARGEPERSON, ""EVENTCODE"" = :EVENTCODE, ""MEMO"" = :MEMO WHERE ((""EVENTID"" = :Original_EVENTID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SCHEMANAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMANAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTNAME", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTNAME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CREATEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ORGANIZATIONID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ORGANIZATIONID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("FLOATTIME", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "FLOATTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("BEGINTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "BEGINTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ENDTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "ENDTIME", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SCHEMAID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "SCHEMAID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CHECKTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CHECKTIME", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CHECKUNIT", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "CHECKUNIT", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("PRIVILIGE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "PRIVILIGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMERGENCYCHARGEPERSON", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMERGENCYCHARGEPERSON", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EVENTCODE", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTCODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MEMO", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MEMO", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_EVENTID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EVENTID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.OracleClient.OracleConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString2"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1085,15 +1256,16 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SCHEMAID, SCHEMANAME, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATI" +
-                "ONID, FLOATTIME, BEGINTIME, ENDTIME, ISVOID FROM SQMS_PRIVATE_0907.TIMESCHEMA";
+            this._commandCollection[0].CommandText = "SELECT EVENTID, SCHEMAID, EVENTNAME, ISVOID, CREATED, CREATEDBY, MODIFIED, MODIFI" +
+                "EDBY, ORGANIZATIONID, CHECKTIME, CHECKUNIT, PRIVILIGE, EMERGENCYCHARGEPERSON, EV" +
+                "ENTCODE, MEMO FROM SQMS_PRIVATE.EMERGENCYEVENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TIMESCHEMA.TIMESCHEMADataTable dataTable) {
+        public virtual int Fill(EMERGENCYEVENT.EMERGENCYEVENTDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1105,23 +1277,23 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TIMESCHEMA.TIMESCHEMADataTable GetData() {
+        public virtual EMERGENCYEVENT.EMERGENCYEVENTDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            TIMESCHEMA.TIMESCHEMADataTable dataTable = new TIMESCHEMA.TIMESCHEMADataTable();
+            EMERGENCYEVENT.EMERGENCYEVENTDataTable dataTable = new EMERGENCYEVENT.EMERGENCYEVENTDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TIMESCHEMA.TIMESCHEMADataTable dataTable) {
+        public virtual int Update(EMERGENCYEVENT.EMERGENCYEVENTDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TIMESCHEMA dataSet) {
-            return this.Adapter.Update(dataSet, "TIMESCHEMA");
+        public virtual int Update(EMERGENCYEVENT dataSet) {
+            return this.Adapter.Update(dataSet, "EMERGENCYEVENT");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1140,12 +1312,12 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_SCHEMAID) {
-            if ((Original_SCHEMAID == null)) {
-                throw new global::System.ArgumentNullException("Original_SCHEMAID");
+        public virtual int Delete(string Original_EVENTID) {
+            if ((Original_EVENTID == null)) {
+                throw new global::System.ArgumentNullException("Original_EVENTID");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_SCHEMAID));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_EVENTID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1166,72 +1338,96 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string SCHEMAID, string SCHEMANAME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> FLOATTIME, global::System.Nullable<global::System.DateTime> BEGINTIME, global::System.Nullable<global::System.DateTime> ENDTIME, string ISVOID) {
-            if ((SCHEMAID == null)) {
-                throw new global::System.ArgumentNullException("SCHEMAID");
+        public virtual int Insert(string EVENTID, string SCHEMAID, string EVENTNAME, string ISVOID, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<global::System.DateTime> CHECKTIME, string CHECKUNIT, string PRIVILIGE, string EMERGENCYCHARGEPERSON, string EVENTCODE, string MEMO) {
+            if ((EVENTID == null)) {
+                throw new global::System.ArgumentNullException("EVENTID");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(SCHEMAID));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(EVENTID));
             }
-            if ((SCHEMANAME == null)) {
+            if ((SCHEMAID == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SCHEMANAME));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SCHEMAID));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((EVENTNAME == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(EVENTNAME));
+            }
+            if ((ISVOID == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(CREATEDBY));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ISVOID));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(MODIFIEDBY));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CREATEDBY));
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(MODIFIED.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ORGANIZATIONID));
-            }
-            if ((FLOATTIME.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(FLOATTIME.Value));
-            }
-            else {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((BEGINTIME.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(BEGINTIME.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((ENDTIME.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(ENDTIME.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((CHECKTIME.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(CHECKTIME.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((ISVOID == null)) {
+            if ((CHECKUNIT == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(ISVOID));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(CHECKUNIT));
+            }
+            if ((PRIVILIGE == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(PRIVILIGE));
+            }
+            if ((EMERGENCYCHARGEPERSON == null)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(EMERGENCYCHARGEPERSON));
+            }
+            if ((EVENTCODE == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(EVENTCODE));
+            }
+            if ((MEMO == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(MEMO));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1252,78 +1448,118 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SCHEMAID, string SCHEMANAME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> FLOATTIME, global::System.Nullable<global::System.DateTime> BEGINTIME, global::System.Nullable<global::System.DateTime> ENDTIME, string ISVOID, string Original_SCHEMAID) {
-            if ((SCHEMAID == null)) {
-                throw new global::System.ArgumentNullException("SCHEMAID");
+        public virtual int Update(
+                    string EVENTID, 
+                    string SCHEMAID, 
+                    string EVENTNAME, 
+                    string ISVOID, 
+                    global::System.Nullable<global::System.DateTime> CREATED, 
+                    string CREATEDBY, 
+                    global::System.Nullable<global::System.DateTime> MODIFIED, 
+                    string MODIFIEDBY, 
+                    string ORGANIZATIONID, 
+                    global::System.Nullable<global::System.DateTime> CHECKTIME, 
+                    string CHECKUNIT, 
+                    string PRIVILIGE, 
+                    string EMERGENCYCHARGEPERSON, 
+                    string EVENTCODE, 
+                    string MEMO, 
+                    string Original_EVENTID) {
+            if ((EVENTID == null)) {
+                throw new global::System.ArgumentNullException("EVENTID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(SCHEMAID));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(EVENTID));
             }
-            if ((SCHEMANAME == null)) {
+            if ((SCHEMAID == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SCHEMANAME));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SCHEMAID));
             }
-            if ((CREATED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(CREATED.Value));
-            }
-            else {
+            if ((EVENTNAME == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CREATEDBY == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(EVENTNAME));
+            }
+            if ((ISVOID == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(CREATEDBY));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ISVOID));
             }
-            if ((MODIFIED.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(MODIFIED.Value));
+            if ((CREATED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(CREATED.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((MODIFIEDBY == null)) {
+            if ((CREATEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(MODIFIEDBY));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CREATEDBY));
             }
-            if ((ORGANIZATIONID == null)) {
+            if ((MODIFIED.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(MODIFIED.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ORGANIZATIONID));
-            }
-            if ((FLOATTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(FLOATTIME.Value));
-            }
-            else {
+            if ((MODIFIEDBY == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((BEGINTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(BEGINTIME.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MODIFIEDBY));
+            }
+            if ((ORGANIZATIONID == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((ENDTIME.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(ENDTIME.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ORGANIZATIONID));
+            }
+            if ((CHECKTIME.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(CHECKTIME.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((ISVOID == null)) {
+            if ((CHECKUNIT == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(ISVOID));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(CHECKUNIT));
             }
-            if ((Original_SCHEMAID == null)) {
-                throw new global::System.ArgumentNullException("Original_SCHEMAID");
+            if ((PRIVILIGE == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_SCHEMAID));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(PRIVILIGE));
+            }
+            if ((EMERGENCYCHARGEPERSON == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(EMERGENCYCHARGEPERSON));
+            }
+            if ((EVENTCODE == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(EVENTCODE));
+            }
+            if ((MEMO == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(MEMO));
+            }
+            if ((Original_EVENTID == null)) {
+                throw new global::System.ArgumentNullException("Original_EVENTID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_EVENTID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1344,8 +1580,8 @@ namespace SQMS.Application.Config.Schema.TIMESCHEMATableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SCHEMANAME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<decimal> FLOATTIME, global::System.Nullable<global::System.DateTime> BEGINTIME, global::System.Nullable<global::System.DateTime> ENDTIME, string ISVOID, string Original_SCHEMAID) {
-            return this.Update(Original_SCHEMAID, SCHEMANAME, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, FLOATTIME, BEGINTIME, ENDTIME, ISVOID, Original_SCHEMAID);
+        public virtual int Update(string SCHEMAID, string EVENTNAME, string ISVOID, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ORGANIZATIONID, global::System.Nullable<global::System.DateTime> CHECKTIME, string CHECKUNIT, string PRIVILIGE, string EMERGENCYCHARGEPERSON, string EVENTCODE, string MEMO, string Original_EVENTID) {
+            return this.Update(Original_EVENTID, SCHEMAID, EVENTNAME, ISVOID, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, CHECKTIME, CHECKUNIT, PRIVILIGE, EMERGENCYCHARGEPERSON, EVENTCODE, MEMO, Original_EVENTID);
         }
     }
 }

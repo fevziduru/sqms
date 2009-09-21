@@ -54,6 +54,9 @@
     <Compile Include="Domain\QualityControl\TimeItem.cs" />
     <Compile Include="Domain\QualityControl\TimeSchema.cs" />
     <Compile Include="Domain\QualityControl\Video.cs" />
+    <Compile Include="EmergencyEventService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MenuService.cs">
       <SubType>Component</SubType>
     </Compile>
