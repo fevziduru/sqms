@@ -117,6 +117,7 @@
         
         <!-- Sam Skin CSS -->
         <link rel="stylesheet" type="text/css" href="../Resources/Scripts/Controls/yui/build/container/assets/skins/sam/container.css" />
+        <link rel="stylesheet" type="text/css" href="../Resources/Scripts/Controls/yui/build/calendar/assets/calendar.css" />
 
         <!-- OPTIONAL: You only need the YUI Button CSS if you're including YUI Button, mentioned below. -->
         <link rel="stylesheet" type="text/css" href="../Resources/Scripts/Controls/yui/build/button/assets/skins/sam/button.css" />
@@ -133,6 +134,7 @@
                                 <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/element/element-min.js" />
                                 <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/button/button-min.js" />
                                 <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/container/container-min.js" />
+                                <asp:ScriptReference Path="~/Resources/Scripts/Controls/yui/build/calendar/calendar-min.js" />
                                 
                                 <asp:ScriptReference Path="~/Resources/Scripts/Controls/Calendar.js" />
                                 <asp:ScriptReference Path="~/Resources/Scripts/Common/main.js" />

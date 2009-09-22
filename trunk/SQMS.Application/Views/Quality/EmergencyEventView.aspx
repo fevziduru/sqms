@@ -10,7 +10,7 @@
     
     <table width="100%">
         <tr>
-            <td align="right"><a href="EmergencyEventList.aspx?p=eelist">返回到列表</a></td>
+            <td align="right"><a href="EmergencyEventList.aspx?p=emergencylist">返回到列表</a></td>
         </tr>
         <tr>
             <td align="center">
