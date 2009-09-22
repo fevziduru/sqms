@@ -222,4 +222,10 @@ namespace SQMS.Services.Domain.QualityControl
         }
 
     }
+
+    public enum MonitorPointType
+    {
+        Road,
+        Event
+    }
 }

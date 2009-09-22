@@ -11,6 +11,7 @@ using SQMS.Services;
 using System.Data;
 using EasyDev.Util;
 using SQMS.Services.Domain.Common;
+using SQMS.Services.Domain.QualityControl;
 
 namespace SQMS.Application.Views.Quality
 {
@@ -21,9 +22,11 @@ namespace SQMS.Application.Views.Quality
         private ProjectService svcProject = null;
         private EmployeeService svcEmployee = null;
         private RoadService svcRoad = null;
+        private EmergencyEventService svcEvent = null;
 
         private DataTable dtQC = null;
         private DataTable dtMP = null;
+        private DataTable dtEvent = null;
         protected string MonitorPointId
         {
             get
@@ -39,6 +42,28 @@ namespace SQMS.Application.Views.Quality
             }
         }
 
+        protected MonitorPointType MPType
+        {
+            get
+            {
+                if ("_mp_type_event".Equals(ConvertUtil.ToStringOrDefault(this.Request.QueryString["mptype"])))
+                {
+                    return MonitorPointType.Event;
+                }
+                else
+                {
+                    return MonitorPointType.Road;
+                }
+                
+            }
+        }
+        protected string EventID
+        {
+            get
+            {
+                return ConvertUtil.ToStringOrDefault(this.Request.QueryString["eventid"]);
+            }
+        }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -46,6 +71,7 @@ namespace SQMS.Application.Views.Quality
             this.svcProject = this.svcManager.CreateService<ProjectService>();
             this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
             this.svcRoad = this.svcManager.CreateService<RoadService>();
+            this.svcEvent = this.svcManager.CreateService<EmergencyEventService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -59,6 +85,7 @@ namespace SQMS.Application.Views.Quality
 
             DataRow dr = DataSetUtil.GetFirstRowFromDataTable(this.dtQC);
             DataRow drMP = DataSetUtil.GetFirstRowFromDataTable(this.dtMP);
+            DataRow drEvent = DataSetUtil.GetFirstRowFromDataTable(this.dtEvent);
             if (null != dr)
             {
                 string meterialUrl = ConvertUtil.ToStringOrDefault(dr["MATERIAL"]);
@@ -90,6 +117,14 @@ namespace SQMS.Application.Views.Quality
                 this.LabelRoadType.Text = ConvertUtil.ToStringOrDefault(drMP["ROADTYPE"]);
                 this.LabelRoadProject.Text = ConvertUtil.ToStringOrDefault(drMP["PROJECTNAME"]);
             }
+            if (null != drEvent)
+            {
+                this.LabelEventCheckUnit.Text = ConvertUtil.ToStringOrDefault(drEvent["CheckUnit"]);
+                this.LabelEventCode.Text = ConvertUtil.ToStringOrDefault(drEvent["EventCode"]);
+                this.LabelEventEmpName.Text = ConvertUtil.ToStringOrDefault(drEvent["EMPNAME"]);
+                this.LabelEventMemo.Text = ConvertUtil.ToStringOrDefault(drEvent["Memo"]);
+                this.LabelEventName.Text = ConvertUtil.ToStringOrDefault(drEvent["EventName"]);
+            }
             if (this.QualityControlType.Equals("_qc_type_normal"))
             {
                 this.divMP.Visible = true;
@@ -99,6 +134,12 @@ namespace SQMS.Application.Views.Quality
             {
                 this.divMP.Visible = false;
                 this.divRoad.Visible = true;
+            }
+            if (MPType == MonitorPointType.Event)
+            {
+                this.divMP.Visible = false;
+                this.divRoad.Visible = false;
+                this.divEvent.Visible = true;
             }
         }
         protected override void GetViewData()
@@ -111,6 +152,7 @@ namespace SQMS.Application.Views.Quality
             base.OnLoadDataEventHandler(sender, e);
             this.dtQC = this.svcQualityControl.GetLatestQualityControlInfo(this.MonitorPointId,this.QualityControlType);
             this.dtMP = this.svcQualityControl.GetMonitorPoint(this.MonitorPointId);
+            this.dtEvent = this.svcEvent.GetEvent(this.EventID);
 
         }
        

@@ -164,7 +164,7 @@ function createMarker(mpId, mpName, lat, lng, lv, qclv, mpFields) {
 //按地图显示区域的经纬度获取监控点
 function fetchMarkers() {
     var bound = map.getBounds();
-    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&swlat=" + bound.getSouthWest().lat()
+    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mptype="+mpType+"&swlat=" + bound.getSouthWest().lat()
             + "&swlng=" + bound.getSouthWest().lng()
             + "&nelat=" + bound.getNorthEast().lat()
             + "&nelng=" + bound.getNorthEast().lng();
@@ -203,7 +203,7 @@ function setToEvent(eventId, mpId) {
         setToMarkerListener.setToMarker();
     }
     else {
-        fetchMarkersByRoad(eventId);
+        fetchMarkersByEvent(eventId);
     }
 }
 function fetchMarkersByRoad(roadId) {
@@ -215,7 +215,7 @@ function fetchMarkersByRoad(roadId) {
     showRequestNum(requestNum++);
 }
 function fetchMarkersByEvent(eventId) {
-    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&eventid=" + eventId;
+    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mptype=_mp_type_event&eventid=" + eventId;
     wRequest = new Sys.Net.WebRequest();
     Sys.Net.WebRequestManager.add_completedRequest(initMarker);
     wRequest.set_url(url);
