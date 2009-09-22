@@ -24,6 +24,8 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
         public static readonly string URL_PARAM_NE_LNG = "nelng";
         public static readonly string URL_PARAM_MPID = "mpid";
         public static readonly string URL_PARAM_ROADID = "roadid";
+        public static readonly string URL_PARAM_EVENTID = "eventid";
+        public static readonly string URL_PARAM_MPTYPE = "mptype";
 
         private NativeServiceManager svcManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
         private QualityControlService svcQualityControl = null;
@@ -39,6 +41,12 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
         protected void Page_Load(object sender, EventArgs e)
         {
             string roadId = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_ROADID]);
+            string eventId = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_EVENTID]);
+            string mpType = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_MPTYPE]);
+            if (String.IsNullOrEmpty(mpType))
+            {
+                mpType = "_mp_road";
+            }
             string mpid = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_MPID]);
             decimal swlat = ConvertUtil.ToLat(this.Request.QueryString[URL_PARAM_SW_LAT]);
             decimal swlng = ConvertUtil.ToLng(this.Request.QueryString[URL_PARAM_SW_LNG]);

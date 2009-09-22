@@ -194,8 +194,28 @@ function setToRoad(roadId, mpId) {
         fetchMarkersByRoad(roadId);
     }
 }
+function setToEvent(eventId, mpId) {
+    setToMarkerListener.enable = true;
+    setToMarkerListener.setCenter = true;
+    setToMarkerListener.openInfoWindow = true;
+    setToMarkerListener.mpid = mpId;
+    if (markers[mpId]) {
+        setToMarkerListener.setToMarker();
+    }
+    else {
+        fetchMarkersByRoad(eventId);
+    }
+}
 function fetchMarkersByRoad(roadId) {
     var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&roadid=" + roadId;
+    wRequest = new Sys.Net.WebRequest();
+    Sys.Net.WebRequestManager.add_completedRequest(initMarker);
+    wRequest.set_url(url);
+    Sys.Net.WebRequestManager.executeRequest(wRequest);
+    showRequestNum(requestNum++);
+}
+function fetchMarkersByEvent(eventId) {
+    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&eventid=" + eventId;
     wRequest = new Sys.Net.WebRequest();
     Sys.Net.WebRequestManager.add_completedRequest(initMarker);
     wRequest.set_url(url);
