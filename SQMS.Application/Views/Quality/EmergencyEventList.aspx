@@ -36,7 +36,7 @@
             <asp:BoundField DataField="EVENTID" HeaderText="事件编号" ReadOnly="True" HeaderStyle-HorizontalAlign="Left"
                 SortExpression="EVENTID" Visible="False" />
                 
-            <asp:HyperLinkField DataNavigateUrlFields="EVENTNAME" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
+            <asp:HyperLinkField DataNavigateUrlFields="EVENTID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
                 DataNavigateUrlFormatString="/Views/Quality/EmergencyEventView.aspx?p=emergencyview&id={0}" 
                 DataTextField="EVENTNAME" HeaderText="事件名称" SortExpression="EVENTNAME" />
                 
