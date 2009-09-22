@@ -118,6 +118,18 @@
             <div>
                 备注：<asp:Label ID="LabelMPMemo" runat="server"></asp:Label></div>
         </div>
+        <div runat="server" id="divEvent" visible="false">
+            <!--路段详细数据-->
+            <div>
+                <span>事件名称：<asp:Label ID="LabelEventName" runat="server"></asp:Label></span><span><asp:Label
+                    ID="LabelEventCode" runat="server"></asp:Label></span></div>
+            <div>
+                检查单位：<asp:Label ID="LabelEventCheckUnit" runat="server"></asp:Label></div>
+            <div>
+                负责人：<asp:Label ID="LabelEventEmpName" runat="server"></asp:Label></div>
+            <div>
+                备注：<asp:Label ID="LabelEventMemo" runat="server"></asp:Label></div>
+        </div>
         <div runat="server" id="divRoad">
             <!--路段详细数据-->
             <div>
@@ -151,7 +163,8 @@
             <div>
                 <asp:HyperLink ID="LinkMore" runat="server" Text="更多信息"></asp:HyperLink></div>
         </div>
-        <div runat="server" id="divNoQC" visible="false">暂时没有质量监控数据</div>
+        <div runat="server" id="divNoQC" visible="false">
+            暂时没有质量监控数据</div>
     </div>
     </form>
 </body>

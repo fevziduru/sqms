@@ -160,7 +160,7 @@
         <div id="right" class="right">
             <asp:UpdatePanel ID="UpdatePanelMap" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:Map ID="Map1" runat="server" />
+                    <uc:Map ID="Map1" runat="server" MPType="Event" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

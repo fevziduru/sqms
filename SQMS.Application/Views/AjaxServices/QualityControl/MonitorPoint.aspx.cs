@@ -43,9 +43,9 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
             string roadId = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_ROADID]);
             string eventId = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_EVENTID]);
             string mpType = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_MPTYPE]);
-            if (String.IsNullOrEmpty(mpType))
+            if (String.IsNullOrEmpty(mpType) || (!"_mp_type_road".Equals(mpType) && !"_mp_type_event".Equals(mpType)))
             {
-                mpType = "_mp_road";
+                mpType = "_mp_type_road";
             }
             string mpid = ConvertUtil.ToStringOrDefault(this.Request.QueryString[URL_PARAM_MPID]);
             decimal swlat = ConvertUtil.ToLat(this.Request.QueryString[URL_PARAM_SW_LAT]);
@@ -66,9 +66,13 @@ namespace SQMS.Application.View.AjaxServices.QualityControl
             {
                 dt = this.svcQualityControl.GetMonitorPointList(roadId);
             }
+            else if (!String.IsNullOrEmpty(eventId))
+            {
+                dt = this.svcQualityControl.GetMonitorPointList(eventId,"_mp_type_event");
+            }
             else
             {
-                dt = this.svcQualityControl.GetMonitorPointInLatLngBounds(bound);
+                dt = this.svcQualityControl.GetMonitorPointInLatLngBounds(bound,mpType);
             }
 
             IList<Domain.MonitorPoint> list = this.svcQualityControl.CreateMonitorPointList(dt);

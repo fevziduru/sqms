@@ -21,35 +21,29 @@ namespace SQMS.Services
 
                     base.Initialize();
                 }
+                public DataTable GetEvent(string eventId)
+                {
+                    string sql = this.getEventMainSql() + " AND E.EVENTID='"+eventId+"' AND E.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"'";
+                   
+                    DataTable dt = null;
+                    try
+                    {
+                        dt = this.DefaultSession.GetDataSetFromCommand(sql).Tables[0];
+                    }
+                    catch (Exception e)
+                    {
+                        log.Error(e.ToString());
+                        throw;
+                    }
+                    return dt;
+                }
                 public DataTable GetEventList()
                 {
                     return this.GetEventList("");
                 }
                 public DataTable GetEventList(string dateFilter)
                 {
-                    string sql = @"SELECT E.EVENTID,
-                                           E.SCHEMAID,
-                                           E.EVENTNAME,
-                                           E.ISVOID,
-                                           E.CREATED,
-                                           E.CREATEDBY,
-                                           E.MODIFIED,
-                                           E.MODIFIEDBY,
-                                           E.ORGANIZATIONID,
-                                           E.CHECKTIME,
-                                           E.CHECKUNIT,
-                                           E.PRIVILIGE,
-                                           E.EMERGENCYCHARGEPERSON,
-                                           EMP.EMPNAME,
-                                           (SELECT M.MPID
-                                              FROM MPASSIGNMENT M
-                                             WHERE M.ISSTART = 'Y'
-                                               AND M.EVENTID = E.EVENTID
-                                               AND M.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"') AS STARTMPID
-                                      FROM EMERGENCYEVENT E
-                                      LEFT JOIN EMPLOYEE EMP ON EMP.EMPID = E.EMERGENCYCHARGEPERSON
-                                                            AND EMP.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"'
-                                     WHERE 1=1 {0} AND E.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"'";
+                    string sql = this.getEventMainSql() + " {0} AND E.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"'";
                     if (!String.IsNullOrEmpty(dateFilter))
                     {
                         sql = String.Format(sql, " AND E.MODIFIED = TO_DATE('"+dateFilter+"', 'yyyy-mm-dd')");
@@ -104,6 +98,33 @@ namespace SQMS.Services
                         throw;
                     }
                     return dt;
+                }
+
+                private string getEventMainSql()
+                {
+                    return @"SELECT E.EVENTID,
+                                           E.SCHEMAID,
+                                           E.EVENTNAME,
+                                           E.ISVOID,
+                                           E.CREATED,
+                                           E.CREATEDBY,
+                                           E.MODIFIED,
+                                           E.MODIFIEDBY,
+                                           E.ORGANIZATIONID,
+                                           E.CHECKTIME,
+                                           E.CHECKUNIT,
+                                           E.PRIVILIGE,
+                                           E.EMERGENCYCHARGEPERSON,
+                                           EMP.EMPNAME,
+                                           (SELECT M.MPID
+                                              FROM MPASSIGNMENT M
+                                             WHERE M.ISSTART = 'Y'
+                                               AND M.EVENTID = E.EVENTID
+                                               AND M.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"') AS STARTMPID
+                                      FROM EMERGENCYEVENT E
+                                      LEFT JOIN EMPLOYEE EMP ON EMP.EMPID = E.EMERGENCYCHARGEPERSON
+                                                            AND EMP.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + @"'
+                                     WHERE 1=1";
                 }
 
             

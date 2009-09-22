@@ -52,7 +52,7 @@ WGMarker.prototype.openInfoWindowHtml = function() {
     $get("divCurrSelMPPath").innerHTML = "<h4 style='font-size:14px;'>" + this.fields.ProjectName + " - " + this.fields.RoadName + " - <a href='javascript:setToMarker(&quot;" + this.mpId + "&quot;,&quot;" + this.mpName + "&quot;," + this.lng + "," + this.lat + "," + this.lv + "," + this.qualityLevel + ",true,true);'>" + this.fields.MonitorPointName + "</a></h4>";
 }
 WGMarker.prototype.getInfoHtml = function(qcType) {
-    var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
+    var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&mptype="+mpType+"&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
     return html;
 }
 WGMarker.prototype.getInfoHtmlElement = function(qcType) {
