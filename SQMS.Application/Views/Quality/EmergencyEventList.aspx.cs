@@ -54,7 +54,7 @@ namespace SQMS.Application.Views.Quality
                     {
                         DataKey key = this.gvEEList.DataKeys[Convert.ToInt32(e.CommandArgument)];
                         string id = ConvertUtil.ToStringOrDefault(key.Value);
-                        Response.Redirect("EmergencyEventEdit.aspx?p=eeeedit&id=" + id);
+                        Response.Redirect("EmergencyEventEdit.aspx?p=emergencyedit&id=" + id);
                         break;
                     }
                 case "Sort":
@@ -124,7 +124,7 @@ namespace SQMS.Application.Views.Quality
 
         protected void btnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EmergencyEventEdit.aspx");
+            Response.Redirect("EmergencyEventEdit.aspx?p=emergencyedit");
         }
     }
 

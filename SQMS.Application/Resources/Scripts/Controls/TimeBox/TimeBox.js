@@ -52,6 +52,10 @@ function addTimeBox() {
         CreateTimeBox('container', 'tb' + "_" + count, '时间格式为hh24(小时):mm(分钟):ss(秒)', '时间格式不对,时间格式应为hh24(小时):mm(分钟):ss(秒)');
 }
 
-window.document.forms[0].onsubmit = function() {
-        return isAllValidated;
+if (window.document.forms["length"] > 0)
+{
+	window.document.forms[0].onsubmit = function()
+	{
+		return isAllValidated;
+	}
 }
