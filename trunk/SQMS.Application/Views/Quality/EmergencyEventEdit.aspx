@@ -66,11 +66,13 @@
                                         dialog = new YAHOO.widget.Dialog("container", {
                                                 visible: false,
                                                 context: ["show", "tl", "bl"],
-                                                buttons: [{ text: "Reset", handler: resetHandler, isDefault: true }, { text: "Close", handler: closeHandler}],
+                                                //buttons: [{ text: "Reset", handler: resetHandler, isDefault: true }, { text: "Close", handler: closeHandler}],
+                                                //buttons: [{ text: "Reset", handler: resetHandler, isDefault: true }],
+                                                buttons: [],
                                                 draggable: true,
                                                 close: true
                                         });
-                                        dialog.setHeader('Pick A Date');
+                                        dialog.setHeader('选择时间');
                                         dialog.setBody('<div id="cal"></div>');
                                         dialog.render(document.body);
 
@@ -104,8 +106,8 @@
 
 
                                         // Date labels for Chinese locale
-                                        calendar.cfg.setProperty("MONTHS_SHORT", ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]);
-                                        calendar.cfg.setProperty("MONTHS_LONG", ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]);
+                                        calendar.cfg.setProperty("MONTHS_SHORT", ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]);
+                                        calendar.cfg.setProperty("MONTHS_LONG", ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]);
                                         calendar.cfg.setProperty("WEEKDAYS_1CHAR", ["日", "一", "二", "三", "四", "五", "六"]);
                                         calendar.cfg.setProperty("WEEKDAYS_SHORT", ["日", "一", "二", "三", "四", "五", "六"]);
                                         calendar.cfg.setProperty("WEEKDAYS_MEDIUM", ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]);
@@ -128,7 +130,7 @@
                                                         var mStr = calendar.cfg.getProperty("MONTHS_LONG")[selDate.getMonth()];
                                                         var yStr = selDate.getFullYear();
 
-                                                        Dom.get("<%=checkTime.ClientID %>").value = wStr + ", " + dStr + " " + mStr + " " + yStr;
+                                                        Dom.get("<%=checkTime.ClientID %>").value = yStr + "-" + mStr + "-" + dStr;
                                                 } else
                                                 {
                                                         Dom.get("<%=checkTime.ClientID %>").value = "";
