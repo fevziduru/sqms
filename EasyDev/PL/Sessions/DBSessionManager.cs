@@ -23,8 +23,7 @@ namespace EasyDev.PL
         {
             try
             {
-                return new GenericDBSession(_datasource, 
-                    PersistenceConfigManager.GetInstance());
+                return new GenericDBSession(_datasource, PersistenceConfigManager.GetInstance());
             }
             catch (DALCoreException e)
             {
