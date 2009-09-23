@@ -3,51 +3,49 @@ using System.Data;
 
 namespace EasyDev.PL
 {
-    public interface IGenericDBSession 
-    {
-        /// <summary>
-        /// 连接字符串
-        /// </summary>
-        string ConnectionString
+        public interface IGenericDBSession
         {
-            get;
-            set;
+                /// <summary>
+                /// 连接字符串
+                /// </summary>
+                string ConnectionString { get; set; }
+
+                string SessionID { get; set; }
+
+                int ExecuteCommand();
+
+                IDataReader GetDataReaderFromCommand(string sqlCmd);
+
+                IDataReader GetDataReaderFromCommand();
+
+                IDataReader GetDataReader();
+
+                object GetScalarObject();
+
+                object GetScalarObjectFromCommand(string sqlCmd);
+
+                object GetScalarObjectFromCommand();
+
+                DataSet GetDataSet();
+
+                DataSet GetDataSetFromCommand(string sqlCmd);
+
+                DataSet GetDataSetFromCommand();
+
+                DataTable GetDataTableFromCommand();
+
+                DataTable GetDataTableFromCommand(string sqlCmd);
+
+                DataTable GetDataTable();
+
+                void CloseSession();
+
+                void OpenSession();
+
+                //bool Update(DataSet dto);
+
+                //bool Insert(DataSet dto);
+
+                //bool Delete(DataSet dto);
         }
-
-        int ExecuteCommand();
-
-        IDataReader GetDataReaderFromCommand(string sqlCmd);
-
-        IDataReader GetDataReaderFromCommand();
-
-        IDataReader GetDataReader();
-
-        object GetScalarObject();
-
-        object GetScalarObjectFromCommand(string sqlCmd);
-
-        object GetScalarObjectFromCommand();
-
-        DataSet GetDataSet();
-
-        DataSet GetDataSetFromCommand(string sqlCmd);
-
-        DataSet GetDataSetFromCommand();
-                
-        DataTable GetDataTableFromCommand();
-
-        DataTable GetDataTableFromCommand(string sqlCmd);
-
-        DataTable GetDataTable();
-
-        void CloseSession();
-
-        void OpenSession();
-
-        //bool Update(DataSet dto);
-
-        //bool Insert(DataSet dto);
-
-        //bool Delete(DataSet dto);
-    }
 }

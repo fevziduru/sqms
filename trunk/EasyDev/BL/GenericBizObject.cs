@@ -347,25 +347,6 @@ namespace EasyDev.BL
                                         //处理主键
                                         for (int i = 0; i < dt.PrimaryKey.Length; i++)
                                         {
-                                                #region Masked
-                                                //if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient", 
-                                                //        StringComparison.CurrentCultureIgnoreCase) ||
-                                                //    CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client", 
-                                                //        StringComparison.CurrentCultureIgnoreCase))
-                                                //{
-                                                //    ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = BOName;
-                                                //    drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
-
-                                                //    //drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GetNextSequenceId(_session, BOName);
-                                                //}
-                                                //else
-                                                //{
-                                                //    drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
-                                                //    //drNew[dt.PrimaryKey[i].ColumnName] = IdentityGenerator.GUIDIdentity();
-                                                //} 
-                                                #endregion
-
-                                                //TODO:待测
                                                 drNew[dt.PrimaryKey[i].ColumnName] = CurrentSession.IdentityGenerator.Generate();
                                         }
 

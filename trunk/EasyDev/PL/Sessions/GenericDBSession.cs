@@ -13,6 +13,23 @@ namespace EasyDev.PL
         /// </summary>
         public class GenericDBSession : IGenericDBSession
         {
+                private string sessionId = "";
+
+                #region IGenericDBSession 成员
+
+                public string SessionID
+                {
+                        get
+                        {
+                                return sessionId;
+                        }
+                        set
+                        {
+                                sessionId = value;
+                        }
+                }
+
+                #endregion
                 /// <summary>
                 /// 数据源名称
                 /// </summary>
