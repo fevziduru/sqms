@@ -64,15 +64,16 @@ namespace EasyDev.BL
                 {
                         GenericDBSession session = null;
 
+                        //TODO:Session名称待重构
                         lock (SessionPool)
                         {
-                                session = SessionPool.Get(name) as GenericDBSession;
+                                session = SessionPool.Get(name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
                                 if (session == null)
                                 {
                                         session = DBSessionManager.CreateDBSession(
-                                            DataSourceManager.CreateDataSource(name)); //数据访问对象
+                                                DataSourceManager.CreateDataSource(name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString())); //数据访问对象
 
-                                        SessionPool.Insert("DEFAULT_SESSION", session);
+                                        SessionPool.Insert(name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString(), session);
                                 }
                         }
 
@@ -245,15 +246,15 @@ namespace EasyDev.BL
                 {
                         get
                         {
-                                GenericDBSession session = SessionPool.Get("DEFAULT_SESSION") as GenericDBSession;
+
+                                GenericDBSession session = SessionPool.Get("DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
                                 if (session == null)
                                 {
                                         lock (SessionPool)
                                         {
-                                                session = DBSessionManager.CreateDBSession(
-                                                DataSourceManager.CreateDefaultDataSource()); //数据访问对象
+                                                session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource()); //数据访问对象
 
-                                                SessionPool.Insert("DEFAULT_SESSION", session);
+                                                SessionPool.Insert("DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString(), session);
                                         }
                                 }
 
@@ -263,10 +264,14 @@ namespace EasyDev.BL
 
                 /// <summary>
                 /// 服务初始化
+                /// TODO:SESSION名称待重构
                 /// </summary>
                 protected virtual void Initialize()
                 {
-                        string sessionName = (SessionName == null || SessionName.Equals(string.Empty)) ? "DEFAULT_SESSION" : SessionName;
+                        //SESSION名称由可视名称和线程ID组成
+                        string sessionName = (SessionName == null || SessionName.Equals(string.Empty)) 
+                                ? "DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString() : SessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString();
+
                         this.resMgrFactory = ResourceManagerFactory.GetInstance();      //国际化资源对象
                         this.serviceManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
 
@@ -274,13 +279,12 @@ namespace EasyDev.BL
                         GenericDBSession session = null;
                         lock (SessionPool)
                         {
-                                session = SessionPool.Get(sessionName) as GenericDBSession;
+                                session = SessionPool.Get(sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
                                 if (session == null)
                                 {
-                                        session = DBSessionManager.CreateDBSession(
-                                            DataSourceManager.CreateDefaultDataSource()); //数据访问对象
+                                        session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource()); //数据访问对象
 
-                                        SessionPool.Insert(sessionName, session);
+                                        SessionPool.Insert(sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString(), session);
                                 }
                         }
 
