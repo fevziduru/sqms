@@ -14,7 +14,6 @@ namespace SQMS.Application.Views.Quality
 
         public partial class EmergencyEventEdit : SQMSPage<EmergencyEventService>
         {
-                public string strSTIME;
 
                 protected void Page_Load(object sender, EventArgs e)
                 {
