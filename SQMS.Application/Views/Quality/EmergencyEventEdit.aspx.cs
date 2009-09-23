@@ -96,7 +96,7 @@ namespace SQMS.Application.Views.Quality
 
 
                                         this.ddlPRIVILIGE.SelectedValue = ConvertUtil.ToStringOrDefault(drEE["PRIVILIGE"]);
-                                        this.checkTime.Text = Convert.ToDateTime(drEE["CHECKTIME"]).ToString("yyyy-MM-dd hh:mm:ss");
+                                        this.checkTime.Text = Convert.ToDateTime(drEE["CHECKTIME"]).ToString();
 
                                         this.cbIsvoid.Checked = ConvertUtil.ToStringOrDefault(drEE["ISVOID"]).Equals("Y") ? true : false;
                                         this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drEE["MEMO"]);
