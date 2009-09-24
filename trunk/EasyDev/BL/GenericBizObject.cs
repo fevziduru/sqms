@@ -357,7 +357,7 @@ namespace EasyDev.BL
                                                 {
                                                         if (dt.Columns[i].DataType == typeof(string))
                                                         {
-                                                                drNew[i] = Guid.NewGuid().ToString();
+                                                                drNew[i] = Guid.NewGuid().ToString().Substring(0, dt.Columns[i].MaxLength);
                                                         }
                                                         else if (dt.Columns[i].DataType == typeof(Guid))
                                                         {
