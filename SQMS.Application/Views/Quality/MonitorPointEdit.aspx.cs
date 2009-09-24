@@ -38,8 +38,9 @@ namespace SQMS.Application.Views.Quality
                 drMP["MPNAME"] = this.txtMPName.Text;
                 drMP["MEMO"] = this.txtMemo.Text;
                 drMP["ORDERINROAD"] = this.txtOrderInRoad.Text;
-                //drMP["LONGITUDE"] = this.txtLng.Text;
-                //drMP["LATITUDE"] = this.txtLat.Text;
+                drMP["LONGITUDE"] = "";//this.txtLng.Text;
+                drMP["LATITUDE"] = "";//this.txtLat.Text;
+                drMP["MPTYPE"] = "monitorpoint";
                 drMP["ROADID"] = this.refRoad.SelectedValue;
                 drMP["SCHEMAID"] = this.refTimeSchema.SelectedValue;
                 drMP["FLOATDIST"] = ConvertUtil.ToDecimal(this.txtFloatDist.Text);

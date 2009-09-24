@@ -30,7 +30,7 @@ namespace SQMS.Application.Views.Quality
 
                 protected override void OnLoadDataEventHandler(object sender, EventArgs e)
                 {
-                        this.ViewData = srv.GetListData();//Service.LoadByCondition("organizationid='" + CurrentUser.OrganizationID + "'");
+                    this.ViewData = srv.GetListDataByType("monitorpoint");//Service.LoadByCondition("organizationid='" + CurrentUser.OrganizationID + "'");
                 }
 
                 protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace SQMS.Application.Views.Quality
                         }
 
                         //删除数据后重新加载数据
-                        this.ViewData = srv.GetListData();
+                        this.ViewData = srv.GetListDataByType("monitorpoint");
                         this.gvList.DataSource = this.ViewData;
                         this.gvList.DataBind();
                 }
