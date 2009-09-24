@@ -33,12 +33,12 @@ namespace SQMS.Services
                         }
                 }
 
-                public DataSet GetListData()
+                public DataSet GetListDataByType(string type)
                 {
                         try
                         {
                                 DataSet ds = DefaultSession.GetDataSetFromCommand(@"select mpa.mpid,mpa.mpname,mpa.isvoid,mpa.importance,mpa.longitude,mpa.latitude from mpassignment mpa
-                                        left join enumeration e on mpa.importance=e.enumid where mpa.organizationid=:orgid", CurrentUser.OrganizationID);
+                                        left join enumeration e on mpa.importance=e.enumid where mpa.organizationid=:orgid and mptype=:type", CurrentUser.OrganizationID, type);
                                 ds.Tables[0].TableName = BOName;
                                 return ds;
                         }
