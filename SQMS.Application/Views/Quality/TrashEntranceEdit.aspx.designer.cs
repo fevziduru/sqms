@@ -32,67 +32,121 @@ namespace SQMS.Application.Views.Quality {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// txtEEName control.
+        /// txtMPName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEEName;
+        protected global::System.Web.UI.WebControls.TextBox txtMPName;
         
         /// <summary>
-        /// txtEECode control.
+        /// rfvMPName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEECode;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMPName;
         
         /// <summary>
-        /// txtEECHECKUNIT control.
+        /// txtMPCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEECHECKUNIT;
+        protected global::System.Web.UI.WebControls.TextBox txtMPCode;
         
         /// <summary>
-        /// refEESCHEMAID control.
+        /// rfvMPCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SQMS.Application.PopupReference refEESCHEMAID;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMPCode;
         
         /// <summary>
-        /// checkTime control.
+        /// ddlImportance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox checkTime;
+        protected global::System.Web.UI.WebControls.DropDownList ddlImportance;
         
         /// <summary>
-        /// refEMP control.
+        /// refRoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SQMS.Application.PopupReference refEMP;
+        protected global::SQMS.Application.PopupReference refRoad;
         
         /// <summary>
-        /// ddlPRIVILIGE control.
+        /// refTimeSchema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPRIVILIGE;
+        protected global::SQMS.Application.PopupReference refTimeSchema;
+        
+        /// <summary>
+        /// txtOrderInRoad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrderInRoad;
+        
+        /// <summary>
+        /// txtLng control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLng;
+        
+        /// <summary>
+        /// txtLat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLat;
+        
+        /// <summary>
+        /// txtFloatDist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFloatDist;
+        
+        /// <summary>
+        /// txtMapLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMapLevel;
+        
+        /// <summary>
+        /// rvMapLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvMapLevel;
         
         /// <summary>
         /// cbIsvoid control.
