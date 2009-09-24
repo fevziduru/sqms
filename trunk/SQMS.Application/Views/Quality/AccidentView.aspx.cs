@@ -11,60 +11,66 @@ using EasyDev.Util;
 
 namespace SQMS.Application.Views.Quality
 {
-        public partial class AccidentView : SQMSPage<EmergencyEventService>
-        {
-        protected void Page_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        protected override void OnPreInitializeViewEventHandler(object sender, EventArgs e)
+        public partial class AccidentView : SQMSPage<MonitorPointService>
         {
-
-        }
-
-        protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
-        {
-            DataRow drEE = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
-            if (drEE != null)
+            protected void Page_Load(object sender, EventArgs e)
             {
-                this.ID = ConvertUtil.ToStringOrDefault(drEE["EVENTID"]);
-                this.lbl_code.Text = ConvertUtil.ToStringOrDefault(drEE["EVENTCODE"]);
-                this.lbl_name.Text = ConvertUtil.ToStringOrDefault(drEE["EVENTNAME"]);
-                this.lbl_cu.Text = ConvertUtil.ToStringOrDefault(drEE["CHECKUNIT"]);
-                this.lbl_ct.Text = ConvertUtil.ToStringOrDefault(drEE["CHECKTIME"]);
 
-                this.lbl_emp.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drEE["EMERGENCYCHARGEPERSON"])));
-                this.lbl_time.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("SCHEMANAME", "TIMESCHEMA", "SCHEMAID", ConvertUtil.ToStringOrDefault(drEE["SCHEMAID"])));
+            }
 
-                this.lbl_pri.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drEE["PRIVILIGE"])));
+            protected override void OnInitializeViewEventHandler(object sender, EventArgs e)
+            {
+                DataRow drMP = DataSetUtil.GetFirstRowFromDataSet(this.ViewData, Service.BOName);
 
-                this.lbl_isvoid.Text = ConvertUtil.ToStringOrDefault(drEE["ISVOID"]).Equals("Y") ? "禁用" : "禁用";
-                this.lbl_memo.Text = ConvertUtil.ToStringOrDefault(drEE["MEMO"]);
+                if (drMP != null)
+                {
+                    this.lblMPCode.Text = ConvertUtil.ToStringOrDefault(drMP["MPCODE"]);
+                    this.lblMPName.Text = ConvertUtil.ToStringOrDefault(drMP["MPNAME"]);
+
+                    this.lblImportance.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", ConvertUtil.ToStringOrDefault(drMP["IMPORTANCE"])));
+                    this.lblRoad.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("roadname", "road", "roadid", ConvertUtil.ToStringOrDefault(drMP["roadid"])));
+                    this.lblTimeSchema.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("schemaname", "timeschema", "schemaid", ConvertUtil.ToStringOrDefault(drMP["schemaid"])));
+                    //this.lblLng.Text = ConvertUtil.ToStringOrDefault(drMP["LONGITUDE"]);
+                    //this.lblLat.Text = ConvertUtil.ToStringOrDefault(drMP["LATITUDE"]);
+                    this.lblOrderInRoad.Text = ConvertUtil.ToStringOrDefault(drMP["ORDERINROAD"]);
+                    this.lblFloatDist.Text = ConvertUtil.ToStringOrDefault(drMP["FLOATDIST"]);
+                    this.lblMapLevel.Text = ConvertUtil.ToStringOrDefault(drMP["MPLEVEL"]);
+
+                    this.lblIsvoid.Text = ConvertUtil.ToStringOrDefault(drMP["ISVOID"]).Equals("Y") ? "禁用" : "启用";
+                    this.lblMemo.Text = ConvertUtil.ToStringOrDefault(drMP["MEMO"]);
+
+                    this.btnViewMPBottom.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.ID, ConvertUtil.ToStringOrDefault(drMP["MPNAME"])));
+                    this.btnViewMPTop.Attributes.Add("onclick", string.Format("OpenDialog('{0}','{1}')", this.ID, ConvertUtil.ToStringOrDefault(drMP["MPNAME"])));
+                }
+            }
+
+            protected override void OnLoadDataEventHandler(object sender, EventArgs e)
+            {
+                this.ViewData = Service.LoadByKey(this.ID, true);
+            }
+
+            public void btnDelete_OnClick(object sender, EventArgs e)
+            {
+                Service.DeleteByKey(this.ID);
+
+                Response.Redirect("AccidentList.aspx?p=mplist");
+            }
+
+            public void btnEdit_OnClick(object sender, EventArgs e)
+            {
+                Response.Redirect("AccidentEdit.aspx?p=mpedit&id=" + this.ID);
+            }
+
+            public void btnNew_OnClick(object sender, EventArgs e)
+            {
+                Response.Redirect("AccidentEdit.aspx?p=mpnew");
+            }
+
+            public void btnQuality_OnClick(object sender, EventArgs e)
+            {
+                Response.Redirect("QualityAppraisalList.aspx?p=qalist&id=" + this.ID);
             }
         }
-
-        protected override void OnLoadDataEventHandler(object sender, EventArgs e)
-        {
-            this.ViewData = Service.LoadByKey(this.ID, true);
-        }
-
-        public void btnDelete_OnClick(object sender, EventArgs e)
-        {
-            Service.DeleteByKey(this.ID);
-
-            Response.Redirect("AccidentList.aspx?p=emergencylist");
-        }
-
-        public void btnEdit_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("AccidentEdit.aspx?p=emergencyedit&id=" + this.ID);
-        }
-
-        public void btnNew_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("AccidentEdit.aspx?p=emergencynew");
-        }
-    }
         
 }

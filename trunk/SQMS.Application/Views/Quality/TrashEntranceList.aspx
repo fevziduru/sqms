@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <div>
-        <table style="width:100%">
+<table style="width:100%">
         <tr>
             <td align="center">
                 <fieldset>
@@ -15,53 +15,42 @@
         </tr>
     </table>
     <br />
-    <asp:GridView ID="gvEEList" runat="server" AllowPaging="True"  Width="100%" CssClass="gridview"
-        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="EVENTID" OnSorting="gvEmployeeList_Sorting"
-        EmptyDataText="没有可显示的数据记录。"  ShowFooter="true"
-         onrowcommand="GridView1_RowCommand" 
-        onpageindexchanging="gvEmployeeList_PageIndexChanging">
+    
+    <asp:GridView Width="100%" ID="gvList" runat="server" AllowPaging="True" CssClass="gridview"
+        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MPID" OnSorting="gvList_Sorting" PageSize="25"
+        EmptyDataText="没有可显示的数据记录。" 
+        onrowcommand="gvList_RowCommand" 
+        onpageindexchanging="gvList_PageIndexChanging">
         <Columns>
-            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="30px">
+            <asp:TemplateField HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"  HeaderStyle-Width="30px">
                 <HeaderTemplate>
-                    <input name="header" onclick='SelectAll("<%=this.gvEEList.ClientID %>")' type="checkbox" value='<%#Eval("EVENTID") %>' />
+                    <input name="header" onclick='SelectAll("<%=this.gvList.ClientID %>")' type="checkbox" value='<%#Eval("MPID") %>' />
                 </HeaderTemplate>
-                <ItemTemplate>
-                    <input name="__KeyValues__" type="checkbox" value='<%#Eval("EVENTID") %>' />
+                <ItemTemplate>                
+                    <input name="__KeyValues__" type="checkbox" value='<%#Eval("MPID") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="MPID" HeaderText="MPID" ReadOnly="True" SortExpression="MPID" Visible="False" />
+            <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="MPID" 
+                DataNavigateUrlFormatString="/Views/Quality/TrashEntranceView.aspx?p=mpview&id={0}" 
+                DataTextField="MPNAME" HeaderText="监控点名称" SortExpression="MPNAME" />
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="IMPORTANCE" HeaderText="重要性" SortExpression="IMPORTANCE" />    
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LONGITUDE" HeaderText="经度" SortExpression="LONGITUDE" />
+            <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LATITUDE" HeaderText="纬度" SortExpression="LATITUDE" />
             
-            <asp:BoundField DataField="EVENTID" HeaderText="渣口编号" ReadOnly="True" HeaderStyle-HorizontalAlign="Left"
-                SortExpression="EVENTID" Visible="False" />
-                
-            <asp:HyperLinkField DataNavigateUrlFields="EVENTID" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left"
-                DataNavigateUrlFormatString="/Views/Quality/TrashEntranceView.aspx?p=emergencyview&id={0}" 
-                DataTextField="EVENTNAME" HeaderText="渣口名称" SortExpression="EVENTNAME" />
-                
-            <%--<asp:BoundField DataField="PRIVILIGE" HeaderText="优先级"  ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" SortExpression="PRIVILIGE" />--%>
-            
-            <asp:TemplateField HeaderText="优先级"　SortExpression="PRIVILIGE" HeaderStyle-HorizontalAlign="Left">
-                <ItemTemplate>
-                    <span><%# Service.GetReferenceValue("ENUMNAME", "ENUMERATION", "ENUMID", Eval("PRIVILIGE").ToString()) %></span>
-                </ItemTemplate>
-            </asp:TemplateField>
-                
-            <asp:BoundField DataField="CHECKUNIT" HeaderText="检查单位" SortExpression="CHECKUNIT" ItemStyle-HorizontalAlign="Left" HeaderStyle-HorizontalAlign="Left" />
- 
-             <asp:TemplateField HeaderText="状态"　SortExpression="ISVOID" HeaderStyle-HorizontalAlign="Left">
+            <asp:TemplateField HeaderText="状态" SortExpression="ISVOID" HeaderStyle-HorizontalAlign="Left">                
                 <ItemTemplate>
                     <span><%#Eval("ISVOID").ToString().Equals("Y")?"禁用":"启用" %></span>
                 </ItemTemplate>
             </asp:TemplateField>
-                
-            <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center"
-                SelectText="编辑">
-            <ItemStyle Width="60px" />
-            </asp:CommandField>
             
+            <asp:CommandField ShowSelectButton="True" ItemStyle-HorizontalAlign="Center" SelectText="编辑">
+                <ItemStyle Width="60px" />
+            </asp:CommandField>
         </Columns>
-        <FooterStyle CssClass="footer" />
     </asp:GridView>
     <br />
+   
     <table style="width:100%">
         <tr>
             <td align="center">
@@ -72,6 +61,6 @@
             </td>
         </tr>
     </table>
-    </div>
+     </div>
 
 </asp:Content>
