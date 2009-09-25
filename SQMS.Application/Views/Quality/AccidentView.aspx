@@ -23,12 +23,12 @@
     <br />
     
     <fieldset>
-    <legend>监控点基本信息</legend>    
+    <legend>事故现场基本信息</legend>    
     <table style="width:100%">
         <tr>
-            <td style="width:110px">监控点名称：</td>
+            <td style="width:110px">事故现场名称：</td>
             <td style="width:330px"><asp:Label ID="lblMPName" runat="server" ></asp:Label></td>
-            <td style="width:110px">监控点编码：</td>
+            <td style="width:110px">事故现场编码：</td>
             <td style="width:330px"><asp:Label ID="lblMPCode" runat="server" ></asp:Label></td>
         </tr>
          <tr>

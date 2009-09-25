@@ -24,12 +24,12 @@
     <br />
     
     <fieldset>
-    <legend>监控点基本信息</legend>    
+    <legend>渣口基本信息</legend>    
     <table style="width:100%">
         <tr>
-            <td style="width:110px">监控点名称：</td>
+            <td style="width:110px">渣口名称：</td>
             <td style="width:330px"><asp:Label ID="lblMPName" runat="server" ></asp:Label></td>
-            <td style="width:110px">监控点编码：</td>
+            <td style="width:110px">渣口编码：</td>
             <td style="width:330px"><asp:Label ID="lblMPCode" runat="server" ></asp:Label></td>
         </tr>
          <tr>
@@ -45,7 +45,7 @@
          <tr>
                 <td>序号：</td>
                 <td><asp:Label ID="lblOrderInRoad"  Width="210" runat="server" ></asp:Label></td>  
-            <%--<td>经度：</td>
+<%--            <td>经度：</td>
             <td><asp:Label ID="lblLng"  Width="210" runat="server" ></asp:Label></td>  
             <td>纬度：</td>
             <td><asp:Label ID="lblLat" Width="210" runat="server" ></asp:Label></td>--%>
