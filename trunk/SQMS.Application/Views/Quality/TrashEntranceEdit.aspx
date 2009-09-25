@@ -11,7 +11,7 @@
 <div>
      <table style="width:100%">
         <tr>
-            <td align="right"><a href="TrashEntranceList.aspx?p=mplist">返回到列表</a></td>
+            <td align="right"><a href="TrashEntranceList.aspx?p=trashentrancelist">返回到列表</a></td>
         </tr>
         <tr>        
             <td align="center">
