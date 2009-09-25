@@ -27,6 +27,10 @@
     <legend>渣口基本信息</legend>    
     <table style="width:100%">
         <tr>
+            <td style="width:110px">监控点类型：</td>
+            <td style="width:330px"><asp:Label ID="Label1" runat="server" Text="渣口"></asp:Label></td>
+        </tr>    
+        <tr>
             <td style="width:110px">渣口名称：</td>
             <td style="width:330px"><asp:Label ID="lblMPName" runat="server" ></asp:Label></td>
             <td style="width:110px">渣口编码：</td>

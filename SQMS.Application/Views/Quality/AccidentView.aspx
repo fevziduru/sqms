@@ -1,5 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Main.Master" AutoEventWireup="true" CodeBehind="AccidentView.aspx.cs" Inherits="SQMS.Application.Views.Quality.AccidentView" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .style1
+        {
+            width: 117px;
+        }
+        .style2
+        {
+            width: 120px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -26,23 +36,27 @@
     <legend>事故现场基本信息</legend>    
     <table style="width:100%">
         <tr>
-            <td style="width:110px">事故现场名称：</td>
+            <td style="width:110px">监控点类型：</td>
+            <td style="width:330px"><asp:Label ID="Label1" runat="server" Text="事故现场"></asp:Label></td>
+        </tr>        
+        <tr>
+            <td class="style1">事故现场名称：</td>
             <td style="width:330px"><asp:Label ID="lblMPName" runat="server" ></asp:Label></td>
-            <td style="width:110px">事故现场编码：</td>
+            <td class="style2">事故现场编码：</td>
             <td style="width:330px"><asp:Label ID="lblMPCode" runat="server" ></asp:Label></td>
         </tr>
          <tr>
-            <td>重要性：</td>
+            <td class="style1">重要性：</td>
             <td><asp:Label ID="lblImportance" runat="server" ></asp:Label></td>
         </tr>
           <tr>
-            <td>所属路段：</td>
+            <td class="style1">所属路段：</td>
             <td><asp:Label ID="lblRoad" runat="server" ></asp:Label></td>
-            <td>监控时间段：</td>
+            <td class="style2">监控时间段：</td>
             <td><asp:Label ID="lblTimeSchema" runat="server" ></asp:Label></td>
         </tr>
          <tr>
-                <td>序号：</td>
+                <td class="style1">序号：</td>
                 <td><asp:Label ID="lblOrderInRoad"  Width="210" runat="server" ></asp:Label></td>  
             <%--<td>经度：</td>
             <td><asp:Label ID="lblLng"  Width="210" runat="server" ></asp:Label></td>  
@@ -50,17 +64,17 @@
             <td><asp:Label ID="lblLat" Width="210" runat="server" ></asp:Label></td>--%>
         </tr>
         <tr>
-            <td>浮动距离：</td>
+            <td class="style1">浮动距离：</td>
             <td><asp:Label ID="lblFloatDist"  Width="210" runat="server" ></asp:Label></td>              
-            <td>缩放级别：</td>
+            <td class="style2">缩放级别：</td>
             <td><asp:Label ID="lblMapLevel"  Width="210" runat="server" ></asp:Label></td>              
         </tr>
            <tr>
-            <td>状态：</td>
+            <td class="style1">状态：</td>
             <td colspan="3"><asp:Label ID="lblIsvoid" runat="server" ></asp:Label></td>
         </tr>
         <tr>
-            <td>备注：</td>
+            <td class="style1">备注：</td>
             <td colspan="3"><asp:Label ID="lblMemo" Width="210" runat="server" ></asp:Label></td>
         </tr>
     </table>
