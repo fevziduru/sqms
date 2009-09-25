@@ -68,11 +68,15 @@
          <tr>
                 <td  style="width:110px">序号：</td>
                 <td style="width:330px" colspan="3"><asp:TextBox ID="txtOrderInRoad"  Width="210" runat="server" ></asp:TextBox></td>  
+        </tr>
+        
+        <tr>
             <td  style="width:110px">经度：</td>
             <td style="width:330px"><asp:TextBox ID="txtLng"  Width="210" runat="server" ></asp:TextBox></td>  
             <td style="width:110px">纬度：</td>
             <td style="width:330px"><asp:TextBox ID="txtLat" Width="210" runat="server" ></asp:TextBox></td>
         </tr>
+        
          <tr>
             <td style="width:110px">浮动距离：</td>
             <td  style="width:330px">
