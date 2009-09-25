@@ -17,7 +17,7 @@ namespace SQMS.Application.Views.Quality
             private MonitorPointService srv = null;
 
             protected void Page_Load(object sender, EventArgs e)
-            {
+          {
 
             }
 

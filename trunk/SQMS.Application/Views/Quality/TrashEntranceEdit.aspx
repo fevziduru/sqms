@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Main.Master" AutoEventWireup="true" CodeBehind="TrashEntranceEdit.aspx.cs" Inherits="SQMS.Application.Views.Quality.TrashEntranceEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Main.Master" EnableViewStateMac="false" AutoEventWireup="true" CodeBehind="TrashEntranceEdit.aspx.cs" Inherits="SQMS.Application.Views.Quality.TrashEntranceEdit" %>
 
 <%@ Register src="../Components/PopupReference/PopupReference.ascx" tagname="PopupReference" tagprefix="uc1" %>
 <%@ Register src="../Components/PopupReference/PopupReference.ascx" tagname="PopupReference" tagprefix="uc2" %>
