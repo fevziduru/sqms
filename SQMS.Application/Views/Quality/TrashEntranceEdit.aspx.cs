@@ -133,7 +133,7 @@ namespace SQMS.Application.Views.Quality
                     throw;
                 }
 
-                Response.Redirect(String.Format("TrashEntranceView.aspx?p=mpview&id={0}", this.ID));
+                Response.Redirect(String.Format("TrashEntranceView.aspx?p=trashentranceview&id={0}", this.ID));
             }
 
             public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace SQMS.Application.Views.Quality
                     throw ex;
                 }
 
-                Response.Redirect("TrashEntranceEdit.aspx?p=mpnew");
+                Response.Redirect("TrashEntranceEdit.aspx?p=trashentrancenew");
             }
         }
         

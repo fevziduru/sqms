@@ -134,7 +134,7 @@ namespace SQMS.Application.Views.Quality
                     throw;
                 }
 
-                Response.Redirect(String.Format("AccidentView.aspx?p=mpview&id={0}", this.ID));
+                Response.Redirect(String.Format("AccidentView.aspx?p=accidentview&id={0}", this.ID));
             }
 
             public void btnSaveAndNew_Click(object sender, EventArgs e)
@@ -149,7 +149,7 @@ namespace SQMS.Application.Views.Quality
                     throw ex;
                 }
 
-                Response.Redirect("AccidentEdit.aspx?p=mpnew");
+                Response.Redirect("AccidentEdit.aspx?p=accidentnew");
             }
         }
         

@@ -54,17 +54,17 @@ namespace SQMS.Application.Views.Quality
             {
                 Service.DeleteByKey(this.ID);
 
-                Response.Redirect("AccidentList.aspx?p=mplist");
+                Response.Redirect("AccidentList.aspx?p=accidentlist");
             }
 
             public void btnEdit_OnClick(object sender, EventArgs e)
             {
-                Response.Redirect("AccidentEdit.aspx?p=mpedit&id=" + this.ID);
+                Response.Redirect("AccidentEdit.aspx?p=accidentedit&id=" + this.ID);
             }
 
             public void btnNew_OnClick(object sender, EventArgs e)
             {
-                Response.Redirect("AccidentEdit.aspx?p=mpnew");
+                Response.Redirect("AccidentEdit.aspx?p=accidentnew");
             }
 
             public void btnQuality_OnClick(object sender, EventArgs e)
