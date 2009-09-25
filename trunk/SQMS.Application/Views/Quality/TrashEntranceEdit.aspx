@@ -25,10 +25,10 @@
     <br />
     
     <fieldset>
-    <legend>监控点基本信息</legend>    
+    <legend>渣口基本信息</legend>    
     <table style="width:100%">
         <tr>
-            <td style="width:110px">监控点名称：</td>
+            <td style="width:110px">渣口名称：</td>
             <td style="width:330px">
                 <asp:TextBox ID="txtMPName" runat="server" ></asp:TextBox><span style="color:Red">*</span>
                 <asp:RequiredFieldValidator ID="rfvMPName" runat="server" 
@@ -37,7 +37,7 @@
                     ErrorMessage="监控点名称必填"
                     Display="Dynamic" ></asp:RequiredFieldValidator>
             </td>
-            <td style="width:110px">监控点编码：</td>
+            <td style="width:110px">渣口编码：</td>
             <td style="width:330px">
                 <asp:TextBox ID="txtMPCode" runat="server" ></asp:TextBox><span style="color:Red">*</span>
                 <asp:RequiredFieldValidator ID="rfvMPCode" runat="server" 

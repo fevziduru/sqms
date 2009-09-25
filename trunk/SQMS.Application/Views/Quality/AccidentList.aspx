@@ -33,7 +33,7 @@
             <asp:BoundField DataField="MPID" HeaderText="MPID" ReadOnly="True" SortExpression="MPID" Visible="False" />
             <asp:HyperLinkField HeaderStyle-HorizontalAlign="Left" DataNavigateUrlFields="MPID" 
                 DataNavigateUrlFormatString="/Views/Quality/AccidentView.aspx?p=mpview&id={0}" 
-                DataTextField="MPNAME" HeaderText="监控点名称" SortExpression="MPNAME" />
+                DataTextField="MPNAME" HeaderText="事故现场名称" SortExpression="MPNAME" />
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="IMPORTANCE" HeaderText="重要性" SortExpression="IMPORTANCE" />    
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LONGITUDE" HeaderText="经度" SortExpression="LONGITUDE" />
             <asp:BoundField HeaderStyle-HorizontalAlign="Left" DataField="LATITUDE" HeaderText="纬度" SortExpression="LATITUDE" />
