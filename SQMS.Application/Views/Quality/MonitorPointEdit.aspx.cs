@@ -38,8 +38,8 @@ namespace SQMS.Application.Views.Quality
                 drMP["MPNAME"] = this.txtMPName.Text;
                 drMP["MEMO"] = this.txtMemo.Text;
                 drMP["ORDERINROAD"] = this.txtOrderInRoad.Text;
-                drMP["LONGITUDE"] = "";//this.txtLng.Text;
-                drMP["LATITUDE"] = "";//this.txtLat.Text;
+                drMP["LONGITUDE"] = this.txtLng.Text;
+                drMP["LATITUDE"] = this.txtLat.Text;
                 drMP["MPTYPE"] = "monitorpoint";
                 drMP["ROADID"] = this.refRoad.SelectedValue;
                 drMP["SCHEMAID"] = this.refTimeSchema.SelectedValue;
@@ -87,8 +87,8 @@ namespace SQMS.Application.Views.Quality
                     this.txtMPCode.Text = ConvertUtil.ToStringOrDefault(drMP["MPCODE"]);
                     this.txtMPName.Text = ConvertUtil.ToStringOrDefault(drMP["MPNAME"]);
                     this.txtMemo.Text = ConvertUtil.ToStringOrDefault(drMP["MEMO"]);
-                    //this.txtLng.Text = ConvertUtil.ToStringOrDefault(drMP["LONGITUDE"]);
-                    //this.txtLat.Text = ConvertUtil.ToStringOrDefault(drMP["LATITUDE"]);
+                    this.txtLng.Text = ConvertUtil.ToStringOrDefault(drMP["LONGITUDE"]);
+                    this.txtLat.Text = ConvertUtil.ToStringOrDefault(drMP["LATITUDE"]);
                     this.txtOrderInRoad.Text = ConvertUtil.ToStringOrDefault(drMP["ORDERINROAD"]);
 
                     this.refRoad.SelectedValue = ConvertUtil.ToStringOrDefault(drMP["ROADID"]);
