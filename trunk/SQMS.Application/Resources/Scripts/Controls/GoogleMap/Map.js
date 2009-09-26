@@ -1,20 +1,33 @@
 ﻿/// <reference name="MicrosoftAjax.js"/>
+/**
+ * 记录日志
+ */
 function log(msg) {
     //document.getElementById("divLog").innerHTML += msg + "<br />";
 }
+/**
+* 在页面卸载时执行。防止IE memory leak
+*/
 function unload() {
     GUnload();
 }
+
 function escKeyUpHandler(e) {
     if (e.keyCode == '27') {
         closeDetail();
         $removeHandler(document.body, "keyup", escKeyUpHandler);
     }
 }
+/**
+* 关闭全屏信息窗口，通常这个窗口用于显示标记点详细信息
+*/
 function closeDetail() {
     this.parentElement.parentElement.style.display = 'none';
     map.getInfoWindow().restore();
 }
+/**
+* 初始化地图，要求页面上包含ID为map_canvas的div元素，地图将在这个div中创建。
+*/
 function initMap() {
     if (GBrowserIsCompatible()) {
         if (!map) {
@@ -107,6 +120,16 @@ function initMap() {
         }
     }
 }
+/**
+* 移动到某个标记点并打开信息窗口的触发器。
+* 在需要通过异步HTTP请求获取标记点的情况下，
+* 可以使地图在异步请求返回时将中心点移动到特定的标记点，并打开信息窗口。
+* 用法：
+*    setToMarkerListener.enable = true;
+*    setToMarkerListener.setCenter = true;
+*    setToMarkerListener.openInfoWindow = true;
+*    setToMarkerListener.mpid = [mpid];//监控点ID，将会移动到这个监控点对应的地图标记点上。
+*/
 var setToMarkerListener = {
     enable: false,
     setCenter: false,
