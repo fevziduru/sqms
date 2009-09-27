@@ -1,7 +1,11 @@
 ﻿/// <reference name="MicrosoftAjax.js"/>
+/// <reference name="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"/>
+/*
+* Map.js依赖于Google Map API v2，ASP.Net AJAX客户端库，Marker.js，引用Map.js前请先引用Google Map API v2，ASP.Net AJAX客户端库，Marker.js
+*/
 /**
- * 记录日志
- */
+* 记录日志
+*/
 function log(msg) {
     //document.getElementById("divLog").innerHTML += msg + "<br />";
 }
