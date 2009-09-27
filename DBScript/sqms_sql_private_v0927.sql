@@ -1918,14 +1918,14 @@ CREATE TABLE VEHICLETASK  (
    TRACE                CLOB,
    CHARGEMAN            VARCHAR2(40),
    LICENSEPLATENUM      VARCHAR2(400),
-   ISGASSUPPLIED        CHAR(1)                        DEFAULT '¡®N¡¯' NOT NULL,
+   ISGASSUPPLIED        CHAR(1)                        DEFAULT 'N' NOT NULL,
    ISWATERSUPPLIED      CHAR(1)                        DEFAULT 'N' NOT NULL,
    ISREPAIRED           CHAR(1)                        DEFAULT 'N' NOT NULL,
    CREATED              DATE                           DEFAULT SYSDATE NOT NULL,
    CREATEDBY            VARCHAR2(40),
    MODIFIED             DATE                           DEFAULT SYSDATE NOT NULL,
    MODIFIEDBY           VARCHAR2(40),
-   ISVOID               CHAR(1)                        DEFAULT '¡¯N¡®' NOT NULL,
+   ISVOID               CHAR(1)                        DEFAULT 'N' NOT NULL,
    CONSTRAINT PK_VEHICLETASK PRIMARY KEY (TASKID)
 );
 
