@@ -22,6 +22,8 @@ drop sequence SEQ_TIMEITEM;
 drop sequence SEQ_TIME;
 drop sequence SEQ_MENU;
 drop sequence SEQ_EMERGENCYEVENT;
+drop sequence SEQ_VEHICLETASK;
+drop sequence SEQ_VEHICLETASKDATA;
 
 -- Create sequence 
 create sequence SEQ_QUALITYDATA
@@ -208,3 +210,16 @@ start with 0
 increment by 1
 cache 20;
 
+create sequence SEQ_VEHICLETASK
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+create sequence SEQ_VEHICLETASKDATA
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
