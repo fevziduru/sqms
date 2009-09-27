@@ -7,7 +7,7 @@
 
 <script src="../../Resources/Scripts/Controls/GoogleMap/MarkerManager.js" type="text/javascript"></script>
 
-<script src="../../Resources/Scripts/Controls/GoogleMap/Wrapper.js" type="text/javascript"></script>
+<script src="../../Resources/Scripts/Controls/GoogleMap/Marker.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="../../Resources/Scripts/Controls/GoogleMap/Map.js"></script>
 
