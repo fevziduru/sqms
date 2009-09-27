@@ -2053,7 +2053,7 @@ COMMENT ON COLUMN VEHICLETASKDATA.ISVOID IS
 /*==============================================================*/
 CREATE TABLE VIDEO  (
    VIDEOID              VARCHAR2(40)                    NOT NULL,
-   事件ID                 VARCHAR2(40),
+   EVENTID                 VARCHAR2(40),
    VIDEONAME            VARCHAR2(100),
    MEMO                 VARCHAR2(500),
    VIDEOURL             VARCHAR2(2000),
@@ -2075,7 +2075,7 @@ COMMENT ON TABLE VIDEO IS
 COMMENT ON COLUMN VIDEO.VIDEOID IS
 'VideoId';
 
-COMMENT ON COLUMN VIDEO.事件ID IS
+COMMENT ON COLUMN VIDEO.EVENTID IS
 '事件ID';
 
 COMMENT ON COLUMN VIDEO.VIDEONAME IS
