@@ -129,6 +129,9 @@
     <Compile Include="UserRoleService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="VehicleMissionService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="VideoService.cs">
       <SubType>Component</SubType>
     </Compile>

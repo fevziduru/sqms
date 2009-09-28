@@ -239,6 +239,13 @@
     <Compile Include="Views\AjaxServices\QualityControl\Video.aspx.designer.cs">
       <DependentUpon>Video.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\AjaxServices\VehicleMission\VehicleMission.aspx.cs">
+      <DependentUpon>VehicleMission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AjaxServices\VehicleMission\VehicleMission.aspx.designer.cs">
+      <DependentUpon>VehicleMission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Basedata\EquipmentEdit.aspx.cs">
       <DependentUpon>EquipmentEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -806,6 +813,13 @@
     </Compile>
     <Compile Include="Views\Quality\QualityMonitorPointMap.aspx.designer.cs">
       <DependentUpon>QualityMonitorPointMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleMonitor.aspx.cs">
+      <DependentUpon>VehicleMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleMonitor.aspx.designer.cs">
+      <DependentUpon>VehicleMonitor.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebServices\MobileWebService.asmx.cs">
       <DependentUpon>MobileWebService.asmx</DependentUpon>
@@ -1588,6 +1602,7 @@
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
+    <Content Include="Views\AjaxServices\VehicleMission\VehicleMission.aspx" />
     <Content Include="Views\Basedata\EquipmentEdit.aspx" />
     <Content Include="Views\Basedata\EquipmentList.aspx" />
     <Content Include="Views\Basedata\EquipmentView.aspx" />
@@ -1657,6 +1672,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\sprite.psd" />
+    <Content Include="Views\Vehicle\VehicleMonitor.aspx" />
     <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
