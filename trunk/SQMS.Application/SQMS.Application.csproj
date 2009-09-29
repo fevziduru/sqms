@@ -200,6 +200,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VIDEO.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\VEHICLETASK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -820,6 +825,27 @@
     </Compile>
     <Compile Include="Views\Vehicle\VehicleMonitor.aspx.designer.cs">
       <DependentUpon>VehicleMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskEdit.aspx.cs">
+      <DependentUpon>VehicleTaskEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskEdit.aspx.designer.cs">
+      <DependentUpon>VehicleTaskEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskList.aspx.cs">
+      <DependentUpon>VehicleTaskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskList.aspx.designer.cs">
+      <DependentUpon>VehicleTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskView.aspx.cs">
+      <DependentUpon>VehicleTaskView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Vehicle\VehicleTaskView.aspx.designer.cs">
+      <DependentUpon>VehicleTaskView.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebServices\MobileWebService.asmx.cs">
       <DependentUpon>MobileWebService.asmx</DependentUpon>
@@ -1667,12 +1693,26 @@
     <None Include="Config\Schema\EMERGENCYEVENT.xss">
       <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
     </None>
+    <None Include="Config\Schema\VEHICLETASK.xsc">
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\VEHICLETASK.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VEHICLETASK.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\VEHICLETASK.xss">
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\Scripts\Controls\yui\build\assets\skins\sam\sprite.psd" />
     <Content Include="Views\Vehicle\VehicleMonitor.aspx" />
+    <Content Include="Views\Vehicle\VehicleTaskEdit.aspx" />
+    <Content Include="Views\Vehicle\VehicleTaskList.aspx" />
+    <Content Include="Views\Vehicle\VehicleTaskView.aspx" />
     <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
