@@ -4,9 +4,28 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+<link type="text/css" href="../../Resources/CSS/Controls/jquery/redmond/jquery-ui.css" rel="stylesheet" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+	<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery/jqueryui.js"></script>
+	<script type="text/javascript" src="../../Resources/Scripts/Controls/jquery/timepicker.js"></script>
+
+            <script type="text/javascript">
+                $(function() {
+                                    $('.timepicker').datepicker({
+                                        duration: '',
+                                        showTime: true,
+                                        constrainInput: false,
+                                        stepMinutes: 1,
+                                        stepHours: 1,
+                                        altTimeField: '',
+                                        time24h: true
+                                    });
+                });
+            </script>
 
 <div>
      <table style="width:100%">
@@ -51,14 +70,14 @@
         
         <tr>
             <td class="style1">任务开始时间：</td>
-            <td style="width:330px"><asp:TextBox ID="txtStartTime"  Width="210" runat="server" ></asp:TextBox></td>  
+            <td style="width:330px"><asp:TextBox ID="txtStartTime"  Width="210" CssClass="timepicker" runat="server" ></asp:TextBox></td>  
             <td class="style2">任务结束时间：</td>
-            <td style="width:330px"><asp:TextBox ID="txtEndTime" Width="210" runat="server" ></asp:TextBox></td>
+            <td style="width:330px"><asp:TextBox ID="txtEndTime" Width="210" CssClass="timepicker" runat="server" ></asp:TextBox></td>
         </tr>
         
        <tr>
             <td class="style1">任务下达时间：</td>
-            <td style="width:330px"><asp:TextBox ID="txtPubTime"  Width="210" runat="server" ></asp:TextBox></td>  
+            <td style="width:330px"><asp:TextBox ID="txtPubTime"  Width="210" CssClass="timepicker" runat="server" ></asp:TextBox></td>  
             <td class="style2">车辆型号：</td>
             <td style="width:330px"><asp:TextBox ID="txtMODEL" Width="210" runat="server" ></asp:TextBox></td>
         </tr>        
