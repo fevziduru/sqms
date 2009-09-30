@@ -44,6 +44,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -141,6 +144,7 @@
     </Compile>
     <Compile Include="Applications\SQMS\UserIdentity.cs" />
     <Compile Include="Applications\SQMS\UserInfo.cs" />
+    <Compile Include="BL\Extensions\GenericServiceExtension.cs" />
     <Compile Include="BL\Services\AbstractServiceManager.cs" />
     <Compile Include="Cache\CacheFactory.cs" />
     <Compile Include="Cache\CacheItem.cs" />
@@ -173,6 +177,9 @@
     <Compile Include="Configuration\ResourceConfig\ResourceItemConfig.cs" />
     <Compile Include="Configuration\ResourceConfig\ResourcesConfigManager.cs" />
     <Compile Include="Configuration\SSODataProviderConfig.cs" />
+    <Compile Include="Expressions\ExpressionVisitor.cs" />
+    <Compile Include="Expressions\ParameterReplacer.cs" />
+    <Compile Include="Expressions\SpecificationExpressionExtensions.cs" />
     <Compile Include="PL\Builder\SqlBuilder.cs" />
     <Compile Include="PL\DataSources\DataSourceManager.cs" />
     <Compile Include="PL\DataSources\DataSourceObject.cs" />
@@ -229,6 +236,7 @@
     <Compile Include="Util\ConvertException.cs" />
     <Compile Include="Util\ConvertUtil.cs" />
     <Compile Include="Util\DataSetUtil.cs" />
+    <Compile Include="Util\Extensions\UtilityExtension.cs" />
     <Compile Include="Util\ExtractException.cs" />
     <Compile Include="Util\SerializeUtil.cs" />
     <Compile Include="Util\StreamUtil.cs" />
