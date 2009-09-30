@@ -101,7 +101,7 @@ namespace EasyDev.BL
                 /// </code>
                 /// 取得与用户信息相关的数据库SESSION对象<br/>
                 /// <code>
-                /// GenericDBSession session = GetSession(p=>p["orgid"].ToString().Equal(CurrentUser.OrganizationID));
+                /// GenericDBSession session = GetSession(p=>p.Field<string>("orgid").Equal(CurrentUser.OrganizationID));
                 /// </code>
                 /// </example>
                 /// <returns></returns>
@@ -118,10 +118,10 @@ namespace EasyDev.BL
                                 {
                                         if ((bool)func.DynamicInvoke(row))
                                         {
-                                                string provider = ConvertUtil.ToStringOrDefault(row["provider"]);
-                                                string connstr = ConvertUtil.ToStringOrDefault(row["connectionstring"]);
+                                                string provider = row.Field<string>("provider");
+                                                string connstr = row.Field<string>("connectionstring");
                                                 dso = new DataSourceObject(DbProviderFactories.GetFactory(provider));
-                                                dso.ProviderName = ConvertUtil.ToStringOrDefault(row["name"]);
+                                                dso.ProviderName = row.Field<string>("name");
                                         }
                                 }
 
