@@ -8,6 +8,7 @@ using System.Data;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Web.UI;
+using System.Reflection;
 
 namespace EasyDev.Util
 {
@@ -16,7 +17,7 @@ namespace EasyDev.Util
         /// </summary>
         public static class UtilityExtension
         {
-                #region 加密解密方法
+                #region 加压解压方法
                 /// <summary>
                 /// 采用GZIP算法对数据进行压缩
                 /// </summary>
@@ -438,7 +439,7 @@ namespace EasyDev.Util
 
                         XmlSerializer xmlS = new XmlSerializer(type);
                         xmlS.Serialize(streamStoreObj, o);
-                        xmlStr = StreamUtil.QuickStreamReader(streamStoreObj, true);
+                        xmlStr = streamStoreObj.QuickReader(true);
 
                         return xmlStr;
                 }
@@ -456,7 +457,7 @@ namespace EasyDev.Util
                         MemoryStream stream = new MemoryStream();
                         bFormatter.Serialize(stream, o);
 
-                        result = StreamUtil.QuickStreamReader(stream, true);
+                        result = stream.QuickReader(true);
 
                         return result;
                 }
@@ -474,7 +475,7 @@ namespace EasyDev.Util
                         MemoryStream stream = new MemoryStream();
                         los.Serialize(stream, o);
 
-                        result = StreamUtil.QuickStreamReader(stream, true);
+                        result = stream.QuickReader(true);
 
                         return result;
                 }
@@ -686,6 +687,116 @@ namespace EasyDev.Util
                 public static void QuickWriter(this Stream stream, byte[] data)
                 {
                         stream.QuickWriter(Encoding.UTF8.GetString(data), true);
+                } 
+                #endregion
+
+                #region 类型反射工具方法
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <param name="t"></param>
+                /// <returns></returns>
+                public static IDictionary<string, PropertyInfo> Properties(this Type t)
+                {
+                        PropertyInfo[] properties = t.GetProperties();
+                        IDictionary<string, PropertyInfo> result = new Dictionary<string, PropertyInfo>();
+
+                        for (int i = 0; i < properties.Length; i++)
+                        {
+                                result.Add(properties[i].Name, properties[i]);
+                        }
+
+                        return result;
+                }
+
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <param name="tObject"></param>
+                /// <param name="propName"></param>
+                /// <returns></returns>
+                public static object ValueOfProperty(this Type tObject, string propName)
+                {
+                        IDictionary<string, PropertyInfo> items = tObject.Properties();
+                        object result = null;
+
+                        foreach (KeyValuePair<string, PropertyInfo> item in items)
+                        {
+                                if (item.Key.Equals(propName, StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                        result = item.Value.GetValue(tObject, null);
+                                }
+                        }
+
+                        return result;
+                }
+
+                /// <summary>
+                /// 判断类型t中是否有attr这个自定义属性
+                /// </summary>
+                /// <param name="t"></param>
+                /// <param name="attr"></param>
+                /// <returns></returns>
+                public static bool HasAttribute(this Type t, Type attr)
+                {
+                        return t.GetCustomAttributes(false).FirstOrDefault(p => p.GetType().Equals(attr)) != null;
+                }
+
+                /// <summary>
+                /// 判断类型中的指定属性(Property)是否有某个特性(Attribute)
+                /// </summary>
+                /// <param name="tobject"></param>
+                /// <param name="propName"></param>
+                /// <param name="tattr"></param>
+                /// <returns></returns>
+                public static object HasAttribute(this Type tobject, string propName, Type tattr)
+                {
+                        IDictionary<string, PropertyInfo> properties = tobject.Properties();
+                        PropertyInfo prop = properties.FirstOrDefault(p => p.Key == propName).Value;
+                        object[] attrs = prop.GetCustomAttributes(false);
+                        object result = null;
+
+                        if (attrs != null)
+                        {
+                                result = attrs.FirstOrDefault(p => p.GetType().Equals(tattr));
+                        }
+
+                        return result;
+                }
+
+                /// <summary>
+                /// 判断类型TObject中的名为propName的属性是否有类型为TAttribute的属性
+                /// 返回空则不存在
+                /// </summary>
+                /// <param name="property"></param>
+                /// <param name="type"></param>
+                /// <param name="tattr"></param>
+                /// <returns></returns>
+                public static object HasAttribute(this PropertyInfo property, Type type, Type tattr)
+                {
+                        return type.HasAttribute(property.Name, tattr);
+                }
+
+                /// <summary>
+                /// 从类型tObject的名为propName的成员中找到类型为tAttr的自定义属性，并取得这个自定义属性中名为fieldName的公共成员的值
+                /// </summary>
+                /// <param name="tObject"></param>
+                /// <param name="propName"></param>
+                /// <param name="tAttr"></param>
+                /// <param name="fieldName"></param>
+                /// <returns></returns>
+                public static object ValueOfAttribute(this Type tObject, string propName, Type tAttr, string fieldName)
+                {
+                        object attr = tObject.HasAttribute(tAttr);
+
+                        if (attr != null)
+                        {
+                                return attr.GetType().GetProperty(fieldName).GetValue(attr, null);
+                        }
+                        else
+                        {
+                                return null;
+                        }
                 } 
                 #endregion
         }

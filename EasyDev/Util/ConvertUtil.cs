@@ -63,7 +63,7 @@ namespace EasyDev.Util
                 /// <returns></returns>
                 public static string ToStringOrDefault(object obj)
                 {
-                        return obj.ToString();
+                        return obj.ParseString();
                 }
 
                 /// <summary>

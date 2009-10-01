@@ -186,6 +186,7 @@
     <Compile Include="PL\DataSources\IDataSourceObject.cs" />
     <Compile Include="PL\Exceptions\DALCoreException.cs" />
     <Compile Include="PL\Exceptions\PersistenceException.cs" />
+    <Compile Include="PL\Extensions\ADOExtension.cs" />
     <Compile Include="PL\GenericDBFactory.cs" />
     <Compile Include="PL\IdentityStrategy\CommonIdentityGenerator.cs" />
     <Compile Include="PL\IdentityStrategy\GeneratorFactory.cs" />
