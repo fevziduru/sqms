@@ -15,6 +15,7 @@ namespace EasyDev.BL
                 /// <param name="srv"></param>
                 /// <param name="expr"></param>
                 /// <returns></returns>
+                [Obsolete("此方法暂不使用", true)]
                 public static DataTable Get(this GenericService srv, Expression<Func<DataRow, bool>> expr)
                 {
                         DataSet ds = srv.LoadAll();

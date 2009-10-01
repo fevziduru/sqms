@@ -1,18 +1,17 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Data;
-using System.Collections;
-using System.Data.Common;
 
 namespace EasyDev.PL
 {
         /// <summary>
-        /// SQL´úÂëÉú³ÉÆ÷
+        /// ADOå¯¹åƒæ‰©å±•æ–¹æ³•
         /// </summary>
-        public class SqlBuilder
+        public static class ADOExtension
         {
-                #region Ë½ÓĞ·½·¨
+                #region ç§æœ‰æ–¹æ³•
 
                 private static string BuildValues(DataTable dt, DataRow dr)
                 {
@@ -70,7 +69,7 @@ namespace EasyDev.PL
                         return result;
                 }
 
-                public static string GetConditionByColumns(DataColumn column, DataRow dr, string splitStr)
+                private static string GetConditionByColumns(DataColumn column, DataRow dr, string splitStr)
                 {
                         string cond = "";
                         if (column.DataType == typeof(string)
@@ -91,14 +90,10 @@ namespace EasyDev.PL
                                 cond = string.Format("{0}={1} {2} ", column.ColumnName, dr[column.ColumnName], splitStr);
                         }
 
-                        //if (cond.Length > 0)
-                        //{
-                        //    cond = cond.Substring(0, cond.Length - 1);
-                        //}
                         return cond;
                 }
 
-                public static string GetConditionByPrimaryKeys(string key, object value, string splitStr)
+                private static string GetConditionByPrimaryKeys(string key, object value, string splitStr)
                 {
                         string cond = "";
                         if (value.GetType() == typeof(string))
@@ -118,22 +113,16 @@ namespace EasyDev.PL
                                 cond = string.Format(" {0}='{1}' {2}", key, value, splitStr);
                         }
 
-                        //if (cond.Length > 0)
-                        //{
-                        //    cond = cond.Substring(0, cond.Length - splitStr.Length - 1);
-                        //}
                         return cond;
                 }
 
-                #endregion
-
                 /// <summary>
-                /// Éú³ÉÖ÷¼üÁĞ
+                /// ç”Ÿæˆä¸»é”®åˆ—
                 /// </summary>
-                /// <param name="dt">Ö÷¼üËùÔÚµÄ±í</param>
-                /// <param name="dr">Êı¾İĞĞ</param>
+                /// <param name="dt">ä¸»é”®æ‰€åœ¨çš„è¡¨</param>
+                /// <param name="dr">æ•°æ®è¡Œ</param>
                 /// <returns></returns>
-                public static string BuildPrimaryColumns(DataTable dt, DataRow dr)
+                private static string BuildPrimaryColumns(DataTable dt, DataRow dr)
                 {
                         StringBuilder sb = new StringBuilder();
                         try
@@ -158,21 +147,22 @@ namespace EasyDev.PL
                 }
 
                 /// <summary>
-                /// Éú³ÉÖ÷¼üÁĞ
+                /// ç”Ÿæˆä¸»é”®åˆ—
                 /// </summary>
-                /// <param name="dr">Êı¾İĞĞ</param>
+                /// <param name="dr">æ•°æ®è¡Œ</param>
                 /// <returns></returns>
-                public static string BuildPrimaryColumns(DataRow dr)
+                private static string BuildPrimaryColumns(DataRow dr)
                 {
                         return BuildPrimaryColumns(dr.Table, dr);
                 }
+                #endregion
 
                 /// <summary>
-                /// È¡µÃ×Ö¶ÎÁĞ±í
+                /// å–å¾—å­—æ®µåˆ—è¡¨
                 /// </summary>
-                /// <param name="dt"></param>
+                /// <param name="ds"></param>
                 /// <returns></returns>
-                public static string GetColumns(DataTable dt)
+                public static string GetColumns(this DataTable dt)
                 {
                         StringBuilder sb = new StringBuilder();
 
@@ -183,7 +173,7 @@ namespace EasyDev.PL
                                         sb.AppendFormat("{0},", column.ColumnName);
                                 }
 
-                                //ÒÆ³ı×îºóÒ»¸ö¶ººÅ
+                                //ç§»é™¤æœ€åä¸€ä¸ªé€—å·
                                 sb = sb.Remove(sb.Length - 1, 1);
                         }
 
@@ -191,42 +181,40 @@ namespace EasyDev.PL
                 }
 
                 /// <summary>
-                /// ´´½¨INSERTÓï¾ä
+                /// åˆ›å»ºINSERTè¯­å¥
                 /// </summary>
-                /// <param name="fullName">INSERTÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="fullName">INSERTè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dt"></param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildInsertCommand(string fullName, DataTable dt, DataRow dr)
+                public static string InsertCommandText(this DataTable dt, DataRow dataRow, string fullName)
                 {
                         StringBuilder builder = new StringBuilder();
 
-                        builder.AppendFormat
-                            (@"INSERT INTO {0} ({1}) VALUES ({2})",
-                             fullName, GetColumns(dt), BuildValues(dt, dr));
+                        builder.AppendFormat(@"INSERT INTO {0} ({1}) VALUES ({2})", fullName, dt.GetColumns(), BuildValues(dt, dataRow));
 
                         return builder.ToString();
                 }
 
                 /// <summary>
-                /// ´´½¨INSERTÓï¾ä
+                /// åˆ›å»ºINSERTè¯­å¥
                 /// </summary>
-                /// <param name="fullName">INSERTÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="fullName">INSERTè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildInsertCommand(string fullName, DataRow dr)
+                public static string InsertCommandText(this DataRow dataRow, string fullName)
                 {
-                        return BuildInsertCommand(fullName, dr.Table, dr);
+                        return dataRow.Table.InsertCommandText(dataRow, fullName);
                 }
 
                 /// <summary>
-                /// ´´½¨DELETEÓï¾ä
+                /// åˆ›å»ºDELETEè¯­å¥
                 /// </summary>
-                /// <param name="fullName">DELETEÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="fullName">DELETEè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dt"></param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildDeleteCommand(string fullName, DataTable dt, DataRow dr)
+                public static string DeleteCommandText(this DataTable dt, DataRow dataRow,string fullName)
                 {
                         StringBuilder builder = new StringBuilder();
 
@@ -235,7 +223,7 @@ namespace EasyDev.PL
                                 DataColumn[] primaryKeys = dt.PrimaryKey;
                                 if (primaryKeys.Length > 0)
                                 {
-                                        builder.AppendFormat(@"DELETE FROM {0} WHERE {1}", fullName, BuildPrimaryColumns(dt, dr));
+                                        builder.AppendFormat(@"DELETE FROM {0} WHERE {1}", fullName, BuildPrimaryColumns(dt, dataRow));
                                 }
                                 else
                                 {
@@ -251,30 +239,30 @@ namespace EasyDev.PL
                 }
 
                 /// <summary>
-                /// ´´½¨DELETEÓï¾ä
+                /// åˆ›å»ºDELETEè¯­å¥
                 /// </summary>
-                /// <param name="fullName">DELETEÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="fullName">DELETEè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildDeleteCommand(string fullName, DataRow dr)
+                public static string DeleteCommandText(this DataRow dataRow, string fullName)
                 {
-                        return BuildDeleteCommand(fullName, dr.Table, dr);
+                        return dataRow.Table.DeleteCommandText(dataRow, fullName);
                 }
 
                 /// <summary>
-                /// ´´½¨UPDATEÓï¾ä
+                /// åˆ›å»ºUPDATEè¯­å¥
                 /// </summary>
-                /// <param name="dt">UPDATEÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="dt">UPDATEè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildUpdateCommand(string fullName, DataTable dt, DataRow dr)
+                public static string UpdateCommandText(this DataTable dt, DataRow dataRow, string fullName)
                 {
                         StringBuilder builder = new StringBuilder();
 
                         try
                         {
                                 builder.AppendFormat(@"UPDATE {0} SET {1} WHERE {2}"
-                                                     , fullName, BuildSetClauseForUpdate(dt, dr), BuildPrimaryColumns(dt, dr));
+                                                     , fullName, BuildSetClauseForUpdate(dt, dataRow), BuildPrimaryColumns(dt, dataRow));
                         }
                         catch (PersistenceException e)
                         {
@@ -285,14 +273,14 @@ namespace EasyDev.PL
                 }
 
                 /// <summary>
-                /// ´´½¨UPDATEÓï¾ä
+                /// åˆ›å»ºUPDATEè¯­å¥
                 /// </summary>
-                /// <param name="fullName">UPDATEÓï¾ä²Ù×÷µÄÊı¾İ±íÃû</param>
+                /// <param name="fullName">UPDATEè¯­å¥æ“ä½œçš„æ•°æ®è¡¨å</param>
                 /// <param name="dr"></param>
                 /// <returns></returns>
-                public static string BuildUpdateCommand(string fullName, DataRow dr)
+                public static string UpdateCommandText(this DataRow dataRow, string fullName)
                 {
-                        return BuildUpdateCommand(fullName, dr.Table, dr);
+                        return dataRow.Table.UpdateCommandText(dataRow, fullName);
                 }
         }
 }

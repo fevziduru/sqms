@@ -154,22 +154,31 @@ namespace EasyDev.BL
                 {
                         try
                         {
-                                if (this._data.Tables.Count > 0 && this._data.Tables.Contains(BOName))
+                                if (this.BOData.Tables.Count > 0 && this.BOData.Tables.Contains(BOName))
                                 {
-                                        DataTable dt = this._data.Tables[BOName];
+                                        DataTable dt = this.BOData.Tables[BOName];
                                         foreach (DataRow row in dt.Rows)
                                         {
                                                 if (row.RowState == DataRowState.Added)
                                                 {
-                                                        _session.ExecuteCommand(SqlBuilder.BuildInsertCommand(this.FullName, row.Table, row));
+                                                        //_session.ExecuteCommand(SqlBuilder.BuildInsertCommand(this.FullName, row.Table, row));
+
+                                                        //TODO: ADO扩展方法测试
+                                                        _session.ExecuteCommand(row.Table.InsertCommandText(row, this.FullName));
                                                 }
                                                 else if (row.RowState == DataRowState.Modified)
                                                 {
-                                                        _session.ExecuteCommand(SqlBuilder.BuildUpdateCommand(this.FullName, row.Table, row));
+                                                        //_session.ExecuteCommand(SqlBuilder.BuildUpdateCommand(this.FullName, row.Table, row));
+
+                                                        //TODO: ADO扩展方法测试
+                                                        _session.ExecuteCommand(row.Table.UpdateCommandText(row, FullName));
                                                 }
                                                 else if (row.RowState == DataRowState.Deleted)
                                                 {
-                                                        _session.ExecuteCommand(SqlBuilder.BuildDeleteCommand(this.FullName, row.Table, row));
+                                                        //_session.ExecuteCommand(SqlBuilder.BuildDeleteCommand(this.FullName, row.Table, row));
+
+                                                        //TODO: ADO扩展方法测试
+                                                        _session.ExecuteCommand(row.Table.DeleteCommandText(row, FullName));
                                                 }
                                         }
 
@@ -211,7 +220,7 @@ namespace EasyDev.BL
                         string cond = "";
                         try
                         {
-                                DataColumn[] cols = this._data.Tables[this._entityName].PrimaryKey;
+                                DataColumn[] cols = this.BOData.Tables[this._entityName].PrimaryKey;
                                 string firstKey = "";
                                 if (cols.Length > 0)
                                 {
@@ -251,7 +260,7 @@ namespace EasyDev.BL
                         try
                         {
                                 //TODO: 测试
-                                DataColumn[] cols = this._data.Tables[this._entityName].PrimaryKey;
+                                DataColumn[] cols = this.BOData.Tables[this._entityName].PrimaryKey;
                                 if (cols.Length > 0 && keyValues != null)
                                 {
                                         IEnumerator itr_keyvalues = keyValues.GetEnumerator();
@@ -293,29 +302,29 @@ namespace EasyDev.BL
                                 }
 
                                 sb.AppendFormat(@"SELECT {0} FROM {1} {2}",
-                                                SqlBuilder.GetColumns(this._data.Tables[this._entityName])
-                                                , this.FullName, whereCond);
+                                                /*SqlBuilder.GetColumns(this._data.Tables[this._entityName])*/
+                                                BOData.Tables[Entity].GetColumns(), this.FullName, whereCond);         //TODO: ADO扩展方法测试
 
                                 #region 重新加载业务对象数据
                                 //对于有自关联的表，要先删除其自关联关系，否则无法移除表
-                                this._data.Relations.Clear();
+                                this.BOData.Relations.Clear();
 
                                 //清除数据集中的数据表
-                                this._data.Tables.Clear();
+                                this.BOData.Tables.Clear();
 
                                 //读取架构以重新获得与数据表相关的约束信息
                                 //@注 : 如果这里没有读取架构信息而直接将查询后得到的表或数据集赋值给数据集或数据集中的表会导致之前的架构信息丢失，
                                 //以至不能从数据集或数据表中取得主键、外键等相关信息
-                                this._data.ReadXmlSchema(this._schema);
+                                this.BOData.ReadXmlSchema(this._schema);
 
                                 //将从数据库查询到的数据表合并到数据集
-                                this._data.Tables[this._entityName].Merge(
+                                this.BOData.Tables[this._entityName].Merge(
                                     this._session.GetDataTableFromCommand(sb.ToString()), true, MissingSchemaAction.AddWithKey);
 
                                 //修改数据集中的表名，使其与XSD数据集架构文件同名以方便使用
-                                if (this._data.Tables.Count > 0)
+                                if (this.BOData.Tables.Count > 0)
                                 {
-                                        this._data.Tables[0].TableName = this._entityName;
+                                        this.BOData.Tables[0].TableName = this._entityName;
                                 }
                                 #endregion
                         }
@@ -340,9 +349,9 @@ namespace EasyDev.BL
                         DataRow drNew = null;
                         try
                         {
-                                if (this._data.Tables.Count > 0)
+                                if (this.BOData.Tables.Count > 0)
                                 {
-                                        DataTable dt = this._data.Tables[0];
+                                        DataTable dt = this.BOData.Tables[0];
                                         drNew = dt.NewRow();
                                         //处理主键
                                         for (int i = 0; i < dt.PrimaryKey.Length; i++)
@@ -528,7 +537,7 @@ namespace EasyDev.BL
                         string cond = string.Empty;
                         try
                         {
-                                DataColumn[] cols = this._data.Tables[this._entityName].PrimaryKey;
+                                DataColumn[] cols = this.BOData.Tables[this._entityName].PrimaryKey;
                                 string firstKey = "";
 
                                 if (cols.Length > 0)
@@ -562,7 +571,7 @@ namespace EasyDev.BL
                         string cond = string.Empty;
                         try
                         {
-                                DataColumn[] cols = this._data.Tables[this._entityName].PrimaryKey;
+                                DataColumn[] cols = this.BOData.Tables[this._entityName].PrimaryKey;
                                 if (cols.Length > 0)
                                 {
                                         IEnumerator itr_keyvalues = keys.GetEnumerator();
