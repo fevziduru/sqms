@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetFetion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DotNetFetion.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
@@ -146,6 +150,8 @@
     <Compile Include="Applications\SQMS\UserInfo.cs" />
     <Compile Include="BL\Extensions\GenericServiceExtension.cs" />
     <Compile Include="BL\Services\AbstractServiceManager.cs" />
+    <Compile Include="BL\Services\IDataValidator.cs" />
+    <Compile Include="BL\Services\ServiceValidationException.cs" />
     <Compile Include="Cache\CacheFactory.cs" />
     <Compile Include="Cache\CacheItem.cs" />
     <Compile Include="Cache\CacheManager.cs" />
@@ -254,6 +260,9 @@
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_zh-CN.xml" />
     <Content Include="Resources\Languages\GenericService_en-US.xml" />
     <Content Include="Resources\Languages\GenericService_zh-CN.xml" />
+    <Content Include="ThirdComponents\Fetion\DotNetFetion_nat.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="EasyDev.pfx" />
