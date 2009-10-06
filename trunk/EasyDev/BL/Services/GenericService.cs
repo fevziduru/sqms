@@ -9,15 +9,16 @@ using EasyDev.SQMS;
 using System.Threading;
 using System.Web.Services;
 using System.Linq.Expressions;
-using EasyDev.Util;
 using System.Data.Common;
+using EasyDev.BL.Services;
+using EasyDev.Util;
 
 namespace EasyDev.BL
 {
         /// <summary>
         /// 通用服务,封装常用的数据操作
         /// </summary>
-        public class GenericService : WebService, IService
+        public class GenericService : WebService, IService, IDataValidator
         {
                 #region 私有成员
 
@@ -37,11 +38,6 @@ namespace EasyDev.BL
                 private NativeServiceManager serviceManager = null;
 
                 /// <summary>
-                /// 数据源对象
-                /// </summary>
-                private DataSourceObject datasource = null;
-
-                /// <summary>
                 /// 本地化/国际化对象创建工厂
                 /// </summary>
                 private ResourceManagerFactory resMgrFactory = null;
@@ -54,6 +50,13 @@ namespace EasyDev.BL
                         get;
                         set;
                 }
+
+                /// <summary>
+                /// 验证事件
+                /// </summary>
+                private event Func<DataSet, IDictionary<string, object>> Validation;
+
+                #endregion
 
                 /// <summary>
                 /// 根据名称创建数据库SESSION
@@ -133,7 +136,7 @@ namespace EasyDev.BL
                         }
                 }
 
-                #endregion
+                
 
                 #region 公共属性
 
@@ -236,7 +239,13 @@ namespace EasyDev.BL
                 /// </summary>
                 public GenericService()
                 {
+                        //准备验证事件
+                        this.Validation += new Func<DataSet, IDictionary<string, object>>(Validate);
+
+                        //初始化缓存
                         SessionPool = HttpRuntime.Cache;
+                        
+                        //服务初始化
                         Initialize();
                 }
 
@@ -390,9 +399,24 @@ namespace EasyDev.BL
                 /// </summary>
                 /// <param name="dsSave"></param>
                 public virtual void Save(DataSet dsSave)
-                {                 
+                {
+                        #region 数据验证事件
+                        IDictionary<string, object> result = null;
+                        try
+                        {
+                                result = Validation(dsSave);
+                                if (((bool)result[ValidatorResultKey.SUCCESS]) == false)
+                                {
+                                        throw new ServiceValidationException(result[ValidatorResultKey.ERRMSG].ParseString());
+                                }
+                        }
+                        catch (ServiceValidationException e)
+                        {
+                                throw e;
+                        } 
+                        #endregion
+
                         this.bizObject.BOData = dsSave;
-                        //this.bizObject.BOData.Merge(dsSave);
                         this.bizObject.Synchronize();
                 }
 
@@ -576,5 +600,42 @@ namespace EasyDev.BL
                 {
                         return this.BOName.Substring(0, 2) + "-" + DateTime.Now.Ticks.ToString();
                 }
+
+                #region IDataValidator 成员
+
+                /// <summary>
+                /// 默认验证方法
+                /// </summary>
+                /// <param name="param"></param>
+                /// <returns></returns>
+                public virtual IDictionary<string, object> Validate(DataSet param)
+                {
+                        IDictionary<string, object> result = new Dictionary<string, object>();
+                        result.Add(ValidatorResultKey.SUCCESS, true);
+
+                        DataTable dtBO = param.Table(BOName);
+                        foreach (DataRow row in dtBO.Rows)
+                        {
+                                foreach (DataColumn col in dtBO.Columns)
+                                {
+                                        //Date列的长度是-1
+                                        if (col.MaxLength < row[col.ColumnName].ParseString().Length && col.MaxLength > -1)
+                                        {
+                                                result[ValidatorResultKey.SUCCESS] = false;
+                                                result[ValidatorResultKey.ERRMSG] = col.ColumnName + "列的数据长度太大";
+                                        }
+                                }
+                        }
+
+                        return result;
+                }
+
+                #endregion
+        }
+
+        public static class ValidatorResultKey
+        {
+                public static readonly string SUCCESS = "SUCCESS";
+                public static readonly string ERRMSG = "ERRMSG";
         }
 }
