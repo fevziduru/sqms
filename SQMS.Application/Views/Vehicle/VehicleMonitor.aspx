@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoVehicleWireup="true" CodeBehind="VehicleMonitor.aspx.cs"
+﻿<%@ Page Language="C#" CodeBehind="VehicleMonitor.aspx.cs"
     Inherits="SQMS.Application.Views.Vehicle.VehicleMonitor" MasterPageFile="~/Masters/Main.Master" %>
 
 <%@ Register TagName="Map" TagPrefix="uc" Src="~/Views/Components/Map.ascx" %>

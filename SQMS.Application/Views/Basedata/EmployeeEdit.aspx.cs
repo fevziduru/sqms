@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SQMS.Services;
 using EasyDev.Util;
 using System.Data;
+using EasyDev.BL;
 using System.Web.Security;
 using EasyDev.SQMS;
 using SQMS.Application.HtmlHelper;
@@ -23,7 +24,7 @@ namespace SQMS.Application.Views.Basedata
 
                 protected void Page_Load(object sender, EventArgs e)
                 {
-
+                        
                 }
 
                 protected override void GetViewData()
@@ -112,9 +113,10 @@ namespace SQMS.Application.Views.Basedata
                 protected override void OnLoadDataEventHandler(object sender, EventArgs e)  //2
                 {
                         this.ViewData = Service.LoadByKey(this.ID, true);
-
+                        
                         if (this.ID.Length != 0)
                         {
+                                
                                 this.ViewData.Merge(srv.GetPassportByEmployeeID(this.ID));
                                 this.ViewData.Merge(srv.RoleService.GetRoleByEmployeeID(this.ID));
                                 //this.ViewData.Merge(srv.UserRoleService.LoadByKeys(null));
