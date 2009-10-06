@@ -111,6 +111,11 @@
       <DependentUpon>EQUIPMENT.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Config\Schema\LOG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LOG.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Config\Schema\MENU.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -377,6 +382,41 @@
     </Compile>
     <Compile Include="Views\Demo\ChartDemo.aspx.designer.cs">
       <DependentUpon>ChartDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\Demo.aspx.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\Demo.aspx.designer.cs">
+      <DependentUpon>Demo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\LogEdit.aspx.cs">
+      <DependentUpon>LogEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\LogEdit.aspx.designer.cs">
+      <DependentUpon>LogEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\LogList.aspx.cs">
+      <DependentUpon>LogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\LogList.aspx.designer.cs">
+      <DependentUpon>LogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\LogListPlay.aspx.cs">
+      <DependentUpon>LogListPlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\LogListPlay.aspx.designer.cs">
+      <DependentUpon>LogListPlay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Demo\LogView.aspx.cs">
+      <DependentUpon>LogView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\LogView.aspx.designer.cs">
+      <DependentUpon>LogView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
@@ -1647,7 +1687,12 @@
     <Content Include="Views\Components\OrganizationTree.ascx" />
     <Content Include="Views\Components\SimpleSmallMap.aspx" />
     <Content Include="Views\Demo\ChartDemo.aspx" />
+    <Content Include="Views\Demo\Demo.aspx" />
     <Content Include="Views\Demo\HTMLPage1.htm" />
+    <Content Include="Views\Demo\LogEdit.aspx" />
+    <Content Include="Views\Demo\LogList.aspx" />
+    <Content Include="Views\Demo\LogListPlay.aspx" />
+    <Content Include="Views\Demo\LogView.aspx" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
     <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
@@ -1692,6 +1737,17 @@
     </None>
     <None Include="Config\Schema\EMERGENCYEVENT.xss">
       <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\LOG.xsc">
+      <DependentUpon>LOG.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\LOG.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LOG.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\LOG.xss">
+      <DependentUpon>LOG.xsd</DependentUpon>
     </None>
     <None Include="Config\Schema\VEHICLETASK.xsc">
       <DependentUpon>VEHICLETASK.xsd</DependentUpon>
