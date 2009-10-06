@@ -51,6 +51,9 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo\LogService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Domain\QualityControl\TimeItem.cs" />
     <Compile Include="Domain\QualityControl\TimeSchema.cs" />
     <Compile Include="Domain\QualityControl\Video.cs" />
@@ -144,9 +147,6 @@
       <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
       <Name>EasyDev</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Demo\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
