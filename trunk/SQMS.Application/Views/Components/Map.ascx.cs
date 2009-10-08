@@ -64,6 +64,12 @@ namespace SQMS.Application.Views.Components
             }
         }
 
+        public bool EnableTracePlayer
+        {
+            get;
+            set;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             decimal initLat = ConvertUtil.ToLat(ConvertUtil.ToStringOrDefault(Request.QueryString["lat"]));

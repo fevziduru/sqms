@@ -135,10 +135,10 @@
         });
         function fetchMonitorPoint(mpid) {
             var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mpid=" + mpid;
-            wRequest = new Sys.Net.WebRequest();
-            Sys.Net.WebRequestManager.add_completedRequest(initPage);
+            var wRequest = new Sys.Net.WebRequest();
+            wRequest.add_completed(initPage);
             wRequest.set_url(url);
-            Sys.Net.WebRequestManager.executeRequest(wRequest);
+            wRequest.invoke();
         }
         function initPage(executor, eventArgs) {
             if (executor.get_responseAvailable()) {

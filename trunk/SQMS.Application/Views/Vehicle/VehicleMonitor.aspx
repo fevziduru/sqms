@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" CodeBehind="VehicleMonitor.aspx.cs"
-    Inherits="SQMS.Application.Views.Vehicle.VehicleMonitor" MasterPageFile="~/Masters/Main.Master" %>
+﻿<%@ Page Language="C#" CodeBehind="VehicleMonitor.aspx.cs" Inherits="SQMS.Application.Views.Vehicle.VehicleMonitor"
+    MasterPageFile="~/Masters/Main.Master" %>
 
 <%@ Register TagName="Map" TagPrefix="uc" Src="~/Views/Components/Map.ascx" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -9,6 +9,7 @@
     <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 
     <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/calendar/calendar-min.js"></script>
+    <script type="text/javascript" src="../../Resources/Scripts/Controls/GoogleMap/VehicleTask.js"></script>
 
     <style type="text/css">
         body
@@ -66,9 +67,7 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            white-space: normal; !important;
-        }
-</style>
+            white-space: normal; !important;}</style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
@@ -92,24 +91,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <asp:HiddenField ID="HiddenVehicleDateFilter" runat="server" OnValueChanged="HiddenVehicleDateFilter_ValueChanged" />
+                            <asp:HiddenField ID="HiddenVehicleTaskDateFilter" runat="server" OnValueChanged="HiddenVehicleTaskDateFilter_ValueChanged" />
                         </div>
                         <br />
-                        <asp:UpdatePanel ID="UpdatePanelVehicles" runat="server" UpdateMode="Conditional">
+                        <asp:UpdatePanel ID="UpdatePanelVehicleTasks" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <asp:GridView ID="GridViewVehicles" runat="server" AllowPaging="True" Width="100%"
-                                    AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="EVENTID" EmptyDataText="没有可显示的数据记录。"
-                                    OnRowDataBound="GridViewVehicles_RowDataBound">
+                                <asp:GridView ID="GridViewVehicleTasks" runat="server" AllowPaging="True" Width="100%"
+                                    AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="TASKID" EmptyDataText="没有可显示的数据记录。"
+                                    OnRowDataBound="GridViewVehicleTasks_RowDataBound">
                                     <Columns>
-                                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="事件">
+                                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="任务">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="LinkBtnVehicleName" runat="server" Text='<%#Eval("EVENTNAME") %>'
-                                                    OnCommand="LinkBtnVehicleName_Command" CommandArgument='<%#Eval("EVENTID") %>'
-                                                    OnClientClick='setToVehicle("<%#Eval("EVENTID") %>","<%#Eval("STARTMPID") %>")'></asp:LinkButton>
+                                                <asp:LinkButton ID="LinkBtnVehicleName" runat="server" Text='<%#Eval("TASKNAME") %>'
+                                                    OnCommand="LinkBtnVehicleTaskName_Command" CommandArgument='<%#Eval("TASKID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="EMPNAME" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left">
+                                        <asp:BoundField DataField="CHARGEMAN" HeaderText="负责人" ReadOnly="True" HeaderStyle-HorizontalAlign="Left">
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:BoundField>
                                     </Columns>
@@ -123,9 +121,28 @@
             <fieldset>
                 <legend>任务信息</legend>
                 <div>
-                    <asp:UpdatePanel ID="UpdatePanelVideoList" runat="server" UpdateMode="Conditional">
+                    <asp:UpdatePanel ID="UpdatePanelTaskInfo" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            
+                            <span>任务名称：</span>
+                            <asp:Label ID="LabelTaskName" runat="server"></asp:Label><br />
+                            <span>下达时间：</span>
+                            <asp:Label ID="LabelPublicTime" runat="server"></asp:Label><br />
+                            <span>开始时间：</span>
+                            <asp:Label ID="LabelStartTime" runat="server"></asp:Label><br />
+                            <span>结束时间：</span>
+                            <asp:Label ID="LabelEndTime" runat="server"></asp:Label><br />
+                            <span>车辆型号：</span>
+                            <asp:Label ID="LabelModel" runat="server"></asp:Label><br />
+                            <span>车牌号码：</span>
+                            <asp:Label ID="LabelLicensePlateNum" runat="server"></asp:Label><br />
+                            <span>负责人：</span>
+                            <asp:Label ID="LabelChargeMan" runat="server"></asp:Label><br />
+                            <span>是否加油：</span>
+                            <asp:Label ID="LabelIsGasSupplied" runat="server"></asp:Label><br />
+                            <span>是否加水：</span>
+                            <asp:Label ID="LabelIsWaterSupplied" runat="server"></asp:Label><br />
+                            <span>是否维修：</span>
+                            <asp:Label ID="LabelIsRepaired" runat="server"></asp:Label><br />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -134,7 +151,7 @@
         <div id="right" class="right">
             <asp:UpdatePanel ID="UpdatePanelMap" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:Map ID="Map1" runat="server" MPType="Road" />
+                    <uc:Map ID="Map1" runat="server" MPType="Road" EnableTracePlayer="True" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -143,20 +160,20 @@
     <script type="text/javascript">
         var calendar = null;
         function initCaledar() {
-            var Vehicle = YAHOO.util.Vehicle,
+            var Event = YAHOO.util.Event,
             Dom = YAHOO.util.Dom,
             dialog;
 
             var showBtn = Dom.get("btnOpenCal");
 
-            Vehicle.on(showBtn, "click", function() {
+            Event.on(showBtn, "click", function() {
 
                 // Lazy Dialog Creation - Wait to create the Dialog, and setup document click listeners, until the first time the button is clicked.
                 if (!dialog) {
 
                     // Hide Calendar if we click anywhere in the document other than the calendar
-                    Vehicle.on(document, "click", function(e) {
-                        var el = Vehicle.getTarget(e);
+                    Event.on(document, "click", function(e) {
+                        var el = Event.getTarget(e);
                         var dialogEl = dialog.element;
                         if (el != dialogEl && !Dom.isAncestor(dialogEl, el) && el != showBtn && !Dom.isAncestor(showBtn, el)) {
                             dialog.hide();
@@ -194,12 +211,12 @@
                     dialog.setBody('<div id="cal"></div>');
                     dialog.render("divCal");
 
-                    dialog.showVehicle.subscribe(function() {
+                    dialog.showEvent.subscribe(function() {
                         if (YAHOO.env.ua.ie) {
                             // Since we're hiding the table using yui-overlay-hidden, we 
                             // want to let the dialog know that the content size has changed, when
                             // shown
-                            dialog.fireVehicle("changeContent");
+                            dialog.fireEvent("changeContent");
                         }
                     });
                 }
@@ -232,7 +249,7 @@
                     calendar.cfg.setProperty("MY_LABEL_YEAR_SUFFIX", "\u5E74");
                     calendar.cfg.setProperty("MY_LABEL_MONTH_SUFFIX", "");
 
-                    calendar.selectVehicle.subscribe(function() {
+                    calendar.selectEvent.subscribe(function() {
                         if (calendar.getSelectedDates().length > 0) {
 
                             var selDate = calendar.getSelectedDates()[0];
@@ -245,8 +262,8 @@
 
                             Dom.get("date").value = yStr + "年" + mStr + '月' + dStr + "日";
 
-                            Dom.get("<%=this.HiddenVehicleDateFilter.ClientID %>").value = yStr + "-" + mStr + '-' + dStr;
-                            __doPostBack('<%=this.HiddenVehicleDateFilter.ClientID.Replace("_","$") %>', '');
+                            Dom.get("<%=this.HiddenVehicleTaskDateFilter.ClientID %>").value = yStr + "-" + mStr + '-' + dStr;
+                            __doPostBack('<%=this.HiddenVehicleTaskDateFilter.ClientID.Replace("_","$") %>', '');
 
                         } else {
                             Dom.get("date").value = "";
@@ -260,10 +277,10 @@
                     //calendar.select(initSelectedDate);
 
                     calendar.render();
-                    calendar.renderVehicle.subscribe(function() {
+                    calendar.renderEvent.subscribe(function() {
                         // Tell Dialog it's contents have changed, which allows 
                         // container to redraw the underlay (for IE6/Safari2)
-                        dialog.fireVehicle("changeContent");
+                        dialog.fireEvent("changeContent");
                     });
                 }
 

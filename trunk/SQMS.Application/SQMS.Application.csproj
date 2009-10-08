@@ -390,34 +390,6 @@
     <Compile Include="Views\Demo\Demo.aspx.designer.cs">
       <DependentUpon>Demo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Demo\LogEdit.aspx.cs">
-      <DependentUpon>LogEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Demo\LogEdit.aspx.designer.cs">
-      <DependentUpon>LogEdit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Demo\LogList.aspx.cs">
-      <DependentUpon>LogList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Demo\LogList.aspx.designer.cs">
-      <DependentUpon>LogList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Demo\LogListPlay.aspx.cs">
-      <DependentUpon>LogListPlay.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Demo\LogListPlay.aspx.designer.cs">
-      <DependentUpon>LogListPlay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Demo\LogView.aspx.cs">
-      <DependentUpon>LogView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Demo\LogView.aspx.designer.cs">
-      <DependentUpon>LogView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Demo\UpdateQualityData.aspx.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1289,6 +1261,7 @@
     <Content Include="Resources\Scripts\Controls\GoogleMap\PolyLineDrawer.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\StaticMap.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\TracePlayer.js" />
+    <Content Include="Resources\Scripts\Controls\GoogleMap\VehicleTask.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Video.js" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\VideoPlayer\MapVideo.swf" />
     <Content Include="Resources\Scripts\Controls\GoogleMap\Marker.js" />
@@ -1689,10 +1662,6 @@
     <Content Include="Views\Demo\ChartDemo.aspx" />
     <Content Include="Views\Demo\Demo.aspx" />
     <Content Include="Views\Demo\HTMLPage1.htm" />
-    <Content Include="Views\Demo\LogEdit.aspx" />
-    <Content Include="Views\Demo\LogList.aspx" />
-    <Content Include="Views\Demo\LogListPlay.aspx" />
-    <Content Include="Views\Demo\LogView.aspx" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
     <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
     <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
