@@ -17,7 +17,7 @@ PolyLineDrawer.prototype.draw = function(lat, lng) {
     this.totalLength_ += poly.getLength();
     this.map_.addOverlay(poly);
     this.polyLines_.push(poly);
-    this.prevPoint = point;
+    this.prevPoint_ = point;
 }
 
 PolyLineDrawer.prototype.clear = function() {
@@ -26,5 +26,5 @@ PolyLineDrawer.prototype.clear = function() {
             this.map_.removeOverlay(this.polyLines_[i]);
         }
     }
-    this.prevPoint = null;
+    this.prevPoint_ = null;
 }

@@ -52,7 +52,7 @@ WGMarker.prototype.openInfoWindowHtml = function() {
     $get("divCurrSelMPPath").innerHTML = "<h4 style='font-size:14px;'>" + this.fields.ProjectName + " - " + this.fields.RoadName + " - <a href='javascript:setToMarker(&quot;" + this.mpId + "&quot;,&quot;" + this.mpName + "&quot;," + this.lng + "," + this.lat + "," + this.lv + "," + this.qualityLevel + ",true,true);'>" + this.fields.MonitorPointName + "</a></h4>";
 }
 WGMarker.prototype.getInfoHtml = function(qcType) {
-    var html = "<iframe src='QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&mptype="+mpType+"&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
+    var html = "<iframe src='/Views/Quality/QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&mptype="+mpType+"&qcType=" + qcType + "&mpid=" + this.mpId + "' width='500' height='300' frameborder='0' border='0' frameborder='no' />";
     return html;
 }
 WGMarker.prototype.getInfoHtmlElement = function(qcType) {
@@ -64,7 +64,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcNormal.frameBorder = "0";
             WGMarker.iframeQcNormal.id = "iframeQcNormal";
         }
-        WGMarker.iframeQcNormal.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
+        WGMarker.iframeQcNormal.src = "/Views/Quality/QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcNormal;
     }
     else if (qcType == "_qc_type_dynamic") {
@@ -75,7 +75,7 @@ WGMarker.prototype.getInfoHtmlElement = function(qcType) {
             WGMarker.iframeQcDynamic.frameBorder = "0";
             WGMarker.iframeQcDynamic.id = "iframeQcDynamic";
         }
-        WGMarker.iframeQcDynamic.src = "QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
+        WGMarker.iframeQcDynamic.src = "/Views/Quality/QualityMonitorPointMap.aspx?p=QualityQualityMonitorPointMap&qcType=" + qcType + "&mpid=" + this.mpId;
         return WGMarker.iframeQcDynamic;
     }
     return null;

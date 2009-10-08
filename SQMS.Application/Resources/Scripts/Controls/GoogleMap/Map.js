@@ -1,7 +1,8 @@
 ﻿/// <reference name="MicrosoftAjax.js"/>
 /// <reference name="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA41EnQa1wtzf10JQz5YdqmRTxeaWv84-ck4x-DUqL2zaVsQe3uhRN79rDUN9KUejjajmJPO2i0VJbUw&hl=zh-CN"/>
 /*
-* Map.js依赖于Google Map API v2，ASP.Net AJAX客户端库，Marker.js，引用Map.js前请先引用Google Map API v2，ASP.Net AJAX客户端库，Marker.js
+* Map.js依赖于Google Map API v2，ASP.Net AJAX客户端库，Marker.js，
+  引用Map.js前请先引用Google Map API v2，ASP.Net AJAX客户端库，Marker.js
 */
 /**
 * 记录日志
@@ -42,7 +43,7 @@ function initMap() {
                 GEvent.addListener(map, "load", fetchMarkers);
                 GEvent.addListener(map, "moveend", fetchMarkers);
             }
-            GEvent.addListener(map, "zoomend", showZoomLevel);
+            //GEvent.addListener(map, "zoomend", showZoomLevel);
             GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
                 var url = "";
                 if (true == currentClickedMarker.fields.IsStart) {
@@ -97,7 +98,7 @@ function initMap() {
 
                 //$addHandler(window "keyup", escKeyUpHandler);
             });
-			GEvent.addListener(map, "click", showClickLatLng);
+			//GEvent.addListener(map, "click", showClickLatLng);
             //GEvent.addListener(map, "mouseover", showMouseLatLng);
             //GEvent.addListener(map, "mousemove", showMouseLatLng);
 
@@ -195,18 +196,18 @@ function fetchMarkers() {
             + "&swlng=" + bound.getSouthWest().lng()
             + "&nelat=" + bound.getNorthEast().lat()
             + "&nelng=" + bound.getNorthEast().lng();
-    wRequest = new Sys.Net.WebRequest();
-    Sys.Net.WebRequestManager.add_completedRequest(initMarker);
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.add_completed(initMarker);
     wRequest.set_url(url);
-    Sys.Net.WebRequestManager.executeRequest(wRequest);
+    wRequest.invoke();
     showRequestNum(requestNum++);
 }
 function fetchMarkersById(mpid) {
     var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mpid=" + mpid;
-    wRequest = new Sys.Net.WebRequest();
-    Sys.Net.WebRequestManager.add_completedRequest(initMarker);
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.add_completed(initMarker);
     wRequest.set_url(url);
-    Sys.Net.WebRequestManager.executeRequest(wRequest);
+    wRequest.invoke();
     showRequestNum(requestNum++);
 }
 function setToRoad(roadId, mpId) {
@@ -235,18 +236,18 @@ function setToEvent(eventId, mpId) {
 }
 function fetchMarkersByRoad(roadId) {
     var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&roadid=" + roadId;
-    wRequest = new Sys.Net.WebRequest();
-    Sys.Net.WebRequestManager.add_completedRequest(initMarker);
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.add_completed(initMarker);
     wRequest.set_url(url);
-    Sys.Net.WebRequestManager.executeRequest(wRequest);
+    wRequest.invoke();
     showRequestNum(requestNum++);
 }
 function fetchMarkersByEvent(eventId) {
     var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mptype=_mp_type_event&eventid=" + eventId;
-    wRequest = new Sys.Net.WebRequest();
-    Sys.Net.WebRequestManager.add_completedRequest(initMarker);
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.add_completed(initMarker);
     wRequest.set_url(url);
-    Sys.Net.WebRequestManager.executeRequest(wRequest);
+    wRequest.invoke();
     showRequestNum(requestNum++);
 }
 function initMarker(executor, eventArgs) {
@@ -290,15 +291,22 @@ function showClickLatLng(btn,latlng) {
 	showMouseLatLng(latlng);
 }
 function showMouseLatLng(latlng) {
-    document.getElementById("spanLatLng").innerHTML += latlng.lat() + ", " + latlng.lng() + "<br />";
+    if ($get("spanLatLng")) {
+        $get("spanLatLng").innerHTML += latlng.lat() + ", " + latlng.lng() + "<br />";
+    }
 }
 
 function showZoomLevel(oldLevel, newLevel) {
-    document.getElementById("spanZoomLevel").innerHTML = newLevel;
+    if ($get("spanZoomLevel")) {
+        $get("spanZoomLevel").innerHTML = newLevel;
+    }
 }
 
 function showRequestNum(num) {
-    document.getElementById("spanRequestNum").innerHTML = num;
+    if ($get("spanRequestNum")) {
+        $get("spanRequestNum").innerHTML = num;
+    }
+    
 }
 
 Sys.Application.add_load(initMap);

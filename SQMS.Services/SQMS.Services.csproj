@@ -40,6 +40,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq">
@@ -51,12 +54,12 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo\LogService.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Domain\QualityControl\TimeItem.cs" />
     <Compile Include="Domain\QualityControl\TimeSchema.cs" />
     <Compile Include="Domain\QualityControl\Video.cs" />
+    <Compile Include="Domain\Vehicle\VehicleTask.cs" />
+    <Compile Include="Domain\Vehicle\VehicleTaskData.cs" />
+    <Compile Include="Domain\Vehicle\VehicleTrace.cs" />
     <Compile Include="EmergencyEventService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -147,6 +150,9 @@
       <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
       <Name>EasyDev</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Demo\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
