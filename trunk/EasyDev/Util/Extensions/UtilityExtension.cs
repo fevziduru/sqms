@@ -145,6 +145,11 @@ namespace EasyDev.Util
                 /// <returns></returns>
                 public static int ParseInt(this object obj)
                 {
+                        //int result = 0;
+
+                        //int.TryParse(obj.ParseString(), out result);
+                        //return result;
+
                         try
                         {
                                 return Convert.ToInt32(obj);
