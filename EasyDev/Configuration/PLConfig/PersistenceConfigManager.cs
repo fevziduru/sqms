@@ -8,6 +8,10 @@ using EasyDev.PL;
 using System.Linq;
 using System.Xml.Linq;
 using System.IO;
+using System.Data;
+using System.Security;
+using EasyDev.Util;
+using System.Threading;
 
 namespace EasyDev.Configuration
 {
@@ -59,6 +63,8 @@ namespace EasyDev.Configuration
                 /// </summary>
                 private static PersistenceConfigManager _instance = null;
 
+                private bool IsConfigUpdated = false;
+
                 /// <summary>
                 /// 默认数据提供程序
                 /// </summary>
@@ -104,12 +110,19 @@ namespace EasyDev.Configuration
                 {
                         this.datasources.Clear();
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                        HttpRuntime.Cache.Remove(DEFAULT_DATASOURCE);
+                        HttpRuntime.Cache.Remove(DEFAULT_SCHEMA_DIR);
                 }
 
                 void watcher_Changed(object sender, FileSystemEventArgs e)
-                {                        
+                {
                         //数据源配置文件的位置固定
+                        //IsConfigUpdated = false;
+
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                        HttpRuntime.Cache.Remove(DEFAULT_DATASOURCE);
+                        HttpRuntime.Cache.Remove(DEFAULT_SCHEMA_DIR);
+
                         FetchPersistenceConfig();
                 }
 
@@ -117,6 +130,8 @@ namespace EasyDev.Configuration
                 {
                         //数据源配置文件的位置固定
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
+                        HttpRuntime.Cache.Remove(DEFAULT_DATASOURCE);
+                        HttpRuntime.Cache.Remove(DEFAULT_SCHEMA_DIR);
                         FetchPersistenceConfig();
                 }
 
@@ -150,13 +165,16 @@ namespace EasyDev.Configuration
 
                 private void FetchPersistenceConfig()
                 {
-                        lock (HttpRuntime.Cache)
-                        {
-                                this.datasources = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
+                        this.datasources = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
 
-                                if (this.datasources == null)
+                        if (this.datasources == null)
+                        {
+                                lock (HttpRuntime.Cache)
                                 {
-                                        InitDataSource();
+                                        if (this.datasources == null)
+                                        {
+                                                InitDataSourceConfig();
+                                        }
                                 }
                         }
                 }
@@ -164,10 +182,11 @@ namespace EasyDev.Configuration
                 /// <summary>
                 /// 初始化数据源
                 /// </summary>
+                [Obsolete("禁用此方法", true)]
                 private void InitDataSource()
                 {
-                        IEnumerable<XElement> nodes = 
-                                from p in XElement.Load(AppDomain.CurrentDomain.BaseDirectory+@"Config\\EasyDev.Persistence.Config").Elements("DataSources") select p;
+                        IEnumerable<XElement> nodes =
+                                from p in XElement.Load(AppDomain.CurrentDomain.BaseDirectory + @"Config\\EasyDev.Persistence.Config").Elements("DataSources") select p;
 
                         if (nodes != null && nodes.Count<XElement>() > 0)
                         {
@@ -222,77 +241,64 @@ namespace EasyDev.Configuration
                         }
                 }
 
-                [Obsolete("此方法已经过时，待InitDataSource方法测试通过后，此方法作废")]
-                private void InitDatasourcesConfig()
+                private void InitDataSourceConfig()
                 {
+                        DataSet dsConfig = new DataSet();
+
                         try
                         {
-                                XmlDocument doc = new XmlDocument();
-                                doc.Load(this.configPath);
-                                XmlNode rootNode = doc.SelectSingleNode("EasyDev.Persistence.Config/DataSources");
-                                if (rootNode != null)
+                                Thread.Sleep(500);
+                                using (FileStream fstream =
+                                        new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Config\\EasyDev.Persistence.Config", FileMode.Open, FileAccess.Read))
                                 {
-                                        if (rootNode.Attributes["SchemaDir"] != null)
-                                        {
-                                                this.defaultSchemaDir = AppDomain.CurrentDomain.BaseDirectory +
-                                                    @"\" + rootNode.Attributes["SchemaDir"].Value;
-
-                                                //缓存架构文件目录
-                                                HttpRuntime.Cache.Insert(DEFAULT_SCHEMA_DIR, this.defaultSchemaDir);
-                                        }
-
-                                        if (rootNode.Attributes["Default"] != null)
-                                        {
-                                                this.defaultDataSource = rootNode.Attributes["Default"].Value;
-
-                                                //缓存默认数据源配置
-                                                HttpRuntime.Cache.Insert(DEFAULT_DATASOURCE, this.defaultDataSource);
-                                        }
-
-                                        XmlNodeList providerNodes = rootNode.SelectNodes("DataSource");
-                                        if (providerNodes != null && providerNodes.Count > 0)
-                                        {
-                                                IEnumerator itr_Nodes = providerNodes.GetEnumerator();
-                                                while (itr_Nodes.MoveNext())
-                                                {
-                                                        IDataSource newProvider = new DataSource();
-                                                        XmlNode currentNode = (XmlNode)itr_Nodes.Current;
-                                                        string name = currentNode.SelectSingleNode("Name").InnerText;
-                                                        if (name.Length == 0)
-                                                        {
-                                                                throw new System.Exception("_datasource_must_have_a_name");
-                                                        }
-                                                        else
-                                                        {
-                                                                //初始化每一个数据提供程序配置
-                                                                newProvider.Name = name;
-                                                                newProvider.ProviderType = currentNode.SelectSingleNode("ProviderType").InnerText;
-                                                                newProvider.ConnectionString = currentNode.SelectSingleNode("ConnectionString").InnerText;
-
-                                                                KeyValuePair<string, IDataSource> item = new KeyValuePair<string, IDataSource>(name, newProvider);
-                                                                if (this.datasources == null)
-                                                                {
-                                                                        this.datasources = new Dictionary<string, IDataSource>();
-                                                                }
-
-                                                                if (this.datasources.Keys.Contains(item.Key) == false)
-                                                                {
-                                                                        this.datasources.Add(item);
-                                                                }
-                                                        }
-                                                }
-                                        }
-
-                                        HttpRuntime.Cache.Insert(EasyDev_DATASOURCE_CONFIG, this.datasources);
-                                }
-                                else
-                                {
-                                        throw new PersistenceException("_persistence_config_lack_of_root");
+                                        dsConfig.ReadXml(fstream);
                                 }
                         }
-                        catch (PersistenceException e)
+                        catch (SecurityException e)
                         {
                                 throw e;
+                        }
+
+                        if (dsConfig.Tables.Count > 0)
+                        {
+                                DataRow drDataSourcesConfig = dsConfig.FirstRow("DataSources");
+                                DataTable dtDataSourceItems = dsConfig.Table("DataSource");
+
+                                this.defaultSchemaDir = AppDomain.CurrentDomain.BaseDirectory + @"\" + drDataSourcesConfig.Field<string>("SchemaDir");
+                                HttpRuntime.Cache.Insert(DEFAULT_SCHEMA_DIR, this.defaultSchemaDir);
+
+                                this.defaultDataSource = drDataSourcesConfig.Field<string>("Default");
+                                HttpRuntime.Cache.Insert(DEFAULT_DATASOURCE, this.defaultDataSource);
+
+                                foreach (DataRow row in dtDataSourceItems.Rows)
+                                {
+                                        IDataSource newDatasource = new DataSource();
+                                        if (row.Field<string>("Name").Length == 0)
+                                        {
+                                                throw new System.Exception("_datasource_must_have_a_name");
+                                        }
+
+                                        newDatasource.Name = row.Field<string>("Name");
+                                        newDatasource.ProviderType = row.Field<string>("ProviderType");
+                                        newDatasource.ConnectionString = row.Field<string>("ConnectionString");
+
+                                        KeyValuePair<string, IDataSource> ds = new KeyValuePair<string, IDataSource>(newDatasource.Name, newDatasource);
+                                        if (this.datasources == null)
+                                        {
+                                                this.datasources = new Dictionary<string, IDataSource>();
+                                        }
+
+                                        if (this.datasources.Keys.Contains(ds.Key) == false)
+                                        {
+                                                this.datasources.Add(ds);
+                                        }
+                                }
+
+                                HttpRuntime.Cache.Insert(EasyDev_DATASOURCE_CONFIG, this.datasources);
+                        }
+                        else
+                        {
+                                throw new PersistenceException("_persistence_config_lack_of_root");
                         }
                 }
 
@@ -302,15 +308,17 @@ namespace EasyDev.Configuration
                 /// <returns></returns>
                 public IDataSource GetDefaultDataSource()
                 {
-                        lock (HttpRuntime.Cache)
-                        {
-                                object defaultDs = HttpRuntime.Cache.Get(DEFAULT_DATASOURCE);
-                                IDictionary<string, IDataSource> ds =
+                        IDictionary<string, IDataSource> ds =
                                     HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
 
-                                if (defaultDs == null || ds == null)
+                        if (ds == null)
+                        {
+                                lock (HttpRuntime.Cache)
                                 {
-                                        InitDatasourcesConfig();
+                                        if (ds == null)
+                                        {
+                                                InitDataSourceConfig();
+                                        }
                                 }
                         }
 
@@ -324,14 +332,15 @@ namespace EasyDev.Configuration
                 /// <returns></returns>
                 public IDataSource GetDataSourceByName(string name)
                 {
-                        lock (HttpRuntime.Cache)
+                        IDictionary<string, IDataSource> ds = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
+                        if (ds == null)
                         {
-                                IDictionary<string, IDataSource> ds =
-                                        HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
-
-                                if (ds == null)
+                                lock (HttpRuntime.Cache)
                                 {
-                                        InitDatasourcesConfig();
+                                        if (ds == null)
+                                        {
+                                                InitDataSourceConfig();
+                                        }
                                 }
                         }
 
