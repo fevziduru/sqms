@@ -110,6 +110,22 @@
             </td>
         </tr>
         <tr>
+            <td style="width:110px">&nbsp;</td>
+            <td colspan="3">
+            <table>
+                <tr>
+                        <td><asp:CheckBox ID="cbIsGased" runat="server" Text="加油" /></td>
+                </tr>
+                <tr>
+                        <td><asp:CheckBox ID="cbIsWatered" runat="server" Text="加水" /></td>
+                </tr>
+                <tr>
+                        <td><asp:CheckBox ID="cbIsRepaired" runat="server" Text="维修" /></td>
+                </tr>
+            </table>                
+            </td>
+        </tr>
+        <tr>
             <td style="width:110px">备注：</td>
             <td colspan="3"><asp:TextBox TextMode="MultiLine" ID="txtMemo" runat="server" 
                     Height="181px" Width="488px" ></asp:TextBox></td>

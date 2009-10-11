@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Runtime.Remoting;
 using EasyDev.PL;
 using EasyDev.Util;
+using System.Threading;
 
 namespace EasyDev.DAL
 {
@@ -64,52 +65,30 @@ namespace EasyDev.DAL
                 /// </summary>
                 public static GenericDBFactory GetInstance()
                 {
+
                         if (_instance == null)
                         {
-                                lock (_lockHelper)
+                                try
                                 {
-                                        if (_instance == null)
+                                        if (Monitor.TryEnter(_lockHelper, 100))
                                         {
-                                                _instance = new GenericDBFactory();
+                                                if (_instance == null)
+                                                {
+                                                        _instance = new GenericDBFactory();
+                                                }
                                         }
                                 }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(_lockHelper);
+                                }
                         }
-
                         return _instance;
                 }
-
-                ///// <summary>
-                ///// 创建MSSQL数据库会话
-                ///// </summary> 
-                ///// <param name="dataSourceName"></param>
-                ///// <returns></returns>
-                //[Obsolete("此方法已经过时")]
-                //public MSSqlSession CreateMSSqlSessionByName(string dataSourceName)
-                //{
-                //    return new MSSqlSession(dataSourceName);
-                //}
-
-                ///// <summary>
-                ///// 创建Oracle数据库会话
-                ///// </summary>
-                ///// <param name="dataSourceName"></param>
-                ///// <returns></returns>
-                //[Obsolete("此方法已经过时")]
-                //public OracleSession CreateOracleSessionByName(string dataSourceName)
-                //{
-                //    return new OracleSession(dataSourceName);
-                //}
-
-                ///// <summary>
-                ///// 创建Access数据库会话
-                ///// </summary>
-                ///// <param name="dataSourceName"></param>
-                ///// <returns></returns>
-                //[Obsolete("此方法已经过时")]
-                //public AccessSession CreateAccessSessionByName(string dataSourceName)
-                //{
-                //    return new AccessSession(dataSourceName);
-                //}
 
                 /// <summary>
                 /// (泛型方法) 创建DBSession对象，这个对象必须实现IDBSession接口，并且Session对象必须要有无参数的公共构造函数

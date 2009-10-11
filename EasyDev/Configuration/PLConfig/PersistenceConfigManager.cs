@@ -108,21 +108,18 @@ namespace EasyDev.Configuration
 
                 void watcher_Deleted(object sender, FileSystemEventArgs e)
                 {
-                        this.datasources.Clear();
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
                         HttpRuntime.Cache.Remove(DEFAULT_DATASOURCE);
                         HttpRuntime.Cache.Remove(DEFAULT_SCHEMA_DIR);
+                        this.datasources.Clear();
                 }
 
                 void watcher_Changed(object sender, FileSystemEventArgs e)
                 {
                         //数据源配置文件的位置固定
-                        //IsConfigUpdated = false;
-
                         HttpRuntime.Cache.Remove(EasyDev_DATASOURCE_CONFIG);
                         HttpRuntime.Cache.Remove(DEFAULT_DATASOURCE);
                         HttpRuntime.Cache.Remove(DEFAULT_SCHEMA_DIR);
-
                         FetchPersistenceConfig();
                 }
 
@@ -141,14 +138,26 @@ namespace EasyDev.Configuration
                 /// <returns></returns>
                 public static PersistenceConfigManager GetInstance()
                 {
+
                         if (_instance == null)
                         {
-                                lock (lockHelper)
+                                try
                                 {
-                                        if (_instance == null)
+                                        if (Monitor.TryEnter(lockHelper, 100))
                                         {
-                                                _instance = new PersistenceConfigManager();
+                                                if (_instance == null)
+                                                {
+                                                        _instance = new PersistenceConfigManager();
+                                                }
                                         }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(lockHelper);
                                 }
                         }
 
@@ -167,14 +176,26 @@ namespace EasyDev.Configuration
                 {
                         this.datasources = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
 
+
                         if (this.datasources == null)
                         {
-                                lock (HttpRuntime.Cache)
+                                try
                                 {
-                                        if (this.datasources == null)
+                                        if (Monitor.TryEnter(HttpRuntime.Cache, 100))
                                         {
-                                                InitDataSourceConfig();
+                                                if (this.datasources == null)
+                                                {
+                                                        InitDataSourceConfig();
+                                                }
                                         }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(HttpRuntime.Cache);
                                 }
                         }
                 }
@@ -308,17 +329,28 @@ namespace EasyDev.Configuration
                 /// <returns></returns>
                 public IDataSource GetDefaultDataSource()
                 {
-                        IDictionary<string, IDataSource> ds =
-                                    HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
+                        IDictionary<string, IDataSource> ds = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
+
 
                         if (ds == null)
                         {
-                                lock (HttpRuntime.Cache)
+                                try
                                 {
-                                        if (ds == null)
+                                        if (Monitor.TryEnter(HttpRuntime.Cache, 100))
                                         {
-                                                InitDataSourceConfig();
+                                                if (ds == null)
+                                                {
+                                                        InitDataSourceConfig();
+                                                }
                                         }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(HttpRuntime.Cache);
                                 }
                         }
 
@@ -333,14 +365,27 @@ namespace EasyDev.Configuration
                 public IDataSource GetDataSourceByName(string name)
                 {
                         IDictionary<string, IDataSource> ds = HttpRuntime.Cache.Get(EasyDev_DATASOURCE_CONFIG) as Dictionary<string, IDataSource>;
+
+
                         if (ds == null)
                         {
-                                lock (HttpRuntime.Cache)
+                                try
                                 {
-                                        if (ds == null)
+                                        if (Monitor.TryEnter(HttpRuntime.Cache, 100))
                                         {
-                                                InitDataSourceConfig();
+                                                if (ds == null)
+                                                {
+                                                        InitDataSourceConfig();
+                                                }
                                         }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(HttpRuntime.Cache);
                                 }
                         }
 
