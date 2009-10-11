@@ -113,6 +113,9 @@
                                     </Columns>
                                 </asp:GridView>
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="HiddenVehicleTaskDateFilter" />
+                            </Triggers>
                         </asp:UpdatePanel>
                     </div>
                 </fieldset>
@@ -158,11 +161,11 @@
     </div>
 
     <script type="text/javascript">
-        var calendar = null;
         function initCaledar() {
             var Event = YAHOO.util.Event,
             Dom = YAHOO.util.Dom,
             dialog;
+            var calendar = null;
 
             var showBtn = Dom.get("btnOpenCal");
 
@@ -300,7 +303,7 @@
             Dom.get("date").value = initSelDate.format('yyyy年MM月dd日');
 
         }
-        Sys.Application.add_load(initCaledar);
+        Sys.Application.add_init(initCaledar);
     </script>
 
 </asp:Content>

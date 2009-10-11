@@ -20,15 +20,21 @@ function TracePlayer(trace, map) {
     this.dataWindow_ = null;
     this.dtWindBdChildren_ = new Array();
     this.carousel_ = null;
+    this.dataWindowShow_ = true;
 
     this.playDelegate = Function.createDelegate(this, this.play);
     this.stopDelegate = Function.createDelegate(this, this.stop);
     this.pauseDelegate = Function.createDelegate(this, this.pause);
     this.resumeDelegate = Function.createDelegate(this, this.resume);
     this.clearDelegate = Function.createDelegate(this, this.clear);
+    this.minDelegate = Function.createDelegate(this, this.minDataWindow);
+    this.maxDelegate = Function.createDelegate(this, this.maxDataWindow);
 
     $get("btnTracePlayerStartStop").innerText = "播放";
     $get("btnTracePlayerPause").innerText = "暂停";
+    $get("btnTracePlayerMin").innerText = "最小化";
+
+    $addHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
     $addHandler($get("btnTracePlayerStartStop"), "click", this.playDelegate);
     $addHandler($get("btnTracePlayerPause"), "click", this.pauseDelegate);
     $addHandler($get("btnTracePlayerClear"), "click", this.clearDelegate);
@@ -45,6 +51,38 @@ TracePlayer.CONTENT_TYPE_IMAGE = "image";
 * 轨迹中包含的数据库类型，视频
 */
 TracePlayer.CONTENT_TYPE_VIDEO = "video";
+/**
+* 隐藏数据显示窗口，被隐藏后不会触发轨迹回放事件
+*/
+TracePlayer.prototype.minDataWindow = function() {
+    $get("divTracePlayerDataWindowBody").style.display = "none";
+    $get("divCarousel").style.display = "none";
+    if ($get("carousel")) {
+        $get("carousel").style.display = "none";
+    } 
+
+    $get("btnTracePlayerMin").innerText = "最大化";
+    $removeHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
+    $addHandler($get("btnTracePlayerMin"), "click", this.maxDelegate);
+
+    this.dataWindowShow_ = false;
+}
+/**
+* 显示数据显示窗口
+*/
+TracePlayer.prototype.maxDataWindow = function() {
+    $get("divTracePlayerDataWindowBody").style.display = "";
+    $get("divCarousel").style.display = "";
+    if ($get("carousel")) {
+        $get("carousel").style.display = "";
+    }
+
+    $get("btnTracePlayerMin").innerText = "最小化";
+    $removeHandler($get("btnTracePlayerMin"), "click", this.maxDelegate);
+    $addHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
+
+    this.dataWindowShow_ = true;
+}
 /**
 * 设置轨迹事件处理函数
 * @param Function handler 其返回值定义为：[{src:String,type:String,title:String}]
@@ -89,7 +127,8 @@ TracePlayer.prototype.executePlay_ = function() {
     if (this.pointer_ < this.traceData.length) {
         this.lineDrawer.draw(this.traceData[this.pointer_].Lat, this.traceData[this.pointer_].Lng);
 
-        if (this.traceData[this.pointer_].data
+        if (this.dataWindowShow_ == true
+            && this.traceData[this.pointer_].data
             && Object.getTypeName(this.traceData[this.pointer_].data) == 'Array'
             && this.traceData[this.pointer_].data.length > 0) {
             if (this.streamEventHandler_) {
@@ -113,8 +152,8 @@ TracePlayer.prototype.showDataWindow_ = function() {
             width: "968px",
             fixedcenter: false,
             constraintoviewport: true,
-            underlay: "shadow",
-            close: true,
+            close: false,
+            underlay: "none",
             visible: true,
             draggable: true
         });
