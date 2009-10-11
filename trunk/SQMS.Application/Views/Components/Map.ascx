@@ -83,7 +83,7 @@
     }
     #divTracePlayerCtrl span
     {
-        margin-right:790px;
+        margin-right:730px;
     }
 </style>
 <div>
@@ -116,6 +116,7 @@
 </div>--%>
 <div id="divTracePlayerCtrl" style='display: none;zoom:1;'>
     <span>轨迹回放</span>
+    <button type="button" id="btnTracePlayerMin">最小化</button>
     <button type="button" id="btnTracePlayerStartStop">
         开始</button>
     <button type="button" id="btnTracePlayerPause">
