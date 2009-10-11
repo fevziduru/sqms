@@ -86,6 +86,21 @@
             </td>
         </tr>
         <tr>
+                <td colspan="4">
+                        <table>
+                                <tr>
+                                        <td>加油：</td><td><asp:Label ID="lblGased" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                        <td>加水：</td><td><asp:Label ID="lblWatered" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                        <td>维修：</td><td><asp:Label ID="lblRepaired" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                        </table>
+                </td>
+        </tr>
+        <tr>
             <td class="style1">备注：</td>
             <td colspan="3">
                 <asp:Label ID="lbl_momo" runat="server" Text=""></asp:Label>

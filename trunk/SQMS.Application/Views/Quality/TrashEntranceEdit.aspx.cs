@@ -38,9 +38,9 @@ namespace SQMS.Application.Views.Quality
                                 drMP["MPCODE"] = this.txtMPCode.Text;
                                 drMP["MPNAME"] = this.txtMPName.Text;
                                 drMP["MEMO"] = this.txtMemo.Text;
-                                drMP["ORDERINROAD"] = this.txtOrderInRoad.Text;
-                                drMP["LONGITUDE"] = this.txtLng.Text;
-                                drMP["LATITUDE"] = this.txtLat.Text;
+                                drMP["ORDERINROAD"] = this.txtOrderInRoad.Text.ParseDecimal();
+                                drMP["LONGITUDE"] = this.txtLng.Text.ParseLongitude();
+                                drMP["LATITUDE"] = this.txtLat.Text.ParseLatitude();
                                 drMP["MPTYPE"] = "trashentrance";
                                 drMP["ROADID"] = this.refRoad.SelectedValue;
                                 drMP["SCHEMAID"] = this.refTimeSchema.SelectedValue;

@@ -140,6 +140,33 @@ namespace SQMS.Application.Views.Vehicle {
         protected global::System.Web.UI.WebControls.CheckBox cbIsvoid;
         
         /// <summary>
+        /// cbIsGased 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsGased;
+        
+        /// <summary>
+        /// cbIsWatered 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsWatered;
+        
+        /// <summary>
+        /// cbIsRepaired 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsRepaired;
+        
+        /// <summary>
         /// txtMemo 控件。
         /// </summary>
         /// <remarks>

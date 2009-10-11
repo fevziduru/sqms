@@ -67,17 +67,28 @@ namespace EasyDev.BL
                 {
                         GenericDBSession session = SessionPool.Get(name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
 
+
                         if (session == null)
                         {
-                                //TODO:Session名称待重构
-                                lock (SessionPool)
+                                try
                                 {
-                                        if (session == null)
+                                        if (Monitor.TryEnter(SessionPool, 100))
                                         {
-                                                session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDataSource(name)); //数据访问对象
-                                                session.SessionID = name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString();
-                                                SessionPool.Insert(session.SessionID, session);
+                                                if (session == null)
+                                                {
+                                                        session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDataSource(name)); //数据访问对象
+                                                        session.SessionID = name + "_T" + Thread.CurrentThread.ManagedThreadId.ToString();
+                                                        SessionPool.Insert(session.SessionID, session);
+                                                }
                                         }
+                                }
+                                catch (ArgumentException arge)
+                                {
+                                        throw arge;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(SessionPool);
                                 }
                         }
 
@@ -257,16 +268,29 @@ namespace EasyDev.BL
                         get
                         {
                                 GenericDBSession session = SessionPool.Get("DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
+
+
                                 if (session == null)
                                 {
-                                        lock (SessionPool)
+                                        try
                                         {
-                                                if (session == null)
+                                                if (Monitor.TryEnter(SessionPool, 100))
                                                 {
-                                                        session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource());     //数据访问对象
-                                                        session.SessionID = "DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString();
-                                                        SessionPool.Insert(session.SessionID, session);
+                                                        if (session == null)
+                                                        {
+                                                                session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource());     //数据访问对象
+                                                                session.SessionID = "DEFAULT_SESSION_T" + Thread.CurrentThread.ManagedThreadId.ToString();
+                                                                SessionPool.Insert(session.SessionID, session);
+                                                        }
                                                 }
+                                        }
+                                        catch (ArgumentException arge)
+                                        {
+                                                throw arge;
+                                        }
+                                        finally
+                                        {
+                                                Monitor.Exit(SessionPool);
                                         }
                                 }
 
@@ -287,15 +311,30 @@ namespace EasyDev.BL
                         this.serviceManager = ServiceManagerFactory.CreateServiceManager<NativeServiceManager>();
 
                         //创建默认SESSION
-                        GenericDBSession session = null;
-                        lock (SessionPool)
+                        GenericDBSession session = SessionPool.Get(sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
+
+
+                        if (session == null)
                         {
-                                session = SessionPool.Get(sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString()) as GenericDBSession;
-                                if (session == null)
+                                try
                                 {
-                                        session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource()); //数据访问对象
-                                        session.SessionID = sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString();
-                                        SessionPool.Insert(session.SessionID, session);
+                                        if (Monitor.TryEnter(SessionPool, 100))
+                                        {
+                                                if (session == null)
+                                                {
+                                                        session = DBSessionManager.CreateDBSession(DataSourceManager.CreateDefaultDataSource()); //数据访问对象
+                                                        session.SessionID = sessionName + "_T" + Thread.CurrentThread.ManagedThreadId.ToString();
+                                                        SessionPool.Insert(session.SessionID, session);
+                                                }
+                                        }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(SessionPool);
                                 }
                         }
 

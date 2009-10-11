@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Collections;
 using System.Web;
+using System.Threading;
 
 namespace EasyDev.Configuration
 {
@@ -46,14 +47,26 @@ namespace EasyDev.Configuration
                 /// <returns></returns>
                 public static ResourcesConfigManager GetInstance()
                 {
+
                         if (_instance == null)
                         {
-                                lock (lockHelper)
+                                try
                                 {
-                                        if (_instance == null)
+                                        if (Monitor.TryEnter(lockHelper, 100))
                                         {
-                                                _instance = new ResourcesConfigManager();
+                                                if (_instance == null)
+                                                {
+                                                        _instance = new ResourcesConfigManager();
+                                                }
                                         }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                        throw e;
+                                }
+                                finally
+                                {
+                                        Monitor.Exit(lockHelper);
                                 }
                         }
 
@@ -63,16 +76,7 @@ namespace EasyDev.Configuration
                 private void Initialize()
                 {
                         //缓存配置信息
-                        //lock (HttpRuntime.Cache)
-                        //{
-                        //    this.resources = HttpRuntime.Cache.Get("EDFK_RES_CONFIG") as Dictionary<string, ResourceItemConfig>;
-
-                        //    if (this.resources == null)
-                        //    {
                         InitResourceConfig();
-                        //    HttpRuntime.Cache.Insert("EDFK_RES_CONFIG", this.resources);
-                        //}
-                        //}
                 }
 
                 private void InitResourceConfig()
