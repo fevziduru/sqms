@@ -77,10 +77,6 @@
     {
     
     }
-    #divCarousel
-    {
-        filter:alpha(opacity=100);
-    }
     #divTracePlayerCtrl span
     {
         margin-right:730px;
