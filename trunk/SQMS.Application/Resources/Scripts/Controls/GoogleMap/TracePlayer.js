@@ -21,6 +21,7 @@ function TracePlayer(trace, map) {
     this.dtWindBdChildren_ = new Array();
     this.carousel_ = null;
     this.dataWindowShow_ = true;
+    this.carouselItemIndex_ = 0;
 
     this.playDelegate = Function.createDelegate(this, this.play);
     this.stopDelegate = Function.createDelegate(this, this.stop);
@@ -59,7 +60,7 @@ TracePlayer.prototype.minDataWindow = function() {
     $get("divCarousel").style.display = "none";
     if ($get("carousel")) {
         $get("carousel").style.display = "none";
-    } 
+    }
 
     $get("btnTracePlayerMin").innerText = "最大化";
     $removeHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
@@ -149,7 +150,7 @@ TracePlayer.prototype.executePlay_ = function() {
 TracePlayer.prototype.showDataWindow_ = function() {
     if (!this.dataWindow_) {
         this.dataWindow_ = new YAHOO.widget.Panel("divTracePlayerDataWindow", {
-            width: "968px",
+            width: "975px",
             fixedcenter: false,
             constraintoviewport: true,
             close: false,
@@ -174,6 +175,7 @@ TracePlayer.prototype.fillDataWindow_ = function(data) {
     }
     this.pause();
     this.showCarousel_(data);
+    this.resume();
 }
 /**
 * 创建图片数据展示控件
@@ -181,16 +183,7 @@ TracePlayer.prototype.fillDataWindow_ = function(data) {
 @param String title
 */
 TracePlayer.prototype.createImageCtrl_ = function(url, title) {
-    var img = new Image();
-    img.title = title;
-    img.src = url;
-    img.style.width = 320;
-    img.style.height = 240;
-    var a = document.createElement("a");
-    a.href = url;
-    a.target = '_blank';
-    a.appendChild(img);
-    return a;
+    return "<a href='"+url+"' title='"+title+"' target='_blank'><img src='"+url+"' style='width:320px;height:240px;' /></a>";
 }
 /**
 * 创建视频数据展示控件
@@ -198,8 +191,8 @@ TracePlayer.prototype.createImageCtrl_ = function(url, title) {
 @param String title
 */
 TracePlayer.prototype.createVideoCtrl_ = function(url, title) {
-    var span = document.createElement("span");
-    span.innerHTML = "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' id='tracePlayerVideo' width='320' "
+    var str = "<span>";
+    str += "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' id='tracePlayerVideo' width='320' "
                         + "data='" + url + "'"
                         + "height='280' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab'>"
                         + "<param name='movie' value='../../Resources/Swf/SimpleVideoPlay.swf?file=" + url + "' />"
@@ -211,85 +204,42 @@ TracePlayer.prototype.createVideoCtrl_ = function(url, title) {
                             + "play='true' loop='false' quality='high' allowscriptaccess='sameDomain' type='application/x-shockwave-flash' "
                             + "pluginspage='http://www.adobe.com/go/getflashplayer'></embed>"
                         + "</object>";
-    return span;
+    str += "</span>";
+    return str;
 }
 /**
-* 显示滚动展示控件
+* 显示旋转木马展示控件
 * @param Array data 由setStreamEventHandler指定的handler的返回值
 * @see setStreamEventHandler
 */
 TracePlayer.prototype.showCarousel_ = function(data) {
-    if (this.carousel_) {
-        var ctx = { this_: this, data: data };
-        this.animTimer_ = window.setInterval(function() {
-            if ($get("divCarousel") && $get("divCarousel").filters.alpha) {
-                $get("divCarousel").filters.alpha.opacity -= 20;
-                if ($get("divCarousel").filters.alpha.opacity <= 0) {
-                    window.clearInterval(ctx.this_.animTimer_);
-                    ctx.this_.createCarouselEx_(ctx.data);
-                }
-            } else {
-                window.clearInterval(ctx.this_.animTimer_);
-                ctx.this_.createCarouselEx_(ctx.data);
-            }
-        }, 50);
-    } else {
-        this.createCarouselEx_(data);
-    }
-}
-/**
-* 执行显示滚动展示控件操作的委托
-* @param Array data 由setStreamEventHandler指定的handler的返回值
-* @see setStreamEventHandler
-*/
-TracePlayer.prototype.createCarouselEx_ = function(data) {
-    var dtBody = new YAHOO.util.Element("divTracePlayerDataWindowBody");
-    dtBody.removeChild($get("divCarousel"));
-
-    var ol = document.createElement("ol");
-    ol.id = "carousel";
-    var ctrl = null;
-    var li = null;
+    this.createCarouselEx_();
+    var scollTo = this.carouselItemIndex_;
+    var ctrl;
     for (var i = 0; i < data.length; i++) {
         if (data[i].type == TracePlayer.CONTENT_TYPE_IMAGE) {
             ctrl = this.createImageCtrl_(data[i].src, data[i].title);
-            li = document.createElement("li");
-            li.className = "item";
-            li.appendChild(ctrl);
-            ol.appendChild(li);
         } else if (data[i].type == TracePlayer.CONTENT_TYPE_VIDEO) {
             ctrl = this.createVideoCtrl_(data[i].src, data[i].title);
-            li = document.createElement("li");
-            li.className = "item";
-            li.appendChild(ctrl);
-            ol.appendChild(li);
+        }
+        if (ctrl) {
+            this.carousel_.addItem(ctrl);
+            this.carouselItemIndex_++;
         }
     }
-    var div = document.createElement("div");
-    div.id = "divCarousel";
-    div.appendChild(ol);
-    dtBody.appendChild(div);
-
-    delete this.carousel_;
-    this.carousel_ = new YAHOO.widget.Carousel("divCarousel", {
-        isCircular: true, animation: { speed: 0.5 }
-    });
-    $get("divCarousel").filters.alpha.opacity = 0;
     this.carousel_.render(); // get ready for rendering the widget
     this.carousel_.show();
-    var ctx = this;
-    this.animTimer_ = window.setInterval(function() {
-        if ($get("divCarousel") && $get("divCarousel").filters.alpha) {
-            $get("divCarousel").filters.alpha.opacity += 20;
-            if ($get("divCarousel").filters.alpha.opacity >= 100) {
-                window.clearInterval(ctx.animTimer_);
-                ctx.resume();
-            }
-        } else {
-            window.clearInterval(ctx.animTimer_);
-            ctx.resume();
-        }
-    }, 50);
+    this.carousel_.scrollTo(scollTo);
+}
+/**
+* 创建旋转木马展示控件
+*/
+TracePlayer.prototype.createCarouselEx_ = function() {
+    if (!this.carousel_) {
+        this.carousel_ = new YAHOO.widget.Carousel("divCarousel", {
+            isCircular: true, animation: { speed: 0.5 }
+        });
+    }
 }
 /**
 * 暂停轨迹回放
