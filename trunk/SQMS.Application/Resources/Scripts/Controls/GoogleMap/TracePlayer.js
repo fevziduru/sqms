@@ -114,7 +114,7 @@ TracePlayer.prototype.showDataWindow_ = function() {
             fixedcenter: false,
             constraintoviewport: true,
             underlay: "shadow",
-            close: false,
+            close: true,
             visible: true,
             draggable: true
         });
