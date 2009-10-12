@@ -35,9 +35,9 @@ namespace SQMS.Application.Views.Vehicle
                                 this.lbl_vm.Text = ConvertUtil.ToStringOrDefault(drVT["MODEL"]);
                                 this.lbl_ln.Text = ConvertUtil.ToStringOrDefault(drVT["LICENSEPLATENUM"]);
 
-                                this.lblGased.Text = drVT.Field<bool>("ISGASSUPPLIED") == true ? "是" : "否";
-                                this.lblWatered.Text = drVT.Field<bool>("ISWATERSUPPLIED") == true ? "是" : "否";
-                                this.lblRepaired.Text = drVT.Field<bool>("ISREPAIRED") == true ? "是" : "否";
+                                this.lblGased.Text = drVT.Field<string>("ISGASSUPPLIED") == "Y" ? "是" : "否";
+                                this.lblWatered.Text = drVT.Field<string>("ISWATERSUPPLIED") == "Y" ? "是" : "否";
+                                this.lblRepaired.Text = drVT.Field<string>("ISREPAIRED") == "Y" ? "是" : "否";
 
                                 this.lbl_cp.Text = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("EMPNAME", "EMPLOYEE", "EMPID", ConvertUtil.ToStringOrDefault(drVT["CHARGEMAN"])));
 
