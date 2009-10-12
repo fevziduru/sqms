@@ -100,9 +100,9 @@ namespace SQMS.Application.Views.Vehicle
                                         this.txtMODEL.Text = ConvertUtil.ToStringOrDefault(drVT["MODEL"]);
                                         this.txtLICENSEPLATENUM.Text = ConvertUtil.ToStringOrDefault(drVT["LICENSEPLATENUM"]);
 
-                                        this.cbIsGased.Checked = drVT.Field<bool>("ISGASSUPPLIED");
-                                        this.cbIsWatered.Checked = drVT.Field<bool>("ISWATERSUPPLIED");
-                                        this.cbIsRepaired.Checked = drVT.Field<bool>("ISREPAIRED");
+                                        this.cbIsGased.Checked = drVT.Field<string>("ISGASSUPPLIED") == "Y";
+                                        this.cbIsWatered.Checked = drVT.Field<string>("ISWATERSUPPLIED") == "Y";
+                                        this.cbIsRepaired.Checked = drVT.Field<string>("ISREPAIRED") == "Y";
 
                                         this.refEMP.SelectedValue = ConvertUtil.ToStringOrDefault(drVT["CHARGEMAN"]);
                                         this.refEMP.SelectedText = ConvertUtil.ToStringOrDefault(Service.GetReferenceValue("EMPID", "EMPLOYEE", "EMPID",
