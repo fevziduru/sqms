@@ -124,6 +124,12 @@ function initMap() {
             WGMarkerFactory.markerManager = new MarkerManager(WGMarkerFactory.gmap);
         }
     }
+
+    if (map_enable_trace_player == true) {
+        if (!defaultTracePlayer) {
+            defaultTracePlayer = new TracePlayer(map);
+        }
+    }
 }
 /**
 * 移动到某个标记点并打开信息窗口的触发器。

@@ -18,8 +18,8 @@ function initTracePlayer(executor, eventArgs) {
             return;
         }
         var pts = buildRelation(task);
-        var player = new TracePlayer(pts, map);
-        player.setStreamEventHandler({ scope: this, handler: function(data) {
+        defaultTracePlayer.setTraceData(pts);
+        defaultTracePlayer.setStreamEventHandler({ scope: this, handler: function(data) {
             var ret = new Array();
             for (var i = 0; i < data.length; i++) {
                 if (data[i].ImageUrl && data[i].ImageUrl != '') {
@@ -37,7 +37,7 @@ function initTracePlayer(executor, eventArgs) {
             return ret;
         }
         });
-        player.play();
+        defaultTracePlayer.play();
     }
 }
 function buildRelation(task) {

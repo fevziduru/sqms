@@ -138,5 +138,6 @@
     var initLng = <%=this.InitLatLng.Lng %>;
     var mpType = '<%=this.MPTypeString%>';
     var map_enable_trace_player = <%=((this.EnableTracePlayer == true) ? "true" : "false")%>;
+    var defaultTracePlayer = null;
 </script>
 
