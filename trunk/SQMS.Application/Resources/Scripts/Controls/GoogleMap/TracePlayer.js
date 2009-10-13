@@ -1,11 +1,11 @@
 ﻿/// <reference name="MicrosoftAjax.js"/>
 /**
 * 轨迹播放器
-* @param Array trace 轨迹数据数据，定义为：[{Lat:Number,Lng:Number,data:Array}]
 * @param GMap map Google Map Object
+* @param [option] Array trace 轨迹数据数据，定义为：[{Lat:Number,Lng:Number,data:Array}
 */
-function TracePlayer(trace, map) {
-    this.traceData = (Object.getTypeName(trace) == 'Array') ? trace : new Array();
+function TracePlayer(map, trace) {
+    this.traceData = (trace && Object.getTypeName(trace) == 'Array') ? trace : new Array();
     this.map = map;
     this.pointer_ = 0;
     this.lineDrawer = new PolyLineDrawer(map);
@@ -20,7 +20,7 @@ function TracePlayer(trace, map) {
     this.dataWindow_ = null;
     this.dtWindBdChildren_ = new Array();
     this.carousel_ = null;
-    this.dataWindowShow_ = true;
+    this.dataWindowMaxed_ = true;
     this.carouselItemIndex_ = 0;
 
     this.playDelegate = Function.createDelegate(this, this.play);
@@ -53,6 +53,15 @@ TracePlayer.CONTENT_TYPE_IMAGE = "image";
 */
 TracePlayer.CONTENT_TYPE_VIDEO = "video";
 /**
+* 设置轨迹数据
+* @param Array trace 轨迹数据数据，定义为：[{Lat:Number,Lng:Number,data:Array}
+*/
+TracePlayer.prototype.setTraceData = function(trace) {
+    this.traceData = (trace && Object.getTypeName(trace) == 'Array') ? trace : new Array();
+    this.stop();
+    this.clear();
+}
+/**
 * 隐藏数据显示窗口，被隐藏后不会触发轨迹回放事件
 */
 TracePlayer.prototype.minDataWindow = function() {
@@ -66,7 +75,7 @@ TracePlayer.prototype.minDataWindow = function() {
     $removeHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
     $addHandler($get("btnTracePlayerMin"), "click", this.maxDelegate);
 
-    this.dataWindowShow_ = false;
+    this.dataWindowMaxed_ = false;
 }
 /**
 * 显示数据显示窗口
@@ -82,7 +91,7 @@ TracePlayer.prototype.maxDataWindow = function() {
     $removeHandler($get("btnTracePlayerMin"), "click", this.maxDelegate);
     $addHandler($get("btnTracePlayerMin"), "click", this.minDelegate);
 
-    this.dataWindowShow_ = true;
+    this.dataWindowMaxed_ = true;
 }
 /**
 * 设置轨迹事件处理函数
@@ -100,8 +109,12 @@ TracePlayer.prototype.clearStreamEventHandler = function(handler) {
 }
 /**
 * 从头开始播放轨迹
+* @return void
 */
 TracePlayer.prototype.play = function() {
+    if (!this.traceData || !this.traceData.length || this.traceData.length <= 0) {
+        return;
+    }
     if (!this.isPaused) {
         this.map.setCenter(new GLatLng(this.traceData[0].Lat, this.traceData[0].Lng), 14);
     }
@@ -128,7 +141,7 @@ TracePlayer.prototype.executePlay_ = function() {
     if (this.pointer_ < this.traceData.length) {
         this.lineDrawer.draw(this.traceData[this.pointer_].Lat, this.traceData[this.pointer_].Lng);
 
-        if (this.dataWindowShow_ == true
+        if (this.dataWindowMaxed_ == true
             && this.traceData[this.pointer_].data
             && Object.getTypeName(this.traceData[this.pointer_].data) == 'Array'
             && this.traceData[this.pointer_].data.length > 0) {
@@ -161,8 +174,12 @@ TracePlayer.prototype.showDataWindow_ = function() {
         this.dataWindow_.setHeader($get("divTracePlayerCtrl"));
         this.dataWindow_.setBody("<div id='divTracePlayerDataWindowBody' style='width:100%;height:300px;margin:0px;'><div id='divCarousel'></div></div>");
         this.dataWindow_.render(document.body);
+
+        this.dataWindow_.show();
+        this.createCarouselEx_();
+    } else if (this.dataWindowMaxed_ == false) {
+        this.maxDataWindow();
     }
-    this.dataWindow_.show();
 }
 /**
 * 将数据填充到数据窗口
@@ -183,7 +200,7 @@ TracePlayer.prototype.fillDataWindow_ = function(data) {
 @param String title
 */
 TracePlayer.prototype.createImageCtrl_ = function(url, title) {
-    return "<a href='"+url+"' title='"+title+"' target='_blank'><img src='"+url+"' style='width:320px;height:240px;' /></a>";
+    return "<a href='" + url + "' title='" + title + "' target='_blank'><img src='" + url + "' style='width:320px;height:240px;' /></a>";
 }
 /**
 * 创建视频数据展示控件
@@ -213,7 +230,6 @@ TracePlayer.prototype.createVideoCtrl_ = function(url, title) {
 * @see setStreamEventHandler
 */
 TracePlayer.prototype.showCarousel_ = function(data) {
-    this.createCarouselEx_();
     var scollTo = this.carouselItemIndex_;
     var ctrl;
     for (var i = 0; i < data.length; i++) {
@@ -247,9 +263,11 @@ TracePlayer.prototype.createCarouselEx_ = function() {
 TracePlayer.prototype.pause = function() {
     window.clearInterval(this.timer_);
     $get("btnTracePlayerPause").innerText = "继续";
-    $removeHandler($get("btnTracePlayerPause"), "click", this.pauseDelegate);
-    $addHandler($get("btnTracePlayerPause"), "click", this.resumeDelegate);
-    this.isPaused = true;
+    if (this.isPaused == false) {
+        $removeHandler($get("btnTracePlayerPause"), "click", this.pauseDelegate);
+        $addHandler($get("btnTracePlayerPause"), "click", this.resumeDelegate);
+        this.isPaused = true;
+    }
 }
 /**
 * 恢复轨迹回放
@@ -259,16 +277,25 @@ TracePlayer.prototype.resume = function() {
         this.executePlay_();
     });
     this.timer_ = window.setInterval(delegate, 1000);
-    this.isPaused = false;
-    $get("btnTracePlayerPause").innerText = "暂停";
-    $removeHandler($get("btnTracePlayerPause"), "click", this.resumeDelegate);
-    $addHandler($get("btnTracePlayerPause"), "click", this.pauseDelegate);
+    if (this.isPaused == true) {
+        this.isPaused = false;
+        $get("btnTracePlayerPause").innerText = "暂停";
+        $removeHandler($get("btnTracePlayerPause"), "click", this.resumeDelegate);
+        $addHandler($get("btnTracePlayerPause"), "click", this.pauseDelegate);
+    }
 }
 /**
 * 清除已经绘制的轨迹
 */
 TracePlayer.prototype.clear = function() {
     this.lineDrawer.clear();
+    this.clearCarousel_();
+}
+TracePlayer.prototype.clearCarousel_ = function() {
+    if (this.carousel_) {
+        this.carousel_.clearItems();
+    }
+    this.carouselItemIndex_ = 0;
 }
 /**
 * 停止回放轨迹
@@ -280,11 +307,12 @@ TracePlayer.prototype.stop = function() {
     window.clearInterval(this.timer_);
     this.pointer_ = 0;
 
-    this.isPlaying = false;
-
-    $get("btnTracePlayerStartStop").innerText = "播放";
-    $get("btnTracePlayerPause").disabled = true;
-    $removeHandler($get("btnTracePlayerStartStop"), "click", this.stopDelegate);
-    $addHandler($get("btnTracePlayerStartStop"), "click", this.playDelegate);
-    $get("btnTracePlayerClear").disabled = false;
+    if (this.isPlaying == true) {
+        this.isPlaying = false;
+        $get("btnTracePlayerStartStop").innerText = "播放";
+        $get("btnTracePlayerPause").disabled = true;
+        $removeHandler($get("btnTracePlayerStartStop"), "click", this.stopDelegate);
+        $addHandler($get("btnTracePlayerStartStop"), "click", this.playDelegate);
+        $get("btnTracePlayerClear").disabled = false;
+    }
 }
