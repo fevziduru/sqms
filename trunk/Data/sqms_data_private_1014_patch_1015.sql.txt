@@ -1,0 +1,101 @@
+DELETE FROM MENU T
+ WHERE T.RESOURCEKEY LIKE '%Monitor%'
+   AND T.MENUID != '_vehiclemonitor';
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_emergencymonitor', '应急事件监控', '/Views/Quality/EmergencyMonitor.aspx?p=EmergencyMonitor', 'EmergencyMonitor', '', '_emergency', '26', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_companyqualitymonitor', '环卫公司质量监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=monitorpoint', 'QualityCompanyQualityMonitor', '', '_qm', '10', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_mam', '市政管理质量监控', '/Views/Quality/MunicipalAdminMonitor.aspx?p=QualityMunicipalAdminMonitor&mptype=monitorpoint', 'QualityMunicipalAdminMonitor', '', '_qm', '11', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_som', '环卫监督质量监控', '/Views/Quality/SanitationOfficeMonitor.aspx?p=QualitySanitationOfficeMonitor&mptype=monitorpoint', 'QualitySanitationOfficeMonitor', '', '_qm', '12', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_vehiclemonitor', '行车任务监控', '/Views/Vehicle/VehicleMonitor.aspx?p=VehicleMonitor', 'VehicleMonitor', '', '_vehicle', '27', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_trashentrancemonitor', '渣口监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=trashentrance', 'QualityCompanyQualityMonitor', '', '_qm', '28', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_accidentmonitor', '事故现场监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=accident', 'QualityCompanyQualityMonitor', '', '_qm', '29', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_tripleconfusepointmonitor', '三乱监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=tripleconfusepoint', 'QualityCompanyQualityMonitor', '', '_qm', '30', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_deadspacepointmonitor', '死角监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=deadspacepoint', 'QualityCompanyQualityMonitor', '', '_qm', '31', '_func');
+
+insert into menu (MENUID, TITLE, URL, RESOURCEKEY, MEMO, PARENTMENU, ITEMORDER, TYPE)
+values ('_tripleroadpointmonitor', '三叉口监控', '/Views/Quality/CompanyQualityMonitor.aspx?p=QualityCompanyQualityMonitor&mptype=tripleroadpoint', 'QualityCompanyQualityMonitor', '', '_qm', '32', '_func');
+
+DELETE from enumeration t WHERE t.enumtype='_mptype';
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('monitorpoint', 'monitorpoint', '监控点', '_mptype', '', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('accident', 'accident', '事故现场', '_mptype', '', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('trashentrance', 'trashentrance', '渣口', '_mptype', '', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin', to_date('24-09-2009', 'dd-mm-yyyy'), 'admin');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('resourcepoint', 'resourcepoint', '资源点资源点', '_mptype', '', to_date('15-10-2009', 'dd-mm-yyyy'), 'admin', to_date('15-10-2009', 'dd-mm-yyyy'), 'admin');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('tripleroadpoint', 'tripleroadpoint', '三叉口', '_mptype', '', null, '', null, '');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('deadspacepoint', 'deadspacepoint', '死角', '_mptype', '', null, '', null, '');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('tripleconfusepoint', 'tripleconfusepoint', '三乱点', '_mptype', '', null, '', null, '');
+
+insert into enumeration (ENUMID, ENUMCODE, ENUMNAME, ENUMTYPE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY)
+values ('eventpoint', 'eventpoint', '应急事件点', '_mptype', '', null, '', null, '');
+
+delete from mpassignment t;
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00003', 'A00001', '1', 'A00003', '海尔路主干道监控点3', 106.61184310913100, 29.62375794564540, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00004', 'A00001', '1', 'A00004', '海尔路主干道起始点', 106.58678054809600, 29.62129572739780, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'Y', 'N', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00005', 'A00001', '1', 'A00005', '海尔路主干道监控点4', 106.63527488708500, 29.61816190807130, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00006', 'A00001', '1', 'A00006', '海尔路主干道监控点5', 106.63750648498501, 29.60599878159650, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00001', 'A00001', '1', 'A00001', '海尔路主干道监控点1', 106.59974098205601, 29.62189263431590, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00002', 'A00001', '1', 'A00002', '海尔路主干道监控点2', 106.65081024169901, 29.60062564498220, '', to_date('13-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('13-09-2009 23:24:45', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'Y', 0, 'monitorpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00007', '', '', 'A00007', '海尔路应急监控点1', 106.57538652420000, 29.60873188185720, '', to_date('21-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('21-09-2009 23:25:01', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', 'A00001', -1, 'Y', 'N', 0, 'eventpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00008', '', '', '', '加油站01', 106.62420272827100, 29.62502633762590, '', to_date('15-10-2009 18:59:06', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 18:59:06', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'resourcepoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00009', 'A00001', '', '', '三乱点01', 106.63089752197301, 29.61995267390490, '', to_date('15-10-2009 19:07:00', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 19:07:00', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'tripleconfusepoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00010', 'A00001', '', '', '死角01', 106.59201622009300, 29.62248953769810, '', to_date('15-10-2009 19:10:38', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 19:10:38', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'deadspacepoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00011', 'A00001', '', '', '三叉口01', 106.64849281311001, 29.60167044396710, '', to_date('15-10-2009 21:35:40', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 21:35:40', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'tripleroadpoint');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00012', 'A00001', '', '', '事故现场01', 106.61622047424301, 29.62271337555490, '', to_date('15-10-2009 21:35:40', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 21:35:40', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'accident');
+
+insert into mpassignment (MPID, ROADID, SCHEMAID, MPCODE, MPNAME, LONGITUDE, LATITUDE, MEMO, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ORGANIZATIONID, SUITEID, ISVOID, MPLEVEL, FLOATDIST, IMPORTANCE, EVENTID, LATESTQCLEVEL, ISSTART, ISEND, ORDERINROAD, MPTYPE)
+values ('A00013', 'A00001', '', '', '渣口01', 106.63561820983901, 29.61704266326700, '', to_date('15-10-2009 21:36:38', 'dd-mm-yyyy hh24:mi:ss'), '', to_date('15-10-2009 21:36:38', 'dd-mm-yyyy hh24:mi:ss'), '', 't1', '', 'N', 14, null, '0', '', -1, 'N', 'N', 0, 'trashentrance');
+
