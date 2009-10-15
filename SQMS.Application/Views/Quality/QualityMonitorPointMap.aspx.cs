@@ -27,6 +27,7 @@ namespace SQMS.Application.Views.Quality
         private DataTable dtQC = null;
         private DataTable dtMP = null;
         private DataTable dtEvent = null;
+
         protected string MonitorPointId
         {
             get
@@ -41,20 +42,11 @@ namespace SQMS.Application.Views.Quality
                 return ConvertUtil.ToStringOrDefault(this.Request.QueryString["qctype"]);
             }
         }
-
         protected MonitorPointType MPType
         {
             get
             {
-                if ("_mp_type_event".Equals(ConvertUtil.ToStringOrDefault(this.Request.QueryString["mptype"])))
-                {
-                    return MonitorPointType.Event;
-                }
-                else
-                {
-                    return MonitorPointType.Road;
-                }
-                
+                return MonitorPointTypeString.ConvertToEnum(ConvertUtil.ToStringOrDefault(this.Request.QueryString["mptype"]));
             }
         }
         protected string EventID
@@ -142,11 +134,6 @@ namespace SQMS.Application.Views.Quality
                 this.divEvent.Visible = true;
             }
         }
-        protected override void GetViewData()
-        {
-            base.GetViewData();
-        }
-
         protected override void OnLoadDataEventHandler(object sender, EventArgs e)
         {
             base.OnLoadDataEventHandler(sender, e);
