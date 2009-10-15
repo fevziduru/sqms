@@ -11,14 +11,10 @@ namespace SQMS.Application.Views.Components
 {
     public partial class Map : System.Web.UI.UserControl
     {
-        private string mpTypeString = "_mp_type_road";
+        private LatLng initLatLng = new LatLng(29.5548M, 106.5483M);
+        private MonitorPointType mpType = MonitorPointType.Normal;
+        private bool autoFetchMarker = true;
 
-        public string MPTypeString
-        {
-            get { return mpTypeString; }
-        }
-
-        private MonitorPointType mpType = MonitorPointType.Road;
         public MonitorPointType MPType
         {
             get
@@ -27,21 +23,17 @@ namespace SQMS.Application.Views.Components
             }
             set
             {
-                switch (value)
-                {
-                    case MonitorPointType.Event:
-                        this.mpTypeString = "_mp_type_event";
-                        break;
-                    case MonitorPointType.Road:
-                    default:
-                        this.mpTypeString = "_mp_type_road";
-                        break;
-                }
                 this.mpType = value;
             }
 
         }
-        private bool autoFetchMarker = true;
+        protected string MPTypeString
+        {
+            get
+            {
+                return MonitorPointTypeString.FromEnum(this.MPType,null);
+            }
+        }
         /// <summary>
         /// 是否自动获取地图标记（监控点）
         /// </summary>
@@ -50,8 +42,6 @@ namespace SQMS.Application.Views.Components
             get { return autoFetchMarker; }
             set { autoFetchMarker = value; }
         }
-
-        private LatLng initLatLng = new LatLng(29.5548M, 106.5483M);
         /// <summary>
         /// 地图初始中心经纬度
         /// </summary>
@@ -63,7 +53,9 @@ namespace SQMS.Application.Views.Components
                 initLatLng = value;
             }
         }
-
+        /// <summary>
+        /// 是否启用轨迹播放器
+        /// </summary>
         public bool EnableTracePlayer
         {
             get;

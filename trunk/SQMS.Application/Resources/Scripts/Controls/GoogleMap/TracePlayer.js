@@ -11,6 +11,7 @@ function TracePlayer(map, trace) {
     this.lineDrawer = new PolyLineDrawer(map);
     this.timer_ = null;
     this.animTimer_ = null;
+    this.highlightMarkers_ = new Array();
 
     this.isPlaying = false;
     this.isPaused = false;
@@ -146,6 +147,7 @@ TracePlayer.prototype.executePlay_ = function() {
             && Object.getTypeName(this.traceData[this.pointer_].data) == 'Array'
             && this.traceData[this.pointer_].data.length > 0) {
             if (this.streamEventHandler_) {
+                this.highlightEventPoint_(this.traceData[this.pointer_].Lat, this.traceData[this.pointer_].Lng);
                 var data = this.streamEventHandler_.handler.apply(this.streamEventHandler_.scope, [this.traceData[this.pointer_].data]);
                 this.fillDataWindow_(data);
             }
@@ -156,6 +158,11 @@ TracePlayer.prototype.executePlay_ = function() {
             this.stop();
         }
     }
+}
+TracePlayer.prototype.highlightEventPoint_ = function(lat, lng) {
+    var marker = new GMarker(new GLatLng(lat, lng), { title: "事件点" });
+    this.map.addOverlay(marker);
+    this.highlightMarkers_.push(marker);
 }
 /**
 * 显示数据窗口，这个窗口亦集成了轨迹播放器的控制面板
@@ -290,12 +297,19 @@ TracePlayer.prototype.resume = function() {
 TracePlayer.prototype.clear = function() {
     this.lineDrawer.clear();
     this.clearCarousel_();
+    this.clearHighlightMarkers_();
 }
 TracePlayer.prototype.clearCarousel_ = function() {
     if (this.carousel_) {
         this.carousel_.clearItems();
     }
     this.carouselItemIndex_ = 0;
+}
+TracePlayer.prototype.clearHighlightMarkers_ = function() {
+    for (var i = 0; i < this.highlightMarkers_.length; i++) {
+        this.map.removeOverlay(this.highlightMarkers_[i]);
+    }
+    this.highlightMarkers_.length = 0;
 }
 /**
 * 停止回放轨迹

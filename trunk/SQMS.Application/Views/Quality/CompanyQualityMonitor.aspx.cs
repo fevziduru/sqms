@@ -27,12 +27,22 @@ namespace SQMS.Application.Views.Quality
         private DataTable dtProjectManager = null;
         private DataTable dtVideo = null;
 
+        protected MonitorPointType UrlParamMPType
+        {
+            get
+            {
+                return MonitorPointTypeString.ConvertToEnum(this.Request.QueryString["mptype"]);
+            }
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             this.svcQualityControl = this.svcManager.CreateService<QualityControlService>();
             this.svcProject = this.svcManager.CreateService<ProjectService>();
             this.svcEmployee = this.svcManager.CreateService<EmployeeService>();
             this.svcRoad = this.svcManager.CreateService<RoadService>();
+
+            this.Map1.MPType = this.UrlParamMPType;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -80,7 +90,7 @@ namespace SQMS.Application.Views.Quality
                     string nodeValue = raodId + "&road";
                     TreeNode node = new TreeNode(ConvertUtil.ToStringOrDefault(drChild["ROADNAME"]), nodeValue);
 
-                    DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(raodId);
+                    DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(raodId,this.UrlParamMPType);
                     DataRow[] searched = dtPoint.Select("ISSTART='Y'");
 
                     DataRow drStartPoint = null;
@@ -105,7 +115,7 @@ namespace SQMS.Application.Views.Quality
             else if (valueArray[1].Equals("road"))
             {
                 //读取监控点
-                DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0]);
+                DataTable dtPoint = this.svcQualityControl.GetMonitorPointList(valueArray[0],this.UrlParamMPType);
                 //DataRow[] searched = dtPoint.Select("ISSTART='Y'");
 
                 //DataRow drStartPoint = null;

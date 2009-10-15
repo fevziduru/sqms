@@ -249,7 +249,7 @@ function fetchMarkersByRoad(roadId) {
     showRequestNum(requestNum++);
 }
 function fetchMarkersByEvent(eventId) {
-    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mptype=_mp_type_event&eventid=" + eventId;
+    var url = "/Views/AjaxServices/QualityControl/MonitorPoint.aspx?p=AjaxServicesQualityControlMonitorPoint&mptype=eventpoint&eventid=" + eventId;
     var wRequest = new Sys.Net.WebRequest();
     wRequest.add_completed(initMarker);
     wRequest.set_url(url);

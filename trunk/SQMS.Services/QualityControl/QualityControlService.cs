@@ -31,25 +31,34 @@ namespace SQMS.Services
         }
 
         #region 获取数据
-        public DataTable GetMonitorPointList(string roadId)
+        public DataTable GetMonitorPointList(string bizId)
         {
-            return this.GetMonitorPointList(roadId, "_mp_type_road");
+            return this.GetMonitorPointList(bizId, MonitorPointType.All);
         }
         /// <summary>
-        /// 根据路段ID获取监控点
+        /// 获取监控点列表
         /// </summary>
-        /// <param name="roadId"></param>
+        /// <param name="bizId"></param>
+        /// <param name="mpType"></param>
         /// <returns></returns>
-        public DataTable GetMonitorPointList(string bizId, string mpType)
+        public DataTable GetMonitorPointList(string bizId, MonitorPointType mpType)
         {
             string sql = this.getMonitorPointMainSql() + "WHERE 1=1 ";
-            if ("_mp_type_road".Equals(mpType))
+            if (!String.IsNullOrEmpty(bizId))
             {
-                sql += " AND M.ROADID = '" + bizId + "' ";
+                if (mpType == MonitorPointType.Normal || mpType == MonitorPointType.All)
+                {
+                    sql += " AND M.ROADID = '" + bizId + "' ";
+                }
+                else if (mpType == MonitorPointType.Event || mpType == MonitorPointType.All)
+                {
+                    sql += " AND M.EVENTID = '" + bizId + "'";
+                }
             }
-            else if ("_mp_type_event".Equals(mpType))
+            string mpTypeString = MonitorPointTypeString.FromEnum(mpType, FormatMPTypeString);
+            if (!String.IsNullOrEmpty(mpTypeString))
             {
-                sql += " AND M.EVENTID = '" + bizId + "'";
+                sql += " AND M.MPTYPE IN (" + mpTypeString + ")";
             }
             sql += " AND M.organizationid = '" + this.CurrentUser.OrganizationID + "' Order by IMPORTANCE desc,ORDERINROAD asc";
             DataTable dt = new DataTable();
@@ -261,9 +270,9 @@ namespace SQMS.Services
 
         public DataTable GetMonitorPointInLatLngBounds(LatLngBounds bound)
         {
-            return this.GetMonitorPointInLatLngBounds(bound, "_mp_type_road");
+            return this.GetMonitorPointInLatLngBounds(bound,MonitorPointType.Normal);
         }
-        public DataTable GetMonitorPointInLatLngBounds(LatLngBounds bound,string mpType)
+        public DataTable GetMonitorPointInLatLngBounds(LatLngBounds bound, MonitorPointType mpType)
         {
             string sql = this.getMonitorPointMainSql() + @" 
                              WHERE 1=1 {0}
@@ -276,14 +285,16 @@ namespace SQMS.Services
                                AND M.LATITUDE > " + bound.SouthWest.Lat + @"
                                AND M.LONGITUDE < " + bound.NorthEast.Lng + @"
                                AND M.ORGANIZATIONID = '" + this.CurrentUser.OrganizationID + "'";
-            if ("_mp_type_road".Equals(mpType))
+            string mpTypeString = MonitorPointTypeString.FromEnum(mpType, FormatMPTypeString);
+            if (!String.IsNullOrEmpty(mpTypeString))
             {
-                sql = String.Format(sql, " AND M.ROADID IS NOT NULL ");
+                sql = String.Format(sql, " AND M.MPTYPE IN (" + mpTypeString + ")");
             }
-            else if ("_mp_type_event".Equals(mpType))
+            else
             {
-                sql = String.Format(sql, " AND M.EVENTID IS NOT NULL ");
+                sql = String.Format(sql, "");
             }
+            
             DataTable dt = new DataTable();
             try
             {
@@ -326,6 +337,27 @@ namespace SQMS.Services
                 throw;
             }
             return dt;
+        }
+
+        protected string FormatMPTypeString(string str)
+        {
+            if(String.IsNullOrEmpty(str)){
+                return String.Empty;
+            }
+            string newStr = str.Replace(",", "','");
+            if (newStr.EndsWith(",'"))
+            {
+                newStr = newStr.Remove(newStr.Length - 2, 2);
+            }
+            if (!newStr.StartsWith("'"))
+            {
+                newStr = "'" + newStr;
+            }
+            if (!newStr.EndsWith("'"))
+            {
+                newStr = newStr + "'";
+            }
+            return newStr;
         }
         #endregion
 
