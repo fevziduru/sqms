@@ -43,6 +43,8 @@ function TracePlayer(map, trace) {
 
     if (map_enable_trace_player == true) {
         $get("divTracePlayerCtrl").style.display = '';
+        this.showDataWindow_();
+        this.minDataWindow();
     }
 }
 /**

@@ -94,6 +94,25 @@
                             <asp:HiddenField ID="HiddenVehicleTaskDateFilter" runat="server" OnValueChanged="HiddenVehicleTaskDateFilter_ValueChanged" />
                         </div>
                         <br />
+                        <asp:UpdatePanel ID="UpdatePanelRes" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <asp:GridView ID="GridViewRes" runat="server" Width="100%"
+                                    AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="MPID" EmptyDataText="没有可显示的数据记录。"
+                                    OnRowDataBound="GridViewRes_RowDataBound">
+                                    <Columns>
+                                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="任务">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="LinkBtnMPName" runat="server" Text='<%#Eval("MPNAME") %>'
+                                                    OnCommand="LinkBtnMPName_Command" CommandArgument='<%#Eval("MPID") %>'></asp:LinkButton>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="MPCODE" HeaderText="编码" />
+                                    </Columns>
+                                </asp:GridView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        &nbsp;<br />
                         <asp:UpdatePanel ID="UpdatePanelVehicleTasks" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:GridView ID="GridViewVehicleTasks" runat="server" AllowPaging="True" Width="100%"
@@ -154,7 +173,7 @@
         <div id="right" class="right">
             <asp:UpdatePanel ID="UpdatePanelMap" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:Map ID="Map1" runat="server" MPType="Road" EnableTracePlayer="True" />
+                    <uc:Map ID="Map1" runat="server" MPType="All" EnableTracePlayer="True" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
