@@ -31,6 +31,10 @@ namespace SQMS.Services
         }
 
         #region 获取数据
+        public DataTable GetMonitorPointList(MonitorPointType mpType)
+        {
+            return this.GetMonitorPointList("", mpType);
+        }
         public DataTable GetMonitorPointList(string bizId)
         {
             return this.GetMonitorPointList(bizId, MonitorPointType.All);
