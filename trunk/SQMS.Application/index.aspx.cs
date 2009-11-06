@@ -11,7 +11,7 @@ namespace SQMS.Application
         {
                 protected void Page_Load(object sender, EventArgs e)
                 {
-                        Response.Redirect("~/Views/Security/Login.aspx");
+                        Response.Redirect("~/Views/Security/Login.aspx"); 
                 }
         }
 }
