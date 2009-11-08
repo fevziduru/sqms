@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SQMS.Application
 {
-        public partial class index : System.Web.UI.Page
+    public partial class index : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
         {
-                protected void Page_Load(object sender, EventArgs e)
-                {
-                        Response.Redirect("~/Views/Security/Login.aspx"); 
-                }
+            Response.Redirect("~/Views/Security/Login.aspx");
         }
+    }
 }
