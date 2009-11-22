@@ -91,6 +91,20 @@ namespace EasyDev.Office.Excel
             return new TExtractor().GetValue<TRetValue>(currentWorkbook, sheetIndex, controlName);
         }
 
+        /// <summary>
+        /// Get value by specific type of value extractor.
+        /// <remarks>By this method, the first sheet will be used.</remarks>
+        /// </summary>
+        /// <typeparam name="TExtractor"></typeparam>
+        /// <typeparam name="TRetValue"></typeparam>
+        /// <param name="controlName"></param>
+        /// <returns></returns>
+        public TRetValue GetValue<TExtractor, TRetValue>(string controlName)
+                    where TExtractor : IValueExtractor, new()
+        {
+            return new TExtractor().GetValue<TRetValue>(currentWorkbook, 1, controlName);
+        }
+
         #region IDisposable Members
 
         public void Dispose()
