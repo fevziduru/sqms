@@ -42,7 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.Vbe.Interop.Forms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Oracle.DataAccess, Version=2.102.2.20, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -179,6 +181,14 @@
     <Compile Include="Expressions\ExpressionVisitor.cs" />
     <Compile Include="Expressions\ParameterReplacer.cs" />
     <Compile Include="Expressions\SpecificationExpressionExtensions.cs" />
+    <Compile Include="Office\Excel\CheckBoxValueExtractor.cs" />
+    <Compile Include="Office\Excel\ComboBoxValueExtractor.cs" />
+    <Compile Include="Office\Excel\ExcelExtractor.cs" />
+    <Compile Include="Office\Excel\ExcelExtractorFactory.cs" />
+    <Compile Include="Office\Excel\IValueExtractor.cs" />
+    <Compile Include="Office\Excel\RadioBoxValueExtractor.cs" />
+    <Compile Include="Office\Excel\TextBoxValueExtractor.cs" />
+    <Compile Include="Office\Excel\ValueExtractor.cs" />
     <Compile Include="PL\Builder\SqlBuilder.cs" />
     <Compile Include="PL\DataSources\DataSourceManager.cs" />
     <Compile Include="PL\DataSources\DataSourceObject.cs" />
@@ -260,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EasyDev.pfx" />
+    <None Include="Office\Excel\ClassDiagram1.cd" />
     <None Include="PL\EasyDev.PL.cd" />
   </ItemGroup>
   <ItemGroup>
