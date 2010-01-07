@@ -6,12 +6,12 @@ using EasyDev.BL;
 
 namespace SQMS.Services
 {
-    public class EquipmentService : GenericService
-    {
-        protected override void Initialize()
+        public class EquipmentService : GenericService
         {
-            this.BOName = "EQUIPMENT";
-            base.Initialize();
-        }
-    }
+                protected override void Initialize()
+                {
+                        this.BOName = "EQUIPMENT";
+                        base.Initialize();
+                }
+        } 
 }

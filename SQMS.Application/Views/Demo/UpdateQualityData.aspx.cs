@@ -19,6 +19,12 @@ namespace SQMS.Application.Views.Demo
                         Process();
                 }
 
+                /// <summary>
+                /// 质量数据存储规则：
+                /// 根目录下存放以设备名称命名的文件夹表示其中的内容由这个设备上传。
+                /// 每个设备文件夹中的文件的命名规则为“_+设备名+_+时间戳+_+<seqno>.扩展名”,seqno是序列号，用于标识分段视频，
+                /// 多段分段视频文件名的前面部分应该相同。注：多段视频不用单独放到一个文件夹中
+                /// </summary>
                 private void Process()
                 {
                         srv = Service as UpdateQualityDataService;
@@ -42,7 +48,9 @@ namespace SQMS.Application.Views.Demo
                                         //查找目录中的带下划线的质量数据文件
                                         files = Directory.GetFiles(dir[i], "_*.txt").
                                                 Concat<string>(Directory.GetFiles(dir[i], "_*.jpg")).ToArray<string>().
-                                                Concat<string>(Directory.GetFiles(dir[i], "_*.flv")).ToArray<string>();
+                                                Concat<string>(Directory.GetFiles(dir[i], "_*.mpg")).ToArray<string>().
+                                                Concat<string>(Directory.GetFiles(dir[i], "_*.3gp")).ToArray<string>();
+
 
                                         if (files.Length > 0)
                                         {
@@ -52,6 +60,7 @@ namespace SQMS.Application.Views.Demo
 
                                                 #region 处理质量数据文件
                                                 FileInfo fi = new FileInfo(files[0]);
+                                                //选择一组文件(相同文件名，不同类型的文件，即由同一设备一次上传的不同类型的文件)
                                                 IEnumerable<string> qd = files.Select<string, string>(
                                                     p =>
                                                     {
@@ -68,59 +77,71 @@ namespace SQMS.Application.Views.Demo
                                                 drQuality["EMERGENCYPERSON"] = drQuality["CHECKPERSON"] = drQuality["CHARGEPERSON"] = empinfo["EmployeeID"];
                                                 drQuality["CREATEDBY"] = drQuality["MODIFIEDBY"] = empinfo["PassportID"];
                                                 IDictionary<string, string> filecontent = null;
-                                                //文本文件
-                                                string filename = qd.First<string>(p => p.EndsWith(".txt"));
-                                                if (filename != null && filename.Length > 0)
-                                                {
-                                                        //去掉文件名前的下划线以标识当前文件已经被更新
-                                                        if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + filename))
-                                                        {
-                                                                File.Move(phyDirBase + "\\" + currEquid + "\\" + filename, phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1));
-                                                        }
 
-                                                        filecontent = ExtractInfoFromText(phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1));
-                                                        drQuality["LONGITUDE"] = filecontent["LNG"];
-                                                        drQuality["LATITUDE"] = filecontent["LAT"];
-                                                        drQuality["CREATED"] = drQuality["MODIFIED"] = Convert.ToDateTime(filecontent["TIME"]);
-                                                        drQuality["ISVOID"] = "N";
-                                                        drQuality["MPID"] = filecontent["MPID"];
-                                                        drQuality["TYPE"] = filecontent["TYPE"];
-                                                }
+
+                                                //文本文件
+                                                //string filename = qd.First<string>(p => p.EndsWith(".txt"));
+                                                qd.ToList<string>().FindAll(p => p.EndsWith(".txt")).ForEach((file) =>
+                                                {
+                                                        if (file != null && file.Length > 0)
+                                                        {
+                                                                //去掉文件名前的下划线以标识当前文件已经被更新
+                                                                if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + file))
+                                                                {
+                                                                        File.Move(phyDirBase + "\\" + currEquid + "\\" + file, phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
+                                                                }
+
+                                                                filecontent = ExtractInfoFromText(phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
+                                                                drQuality["LONGITUDE"] = filecontent["LNG"];
+                                                                drQuality["LATITUDE"] = filecontent["LAT"];
+                                                                drQuality["CREATED"] = drQuality["MODIFIED"] = Convert.ToDateTime(filecontent["TIME"]);
+                                                                drQuality["ISVOID"] = "N";
+                                                                drQuality["MPID"] = filecontent["MPID"];
+                                                                drQuality["TYPE"] = filecontent["TYPE"];
+                                                        }
+                                                });
+                                                
 
                                                 //图片文件
-                                                filename = qd.First<string>(p => p.EndsWith(".jpg"));
-                                                if (filename != null && filename.Length > 0)
-                                                {
-                                                        //去掉文件名前的下划线以标识当前文件已经被更新
-                                                        if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + filename))
+                                                qd.ToList<string>().FindAll(p=>p.EndsWith(".jpg")).ForEach((file)=>{                                                    
+                                                        if (file != null && file.Length > 0)
                                                         {
-                                                                File.Move(phyDirBase + "\\" + currEquid + "\\" + filename, phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1));
-                                                        }
+                                                                //去掉文件名前的下划线以标识当前文件已经被更新
+                                                                if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + file))
+                                                                {
+                                                                        File.Move(phyDirBase + "\\" + currEquid + "\\" + file, phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
+                                                                }
 
-                                                        drQuality["MATERIAL"] = phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1);
-                                                }
+                                                                drQuality["MATERIAL"] = phyDirBase + "\\" + currEquid + "\\" + file.Substring(1);
+                                                        }
+                                                });
+
 
                                                 //视频文件
-                                                filename = qd.First<string>(p => p.EndsWith(".flv"));
-                                                if (filename != null && filename.Length > 0)
+                                                qd.ToList<string>().FindAll(p => p.EndsWith(".mpg") || p.EndsWith(".3gp")).ForEach((file) =>
                                                 {
-                                                        //去掉文件名前的下划线以标识当前文件已经被更新
-                                                        if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + filename))
+                                                        if (file != null && file.Length > 0)
                                                         {
-                                                                File.Move(phyDirBase + "\\" + currEquid + "\\" + filename, phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1));
-                                                        }
-                                                        drVideo["VIDEOID"] = srv.VideoService.GetNextSequenceID();
-                                                        drVideo["CREATED"] = drVideo["MODIFIED"] = drQuality["CREATED"];
-                                                        drVideo["VIDEONAME"] = filename;
-                                                        drVideo["CREATEDBY"] = drVideo["MODIFIEDBY"] = drQuality["CREATEDBY"];
-                                                        drVideo["VIDEOURL"] = phyDirBase + "\\" + currEquid + "\\" + filename.Substring(1);
-                                                        drVideo["ORGANIZATIONID"] = empinfo["OrganizationID"];
-                                                        drVideo["TRACE"] = filecontent["TRACE"];
+                                                                //去掉文件名前的下划线以标识当前文件已经被更新
+                                                                if (File.Exists(phyDirBase + "\\" + currEquid + "\\" + file))
+                                                                {
+                                                                        File.Move(phyDirBase + "\\" + currEquid + "\\" + file, phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
+                                                                }
+                                                                drVideo["VIDEOID"] = srv.VideoService.GetNextSequenceID();
+                                                                drVideo["CREATED"] = drVideo["MODIFIED"] = drQuality["CREATED"];
+                                                                drVideo["VIDEONAME"] = file;
+                                                                drVideo["CREATEDBY"] = drVideo["MODIFIEDBY"] = drQuality["CREATEDBY"];
+                                                                drVideo["VIDEOURL"] = phyDirBase + "\\" + currEquid + "\\" + file.Substring(1);
+                                                                drVideo["ORGANIZATIONID"] = empinfo["OrganizationID"];
+                                                                drVideo["TRACE"] = filecontent["TRACE"];
 
-                                                        //处理监控点与视频的映射
-                                                        drMonitorVideo["MPID"] = filecontent["MPID"];
-                                                        drMonitorVideo["VIDEOID"] = drVideo["VIDEOID"];
-                                                }
+                                                                //处理监控点与视频的映射
+                                                                drMonitorVideo["MPID"] = filecontent["MPID"];
+                                                                drMonitorVideo["VIDEOID"] = drVideo["VIDEOID"];
+                                                        }
+
+                                                });
+                                               
                                                 #endregion
                                         }
                                 } while (files.Length > 0);      
