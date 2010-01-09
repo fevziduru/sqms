@@ -76,6 +76,7 @@ namespace SQMS.Application.Views.Demo
                                                 drQuality["ORGANIZATIONID"] = drQuality["WORKUNIT"] = empinfo["OrganizationID"];
                                                 drQuality["EMERGENCYPERSON"] = drQuality["CHECKPERSON"] = drQuality["CHARGEPERSON"] = empinfo["EmployeeID"];
                                                 drQuality["CREATEDBY"] = drQuality["MODIFIEDBY"] = empinfo["PassportID"];
+                                                drQuality["Status"] = "_normal";
                                                 IDictionary<string, string> filecontent = null;
 
 
@@ -113,7 +114,14 @@ namespace SQMS.Application.Views.Demo
                                                                         File.Move(phyDirBase + "\\" + currEquid + "\\" + file, phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
                                                                 }
 
-                                                                drQuality["MATERIAL"] = drQuality["MATERIAL"].ToString() + "|" + phyDirBase + "\\" + currEquid + "\\" + file.Substring(1);
+                                                                if (drQuality["MATERIAL"].ToString().Length == 0)
+                                                                {
+                                                                        drQuality["MATERIAL"] = phyDirBase + "\\" + currEquid + "\\" + file.Substring(1);
+                                                                }
+                                                                else
+                                                                {
+                                                                        drQuality["MATERIAL"] = drQuality["MATERIAL"].ToString() + "|" + phyDirBase + "\\" + currEquid + "\\" + file.Substring(1);
+                                                                }
                                                         }
                                                 });
 
@@ -129,8 +137,9 @@ namespace SQMS.Application.Views.Demo
                                                                         File.Move(phyDirBase + "\\" + currEquid + "\\" + file, phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
                                                                 }
                                                                 drVideo["VIDEOID"] = srv.VideoService.GetNextSequenceID();
+
                                                                 drVideo["CREATED"] = drVideo["MODIFIED"] = drQuality["CREATED"];
-                                                                drVideo["VIDEONAME"] = drVideo["VIDEONAME"].ToString() + "|" + file;
+                                                                drVideo["VIDEONAME"] = drVideo["VIDEONAME"].ToString() + "|" + file.Substring(1);
                                                                 drVideo["CREATEDBY"] = drVideo["MODIFIEDBY"] = drQuality["CREATEDBY"];
                                                                 drVideo["VIDEOURL"] = drVideo["VIDEOURL"].ToString() + "|" + (phyDirBase + "\\" + currEquid + "\\" + file.Substring(1));
                                                                 drVideo["ORGANIZATIONID"] = empinfo["OrganizationID"];
