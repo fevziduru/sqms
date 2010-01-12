@@ -144,6 +144,9 @@
     <Compile Include="VideoService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WorkStatusService.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyDev\EasyDev.csproj">
