@@ -71,6 +71,7 @@ namespace EasyDev.Util
         {
             MailAddress fromAddress = new MailAddress(pkg.From);
             MailMessage msg = new MailMessage();
+                
             msg.From = fromAddress;
 
             string[] toAddressList = pkg.To.Split(new char[] { ';' });
