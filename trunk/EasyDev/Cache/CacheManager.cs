@@ -13,7 +13,7 @@ namespace EasyDev.Cache
 
         static CacheManager()
         {
-            Container = HttpRuntime.Cache;
+            Container = HttpRuntime.Cache;            
         }
 
         /// <summary>
