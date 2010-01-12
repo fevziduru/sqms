@@ -266,7 +266,7 @@ namespace SQMS.Application.Config.Schema {
             
             private global::System.Data.DataColumn columnEMPID;
             
-            private global::System.Data.DataColumn columnEQUID;
+            private global::System.Data.DataColumn columnEQUIDENTITY;
             
             private global::System.Data.DataColumn columnSTARTUPTIME;
             
@@ -281,6 +281,8 @@ namespace SQMS.Application.Config.Schema {
             private global::System.Data.DataColumn columnMODIFIEDBY;
             
             private global::System.Data.DataColumn columnISVOID;
+            
+            private global::System.Data.DataColumn columnACTION;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public WORKSTATUSDataTable() {
@@ -327,9 +329,9 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EQUIDColumn {
+            public global::System.Data.DataColumn EQUIDENTITYColumn {
                 get {
-                    return this.columnEQUID;
+                    return this.columnEQUIDENTITY;
                 }
             }
             
@@ -383,6 +385,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ACTIONColumn {
+                get {
+                    return this.columnACTION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -411,19 +420,20 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public WORKSTATUSRow AddWORKSTATUSRow(string STATUSID, string EMPID, string EQUID, System.DateTime STARTUPTIME, System.DateTime SHUTDOWNTIME, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ISVOID) {
+            public WORKSTATUSRow AddWORKSTATUSRow(string STATUSID, string EMPID, string EQUIDENTITY, System.DateTime STARTUPTIME, System.DateTime SHUTDOWNTIME, System.DateTime CREATED, string CREATEDBY, System.DateTime MODIFIED, string MODIFIEDBY, string ISVOID, string ACTION) {
                 WORKSTATUSRow rowWORKSTATUSRow = ((WORKSTATUSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         STATUSID,
                         EMPID,
-                        EQUID,
+                        EQUIDENTITY,
                         STARTUPTIME,
                         SHUTDOWNTIME,
                         CREATED,
                         CREATEDBY,
                         MODIFIED,
                         MODIFIEDBY,
-                        ISVOID};
+                        ISVOID,
+                        ACTION};
                 rowWORKSTATUSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWORKSTATUSRow);
                 return rowWORKSTATUSRow;
@@ -451,7 +461,7 @@ namespace SQMS.Application.Config.Schema {
             internal void InitVars() {
                 this.columnSTATUSID = base.Columns["STATUSID"];
                 this.columnEMPID = base.Columns["EMPID"];
-                this.columnEQUID = base.Columns["EQUID"];
+                this.columnEQUIDENTITY = base.Columns["EQUIDENTITY"];
                 this.columnSTARTUPTIME = base.Columns["STARTUPTIME"];
                 this.columnSHUTDOWNTIME = base.Columns["SHUTDOWNTIME"];
                 this.columnCREATED = base.Columns["CREATED"];
@@ -459,6 +469,7 @@ namespace SQMS.Application.Config.Schema {
                 this.columnMODIFIED = base.Columns["MODIFIED"];
                 this.columnMODIFIEDBY = base.Columns["MODIFIEDBY"];
                 this.columnISVOID = base.Columns["ISVOID"];
+                this.columnACTION = base.Columns["ACTION"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -467,8 +478,8 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnSTATUSID);
                 this.columnEMPID = new global::System.Data.DataColumn("EMPID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEMPID);
-                this.columnEQUID = new global::System.Data.DataColumn("EQUID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEQUID);
+                this.columnEQUIDENTITY = new global::System.Data.DataColumn("EQUIDENTITY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEQUIDENTITY);
                 this.columnSTARTUPTIME = new global::System.Data.DataColumn("STARTUPTIME", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSTARTUPTIME);
                 this.columnSHUTDOWNTIME = new global::System.Data.DataColumn("SHUTDOWNTIME", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -483,16 +494,19 @@ namespace SQMS.Application.Config.Schema {
                 base.Columns.Add(this.columnMODIFIEDBY);
                 this.columnISVOID = new global::System.Data.DataColumn("ISVOID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnISVOID);
+                this.columnACTION = new global::System.Data.DataColumn("ACTION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACTION);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSTATUSID}, true));
                 this.columnSTATUSID.AllowDBNull = false;
                 this.columnSTATUSID.Unique = true;
                 this.columnSTATUSID.MaxLength = 40;
                 this.columnEMPID.MaxLength = 40;
-                this.columnEQUID.MaxLength = 40;
+                this.columnEQUIDENTITY.MaxLength = 40;
                 this.columnCREATEDBY.MaxLength = 40;
                 this.columnMODIFIEDBY.MaxLength = 40;
                 this.columnISVOID.MaxLength = 1;
+                this.columnACTION.MaxLength = 40;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_WORKSTATUS");
                 this.ExtendedProperties.Add("Generator_UserTableName", "WORKSTATUS");
             }
@@ -652,17 +666,17 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string EQUID {
+            public string EQUIDENTITY {
                 get {
                     try {
-                        return ((string)(this[this.tableWORKSTATUS.EQUIDColumn]));
+                        return ((string)(this[this.tableWORKSTATUS.EQUIDENTITYColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“WORKSTATUS”中列“EQUID”的值为 DBNull。", e);
+                        throw new global::System.Data.StrongTypingException("表“WORKSTATUS”中列“EQUIDENTITY”的值为 DBNull。", e);
                     }
                 }
                 set {
-                    this[this.tableWORKSTATUS.EQUIDColumn] = value;
+                    this[this.tableWORKSTATUS.EQUIDENTITYColumn] = value;
                 }
             }
             
@@ -772,6 +786,21 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string ACTION {
+                get {
+                    try {
+                        return ((string)(this[this.tableWORKSTATUS.ACTIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“WORKSTATUS”中列“ACTION”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableWORKSTATUS.ACTIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsEMPIDNull() {
                 return this.IsNull(this.tableWORKSTATUS.EMPIDColumn);
             }
@@ -782,13 +811,13 @@ namespace SQMS.Application.Config.Schema {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsEQUIDNull() {
-                return this.IsNull(this.tableWORKSTATUS.EQUIDColumn);
+            public bool IsEQUIDENTITYNull() {
+                return this.IsNull(this.tableWORKSTATUS.EQUIDENTITYColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetEQUIDNull() {
-                this[this.tableWORKSTATUS.EQUIDColumn] = global::System.Convert.DBNull;
+            public void SetEQUIDENTITYNull() {
+                this[this.tableWORKSTATUS.EQUIDENTITYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -859,6 +888,16 @@ namespace SQMS.Application.Config.Schema {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetISVOIDNull() {
                 this[this.tableWORKSTATUS.ISVOIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsACTIONNull() {
+                return this.IsNull(this.tableWORKSTATUS.ACTIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetACTIONNull() {
+                this[this.tableWORKSTATUS.ACTIONColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -987,7 +1026,7 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             tableMapping.DataSetTable = "WORKSTATUS";
             tableMapping.ColumnMappings.Add("STATUSID", "STATUSID");
             tableMapping.ColumnMappings.Add("EMPID", "EMPID");
-            tableMapping.ColumnMappings.Add("EQUID", "EQUID");
+            tableMapping.ColumnMappings.Add("EQUIDENTITY", "EQUIDENTITY");
             tableMapping.ColumnMappings.Add("STARTUPTIME", "STARTUPTIME");
             tableMapping.ColumnMappings.Add("SHUTDOWNTIME", "SHUTDOWNTIME");
             tableMapping.ColumnMappings.Add("CREATED", "CREATED");
@@ -995,6 +1034,7 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             tableMapping.ColumnMappings.Add("MODIFIED", "MODIFIED");
             tableMapping.ColumnMappings.Add("MODIFIEDBY", "MODIFIEDBY");
             tableMapping.ColumnMappings.Add("ISVOID", "ISVOID");
+            tableMapping.ColumnMappings.Add("ACTION", "ACTION");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1004,11 +1044,11 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_STATUSID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "STATUSID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_1231"".""WORKSTATUS"" (""STATUSID"", ""EMPID"", ""EQUID"", ""STARTUPTIME"", ""SHUTDOWNTIME"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ISVOID"") VALUES (:STATUSID, :EMPID, :EQUID, :STARTUPTIME, :SHUTDOWNTIME, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ISVOID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""SQMS_PRIVATE_1231"".""WORKSTATUS"" (""STATUSID"", ""EMPID"", ""EQUIDENTITY"", ""STARTUPTIME"", ""SHUTDOWNTIME"", ""CREATED"", ""CREATEDBY"", ""MODIFIED"", ""MODIFIEDBY"", ""ISVOID"", ""ACTION"") VALUES (:STATUSID, :EMPID, :EQUIDENTITY, :STARTUPTIME, :SHUTDOWNTIME, :CREATED, :CREATEDBY, :MODIFIED, :MODIFIEDBY, :ISVOID, :ACTION)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("STATUSID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "STATUSID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("STARTUPTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "STARTUPTIME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SHUTDOWNTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "SHUTDOWNTIME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
@@ -1016,13 +1056,14 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ACTION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ACTION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_1231"".""WORKSTATUS"" SET ""STATUSID"" = :STATUSID, ""EMPID"" = :EMPID, ""EQUID"" = :EQUID, ""STARTUPTIME"" = :STARTUPTIME, ""SHUTDOWNTIME"" = :SHUTDOWNTIME, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ISVOID"" = :ISVOID WHERE ((""STATUSID"" = :Original_STATUSID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""SQMS_PRIVATE_1231"".""WORKSTATUS"" SET ""STATUSID"" = :STATUSID, ""EMPID"" = :EMPID, ""EQUIDENTITY"" = :EQUIDENTITY, ""STARTUPTIME"" = :STARTUPTIME, ""SHUTDOWNTIME"" = :SHUTDOWNTIME, ""CREATED"" = :CREATED, ""CREATEDBY"" = :CREATEDBY, ""MODIFIED"" = :MODIFIED, ""MODIFIEDBY"" = :MODIFIEDBY, ""ISVOID"" = :ISVOID, ""ACTION"" = :ACTION WHERE ((""STATUSID"" = :Original_STATUSID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("STATUSID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "STATUSID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EMPID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EMPID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("EQUIDENTITY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "EQUIDENTITY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("STARTUPTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "STARTUPTIME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SHUTDOWNTIME", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "SHUTDOWNTIME", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("CREATED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "CREATED", global::System.Data.DataRowVersion.Current, false, null));
@@ -1030,6 +1071,7 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIED", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "MODIFIED", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("MODIFIEDBY", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "MODIFIEDBY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ISVOID", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "ISVOID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ACTION", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "ACTION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_STATUSID", global::System.Data.OracleClient.OracleType.VarChar, 0, global::System.Data.ParameterDirection.Input, "STATUSID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -1044,8 +1086,8 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT STATUSID, EMPID, EQUID, STARTUPTIME, SHUTDOWNTIME, CREATED, CREATEDBY, MOD" +
-                "IFIED, MODIFIEDBY, ISVOID FROM SQMS_PRIVATE_1231.WORKSTATUS";
+            this._commandCollection[0].CommandText = "SELECT STATUSID, EMPID, EQUIDENTITY, STARTUPTIME, SHUTDOWNTIME, CREATED, CREATEDB" +
+                "Y, MODIFIED, MODIFIEDBY, ISVOID, ACTION FROM SQMS_PRIVATE_1231.WORKSTATUS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1125,7 +1167,7 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string STATUSID, string EMPID, string EQUID, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID) {
+        public virtual int Insert(string STATUSID, string EMPID, string EQUIDENTITY, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string ACTION) {
             if ((STATUSID == null)) {
                 throw new global::System.ArgumentNullException("STATUSID");
             }
@@ -1138,11 +1180,11 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(EMPID));
             }
-            if ((EQUID == null)) {
+            if ((EQUIDENTITY == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(EQUID));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(EQUIDENTITY));
             }
             if ((STARTUPTIME.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(STARTUPTIME.Value));
@@ -1186,6 +1228,12 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ISVOID));
             }
+            if ((ACTION == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(ACTION));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1205,7 +1253,7 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string STATUSID, string EMPID, string EQUID, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string Original_STATUSID) {
+        public virtual int Update(string STATUSID, string EMPID, string EQUIDENTITY, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string ACTION, string Original_STATUSID) {
             if ((STATUSID == null)) {
                 throw new global::System.ArgumentNullException("STATUSID");
             }
@@ -1218,11 +1266,11 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(EMPID));
             }
-            if ((EQUID == null)) {
+            if ((EQUIDENTITY == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(EQUID));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(EQUIDENTITY));
             }
             if ((STARTUPTIME.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(STARTUPTIME.Value));
@@ -1266,11 +1314,17 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ISVOID));
             }
+            if ((ACTION == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(ACTION));
+            }
             if ((Original_STATUSID == null)) {
                 throw new global::System.ArgumentNullException("Original_STATUSID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_STATUSID));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_STATUSID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1291,8 +1345,8 @@ namespace SQMS.Application.Config.Schema.WORKSTATUSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string EMPID, string EQUID, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string Original_STATUSID) {
-            return this.Update(Original_STATUSID, EMPID, EQUID, STARTUPTIME, SHUTDOWNTIME, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ISVOID, Original_STATUSID);
+        public virtual int Update(string EMPID, string EQUIDENTITY, global::System.Nullable<global::System.DateTime> STARTUPTIME, global::System.Nullable<global::System.DateTime> SHUTDOWNTIME, global::System.Nullable<global::System.DateTime> CREATED, string CREATEDBY, global::System.Nullable<global::System.DateTime> MODIFIED, string MODIFIEDBY, string ISVOID, string ACTION, string Original_STATUSID) {
+            return this.Update(Original_STATUSID, EMPID, EQUIDENTITY, STARTUPTIME, SHUTDOWNTIME, CREATED, CREATEDBY, MODIFIED, MODIFIEDBY, ISVOID, ACTION, Original_STATUSID);
         }
     }
 }
