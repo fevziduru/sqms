@@ -210,6 +210,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VEHICLETASK.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Config\Schema\WORKSTATUS.cs">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Config\Schema\WORKSTATUS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Foundation\SQMSPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -1710,6 +1719,17 @@
     </None>
     <None Include="Config\Schema\VEHICLETASK.xss">
       <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xsc">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WORKSTATUS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xss">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
