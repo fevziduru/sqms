@@ -7,153 +7,234 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Permissions;
+using EasyDev.Presentation.UI.WebControls.Design;
+using System.Drawing;
 
 [assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.js", "application/x-javascript")]
 namespace EasyDev.Presentation.UI.WebControls
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [ToolboxData("<{0}:DropDownTree runat=server></{0}:DropDownTree>")]
+    [AspNetHostingPermission(SecurityAction.Demand, Level = AspNetHostingPermissionLevel.Minimal)]
+    [Designer(typeof(DropDownTreeDesign))]
+    [ToolboxBitmap("dropdowntree_icon.bmp")]
+    public class DropDownTree : WebControl, INamingContainer
+    {
+        private TreeView dropdownTree = new TreeView();
+        private HiddenField valueField = new HiddenField();
+        private TextBox textField = new TextBox();
+        
         /// <summary>
         /// 
         /// </summary>
-        [ToolboxData("<{0}:DropDownTree runat=server></{0}:DropDownTree>")]
-        [AspNetHostingPermission(SecurityAction.Demand, Level = AspNetHostingPermissionLevel.Minimal)]
-        public class DropDownTree : WebControl
+        public DropDownTree()
         {
-                private TreeView dropdownTree = new TreeView();
-                private HiddenField valueField = new HiddenField();
-                private TextBox textField = new TextBox();
-
-                public DropDownTree()
-                {
-                        this.valueField.ID = this.ID + "_SelectedValue";
-                        this.textField.ID = this.ID + "_SelectedText";
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                [Bindable(true)]
-                [Category("Data")]
-                [DefaultValue("")]
-                [Localizable(true)]
-                public string QuickNewUrl
-                {
-                        get
-                        {
-                                String s = (String)ViewState[this.ID + "_QuickNewUrl"];
-                                return ((s == null) ? String.Empty : s);
-                        }
-
-                        set
-                        {
-                                ViewState[this.ID + "_QuickNewUrl"] = value;
-                        }
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                [Bindable(true)]
-                [Category("Data")]
-                [DefaultValue(false)]
-                public bool ShowCheckbox
-                {
-                        get
-                        {
-                                bool s = (bool)ViewState[this.ID + "_ShowCheckbox"];
-                                return s;
-                        }
-                        set
-                        {
-                                ViewState[this.ID + "_ShowCheckbox"] = value;
-                        }
-                }
-
-                public string SelectedValue
-                {
-                        get
-                        {
-                                return this.valueField.Value;
-                        }
-                }
-
-                public string SelectedText
-                {
-                        get 
-                        {
-                                return this.textField.Text;
-                        }
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                public object DataSource
-                {
-                        get { return this.dropdownTree.DataSource; }
-                        set { this.dropdownTree.DataSource = value; }
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                protected override void CreateChildControls()
-                {
-                        Controls.Clear();
-                        this.Controls.Add(this.dropdownTree);
-                        this.Controls.Add(this.valueField);
-                        this.Controls.Add(this.textField);
-                        ClearChildViewState();
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <param name="output"></param>
-                protected override void RenderContents(HtmlTextWriter output)
-                {
-
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <param name="writer"></param>
-                protected override void Render(HtmlTextWriter writer)
-                {
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat("<div id='{0}'>", this.ID);
-                        sb.AppendFormat("<table cellpadding='1' cellspacing='0' id='{0}_tableframe'>", this.ID);
-                        sb.AppendFormat("<tr style='border:solid 1px #eee'><td style='width:{0}px'>", this.Width.Value);
-                        //sb.AppendFormat("<input style='width:100%;' type='text' id='{0}_text' />", this.ID);
-                        this.textField.RenderControl(writer);
-                        sb.Append("</td><td>&nbsp;</td><td valign='middle' align='center' style='width:20px'>");
-                        sb.AppendFormat("<img onclick='SwitchDropdownTree(\"{0}\")' id='{0}_dropdownbutton' src='dropdown_normal.png' alt='' style='width:18px;height:18px;vertical-align:middle;'/>", this.ID);
-                        sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
-                        sb.Append("<img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td></tr>");
-                        sb.AppendFormat("<tr><td><div id='{0}_tree_frame' style='display:none;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
-                            this.ID, this.Width.Value - 2);
-                        this.dropdownTree.RenderControl(writer);
-                        this.valueField.RenderControl(writer);
-                        sb.Append("</div></td></tr></table></div>");
-                        writer.Write(sb.ToString());
-
-                        base.Render(writer);
-                }
-
-                /// <summary>
-                /// 
-                /// </summary>
-                /// <param name="e"></param>
-                protected override void OnInit(EventArgs e)
-                {
-                        base.OnInit(e);
-
-                        this.Page.ClientScript.RegisterClientScriptResource(this.GetType(), "EasyDev.Presentation.UI.WebControls.DropDownTree.js");
-                }
-
-                public void DataBind()
-                {
-                        this.dropdownTree.DataBind();
-                }
+            this.Width = new Unit(180);
         }
+
+        #region Properties
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [Category("Data")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        public string QuickNewUrl
+        {
+            get
+            {
+                String s = (String)ViewState[this.ID + "_QuickNewUrl"];
+                return ((s == null) ? String.Empty : s);
+            }
+
+            set
+            {
+                ViewState[this.ID + "_QuickNewUrl"] = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SelectedValue
+        {
+            get
+            {
+                EnsureChildControls();
+                return this.valueField.Value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SelectedText
+        {
+            get
+            {
+                EnsureChildControls();
+                return this.textField.Text;
+            }
+        }
+
+        public TreeView Tree
+        {
+            get
+            {
+                return this.dropdownTree;
+            }
+        }
+
+        public TextBox Text
+        {
+            get
+            {
+                return this.textField;
+            }
+        }
+
+        #endregion
+
+        #region Events
+
+        private static object _textChanged = new object();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(true)]
+        public event EventHandler TextChanged
+        {
+            add
+            {                
+                Events.AddHandler(_textChanged, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(_textChanged, value);
+            }
+        }
+
+
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void CreateChildControls()
+        {
+            Controls.Clear();
+            this.Controls.Add(this.dropdownTree);
+            this.Controls.Add(this.valueField);
+            this.Controls.Add(this.textField);
+            ClearChildViewState();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="output"></param>
+        protected override void RenderContents(HtmlTextWriter output)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="writer"></param>
+        protected override void Render(HtmlTextWriter writer)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<div id='{0}'>", this.ClientID);
+            sb.AppendFormat("<table cellpadding='1' cellspacing='0' id='{0}_tableframe'>", this.ClientID);
+            sb.AppendFormat("<tr style='border:solid 1px #eee'><td style='width:{0}px'>", this.Width.Value);
+            writer.Write(sb.ToString());
+            this.textField.RenderControl(writer);
+            sb = new StringBuilder();
+            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
+            sb.AppendFormat("<img onclick='{1}.switchDropdownTree(\"{0}\")' id='{0}_dropdownbutton' src='dropdown_normal.png' alt='' style='width:18px;height:18px;vertical-align:middle;'/>",
+                this.ClientID,this.ID);
+            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
+            sb.Append("<img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td></tr>");
+            sb.AppendFormat("<tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
+                this.ID, this.Width.Value - 2);
+            writer.Write(sb.ToString());
+            
+            this.dropdownTree.RenderControl(writer);
+            this.valueField.RenderControl(writer);
+
+            sb = new StringBuilder();
+            sb.Append("</div></td></tr></table></div>");
+            writer.Write(sb.ToString());
+
+            //base.Render(writer);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string DesignerSupport()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<div id='{0}'>", this.ClientID);
+            sb.AppendFormat("<table cellpadding='1' cellspacing='0' id='{0}_tableframe'>", this.ClientID);
+            sb.AppendFormat("<tr style='border:solid 1px #eee'><td style='width:{0}px'>", this.Width.Value);
+            sb.AppendFormat("<input type='text' value='{0}' style='width:{1}'>", this.textField.Text,this.Width.Value);
+            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
+            sb.AppendFormat("<img onclick='{1}.switchDropdownTree(\"{0}\")' id='{0}_dropdownbutton' src='dropdown_normal.png' alt='' style='width:18px;height:18px;vertical-align:middle;'/>", 
+                this.ClientID,this.ID);
+            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
+            sb.Append("<img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td></tr>");
+            sb.AppendFormat("<tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
+                this.ID, this.Width.Value - 2);
+            sb.Append("</div></td></tr></table></div>");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            this.valueField.ID = "_SelectedValue";
+            this.textField.ID = "_SelectedText";
+
+            this.textField.Width = this.Width;
+            this.Page.ClientScript.RegisterClientScriptResource(this.GetType(), "EasyDev.Presentation.UI.WebControls.DropDownTree.js");
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Init_DropDownTree_Object",
+                string.Format("var {0}=new DropDownTree('{1}');", this.ID, this.ClientID), true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        public void AddTreeNode(TreeNode node)
+        {
+            node.NavigateUrl = "javascript:" +
+                string.Format("{3}.selectNode('{0}','{1}','{2}')", this.ID, node.Text, node.Value, this.ID);
+
+            this.dropdownTree.Nodes.Add(node);
+        }
+    }
 }
