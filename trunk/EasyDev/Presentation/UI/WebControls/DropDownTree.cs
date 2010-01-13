@@ -11,6 +11,9 @@ using EasyDev.Presentation.UI.WebControls.Design;
 using System.Drawing;
 
 [assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.js", "application/x-javascript")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_normal.png", "image/png")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_pressed.png", "image/png")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.quicknew.png", "image/jpg")]
 namespace EasyDev.Presentation.UI.WebControls
 {
         /// <summary>
@@ -19,7 +22,7 @@ namespace EasyDev.Presentation.UI.WebControls
         [ToolboxData("<{0}:DropDownTree runat=server></{0}:DropDownTree>")]
         [AspNetHostingPermission(SecurityAction.Demand, Level = AspNetHostingPermissionLevel.Minimal)]
         [Designer(typeof(DropDownTreeDesign))]
-        [ToolboxBitmap("dropdowntree_icon.bmp")]
+        [ToolboxBitmap("DropDownTree.bmp")]
         public class DropDownTree : HierarchicalDataBoundControl, INamingContainer
         {
                 private TreeView dropdownTree = new TreeView();
