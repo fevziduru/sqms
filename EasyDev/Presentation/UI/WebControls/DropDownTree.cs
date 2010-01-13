@@ -20,7 +20,7 @@ namespace EasyDev.Presentation.UI.WebControls
     [AspNetHostingPermission(SecurityAction.Demand, Level = AspNetHostingPermissionLevel.Minimal)]
     [Designer(typeof(DropDownTreeDesign))]
     [ToolboxBitmap("dropdowntree_icon.bmp")]
-    public class DropDownTree : WebControl, INamingContainer
+    public class DropDownTree : HierarchicalDataBoundControl, INamingContainer
     {
         private TreeView dropdownTree = new TreeView();
         private HiddenField valueField = new HiddenField();
@@ -80,6 +80,9 @@ namespace EasyDev.Presentation.UI.WebControls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TreeView Tree
         {
             get
@@ -88,11 +91,94 @@ namespace EasyDev.Presentation.UI.WebControls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TextBox Text
         {
             get
             {
                 return this.textField;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [Category("Data")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        public string KeyField
+        {
+            get
+            {
+                String s = (String)ViewState[this.ID + "_KeyField"];
+                return ((s == null) ? String.Empty : s);
+            }
+            set
+            {
+                ViewState[this.ID + "_KeyField"] = value;
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [Category("Data")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        public string TextField
+        {
+            get
+            {
+                String s = (String)ViewState[this.ID + "_TextField"];
+                return ((s == null) ? String.Empty : s);
+            }
+            set
+            {
+                ViewState[this.ID + "_TextField"] = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [Category("Data")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        public string ValueField
+        {
+            get
+            {
+                String s = (String)ViewState[this.ID + "_ValueField"];
+                return ((s == null) ? String.Empty : s);
+            }
+            set
+            {
+                ViewState[this.ID + "_ValueField"] = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [Category("Data")]
+        [DefaultValue("")]
+        [Localizable(true)]
+        public string ParentField
+        {
+            get
+            {
+                String s = (String)ViewState[this.ID + "_ParentField"];
+                return ((s == null) ? String.Empty : s);
+            }
+            set
+            {
+                ViewState[this.ID + "_ParentField"] = value;
             }
         }
 
@@ -235,6 +321,11 @@ namespace EasyDev.Presentation.UI.WebControls
                 string.Format("{3}.selectNode('{0}','{1}','{2}')", this.ID, node.Text, node.Value, this.ID);
 
             this.dropdownTree.Nodes.Add(node);
+        }
+
+        protected override void PerformDataBinding()
+        {
+            base.PerformDataBinding();
         }
     }
 }
