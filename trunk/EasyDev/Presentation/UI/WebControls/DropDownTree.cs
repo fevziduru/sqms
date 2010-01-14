@@ -13,9 +13,9 @@ using System.Collections;
 using System.Data;
 
 [assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.js", "application/x-javascript")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_normal.png", "image/png")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_pressed.png", "image/png")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.quicknew.png", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_normal.bmp", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_pressed.bmp", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.quicknew.bmp", "image/jpg")]
 [assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.css", "text/html")]
 namespace EasyDev.Presentation.UI.WebControls
 {
@@ -32,13 +32,18 @@ namespace EasyDev.Presentation.UI.WebControls
         private HiddenField valueField = new HiddenField();
         private TextBox textField = new TextBox();
         private HiddenField selectedDataItem = new HiddenField();
+        private string pressedImage = string.Empty;
+        private string normalImage = string.Empty;
+        private string quickNewImage = string.Empty;
                 
         /// <summary>
         /// 
         /// </summary>
         public DropDownTree()
         {
-            this.Width = new Unit(180);            
+            this.Width = new Unit(180);
+
+           
         }
 
         #region Properties
@@ -133,7 +138,7 @@ namespace EasyDev.Presentation.UI.WebControls
                 return this.textField;
             }
         }
-
+                
         /// <summary>
         /// Specific the parent value of root node in the tree
         /// </summary>
@@ -234,6 +239,18 @@ namespace EasyDev.Presentation.UI.WebControls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [Bindable(true)]
+        [DefaultValue(false)]
+        [Localizable(true)]
+        public bool CanQuickNew
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Events
@@ -267,9 +284,11 @@ namespace EasyDev.Presentation.UI.WebControls
             if (ChildControlsCreated == false)
             {
                 Controls.Clear();
-
-                this.Controls.Add(this.dropdownTree);
+                
                 this.Controls.Add(this.valueField);
+
+                //TODO: this line of code will cause out of range exception sometimes.
+                this.Controls.Add(this.dropdownTree);
                 this.Controls.Add(this.textField);
                 this.Controls.Add(this.selectedDataItem);
                 ClearChildViewState();
@@ -299,11 +318,16 @@ namespace EasyDev.Presentation.UI.WebControls
             this.textField.RenderControl(writer);
             sb = new StringBuilder();
             sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
-            sb.AppendFormat("<img onclick='{1}.switchDropdownTree(\"{0}\")' id='{0}_dropdownbutton' src='dropdown_normal.png' alt='' style='width:18px;height:18px;vertical-align:middle;'/>",
-                this.ClientID, this.ID);
-            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
-            sb.Append("<img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td></tr>");
-            sb.AppendFormat("<tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
+
+            sb.AppendFormat("<img onclick='{1}.switchDropdownTree()' id='{0}_dropdownbutton' src='{2}' alt='' style='width:18px;height:18px;vertical-align:middle;'/>",
+                this.ClientID, this.ID, normalImage);
+
+            sb.Append("</td>");
+            if (CanQuickNew)
+            {
+                sb.AppendFormat("<td valign='middle' align='center' style='width:20px'><img src='{0}' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td>", quickNewImage);
+            }
+            sb.AppendFormat("</tr><tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
                 this.ID, this.Width.Value - 2);
             writer.Write(sb.ToString());
 
@@ -356,6 +380,9 @@ namespace EasyDev.Presentation.UI.WebControls
             this.textField.Width = this.Width;
             this.Page.ClientScript.RegisterClientScriptResource(this.GetType(), "EasyDev.Presentation.UI.WebControls.DropDownTree.js");
 
+            normalImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.dropdown_normal.bmp");
+            pressedImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.dropdown_pressed.bmp");
+            quickNewImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.quicknew.bmp");
         }
 
         /// <summary>
@@ -367,7 +394,9 @@ namespace EasyDev.Presentation.UI.WebControls
             base.OnLoad(e);
 
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Init_DropDownTree_Object",
-                string.Format("var {0}=new DropDownTree('{1}');", this.ID, this.ClientID), true);
+                string.Format("var {0}=new DropDownTree('{1}',{{'pressed':'{2}','normal':'{3}','quicknew':'{4}'}});",
+                    this.ID, this.ClientID, pressedImage, normalImage, quickNewImage),
+                true);
         }
 
         /// <summary>

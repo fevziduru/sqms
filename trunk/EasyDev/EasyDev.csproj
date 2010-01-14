@@ -276,17 +276,14 @@
     <EmbeddedResource Include="Presentation\UI\WebControls\DropDownTree.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_pressed.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\quicknew.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UI\WebControls\DropDownTree.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_normal.bmp">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_pressed.bmp">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UI\WebControls\quicknew.bmp">
     </EmbeddedResource>
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_en-US.xml" />
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_zh-CN.xml" />

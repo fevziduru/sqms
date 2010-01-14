@@ -1,8 +1,10 @@
 ﻿/*
 * DropDownTree client side object model
 */
-function DropDownTree(id) {
+function DropDownTree(id,option) {
     this.Id = id;
+    this.pressedImage = option["pressed"];
+    this.normalImage = option["normal"];    
 }
 
 DropDownTree.prototype.isExpand = false;
@@ -17,12 +19,12 @@ DropDownTree.prototype.switchDropdownTree = function() {
     if (this.isExpand == false) {
         objTreeFrame.style.display = "block";
         objTreeFrame.style.zIndex = 9999;
-        objDropdownButton.src = "dropdown_pressed.png";
+        objDropdownButton.src = this.pressedImage;
         this.isExpand = true;
     }
     else {
         objTreeFrame.style.display = "none";
-        objDropdownButton.src = "dropdown_normal.png";
+        objDropdownButton.src = this.normalImage;
         this.isExpand = false;
     }
 
@@ -38,7 +40,7 @@ DropDownTree.prototype.collapseDropdownTree = function() {
     var objTreeFrame = document.getElementById(this.Id + '_tree_frame');
     if (this.isExpand) {
         objTreeFrame.style.display = "none";
-        objDropdownButton.src = "dropdown_normal.png";
+        objDropdownButton.src = this.normalImage;
         this.isExpand = false;
     }
 };
