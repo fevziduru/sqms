@@ -47,9 +47,10 @@ DropDownTree.prototype.collapseDropdownTree = function() {
 * Set text and value
 * Author: Yin.P
 */
-DropDownTree.prototype.selectNode = function(id, text, value) {
+DropDownTree.prototype.selectNode = function(id, text, value, dataitemString) {
     var txt = document.getElementById(id + "__SelectedText");
     var val = document.getElementById(id + "__SelectedValue");
+    var dataitem = document.getElementById(this.Id + "__SelectedDataItem");
 
     if (txt != null) {
         txt.value = text;
@@ -59,10 +60,15 @@ DropDownTree.prototype.selectNode = function(id, text, value) {
         val.value = value;
     }
 
+    if (dataitem != null) {
+        dataitem.value = dataitemString;
+    }
+
     this.collapseDropdownTree();
 };
 
 /*
+* Client Side Interface
 * Get selected text
 * Author: Yin.P
 */
@@ -72,10 +78,38 @@ DropDownTree.prototype.getSelectedText = function() {
 };
 
 /*
+* Client Side Interface
 * Get selected value
 * Author: Yin.P
 */
 DropDownTree.prototype.getSelectedValue = function() {
     var val = document.getElementById(this.Id + "__SelectedValue");
     return val.value;
+};
+
+/*
+* Client Side Interface
+* Get selected dataitem. it contains all the columns in datasource.
+* This method return a JSON object
+* Author: Yin.P
+*/
+DropDownTree.prototype.getSelectedDataItem = function() {
+    var dataitem = document.getElementById(this.Id + "__SelectedDataItem");
+    return eval("(" + dataitem.value + ")");
+};
+
+/*
+* Author: Yin.P
+*/
+DropDownTree.prototype.Init = function() {
+    var bodyObj = document.getElementsByTagName("body")[0];
+    var oldBodyClick = bodyObj.onclick;
+    if (typeof bodyObj.onclick != 'function') {
+        bodyObj.onclick = this.collapseDropdownTree;
+    } else {
+        bodyObj.onclick = function() {
+            oldBodyClick();
+            this.collapseDropdownTree();
+        }
+    }
 };
