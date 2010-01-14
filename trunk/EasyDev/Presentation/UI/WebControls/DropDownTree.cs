@@ -11,12 +11,13 @@ using EasyDev.Presentation.UI.WebControls.Design;
 using System.Drawing;
 using System.Collections;
 using System.Data;
+using System.Web.UI.HtmlControls;
 
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.js", "application/x-javascript")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_normal.bmp", "image/jpg")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.dropdown_pressed.bmp", "image/jpg")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.quicknew.bmp", "image/jpg")]
-[assembly: WebResource("EasyDev.Presentation.UI.WebControls.DropDownTree.css", "text/html")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.Resources.Scripts.DropDownTree.js", "application/x-javascript")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.Resources.Images.dropdown_normal.bmp", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.Resources.Images.dropdown_pressed.bmp", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.Resources.Images.quicknew.bmp", "image/jpg")]
+[assembly: WebResource("EasyDev.Presentation.UI.WebControls.Resources.Styles.DropDownTree.css", "text/html")]
 namespace EasyDev.Presentation.UI.WebControls
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace EasyDev.Presentation.UI.WebControls
         private string pressedImage = string.Empty;
         private string normalImage = string.Empty;
         private string quickNewImage = string.Empty;
+        private string cssPath = string.Empty;
                 
         /// <summary>
         /// 
@@ -378,11 +380,18 @@ namespace EasyDev.Presentation.UI.WebControls
             this.dropdownTree.CssClass = "tree";
 
             this.textField.Width = this.Width;
-            this.Page.ClientScript.RegisterClientScriptResource(this.GetType(), "EasyDev.Presentation.UI.WebControls.DropDownTree.js");
+            this.Page.ClientScript.RegisterClientScriptResource(this.GetType(),
+                "EasyDev.Presentation.UI.WebControls.Resources.Scripts.DropDownTree.js");
 
-            normalImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.dropdown_normal.bmp");
-            pressedImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.dropdown_pressed.bmp");
-            quickNewImage = Page.ClientScript.GetWebResourceUrl(this.GetType(), "EasyDev.Presentation.UI.WebControls.quicknew.bmp");
+            normalImage = Page.ClientScript.GetWebResourceUrl(this.GetType(),
+                "EasyDev.Presentation.UI.WebControls.Resources.Images.dropdown_normal.bmp");
+            pressedImage = Page.ClientScript.GetWebResourceUrl(this.GetType(),
+                "EasyDev.Presentation.UI.WebControls.Resources.Images.dropdown_pressed.bmp");
+            quickNewImage = Page.ClientScript.GetWebResourceUrl(this.GetType(),
+                "EasyDev.Presentation.UI.WebControls.Resources.Images.quicknew.bmp");
+
+            cssPath = Page.ClientScript.GetWebResourceUrl(this.GetType(), 
+                "EasyDev.Presentation.UI.WebControls.Resources.Styles.DropDownTree.css");
         }
 
         /// <summary>
@@ -397,6 +406,16 @@ namespace EasyDev.Presentation.UI.WebControls
                 string.Format("var {0}=new DropDownTree('{1}',{{'pressed':'{2}','normal':'{3}','quicknew':'{4}'}});",
                     this.ID, this.ClientID, pressedImage, normalImage, quickNewImage),
                 true);
+                        
+            HtmlLink link = new HtmlLink();
+            link.Href = cssPath;
+            link.Attributes.Add("rel", "stylesheet");
+            link.Attributes.Add("type", "text/css");
+
+            if (Page.Header.Controls.Contains(link) == false)
+            {
+                Page.Header.Controls.Add(link);
+            }
         }
 
         /// <summary>

@@ -270,20 +270,20 @@
     <EmbeddedResource Include="Resources\Languages\Default\GenericService.zh-CN.resx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Presentation\UI\WebControls\DropDownTree.js">
+    <EmbeddedResource Include="Presentation\UI\WebControls\Resources\Scripts\DropDownTree.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UI\WebControls\DropDownTree.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\DropDownTree.css">
+    <EmbeddedResource Include="Presentation\UI\WebControls\Resources\Styles\DropDownTree.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_normal.bmp">
+    <EmbeddedResource Include="Presentation\UI\WebControls\Resources\Images\dropdown_normal.bmp">
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\dropdown_pressed.bmp">
+    <EmbeddedResource Include="Presentation\UI\WebControls\Resources\Images\dropdown_pressed.bmp">
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UI\WebControls\quicknew.bmp">
+    <EmbeddedResource Include="Presentation\UI\WebControls\Resources\Images\quicknew.bmp">
     </EmbeddedResource>
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_en-US.xml" />
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_zh-CN.xml" />
