@@ -33,10 +33,12 @@ namespace EasyDev.Presentation.UI.WebControls
         private HiddenField valueField = new HiddenField();
         private TextBox textField = new TextBox();
         private HiddenField selectedDataItem = new HiddenField();
+
         private string pressedImage = string.Empty;
         private string normalImage = string.Empty;
         private string quickNewImage = string.Empty;
         private string cssPath = string.Empty;
+        private DataTable dtTree = null;
                 
         /// <summary>
         /// 
@@ -63,6 +65,15 @@ namespace EasyDev.Presentation.UI.WebControls
             set;
         }
 
+        public override ControlCollection Controls
+        {
+                get
+                {
+                        EnsureChildControls();
+                        return base.Controls;
+                }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -83,6 +94,9 @@ namespace EasyDev.Presentation.UI.WebControls
             }
         }
 
+
+        public event EventHandler ValueChanged;
+
         /// <summary>
         /// 
         /// </summary>
@@ -98,7 +112,20 @@ namespace EasyDev.Presentation.UI.WebControls
             {
                 EnsureChildControls();
                 this.valueField.Value = value;
+                ValueChanged(this, new EventArgs());
             }
+        }
+
+        void OnValueChanged(object sender, EventArgs e)
+        {
+                if (this.dtTree != null)
+                {
+                        DataRow[] rows = dtTree.Select(string.Format("{0}='{1}'", this.DataValueField, this.valueField.Value));
+                        if (rows.Length > 0)
+                        {
+                                SelectedText = rows[0].Field<string>(this.DataTextField);
+                        }
+                }
         }
 
         /// <summary>
@@ -392,6 +419,8 @@ namespace EasyDev.Presentation.UI.WebControls
 
             cssPath = Page.ClientScript.GetWebResourceUrl(this.GetType(), 
                 "EasyDev.Presentation.UI.WebControls.Resources.Styles.DropDownTree.css");
+
+            ValueChanged += new EventHandler(OnValueChanged);
         }
 
         /// <summary>
@@ -440,12 +469,12 @@ namespace EasyDev.Presentation.UI.WebControls
             base.PerformDataBinding(data);
 
             //Build Tree Data Table
-            DataTable dtTree = new DataTable("TreeData");
+            dtTree = new DataTable("TreeData");
             foreach (string col in Columns)
             {
                 dtTree.Columns.Add(col);
             }
-
+                
             //Retrieve Data
             IEnumerator itr = data.GetEnumerator();
             while (itr.MoveNext())
