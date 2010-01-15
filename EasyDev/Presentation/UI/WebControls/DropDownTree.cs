@@ -27,19 +27,20 @@ namespace EasyDev.Presentation.UI.WebControls
     [AspNetHostingPermission(SecurityAction.Demand, Level = AspNetHostingPermissionLevel.Minimal)]
     [Designer(typeof(DropDownTreeDesign))]
     [ToolboxBitmap("DropDownTree.bmp")]
-    public class DropDownTree : DataBoundControl, INamingContainer
+    public class DropDownTree :CompositeControl, INamingContainer
     {
-        private TreeView dropdownTree = new TreeView();
-        private HiddenField valueField = new HiddenField();
-        private TextBox textField = new TextBox();
-        private HiddenField selectedDataItem = new HiddenField();
+        private TreeView dropdownTree = null;
+        private HiddenField valueField = null;
+        private TextBox textField = null;
+        private HiddenField selectedDataItem = null;
+        private PlaceHolder container = null;
 
         private string pressedImage = string.Empty;
         private string normalImage = string.Empty;
         private string quickNewImage = string.Empty;
         private string cssPath = string.Empty;
         private DataTable dtTree = null;
-                
+
         /// <summary>
         /// 
         /// </summary>
@@ -47,7 +48,11 @@ namespace EasyDev.Presentation.UI.WebControls
         {
             this.Width = new Unit(180);
 
-           
+            dropdownTree = new TreeView();
+            valueField = new HiddenField();
+            textField = new TextBox();
+            selectedDataItem = new HiddenField();
+            container = new PlaceHolder();
         }
 
         #region Properties
@@ -65,15 +70,6 @@ namespace EasyDev.Presentation.UI.WebControls
             set;
         }
 
-        public override ControlCollection Controls
-        {
-                get
-                {
-                        EnsureChildControls();
-                        return base.Controls;
-                }
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -86,7 +82,21 @@ namespace EasyDev.Presentation.UI.WebControls
             get
             {
                 String s = (String)ViewState[this.ID + "_QuickNewUrl"];
-                return ((s == null) ? String.Empty : s);
+                if (s == null)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    if (s.Contains("http://") || s.Contains("https://"))
+                    {
+                        return s;
+                    }
+                    else
+                    {
+                        return "http://" + s;
+                    }
+                }
             }
             set
             {
@@ -118,14 +128,14 @@ namespace EasyDev.Presentation.UI.WebControls
 
         void OnValueChanged(object sender, EventArgs e)
         {
-                if (this.dtTree != null)
+            if (this.dtTree != null)
+            {
+                DataRow[] rows = dtTree.Select(string.Format("{0}='{1}'", this.DataValueField, this.valueField.Value));
+                if (rows.Length > 0)
                 {
-                        DataRow[] rows = dtTree.Select(string.Format("{0}='{1}'", this.DataValueField, this.valueField.Value));
-                        if (rows.Length > 0)
-                        {
-                                SelectedText = rows[0].Field<string>(this.DataTextField);
-                        }
+                    SelectedText = rows[0].Field<string>(this.DataTextField);
                 }
+            }
         }
 
         /// <summary>
@@ -167,7 +177,12 @@ namespace EasyDev.Presentation.UI.WebControls
                 return this.textField;
             }
         }
-                
+
+        protected override object SaveViewState()
+        {
+            return base.SaveViewState();
+        }
+
         /// <summary>
         /// Specific the parent value of root node in the tree
         /// </summary>
@@ -313,24 +328,12 @@ namespace EasyDev.Presentation.UI.WebControls
             if (ChildControlsCreated == false)
             {
                 Controls.Clear();
-                
                 this.Controls.Add(this.valueField);
-
-                //TODO: this line of code will cause out of range exception sometimes.
-                this.Controls.Add(this.dropdownTree);
                 this.Controls.Add(this.textField);
                 this.Controls.Add(this.selectedDataItem);
+                this.Controls.Add(this.dropdownTree);
                 ClearChildViewState();
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="output"></param>
-        protected override void RenderContents(HtmlTextWriter output)
-        {
-
         }
 
         /// <summary>
@@ -339,6 +342,8 @@ namespace EasyDev.Presentation.UI.WebControls
         /// <param name="writer"></param>
         protected override void Render(HtmlTextWriter writer)
         {
+            EnsureChildControls();
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<div id='{0}'>", this.ClientID);
             sb.AppendFormat("<table cellpadding='1' cellspacing='0' id='{0}_tableframe'>", this.ClientID);
@@ -348,15 +353,19 @@ namespace EasyDev.Presentation.UI.WebControls
             sb = new StringBuilder();
             sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
 
-            sb.AppendFormat("<img onclick='{1}.switchDropdownTree()' id='{0}_dropdownbutton' src='{2}' alt='' style='width:18px;height:18px;vertical-align:middle;'/>",
+            sb.AppendFormat(@"<img onclick='{1}.switchDropdownTree()' id='{0}_dropdownbutton' src='{2}' alt='' 
+                    style='width:18px;height:18px;vertical-align:middle;'/>",
                 this.ClientID, this.ID, normalImage);
 
             sb.Append("</td>");
             if (CanQuickNew)
             {
-                sb.AppendFormat("<td valign='middle' align='center' style='width:20px'><img src='{0}' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td>", quickNewImage);
+                sb.AppendFormat(@"<td valign='middle' align='center' style='width:20px'><a href='{1}' target='_blank'>
+                    <img src='{0}' alt='' style='width:18px;height:18px;vertical-align:middle;' /></a></td>", quickNewImage, this.QuickNewUrl);
             }
-            sb.AppendFormat("</tr><tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
+            sb.AppendFormat(@"</tr><tr><td colspan='4'>
+                <div id='{0}_tree_frame' 
+                style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
                 this.ID, this.Width.Value - 2);
             writer.Write(sb.ToString());
 
@@ -382,9 +391,12 @@ namespace EasyDev.Presentation.UI.WebControls
             sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
             sb.AppendFormat("<img onclick='{1}.switchDropdownTree(\"{0}\")' id='{0}_dropdownbutton' src='dropdown_normal.png' alt='' style='width:18px;height:18px;vertical-align:middle;'/>",
                 this.ClientID, this.ID);
-            sb.Append("</td><td valign='middle' align='center' style='width:20px'>");
-            sb.Append("<img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td></tr>");
-            sb.AppendFormat("<tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
+            sb.Append("</td>");
+            if (CanQuickNew)
+            {
+                sb.Append("<td valign='middle' align='center' style='width:20px'><img src='quicknew.png' alt='' style='width:18px;height:18px;vertical-align:middle;' /></td>");
+            }
+            sb.AppendFormat("</tr><tr><td colspan='4'><div id='{0}_tree_frame' style='display:none;position:absolute;height:200px;width:{1}px;border:solid 1px #000;background-color:#eeeefe;overflow:auto'>",
                 this.ID, this.Width.Value - 2);
             sb.Append("</div></td></tr></table></div>");
 
@@ -402,7 +414,7 @@ namespace EasyDev.Presentation.UI.WebControls
             this.valueField.ID = "_SelectedValue";
             this.textField.ID = "_SelectedText";
             this.selectedDataItem.ID = "_SelectedDataItem";
-            
+
             this.dropdownTree.ShowLines = true;
             this.dropdownTree.CssClass = "tree";
 
@@ -417,7 +429,7 @@ namespace EasyDev.Presentation.UI.WebControls
             quickNewImage = Page.ClientScript.GetWebResourceUrl(this.GetType(),
                 "EasyDev.Presentation.UI.WebControls.Resources.Images.quicknew.bmp");
 
-            cssPath = Page.ClientScript.GetWebResourceUrl(this.GetType(), 
+            cssPath = Page.ClientScript.GetWebResourceUrl(this.GetType(),
                 "EasyDev.Presentation.UI.WebControls.Resources.Styles.DropDownTree.css");
 
             ValueChanged += new EventHandler(OnValueChanged);
@@ -430,12 +442,12 @@ namespace EasyDev.Presentation.UI.WebControls
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Init_DropDownTree_Object",
                 string.Format("var {0}=new DropDownTree('{1}',{{'pressed':'{2}','normal':'{3}','quicknew':'{4}'}});",
                     this.ID, this.ClientID, pressedImage, normalImage, quickNewImage),
                 true);
-                        
+
             HtmlLink link = new HtmlLink();
             link.Href = cssPath;
             link.Attributes.Add("rel", "stylesheet");
@@ -460,37 +472,68 @@ namespace EasyDev.Presentation.UI.WebControls
             this.dropdownTree.Nodes.Add(node);
         }
 
+        private static object _treedatabinding = new object();
+        private static object _treedatabound = new object();
+
+        //public event EventHandler
+
+        public override void DataBind()
+        {
+            
+            if (DataSource is DataTable)
+            {
+                dtTree = DataSource as DataTable;
+
+                //Build Tree
+                this.Tree.Nodes.Clear();
+                if (this.dropdownTree != null && this.dropdownTree.Nodes != null)
+                {
+                    BuildTree(this.dropdownTree.Nodes, dtTree, this.RootParentValue);
+                }
+            }
+            else
+            {
+                //TODO: exception
+            }
+
+            base.DataBind();            
+        }
+
+        public object DataSource
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
-        protected override void PerformDataBinding(System.Collections.IEnumerable data)
-        {
-            base.PerformDataBinding(data);
+        //protected override void PerformDataBinding(System.Collections.IEnumerable data)
+        //{
+        //    //Build Tree Data Table
+        //    dtTree = new DataTable("TreeData");
+        //    foreach (string col in Columns)
+        //    {
+        //        dtTree.Columns.Add(col);
+        //    }
 
-            //Build Tree Data Table
-            dtTree = new DataTable("TreeData");
-            foreach (string col in Columns)
-            {
-                dtTree.Columns.Add(col);
-            }
-                
-            //Retrieve Data
-            IEnumerator itr = data.GetEnumerator();
-            while (itr.MoveNext())
-            {
-                DataRow drNew = dtTree.NewRow();
-                foreach (string col in Columns)
-                {
-                    drNew[col] = DataBinder.GetPropertyValue(itr.Current, col, null);
-                }
-                dtTree.Rows.Add(drNew);
-            }
-            
-            //Build Tree
-            this.Tree.Nodes.Clear();
-            BuildTree(this.dropdownTree.Nodes, dtTree, this.RootParentValue);
-        }
+        //    //Retrieve Data
+        //    IEnumerator itr = data.GetEnumerator();
+        //    while (itr.MoveNext())
+        //    {
+        //        DataRow drNew = dtTree.NewRow();
+        //        foreach (string col in Columns)
+        //        {
+        //            drNew[col] = DataBinder.GetPropertyValue(itr.Current, col, null);
+        //        }
+        //        dtTree.Rows.Add(drNew);
+        //    }
+
+        //    //Build Tree
+        //    this.Tree.Nodes.Clear();
+        //    BuildTree(this.dropdownTree.Nodes, dtTree, this.RootParentValue);
+        //}
 
         /// <summary>
         /// build treeview
@@ -517,11 +560,13 @@ namespace EasyDev.Presentation.UI.WebControls
                 dataItemRow.Append("}");
 
                 node = new TreeNode();
+                //TODO: TreeNodeDataBinding
                 node.ToolTip = node.Text = row.Field<string>(this.DataTextField);
                 node.Value = row.Field<string>(this.DataValueField);
                 node.NavigateUrl = "javascript:" +
                     string.Format("{3}.selectNode('{0}','{1}','{2}','{4}')", this.ID, node.Text, node.Value, this.ID, dataItemRow.ToString());
-                
+
+                //TODO: TreeNodeDataBound(node)
                 nodes.Add(node);
                 BuildTree(node.ChildNodes, treeData, row.Field<object>(this.DataKeyField));
             }
