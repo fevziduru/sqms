@@ -24,6 +24,7 @@ drop sequence SEQ_MENU;
 drop sequence SEQ_EMERGENCYEVENT;
 drop sequence SEQ_VEHICLETASK;
 drop sequence SEQ_VEHICLETASKDATA;
+drop sequence SEQ_WORKSTATUS;
 
 -- Create sequence 
 create sequence SEQ_QUALITYDATA
@@ -218,6 +219,13 @@ increment by 1
 cache 20;
 
 create sequence SEQ_VEHICLETASKDATA
+minvalue 0
+maxvalue 999999999999999999999999999
+start with 0
+increment by 1
+cache 20;
+
+create sequence SEQ_WORKSTATUS
 minvalue 0
 maxvalue 999999999999999999999999999
 start with 0
