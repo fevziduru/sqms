@@ -36,7 +36,7 @@ namespace EasyDev.Configuration
 
                 private ResourcesConfigManager()
                 {
-                        this.configPath = AppDomain.CurrentDomain.BaseDirectory + @"/Config/EasyDev.Resources.Config";
+                        this.configPath = AppDomain.CurrentDomain.BaseDirectory + @"Config\\EasyDev.Resources.Config";
                         this.resources = new Dictionary<string, ResourceItemConfig>();
                         this.Initialize();
                 }

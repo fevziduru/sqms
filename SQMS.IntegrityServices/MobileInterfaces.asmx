@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="MobileInterfaces.asmx.cs" Class="SQMS.IntegrityServices.MobileInterfaces" %>
