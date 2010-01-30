@@ -252,6 +252,7 @@ namespace SQMS.IntegrityServices
         /// <param name="orgid"></param>
         /// <param name="suiteid"></param>
         /// <returns></returns>
+        [WebMethod]
         public bool RegisterEquipment(string equIdentify, string equname, string orgid, string suiteid)
         {
             bool isSuccess = true;
@@ -276,7 +277,7 @@ namespace SQMS.IntegrityServices
                 isSuccess = false;
             }
 
-            return false;
+            return isSuccess;
         }
 
         /// <summary>
@@ -286,6 +287,7 @@ namespace SQMS.IntegrityServices
         /// <param name="empid">职员编号</param>
         /// <param name="isStartup">True-开启；False-关闭</param>
         /// <returns></returns>
+        [WebMethod]
         public bool UpdateWorkStatus(string equIdentity, string empid, bool isStartup)
         {
             bool isSuccess = true;

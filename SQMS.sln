@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Application", "SQMS.Application\SQMS.Application.csproj", "{8839A165-AEA5-41B3-920E-0608A2C60985}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D10A32B9-243A-424A-A499-AB0AE725448D} = {D10A32B9-243A-424A-A499-AB0AE725448D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Services", "SQMS.Services\SQMS.Services.csproj", "{B714CFE0-2934-4AED-8994-B371A6D44405}"
 EndProject
@@ -9,11 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDev", "EasyDev\EasyDev.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.PortalServices", "SQMS.PortalServices\SQMS.PortalServices.csproj", "{665A0EFC-0287-47E8-B16D-6372FA7814B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDev.UI.Demo", "..\EasyDev.UI.Demo\EasyDev.UI.Demo.csproj", "{45FB706D-1AC8-4F19-A278-470052CDDEA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDev.UI.Demo", "..\EasyDev.UI.Demo\EasyDev.UI.Demo.csproj", "{E61B0F2C-D398-412B-8F16-AA4264B0B615}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.IntegrityServices", "SQMS.IntegrityServices\SQMS.IntegrityServices.csproj", "{D10A32B9-243A-424A-A499-AB0AE725448D}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -35,10 +42,10 @@ Global
 		{665A0EFC-0287-47E8-B16D-6372FA7814B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665A0EFC-0287-47E8-B16D-6372FA7814B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665A0EFC-0287-47E8-B16D-6372FA7814B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45FB706D-1AC8-4F19-A278-470052CDDEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45FB706D-1AC8-4F19-A278-470052CDDEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45FB706D-1AC8-4F19-A278-470052CDDEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45FB706D-1AC8-4F19-A278-470052CDDEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E61B0F2C-D398-412B-8F16-AA4264B0B615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61B0F2C-D398-412B-8F16-AA4264B0B615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61B0F2C-D398-412B-8F16-AA4264B0B615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61B0F2C-D398-412B-8F16-AA4264B0B615}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D10A32B9-243A-424A-A499-AB0AE725448D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D10A32B9-243A-424A-A499-AB0AE725448D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D10A32B9-243A-424A-A499-AB0AE725448D}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -237,6 +237,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Views\AjaxServices\QualityControl\QualityInfo.aspx.cs">
       <DependentUpon>QualityInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1646,6 +1651,13 @@
     </Content>
     <Content Include="Resources\Swf\expressinstall.swf" />
     <Content Include="Resources\Swf\SimpleVideoPlay.swf" />
+    <None Include="Service References\ServiceReference1\MobileInterfaces.disco" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\AjaxServices\QualityControl\QualityInfo.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Test.aspx" />
     <Content Include="Views\AjaxServices\QualityControl\Video.aspx" />
@@ -1758,6 +1770,7 @@
     <Content Include="Views\Vehicle\VehicleTaskEdit.aspx" />
     <Content Include="Views\Vehicle\VehicleTaskList.aspx" />
     <Content Include="Views\Vehicle\VehicleTaskView.aspx" />
+    <None Include="Service References\ServiceReference1\MobileInterfaces.wsdl" />
     <None Include="Web References\sqms_filejoiner\FileJoinService.disco" />
     <None Include="Web References\sqms_filejoiner\FileJoinService.wsdl" />
     <None Include="Web References\sqms_filejoiner\Reference.map">
@@ -1798,6 +1811,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>SQMS_Application_sqms_mobileinterfaces_MobileInterfaces</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
