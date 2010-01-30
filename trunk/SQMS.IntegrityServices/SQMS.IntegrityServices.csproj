@@ -1,0 +1,577 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D10A32B9-243A-424A-A499-AB0AE725448D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQMS.IntegrityServices</RootNamespace>
+    <AssemblyName>SQMS.IntegrityServices</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FileJoinService.asmx" />
+    <Content Include="MobileInterfaces.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Schema\DATABASE.Designer.cs">
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\EMPLOYEE.cs">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\EMPLOYEE.Designer.cs">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\ENUMERATION.Designer.cs">
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\EQUIPMENT.Designer.cs">
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\LOG.Designer.cs">
+      <DependentUpon>LOG.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\MENU.Designer.cs">
+      <DependentUpon>MENU.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\MONITORPOINTINVIDEO.Designer.cs">
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\MPASSIGNMENT1.Designer.cs">
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\ORGANIZATION.Designer.cs">
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\PASSPORT.Designer.cs">
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\PROJECT1.Designer.cs">
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\QUALITY1.Designer.cs">
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\RESOURCEITEM1.Designer.cs">
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\RESPERMISSION1.Designer.cs">
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\ROAD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ROAD.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\ROLE.Designer.cs">
+      <DependentUpon>ROLE.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\TIME1.Designer.cs">
+      <DependentUpon>TIME.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\TIMEITEM1.Designer.cs">
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\TIMESCHEMA.cs">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Config\Schema\TIMESCHEMA1.Designer.cs">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\USERROLE.Designer.cs">
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\VEHICLETASK.Designer.cs">
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\VIDEO.Designer.cs">
+      <DependentUpon>VIDEO.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Config\Schema\WORKSTATUS.cs">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Schema\WORKSTATUS.Designer.cs">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FileJoiner.cs" />
+    <Compile Include="FileJoinService.asmx.cs">
+      <DependentUpon>FileJoinService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FileSpliter2.cs" />
+    <Compile Include="FileSplitter.cs" />
+    <Compile Include="MobileInterfaces.asmx.cs">
+      <DependentUpon>MobileInterfaces.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyDev\EasyDev.csproj">
+      <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
+      <Name>EasyDev</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQMS.Services\SQMS.Services.csproj">
+      <Project>{B714CFE0-2934-4AED-8994-B371A6D44405}</Project>
+      <Name>SQMS.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\EasyDev.Persistence.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\EasyDev.Resources.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\Schema\DATABASE.xsc">
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\DATABASE.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DATABASE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\DATABASE.xss">
+      <DependentUpon>DATABASE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EMERGENCYEVENT.xsc">
+      <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EMERGENCYEVENT.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\EMERGENCYEVENT.xss">
+      <DependentUpon>EMERGENCYEVENT.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\EMPLOYEE.xsc">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\EMPLOYEE.xss">
+      <DependentUpon>EMPLOYEE.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\ENUMERATION.xsc">
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ENUMERATION.xss">
+      <DependentUpon>ENUMERATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\EQUIPMENT.xsc">
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\EQUIPMENT.xss">
+      <DependentUpon>EQUIPMENT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\LOG.xsc">
+      <DependentUpon>LOG.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\LOG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LOG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\LOG.xss">
+      <DependentUpon>LOG.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MENU.xsc">
+      <DependentUpon>MENU.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\MENU.xss">
+      <DependentUpon>MENU.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xsc">
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MONITORPOINTINVIDEO.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\MONITORPOINTINVIDEO.xss">
+      <DependentUpon>MONITORPOINTINVIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\MPASSIGNMENT.xsc">
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\MPASSIGNMENT.xss">
+      <DependentUpon>MPASSIGNMENT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\OPERATION.xsc">
+      <DependentUpon>OPERATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\OPERATION.xss">
+      <DependentUpon>OPERATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ORGANIZATION.xsc">
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ORGANIZATION.xss">
+      <DependentUpon>ORGANIZATION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\PASSPORT.xsc">
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\PASSPORT.xss">
+      <DependentUpon>PASSPORT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\PROJECT.xsc">
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\PROJECT.xss">
+      <DependentUpon>PROJECT.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\QUALITY.xsc">
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\QUALITY.xss">
+      <DependentUpon>QUALITY.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\RESOURCEITEM.xsc">
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\RESOURCEITEM.xss">
+      <DependentUpon>RESOURCEITEM.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\RESPERMISSION.xsc">
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\RESPERMISSION.xss">
+      <DependentUpon>RESPERMISSION.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ROAD.xsc">
+      <DependentUpon>ROAD.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ROAD.xss">
+      <DependentUpon>ROAD.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ROLE.xsc">
+      <DependentUpon>ROLE.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\ROLE.xss">
+      <DependentUpon>ROLE.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\TIME.xsc">
+      <DependentUpon>TIME.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIME.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIME1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIME.xss">
+      <DependentUpon>TIME.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xsc">
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIMEITEM1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIMEITEM.xss">
+      <DependentUpon>TIMEITEM.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xsc">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TIMESCHEMA1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\TIMESCHEMA.xss">
+      <DependentUpon>TIMESCHEMA.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\USERROLE.xsc">
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\USERROLE.xss">
+      <DependentUpon>USERROLE.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Schema\VEHICLETASK.xsc">
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\VEHICLETASK.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VEHICLETASK.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\VEHICLETASK.xss">
+      <DependentUpon>VEHICLETASK.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\VIDEO.xsc">
+      <DependentUpon>VIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\VIDEO.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VIDEO.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\VIDEO.xss">
+      <DependentUpon>VIDEO.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xsc">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WORKSTATUS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Schema\WORKSTATUS.xss">
+      <DependentUpon>WORKSTATUS.xsd</DependentUpon>
+    </None>
+    <Content Include="Config\Schema\USERROLE.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>USERROLE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\ROLE.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ROLE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\ROAD.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>ROAD.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Config\Schema\RESPERMISSION.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RESPERMISSION1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\RESOURCEITEM.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RESOURCEITEM1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\QUALITY.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QUALITY1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\PROJECT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PROJECT1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\PASSPORT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PASSPORT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\ORGANIZATION.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ORGANIZATION.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\OPERATION.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\MPASSIGNMENT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MPASSIGNMENT1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\MENU.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MENU.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\EQUIPMENT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EQUIPMENT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\ENUMERATION.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ENUMERATION.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Schema\EMPLOYEE.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EMPLOYEE.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12408</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
