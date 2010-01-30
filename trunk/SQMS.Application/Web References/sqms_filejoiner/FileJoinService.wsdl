@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="BasePath">
+        <s:complexType />
+      </s:element>
+      <s:element name="BasePathResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BasePathResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="JoinFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deviceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="JoinFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="JoinFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BasePathSoapIn">
+    <wsdl:part name="parameters" element="tns:BasePath" />
+  </wsdl:message>
+  <wsdl:message name="BasePathSoapOut">
+    <wsdl:part name="parameters" element="tns:BasePathResponse" />
+  </wsdl:message>
+  <wsdl:message name="JoinFileSoapIn">
+    <wsdl:part name="parameters" element="tns:JoinFile" />
+  </wsdl:message>
+  <wsdl:message name="JoinFileSoapOut">
+    <wsdl:part name="parameters" element="tns:JoinFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FileJoinServiceSoap">
+    <wsdl:operation name="BasePath">
+      <wsdl:input message="tns:BasePathSoapIn" />
+      <wsdl:output message="tns:BasePathSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinFile">
+      <wsdl:input message="tns:JoinFileSoapIn" />
+      <wsdl:output message="tns:JoinFileSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FileJoinServiceSoap" type="tns:FileJoinServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BasePath">
+      <soap:operation soapAction="http://tempuri.org/BasePath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinFile">
+      <soap:operation soapAction="http://tempuri.org/JoinFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FileJoinServiceSoap12" type="tns:FileJoinServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BasePath">
+      <soap12:operation soapAction="http://tempuri.org/BasePath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinFile">
+      <soap12:operation soapAction="http://tempuri.org/JoinFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FileJoinService">
+    <wsdl:port name="FileJoinServiceSoap" binding="tns:FileJoinServiceSoap">
+      <soap:address location="http://localhost:12408/FileJoinService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FileJoinServiceSoap12" binding="tns:FileJoinServiceSoap12">
+      <soap12:address location="http://localhost:12408/FileJoinService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
