@@ -406,6 +406,13 @@
     <Compile Include="Views\Demo\UpdateQualityData.aspx.designer.cs">
       <DependentUpon>UpdateQualityData.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Demo\WebServiceRefTest.aspx.cs">
+      <DependentUpon>WebServiceRefTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Demo\WebServiceRefTest.aspx.designer.cs">
+      <DependentUpon>WebServiceRefTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\External\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -867,6 +874,16 @@
     </Compile>
     <Compile Include="Views\Vehicle\VehicleTaskView.aspx.designer.cs">
       <DependentUpon>VehicleTaskView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\sqms_filejoiner\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\sqms_mobileinterfaces\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="WebServices\MobileWebService.asmx.cs">
       <DependentUpon>MobileWebService.asmx</DependentUpon>
@@ -1654,6 +1671,7 @@
     <Content Include="Views\Demo\Demo.aspx" />
     <Content Include="Views\Demo\HTMLPage1.htm" />
     <Content Include="Views\Demo\UpdateQualityData.aspx" />
+    <Content Include="Views\Demo\WebServiceRefTest.aspx" />
     <Content Include="Views\PortalParts\EmployeeManagementPart.ascx" />
     <Content Include="Views\PortalParts\LatestProjectsPart.ascx" />
     <Content Include="Views\PortalParts\LatestQualityDataPart.ascx" />
@@ -1740,10 +1758,46 @@
     <Content Include="Views\Vehicle\VehicleTaskEdit.aspx" />
     <Content Include="Views\Vehicle\VehicleTaskList.aspx" />
     <Content Include="Views\Vehicle\VehicleTaskView.aspx" />
+    <None Include="Web References\sqms_filejoiner\FileJoinService.disco" />
+    <None Include="Web References\sqms_filejoiner\FileJoinService.wsdl" />
+    <None Include="Web References\sqms_filejoiner\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\sqms_mobileinterfaces\MobileInterfaces.disco" />
+    <None Include="Web References\sqms_mobileinterfaces\MobileInterfaces.wsdl" />
+    <None Include="Web References\sqms_mobileinterfaces\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="WebServices\MobileWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:12408/FileJoinService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\sqms_filejoiner\</RelPath>
+      <UpdateFromURL>http://localhost:12408/FileJoinService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SQMS_Application_sqms_filejoiner_FileJoinService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:12408/MobileInterfaces.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\sqms_mobileinterfaces\</RelPath>
+      <UpdateFromURL>http://localhost:12408/MobileInterfaces.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SQMS_Application_sqms_mobileinterfaces_MobileInterfaces</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

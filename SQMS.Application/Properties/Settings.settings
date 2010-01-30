@@ -1,5 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SQMS.Application.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="SQMS_Application_sqms_filejoiner_FileJoinService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:12408/FileJoinService.asmx</Value>
+    </Setting>
+    <Setting Name="SQMS_Application_sqms_mobileinterfaces_MobileInterfaces" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:12408/MobileInterfaces.asmx</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
