@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UpdateQualityData">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateQualityDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateQualityDataResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MobileLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="empId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="equId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MobileLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MobileLoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterEquipment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="equIdentify" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="equname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="suiteid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterEquipmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegisterEquipmentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateWorkStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="equIdentity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="empid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isStartup" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateWorkStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateWorkStatusResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateQualityDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateQualityData" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQualityDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateQualityDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="MobileLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:MobileLogin" />
+  </wsdl:message>
+  <wsdl:message name="MobileLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:MobileLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterEquipmentSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterEquipment" />
+  </wsdl:message>
+  <wsdl:message name="RegisterEquipmentSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterEquipmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateWorkStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateWorkStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateWorkStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateWorkStatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MobileInterfacesSoap">
+    <wsdl:operation name="UpdateQualityData">
+      <wsdl:input message="tns:UpdateQualityDataSoapIn" />
+      <wsdl:output message="tns:UpdateQualityDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MobileLogin">
+      <wsdl:input message="tns:MobileLoginSoapIn" />
+      <wsdl:output message="tns:MobileLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterEquipment">
+      <wsdl:input message="tns:RegisterEquipmentSoapIn" />
+      <wsdl:output message="tns:RegisterEquipmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWorkStatus">
+      <wsdl:input message="tns:UpdateWorkStatusSoapIn" />
+      <wsdl:output message="tns:UpdateWorkStatusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MobileInterfacesSoap" type="tns:MobileInterfacesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateQualityData">
+      <soap:operation soapAction="http://tempuri.org/UpdateQualityData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MobileLogin">
+      <soap:operation soapAction="http://tempuri.org/MobileLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterEquipment">
+      <soap:operation soapAction="http://tempuri.org/RegisterEquipment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWorkStatus">
+      <soap:operation soapAction="http://tempuri.org/UpdateWorkStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileInterfacesSoap12" type="tns:MobileInterfacesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateQualityData">
+      <soap12:operation soapAction="http://tempuri.org/UpdateQualityData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MobileLogin">
+      <soap12:operation soapAction="http://tempuri.org/MobileLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterEquipment">
+      <soap12:operation soapAction="http://tempuri.org/RegisterEquipment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWorkStatus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateWorkStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MobileInterfaces">
+    <wsdl:port name="MobileInterfacesSoap" binding="tns:MobileInterfacesSoap">
+      <soap:address location="http://localhost:12408/MobileInterfaces.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileInterfacesSoap12" binding="tns:MobileInterfacesSoap12">
+      <soap12:address location="http://localhost:12408/MobileInterfaces.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

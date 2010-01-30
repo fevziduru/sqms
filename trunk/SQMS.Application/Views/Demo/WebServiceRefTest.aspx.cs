@@ -16,6 +16,8 @@ namespace SQMS.Application.Views.Demo
                         MobileInterfaces mobile = new MobileInterfaces();
 
                         FileJoinService fj = new FileJoinService();
+
+                        
                 }
         }
 }

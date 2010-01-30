@@ -121,11 +121,11 @@ namespace EasyDev.BL
             this._data = ds;
             this._session = session;
             this.BOName = tableName;
-            if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
-                CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
-            {
-                ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = tableName;
-            }
+            //if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
+            //    CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
+            //{
+            //    ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = tableName;
+            //}
 
             this.views = new DataSet();
         }
@@ -336,6 +336,18 @@ namespace EasyDev.BL
             return true;
         }
 
+            /// <summary>
+            /// 延迟实例化主键生成器，如果在构造函数中实例化会出现覆盖的现象
+            /// </summary>
+        private void EnsureIdentityGenerator()
+        {
+                if (CurrentSession.CurrentDbProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase) ||
+               CurrentSession.CurrentDbProvider.Equals("Oracle.DataAccess.Client", StringComparison.CurrentCultureIgnoreCase))
+                {
+                        ((OracleSequenceGenerator)CurrentSession.IdentityGenerator).TableName = this.BOName;
+                }
+        }
+
         /// <summary>
         /// 创建新行
         /// </summary>
@@ -349,6 +361,8 @@ namespace EasyDev.BL
             DataRow drNew = null;
             try
             {
+                    EnsureIdentityGenerator();
+
                 if (this.BOData.Tables.Count > 0)
                 {
                     DataTable dt = this.BOData.Tables[0];
