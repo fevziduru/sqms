@@ -7,6 +7,7 @@ using System.Web.SessionState;
 using log4net;
 using System.Configuration;
 using EasyDev.Util;
+using EasyDev.BL.Services;
 
 namespace SQMS.Application
 {
@@ -21,6 +22,9 @@ namespace SQMS.Application
                         HttpRuntime.Cache.Remove("EasyDev_DATASOURCE_CONFIG");
                         HttpRuntime.Cache.Remove("DEFAULT_DATASOURCE");
                         HttpRuntime.Cache.Remove("DEFAULT_SCHEMA_DIR");
+
+                    //加载业务服务
+                        ServicePool.LoadServices();
 
                 }
 

@@ -203,6 +203,9 @@
     </Compile>
     <Compile Include="FileSpliter2.cs" />
     <Compile Include="FileSplitter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="MobileInterfaces.asmx.cs">
       <DependentUpon>MobileInterfaces.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -542,6 +545,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

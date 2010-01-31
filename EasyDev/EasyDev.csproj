@@ -162,6 +162,7 @@
     <Compile Include="BL\Extensions\GenericServiceExtension.cs" />
     <Compile Include="BL\Services\AbstractServiceManager.cs" />
     <Compile Include="BL\Services\IDataValidator.cs" />
+    <Compile Include="BL\Services\ServicePool.cs" />
     <Compile Include="BL\Services\ServiceValidationException.cs" />
     <Compile Include="BL\BizObjectFactory.cs" />
     <Compile Include="BL\GenericBizObject.cs" />
