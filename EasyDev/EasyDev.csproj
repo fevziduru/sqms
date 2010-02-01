@@ -247,11 +247,6 @@
     <Compile Include="Security\UserInfo.cs" />
     <Compile Include="Security\UserSecurityException.cs" />
     <Compile Include="Security\UserSecurityManager.cs" />
-    <Compile Include="ThirdComponents\EPocalipse.IFilter\ComHelper.cs" />
-    <Compile Include="ThirdComponents\EPocalipse.IFilter\FilterLoader.cs" />
-    <Compile Include="ThirdComponents\EPocalipse.IFilter\FilterReader.cs" />
-    <Compile Include="ThirdComponents\EPocalipse.IFilter\IFilter.cs" />
-    <Compile Include="ThirdComponents\JefferyZhao\CodeTimer.cs" />
     <Compile Include="Util\CompressException.cs" />
     <Compile Include="Util\CompressUtil.cs" />
     <Compile Include="Util\ConvertException.cs" />
@@ -290,9 +285,6 @@
     <Content Include="Resources\Languages\EasyDev_Web_Foundation_Services_zh-CN.xml" />
     <Content Include="Resources\Languages\GenericService_en-US.xml" />
     <Content Include="Resources\Languages\GenericService_zh-CN.xml" />
-    <Content Include="ThirdComponents\Fetion\DotNetFetion_nat.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="EasyDev.pfx" />
