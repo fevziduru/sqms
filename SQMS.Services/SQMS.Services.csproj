@@ -61,19 +61,14 @@
     <Compile Include="Domain\Vehicle\VehicleTaskData.cs" />
     <Compile Include="Domain\Vehicle\VehicleTrace.cs" />
     <Compile Include="EmergencyEventService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MenuService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MonitorPointService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MonitorVideoService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="OrganizationService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Domain\Common\PagingParameter.cs" />
     <Compile Include="Domain\QualityControl\LatLng.cs" />
@@ -83,76 +78,49 @@
     <Compile Include="Domain\QualityControl\QualityControlType.cs" />
     <Compile Include="Domain\QualityControl\Road.cs" />
     <Compile Include="EmployeeService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="EnumerationService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="EquipmentService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="OperationService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityControl\ProjectService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QualityControl\QualityControlService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QualityControl\RoadService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\EmployeeRefService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\EquipmentRefService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\IReferenceService.cs" />
     <Compile Include="ReferenceServices\ProjectRefService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResourceService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResPermissionService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="RoleService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TimeItemService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TimeSchemaService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UpdateQualityDataService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserRoleService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VehicleMissionService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VehicleTaskService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VideoService.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WorkStatusService.cs">
-      <SubType>Component</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EasyDev\EasyDev.csproj">
-      <Project>{A18AA3B5-C973-4193-8421-82D191C8966D}</Project>
-      <Name>EasyDev</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Demo\" />
