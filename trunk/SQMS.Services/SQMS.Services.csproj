@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyDev, Version=1.0.3684.39943, Culture=zh-CN, PublicKeyToken=e669d604f825ee9e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\EasyDev.NET\EasyDev\bin\Debug\EasyDev.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\log4net.dll</HintPath>
@@ -61,14 +65,19 @@
     <Compile Include="Domain\Vehicle\VehicleTaskData.cs" />
     <Compile Include="Domain\Vehicle\VehicleTrace.cs" />
     <Compile Include="EmergencyEventService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MenuService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MonitorPointService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MonitorVideoService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="OrganizationService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Domain\Common\PagingParameter.cs" />
     <Compile Include="Domain\QualityControl\LatLng.cs" />
@@ -78,48 +87,69 @@
     <Compile Include="Domain\QualityControl\QualityControlType.cs" />
     <Compile Include="Domain\QualityControl\Road.cs" />
     <Compile Include="EmployeeService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="EnumerationService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="EquipmentService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="OperationService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityControl\ProjectService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QualityControl\QualityControlService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QualityControl\RoadService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\EmployeeRefService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\EquipmentRefService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReferenceServices\IReferenceService.cs" />
     <Compile Include="ReferenceServices\ProjectRefService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResourceService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResPermissionService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="RoleService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TimeItemService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TimeSchemaService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UpdateQualityDataService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserRoleService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VehicleMissionService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VehicleTaskService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VideoService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WorkStatusService.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
