@@ -13,7 +13,7 @@ namespace SQMS.IntegrityServices
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            ServicePool.LoadServices();
+            //ServicePool.LoadServices();
         }
 
         protected void Session_Start(object sender, EventArgs e)
