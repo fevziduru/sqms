@@ -172,7 +172,7 @@ namespace SQMS.Application.Views.Basedata
                                 this.ddlSex.SelectedValue = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("enumname", "ENUMERATION", "ENUMID",
                                     ConvertUtil.ToStringOrDefault(drEmployee["sex"])));
                                 this.refEquipment.SelectedValue = ConvertUtil.ToStringOrDefault(drEmployee["EQUID"]);
-                                this.refEquipment.SelectedText = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "EQUID",
+                                this.refEquipment.SelectedText = ConvertUtil.ToStringOrDefault(srv.GetReferenceValue("equname", "EQUIPMENT", "IDENTIFY",
                                     ConvertUtil.ToStringOrDefault(drEmployee["EQUID"])));
 
                                 this.txtContactTel.Text = ConvertUtil.ToStringOrDefault(drEmployee["CONTACTTEL"]);
