@@ -235,8 +235,8 @@ namespace SQMS.IntegrityServices
         {
             try
             {
-                return true;
-                //return this.employeeService.LoadByCondition(string.Format("EMPID='{0}' AND EQUID='{1}'", empId, equId)).Tables[0].Rows.Count > 0;
+                //return true;
+                return this.employeeService.LoadByCondition(string.Format("EMPID='{0}' AND EQUID='{1}'", empId, equId)).Tables[0].Rows.Count > 0;
             }
             catch (Exception e)
             {
