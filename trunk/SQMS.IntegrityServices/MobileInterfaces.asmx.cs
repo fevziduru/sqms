@@ -228,15 +228,14 @@ namespace SQMS.IntegrityServices
         /// 员工登录系统接口，通过判断员工与设备的绑定关系决定登录成功与否
         /// </summary>
         /// <param name="empId">员工号</param>
-        /// <param name="equId">设备编号</param>
+        /// <param name="equIdentity">设备号</param>
         /// <returns></returns>
         [WebMethod]
-        public bool MobileLogin(string empId, string equId)
+        public bool MobileLogin(string empId, string equIdentity)
         {
             try
             {
-                //return true;
-                return this.employeeService.LoadByCondition(string.Format("EMPID='{0}' AND EQUID='{1}'", empId, equId)).Tables[0].Rows.Count > 0;
+                return this.employeeService.LoadByCondition(string.Format("EMPID='{0}' AND IDENTIFY='{1}'", empId, equIdentity)).Tables[0].Rows.Count > 0;
             }
             catch (Exception e)
             {
