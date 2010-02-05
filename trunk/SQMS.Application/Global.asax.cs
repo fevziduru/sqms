@@ -24,7 +24,7 @@ namespace SQMS.Application
                         HttpRuntime.Cache.Remove("DEFAULT_SCHEMA_DIR");
 
                     //加载业务服务
-                        ServicePool.LoadServices();
+                        //ServicePool.LoadServices();
 
                 }
 
