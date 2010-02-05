@@ -39,7 +39,7 @@ namespace SQMS.Application.Views.Basedata
                                 this.lblSex.Text = ConvertUtil.ToStringOrDefault(
                                     srv.GetReferenceValue("enumname", "enumeration", "enumid", ConvertUtil.ToStringOrDefault(drEmployee["sex"])));
                                 this.lblEquipment.Text = ConvertUtil.ToStringOrDefault(
-                                    srv.GetReferenceValue("equname", "equipment", "equid", ConvertUtil.ToStringOrDefault(drEmployee["equid"])));
+                                    srv.GetReferenceValue("equname", "equipment", "identify", ConvertUtil.ToStringOrDefault(drEmployee["equid"])));
                                 if (ConvertUtil.ToStringOrDefault(drEmployee["ISEQUACTIVATE"]).Equals("Y"))
                                 {
                                         this.lblEquipment.Text += "(已绑定)";
