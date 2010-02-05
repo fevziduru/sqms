@@ -15,9 +15,15 @@ namespace SQMS.Application.Views.Demo
                 {
                         MobileInterfaces mobile = new MobileInterfaces();
 
-                        FileJoinService fj = new FileJoinService();
+                        if (mobile.MobileLogin("361", "t2") == false)
+                        {
+                            throw new Exception("Login Failed");
+                        }
 
-                        
+                        if (mobile.RegisterEquipment("0050BF3F517301083550-26020429458", "test", "t1", "t1") == false)
+                        {
+                            throw new Exception("Reg Equ Failed");
+                        }
                 }
         }
 }
