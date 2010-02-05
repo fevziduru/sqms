@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="EasyDev, Version=1.0.3684.39943, Culture=zh-CN, PublicKeyToken=e669d604f825ee9e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\EasyDev.NET\EasyDev\bin\Debug\EasyDev.dll</HintPath>
+      <HintPath>..\EasyDev\bin\Debug\EasyDev.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
