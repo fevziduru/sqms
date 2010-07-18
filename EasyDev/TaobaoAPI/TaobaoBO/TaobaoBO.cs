@@ -5,7 +5,7 @@ using System.Text;
 using EasyDev.TaobaoAPI.Core;
 using System.Collections;
 
-namespace EasyDev.TaobaoAPI.BizObjects
+namespace EasyDev.TaobaoAPI.BO
 {
     public abstract class TaobaoBO : ITaobaoBO
     {

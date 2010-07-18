@@ -5,7 +5,7 @@ using System.Text;
 using EasyDev.TaobaoAPI.Models;
 using EasyDev.TaobaoAPI.Core;
 
-namespace EasyDev.TaobaoAPI.BizObjects
+namespace EasyDev.TaobaoAPI.BO
 {
     public class UserBO : TaobaoBO
     {
@@ -19,8 +19,8 @@ namespace EasyDev.TaobaoAPI.BizObjects
             parameters.Add("lease_id", lease_id.ToString());
 
             string result = proxy.Invoke(UserAPI.GET_SUBSCRIBE, parameters);
-
-            return new UserSubscribe();
+            
+            return new UserSubscribe() ;
         }
 
         public User GetUser(string nick, string alipay_no, string fields)
@@ -32,18 +32,18 @@ namespace EasyDev.TaobaoAPI.BizObjects
             parameters.Add("fields", fields);
 
             string result = proxy.Invoke(UserAPI.GET_USER, parameters);
-
-            return new User();
+            return XmlResponseParser.Parse<User>(result, "user");
         }
 
-        public IList<User> GetUsers(string nicks, string fields)
+        public List<User> GetUsers(string nicks, string fields)
         {
             ClearParameters();
 
             parameters.Add("nicks", nicks);
             parameters.Add("fields", fields);
+            string result = proxy.Invoke(UserAPI.GET_USERS, parameters);
 
-            return new List<User>();
+            return XmlResponseParser.ParseList<User>(result, "users");
         }
     }
 }
