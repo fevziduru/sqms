@@ -18,7 +18,10 @@ namespace EasyDev.TaobaoAPI.Core
 
         private TaobaoInterfaceProxy() 
         {
-            restUrl = ConfigurationManager.AppSettings[Constants.REST_URL];
+            if (ConfigurationManager.AppSettings[Constants.REST_URL].Length > 0)
+            {
+                restUrl = ConfigurationManager.AppSettings[Constants.REST_URL];
+            }
             appKey = ConfigurationManager.AppSettings[Constants.APPKEY];
             appSecret = ConfigurationManager.AppSettings[Constants.APPSECRET];
         }

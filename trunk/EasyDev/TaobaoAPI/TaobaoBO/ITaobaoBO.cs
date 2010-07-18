@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasyDev.TaobaoAPI.BizObjects
+namespace EasyDev.TaobaoAPI.BO
 {
     public interface ITaobaoBO
     {

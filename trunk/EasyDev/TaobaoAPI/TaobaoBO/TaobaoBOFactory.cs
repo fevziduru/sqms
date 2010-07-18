@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EasyDev.TaobaoAPI.BizObjects
+namespace EasyDev.TaobaoAPI.BO
 {
-    public class BizObjectFactory
+    public class TaobaoBOFactory
     {
         public static T GetBO<T>()
             where T : ITaobaoBO, new()
